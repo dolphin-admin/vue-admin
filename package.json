@@ -1,15 +1,13 @@
 {
-  "name": "vst",
-  "version": "0.0.0",
-  "description": "",
-  "author": "Bruce Song",
-  "license": "MIT",
   "private": true,
+  "name": "yahoo-news-app",
+  "description": "",
+  "author": "Bruce Song <recall4056@gmail.com> (https://github.com/recallwei/)",
+  "repository": "github:recallwei/yahoo-news-app",
   "scripts": {
     "dev": "vite",
     "build": "run-p check:type build-only",
     "preview": "vite preview",
-    "test:unit": "vitest --environment jsdom --root src/",
     "build-only": "vite build",
     "check:type": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
     "check:spell": "npx cspell '**'",
@@ -42,13 +40,17 @@
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-vue": "^9.13.0",
     "husky": "^8.0.3",
-    "jsdom": "^22.0.0",
     "lint-staged": "^13.2.2",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.8.8",
     "typescript": "~5.0.4",
     "vite": "^4.3.6",
-    "vitest": "^0.31.0",
     "vue-tsc": "^1.6.5"
-  }
+  },
+  "packageManager": "pnpm@8.5.0",
+  "engines": {
+    "node": ">=18.15.0",
+    "npm": ">=9.2.0"
+  },
+  "license": "MIT"
 }
