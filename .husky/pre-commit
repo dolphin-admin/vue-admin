@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+npx lint-staged
+npx cspell '**'
+npx prettier --write '**/*.{vue,js,jsx,cjs,mjs,ts,tsx,md,html,css,scss}'
