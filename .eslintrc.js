@@ -9,6 +9,7 @@ module.exports = defineConfig({
   },
   parser: 'vue-eslint-parser',
   parserOptions: {
+    parser: '@typescript-eslint/parser',
     project: './tsconfig.json',
     ecmaVersion: 2022,
     sourceType: 'module'

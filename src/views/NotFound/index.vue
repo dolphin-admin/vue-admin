@@ -5,7 +5,7 @@
         class="animate-pulse cursor-pointer select-none"
         width="160"
         height="160"
-        src="@/assets/images/vst.png"
+        src="@/assets/images/favicon.png"
         alt=""
       />
       <div class="flex select-none flex-col space-y-2">
