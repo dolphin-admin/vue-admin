@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import { setToken } from '@/  utils'
 import { LoginApi } from '@/api'
 import { siteMetaData } from '@/constants'
-import { setToken } from '@/utils'
 
 const { appName, version } = siteMetaData
 
