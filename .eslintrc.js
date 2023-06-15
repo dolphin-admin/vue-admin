@@ -1,5 +1,7 @@
 require('@rushstack/eslint-patch/modern-module-resolution')
+
 const { defineConfig } = require('eslint-define-config')
+const path = require('path')
 
 module.exports = defineConfig({
   root: true,
@@ -10,7 +12,7 @@ module.exports = defineConfig({
   parser: 'vue-eslint-parser',
   parserOptions: {
     parser: '@typescript-eslint/parser',
-    project: './tsconfig.json',
+    project: path.join(__dirname, 'tsconfig.json'),
     ecmaVersion: 2022,
     sourceType: 'module'
   },
@@ -48,6 +50,6 @@ module.exports = defineConfig({
     'no-shadow': 'off', // Use @typescript-eslint/no-shadow to check.
     'no-undef': 'off', // TypeScript already checked it.
     '@typescript-eslint/no-shadow': 'error',
-    'tailwindcss/no-custom-classname': 'off' // TODO: Use custom TailwindCSS class Name
+    'tailwindcss/no-custom-classname': 'off'
   }
 })

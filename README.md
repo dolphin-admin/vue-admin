@@ -1,4 +1,4 @@
-# News App
+# Dolphin Admin Web
 
 ## 技术栈
 

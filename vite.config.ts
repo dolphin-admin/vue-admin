@@ -28,11 +28,6 @@ export default defineConfig(({ mode }) => ({
         },
         {
           'naive-ui': ['useDialog', 'useMessage', 'useNotification', 'useLoadingBar', 'createDiscreteApi']
-        },
-        {
-          from: 'naive-ui',
-          imports: ['FormInst', 'FormRules', 'UploadFileInfo', 'UploadCustomRequestOptions', 'ConfigProviderProps'],
-          type: true
         }
       ]
     }),
@@ -53,7 +48,7 @@ export default defineConfig(({ mode }) => ({
   },
   server: {
     host: true,
-    port: 5173,
+    port: 4057,
     strictPort: true,
     open: false,
     proxy: {
