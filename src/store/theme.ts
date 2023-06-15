@@ -1,6 +1,7 @@
 import { darkTheme, dateZhCN, lightTheme, zhCN } from 'naive-ui'
 
 import type { Theme } from '@/types'
+
 export const useThemeStore = defineStore('theme', () => {
   const themeMode = ref<Theme>('light')
 

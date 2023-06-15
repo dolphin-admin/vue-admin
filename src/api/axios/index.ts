@@ -5,6 +5,9 @@ import router from '@/router'
 import { useThemeStore } from '@/store'
 import type { PageModel, PageResponseData, ResponseData } from '@/types'
 
+import { axiosConfig, LOCAL_STORAGE_TOKEN } from './config'
+import { errorMessageMap, ResponseStatusCode } from './statusCode'
+
 const themeStore = useThemeStore()
 
 const { message } = createDiscreteApi(['message'], {
@@ -15,35 +18,19 @@ const { message } = createDiscreteApi(['message'], {
   }
 })
 
-const LOCAL_STORAGE_TOKEN = 'access_token'
-
-const axiosConfig = {
-  baseURL: import.meta.env.BASE_URL,
-  timeout: 30000,
-  withCredentials: true
-}
-
-enum ResponseStatusCode {
-  SUCCESS = 200,
-  BAD_REQUEST = 400,
-  UNAUTHORIZED = 401,
-  FORBIDDEN = 403,
-  NOT_FOUND = 404,
-  CONFLICT = 409,
-  INTERNAL_SERVER_ERROR = 500
-}
-
 class Request {
   instance: AxiosInstance
 
   public constructor(config: AxiosRequestConfig) {
+    axios.defaults.headers['Content-Type'] = 'application/json;charset=utf-8'
+
     this.instance = axios.create(config)
 
     this.instance.interceptors.request.use(
       (req: InternalAxiosRequestConfig) => {
         const token = localStorage.getItem(LOCAL_STORAGE_TOKEN)
         if (token) {
-          req.headers.common.Authorization = `Bearer ${token}`
+          req.headers.Authorization = `Bearer ${token}`
         }
         return req
       },
@@ -67,28 +54,22 @@ class Request {
   }
 
   static handleCode(code: number): void {
+    const errorMessage = errorMessageMap.get(code) || 'Unknown Error!'
     switch (code) {
-      case ResponseStatusCode.BAD_REQUEST:
-        console.error('400: Bad Request!')
-        break
       case ResponseStatusCode.UNAUTHORIZED:
         localStorage.removeItem(LOCAL_STORAGE_TOKEN)
-        console.error('401: Unauthorized!')
-        message.error('401: Unauthorized!')
+        console.error(errorMessage)
+        message.error(errorMessage)
         break
       case ResponseStatusCode.FORBIDDEN:
-        console.error('403: Forbidden!')
-        message.error('403: Forbidden!')
+        console.error(errorMessage)
+        message.error(errorMessage)
         break
+      case ResponseStatusCode.BAD_REQUEST:
       case ResponseStatusCode.NOT_FOUND:
-        console.error('404: NotFound!')
-        break
       case ResponseStatusCode.CONFLICT:
-        console.error('409: Conflict!')
-        break
       default:
-        console.error('500: Internal Server Error!')
-        message.error('500: Internal Server Error!')
+        console.error(errorMessage)
     }
   }
 

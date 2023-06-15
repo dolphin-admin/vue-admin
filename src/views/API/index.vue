@@ -14,7 +14,8 @@ onMounted(() => {
   loadingDispatcher.loading()
   UserApi.getUsers()
     .then((res) => {
-      users.value = res.data
+      const { data } = res || {}
+      users.value = data
     })
     .catch((err: AxiosResponse) => {
       console.log(err)
