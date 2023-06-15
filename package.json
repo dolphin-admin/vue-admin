@@ -5,7 +5,7 @@
   "author": "Bruce Song <recall4056@gmail.com> (https://github.com/recallwei/)",
   "scripts": {
     "dev": "vite",
-    "build": "run-p check:type build-only",
+    "build": "run-p type:check build-only",
     "preview": "vite preview",
     "build-only": "vite build",
     "prepare": "husky install",
