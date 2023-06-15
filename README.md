@@ -2,6 +2,8 @@
 
 English / [简体中文](./README.zh-CN.md)
 
+Dolphin Admin Web 是一个基于 `Vue 3/Vite/TypeScript/Naive UI/Tailwind CSS` 的后台管理系统模板。
+
 ## 技术栈
 
 - [Vue 3](https://cn.vuejs.org/)
