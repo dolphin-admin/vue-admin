@@ -1,5 +1,7 @@
 # Dolphin Admin Web
 
+English / [简体中文](./README.zh-CN.md)
+
 ## 技术栈
 
 - [Vue 3](https://cn.vuejs.org/)
