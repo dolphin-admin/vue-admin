@@ -12,6 +12,14 @@ export const routes = [
     }
   },
   {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/Login'),
+    meta: {
+      title: '登录'
+    }
+  },
+  {
     path: '/:pathMatch(.*)*',
     name: 'not-found',
     component: () => import('@/views/NotFound'),
