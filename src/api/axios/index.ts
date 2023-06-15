@@ -4,8 +4,9 @@ import axios from 'axios'
 import router from '@/router'
 import { useThemeStore } from '@/store'
 import type { PageModel, PageResponseData, ResponseData } from '@/types'
+import { clearToken, getToken, isAuthenticated } from '@/utils'
 
-import { axiosConfig, LOCAL_STORAGE_TOKEN } from './config'
+import { axiosConfig } from './config'
 import { errorMessageMap, ResponseStatusCode } from './statusCode'
 
 const themeStore = useThemeStore()
@@ -28,9 +29,8 @@ class Request {
 
     this.instance.interceptors.request.use(
       (req: InternalAxiosRequestConfig) => {
-        const token = localStorage.getItem(LOCAL_STORAGE_TOKEN)
-        if (token) {
-          req.headers.Authorization = `Bearer ${token}`
+        if (isAuthenticated()) {
+          req.headers.Authorization = `Bearer ${getToken()}`
         }
         return req
       },
@@ -57,7 +57,7 @@ class Request {
     const errorMessage = errorMessageMap.get(code) || 'Unknown Error!'
     switch (code) {
       case ResponseStatusCode.UNAUTHORIZED:
-        localStorage.removeItem(LOCAL_STORAGE_TOKEN)
+        clearToken()
         console.error(errorMessage)
         message.error(errorMessage)
         break

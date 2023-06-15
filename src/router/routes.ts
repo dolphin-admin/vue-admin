@@ -12,22 +12,6 @@ export const routes = [
     }
   },
   {
-    path: '/store',
-    name: 'store',
-    component: () => import('@/views/Store'),
-    meta: {
-      title: 'Store'
-    }
-  },
-  {
-    path: '/api',
-    name: 'api',
-    component: () => import('@/views/API'),
-    meta: {
-      title: 'API'
-    }
-  },
-  {
     path: '/:pathMatch(.*)*',
     name: 'not-found',
     component: () => import('@/views/NotFound'),
