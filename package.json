@@ -12,7 +12,7 @@
     "cspell:check": "npx cspell '**'",
     "cspell:sort": "node ./scripts/cspell-sort.js",
     "eslint:fix": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "type:check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false"
+    "type:check": "vue-tsc --noEmit -p tsconfig.json --composite false"
   },
   "dependencies": {
     "@vueuse/core": "^10.1.2",

@@ -9,13 +9,8 @@ declare module 'vue' {
   export interface GlobalComponents {
     FileUploader: typeof import('./src/components/FileUploader/index.vue')['default']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
-    NIcon: typeof import('naive-ui')['NIcon']
     NLoadingBarProvider: typeof import('naive-ui')['NLoadingBarProvider']
     NMessageProvider: typeof import('naive-ui')['NMessageProvider']
-    NP: typeof import('naive-ui')['NP']
-    NText: typeof import('naive-ui')['NText']
-    NUpload: typeof import('naive-ui')['NUpload']
-    NUploadDragger: typeof import('naive-ui')['NUploadDragger']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
