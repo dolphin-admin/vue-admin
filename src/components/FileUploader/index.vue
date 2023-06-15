@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { UploadCustomRequestOptions } from 'naive-ui'
+
 import { UploadApi } from '@/api'
 import UploadIcon from '~icons/ic/outline-cloud-upload'
 
@@ -10,7 +12,7 @@ const props = withDefaults(defineProps<Props>(), {
   accept: 'image/*'
 })
 
-const message = useMessage()
+// const message = useMessage()
 
 const customRequest = ({ file, onFinish, onError, onProgress }: UploadCustomRequestOptions) => {
   console.log('file', file)
@@ -28,8 +30,8 @@ const customRequest = ({ file, onFinish, onError, onProgress }: UploadCustomRequ
   formData.append('file', file.file as File)
 
   UploadApi.uploadFile(formData, {
-    onUploadProgress: (progressEvent) => {
-      ;({ percent: Math.ceil((progressEvent.loaded / progressEvent.total) * 100) })
+    onUploadProgress: (_progressEvent) => {
+      // ;({ percent: Math.ceil((progressEvent.loaded / progressEvent.total) * 100) })
     }
   })
     .then((res) => {
@@ -64,7 +66,7 @@ const customRequest = ({ file, onFinish, onError, onProgress }: UploadCustomRequ
         depth="3"
         class="mt-2"
       >
-        请不要上传敏感数据，比如你的银行卡号和密码，信用卡号有效期和安全码
+        请不要上传敏感数据
       </NP>
     </NUploadDragger>
   </NUpload>
