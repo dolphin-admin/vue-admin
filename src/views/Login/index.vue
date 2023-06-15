@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { setToken } from '@/  utils'
 import { LoginApi } from '@/api'
 import { siteMetaData } from '@/constants'
+import { setToken } from '@/utils'
 
 const { appName, version } = siteMetaData
 
@@ -69,7 +69,7 @@ const loginAsAdmin = () => {
     </div>
 
     <div class="relative w-full bg-blue-300 sm:w-1/2">
-      <div
+      <form
         class="absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg bg-blue-400 px-4 py-8 shadow-md sm:w-[260px] md:w-[400px]"
       >
         <div class="text-center text-lg font-semibold text-white">登录</div>
@@ -77,6 +77,8 @@ const loginAsAdmin = () => {
           v-model:value="formData.username"
           type="text"
           placeholder="账号"
+          :input-props="{ autocomplete: 'username' }"
+          @keyup.enter="() => loginAsBasic()"
         />
         <n-input
           v-model:value="formData.password"
@@ -84,6 +86,8 @@ const loginAsAdmin = () => {
           show-password-on="mousedown"
           placeholder="密码"
           :maxlength="16"
+          :input-props="{ autocomplete: 'current-password' }"
+          @keyup.enter="() => loginAsBasic()"
         />
         <n-button
           type="primary"
@@ -97,7 +101,7 @@ const loginAsAdmin = () => {
         >
           以管理员登录
         </n-button>
-      </div>
+      </form>
     </div>
   </main>
 </template>

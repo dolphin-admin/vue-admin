@@ -2,6 +2,7 @@ import NProgress from 'nprogress'
 import { createRouter, createWebHistory, type RouteLocationNormalized } from 'vue-router'
 
 import { siteMetaData } from '@/constants'
+import { isAuthenticated } from '@/utils'
 
 import { routes } from './routes'
 
@@ -22,9 +23,17 @@ router.beforeEach((to, from, next) => {
   if (to.path !== from.path) {
     NProgress.start()
   }
+  if (!to.meta.disableAuth) {
+    if (!isAuthenticated()) {
+      processTargetRoute(to)
+      next({ path: '/login', replace: true })
+      return
+    }
+  }
   processTargetRoute(to)
   next()
 })
+
 router.afterEach(() => {
   NProgress.done()
 })

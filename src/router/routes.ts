@@ -16,7 +16,8 @@ export const routes = [
     name: 'login',
     component: () => import('@/views/Login'),
     meta: {
-      title: '登录'
+      title: '登录',
+      disableAuth: true
     }
   },
   {
@@ -24,7 +25,8 @@ export const routes = [
     name: 'not-found',
     component: () => import('@/views/NotFound'),
     meta: {
-      title: '404'
+      title: '404',
+      disableAuth: true
     }
   }
 ]
