@@ -12,11 +12,21 @@ export const routes = [
     }
   },
   {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/Login'),
+    meta: {
+      title: '登录',
+      disableAuth: true
+    }
+  },
+  {
     path: '/:pathMatch(.*)*',
     name: 'not-found',
     component: () => import('@/views/NotFound'),
     meta: {
-      title: '404'
+      title: '404',
+      disableAuth: true
     }
   }
 ]
