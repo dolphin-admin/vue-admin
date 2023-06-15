@@ -1,3 +1,5 @@
+import type { AxiosProgressEvent } from 'axios'
+
 interface Response {
   code?: number | string
   message?: string
@@ -20,4 +22,10 @@ export interface PageResponseData<T = any> extends PageResponse {
 export interface PageModel {
   pageNum: number
   pageSize: number
+}
+
+export type UploadProgressFc = (progressEvent?: AxiosProgressEvent) => void
+
+export interface UploadOptions {
+  onUploadProgress?: UploadProgressFc
 }
