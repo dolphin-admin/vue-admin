@@ -29,3 +29,5 @@ export type UploadProgressFc = (progressEvent?: AxiosProgressEvent) => void
 export interface UploadOptions {
   onUploadProgress?: UploadProgressFc
 }
+
+export type ToRecord<T, K = unknown> = Record<keyof T, K>

@@ -29,7 +29,7 @@ const login = () => {
   if (!validateFormData()) {
     return
   }
-  LoginApi.login(formData.username.trim(), formData.password.trim())
+  LoginApi.login(formData)
     .then((res) => {
       const { accessToken } = res.data || {}
       setToken(accessToken)

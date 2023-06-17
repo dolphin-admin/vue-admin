@@ -21,9 +21,9 @@ export const routes = [
     }
   },
   {
-    path: '/register',
-    name: 'register',
-    component: () => import('@/views/Register'),
+    path: '/signup',
+    name: 'signup',
+    component: () => import('@/views/Signup'),
     meta: {
       title: '注册',
       disableAuth: true
