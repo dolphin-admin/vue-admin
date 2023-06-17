@@ -21,6 +21,15 @@ export const routes = [
     }
   },
   {
+    path: '/register',
+    name: 'register',
+    component: () => import('@/views/Register'),
+    meta: {
+      title: '注册',
+      disableAuth: true
+    }
+  },
+  {
     path: '/:pathMatch(.*)*',
     name: 'not-found',
     component: () => import('@/views/NotFound'),
