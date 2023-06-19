@@ -123,7 +123,7 @@ onMounted(() => {
           <n-checkbox
             v-model:checked="rememberPassword"
             size="small"
-            class="text-xs"
+            class="!text-xs"
           >
             记住密码
           </n-checkbox>
@@ -158,3 +158,9 @@ onMounted(() => {
     </div>
   </main>
 </template>
+
+<style scoped lang="scss">
+:deep(.n-checkbox__label) {
+  padding: 0 6px;
+}
+</style>
