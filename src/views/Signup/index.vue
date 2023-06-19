@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import type { FormInst, FormItemInst, FormItemRule, FormRules } from 'naive-ui'
-import { useMessage } from 'naive-ui'
-import { reactive, ref } from 'vue'
 
 import { SignupApi } from '@/api'
 import { siteMetaData } from '@/constants'
@@ -144,8 +142,9 @@ const signup = () => {
           text
           size="tiny"
           @click="$router.push('/login')"
-          >登录</n-button
         >
+          登录
+        </n-button>
       </n-form>
     </div>
   </main>

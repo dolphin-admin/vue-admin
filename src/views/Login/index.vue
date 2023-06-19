@@ -3,17 +3,21 @@ import { LoginApi } from '@/api'
 import { siteMetaData } from '@/constants'
 import { setToken } from '@/utils'
 
+type RememberedAccountData = {
+  username: string
+  password: string
+}
+
+const REMEMBERED_ACCOUNT_DATA_KEY = 'user_password'
+
 const { appName, version } = siteMetaData
 
 const router = useRouter()
 const message = useMessage()
 
-const username = localStorage.getItem('username')
-const password = localStorage.getItem('password')
-console.log(username, password)
 const formData = reactive({
-  username: username || '',
-  password: password || ''
+  username: '',
+  password: ''
 })
 const rememberPassword = ref(false)
 
@@ -39,8 +43,9 @@ const login = () => {
       setToken(accessToken)
       message.success('登录成功')
       if (rememberPassword.value) {
-        localStorage.setItem('username', formData.username)
-        localStorage.setItem('password', formData.password)
+        localStorage.setItem(REMEMBERED_ACCOUNT_DATA_KEY, JSON.stringify(formData))
+      } else {
+        localStorage.removeItem(REMEMBERED_ACCOUNT_DATA_KEY)
       }
       router.push('/')
     })
@@ -61,6 +66,20 @@ const loginAsAdmin = () => {
 }
 
 const forgotPassword = () => {}
+
+onMounted(() => {
+  const localStorageData = localStorage.getItem(REMEMBERED_ACCOUNT_DATA_KEY)
+  if (localStorageData) {
+    try {
+      const { username, password } = JSON.parse(localStorageData) as RememberedAccountData
+      formData.username = username
+      formData.password = password
+      rememberPassword.value = true
+    } catch {
+      //
+    }
+  }
+})
 </script>
 
 <template>
@@ -99,6 +118,7 @@ const forgotPassword = () => {}
           :input-props="{ autocomplete: 'current-password' }"
           @keyup.enter="() => loginAsBasic()"
         />
+
         <div class="text-grey-300 flex items-center justify-between text-xs font-light">
           <n-checkbox
             v-model:checked="rememberPassword"
@@ -130,9 +150,10 @@ const forgotPassword = () => {}
         <n-button
           text
           size="tiny"
-          @click="$router.push('/signup')"
-          >注册</n-button
+          @click="() => router.push('/signup')"
         >
+          注册
+        </n-button>
       </form>
     </div>
   </main>
