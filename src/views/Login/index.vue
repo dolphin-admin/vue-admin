@@ -8,10 +8,14 @@ const { appName, version } = siteMetaData
 const router = useRouter()
 const message = useMessage()
 
+const username = localStorage.getItem('username')
+const password = localStorage.getItem('password')
+console.log(username, password)
 const formData = reactive({
-  username: '',
-  password: ''
+  username: username || '',
+  password: password || ''
 })
+const rememberPassword = ref(false)
 
 const validateFormData = () => {
   if (!formData.username?.trim()) {
@@ -34,6 +38,10 @@ const login = () => {
       const { accessToken } = res.data || {}
       setToken(accessToken)
       message.success('登录成功')
+      if (rememberPassword.value) {
+        localStorage.setItem('username', formData.username)
+        localStorage.setItem('password', formData.password)
+      }
       router.push('/')
     })
     .catch(() => {
@@ -51,6 +59,8 @@ const loginAsAdmin = () => {
   formData.password = '123456'
   login()
 }
+
+const forgotPassword = () => {}
 </script>
 
 <template>
@@ -70,9 +80,9 @@ const loginAsAdmin = () => {
 
     <div class="relative w-full bg-blue-300 sm:w-1/2">
       <form
-        class="absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg bg-blue-400 px-4 py-8 shadow-md sm:w-[260px] md:w-[400px]"
+        class="absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg bg-white px-4 py-8 shadow-md sm:w-[260px] md:w-[340px]"
       >
-        <div class="text-center text-lg font-semibold text-white">登录</div>
+        <div class="text-center text-lg font-semibold text-gray-600">登录</div>
         <n-input
           v-model:value="formData.username"
           type="text"
@@ -89,6 +99,22 @@ const loginAsAdmin = () => {
           :input-props="{ autocomplete: 'current-password' }"
           @keyup.enter="() => loginAsBasic()"
         />
+        <div class="text-grey-300 flex items-center justify-between text-xs font-light">
+          <n-checkbox
+            v-model:checked="rememberPassword"
+            size="small"
+            class="text-xs"
+          >
+            记住密码
+          </n-checkbox>
+          <div
+            class="cursor-pointer hover:text-blue-600"
+            @click="forgotPassword"
+          >
+            忘记密码
+          </div>
+        </div>
+
         <n-button
           type="primary"
           @click="() => loginAsBasic()"
@@ -101,6 +127,12 @@ const loginAsAdmin = () => {
         >
           以管理员登录
         </n-button>
+        <n-button
+          text
+          size="tiny"
+          @click="$router.push('/signup')"
+          >注册</n-button
+        >
       </form>
     </div>
   </main>

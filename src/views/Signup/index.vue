@@ -104,9 +104,9 @@ const signup = () => {
         ref="formRef"
         v-model:value="formData"
         :rules="rules"
-        class="flex w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg bg-blue-400 p-6"
+        class="flex w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg bg-white p-6"
       >
-        <div class="text-center text-lg font-semibold text-white">注册</div>
+        <div class="text-center text-lg font-semibold text-gray-600">注册</div>
         <n-input
           v-model:value="formData.username"
           type="text"
@@ -139,6 +139,13 @@ const signup = () => {
         >
           注册
         </n-button>
+        <n-button
+          class="w-100"
+          text
+          size="tiny"
+          @click="$router.push('/login')"
+          >登录</n-button
+        >
       </n-form>
     </div>
   </main>
