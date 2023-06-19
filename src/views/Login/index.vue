@@ -3,6 +3,13 @@ import { LoginApi } from '@/api'
 import { siteMetaData } from '@/constants'
 import { setToken } from '@/utils'
 
+type RememberedAccountData = {
+  username: string
+  password: string
+}
+
+const REMEMBERED_ACCOUNT_DATA_KEY = 'user_password'
+
 const { appName, version } = siteMetaData
 
 const router = useRouter()
@@ -12,6 +19,7 @@ const formData = reactive({
   username: '',
   password: ''
 })
+const rememberPassword = ref(false)
 
 const validateFormData = () => {
   if (!formData.username?.trim()) {
@@ -29,11 +37,16 @@ const login = () => {
   if (!validateFormData()) {
     return
   }
-  LoginApi.login(formData.username.trim(), formData.password.trim())
+  LoginApi.login(formData)
     .then((res) => {
       const { accessToken } = res.data || {}
       setToken(accessToken)
       message.success('登录成功')
+      if (rememberPassword.value) {
+        localStorage.setItem(REMEMBERED_ACCOUNT_DATA_KEY, JSON.stringify(formData))
+      } else {
+        localStorage.removeItem(REMEMBERED_ACCOUNT_DATA_KEY)
+      }
       router.push('/')
     })
     .catch(() => {
@@ -51,6 +64,22 @@ const loginAsAdmin = () => {
   formData.password = '123456'
   login()
 }
+
+const forgotPassword = () => {}
+
+onMounted(() => {
+  const localStorageData = localStorage.getItem(REMEMBERED_ACCOUNT_DATA_KEY)
+  if (localStorageData) {
+    try {
+      const { username, password } = JSON.parse(localStorageData) as RememberedAccountData
+      formData.username = username
+      formData.password = password
+      rememberPassword.value = true
+    } catch {
+      //
+    }
+  }
+})
 </script>
 
 <template>
@@ -70,9 +99,9 @@ const loginAsAdmin = () => {
 
     <div class="relative w-full bg-blue-300 sm:w-1/2">
       <form
-        class="absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg bg-blue-400 px-4 py-8 shadow-md sm:w-[260px] md:w-[400px]"
+        class="absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg bg-white px-4 py-8 shadow-md sm:w-[260px] md:w-[340px]"
       >
-        <div class="text-center text-lg font-semibold text-white">登录</div>
+        <div class="text-center text-lg font-semibold text-gray-600">登录</div>
         <n-input
           v-model:value="formData.username"
           type="text"
@@ -89,6 +118,23 @@ const loginAsAdmin = () => {
           :input-props="{ autocomplete: 'current-password' }"
           @keyup.enter="() => loginAsBasic()"
         />
+
+        <div class="text-grey-300 flex items-center justify-between text-xs font-light">
+          <n-checkbox
+            v-model:checked="rememberPassword"
+            size="small"
+            class="!text-xs"
+          >
+            记住密码
+          </n-checkbox>
+          <div
+            class="cursor-pointer hover:text-blue-600"
+            @click="forgotPassword"
+          >
+            忘记密码
+          </div>
+        </div>
+
         <n-button
           type="primary"
           @click="() => loginAsBasic()"
@@ -101,7 +147,20 @@ const loginAsAdmin = () => {
         >
           以管理员登录
         </n-button>
+        <n-button
+          text
+          size="tiny"
+          @click="() => router.push('/signup')"
+        >
+          注册
+        </n-button>
       </form>
     </div>
   </main>
 </template>
+
+<style scoped lang="scss">
+:deep(.n-checkbox__label) {
+  padding: 0 6px;
+}
+</style>
