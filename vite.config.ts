@@ -52,11 +52,11 @@ export default defineConfig(({ mode }) => ({
     strictPort: true,
     open: false,
     proxy: {
-      '/api-prefix': {
+      '/api': {
         // target: 'http://localhost:3000',
         target: 'http://202.182.125.116:3000',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api-prefix/, '')
+        rewrite: (path) => path.replace(/^\/api/, '')
       }
     }
   }
