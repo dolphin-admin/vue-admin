@@ -12,22 +12,29 @@ export const routes = [
     }
   },
   {
-    path: '/login',
-    name: 'login',
-    component: () => import('@/views/Login'),
-    meta: {
-      title: '登录',
-      disableAuth: true
-    }
-  },
-  {
-    path: '/signup',
-    name: 'signup',
-    component: () => import('@/views/Signup'),
-    meta: {
-      title: '注册',
-      disableAuth: true
-    }
+    path: '/',
+    name: 'layout',
+    component: () => import('@/Layouts/AuthLayout'),
+    children: [
+      {
+        path: '/login',
+        name: 'login',
+        component: () => import('@/views/Login'),
+        meta: {
+          title: '登录',
+          disableAuth: true
+        }
+      },
+      {
+        path: '/signup',
+        name: 'signup',
+        component: () => import('@/views/Signup'),
+        meta: {
+          title: '注册',
+          disableAuth: true
+        }
+      }
+    ]
   },
   {
     path: '/:pathMatch(.*)*',
