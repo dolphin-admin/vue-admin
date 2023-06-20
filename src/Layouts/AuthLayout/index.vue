@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { siteMetaData } from '@/constants'
 const { appName, version } = siteMetaData
 </script>
