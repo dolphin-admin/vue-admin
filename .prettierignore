@@ -1,7 +1,0 @@
-node_modules
-/.cspell
-/.husky
-/build
-/dist
-/public
-pnpm-lock.yaml

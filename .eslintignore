@@ -1,6 +1,0 @@
-node_modules
-/.vscode
-/build
-/dist
-/scripts
-pnpm-lock.yaml
