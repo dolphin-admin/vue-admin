@@ -13,7 +13,7 @@ export const routes = [
   },
   {
     path: '/',
-    name: 'layout',
+    name: 'auth-layout',
     component: () => import('@/Layouts/AuthLayout'),
     children: [
       {
