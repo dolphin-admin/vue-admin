@@ -19,7 +19,7 @@ const { appName, version } = siteMetaData
     </div>
 
     <div class="relative w-full bg-blue-300 sm:w-1/2">
-      <router-view></router-view>
+      <router-view />
     </div>
   </main>
 </template>
