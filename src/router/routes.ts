@@ -14,7 +14,7 @@ export const routes = [
   {
     path: '/',
     name: 'auth-layout',
-    component: () => import('@/Layouts/AuthLayout'),
+    component: () => import('@/layouts/AuthLayout'),
     children: [
       {
         path: '/login',
