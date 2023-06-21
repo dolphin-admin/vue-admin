@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LoginApi } from '@/api'
+import { LoginApi, UserApi } from '@/api'
 import { setToken } from '@/utils'
 
 type RememberedAccountData = {
@@ -65,6 +65,9 @@ const loginAsAdmin = () => {
 const forgotPassword = () => {}
 
 onMounted(() => {
+  UserApi.getUsers().then((res) => {
+    console.log(res)
+  })
   const localStorageData = localStorage.getItem(REMEMBERED_ACCOUNT_DATA_KEY)
   if (localStorageData) {
     try {
