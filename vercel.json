@@ -1,15 +1,8 @@
 {
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/index.html",
-      "status": 200
-    }
-  ],
   "rewrites": [
     {
-      "source": "/api/(.*)",
-      "destination": "http://202.182.125.116:3000/$1"
+      "source": "/:path*",
+      "destination": "/index.html"
     }
   ]
 }
