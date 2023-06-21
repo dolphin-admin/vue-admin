@@ -3,4 +3,7 @@ node_modules
 /build
 /dist
 /scripts
+/postcss.config.js
+/tailwind.config.js
+/vercel-proxy.js
 pnpm-lock.yaml
