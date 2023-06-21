@@ -50,14 +50,14 @@ export default defineConfig(({ mode }) => ({
     host: true,
     port: 4060,
     strictPort: true,
-    open: false
-    // proxy: {
-    //   '/admin-pc-api': {
-    //     // target: 'http://localhost:3000',
-    //     target: 'http://202.182.125.116:3000',
-    //     changeOrigin: true,
-    //     rewrite: (path) => path.replace(/^\/admin-pc-api/, '')
-    //   }
-    // }
+    open: false,
+    proxy: {
+      '/api': {
+        // target: 'http://localhost:3000',
+        target: 'http://202.182.125.116:3000',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
   }
 }))

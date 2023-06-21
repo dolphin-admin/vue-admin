@@ -11,7 +11,7 @@ module.exports = (req, res) => {
     target,
     changeOrigin: true,
     pathRewrite: {
-      '^/admin-pc-api/': '/'
+      '^/api/': '/'
     }
   })(req, res)
 }
