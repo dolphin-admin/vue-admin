@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/admin-pc-api/(.*)",
-      "destination": "/api/proxy"
+      "destination": "/vercel-proxy"
     },
     {
       "source": "/:path*",
