@@ -85,7 +85,7 @@ const signup = () => {
     :rules="rules"
     class="absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg bg-white px-4 py-8 shadow-md sm:w-[260px] md:w-[340px]"
   >
-    <div class="text-center text-lg font-semibold text-gray-600">注册</div>
+    <div class="select-none text-center text-lg font-semibold text-gray-600">注册</div>
     <NInput
       v-model:value="formData.username"
       type="text"

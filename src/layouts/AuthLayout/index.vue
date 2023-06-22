@@ -31,7 +31,7 @@ const { appName, version } = siteMetaData
 
 <style scoped lang="scss">
 .animation-switch {
-  animation: switch 1.5s;
+  animation: switch 1s;
 }
 
 @keyframes switch {
@@ -43,7 +43,7 @@ const { appName, version } = siteMetaData
     transform: translateY(0px);
   }
   75% {
-    transform: translateY(-20px);
+    transform: translateY(-15px);
   }
   100% {
     transform: translateY(0px);

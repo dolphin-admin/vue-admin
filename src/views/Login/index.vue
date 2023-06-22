@@ -83,7 +83,7 @@ onMounted(() => {
   <form
     class="absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg bg-white px-4 py-8 shadow-md sm:w-[260px] md:w-[340px]"
   >
-    <div class="text-center text-lg font-semibold text-gray-600">登录</div>
+    <div class="select-none text-center text-lg font-semibold text-gray-600">登录</div>
     <NInput
       v-model:value="formData.username"
       type="text"
@@ -117,18 +117,27 @@ onMounted(() => {
       </div>
     </div>
 
-    <NButton
-      type="primary"
-      @click="() => loginAsBasic()"
-    >
-      登录
-    </NButton>
-    <NButton
-      type="info"
-      @click="() => loginAsAdmin()"
-    >
-      以管理员登录
-    </NButton>
+    <div class="flex w-full flex-1 items-center space-x-2">
+      <div class="w-1/2">
+        <NButton
+          block
+          type="primary"
+          @click="() => loginAsBasic()"
+        >
+          登录
+        </NButton>
+      </div>
+      <div class="w-1/2">
+        <NButton
+          block
+          type="info"
+          @click="() => loginAsAdmin()"
+        >
+          以管理员登录
+        </NButton>
+      </div>
+    </div>
+
     <NButton
       text
       size="tiny"
