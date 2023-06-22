@@ -81,17 +81,17 @@ onMounted(() => {
 
 <template>
   <form
-    class="form-name absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg bg-white px-4 py-8 shadow-md sm:w-[260px] md:w-[340px]"
+    class="absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg bg-white px-4 py-8 shadow-md sm:w-[260px] md:w-[340px]"
   >
     <div class="text-center text-lg font-semibold text-gray-600">登录</div>
-    <n-input
+    <NInput
       v-model:value="formData.username"
       type="text"
       placeholder="账号"
       :input-props="{ autocomplete: 'username' }"
       @keyup.enter="() => loginAsBasic()"
     />
-    <n-input
+    <NInput
       v-model:value="formData.password"
       type="password"
       show-password-on="mousedown"
@@ -102,13 +102,13 @@ onMounted(() => {
     />
 
     <div class="text-grey-300 flex items-center justify-between text-xs font-light">
-      <n-checkbox
+      <NCheckbox
         v-model:checked="rememberPassword"
         size="small"
         class="!text-xs"
       >
         记住密码
-      </n-checkbox>
+      </NCheckbox>
       <div
         class="cursor-pointer hover:text-blue-600"
         @click="forgotPassword"
@@ -117,50 +117,30 @@ onMounted(() => {
       </div>
     </div>
 
-    <n-button
+    <NButton
       type="primary"
       @click="() => loginAsBasic()"
     >
       登录
-    </n-button>
-    <n-button
+    </NButton>
+    <NButton
       type="info"
       @click="() => loginAsAdmin()"
     >
       以管理员登录
-    </n-button>
-    <n-button
+    </NButton>
+    <NButton
       text
       size="tiny"
       @click="() => router.push('/signup')"
     >
-      注册
-    </n-button>
+      切换至注册
+    </NButton>
   </form>
 </template>
 
 <style scoped lang="scss">
 :deep(.n-checkbox__label) {
   padding: 0 6px;
-}
-.form-name {
-  // transition: all 2s;
-  animation-duration: 2s;
-  animation-name: slide-in;
-}
-@keyframes slide-in {
-  0% {
-    transform: translateY(-1000px);
-    opacity: 0;
-  }
-  50% {
-    transform: translateY(0px);
-  }
-  70% {
-    transform: translateY(-80px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
 }
 </style>

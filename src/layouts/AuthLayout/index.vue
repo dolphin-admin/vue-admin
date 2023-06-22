@@ -19,7 +19,34 @@ const { appName, version } = siteMetaData
     </div>
 
     <div class="relative w-full bg-blue-300 sm:w-1/2">
-      <router-view />
+      <RouterView v-slot="{ Component }">
+        <component
+          :is="Component"
+          class="animation-switch"
+        />
+      </RouterView>
     </div>
   </main>
 </template>
+
+<style scoped lang="scss">
+.animation-switch {
+  animation: switch 1.5s;
+}
+
+@keyframes switch {
+  0% {
+    transform: translateY(-1000px);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(0px);
+  }
+  75% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+</style>

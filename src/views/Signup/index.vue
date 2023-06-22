@@ -48,7 +48,6 @@ const rules: FormRules = {
 
 const signup = () => {
   formRef.value!.validate((errors) => {
-    console.log(errors)
     if (errors) {
       message.success('注册失败')
       return
@@ -80,21 +79,21 @@ const signup = () => {
 </script>
 
 <template>
-  <n-form
+  <NForm
     ref="formRef"
     v-model:value="formData"
     :rules="rules"
-    class="form-name absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg bg-white px-4 py-8 shadow-md sm:w-[260px] md:w-[340px]"
+    class="absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg bg-white px-4 py-8 shadow-md sm:w-[260px] md:w-[340px]"
   >
     <div class="text-center text-lg font-semibold text-gray-600">注册</div>
-    <n-input
+    <NInput
       v-model:value="formData.username"
       type="text"
       placeholder="请输入用户名"
       :input-props="{ autocomplete: 'username' }"
       @keydown.enter="() => signup()"
     />
-    <n-input
+    <NInput
       v-model:value="formData.password"
       type="password"
       placeholder="请输入密码"
@@ -102,7 +101,7 @@ const signup = () => {
       :input-props="{ autocomplete: 'new-password' }"
       @keydown.enter="() => signup()"
     />
-    <n-input
+    <NInput
       ref="passwordFormItemRef"
       v-model:value="formData.confirmPassword"
       type="password"
@@ -111,44 +110,21 @@ const signup = () => {
       :input-props="{ autocomplete: 'new-password' }"
       @keydown.enter="() => signup()"
     />
-    <n-button
+    <NButton
       :disabled="submitLoading"
       :loading="submitLoading"
       type="primary"
       @click="() => signup()"
     >
       注册
-    </n-button>
-    <n-button
+    </NButton>
+    <NButton
       class="w-100"
       text
       size="tiny"
       @click="$router.push('/login')"
     >
-      登录
-    </n-button>
-  </n-form>
+      切换至登录
+    </NButton>
+  </NForm>
 </template>
-
-<style scoped lang="scss">
-.form-name {
-  // transition: all 2s;
-  animation-duration: 2s;
-  animation-name: slide-in;
-}
-@keyframes slide-in {
-  0% {
-    transform: translateY(-1000px);
-    opacity: 0;
-  }
-  50% {
-    transform: translateY(0px);
-  }
-  70% {
-    transform: translateY(-80px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
-}
-</style>
