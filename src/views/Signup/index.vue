@@ -23,25 +23,36 @@ const rules: FormRules = {
   username: [
     {
       required: true,
-      message: '请输入用户名'
+      message: '请输入用户名',
+      trigger: ['blur', 'input']
     }
   ],
   password: [
     {
       required: true,
-      message: '请输入密码'
+      message: '请输入密码',
+      trigger: ['blur', 'input']
+    },
+    {
+      validator(rule: FormItemRule, value: string) {
+        if (value.length < 6) {
+          return false
+        }
+        return true
+      },
+      trigger: ['blur', 'input'],
+      message: '密码长度至少为6位'
     }
   ],
   confirmPassword: [
     {
       required: true,
-      message: '请再次输入密码',
-      trigger: ['input', 'blur']
+      message: '请输入确认密码',
+      trigger: ['blur', 'input']
     },
     {
       validator: validateConfirmPassword,
-      message: '两次密码输入不一致',
-      trigger: 'input'
+      message: '两次密码输入不一致'
     }
   ]
 }
@@ -49,7 +60,7 @@ const rules: FormRules = {
 const signup = () => {
   formRef.value!.validate((errors) => {
     if (errors) {
-      message.success('注册失败')
+      message.error(errors[0][0].message!)
       return
     }
 
@@ -81,35 +92,57 @@ const signup = () => {
 <template>
   <NForm
     ref="formRef"
-    v-model:value="formData"
     :rules="rules"
+    :model="formData"
     class="absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg bg-white px-4 py-8 shadow-md sm:w-[260px] md:w-[340px]"
   >
     <div class="select-none text-center text-lg font-semibold text-gray-600">注册</div>
-    <NInput
-      v-model:value="formData.username"
-      type="text"
-      placeholder="请输入用户名"
-      :input-props="{ autocomplete: 'username' }"
-      @keydown.enter="() => signup()"
-    />
-    <NInput
-      v-model:value="formData.password"
-      type="password"
-      placeholder="请输入密码"
-      show-password-on="mousedown"
-      :input-props="{ autocomplete: 'new-password' }"
-      @keydown.enter="() => signup()"
-    />
-    <NInput
-      ref="passwordFormItemRef"
-      v-model:value="formData.confirmPassword"
-      type="password"
-      placeholder="请再次输入密码"
-      show-password-on="mousedown"
-      :input-props="{ autocomplete: 'new-password' }"
-      @keydown.enter="() => signup()"
-    />
+
+    <NFormItem
+      path="username"
+      :show-label="false"
+      :show-feedback="false"
+    >
+      <NInput
+        v-model:value="formData.username"
+        type="text"
+        placeholder="请输入用户名"
+        :input-props="{ autocomplete: 'username' }"
+        @keydown.enter="() => signup()"
+      />
+    </NFormItem>
+
+    <NFormItem
+      path="password"
+      :show-label="false"
+      :show-feedback="false"
+    >
+      <NInput
+        v-model:value="formData.password"
+        type="password"
+        placeholder="请输入密码"
+        show-password-on="click"
+        :input-props="{ autocomplete: 'new-password' }"
+        @keydown.enter="() => signup()"
+      />
+    </NFormItem>
+
+    <NFormItem
+      path="confirmPassword"
+      :show-label="false"
+      :show-feedback="false"
+    >
+      <NInput
+        ref="passwordFormItemRef"
+        v-model:value="formData.confirmPassword"
+        type="password"
+        placeholder="请再次输入密码"
+        show-password-on="click"
+        :input-props="{ autocomplete: 'new-password' }"
+        @keydown.enter="() => signup()"
+      />
+    </NFormItem>
+
     <NButton
       :disabled="submitLoading"
       :loading="submitLoading"
