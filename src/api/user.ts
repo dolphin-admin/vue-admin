@@ -10,7 +10,7 @@ export interface User {
   email: string | null
 }
 
-const USER_API_PREFIX = `/${GlobalAPIConfig.API_PREFIX}/users`
+const USER_API_PREFIX = `${GlobalAPIConfig.API_PREFIX}/users`
 
 export const UserApi = {
   getUsers: () => <Promise<PageResponseData<User[]>>>Request.get<User[]>(USER_API_PREFIX, new BasePageModel()),
