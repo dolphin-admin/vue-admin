@@ -28,6 +28,9 @@ export default defineConfig(({ mode }) => ({
         },
         {
           'naive-ui': ['useDialog', 'useMessage', 'useNotification', 'useLoadingBar', 'createDiscreteApi']
+        },
+        {
+          'vue-i18n': ['useI18n']
         }
       ]
     }),
