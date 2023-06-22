@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { FormInst, FormItemRule, FormRules } from 'naive-ui'
+
 import { LoginApi } from '@/api'
 import { setToken } from '@/utils'
 
@@ -16,42 +18,61 @@ const formData = reactive({
   username: '',
   password: ''
 })
+const formRef = ref<FormInst | null>(null)
 const rememberPassword = ref(false)
 
-const validateFormData = () => {
-  if (!formData.username?.trim()) {
-    message.error('请输入账号')
-    return false
-  }
-  if (!formData.password?.trim()) {
-    message.error('请输入密码')
-    return false
-  }
-  return true
+const rules: FormRules = {
+  username: [
+    {
+      required: true,
+      message: '请输入用户名',
+      trigger: ['blur', 'input']
+    }
+  ],
+  password: [
+    {
+      required: true,
+      message: '请输入密码',
+      trigger: ['blur', 'input']
+    },
+    {
+      validator(rule: FormItemRule, value: string) {
+        if (value.length < 6) {
+          return false
+        }
+        return true
+      },
+      trigger: ['blur', 'input'],
+      message: '密码长度至少为6位'
+    }
+  ]
 }
 
 const login = () => {
-  if (!validateFormData()) {
-    return
-  }
-  LoginApi.login(formData)
-    .then((res) => {
-      const { accessToken } = res.data || {}
-      setToken(accessToken)
-      message.success('登录成功')
-      if (rememberPassword.value) {
-        localStorage.setItem(REMEMBERED_ACCOUNT_DATA_KEY, JSON.stringify(formData))
-      } else {
-        localStorage.removeItem(REMEMBERED_ACCOUNT_DATA_KEY)
-      }
-      router.push('/')
-    })
-    .catch(() => {
-      message.error('登录失败')
-    })
-    .finally(() => {
-      formData.password = ''
-    })
+  formRef.value!.validate((errors) => {
+    if (errors) {
+      message.error(errors[0][0].message!)
+      return
+    }
+    LoginApi.login(formData)
+      .then((res) => {
+        const { accessToken } = res.data || {}
+        setToken(accessToken)
+        message.success('登录成功')
+        if (rememberPassword.value) {
+          localStorage.setItem(REMEMBERED_ACCOUNT_DATA_KEY, JSON.stringify(formData))
+        } else {
+          localStorage.removeItem(REMEMBERED_ACCOUNT_DATA_KEY)
+        }
+        router.push('/')
+      })
+      .catch(() => {
+        message.error('登录失败')
+      })
+      .finally(() => {
+        formData.password = ''
+      })
+  })
 }
 
 const loginAsBasic = () => login()
@@ -80,27 +101,41 @@ onMounted(() => {
 </script>
 
 <template>
-  <form
+  <NForm
+    ref="formRef"
+    :rules="rules"
+    :model="formData"
     class="absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg bg-white px-4 py-8 shadow-md sm:w-[260px] md:w-[340px]"
   >
     <div class="select-none text-center text-lg font-semibold text-gray-600">登录</div>
-    <NInput
-      v-model:value="formData.username"
-      type="text"
-      placeholder="账号"
-      :input-props="{ autocomplete: 'username' }"
-      @keyup.enter="() => loginAsBasic()"
-    />
-    <NInput
-      v-model:value="formData.password"
-      type="password"
-      show-password-on="mousedown"
-      placeholder="密码"
-      :maxlength="16"
-      :input-props="{ autocomplete: 'current-password' }"
-      @keyup.enter="() => loginAsBasic()"
-    />
-
+    <NFormItem
+      path="username"
+      :show-label="false"
+      :show-feedback="false"
+    >
+      <NInput
+        v-model:value="formData.username"
+        type="text"
+        placeholder="账号"
+        :input-props="{ autocomplete: 'username' }"
+        @keyup.enter="() => loginAsBasic()"
+      />
+    </NFormItem>
+    <NFormItem
+      path="password"
+      :show-label="false"
+      :show-feedback="false"
+    >
+      <NInput
+        v-model:value="formData.password"
+        type="password"
+        show-password-on="mousedown"
+        placeholder="密码"
+        :maxlength="16"
+        :input-props="{ autocomplete: 'current-password' }"
+        @keyup.enter="() => loginAsBasic()"
+      />
+    </NFormItem>
     <div class="text-grey-300 flex items-center justify-between text-xs font-light">
       <NCheckbox
         v-model:checked="rememberPassword"
@@ -145,7 +180,7 @@ onMounted(() => {
     >
       切换至注册
     </NButton>
-  </form>
+  </NForm>
 </template>
 
 <style scoped lang="scss">

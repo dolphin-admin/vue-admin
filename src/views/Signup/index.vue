@@ -32,6 +32,16 @@ const rules: FormRules = {
       required: true,
       message: '请输入密码',
       trigger: ['blur', 'input']
+    },
+    {
+      validator(rule: FormItemRule, value: string) {
+        if (value.length < 6) {
+          return false
+        }
+        return true
+      },
+      trigger: ['blur', 'input'],
+      message: '密码长度至少为6位'
     }
   ],
   confirmPassword: [
