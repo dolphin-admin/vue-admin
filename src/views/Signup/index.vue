@@ -84,7 +84,7 @@ const signup = () => {
     ref="formRef"
     v-model:value="formData"
     :rules="rules"
-    class="absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg bg-white px-4 py-8 shadow-md sm:w-[260px] md:w-[340px]"
+    class="form-name absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg bg-white px-4 py-8 shadow-md sm:w-[260px] md:w-[340px]"
   >
     <div class="text-center text-lg font-semibold text-gray-600">注册</div>
     <n-input
@@ -129,3 +129,26 @@ const signup = () => {
     </n-button>
   </n-form>
 </template>
+
+<style scoped lang="scss">
+.form-name {
+  // transition: all 2s;
+  animation-duration: 2s;
+  animation-name: slide-in;
+}
+@keyframes slide-in {
+  0% {
+    transform: translateY(-1000px);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(0px);
+  }
+  70% {
+    transform: translateY(-80px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+</style>
