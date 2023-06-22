@@ -83,15 +83,15 @@ onMounted(() => {
   <form
     class="absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg bg-white px-4 py-8 shadow-md sm:w-[260px] md:w-[340px]"
   >
-    <div class="text-center text-lg font-semibold text-gray-600">登录</div>
-    <n-input
+    <div class="select-none text-center text-lg font-semibold text-gray-600">登录</div>
+    <NInput
       v-model:value="formData.username"
       type="text"
       placeholder="账号"
       :input-props="{ autocomplete: 'username' }"
       @keyup.enter="() => loginAsBasic()"
     />
-    <n-input
+    <NInput
       v-model:value="formData.password"
       type="password"
       show-password-on="mousedown"
@@ -102,13 +102,13 @@ onMounted(() => {
     />
 
     <div class="text-grey-300 flex items-center justify-between text-xs font-light">
-      <n-checkbox
+      <NCheckbox
         v-model:checked="rememberPassword"
         size="small"
         class="!text-xs"
       >
         记住密码
-      </n-checkbox>
+      </NCheckbox>
       <div
         class="cursor-pointer hover:text-blue-600"
         @click="forgotPassword"
@@ -117,25 +117,34 @@ onMounted(() => {
       </div>
     </div>
 
-    <n-button
-      type="primary"
-      @click="() => loginAsBasic()"
-    >
-      登录
-    </n-button>
-    <n-button
-      type="info"
-      @click="() => loginAsAdmin()"
-    >
-      以管理员登录
-    </n-button>
-    <n-button
+    <div class="flex w-full flex-1 items-center space-x-2">
+      <div class="w-1/2">
+        <NButton
+          block
+          type="primary"
+          @click="() => loginAsBasic()"
+        >
+          登录
+        </NButton>
+      </div>
+      <div class="w-1/2">
+        <NButton
+          block
+          type="info"
+          @click="() => loginAsAdmin()"
+        >
+          以管理员登录
+        </NButton>
+      </div>
+    </div>
+
+    <NButton
       text
       size="tiny"
       @click="() => router.push('/signup')"
     >
-      注册
-    </n-button>
+      切换至注册
+    </NButton>
   </form>
 </template>
 
