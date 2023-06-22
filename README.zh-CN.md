@@ -16,6 +16,7 @@ Dolphin Admin Web 是一个基于 `Vue 3/Vite/TypeScript/Naive UI/Tailwind CSS` 
 - [x] 使用 Axios 进行请求管理
 - [x] 使用 iconify/json 和 unplugin-icons 进行图标管理，可以通过 icones 快速使用
 - [x] 使用 unplugin-auto-import 和 unplugin-vue-components 进行自动引入，解放双手
+- [x] 使用 `vue-i18n`，支持国际化
 - [x] 使用 `ESLint` 执行代码检查
 - [x] 使用 `Prettier` 执行代码格式化
 - [x] 使用 `cspell` 执行代码拼写检查
