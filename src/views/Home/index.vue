@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { siteMetaData } from '@/constants'
-import type { MessageSchema } from '@/i18n'
+import { useThemeStore } from '@/store'
+import type { Lang, MessageSchema } from '@/types'
 
+const themeStore = useThemeStore()
 const { t, locale } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
 const options = [
@@ -9,8 +11,9 @@ const options = [
   { label: '简体中文', value: 'zh-CN' }
 ]
 
-const handleUpdateLocale = (e: string) => {
-  localStorage.setItem('lang', e)
+const handleUpdateLocale = (lang: Lang) => {
+  themeStore.changeLocale(lang)
+  localStorage.setItem('lang', lang)
 }
 </script>
 
@@ -38,6 +41,10 @@ const handleUpdateLocale = (e: string) => {
           @update:value="(e) => handleUpdateLocale(e)"
         />
       </div>
+      <NDatePicker
+        type="date"
+        size="small"
+      />
     </div>
   </main>
 </template>
