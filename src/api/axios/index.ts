@@ -49,7 +49,7 @@ class Request {
           console.error('Network Error!')
           router.replace('/404')
         }
-        return Promise.reject(response)
+        return Promise.reject(response.data)
       }
     )
   }

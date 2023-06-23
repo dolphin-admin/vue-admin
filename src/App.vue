@@ -9,6 +9,8 @@ const themeStore = useThemeStore()
     :locale="themeStore.locale"
     :date-locale="themeStore.dateLocale"
     :theme="themeStore.theme"
+    :theme-overrides="themeStore.themeOverrides"
+    preflight-style-disabled
   >
     <NLoadingBarProvider>
       <NMessageProvider>
@@ -18,7 +20,10 @@ const themeStore = useThemeStore()
             mode="out-in"
           >
             <KeepAlive>
-              <component :is="Component" />
+              <component
+                :is="Component"
+                class="dark:text-white"
+              />
             </KeepAlive>
           </Transition>
         </RouterView>
