@@ -2,10 +2,9 @@
 import { siteMetaData } from '@/constants'
 import type { MessageSchema } from '@/types'
 
+const { version } = siteMetaData
 // @ts-ignore
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
-
-const { version } = siteMetaData
 </script>
 
 <template>
