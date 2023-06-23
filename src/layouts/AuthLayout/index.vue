@@ -2,6 +2,7 @@
 import { siteMetaData } from '@/constants'
 import type { MessageSchema } from '@/types'
 
+// @ts-ignore
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
 const { version } = siteMetaData
