@@ -2,6 +2,7 @@
 import type { FormInst, FormItemRule, FormRules } from 'naive-ui'
 
 import { LoginApi } from '@/api'
+import { useLoading } from '@/hooks'
 import { setToken } from '@/utils'
 
 type RememberedAccountData = {
@@ -13,6 +14,8 @@ const REMEMBERED_ACCOUNT_DATA_KEY = 'user_password'
 
 const router = useRouter()
 const message = useMessage()
+const [submitLoading, submitLoadingDispatcher] = useLoading(false)
+const submitType = ref<'BASIC' | 'ADMIN'>('BASIC')
 
 const formData = reactive({
   username: '',
@@ -36,12 +39,7 @@ const rules: FormRules = {
       trigger: ['blur', 'input']
     },
     {
-      validator(rule: FormItemRule, value: string) {
-        if (value.length < 6) {
-          return false
-        }
-        return true
-      },
+      validator: (rule: FormItemRule, value: string) => value.length >= 6,
       trigger: ['blur', 'input'],
       message: '密码长度至少为6位'
     }
@@ -54,6 +52,13 @@ const login = () => {
       message.error(errors[0][0].message!)
       return
     }
+
+    if (submitLoading.value) {
+      return
+    }
+
+    submitLoadingDispatcher.loading()
+
     LoginApi.login(formData)
       .then((res) => {
         const { accessToken } = res.data || {}
@@ -68,6 +73,7 @@ const login = () => {
       })
       .catch(() => {
         message.error('登录失败')
+        submitLoadingDispatcher.loaded()
       })
       .finally(() => {
         formData.password = ''
@@ -75,9 +81,13 @@ const login = () => {
   })
 }
 
-const loginAsBasic = () => login()
+const loginAsBasic = () => {
+  submitType.value = 'BASIC'
+  login()
+}
 
 const loginAsAdmin = () => {
+  submitType.value = 'ADMIN'
   formData.username = 'Admin'
   formData.password = '123456'
   login()
@@ -108,6 +118,7 @@ onMounted(() => {
     class="absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg bg-white px-4 py-8 shadow-md sm:w-[260px] md:w-[340px]"
   >
     <div class="select-none text-center text-lg font-semibold text-gray-600">登录</div>
+
     <NFormItem
       path="username"
       :show-label="false"
@@ -121,6 +132,7 @@ onMounted(() => {
         @keyup.enter="() => loginAsBasic()"
       />
     </NFormItem>
+
     <NFormItem
       path="password"
       :show-label="false"
@@ -136,6 +148,7 @@ onMounted(() => {
         @keyup.enter="() => loginAsBasic()"
       />
     </NFormItem>
+
     <div class="text-grey-300 flex items-center justify-between text-xs font-light">
       <NCheckbox
         v-model:checked="rememberPassword"
@@ -153,24 +166,24 @@ onMounted(() => {
     </div>
 
     <div class="flex w-full flex-1 items-center space-x-2">
-      <div class="w-1/2">
-        <NButton
-          block
-          type="primary"
-          @click="() => loginAsBasic()"
-        >
-          登录
-        </NButton>
-      </div>
-      <div class="w-1/2">
-        <NButton
-          block
-          type="info"
-          @click="() => loginAsAdmin()"
-        >
-          以管理员登录
-        </NButton>
-      </div>
+      <NButton
+        class="!w-[calc(50%-4px)]"
+        type="primary"
+        :disabled="submitLoading"
+        :loading="submitType === 'BASIC' && submitLoading"
+        @click="() => loginAsBasic()"
+      >
+        登录
+      </NButton>
+      <NButton
+        class="!w-[calc(50%-4px)]"
+        type="info"
+        :disabled="submitLoading"
+        :loading="submitType === 'ADMIN' && submitLoading"
+        @click="() => loginAsAdmin()"
+      >
+        以管理员登录
+      </NButton>
     </div>
 
     <NButton

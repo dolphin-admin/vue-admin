@@ -17,8 +17,6 @@ const formData = reactive({
 const formRef = ref<FormInst | null>(null)
 const passwordFormItemRef = ref<FormItemInst | null>(null)
 
-const validateConfirmPassword = (rules: FormItemRule, value: string) => value === formData.password
-
 const rules: FormRules = {
   username: [
     {
@@ -34,12 +32,7 @@ const rules: FormRules = {
       trigger: ['blur', 'input']
     },
     {
-      validator(rule: FormItemRule, value: string) {
-        if (value.length < 6) {
-          return false
-        }
-        return true
-      },
+      validator: (rule: FormItemRule, value: string) => value.length >= 6,
       trigger: ['blur', 'input'],
       message: '密码长度至少为6位'
     }
@@ -51,7 +44,7 @@ const rules: FormRules = {
       trigger: ['blur', 'input']
     },
     {
-      validator: validateConfirmPassword,
+      validator: (rule: FormItemRule, value: string) => value === formData.password,
       message: '两次密码输入不一致'
     }
   ]
@@ -144,18 +137,19 @@ const signup = () => {
     </NFormItem>
 
     <NButton
+      type="primary"
       :disabled="submitLoading"
       :loading="submitLoading"
-      type="primary"
       @click="() => signup()"
     >
       注册
     </NButton>
+
     <NButton
       class="w-100"
       text
       size="tiny"
-      @click="$router.push('/login')"
+      @click="() => router.push('/login')"
     >
       切换至登录
     </NButton>
