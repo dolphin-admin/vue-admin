@@ -70,8 +70,8 @@ const signup = () => {
         message.success('注册成功')
         router.push('/')
       })
-      .catch(() => {
-        message.error('注册失败')
+      .catch((err) => {
+        message.error(err.data?.message ?? '注册失败')
         submitLoadingDispatcher.loaded()
       })
       .finally(() => {

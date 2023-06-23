@@ -74,8 +74,8 @@ const login = () => {
         }
         router.push('/')
       })
-      .catch(() => {
-        message.error(t('Login.Failed'))
+      .catch((err) => {
+        message.error(err.data?.message ?? t('Login.Failed'))
         submitLoadingDispatcher.loaded()
       })
       .finally(() => {
