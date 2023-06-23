@@ -7,8 +7,8 @@ const themeStore = useThemeStore()
 const { t, locale } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
 const options = [
-  { label: 'English', value: 'en' },
-  { label: '简体中文', value: 'zh-CN' }
+  { label: 'English', value: 'en_US' },
+  { label: '简体中文', value: 'zh_CN' }
 ]
 
 const handleUpdateLocale = (lang: Lang) => {
@@ -28,11 +28,11 @@ const handleUpdateLocale = (lang: Lang) => {
         alt=""
       />
       <div class="flex flex-col space-y-2">
-        <span class="whitespace-nowrap text-2xl font-semibold">{{ t('app.name') }}</span>
+        <span class="whitespace-nowrap text-2xl font-semibold">{{ t('App.Name') }}</span>
         <span class="text-base tracking-wider">v{{ siteMetaData.version }}</span>
       </div>
       <div class="flex items-center space-x-2 whitespace-nowrap">
-        <span class="text-sm">{{ t('language.choose') }}</span>
+        <span class="text-sm">{{ t('Language.Choose') }}</span>
         <NSelect
           v-model:value="locale"
           :options="options"

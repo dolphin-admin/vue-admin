@@ -13,6 +13,7 @@ nprogress
 Pinia
 recallwei
 rushstack
+signup
 tailwindcss
 unplugin
 vfonts

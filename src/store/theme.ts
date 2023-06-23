@@ -17,11 +17,11 @@ export const useThemeStore = defineStore('theme', () => {
 
   const changeLocale = (selectedLocale: Lang) => {
     switch (selectedLocale) {
-      case 'zh-CN':
+      case 'zh_CN':
         locale.value = zhCN
         dateLocale.value = dateZhCN
         break
-      case 'en':
+      case 'en_US':
         locale.value = enUS
         dateLocale.value = dateEnUS
         break

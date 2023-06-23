@@ -3,6 +3,7 @@ import type { FormInst, FormItemRule, FormRules } from 'naive-ui'
 
 import { LoginApi } from '@/api'
 import { useLoading } from '@/hooks'
+import type { MessageSchema } from '@/types'
 import { setToken } from '@/utils'
 
 type RememberedAccountData = {
@@ -14,6 +15,8 @@ const REMEMBERED_ACCOUNT_DATA_KEY = 'user_password'
 
 const router = useRouter()
 const message = useMessage()
+const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+
 const [submitLoading, submitLoadingDispatcher] = useLoading(false)
 const submitType = ref<'BASIC' | 'ADMIN'>('BASIC')
 
@@ -28,20 +31,20 @@ const rules: FormRules = {
   username: [
     {
       required: true,
-      message: '请输入用户名',
+      message: t('Common.Validation.Username'),
       trigger: ['blur', 'input']
     }
   ],
   password: [
     {
       required: true,
-      message: '请输入密码',
+      message: t('Common.Validation.Password'),
       trigger: ['blur', 'input']
     },
     {
       validator: (rule: FormItemRule, value: string) => value.length >= 6,
       trigger: ['blur', 'input'],
-      message: '密码长度至少为6位'
+      message: t('Common.Validation.PasswordLength')
     }
   ]
 }
@@ -63,7 +66,7 @@ const login = () => {
       .then((res) => {
         const { accessToken } = res.data || {}
         setToken(accessToken)
-        message.success('登录成功')
+        message.success(t('Login.Success'))
         if (rememberPassword.value) {
           localStorage.setItem(REMEMBERED_ACCOUNT_DATA_KEY, JSON.stringify(formData))
         } else {
@@ -72,7 +75,7 @@ const login = () => {
         router.push('/')
       })
       .catch(() => {
-        message.error('登录失败')
+        message.error(t('Login.Failed'))
         submitLoadingDispatcher.loaded()
       })
       .finally(() => {
@@ -117,7 +120,7 @@ onMounted(() => {
     :model="formData"
     class="absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg bg-white px-4 py-8 shadow-md sm:w-[260px] md:w-[340px]"
   >
-    <div class="select-none text-center text-lg font-semibold text-gray-600">登录</div>
+    <div class="select-none text-center text-lg font-semibold text-gray-600">{{ t('Common.Login') }}</div>
 
     <NFormItem
       path="username"
@@ -127,7 +130,7 @@ onMounted(() => {
       <NInput
         v-model:value="formData.username"
         type="text"
-        placeholder="账号"
+        :placeholder="t('Common.Username')"
         :input-props="{ autocomplete: 'username' }"
         @keyup.enter="() => loginAsBasic()"
       />
@@ -142,7 +145,7 @@ onMounted(() => {
         v-model:value="formData.password"
         type="password"
         show-password-on="mousedown"
-        placeholder="密码"
+        :placeholder="t('Common.Password')"
         :maxlength="16"
         :input-props="{ autocomplete: 'current-password' }"
         @keyup.enter="() => loginAsBasic()"
@@ -155,13 +158,13 @@ onMounted(() => {
         size="small"
         class="!text-xs"
       >
-        记住密码
+        {{ t('Common.RememberPassword') }}
       </NCheckbox>
       <div
         class="cursor-pointer hover:text-blue-600"
         @click="forgotPassword"
       >
-        忘记密码
+        {{ t('Common.ForgetPassword') }}
       </div>
     </div>
 
@@ -173,7 +176,7 @@ onMounted(() => {
         :loading="submitType === 'BASIC' && submitLoading"
         @click="() => loginAsBasic()"
       >
-        登录
+        {{ t('Common.Login') }}
       </NButton>
       <NButton
         class="!w-[calc(50%-4px)]"
@@ -182,7 +185,7 @@ onMounted(() => {
         :loading="submitType === 'ADMIN' && submitLoading"
         @click="() => loginAsAdmin()"
       >
-        以管理员登录
+        {{ t('Login.AsAdmin') }}
       </NButton>
     </div>
 
@@ -191,7 +194,7 @@ onMounted(() => {
       size="tiny"
       @click="() => router.push('/signup')"
     >
-      切换至注册
+      {{ t('Login.SwitchToSignup') }}
     </NButton>
   </NForm>
 </template>
