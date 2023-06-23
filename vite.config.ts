@@ -12,7 +12,7 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     vue(),
     AutoImport({
-      dts: true,
+      dts: './src/auto-imports.d.ts',
       include: [
         /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
         /\.vue$/,
@@ -35,7 +35,7 @@ export default defineConfig(({ mode }) => ({
       ]
     }),
     Components({
-      dts: true,
+      dts: './src/components.d.ts',
       resolvers: [NaiveUiResolver()]
     }),
     Icons({ autoInstall: true })
