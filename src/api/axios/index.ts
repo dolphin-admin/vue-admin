@@ -4,7 +4,7 @@ import axios from 'axios'
 import router from '@/router'
 import { useThemeStore } from '@/store'
 import type { PageModel, PageResponseData, ResponseData } from '@/types'
-import { clearToken, getToken, isAuthenticated } from '@/utils'
+import { clearToken, getDefaultLang, getToken, isAuthenticated } from '@/utils'
 
 import { axiosConfig } from './config'
 import { errorMessageMap, ResponseStatusCode } from './statusCode'
@@ -32,6 +32,7 @@ class Request {
         if (isAuthenticated()) {
           req.headers.Authorization = `Bearer ${getToken()}`
         }
+        req.headers.Language = getDefaultLang()
         return req
       },
       (err: AxiosError) => Promise.reject(err)

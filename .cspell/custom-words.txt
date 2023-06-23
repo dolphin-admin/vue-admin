@@ -3,6 +3,7 @@ commitlint
 degit
 esbuild
 FiraCode
+Langauge
 icones
 iconify
 lintstaged
