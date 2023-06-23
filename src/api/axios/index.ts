@@ -42,14 +42,15 @@ class Request {
       (res: AxiosResponse) => res.data,
       (err: AxiosError) => {
         const { response } = err
+        const { data, status } = response || {}
         if (response) {
-          Request.handleCode(response.status)
+          Request.handleCode(status as number)
         }
         if (!window.navigator.onLine) {
           console.error('Network Error!')
           router.replace('/404')
         }
-        return Promise.reject(response)
+        return Promise.reject(data)
       }
     )
   }

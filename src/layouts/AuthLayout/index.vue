@@ -2,14 +2,14 @@
 import { siteMetaData } from '@/constants'
 import type { MessageSchema } from '@/types'
 
-const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
-
 const { version } = siteMetaData
+// @ts-ignore
+const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 </script>
 
 <template>
   <main class="flex h-screen w-screen">
-    <div class="invisible relative w-0 bg-blue-200 sm:visible sm:w-1/2">
+    <div class="invisible relative w-0 bg-blue-200 dark:bg-gray-600 sm:visible sm:w-1/2">
       <div class="absolute inset-0 m-auto flex h-fit w-fit select-none flex-col space-y-2 text-center font-mono">
         <img
           src="@/assets/images/favicon.png"
@@ -22,7 +22,7 @@ const { version } = siteMetaData
       </div>
     </div>
 
-    <div class="relative w-full bg-blue-300 sm:w-1/2">
+    <div class="relative w-full bg-blue-300 dark:bg-gray-700 sm:w-1/2">
       <RouterView v-slot="{ Component }">
         <component
           :is="Component"
@@ -30,6 +30,7 @@ const { version } = siteMetaData
         />
       </RouterView>
     </div>
+    <ThemeSwitchDevTool />
   </main>
 </template>
 

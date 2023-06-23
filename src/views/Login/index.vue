@@ -15,6 +15,7 @@ const REMEMBERED_ACCOUNT_DATA_KEY = 'user_password'
 
 const router = useRouter()
 const message = useMessage()
+// @ts-ignore
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
 const [submitLoading, submitLoadingDispatcher] = useLoading(false)
@@ -75,7 +76,7 @@ const login = () => {
         router.push('/')
       })
       .catch((err) => {
-        message.error(err.data?.message ?? t('Login.Failed'))
+        message.error(err.message ?? t('Login.Failed'))
         submitLoadingDispatcher.loaded()
       })
       .finally(() => {
@@ -118,9 +119,9 @@ onMounted(() => {
     ref="formRef"
     :rules="rules"
     :model="formData"
-    class="absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg bg-white px-4 py-8 shadow-md sm:w-[260px] md:w-[340px]"
+    class="absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg bg-light-default px-4 py-8 shadow-md transition-colors dark:bg-dark-default sm:w-[260px] md:w-[340px]"
   >
-    <div class="select-none text-center text-lg font-semibold text-gray-600">{{ t('Common.Login') }}</div>
+    <div class="select-none text-center text-lg font-semibold">{{ t('Common.Login') }}</div>
 
     <NFormItem
       path="username"
@@ -180,7 +181,8 @@ onMounted(() => {
       </NButton>
       <NButton
         class="!w-[calc(50%-4px)]"
-        type="info"
+        secondary
+        type="primary"
         :disabled="submitLoading"
         :loading="submitType === 'ADMIN' && submitLoading"
         @click="() => loginAsAdmin()"
