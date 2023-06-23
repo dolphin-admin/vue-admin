@@ -3,6 +3,7 @@ commitlint
 degit
 esbuild
 FiraCode
+Langauge
 icones
 iconify
 lintstaged
@@ -13,6 +14,7 @@ nprogress
 Pinia
 recallwei
 rushstack
+signup
 tailwindcss
 unplugin
 vfonts

@@ -1,0 +1,35 @@
+{
+  "Language": {
+    "Choose": "Choose language:",
+    "Current": "English"
+  },
+  "App": {
+    "Name": "Dolphin Admin"
+  },
+  "Common": {
+    "Login": "Login",
+    "Signup": "Signup",
+    "RememberPassword": "Remember password",
+    "ForgetPassword": "Forget password",
+    "Username": "Username",
+    "Password": "Password",
+    "Validation": {
+      "Username": "Please enter username",
+      "Password": "Please enter password",
+      "PasswordLength": "Password length must be greater than 6",
+      "ConfirmPassword": "Please enter confirm password",
+      "ConfirmPasswordNotMatch": "Password not match"
+    }
+  },
+  "Login": {
+    "AsAdmin": "Login as Admin",
+    "SwitchToSignup": "Switch to Signup",
+    "Success": "Login success",
+    "Failed": "Login failed"
+  },
+  "Signup": {
+    "SwitchToLogin": "Switch to Login",
+    "Success": "Signup success",
+    "Failed": "Signup failed"
+  }
+}

@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { siteMetaData } from '@/constants'
-const { appName, version } = siteMetaData
+import type { MessageSchema } from '@/types'
+
+const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+
+const { version } = siteMetaData
 </script>
 
 <template>
@@ -13,7 +17,7 @@ const { appName, version } = siteMetaData
           width="180"
           height="180"
         />
-        <span class="text-xl font-semibold">{{ appName }}</span>
+        <span class="text-xl font-semibold">{{ t('App.Name') }}</span>
         <span class="text-base">v{{ version }}</span>
       </div>
     </div>
