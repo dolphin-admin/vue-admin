@@ -16,7 +16,9 @@
     "Validation": {
       "Username": "请输入用户名",
       "Password": "请输入密码",
-      "PasswordLength": "密码长度至少为 6 位"
+      "PasswordLength": "密码长度至少为 6 位",
+      "ConfirmPassword": "请输入确认密码",
+      "ConfirmPasswordNotMatch": "两次输入的密码不一致"
     }
   },
   "Login": {
@@ -24,5 +26,10 @@
     "SwitchToSignup": "切换至注册",
     "Success": "登录成功",
     "Failed": "登录失败"
+  },
+  "Signup": {
+    "SwitchToLogin": "切换至登录",
+    "Success": "注册成功",
+    "Failed": "注册失败"
   }
 }

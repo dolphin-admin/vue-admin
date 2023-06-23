@@ -16,7 +16,9 @@
     "Validation": {
       "Username": "Please enter username",
       "Password": "Please enter password",
-      "PasswordLength": "Password length must be greater than 6"
+      "PasswordLength": "Password length must be greater than 6",
+      "ConfirmPassword": "Please enter confirm password",
+      "ConfirmPasswordNotMatch": "Password not match"
     }
   },
   "Login": {
@@ -24,5 +26,10 @@
     "SwitchToSignup": "Switch to Signup",
     "Success": "Login success",
     "Failed": "Login failed"
+  },
+  "Signup": {
+    "SwitchToLogin": "Switch to Login",
+    "Success": "Signup success",
+    "Failed": "Signup failed"
   }
 }
