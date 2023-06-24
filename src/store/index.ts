@@ -1,2 +1,7 @@
+import { createPinia } from 'pinia'
+
+const pinia = createPinia()
+
 export * from './theme'
-export * from './user'
+
+export default pinia

@@ -32,5 +32,12 @@
     "SwitchToLogin": "切换至登录",
     "Success": "注册成功",
     "Failed": "注册失败"
+  },
+  "Logout": {
+    "Success": "登出成功"
+  },
+  "UserInfo": {
+    "Fetching": "正在获取用户信息...",
+    "FetchError": "获取用户信息失败"
   }
 }

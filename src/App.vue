@@ -1,19 +1,7 @@
 <script setup lang="ts">
-import { UserApi } from '@/api/user'
-import { useThemeStore, useUserStore } from '@/store'
+import { useThemeStore } from '@/store'
 
 const themeStore = useThemeStore()
-const userStore = useUserStore()
-
-onMounted(() => {
-  if (!userStore.haveUserInfo()) {
-    UserApi.getUserInfo()
-      .then((res) => {
-        userStore.setUserInfo(res.data)
-      })
-      .catch(() => {})
-  }
-})
 </script>
 
 <template>
@@ -32,10 +20,7 @@ onMounted(() => {
             mode="out-in"
           >
             <KeepAlive>
-              <component
-                :is="Component"
-                class="dark:text-white"
-              />
+              <component :is="Component" />
             </KeepAlive>
           </Transition>
         </RouterView>
