@@ -13,6 +13,7 @@
     "ForgetPassword": "忘记密码",
     "Username": "用户名",
     "Password": "密码",
+    "ConfirmPassword": "确认密码",
     "Validation": {
       "Username": "请输入用户名",
       "Password": "请输入密码",

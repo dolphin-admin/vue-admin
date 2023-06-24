@@ -13,6 +13,7 @@
     "ForgetPassword": "Forget password",
     "Username": "Username",
     "Password": "Password",
+    "ConfirmPassword": "Confirm password",
     "Validation": {
       "Username": "Please enter username",
       "Password": "Please enter password",
