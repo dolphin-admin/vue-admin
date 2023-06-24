@@ -20,10 +20,7 @@ const themeStore = useThemeStore()
             mode="out-in"
           >
             <KeepAlive>
-              <component
-                :is="Component"
-                class="dark:text-white"
-              />
+              <component :is="Component" />
             </KeepAlive>
           </Transition>
         </RouterView>

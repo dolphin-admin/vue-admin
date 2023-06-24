@@ -5,11 +5,18 @@ const { appName } = siteMetaData
 export const routes = [
   {
     path: '/',
-    name: 'home',
-    component: () => import('@/views/Home'),
-    meta: {
-      title: appName
-    }
+    name: 'base-layout',
+    component: () => import('@/layouts/BaseLayout'),
+    children: [
+      {
+        path: '/',
+        name: 'home',
+        component: () => import('@/views/Home'),
+        meta: {
+          title: appName
+        }
+      }
+    ]
   },
   {
     path: '/',

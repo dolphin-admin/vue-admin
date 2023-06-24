@@ -32,5 +32,12 @@
     "SwitchToLogin": "Switch to Login",
     "Success": "Signup success",
     "Failed": "Signup failed"
+  },
+  "Logout": {
+    "Success": "Logout success"
+  },
+  "UserInfo": {
+    "Fetching": "Fetching user info...",
+    "FetchError": "Fetch user info failed"
   }
 }
