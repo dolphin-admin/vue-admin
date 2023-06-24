@@ -42,7 +42,12 @@ export default defineConfig(({ mode }) => ({
   ],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      /* NOTE:
+       * Fix vue-i18n loader bug
+       * Reference: https://github.com/intlify/vue-i18n-next/issues/789
+       */
+      'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js'
     },
     extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue']
   },
