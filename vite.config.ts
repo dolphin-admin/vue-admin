@@ -36,7 +36,8 @@ export default defineConfig(({ mode }) => ({
     }),
     Components({
       dts: './src/components.d.ts',
-      resolvers: [NaiveUiResolver()]
+      resolvers: [NaiveUiResolver()],
+      globs: ['src/components/*.{vue}', 'src/layouts/*.{vue}']
     }),
     Icons({ autoInstall: true })
   ],

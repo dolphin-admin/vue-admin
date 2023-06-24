@@ -1,7 +1,19 @@
 <script setup lang="ts">
-import { useThemeStore } from '@/store'
+import { UserApi } from '@/api/user'
+import { useThemeStore, useUserStore } from '@/store'
 
 const themeStore = useThemeStore()
+const userStore = useUserStore()
+
+onMounted(() => {
+  if (!userStore.haveUserInfo()) {
+    UserApi.getUserInfo()
+      .then((res) => {
+        userStore.setUserInfo(res.data)
+      })
+      .catch(() => {})
+  }
+})
 </script>
 
 <template>

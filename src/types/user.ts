@@ -3,7 +3,7 @@ export interface User {
   uuid: string
   username: string
   email: string
-  phoneNumber: number
+  phoneNumber: string
   address: string
   avatarUrl: string
   biography: string
