@@ -7,6 +7,8 @@ import { setToken } from '@/utils'
 
 const router = useRouter()
 const message = useMessage()
+// @ts-ignore
+const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 const [submitLoading, submitLoadingDispatcher] = useLoading(false)
 
 const formData = reactive({
@@ -21,31 +23,31 @@ const rules: FormRules = {
   username: [
     {
       required: true,
-      message: '请输入用户名',
+      message: t('Common.Validation.Username'),
       trigger: ['blur', 'input']
     }
   ],
   password: [
     {
       required: true,
-      message: '请输入密码',
+      message: t('Common.Validation.Password'),
       trigger: ['blur', 'input']
     },
     {
       validator: (rule: FormItemRule, value: string) => value.length >= 6,
       trigger: ['blur', 'input'],
-      message: '密码长度至少为6位'
+      message: t('Common.Validation.PasswordLength')
     }
   ],
   confirmPassword: [
     {
       required: true,
-      message: '请输入确认密码',
+      message: t('Common.Validation.ConfirmPassword'),
       trigger: ['blur', 'input']
     },
     {
       validator: (rule: FormItemRule, value: string) => value === formData.password,
-      message: '两次密码输入不一致'
+      message: t('Common.Validation.ConfirmPasswordNotMatch')
     }
   ]
 }
@@ -67,11 +69,11 @@ const signup = () => {
       .then((res) => {
         const { accessToken } = res.data || {}
         setToken(accessToken)
-        message.success('注册成功')
+        message.success(t('Signup.Success'))
         router.push('/')
       })
       .catch((err) => {
-        message.error(err.message ?? '注册失败')
+        message.error(err.message ?? t('Signup.Failed'))
         submitLoadingDispatcher.loaded()
       })
       .finally(() => {
@@ -89,7 +91,7 @@ const signup = () => {
     :model="formData"
     class="absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg bg-light-default px-4 py-8 shadow-md transition-colors dark:bg-dark-default sm:w-[260px] md:w-[340px]"
   >
-    <div class="select-none text-center text-lg font-semibold">注册</div>
+    <div class="select-none text-center text-lg font-semibold">{{ t('Common.Signup') }}</div>
 
     <NFormItem
       path="username"
@@ -99,7 +101,7 @@ const signup = () => {
       <NInput
         v-model:value="formData.username"
         type="text"
-        placeholder="请输入用户名"
+        :placeholder="t('Common.Username')"
         :input-props="{ autocomplete: 'username' }"
         @keydown.enter="() => signup()"
       />
@@ -113,7 +115,7 @@ const signup = () => {
       <NInput
         v-model:value="formData.password"
         type="password"
-        placeholder="请输入密码"
+        :placeholder="t('Common.Password')"
         show-password-on="click"
         :input-props="{ autocomplete: 'new-password' }"
         @keydown.enter="() => signup()"
@@ -129,7 +131,7 @@ const signup = () => {
         ref="passwordFormItemRef"
         v-model:value="formData.confirmPassword"
         type="password"
-        placeholder="请再次输入密码"
+        :placeholder="t('Common.ConfirmPassword')"
         show-password-on="click"
         :input-props="{ autocomplete: 'new-password' }"
         @keydown.enter="() => signup()"
@@ -142,7 +144,7 @@ const signup = () => {
       :loading="submitLoading"
       @click="() => signup()"
     >
-      注册
+      {{ t('Common.Signup') }}
     </NButton>
 
     <NButton
@@ -151,7 +153,7 @@ const signup = () => {
       size="tiny"
       @click="() => router.push('/login')"
     >
-      切换至登录
+      {{ t('Signup.SwitchToLogin') }}
     </NButton>
   </NForm>
 </template>
