@@ -4,4 +4,5 @@ node_modules
 /build
 /dist
 /public
+/src-tauri
 pnpm-lock.yaml

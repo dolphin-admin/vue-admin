@@ -20,6 +20,10 @@
     "build",
     "node_modules",
     "public",
+    "src-tauri/icons",
+    "src-tauri/target",
+    "src-tauri/Cargo.lock",
+    "src-tauri/Cargo.toml",
     "pnpm-lock.yaml",
     "README.md"
   ]

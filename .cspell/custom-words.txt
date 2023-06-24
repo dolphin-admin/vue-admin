@@ -1,8 +1,11 @@
 axios
+Bootstrapper
 commitlint
 degit
 esbuild
 FiraCode
+fullscreen
+icns
 icones
 iconify
 Langauge
@@ -19,6 +22,7 @@ Roboto
 rushstack
 signup
 tailwindcss
+tauri
 unplugin
 vfonts
 vueuse
