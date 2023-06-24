@@ -22,3 +22,5 @@ tailwindcss
 unplugin
 vfonts
 vueuse
+tauri
+icns
