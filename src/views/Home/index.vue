@@ -35,7 +35,7 @@ const handleUpdateLocale = (lang: Lang) => {
         <span class="text-base tracking-wider">v{{ siteMetaData.version }}</span>
       </div>
       <div class="flex items-center space-x-2 whitespace-nowrap">
-        <NElement class="text-sm">{{ t('Language.Choose') }}</NElement>
+        <span class="text-sm">{{ t('Language.Choose') }}</span>
         <NSelect
           v-model:value="locale"
           :options="options"
