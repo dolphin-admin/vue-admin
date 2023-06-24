@@ -2,6 +2,7 @@
 import { siteMetaData } from '@/constants'
 import { useThemeStore } from '@/store'
 import type { Lang, MessageSchema } from '@/types'
+import { setLang } from '@/utils'
 
 const themeStore = useThemeStore()
 // @ts-ignore
@@ -14,7 +15,7 @@ const options = [
 
 const handleUpdateLocale = (lang: Lang) => {
   themeStore.changeLocale(lang)
-  localStorage.setItem('lang', lang)
+  setLang(lang)
 }
 </script>
 

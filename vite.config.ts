@@ -43,7 +43,8 @@ export default defineConfig(({ mode }) => ({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
-      /* NOTE:
+      /*
+       * NOTE:
        * Fix vue-i18n loader bug
        * Reference: https://github.com/intlify/vue-i18n-next/issues/789
        */
