@@ -39,5 +39,13 @@
   "UserInfo": {
     "Fetching": "正在获取用户信息...",
     "FetchError": "获取用户信息失败"
+  },
+  "HeaderInfo": {
+    "Notification": "通知",
+    "FullScreen": "全屏",
+    "ExitFullScreen": "退出全屏",
+    "language": "语言",
+    "SwitchingTheme": "切换主题",
+    "Setting": "设置"
   }
 }

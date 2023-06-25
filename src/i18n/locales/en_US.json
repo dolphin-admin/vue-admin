@@ -39,5 +39,13 @@
   "UserInfo": {
     "Fetching": "Fetching user info...",
     "FetchError": "Fetch user info failed"
+  },
+  "HeaderInfo": {
+    "Notification": "Notification",
+    "FullScreen": "Full Screen",
+    "ExitFullScreen": "Exit Full Screen",
+    "language": "language",
+    "SwitchingTheme": "Switching Theme",
+    "Setting": "Setting"
   }
 }
