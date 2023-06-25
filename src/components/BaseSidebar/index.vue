@@ -1,7 +1,34 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useSidebarStore, useThemeStore } from '@/store'
+
+const themeStore = useThemeStore()
+const sidebarStore = useSidebarStore()
+
+// @ts-ignore
+const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+</script>
 
 <template>
   <div
-    class="z-50 h-full w-40 border-r border-gray-300 bg-light-default shadow-sm dark:border-gray-950 dark:bg-dark-default"
-  ></div>
+    class="h-full border-r border-gray-300 bg-light-default shadow-sm transition-[width] duration-500 dark:border-gray-950 dark:bg-dark-default"
+    :class="[sidebarStore.isCollapse ? 'w-16' : 'w-56']"
+  >
+    <div class="flex h-16 w-full select-none items-center justify-center space-x-3">
+      <img
+        class="animate-pulse cursor-pointer select-none"
+        width="36"
+        height="36"
+        src="@/assets/images/favicon.png"
+        alt=""
+        @click="() => themeStore.changeThemeMode(themeStore.themeMode === 'light' ? 'dark' : 'light')"
+      />
+      <span
+        v-show="!sidebarStore.isCollapse"
+        class="whitespace-nowrap text-sm tracking-wide"
+      >
+        {{ t('App.Name') }}
+      </span>
+    </div>
+    <div class="w-full"></div>
+  </div>
 </template>

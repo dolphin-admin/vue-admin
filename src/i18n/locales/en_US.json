@@ -39,5 +39,17 @@
   "UserInfo": {
     "Fetching": "Fetching user info...",
     "FetchError": "Fetch user info failed"
+  },
+  "Header": {
+    "Notification": "Notification",
+    "FullScreen": "Full screen",
+    "ExitFullScreen": "Exit full screen",
+    "Language": "Language",
+    "SwitchTheme": "Switch theme",
+    "Settings": "Settings"
+  },
+  "Sidebar": {
+    "Expand": "Expand sidebar",
+    "Collapse": "Collapse sidebar"
   }
 }
