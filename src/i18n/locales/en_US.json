@@ -40,12 +40,16 @@
     "Fetching": "Fetching user info...",
     "FetchError": "Fetch user info failed"
   },
-  "HeaderInfo": {
+  "Header": {
     "Notification": "Notification",
-    "FullScreen": "Full Screen",
-    "ExitFullScreen": "Exit Full Screen",
-    "language": "language",
-    "SwitchingTheme": "Switching Theme",
-    "Setting": "Setting"
+    "FullScreen": "Full screen",
+    "ExitFullScreen": "Exit full screen",
+    "Language": "Language",
+    "SwitchTheme": "Switch theme",
+    "Settings": "Settings"
+  },
+  "Sidebar": {
+    "Expand": "Expand sidebar",
+    "Collapse": "Collapse sidebar"
   }
 }
