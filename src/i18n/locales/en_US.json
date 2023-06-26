@@ -18,7 +18,9 @@
       "PasswordLength": "Password length must be greater than 6",
       "ConfirmPassword": "Please enter confirm password",
       "ConfirmPasswordNotMatch": "Password not match"
-    }
+    },
+    "Download": "Download",
+    "Upload": "Upload"
   },
   "Login": {
     "AsAdmin": "Login as Admin",
