@@ -4,5 +4,5 @@ export const siteMetaData: SiteMetaData = Object.freeze({
   appName: 'Dolphin Admin',
   version: '0.0.1',
   favicon: '/favicon.ico',
-  teamName: 'Dolphin Open Source Team'
+  teamName: 'Ocean Open Source Team'
 })

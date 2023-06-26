@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useLoading } from '@/hooks'
 import type { MessageSchema } from '@/types'
-import { generateQRCode } from '@/utils'
+import { downloadFile, generateQRCode } from '@/utils'
 
 const message = useMessage()
 // @ts-ignore
@@ -70,15 +70,24 @@ const makeQRCode = async () => {
           v-show="generatedResult"
           class="w-full sm:!w-fit"
           hoverable
-          content-style="display: flex;justify-content: center;align-items: center;text-align: center;"
+          content-style="display: flex;justify-content: center;align-items: center;flex-direction: column;"
         >
           <n-image
             v-if="generatedResult"
+            class="shadow-lg"
             width="200"
             :src="generatedResult"
             alt=""
             show-toolbar-tooltip
           />
+          <div class="mt-4 text-center">
+            <NButton
+              type="primary"
+              @click="() => downloadFile(generatedResult, 'qrcode.png')"
+            >
+              {{ t('Common.Download') }}
+            </NButton>
+          </div>
         </NCard>
       </div>
     </div>

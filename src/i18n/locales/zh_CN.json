@@ -18,7 +18,9 @@
       "PasswordLength": "密码长度至少为 6 位",
       "ConfirmPassword": "请输入确认密码",
       "ConfirmPasswordNotMatch": "两次输入的密码不一致"
-    }
+    },
+    "Download": "下载",
+    "Upload": "上传"
   },
   "Login": {
     "AsAdmin": "以管理员登录",
@@ -53,6 +55,7 @@
   "Menu": {
     "Login": "登录",
     "Signup": "注册",
+    "SystemFunction": "系统功能",
     "QRCode": "二维码"
   },
   "QRCode": {
