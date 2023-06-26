@@ -181,6 +181,7 @@ onMounted(() => {
             class="h-8 w-8 cursor-pointer rounded-full"
             :src="userInfo.avatarUrl"
             alt=""
+            loading="eager"
           />
           <span class="text-sm">{{ userInfo.username }}</span>
         </div>
