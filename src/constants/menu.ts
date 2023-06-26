@@ -1,16 +1,41 @@
-import { NIcon } from 'naive-ui'
-import { RouterLink } from 'vue-router'
-
+import { i18n } from '@/i18n'
+import type { MenuMixedOption } from '@/types'
+import { renderIcon, renderRouterLink } from '@/utils'
+import QRCodeIcon from '~icons/ic/baseline-qrcode'
+import HomeIcon from '~icons/ic/sharp-house'
 import PermissionIcon from '~icons/mdi/briefcase-arrow-left-right-outline'
-import FeatureIcon from '~icons/mdi/function-variant'
+import SystemFunctionIcon from '~icons/mdi/function-variant'
 import DashboardIcon from '~icons/mdi/speedometer-medium'
 import ComponentIcon from '~icons/mdi/vector-combine'
+const { t } = i18n.global
 
-const renderIcon = (icon: Component) => () => h(NIcon, null, { default: () => h(icon) })
-
-const renderRouterLink = (label: string, to: string) => () => h(RouterLink, { to }, { default: () => label })
-
-export const menuOptions = [
+export const menuOptions: MenuMixedOption[] = [
+  {
+    label: renderRouterLink('首页', '/'),
+    key: 'home',
+    icon: renderIcon(HomeIcon),
+    isRouterLink: true
+  },
+  {
+    label: t('Menu.SystemFunction'),
+    labelKey: 'Menu.SystemFunction',
+    key: 'system-function',
+    icon: renderIcon(SystemFunctionIcon),
+    menuType: 'label',
+    children: [
+      {
+        label: renderRouterLink(t('Menu.QRCode'), '/qrcode'),
+        labelKey: 'Menu.QRCode',
+        path: '/qrcode',
+        key: 'qrcode',
+        icon: renderIcon(QRCodeIcon),
+        menuType: 'routerLink'
+      }
+    ]
+  },
+  {
+    type: 'divider'
+  },
   {
     label: '后台面板',
     key: 'dashboard',
@@ -38,32 +63,29 @@ export const menuOptions = [
       }
     ]
   },
-  {
-    type: 'group',
-    label: '菜单分组',
-    key: 'people',
-    children: [
-      {
-        label: '图标',
-        key: 'feature-icon'
-      },
-      {
-        label: '打印',
-        key: 'feature-print'
-      },
-      {
-        label: '文件下载',
-        key: 'feature-download'
-      },
-      {
-        label: '图片剪裁',
-        key: 'feature-img-clip'
-      }
-    ]
-  },
-  {
-    type: 'divider'
-  },
+  // {
+  //   type: 'group',
+  //   label: '菜单分组',
+  //   key: 'people',
+  //   children: [
+  //     {
+  //       label: '图标',
+  //       key: 'feature-icon'
+  //     },
+  //     {
+  //       label: '打印',
+  //       key: 'feature-print'
+  //     },
+  //     {
+  //       label: '文件下载',
+  //       key: 'feature-download'
+  //     },
+  //     {
+  //       label: '图片剪裁',
+  //       key: 'feature-img-clip'
+  //     }
+  //   ]
+  // },
   {
     label: '权限管理',
     key: 'permission',
@@ -86,7 +108,7 @@ export const menuOptions = [
   {
     label: '功能',
     key: 'feature',
-    icon: renderIcon(FeatureIcon),
+    icon: renderIcon(SystemFunctionIcon),
     children: [
       {
         label: '图标',

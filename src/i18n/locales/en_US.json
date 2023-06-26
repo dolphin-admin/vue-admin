@@ -55,6 +55,7 @@
   "Menu": {
     "Login": "Login",
     "Signup": "Signup",
+    "SystemFunction": "System Function",
     "QRCode": "QRCode"
   },
   "QRCode": {
