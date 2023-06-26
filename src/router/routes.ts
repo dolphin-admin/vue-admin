@@ -15,6 +15,14 @@ export const routes = [
         meta: {
           title: appName
         }
+      },
+      {
+        path: '/qrcode',
+        name: 'qrcode',
+        component: () => import('@/views/QRCode'),
+        meta: {
+          title: 'Menu.QRCode'
+        }
       }
     ]
   },
@@ -28,7 +36,7 @@ export const routes = [
         name: 'login',
         component: () => import('@/views/Login'),
         meta: {
-          title: '登录',
+          title: 'Menu.Login',
           disableAuth: true
         }
       },
@@ -37,7 +45,7 @@ export const routes = [
         name: 'signup',
         component: () => import('@/views/Signup'),
         meta: {
-          title: '注册',
+          title: 'Menu.Signup',
           disableAuth: true
         }
       }
