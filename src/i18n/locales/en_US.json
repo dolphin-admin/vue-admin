@@ -7,8 +7,6 @@
     "Name": "Dolphin Admin"
   },
   "Common": {
-    "Login": "Login",
-    "Signup": "Signup",
     "RememberPassword": "Remember password",
     "ForgetPassword": "Forget password",
     "Username": "Username",
@@ -51,5 +49,20 @@
   "Sidebar": {
     "Expand": "Expand sidebar",
     "Collapse": "Collapse sidebar"
+  },
+  "Menu": {
+    "Login": "Login",
+    "Signup": "Signup",
+    "QRCode": "QRCode"
+  },
+  "QRCode": {
+    "Tip": {
+      "Input": "Please enter QRCode content"
+    },
+    "Generate": {
+      "Text": "Generate QRCode",
+      "Success": "QRCode generate success",
+      "Failed": "QRCode generate failed"
+    }
   }
 }

@@ -32,6 +32,7 @@ type UserOptionKey = 'Lock' | 'Quit'
 
 const themeStore = useThemeStore()
 const sidebarStore = useSidebarStore()
+const route = useRoute()
 const router = useRouter()
 const message = useMessage()
 // @ts-ignore
@@ -52,6 +53,7 @@ const logout = () => {
 const handleUpdateLocale = (lang: Lang) => {
   setTimeout(() => {
     locale.value = lang
+    document.title = route.path === '/' ? t('App.Name') : `${t((route.meta?.title ?? '') as string)} | ${t('App.Name')}`
   }, 150)
   themeStore.changeLocale(lang)
   setLang(lang)

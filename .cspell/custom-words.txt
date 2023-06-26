@@ -5,6 +5,7 @@ degit
 esbuild
 FiraCode
 fullscreen
+hoverable
 icns
 icones
 iconify
@@ -17,6 +18,7 @@ noreferrer
 Noto
 nprogress
 Pinia
+qrcode
 recallwei
 Roboto
 rushstack

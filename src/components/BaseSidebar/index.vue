@@ -3,6 +3,7 @@ import { useSidebarStore, useThemeStore } from '@/store'
 
 const themeStore = useThemeStore()
 const sidebarStore = useSidebarStore()
+const router = useRouter()
 
 // @ts-ignore
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
@@ -24,7 +25,8 @@ const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
       />
       <span
         v-show="!sidebarStore.isCollapse"
-        class="whitespace-nowrap text-sm tracking-wide"
+        class="cursor-pointer whitespace-nowrap text-sm tracking-wide"
+        @click="() => router.push('/')"
       >
         {{ t('App.Name') }}
       </span>

@@ -7,8 +7,6 @@
     "Name": "海豚管理系统"
   },
   "Common": {
-    "Login": "登录",
-    "Signup": "注册",
     "RememberPassword": "记住密码",
     "ForgetPassword": "忘记密码",
     "Username": "用户名",
@@ -51,5 +49,20 @@
   "Sidebar": {
     "Expand": "展开侧边栏",
     "Collapse": "收起侧边栏"
+  },
+  "Menu": {
+    "Login": "登录",
+    "Signup": "注册",
+    "QRCode": "二维码"
+  },
+  "QRCode": {
+    "Tip": {
+      "Input": "请输入二维码内容"
+    },
+    "Generate": {
+      "Text": "生成二维码",
+      "Success": "二维码生成成功",
+      "Failed": "二维码生成失败"
+    }
   }
 }
