@@ -20,7 +20,7 @@ Dolphin Admin Web 是一个基于 `Vue 3/Vite/TypeScript/Naive UI/Tailwind CSS` 
 - [x] 使用 `ESLint` 执行代码检查
 - [x] 使用 `Prettier` 执行代码格式化
 - [x] 使用 `cspell` 执行代码拼写检查
-- [x] 使用 `Husky`，`lint-staged` 和 `commitlint` 进行 Git 提交管理
+- [x] 使用 `Husky`，`lint-staged`, `commitlint`, `cz-git` 进行 Git 提交管理
 - [ ] 使用 `Docker` 和 `Docker Compose` 进行容器化
 - [x] 使用 `@/*` 作为绝对路径
 - [x] 部署在 Vercel 上，零配置
