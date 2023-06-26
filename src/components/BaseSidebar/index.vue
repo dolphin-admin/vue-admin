@@ -31,7 +31,7 @@ const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
         {{ t('App.Name') }}
       </span>
     </div>
-    <div class="z-100 h-[calc(100%-64px)]">
+    <div class="h-[calc(100%-64px)]">
       <NScrollbar :size="10">
         <NMenu
           :collapsed-icon-size="20"
