@@ -4,7 +4,7 @@ import type { FormInst, FormItemRule, FormRules } from 'naive-ui'
 import { LoginApi } from '@/api'
 import { useLoading } from '@/hooks'
 import type { MessageSchema } from '@/types'
-import { setToken } from '@/utils'
+import { isAuthenticated, setToken } from '@/utils'
 
 type RememberedAccountData = {
   username: string
@@ -98,6 +98,12 @@ const loginAsAdmin = () => {
 }
 
 const forgotPassword = () => {}
+
+onBeforeMount(() => {
+  if (isAuthenticated()) {
+    router.push('/')
+  }
+})
 
 onMounted(() => {
   const localStorageData = localStorage.getItem(REMEMBERED_ACCOUNT_DATA_KEY)

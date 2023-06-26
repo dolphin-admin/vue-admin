@@ -1,9 +1,9 @@
-import { GlobalAPIConfig } from '@/constants'
+import { GlobalEnvConfig } from '@/constants'
 import type { UploadOptions } from '@/types'
 
 import Request from './axios'
 
-const UPLOAD_API_PREFIX = `${GlobalAPIConfig.API_PREFIX}/upload`
+const UPLOAD_API_PREFIX = `${GlobalEnvConfig.API_PREFIX}/upload`
 
 export const UploadApi = {
   uploadFile: (data: any, options?: UploadOptions) =>

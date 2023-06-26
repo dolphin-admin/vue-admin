@@ -94,10 +94,7 @@ onMounted(() => {
   <header
     class="sticky top-0 z-50 flex h-16 w-full items-center justify-between border-b border-gray-300 bg-light-default p-4 shadow-sm dark:border-gray-950 dark:bg-dark-default"
   >
-    <div
-      class="flex h-full items-center justify-start"
-      @click="handleCollapseMenu"
-    >
+    <div class="flex h-full items-center justify-start space-x-3">
       <NTooltip
         placement="bottom"
         trigger="hover"
@@ -106,6 +103,7 @@ onMounted(() => {
           <component
             :is="sidebarStore.isCollapse ? ExpandMenuIcon : CollapseMenuIcon"
             class="cursor-pointer"
+            @click="handleCollapseMenu"
           />
         </template>
         <span class="dark:text-white">{{ t(sidebarStore.isCollapse ? 'Sidebar.Expand' : 'Sidebar.Collapse') }}</span>

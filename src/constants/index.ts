@@ -1,4 +1,5 @@
 export * from '../app.config'
 export * from './environments'
+export * from './menu'
 export * from './page'
 export * from './theme'
