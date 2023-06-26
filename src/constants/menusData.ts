@@ -101,10 +101,6 @@ export const menuOptionsData = [
             key: 'comp-form-validation'
           }
         ]
-      },
-      {
-        label: '二维码组件',
-        key: 'comp-qrcode'
       }
     ]
   }
