@@ -1,9 +1,9 @@
-import { BasePageModel, GlobalAPIConfig } from '@/constants'
+import { BasePageModel, GlobalEnvConfig } from '@/constants'
 import type { PageResponseData, User } from '@/types'
 
 import Request from './axios'
 
-const USER_API_PREFIX = `${GlobalAPIConfig.API_PREFIX}/users`
+const USER_API_PREFIX = `${GlobalEnvConfig.API_PREFIX}/users`
 
 export const UserApi = {
   getUsers: () => <Promise<PageResponseData<User[]>>>Request.get<User[]>(USER_API_PREFIX, new BasePageModel()),

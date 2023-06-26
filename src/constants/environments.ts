@@ -1,4 +1,4 @@
-export const GlobalAPIConfig = Object.freeze({
+export const GlobalEnvConfig = Object.freeze({
   API_PREFIX: import.meta.env.VITE_API_PREFIX ?? '',
   MODE: import.meta.env.MODE,
   IS_DEV: import.meta.env.DEV,

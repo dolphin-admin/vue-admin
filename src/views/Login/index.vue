@@ -4,7 +4,7 @@ import type { FormInst, FormItemRule, FormRules } from 'naive-ui'
 import { LoginApi } from '@/api'
 import { useLoading } from '@/hooks'
 import type { MessageSchema } from '@/types'
-import { setToken } from '@/utils'
+import { isAuthenticated, setToken } from '@/utils'
 
 type RememberedAccountData = {
   username: string
@@ -99,6 +99,12 @@ const loginAsAdmin = () => {
 
 const forgotPassword = () => {}
 
+onBeforeMount(() => {
+  if (isAuthenticated()) {
+    router.push('/')
+  }
+})
+
 onMounted(() => {
   const localStorageData = localStorage.getItem(REMEMBERED_ACCOUNT_DATA_KEY)
   if (localStorageData) {
@@ -121,7 +127,7 @@ onMounted(() => {
     :model="formData"
     class="absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg bg-light-default px-4 py-8 shadow-md transition-colors dark:bg-dark-default sm:w-[260px] md:w-[340px]"
   >
-    <div class="select-none text-center text-lg font-semibold">{{ t('Common.Login') }}</div>
+    <div class="select-none text-center text-lg font-semibold">{{ t('Menu.Login') }}</div>
 
     <NFormItem
       path="username"
@@ -177,7 +183,7 @@ onMounted(() => {
         :loading="submitType === 'BASIC' && submitLoading"
         @click="() => loginAsBasic()"
       >
-        {{ t('Common.Login') }}
+        {{ t('Menu.Login') }}
       </NButton>
       <NButton
         class="!w-[calc(50%-4px)]"

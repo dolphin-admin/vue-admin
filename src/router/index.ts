@@ -1,11 +1,12 @@
 import NProgress from 'nprogress'
 import { createRouter, createWebHistory, type RouteLocationNormalized } from 'vue-router'
 
-import { siteMetaData } from '@/constants'
+import { i18n } from '@/i18n'
 import { isAuthenticated } from '@/utils'
 
 import { routes } from './routes'
 
+const { t } = i18n.global
 NProgress.configure({ showSpinner: false })
 
 const router = createRouter({
@@ -15,8 +16,7 @@ const router = createRouter({
 })
 
 const processTargetRoute = (to: RouteLocationNormalized) => {
-  const { appName } = siteMetaData
-  document.title = to.path === '/' ? appName : `${to.meta.title} | ${appName}` // Change the title of the document
+  document.title = to.path === '/' ? t('App.Name') : `${t((to.meta?.title ?? '') as string)} | ${t('App.Name')}` // Change the title of the document
 }
 
 router.beforeEach((to, from, next) => {
