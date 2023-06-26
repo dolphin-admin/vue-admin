@@ -24,3 +24,17 @@ const { t } = i18n.global
 
 t('App.Name')
 ```
+
+## 响应式设计 RWD
+
+基于 `Tailwind CSS` 的断点，移动优先原则，使用大断点覆盖小段点。
+
+例如：
+
+```vue
+<template>
+  <div class="w-0 sm:w-4"></div>
+</template>
+```
+
+上述代码，在小于 `sm` 断点情况下宽度是 0，`sm` 断点之后宽度是 `16px`。
