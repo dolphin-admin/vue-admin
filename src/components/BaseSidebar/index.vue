@@ -1,17 +1,21 @@
 <script setup lang="ts">
+import type { MenuOption } from 'naive-ui'
+
+import { menuOptionsData } from '@/constants'
 import { useSidebarStore, useThemeStore } from '@/store'
 
 const themeStore = useThemeStore()
 const sidebarStore = useSidebarStore()
 
+const menuOptions: MenuOption[] = menuOptionsData
 // @ts-ignore
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 </script>
 
 <template>
   <div
-    class="h-full border-r border-gray-300 bg-light-default shadow-sm transition-[width] duration-500 dark:border-gray-950 dark:bg-dark-default"
-    :class="[sidebarStore.isCollapse ? 'w-16' : 'w-56']"
+    class="z-100 h-full border-r border-gray-300 bg-light-default shadow-sm transition-[width] duration-500 dark:border-gray-950 dark:bg-dark-default"
+    :class="[sidebarStore.isCollapse ? 'w-0 sm:w-16' : 'absolute inset-y-0 left-0 w-56 sm:static sm:w-56']"
   >
     <div class="flex h-16 w-full select-none items-center justify-center space-x-3">
       <img
@@ -29,6 +33,15 @@ const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
         {{ t('App.Name') }}
       </span>
     </div>
-    <div class="w-full"></div>
+    <div class="z-100 w-full overflow-hidden">
+      <NScrollbar style="max-height: calc(100vh - 64px)">
+        <NMenu
+          class="p-0"
+          :collapsed-icon-size="20"
+          :collapsed="sidebarStore.isCollapse"
+          :options="menuOptions"
+        />
+      </NScrollbar>
+    </div>
   </div>
 </template>
