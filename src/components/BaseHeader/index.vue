@@ -107,6 +107,7 @@ onMounted(() => {
         <span class="dark:text-white">{{ t(sidebarStore.isCollapse ? 'Sidebar.Expand' : 'Sidebar.Collapse') }}</span>
       </NTooltip>
     </div>
+
     <div class="flex h-full items-center justify-end space-x-4">
       <NTooltip
         placement="bottom"

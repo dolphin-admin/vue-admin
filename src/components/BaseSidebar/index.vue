@@ -1,13 +1,10 @@
 <script setup lang="ts">
-import type { MenuOption } from 'naive-ui'
-
-import { menuOptionsData } from '@/constants'
+import { menuOptions } from '@/constants'
 import { useSidebarStore, useThemeStore } from '@/store'
 
 const themeStore = useThemeStore()
 const sidebarStore = useSidebarStore()
 
-const menuOptions: MenuOption[] = menuOptionsData
 // @ts-ignore
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 </script>
@@ -24,6 +21,7 @@ const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
         height="36"
         src="@/assets/images/favicon.png"
         alt=""
+        loading="eager"
         @click="() => themeStore.changeThemeMode(themeStore.themeMode === 'light' ? 'dark' : 'light')"
       />
       <span
@@ -33,13 +31,15 @@ const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
         {{ t('App.Name') }}
       </span>
     </div>
-    <div class="z-100 w-full overflow-hidden">
-      <NScrollbar style="max-height: calc(100vh - 64px)">
+    <div class="z-100 h-[calc(100%-64px)]">
+      <NScrollbar :size="10">
         <NMenu
-          class="p-0"
           :collapsed-icon-size="20"
           :collapsed="sidebarStore.isCollapse"
           :options="menuOptions"
+          :collapsed-width="64"
+          :root-indent="18"
+          :indent="28"
         />
       </NScrollbar>
     </div>
