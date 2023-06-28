@@ -1,12 +1,16 @@
 export interface User {
-  id: number
-  uuid: string
-  username: string
-  email: string
-  phoneNumber: string
-  address: string
-  avatarUrl: string
-  biography: string
+  id?: number
+  username?: string
+  email?: string
+  phoneNumber?: string
+  address?: string
+  avatarUrl?: string
+  biography?: string
+  firstName?: string
+  lastName?: string
+  gender?: string
+  birthDate?: string
+  name?: string
 }
 
 export interface LoginInputModel {

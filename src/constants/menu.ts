@@ -3,6 +3,7 @@ import type { MenuMixedOption } from '@/types'
 import { renderIcon, renderRouterLink } from '@/utils'
 import QRCodeIcon from '~icons/ic/baseline-qrcode'
 import HomeIcon from '~icons/ic/sharp-house'
+import UserInfoIcon from '~icons/mdi/account'
 import PermissionIcon from '~icons/mdi/briefcase-arrow-left-right-outline'
 import SystemFunctionIcon from '~icons/mdi/function-variant'
 import DashboardIcon from '~icons/mdi/speedometer-medium'
@@ -30,6 +31,14 @@ export const menuOptions: MenuMixedOption[] = [
         key: 'qrcode',
         icon: renderIcon(QRCodeIcon),
         menuType: 'routerLink'
+      },
+      {
+        label: renderRouterLink(t('Menu.UserInfo'), '/user-info'),
+        labelKey: 'Menu.UserInfo',
+        path: '/user-info',
+        key: 'user-info',
+        icon: renderIcon(UserInfoIcon),
+        menuType: 'routerLink'
       }
     ]
   },
@@ -47,45 +56,10 @@ export const menuOptions: MenuMixedOption[] = [
       },
       {
         label: '工作台',
-        key: 'workbench',
-        children: [
-          {
-            label: '工作台',
-            key: 'workbench2',
-            children: [
-              {
-                label: '工作台',
-                key: 'workbench3'
-              }
-            ]
-          }
-        ]
+        key: 'workbench'
       }
     ]
   },
-  // {
-  //   type: 'group',
-  //   label: '菜单分组',
-  //   key: 'people',
-  //   children: [
-  //     {
-  //       label: '图标',
-  //       key: 'feature-icon'
-  //     },
-  //     {
-  //       label: '打印',
-  //       key: 'feature-print'
-  //     },
-  //     {
-  //       label: '文件下载',
-  //       key: 'feature-download'
-  //     },
-  //     {
-  //       label: '图片剪裁',
-  //       key: 'feature-img-clip'
-  //     }
-  //   ]
-  // },
   {
     label: '权限管理',
     key: 'permission',
@@ -125,256 +99,6 @@ export const menuOptions: MenuMixedOption[] = [
       {
         label: '图片剪裁',
         key: 'feature-img-clip'
-      }
-    ]
-  },
-  {
-    label: '组件',
-    key: 'component',
-    icon: renderIcon(ComponentIcon),
-    children: [
-      {
-        label: '表单',
-        key: 'component-form',
-        children: [
-          {
-            label: '表单模板',
-            key: 'component-form-templates'
-          },
-          {
-            label: '打印',
-            key: 'component-form-step-by-step'
-          },
-          {
-            label: '表单验证',
-            key: 'component-form-validation'
-          }
-        ]
-      }
-    ]
-  },
-  {
-    label: '组件',
-    key: 'component',
-    icon: renderIcon(ComponentIcon),
-    children: [
-      {
-        label: '表单',
-        key: 'component-form',
-        children: [
-          {
-            label: '表单模板',
-            key: 'component-form-templates'
-          },
-          {
-            label: '打印',
-            key: 'component-form-step-by-step'
-          },
-          {
-            label: '表单验证',
-            key: 'component-form-validation'
-          }
-        ]
-      }
-    ]
-  },
-  {
-    label: '组件',
-    key: 'component',
-    icon: renderIcon(ComponentIcon),
-    children: [
-      {
-        label: '表单',
-        key: 'component-form',
-        children: [
-          {
-            label: '表单模板',
-            key: 'component-form-templates'
-          },
-          {
-            label: '打印',
-            key: 'component-form-step-by-step'
-          },
-          {
-            label: '表单验证',
-            key: 'component-form-validation'
-          }
-        ]
-      }
-    ]
-  },
-  {
-    label: '组件',
-    key: 'component',
-    icon: renderIcon(ComponentIcon),
-    children: [
-      {
-        label: '表单',
-        key: 'component-form',
-        children: [
-          {
-            label: '表单模板',
-            key: 'component-form-templates'
-          },
-          {
-            label: '打印',
-            key: 'component-form-step-by-step'
-          },
-          {
-            label: '表单验证',
-            key: 'component-form-validation'
-          }
-        ]
-      }
-    ]
-  },
-  {
-    label: '组件',
-    key: 'component',
-    icon: renderIcon(ComponentIcon),
-    children: [
-      {
-        label: '表单',
-        key: 'component-form',
-        children: [
-          {
-            label: '表单模板',
-            key: 'component-form-templates'
-          },
-          {
-            label: '打印',
-            key: 'component-form-step-by-step'
-          },
-          {
-            label: '表单验证',
-            key: 'component-form-validation'
-          }
-        ]
-      }
-    ]
-  },
-  {
-    label: '组件',
-    key: 'component',
-    icon: renderIcon(ComponentIcon),
-    children: [
-      {
-        label: '表单',
-        key: 'component-form',
-        children: [
-          {
-            label: '表单模板',
-            key: 'component-form-templates'
-          },
-          {
-            label: '打印',
-            key: 'component-form-step-by-step'
-          },
-          {
-            label: '表单验证',
-            key: 'component-form-validation'
-          }
-        ]
-      }
-    ]
-  },
-  {
-    label: '组件',
-    key: 'component',
-    icon: renderIcon(ComponentIcon),
-    children: [
-      {
-        label: '表单',
-        key: 'component-form',
-        children: [
-          {
-            label: '表单模板',
-            key: 'component-form-templates'
-          },
-          {
-            label: '打印',
-            key: 'component-form-step-by-step'
-          },
-          {
-            label: '表单验证',
-            key: 'component-form-validation'
-          }
-        ]
-      }
-    ]
-  },
-  {
-    label: '组件',
-    key: 'component',
-    icon: renderIcon(ComponentIcon),
-    children: [
-      {
-        label: '表单',
-        key: 'component-form',
-        children: [
-          {
-            label: '表单模板',
-            key: 'component-form-templates'
-          },
-          {
-            label: '打印',
-            key: 'component-form-step-by-step'
-          },
-          {
-            label: '表单验证',
-            key: 'component-form-validation'
-          }
-        ]
-      }
-    ]
-  },
-  {
-    label: '组件',
-    key: 'component',
-    icon: renderIcon(ComponentIcon),
-    children: [
-      {
-        label: '表单',
-        key: 'component-form',
-        children: [
-          {
-            label: '表单模板',
-            key: 'component-form-templates'
-          },
-          {
-            label: '打印',
-            key: 'component-form-step-by-step'
-          },
-          {
-            label: '表单验证',
-            key: 'component-form-validation'
-          }
-        ]
-      }
-    ]
-  },
-  {
-    label: '组件',
-    key: 'component',
-    icon: renderIcon(ComponentIcon),
-    children: [
-      {
-        label: '表单',
-        key: 'component-form',
-        children: [
-          {
-            label: '表单模板',
-            key: 'component-form-templates'
-          },
-          {
-            label: '打印',
-            key: 'component-form-step-by-step'
-          },
-          {
-            label: '表单验证',
-            key: 'component-form-validation'
-          }
-        ]
       }
     ]
   },

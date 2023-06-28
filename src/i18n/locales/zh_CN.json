@@ -56,7 +56,8 @@
     "Login": "登录",
     "Signup": "注册",
     "SystemFunction": "系统功能",
-    "QRCode": "二维码"
+    "QRCode": "二维码",
+    "UserInfo": "用户信息"
   },
   "QRCode": {
     "Tip": {

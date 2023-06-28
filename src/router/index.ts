@@ -2,7 +2,6 @@ import NProgress from 'nprogress'
 import { createRouter, createWebHistory, type RouteLocationNormalized } from 'vue-router'
 
 import { i18n } from '@/i18n'
-import { isAuthenticated } from '@/utils'
 
 import { routes } from './routes'
 
@@ -22,13 +21,6 @@ const processTargetRoute = (to: RouteLocationNormalized) => {
 router.beforeEach((to, from, next) => {
   if (to.path !== from.path) {
     NProgress.start()
-  }
-  if (!to.meta.disableAuth) {
-    if (!isAuthenticated()) {
-      processTargetRoute(to)
-      next({ path: '/login', replace: true })
-      return
-    }
   }
   processTargetRoute(to)
   next()
