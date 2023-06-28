@@ -1,5 +1,5 @@
 import { GlobalEnvConfig } from '@/constants'
-import type { UploadOptions } from '@/types'
+import type { UploadOptions, UploadResult } from '@/types'
 
 import Request from './axios'
 
@@ -7,7 +7,7 @@ const UPLOAD_API_PREFIX = `${GlobalEnvConfig.API_PREFIX}/upload`
 
 export const UploadApi = {
   uploadFile: (data: any, options?: UploadOptions) =>
-    Request.post(UPLOAD_API_PREFIX, data, {
+    Request.post<UploadResult>(UPLOAD_API_PREFIX, data, {
       headers: { 'Content-Type': 'multipart/form-data' },
       onUploadProgress: options?.onUploadProgress ? options.onUploadProgress : () => {}
     }),

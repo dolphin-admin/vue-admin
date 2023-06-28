@@ -23,6 +23,14 @@ export const routes = [
         meta: {
           title: 'Menu.QRCode'
         }
+      },
+      {
+        path: '/user-info',
+        name: 'user-info',
+        component: () => import('@/views/UserInfo'),
+        meta: {
+          title: 'Menu.UserInfo'
+        }
       }
     ]
   },
