@@ -26,7 +26,7 @@ export const routes = [
       },
       {
         path: '/user-info',
-        name: 'userInfo',
+        name: 'user-info',
         component: () => import('@/views/UserInfo'),
         meta: {
           title: 'Menu.UserInfo'

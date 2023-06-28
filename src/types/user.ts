@@ -8,7 +8,7 @@ export interface User {
   biography?: string
   firstName?: string
   lastName?: string
-  gender?: string
+  gender?: number
   birthDate?: string
   name?: string
 }

@@ -8,6 +8,7 @@ import PermissionIcon from '~icons/mdi/briefcase-arrow-left-right-outline'
 import SystemFunctionIcon from '~icons/mdi/function-variant'
 import DashboardIcon from '~icons/mdi/speedometer-medium'
 import ComponentIcon from '~icons/mdi/vector-combine'
+
 const { t } = i18n.global
 
 export const menuOptions: MenuMixedOption[] = [

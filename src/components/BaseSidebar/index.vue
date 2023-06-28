@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { menuOptions } from '@/constants'
 import { useSidebarStore, useThemeStore } from '@/store'
 import type { CustomMenuOption, Lang } from '@/types'
 import { renderRouterLink } from '@/utils'
+
+import { menuOptions } from './model'
 
 const themeStore = useThemeStore()
 const sidebarStore = useSidebarStore()
