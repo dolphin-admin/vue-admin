@@ -80,15 +80,18 @@ const handleValidateButtonClick = () => {
 
     submitLoadingDispatcher.loading()
     uploadRef.value?.submit()
-    await UploadApi.uploadFile(fileListLengthRef.value).then((res) => {
-      const { path } = res.data
+    try {
+      const { path } = (await UploadApi.uploadFile(fileListLengthRef.value)).data || {}
       formData.value.avatarUrl = getServerFileUrl(path)
-    })
+    } catch {
+      message.error('头像上传失败')
+      return
+    }
 
     UserApi.updateUser(formData.value.id!, formData.value)
-      .then((response) => {
-        userStore.setUser(response.data)
-        message.success(response.message!)
+      .then((res) => {
+        userStore.setUser(res.data)
+        message.success(res.message!)
       })
       .catch((err) => message.error(err.message))
       .finally(() => submitLoadingDispatcher.loaded())
