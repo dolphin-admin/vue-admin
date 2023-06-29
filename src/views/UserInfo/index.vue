@@ -21,7 +21,7 @@ const [submitLoading, submitLoadingDispatcher] = useLoading()
 const formRef = ref<FormInst | null>(null)
 const uploadRef = ref<UploadInst | null>(null)
 const formData = ref<Partial<User>>({})
-const fileListLengthRef = ref({})
+const currentFile = ref<File | null>(null)
 
 const rules: FormRules = {
   name: [
@@ -77,30 +77,32 @@ const handleValidateButtonClick = () => {
     if (submitLoading.value) {
       return
     }
-
     submitLoadingDispatcher.loading()
+
     uploadRef.value?.submit()
     try {
-      const { path } = (await UploadApi.uploadFile(fileListLengthRef.value)).data || {}
+      const { path } = (await UploadApi.uploadFile({ file: currentFile.value })).data || {}
       formData.value.avatarUrl = getServerFileUrl(path)
     } catch {
       message.error('头像上传失败')
       return
     }
 
-    UserApi.updateUser(formData.value.id!, formData.value)
-      .then((res) => {
-        userStore.setUser(res.data)
-        message.success(res.message!)
-      })
-      .catch((err) => message.error(err.message))
-      .finally(() => submitLoadingDispatcher.loaded())
+    try {
+      const { data, message: successMessage } = await UserApi.updateUser(formData.value.id!, formData.value)
+      userStore.setUser(data)
+      message.success(successMessage!)
+    } catch (err: any) {
+      message.error(err.message)
+    }
+
+    submitLoadingDispatcher.loaded()
   })
 }
 
 const UploadAvatarUrl = (options: { fileList: UploadFileInfo[] }) => {
   const [file] = options.fileList
-  fileListLengthRef.value = file
+  currentFile.value = file.file ?? null
 }
 
 onMounted(() =>
@@ -123,10 +125,12 @@ onMounted(() =>
       <div class="flex items-center justify-center text-xl">
         {{ computedUserInfo?.username }}
         <template v-if="computedUserInfo?.gender">
-          <component
-            :is="computedUserInfo?.gender === 0 ? MaleIcon : FemaleIcon"
-            class="w-[18px]"
-          />
+          <template v-if="computedUserInfo?.gender === 0">
+            <MaleIcon class="w-[18px] text-blue-300" />
+          </template>
+          <template v-if="computedUserInfo?.gender === 1">
+            <FemaleIcon class="w-[18px] text-pink-300" />
+          </template>
         </template>
       </div>
 
