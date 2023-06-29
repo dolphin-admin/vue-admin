@@ -50,6 +50,7 @@ const handleValidateButtonClick = () => {
 const UploadAvatarUrl = (file: any) => {
   UploadApi.uploadFile(file.file).then((res) => {
     const { path } = res.data
+    console.log(path)
     formData.value.avatarUrl = getServerFileUrl(path)
   })
 }
@@ -168,6 +169,9 @@ onMounted(() =>
           <NInput
             v-model:value="formData.firstName"
             placeholder="请输入名字"
+            maxlength="20"
+            show-count
+            clearable
           />
         </NFormItem>
         <NFormItem
@@ -177,6 +181,9 @@ onMounted(() =>
           <NInput
             v-model:value="formData.lastName"
             placeholder="请输入姓"
+            maxlength="10"
+            show-count
+            clearable
           />
         </NFormItem>
         <NFormItem
@@ -186,6 +193,9 @@ onMounted(() =>
           <NInput
             v-model:value="formData.email"
             placeholder="请输入邮箱"
+            maxlength="20"
+            show-count
+            clearable
           />
         </NFormItem>
         <NFormItem
@@ -209,6 +219,9 @@ onMounted(() =>
           <NInput
             v-model:value="formData.phoneNumber"
             placeholder="请输入电话号码"
+            maxlength="20"
+            show-count
+            clearable
           />
         </NFormItem>
         <NFormItem
@@ -227,6 +240,9 @@ onMounted(() =>
           <NInput
             v-model:value="formData.address"
             placeholder="请输入地址"
+            maxlength="30"
+            show-count
+            clearable
           />
         </NFormItem>
         <NFormItem
@@ -236,6 +252,9 @@ onMounted(() =>
           <NInput
             v-model:value="formData.biography"
             placeholder="请输入简介"
+            maxlength="30"
+            show-count
+            clearable
           />
         </NFormItem>
 

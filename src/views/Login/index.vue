@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import type { FormInst, FormItemRule, FormRules } from 'naive-ui'
+import type { FormInst } from 'naive-ui'
 
 import { LoginApi } from '@/api'
+import { rules } from '@/constants'
 import { useLoading } from '@/hooks'
 import type { MessageSchema } from '@/types'
 import { isAuthenticated, setToken } from '@/utils'
@@ -27,28 +28,6 @@ const formData = reactive({
 })
 const formRef = ref<FormInst | null>(null)
 const rememberPassword = ref(false)
-
-const rules: FormRules = {
-  username: [
-    {
-      required: true,
-      message: t('Common.Validation.Username'),
-      trigger: ['blur', 'input']
-    }
-  ],
-  password: [
-    {
-      required: true,
-      message: t('Common.Validation.Password'),
-      trigger: ['blur', 'input']
-    },
-    {
-      validator: (rule: FormItemRule, value: string) => value.length >= 6,
-      trigger: ['blur', 'input'],
-      message: t('Common.Validation.PasswordLength')
-    }
-  ]
-}
 
 const login = () => {
   formRef.value!.validate((errors) => {

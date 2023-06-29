@@ -17,18 +17,7 @@ const languageOptions = [
   { label: '简体中文', key: 'zh_CN' }
 ]
 
-const userOptions = [
-  {
-    label: '锁定屏幕',
-    key: 'Lock'
-  },
-  {
-    label: '退出登录',
-    key: 'Quit'
-  }
-]
-
-type UserOptionKey = 'Lock' | 'Quit'
+type UserOptionKey = 'Lock' | 'Quit' | 'UserInfo'
 
 const themeStore = useThemeStore()
 const sidebarStore = useSidebarStore()
@@ -37,6 +26,21 @@ const router = useRouter()
 const message = useMessage()
 // @ts-ignore
 const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({ useScope: 'global' })
+
+const userOptions = [
+  {
+    label: t('Header.UserCenter'),
+    key: 'UserInfo'
+  },
+  {
+    label: t('Header.LockScreen'),
+    key: 'Lock'
+  },
+  {
+    label: t('Header.Logout'),
+    key: 'Quit'
+  }
+]
 
 const userInfo = reactive<Partial<User>>({})
 
@@ -65,6 +69,9 @@ const selectUserOption = (key: UserOptionKey) => {
       break
     case 'Quit':
       logout()
+      break
+    case 'UserInfo':
+      router.push('/user-info')
       break
     default:
       break

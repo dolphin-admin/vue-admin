@@ -46,7 +46,10 @@
     "ExitFullScreen": "Exit full screen",
     "Language": "Language",
     "SwitchTheme": "Switch theme",
-    "Settings": "Settings"
+    "Settings": "Settings",
+    "Logout": "退出登录",
+    "UserCenter": "用户中心",
+    "LockScreen": "锁屏"
   },
   "Sidebar": {
     "Expand": "Expand sidebar",
