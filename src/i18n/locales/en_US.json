@@ -47,9 +47,9 @@
     "Language": "Language",
     "SwitchTheme": "Switch theme",
     "Settings": "Settings",
-    "Logout": "退出登录",
-    "UserCenter": "用户中心",
-    "LockScreen": "锁屏"
+    "Logout": "Logout",
+    "UserCenter": "User center",
+    "LockScreen": "Lock screen"
   },
   "Sidebar": {
     "Expand": "Expand sidebar",
