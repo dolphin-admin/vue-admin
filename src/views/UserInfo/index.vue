@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import type { FormInst } from 'naive-ui'
+import type { FormInst, FormRules, UploadFileInfo, UploadInst } from 'naive-ui'
 
 import { UploadApi, UserApi } from '@/api'
-import { userInfoRules } from '@/constants'
 import { useLoading } from '@/hooks'
 import { useUserStore } from '@/store'
 import type { User } from '@/types'
@@ -20,39 +19,90 @@ const message = useMessage()
 const [submitLoading, submitLoadingDispatcher] = useLoading()
 
 const formRef = ref<FormInst | null>(null)
+const uploadRef = ref<UploadInst | null>(null)
 const formData = ref<Partial<User>>({})
+const currentFile = ref<File | null>(null)
 
+const rules: FormRules = {
+  name: [
+    {
+      required: true,
+      message: '请输入用户名字',
+      trigger: ['blur', 'input']
+    }
+  ],
+  firstName: [
+    {
+      required: true,
+      message: '请输入名字',
+      trigger: ['blur', 'input']
+    }
+  ],
+  lastName: [
+    {
+      required: true,
+      message: '请输入姓',
+      trigger: ['blur', 'input']
+    }
+  ],
+  email: [
+    {
+      key: 'edit',
+      required: true,
+      trigger: ['blur', 'change'],
+      message: '请输入邮箱'
+    },
+    {
+      pattern: /^([a-zA-Z]|[0-9])(\w|-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/,
+      message: '请输入正确格式的邮箱',
+      trigger: ['input', 'blur']
+    }
+  ],
+  phoneNumber: [
+    {
+      pattern: /^[1][3456789]\d{9}$/,
+      message: '请输入正确格式的手机号',
+      trigger: ['input', 'blur']
+    }
+  ]
+}
 const computedUserInfo = computed(() => userStore.user)
 
 const handleValidateButtonClick = () => {
-  formRef.value?.validate((errors) => {
+  formRef.value?.validate(async (errors) => {
     if (errors) {
       message.error(errors[0][0].message!)
       return
     }
-
     if (submitLoading.value) {
       return
     }
-
     submitLoadingDispatcher.loading()
 
-    UserApi.updateUser(formData.value.id!, formData.value)
-      .then((res) => {
-        userStore.setUser(res.data)
-        message.success(res.message!)
-      })
-      .catch((err) => message.error(err.message))
-      .finally(() => submitLoadingDispatcher.loaded())
+    uploadRef.value?.submit()
+    try {
+      const { path } = (await UploadApi.uploadFile({ file: currentFile.value })).data || {}
+      formData.value.avatarUrl = getServerFileUrl(path)
+    } catch {
+      message.error('头像上传失败')
+      return
+    }
+
+    try {
+      const { data, message: successMessage } = await UserApi.updateUser(formData.value.id!, formData.value)
+      userStore.setUser(data)
+      message.success(successMessage!)
+    } catch (err: any) {
+      message.error(err.message)
+    }
+
+    submitLoadingDispatcher.loaded()
   })
 }
 
-const UploadAvatarUrl = (file: any) => {
-  UploadApi.uploadFile(file.file).then((res) => {
-    const { path } = res.data
-    console.log(path)
-    formData.value.avatarUrl = getServerFileUrl(path)
-  })
+const UploadAvatarUrl = (options: { fileList: UploadFileInfo[] }) => {
+  const [file] = options.fileList
+  currentFile.value = file.file ?? null
 }
 
 onMounted(() =>
@@ -75,10 +125,12 @@ onMounted(() =>
       <div class="flex items-center justify-center text-xl">
         {{ computedUserInfo?.username }}
         <template v-if="computedUserInfo?.gender">
-          <component
-            :is="computedUserInfo?.gender === 0 ? MaleIcon : FemaleIcon"
-            class="w-[18px]"
-          />
+          <template v-if="computedUserInfo?.gender === 0">
+            <MaleIcon class="w-[18px] text-blue-300" />
+          </template>
+          <template v-if="computedUserInfo?.gender === 1">
+            <FemaleIcon class="w-[18px] text-pink-300" />
+          </template>
         </template>
       </div>
 
@@ -127,7 +179,7 @@ onMounted(() =>
       </template>
       <NForm
         ref="formRef"
-        :rules="userInfoRules"
+        :rules="rules"
         :model="formData"
         label-placement="left"
         label-width="auto"
@@ -139,10 +191,12 @@ onMounted(() =>
           path="avatarUrl"
         >
           <NUpload
+            ref="uploadRef"
             full-path
             :max="1"
-            :custom-request="UploadAvatarUrl"
             list-type="image-card"
+            :default-upload="false"
+            @change="UploadAvatarUrl"
           >
             <NAvatar
               :size="80"
