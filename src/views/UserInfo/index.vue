@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import type { FormInst } from 'naive-ui'
+import type { FormInst, FormRules, UploadFileInfo, UploadInst } from 'naive-ui'
 
 import { UploadApi, UserApi } from '@/api'
-import { userInfoRules } from '@/constants'
 import { useLoading } from '@/hooks'
 import { useUserStore } from '@/store'
 import type { User } from '@/types'
@@ -20,39 +19,85 @@ const message = useMessage()
 const [submitLoading, submitLoadingDispatcher] = useLoading()
 
 const formRef = ref<FormInst | null>(null)
+const uploadRef = ref<UploadInst | null>(null)
 const formData = ref<Partial<User>>({})
+const fileListLengthRef = ref({})
 
+const rules: FormRules = {
+  name: [
+    {
+      required: true,
+      message: '请输入用户名字',
+      trigger: ['blur', 'input']
+    }
+  ],
+  firstName: [
+    {
+      required: true,
+      message: '请输入名字',
+      trigger: ['blur', 'input']
+    }
+  ],
+  lastName: [
+    {
+      required: true,
+      message: '请输入姓',
+      trigger: ['blur', 'input']
+    }
+  ],
+  email: [
+    {
+      key: 'edit',
+      required: true,
+      trigger: ['blur', 'change'],
+      message: '请输入邮箱'
+    },
+    {
+      pattern: /^([a-zA-Z]|[0-9])(\w|-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/,
+      message: '请输入正确格式的邮箱',
+      trigger: ['input', 'blur']
+    }
+  ],
+  phoneNumber: [
+    {
+      pattern: /^[1][3456789]\d{9}$/,
+      message: '请输入正确格式的手机号',
+      trigger: ['input', 'blur']
+    }
+  ]
+}
 const computedUserInfo = computed(() => userStore.user)
 
 const handleValidateButtonClick = () => {
-  formRef.value?.validate((errors) => {
+  formRef.value?.validate(async (errors) => {
     if (errors) {
       message.error(errors[0][0].message!)
       return
     }
-
     if (submitLoading.value) {
       return
     }
 
     submitLoadingDispatcher.loading()
+    uploadRef.value?.submit()
+    await UploadApi.uploadFile(fileListLengthRef.value).then((res) => {
+      const { path } = res.data
+      formData.value.avatarUrl = getServerFileUrl(path)
+    })
 
     UserApi.updateUser(formData.value.id!, formData.value)
-      .then((res) => {
-        userStore.setUser(res.data)
-        message.success(res.message!)
+      .then((response) => {
+        userStore.setUser(response.data)
+        message.success(response.message!)
       })
       .catch((err) => message.error(err.message))
       .finally(() => submitLoadingDispatcher.loaded())
   })
 }
 
-const UploadAvatarUrl = (file: any) => {
-  UploadApi.uploadFile(file.file).then((res) => {
-    const { path } = res.data
-    console.log(path)
-    formData.value.avatarUrl = getServerFileUrl(path)
-  })
+const UploadAvatarUrl = (options: { fileList: UploadFileInfo[] }) => {
+  const [file] = options.fileList
+  fileListLengthRef.value = file
 }
 
 onMounted(() =>
@@ -127,7 +172,7 @@ onMounted(() =>
       </template>
       <NForm
         ref="formRef"
-        :rules="userInfoRules"
+        :rules="rules"
         :model="formData"
         label-placement="left"
         label-width="auto"
@@ -139,10 +184,12 @@ onMounted(() =>
           path="avatarUrl"
         >
           <NUpload
+            ref="uploadRef"
             full-path
             :max="1"
-            :custom-request="UploadAvatarUrl"
             list-type="image-card"
+            :default-upload="false"
+            @change="UploadAvatarUrl"
           >
             <NAvatar
               :size="80"

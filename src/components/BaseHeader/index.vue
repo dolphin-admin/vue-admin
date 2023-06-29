@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { UserApi } from '@/api'
-import { useSidebarStore, useThemeStore } from '@/store'
-import type { Lang, MessageSchema, User } from '@/types'
+import { useSidebarStore, useThemeStore, useUserStore } from '@/store'
+import type { Lang, MessageSchema } from '@/types'
 import { clearLang, clearTheme, clearToken, setLang } from '@/utils'
 import NotificationIcon from '~icons/ic/baseline-notifications-none'
 import LanguageIcon from '~icons/ion/language-outline'
@@ -21,6 +20,7 @@ type UserOptionKey = 'Lock' | 'Quit' | 'UserInfo'
 
 const themeStore = useThemeStore()
 const sidebarStore = useSidebarStore()
+const userStore = useUserStore()
 const route = useRoute()
 const router = useRouter()
 const message = useMessage()
@@ -41,8 +41,6 @@ const userOptions = [
     key: 'Quit'
   }
 ]
-
-const userInfo = reactive<Partial<User>>({})
 
 const handleCollapseMenu = () => sidebarStore.toggleSidebarStatus()
 
@@ -81,20 +79,6 @@ const selectUserOption = (key: UserOptionKey) => {
 const currentLanguageOptions = computed(() =>
   locale.value === 'zh_CN' ? languageOptions : [languageOptions[1], languageOptions[0]]
 )
-
-onMounted(() => {
-  const loadingMessage = message.loading(t('UserInfo.Fetching'))
-  UserApi.getUserInfo()
-    .then((res) => {
-      const { data } = res || {}
-      const userKeys = Object.keys(data) as (keyof User)[]
-      userKeys.forEach((key) => {
-        userInfo[key] = data[key] as any
-      })
-    })
-    .catch(() => message.error(t('UserInfo.FetchError')))
-    .finally(() => loadingMessage.destroy())
-})
 </script>
 
 <template>
@@ -184,13 +168,13 @@ onMounted(() => {
       >
         <div class="flex cursor-pointer select-none items-center space-x-3">
           <img
-            v-if="userInfo.avatarUrl"
+            v-if="userStore.user.avatarUrl"
             class="h-8 w-8 cursor-pointer rounded-full"
-            :src="userInfo.avatarUrl"
+            :src="userStore.user.avatarUrl"
             alt=""
             loading="eager"
           />
-          <span class="text-sm">{{ userInfo.username }}</span>
+          <span class="text-sm">{{ userStore.user.username }}</span>
         </div>
       </NDropdown>
 
