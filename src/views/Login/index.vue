@@ -2,7 +2,7 @@
 import type { FormInst } from 'naive-ui'
 
 import { LoginApi } from '@/api'
-import { rules } from '@/constants'
+import { loginRules } from '@/constants'
 import { useLoading } from '@/hooks'
 import type { MessageSchema } from '@/types'
 import { isAuthenticated, setToken } from '@/utils'
@@ -102,7 +102,7 @@ onMounted(() => {
 <template>
   <NForm
     ref="formRef"
-    :rules="rules"
+    :rules="loginRules"
     :model="formData"
     class="absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg bg-light-default px-4 py-8 shadow-md transition-colors dark:bg-dark-default sm:w-[260px] md:w-[340px]"
   >

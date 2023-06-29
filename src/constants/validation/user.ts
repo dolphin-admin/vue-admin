@@ -1,4 +1,7 @@
-import type { FormRules } from 'naive-ui'
+import type { FormItemRule, FormRules } from 'naive-ui'
+
+// @ts-ignore
+const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
 export const userInfoRules: FormRules = {
   name: [
@@ -40,6 +43,61 @@ export const userInfoRules: FormRules = {
       pattern: /^[1][3456789]\d{9}$/,
       message: '请输入正确格式的手机号',
       trigger: ['input', 'blur']
+    }
+  ]
+}
+
+export const loginRules: FormRules = {
+  username: [
+    {
+      required: true,
+      message: t('Common.Validation.Username'),
+      trigger: ['blur', 'input']
+    }
+  ],
+  password: [
+    {
+      required: true,
+      message: t('Common.Validation.Password'),
+      trigger: ['blur', 'input']
+    },
+    {
+      validator: (rule: FormItemRule, value: string) => value.length >= 6,
+      trigger: ['blur', 'input'],
+      message: t('Common.Validation.PasswordLength')
+    }
+  ]
+}
+
+export const signupRules: FormRules = {
+  username: [
+    {
+      required: true,
+      message: t('Common.Validation.Username'),
+      trigger: ['blur', 'input']
+    }
+  ],
+  password: [
+    {
+      required: true,
+      message: t('Common.Validation.Password'),
+      trigger: ['blur', 'input']
+    },
+    {
+      validator: (rule: FormItemRule, value: string) => value.length >= 6,
+      trigger: ['blur', 'input'],
+      message: t('Common.Validation.PasswordLength')
+    }
+  ],
+  confirmPassword: [
+    {
+      required: true,
+      message: t('Common.Validation.ConfirmPassword'),
+      trigger: ['blur', 'input']
+    },
+    {
+      validator: (rule: FormItemRule, value: string) => value === formData.password,
+      message: t('Common.Validation.ConfirmPasswordNotMatch')
     }
   ]
 }

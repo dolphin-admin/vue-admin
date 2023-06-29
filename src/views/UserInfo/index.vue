@@ -252,7 +252,7 @@ onMounted(() =>
           <NInput
             v-model:value="formData.biography"
             placeholder="请输入简介"
-            maxlength="30"
+            maxlength="300"
             show-count
             clearable
           />
