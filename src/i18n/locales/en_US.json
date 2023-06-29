@@ -46,7 +46,10 @@
     "ExitFullScreen": "Exit full screen",
     "Language": "Language",
     "SwitchTheme": "Switch theme",
-    "Settings": "Settings"
+    "Settings": "Settings",
+    "Logout": "Logout",
+    "UserCenter": "User center",
+    "LockScreen": "Lock screen"
   },
   "Sidebar": {
     "Expand": "Expand sidebar",
