@@ -60,7 +60,8 @@
     "Signup": "注册",
     "SystemFunction": "系统功能",
     "QRCode": "二维码",
-    "UserInfo": "用户信息"
+    "UserInfo": "用户信息",
+    "IconManagement": "图标管理"
   },
   "QRCode": {
     "Tip": {

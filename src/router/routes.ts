@@ -31,6 +31,14 @@ export const routes = [
         meta: {
           title: 'Menu.UserInfo'
         }
+      },
+      {
+        path: '/icon-management',
+        name: 'icon-management',
+        component: () => import('@/views/IconManagement'),
+        meta: {
+          title: 'Menu.IconManagement'
+        }
       }
     ]
   },

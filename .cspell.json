@@ -25,6 +25,7 @@
     "src-tauri/Cargo.lock",
     "src-tauri/Cargo.toml",
     "pnpm-lock.yaml",
-    "README.md"
+    "README.md",
+    "/src/constants/icon.ts"
   ]
 }
