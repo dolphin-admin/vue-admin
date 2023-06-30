@@ -10,16 +10,22 @@ import { defineConfig, loadEnv } from 'vite'
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd())
-  const { VITE_API_PREFIX, VITE_API_PROXY, VITE_PORT } = env as ImportMetaEnv
+  const { VITE_BASE_API_PREFIX, VITE_BASE_API_PROXY, VITE_PORT, VITE_ICON_API_PREFIX, VITE_ICON_API_PROXY } =
+    env as ImportMetaEnv
 
   const port = parseInt(VITE_PORT, 10)
   const proxy: Record<string, string | ProxyOptions> = {}
-  if (VITE_API_PROXY) {
-    proxy[VITE_API_PREFIX] = {
-      target: VITE_API_PROXY,
+  if (VITE_BASE_API_PROXY) {
+    proxy[VITE_BASE_API_PREFIX] = {
+      target: VITE_BASE_API_PROXY,
       changeOrigin: true,
-      rewrite: (path: string) => path.replace(/^\/api/, '')
+      rewrite: (path: string) => path.replace(/^\/base-api/, '')
     } as any
+    proxy[VITE_ICON_API_PREFIX] = {
+      target: VITE_ICON_API_PROXY,
+      changeOrigin: true,
+      rewrite: (path: string) => path.replace(/^\/iconify-api/, '')
+    }
   }
 
   return {

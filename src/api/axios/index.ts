@@ -3,7 +3,7 @@ import axios from 'axios'
 
 import router from '@/router'
 import { useThemeStore } from '@/store'
-import type { PageModel, PageResponseData, ResponseData } from '@/types'
+import type { PageModel } from '@/types'
 import { clearToken, getDefaultLang, getToken, isAuthenticated } from '@/utils'
 
 import { axiosConfig } from './config'
@@ -80,23 +80,19 @@ class Request {
     return this.instance.request(config)
   }
 
-  get<T>(
-    url: string,
-    params?: Record<string, unknown> | PageModel,
-    config?: AxiosRequestConfig
-  ): Promise<ResponseData<T> | PageResponseData<T>> {
+  get<T>(url: string, params?: Record<string, unknown> | PageModel, config?: AxiosRequestConfig): Promise<T> {
     return this.instance.get(url, { params, ...config })
   }
 
-  post<T>(url: string, data?: Record<string, unknown>, config?: AxiosRequestConfig): Promise<ResponseData<T>> {
+  post<T>(url: string, data?: Record<string, unknown>, config?: AxiosRequestConfig): Promise<T> {
     return this.instance.post(url, data, config)
   }
 
-  put<T>(url: string, data?: Record<string, unknown>, config?: AxiosRequestConfig): Promise<ResponseData<T>> {
+  put<T>(url: string, data?: Record<string, unknown>, config?: AxiosRequestConfig): Promise<T> {
     return this.instance.put(url, data, config)
   }
 
-  delete<T>(url: string, params?: Record<string, unknown>, config?: AxiosRequestConfig): Promise<ResponseData<T>> {
+  delete<T>(url: string, params?: Record<string, unknown>, config?: AxiosRequestConfig): Promise<T> {
     return this.instance.delete(url, { params, ...config })
   }
 }

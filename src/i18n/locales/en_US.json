@@ -20,7 +20,9 @@
       "ConfirmPasswordNotMatch": "Password not match"
     },
     "Download": "Download",
-    "Upload": "Upload"
+    "Upload": "Upload",
+    "Search": "Search",
+    "All": "All"
   },
   "Login": {
     "AsAdmin": "Login as Admin",
@@ -71,6 +73,11 @@
       "Text": "Generate QRCode",
       "Success": "QRCode generate success",
       "Failed": "QRCode generate failed"
+    }
+  },
+  "IconManagement": {
+    "Tip": {
+      "Search": "Please enter icon set name"
     }
   }
 }
