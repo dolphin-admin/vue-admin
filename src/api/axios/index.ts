@@ -60,6 +60,7 @@ class Request {
     switch (code) {
       case ResponseStatusCode.UNAUTHORIZED:
         clearToken()
+        router.replace('/login')
         console.error(errorMessage)
         message.error(errorMessage)
         break
