@@ -1,3 +1,4 @@
+import type { IconItem } from '@/types'
 import LineMdAccount from '~icons/line-md/account'
 import LineMdAlignJustify from '~icons/line-md/align-justify'
 import LineMdBell from '~icons/line-md/bell'
@@ -15,40 +16,35 @@ import LineMdMoonFilledLoop from '~icons/line-md/moon-filled-loop'
 import LineMdSearch from '~icons/line-md/search'
 import LineMdStar from '~icons/line-md/star'
 
-export const iconMap = new Map([
-  ['LineMdAccount', LineMdAccount],
-  ['LineMdAlignJustify', LineMdAlignJustify],
-  ['LineMdBell', LineMdBell],
-  ['LineMdCircle', LineMdCircle],
-  ['LineMdMoonToSunny', LineMdMoonToSunny],
-  ['LineMdMoonFilledLoop', LineMdMoonFilledLoop],
-  ['LineMdStar', LineMdStar],
-  ['LineMdHomeSimple', LineMdHomeSimple],
-  ['LineMdCloudUploadOutlineLoop', LineMdCloudUploadOutlineLoop],
-  ['LineMdImage', LineMdImage],
-  ['LineMdMenuToCloseAltTransition', LineMdMenuToCloseAltTransition],
-  ['LineMdLoadingTwotoneLoop', LineMdLoadingTwotoneLoop],
-  ['LineMdEmail', LineMdEmail],
-  ['LineMdSearch', LineMdSearch],
-  ['LineMdEdit', LineMdEdit],
-  ['LineMdDocumentList', LineMdDocumentList]
+export const iconMap = new Map<string, IconItem>([
+  ['LineMdAccount', { label: 'LineMdAccount', component: LineMdAccount }],
+  ['LineMdAlignJustify', { label: 'LineMdAlignJustify', component: LineMdAlignJustify }],
+  ['LineMdBell', { label: 'LineMdBell', component: LineMdBell }],
+  ['LineMdCircle', { label: 'LineMdCircle', component: LineMdCircle }],
+  ['LineMdMoonToSunny', { label: 'LineMdMoonToSunny', component: LineMdMoonToSunny }],
+  ['LineMdMoonFilledLoop', { label: 'LineMdMoonFilledLoop', component: LineMdMoonFilledLoop }],
+  ['LineMdStar', { label: 'LineMdStar', component: LineMdStar }],
+  ['LineMdHomeSimple', { label: 'LineMdHomeSimple', component: LineMdHomeSimple }],
+  ['LineMdCloudUploadOutlineLoop', { label: 'LineMdCloudUploadOutlineLoop', component: LineMdCloudUploadOutlineLoop }],
+  ['LineMdImage', { label: 'LineMdImage', component: LineMdImage }],
+  [
+    'LineMdMenuToCloseAltTransition',
+    { label: 'LineMdMenuToCloseAltTransition', component: LineMdMenuToCloseAltTransition }
+  ],
+  ['LineMdLoadingTwotoneLoop', { label: 'LineMdLoadingTwotoneLoop', component: LineMdLoadingTwotoneLoop }],
+  ['LineMdEmail', { label: 'LineMdEmail', component: LineMdEmail }],
+  ['LineMdSearch', { label: 'LineMdSearch', component: LineMdSearch }],
+  ['LineMdEdit', { label: 'LineMdEdit', component: LineMdEdit }],
+  ['LineMdDocumentList', { label: 'LineMdDocumentList', component: LineMdDocumentList }]
 ])
 
-export const iconMapName = new Map([
-  ['LineMdAccount', 'MdAccount'],
-  ['LineMdAlignJustify', 'MdAlignJustify'],
-  ['LineMdBell', 'MdBell'],
-  ['LineMdCircle', 'MdCircle'],
-  ['LineMdMoonToSunny', 'MdMoonToSunny'],
-  ['LineMdMoonFilledLoop', 'MdMoonFilledLoop'],
-  ['LineMdStar', 'LineMdStar'],
-  ['LineMdHomeSimple', 'MdHomeSimple'],
-  ['LineMdCloudUploadOutlineLoop', 'CloudUploadLoop'],
-  ['LineMdImage', 'LineMdImage'],
-  ['LineMdMenuToCloseAltTransition', 'MenuToCloseTransition'],
-  ['LineMdLoadingTwotoneLoop', 'LoadingTwotoneLoop'],
-  ['LineMdEmail', 'Email'],
-  ['LineMdSearch', 'Search'],
-  ['LineMdEdit', 'Edit'],
-  ['LineMdDocumentList', 'DocumentList']
+export const iconList = Array.from(iconMap.values())
+
+export const iconSeriesMap = new Map([
+  ['LineMd', { label: 'Material Line Icons', key: 'LineMd' }],
+  ['material-symbols', { label: 'Material Symbols', key: 'material-symbols' }],
+  ['ic', { label: 'Google Material Icons', key: 'ic' }],
+  ['mdi', { label: 'Material Design Icons', key: 'mdi' }]
 ])
+
+export const iconSeriesList = Array.from(iconSeriesMap.values())
