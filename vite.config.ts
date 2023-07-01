@@ -21,6 +21,8 @@ export default defineConfig(({ mode }) => {
       changeOrigin: true,
       rewrite: (path: string) => path.replace(/^\/base-api/, '')
     } as any
+  }
+  if (VITE_ICON_API_PREFIX) {
     proxy[VITE_ICON_API_PREFIX] = {
       target: VITE_ICON_API_PROXY,
       changeOrigin: true,

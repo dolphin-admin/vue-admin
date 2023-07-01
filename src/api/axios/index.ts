@@ -1,6 +1,7 @@
 import type { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 import axios from 'axios'
 
+import { GlobalEnvConfig } from '@/constants'
 import router from '@/router'
 import { useThemeStore } from '@/store'
 import type { PageModel } from '@/types'
@@ -8,7 +9,6 @@ import { clearToken, getDefaultLang, getToken, isAuthenticated } from '@/utils'
 
 import { axiosConfig } from './config'
 import { errorMessageMap, ResponseStatusCode } from './statusCode'
-
 const themeStore = useThemeStore()
 
 const { message } = createDiscreteApi(['message'], {
@@ -29,7 +29,8 @@ class Request {
 
     this.instance.interceptors.request.use(
       (req: InternalAxiosRequestConfig) => {
-        if (isAuthenticated()) {
+        const { url } = req
+        if (isAuthenticated() && url?.startsWith(GlobalEnvConfig.API_PREFIX)) {
           req.headers.Authorization = `Bearer ${getToken()}`
         }
         req.headers.Language = getDefaultLang()
