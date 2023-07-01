@@ -4,6 +4,7 @@ import { renderIcon, renderRouterLink } from '@/utils'
 import QRCodeIcon from '~icons/ic/baseline-qrcode'
 import HomeIcon from '~icons/ic/sharp-house'
 import UserInfoIcon from '~icons/mdi/account'
+import UserManagementIcon from '~icons/mdi/account-cog-outline'
 import PermissionIcon from '~icons/mdi/briefcase-arrow-left-right-outline'
 import IconManagementIcon from '~icons/mdi/creative-commons'
 import SystemFunctionIcon from '~icons/mdi/function-variant'
@@ -48,6 +49,14 @@ export const menuOptions: MenuMixedOption[] = [
         path: '/icon-management',
         key: 'icon-management',
         icon: renderIcon(IconManagementIcon),
+        menuType: 'routerLink'
+      },
+      {
+        label: renderRouterLink(t('Menu.UserManagement'), '/user-management'),
+        labelKey: 'Menu.UserManagement',
+        path: '/user-management',
+        key: 'user-management',
+        icon: renderIcon(UserManagementIcon),
         menuType: 'routerLink'
       }
     ]
