@@ -1,5 +1,6 @@
 export * from './file'
 export * from './i18n'
+export * from './icon'
 export * from './menu'
 export * from './qrcode'
 export * from './request'

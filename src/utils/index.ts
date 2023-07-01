@@ -1,6 +1,7 @@
 export * from './authentication'
 export * from './browser'
 export * from './file'
+export * from './icon'
 export * from './lang'
 export * from './qrcode'
 export * from './render'

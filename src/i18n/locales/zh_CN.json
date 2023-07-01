@@ -20,7 +20,9 @@
       "ConfirmPasswordNotMatch": "两次输入的密码不一致"
     },
     "Download": "下载",
-    "Upload": "上传"
+    "Upload": "上传",
+    "Search": "搜索",
+    "All": "全部"
   },
   "Login": {
     "AsAdmin": "以管理员登录",
@@ -60,7 +62,8 @@
     "Signup": "注册",
     "SystemFunction": "系统功能",
     "QRCode": "二维码",
-    "UserInfo": "用户信息"
+    "UserInfo": "用户信息",
+    "IconManagement": "图标管理"
   },
   "QRCode": {
     "Tip": {
@@ -70,6 +73,11 @@
       "Text": "生成二维码",
       "Success": "二维码生成成功",
       "Failed": "二维码生成失败"
+    }
+  },
+  "IconManagement": {
+    "Tip": {
+      "Search": "请输入图标集合名称"
     }
   }
 }

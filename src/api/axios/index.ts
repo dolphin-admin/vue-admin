@@ -1,14 +1,14 @@
 import type { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 import axios from 'axios'
 
+import { GlobalEnvConfig } from '@/constants'
 import router from '@/router'
 import { useThemeStore } from '@/store'
-import type { PageModel, PageResponseData, ResponseData } from '@/types'
+import type { PageModel } from '@/types'
 import { clearToken, getDefaultLang, getToken, isAuthenticated } from '@/utils'
 
 import { axiosConfig } from './config'
 import { errorMessageMap, ResponseStatusCode } from './statusCode'
-
 const themeStore = useThemeStore()
 
 const { message } = createDiscreteApi(['message'], {
@@ -29,7 +29,8 @@ class Request {
 
     this.instance.interceptors.request.use(
       (req: InternalAxiosRequestConfig) => {
-        if (isAuthenticated()) {
+        const { url } = req
+        if (isAuthenticated() && url?.startsWith(GlobalEnvConfig.API_PREFIX)) {
           req.headers.Authorization = `Bearer ${getToken()}`
         }
         req.headers.Language = getDefaultLang()
@@ -60,6 +61,7 @@ class Request {
     switch (code) {
       case ResponseStatusCode.UNAUTHORIZED:
         clearToken()
+        router.replace('/login')
         console.error(errorMessage)
         message.error(errorMessage)
         break
@@ -79,23 +81,19 @@ class Request {
     return this.instance.request(config)
   }
 
-  get<T>(
-    url: string,
-    params?: Record<string, unknown> | PageModel,
-    config?: AxiosRequestConfig
-  ): Promise<ResponseData<T> | PageResponseData<T>> {
+  get<T>(url: string, params?: Record<string, unknown> | PageModel, config?: AxiosRequestConfig): Promise<T> {
     return this.instance.get(url, { params, ...config })
   }
 
-  post<T>(url: string, data?: Record<string, unknown>, config?: AxiosRequestConfig): Promise<ResponseData<T>> {
+  post<T>(url: string, data?: Record<string, unknown>, config?: AxiosRequestConfig): Promise<T> {
     return this.instance.post(url, data, config)
   }
 
-  put<T>(url: string, data?: Record<string, unknown>, config?: AxiosRequestConfig): Promise<ResponseData<T>> {
+  put<T>(url: string, data?: Record<string, unknown>, config?: AxiosRequestConfig): Promise<T> {
     return this.instance.put(url, data, config)
   }
 
-  delete<T>(url: string, params?: Record<string, unknown>, config?: AxiosRequestConfig): Promise<ResponseData<T>> {
+  delete<T>(url: string, params?: Record<string, unknown>, config?: AxiosRequestConfig): Promise<T> {
     return this.instance.delete(url, { params, ...config })
   }
 }

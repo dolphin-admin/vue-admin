@@ -25,6 +25,7 @@ rushstack
 signup
 tailwindcss
 tauri
+uncategorized
 unplugin
 vfonts
 vueuse

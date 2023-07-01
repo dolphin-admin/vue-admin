@@ -5,18 +5,15 @@ interface Response {
   message?: string
 }
 
-export interface ResponseData<T = any> extends Response {
+export interface BaseResponse<T = any> extends Response {
   data: T
 }
 
-interface PageResponse extends Response {
+export interface PageResponse<T = any> extends Response {
+  data: T
   pageNum: number
   pageSize: number
   total: number
-}
-
-export interface PageResponseData<T = any> extends PageResponse {
-  data: T
 }
 
 export interface PageModel {
