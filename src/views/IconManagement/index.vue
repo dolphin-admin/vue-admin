@@ -1,40 +1,34 @@
 <script setup lang="ts">
-import { defineAsyncComponent } from 'vue'
+import { Icon } from '@iconify/vue'
 
 import { IconApi } from '@/api'
 import { iconSetList } from '@/constants'
 import { useLoading } from '@/hooks'
-import type { IconItem, MessageSchema } from '@/types'
+import type { MessageSchema } from '@/types'
 import SearchIcon from '~icons/ic/sharp-search'
-
-const iconList = ref<IconItem[]>([])
-const searchParams = reactive({
-  iconSet: '',
-  searchText: ''
-})
 
 const message = useMessage()
 const [fetchLoading, fetchLoadingDispatcher] = useLoading()
+
+const iconList = ref<string[]>([])
+const searchIconList = ref<string[]>([])
+const selectedIconSet = ref('')
+const searchText = ref('')
+
 // @ts-ignore
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
-const handleSearch = (value: string) => {}
+const handleSearch = (value: string) => {
+  searchIconList.value = iconList.value.filter((icon) => icon.toLowerCase().includes(value.toLocaleLowerCase()))
+}
 
 const getIcons = () => {
   fetchLoadingDispatcher.loading()
-  IconApi.getIconsBySet(searchParams.iconSet)
+  IconApi.getIconsBySet(selectedIconSet.value)
     .then((res) => {
       const { uncategorized } = res
-      iconList.value =
-        uncategorized
-          ?.filter((_, index) => index < 10)
-          .map((item) => {
-            const path = `~icons/${searchParams.iconSet}/${item}`
-            return {
-              label: item,
-              component: shallowRef(defineAsyncComponent(() => import(/* @vite-ignore */ path)))
-            }
-          }) ?? []
+      iconList.value = uncategorized ?? []
+      searchIconList.value = iconList.value
     })
     .finally(() => {
       fetchLoadingDispatcher.loaded()
@@ -42,33 +36,29 @@ const getIcons = () => {
 }
 
 const handleIconSetChange = (key: string) => {
-  if (key === searchParams.iconSet) return
+  if (key === selectedIconSet.value) return
   if (fetchLoading.value) {
-    message.warning('正在获取图标数据...')
+    message.loading('正在获取图标数据...')
     return
   }
-  searchParams.iconSet = key
+  selectedIconSet.value = key
   getIcons()
 }
 
 onBeforeMount(() => {
-  // iconData.value = iconList.map((item) => ({
-  //   ...item,
-  //   component: shallowRef(defineAsyncComponent(() => import('~icons/line-md/account')))
-  // })) as any
-  searchParams.iconSet = iconSetList[0].key
+  selectedIconSet.value = iconSetList[0].key
   getIcons()
 })
 </script>
 
 <template>
   <div class="flex w-full flex-col items-center space-y-4">
-    <div class="flex items-center justify-start space-x-4 pt-2">
+    <div class="flex w-full items-center justify-start space-x-4 sm:w-3/5">
       <NTag
         v-for="(iconSetItem, index) in iconSetList"
         :key="index"
         class="!cursor-pointer !transition-transform hover:scale-110"
-        :type="searchParams.iconSet === iconSetItem.key ? 'primary' : 'default'"
+        :type="selectedIconSet === iconSetItem.key ? 'primary' : 'default'"
         @click="() => handleIconSetChange(iconSetItem.key)"
       >
         {{ iconSetItem.label }}
@@ -76,6 +66,7 @@ onBeforeMount(() => {
     </div>
     <div class="w-full px-2 sm:w-3/5">
       <NInput
+        v-model:value="searchText"
         size="large"
         :placeholder="t('IconManagement.Tip.Search')"
         clearable
@@ -91,25 +82,13 @@ onBeforeMount(() => {
       </NInput>
     </div>
 
-    <div class="flex w-full flex-row flex-wrap items-center">
-      <div
-        v-for="(iconItem, index) in iconList"
+    <div class="flex flex-wrap items-center justify-center gap-5">
+      <Icon
+        v-for="(iconItem, index) in searchIconList"
         :key="index"
-        class="mb-5 h-16 w-1/2 cursor-pointer px-3 md:w-1/3 lg:w-1/4"
-      >
-        <div
-          class="flex h-full w-full items-center justify-start space-x-3 rounded-md bg-gray-200 pl-3 shadow-sm dark:bg-gray-700"
-        >
-          <component
-            :is="iconItem.component"
-            class="h-6 w-6 shrink-0"
-          />
-          <div class="space-y-1">
-            <div>material</div>
-            <div class="text-xs">{{ iconItem.label }}</div>
-          </div>
-        </div>
-      </div>
+        :icon="`${selectedIconSet}:${iconItem}`"
+        width="26"
+      />
     </div>
   </div>
 </template>

@@ -1,10 +1,4 @@
 import type { IconifyInfo, IconifyJSON } from '@iconify/types'
-import type { FunctionalComponent, ShallowRef, SVGAttributes } from 'vue'
-
-export interface IconItem {
-  label: string
-  component: ShallowRef<FunctionalComponent<SVGAttributes, {}, any>>
-}
 
 export interface APIv2CollectionResponse {
   prefix: string
@@ -20,5 +14,3 @@ export interface APIv2CollectionResponse {
   prefixes?: IconifyJSON['prefixes']
   suffixes?: IconifyJSON['suffixes']
 }
-
-export type APIv2CollectionsResponse = Record<string, IconifyInfo>
