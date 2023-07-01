@@ -161,22 +161,24 @@ const currentLanguageOptions = computed(() =>
         <span class="dark:text-white">{{ t('Header.SwitchTheme') }}</span>
       </NTooltip>
 
-      <NDropdown
-        :options="userOptions"
-        trigger="hover"
-        @select="selectUserOption"
-      >
-        <div class="flex cursor-pointer select-none items-center space-x-3">
-          <img
-            v-if="userStore.user.avatarUrl"
-            class="h-8 w-8 cursor-pointer rounded-full"
-            :src="userStore.user.avatarUrl"
-            alt=""
-            loading="eager"
-          />
-          <span class="text-sm">{{ userStore.user.username }}</span>
-        </div>
-      </NDropdown>
+      <template v-if="userStore.hasData()">
+        <NDropdown
+          :options="userOptions"
+          trigger="hover"
+          @select="selectUserOption"
+        >
+          <div class="flex cursor-pointer select-none items-center space-x-3">
+            <img
+              v-if="userStore.user.avatarUrl"
+              class="h-8 w-8 cursor-pointer rounded-full"
+              :src="userStore.user.avatarUrl"
+              alt=""
+              loading="eager"
+            />
+            <span class="text-sm">{{ userStore.user.username }}</span>
+          </div>
+        </NDropdown>
+      </template>
 
       <NTooltip
         placement="bottom"
