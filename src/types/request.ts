@@ -11,14 +11,15 @@ export interface BaseResponse<T = any> extends Response {
 
 export interface PageResponse<T = any> extends Response {
   data: T
-  pageNum: number
+  pageCount: number
   pageSize: number
   total: number
 }
 
 export interface PageModel {
-  pageNum: number
+  pageCount: number
   pageSize: number
+  searchText?: string
 }
 
 export type UploadProgressFc = (progressEvent?: AxiosProgressEvent) => void
