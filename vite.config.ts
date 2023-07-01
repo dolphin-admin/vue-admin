@@ -15,14 +15,14 @@ export default defineConfig(({ mode }) => {
 
   const port = parseInt(VITE_PORT, 10)
   const proxy: Record<string, string | ProxyOptions> = {}
-  if (VITE_BASE_API_PROXY) {
+  if (VITE_BASE_API_PREFIX && VITE_BASE_API_PROXY) {
     proxy[VITE_BASE_API_PREFIX] = {
       target: VITE_BASE_API_PROXY,
       changeOrigin: true,
       rewrite: (path: string) => path.replace(/^\/base-api/, '')
     } as any
   }
-  if (VITE_ICON_API_PREFIX) {
+  if (VITE_ICON_API_PREFIX && VITE_ICON_API_PROXY) {
     proxy[VITE_ICON_API_PREFIX] = {
       target: VITE_ICON_API_PROXY,
       changeOrigin: true,
