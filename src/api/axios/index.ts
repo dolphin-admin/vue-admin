@@ -30,7 +30,7 @@ class Request {
     this.instance.interceptors.request.use(
       (req: InternalAxiosRequestConfig) => {
         const { url } = req
-        if (isAuthenticated() && url?.startsWith(GlobalEnvConfig.API_PREFIX)) {
+        if (isAuthenticated() && url?.startsWith(GlobalEnvConfig.BASE_API_PREFIX)) {
           req.headers.Authorization = `Bearer ${getToken()}`
         }
         req.headers.Language = getDefaultLang()

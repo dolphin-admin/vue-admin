@@ -3,7 +3,7 @@ import type { BaseResponse, UploadOptions, UploadResult } from '@/types'
 
 import Request from './axios'
 
-const UPLOAD_API_PREFIX = `${GlobalEnvConfig.API_PREFIX}/upload`
+const UPLOAD_API_PREFIX = `${GlobalEnvConfig.BASE_API_PREFIX}/upload`
 
 export const UploadApi = {
   uploadFile: (data: any, options?: UploadOptions) =>
