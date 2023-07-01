@@ -167,7 +167,7 @@ const columns = ref<DataTableColumns<User>>([
       h(
         'div',
         {
-          class: 'space-x-3 flex'
+          class: 'space-x-3 flex justify-center'
         },
         {
           default: () =>
