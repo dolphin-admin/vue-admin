@@ -64,6 +64,8 @@
     "UserInfo": "User Info",
     "SystemFunction": "System Function",
     "UserManagement": "User Management",
+    "RoleManagement": "Role Management",
+    "PermissionManagement": "Permission Management",
     "SystemTool": "System Tool",
     "IconManagement": "Icon Management",
     "QRCode": "QRCode"

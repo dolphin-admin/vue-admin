@@ -64,6 +64,8 @@
     "UserInfo": "用户信息",
     "SystemFunction": "系统功能",
     "UserManagement": "用户管理",
+    "RoleManagement": "角色管理",
+    "PermissionManagement": "权限管理",
     "SystemTool": "系统工具",
     "IconManagement": "图标管理",
     "QRCode": "二维码"

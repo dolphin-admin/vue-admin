@@ -233,7 +233,7 @@ onMounted(() => {
 
 <template>
   <div class="h-[calc(100%-112px)]">
-    <div class="mb-2 ml-1 flex items-center space-x-2 text-2xl">
+    <div class="ml-1 flex items-center space-x-2 text-2xl">
       <UserManagementIcon width="28" />
       <span>用户管理</span>
     </div>
