@@ -4,7 +4,7 @@ import type { FormInst, FormItemRule, FormRules } from 'naive-ui'
 import { LoginApi } from '@/api'
 import { useLoading } from '@/hooks'
 import type { MessageSchema } from '@/types'
-import { isAuthenticated, setToken } from '@/utils'
+import { setToken } from '@/utils'
 
 type RememberedAccountData = {
   username: string
@@ -92,18 +92,12 @@ const loginAsBasic = () => {
 
 const loginAsAdmin = () => {
   submitType.value = 'ADMIN'
-  formData.username = 'Admin'
+  formData.username = 'SuperAdmin'
   formData.password = '123456'
   login()
 }
 
-const forgotPassword = () => {}
-
-onBeforeMount(() => {
-  if (isAuthenticated()) {
-    router.push('/')
-  }
-})
+const forgetPassword = () => {}
 
 onMounted(() => {
   const localStorageData = localStorage.getItem(REMEMBERED_ACCOUNT_DATA_KEY)
@@ -169,7 +163,7 @@ onMounted(() => {
       </NCheckbox>
       <div
         class="cursor-pointer hover:text-blue-600"
-        @click="forgotPassword"
+        @click="forgetPassword"
       >
         {{ t('Common.ForgetPassword') }}
       </div>

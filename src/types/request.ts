@@ -17,7 +17,7 @@ export interface PageResponse<T = any> extends Response {
 }
 
 export interface PageModel {
-  pageCount: number
+  page: number
   pageSize: number
   searchText?: string
 }

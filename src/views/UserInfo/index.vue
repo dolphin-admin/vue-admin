@@ -124,13 +124,11 @@ onMounted(() =>
       </div>
       <div class="flex items-center justify-center text-xl">
         {{ computedUserInfo?.username }}
-        <template v-if="computedUserInfo?.gender">
-          <template v-if="computedUserInfo?.gender === 0">
-            <MaleIcon class="w-[18px] text-blue-300" />
-          </template>
-          <template v-if="computedUserInfo?.gender === 1">
-            <FemaleIcon class="w-[18px] text-pink-300" />
-          </template>
+        <template v-if="computedUserInfo?.gender === 0">
+          <MaleIcon class="w-[18px] text-blue-300" />
+        </template>
+        <template v-if="computedUserInfo?.gender === 1">
+          <FemaleIcon class="w-[18px] text-pink-300" />
         </template>
       </div>
 
