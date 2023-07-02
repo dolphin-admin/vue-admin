@@ -42,8 +42,6 @@ const userOptions = [
   }
 ]
 
-const handleCollapseMenu = () => sidebarStore.toggleSidebarStatus()
-
 const logout = () => {
   clearToken()
   clearLang()
@@ -93,9 +91,9 @@ const currentLanguageOptions = computed(() =>
       >
         <template #trigger>
           <component
-            :is="sidebarStore.isCollapse ? ExpandMenuIcon : CollapseMenuIcon"
+            :is="sidebarStore.isDisplay ? ExpandMenuIcon : CollapseMenuIcon"
             class="cursor-pointer"
-            @click="handleCollapseMenu"
+            @click="() => sidebarStore.toggleSidebarDisplay()"
           />
         </template>
         <span class="dark:text-white">{{ t(sidebarStore.isCollapse ? 'Sidebar.Expand' : 'Sidebar.Collapse') }}</span>

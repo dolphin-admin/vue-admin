@@ -2,6 +2,7 @@
 import { useSidebarStore, useThemeStore } from '@/store'
 import type { CustomMenuOption, Lang } from '@/types'
 import { renderRouterLink } from '@/utils'
+import CollapseIcon from '~icons/line-md/chevron-triple-left'
 
 import { menuOptions } from './model'
 
@@ -74,7 +75,7 @@ watch(
         {{ t('App.Name') }}
       </span>
     </div>
-    <div class="h-[calc(100%-64px)]">
+    <div class="h-[calc(100%-112px)]">
       <NScrollbar :size="10">
         <NMenu
           :collapsed-icon-size="20"
@@ -87,10 +88,22 @@ watch(
         />
       </NScrollbar>
     </div>
+    <div class="h-12 w-full p-1">
+      <div
+        class="flex h-full w-full cursor-pointer items-center justify-center rounded-sm transition-all hover:bg-gray-200 active:opacity-75 dark:hover:bg-gray-600"
+        @click="() => sidebarStore.toggleSidebarCollapse()"
+      >
+        <CollapseIcon
+          class="dark:text-white"
+          :class="[sidebarStore.isCollapse ? 'rotate-180' : 'rotate-0']"
+          width="20"
+        />
+      </div>
+    </div>
   </div>
   <div
     class="absolute inset-0 z-[75] bg-black opacity-40 sm:hidden"
     :class="sidebarStore.isCollapse ? 'hidden' : 'block'"
-    @click="() => sidebarStore.toggleSidebarStatus()"
-  ></div>
+    @click="() => sidebarStore.toggleSidebarDisplay()"
+  />
 </template>
