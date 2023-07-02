@@ -58,13 +58,15 @@
     "Collapse": "Collapse sidebar"
   },
   "Menu": {
+    "Home": "Home",
     "Login": "Login",
     "Signup": "Signup",
-    "SystemFunction": "System Function",
-    "QRCode": "QRCode",
     "UserInfo": "User Info",
+    "SystemFunction": "System Function",
+    "UserManagement": "User Management",
+    "SystemTool": "System Tool",
     "IconManagement": "Icon Management",
-    "UserManagement": "User Management"
+    "QRCode": "QRCode"
   },
   "QRCode": {
     "Tip": {
