@@ -231,8 +231,8 @@ const pagination = reactive({
   }
 })
 
-const queryList = () => {
-  loadingDispatcher.loading()
+const queryList = (shouldLoading = true) => {
+  if (shouldLoading) loadingDispatcher.loading()
 
   const params = new BasePageModel({
     pageSize: pagination.pageSize,
@@ -250,7 +250,7 @@ const queryList = () => {
       users.value = []
     })
     .finally(() => {
-      loadingDispatcher.loaded()
+      if (shouldLoading) loadingDispatcher.loaded()
     })
 }
 

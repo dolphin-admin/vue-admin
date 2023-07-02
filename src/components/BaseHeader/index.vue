@@ -48,6 +48,7 @@ const logout = () => {
   clearToken()
   clearLang()
   clearTheme()
+  userStore.clearUser()
   message.success(t('Logout.Success'))
   router.replace('/login')
 }

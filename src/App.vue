@@ -19,12 +19,10 @@ const themeStore = useThemeStore()
             name="router"
             mode="out-in"
           >
-            <KeepAlive>
-              <component
-                :is="Component"
-                class="text-base"
-              />
-            </KeepAlive>
+            <component
+              :is="Component"
+              class="text-base"
+            />
           </Transition>
         </RouterView>
       </NMessageProvider>
