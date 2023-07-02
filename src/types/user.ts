@@ -3,14 +3,23 @@ export interface User {
   username?: string
   email?: string
   phoneNumber?: string
-  address?: string
-  avatarUrl?: string
-  biography?: string
+  name?: string
   firstName?: string
   lastName?: string
-  gender?: number
+  nickName?: string
+  avatarUrl?: string
+  gender?: Gender
+  genderLabel?: string
+  country?: string
+  province?: string
+  city?: string
+  address?: string
+  biography?: string
   birthDate?: string
-  name?: string
+  verified?: boolean
+  enabled?: boolean
+  createdAt?: string
+  roles?: string[]
 }
 
 export interface LoginInputModel {
@@ -26,3 +35,5 @@ export interface LoginOrSignupResponse {
   user: User
   accessToken: string
 }
+
+export type Gender = 0 | 1

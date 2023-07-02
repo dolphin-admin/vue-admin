@@ -63,7 +63,8 @@
     "SystemFunction": "System Function",
     "QRCode": "QRCode",
     "UserInfo": "User Info",
-    "IconManagement": "Icon Management"
+    "IconManagement": "Icon Management",
+    "UserManagement": "User Management"
   },
   "QRCode": {
     "Tip": {
