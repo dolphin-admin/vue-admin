@@ -4,8 +4,8 @@ import type { Lang, MessageSchema } from '@/types'
 import { clearLang, clearTheme, clearToken, setLang } from '@/utils'
 import NotificationIcon from '~icons/ic/baseline-notifications-none'
 import LanguageIcon from '~icons/ion/language-outline'
-import CollapseMenuIcon from '~icons/line-md/menu-fold-left'
-import ExpandMenuIcon from '~icons/line-md/menu-fold-right'
+import HideMenuIcon from '~icons/line-md/menu-fold-left'
+import ShowMenuIcon from '~icons/line-md/menu-fold-right'
 import SunIcon from '~icons/line-md/moon-alt-to-sunny-outline-loop-transition'
 import MoonIcon from '~icons/line-md/sunny-filled-loop-to-moon-alt-filled-loop-transition'
 import FullScreenIcon from '~icons/material-symbols/fullscreen'
@@ -91,7 +91,7 @@ const currentLanguageOptions = computed(() =>
       >
         <template #trigger>
           <component
-            :is="sidebarStore.isDisplay ? ExpandMenuIcon : CollapseMenuIcon"
+            :is="sidebarStore.isDisplay ? HideMenuIcon : ShowMenuIcon"
             class="cursor-pointer"
             @click="() => sidebarStore.toggleSidebarDisplay()"
           />

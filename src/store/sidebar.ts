@@ -1,6 +1,6 @@
 export const useSidebarStore = defineStore('sidebar', () => {
   const isCollapse = ref(false)
-  const isDisplay = ref(false)
+  const isDisplay = ref(true)
 
   const changeSidebarCollapse = (value: boolean) => {
     isCollapse.value = value

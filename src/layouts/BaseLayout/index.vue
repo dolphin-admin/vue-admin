@@ -1,21 +1,23 @@
 <template>
-  <main class="flex h-screen w-full">
+  <main class="h-screen w-full">
     <AuthProvider>
-      <BaseSidebar />
-      <div class="relative h-full flex-1 overflow-y-auto">
-        <BaseHeader />
-        <RouterView v-slot="{ Component }">
-          <Transition
-            name="slide-fade"
-            mode="out-in"
-          >
-            <component
-              :is="Component"
-              class="relative min-h-[calc(100%-112px)] w-full p-2 sm:p-4"
-            />
-          </Transition>
-        </RouterView>
-        <BaseFooter />
+      <div class="flex h-full w-full">
+        <BaseSidebar />
+        <div class="relative h-full flex-1 overflow-y-auto overflow-x-hidden">
+          <BaseHeader />
+          <RouterView v-slot="{ Component }">
+            <Transition
+              name="slide-fade"
+              mode="out-in"
+            >
+              <component
+                :is="Component"
+                class="relative min-h-[calc(100%-112px)] w-full p-2 sm:p-4"
+              />
+            </Transition>
+          </RouterView>
+          <BaseFooter />
+        </div>
       </div>
     </AuthProvider>
   </main>
