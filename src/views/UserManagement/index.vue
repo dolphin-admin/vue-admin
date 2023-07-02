@@ -198,45 +198,15 @@ const users = ref<User[]>([])
 const pagination = reactive({
   page: 1,
   pageSize: 10,
-  pageCount: 1,
-  itemCount: 0,
-  showQuickJumper: true,
-  showSizePicker: true,
-  pageSlot: 9,
-  pageSizes: [
-    {
-      label: '10 每页',
-      value: 10
-    },
-    {
-      label: '20 每页',
-      value: 20
-    },
-    {
-      label: '30 每页',
-      value: 30
-    },
-    {
-      label: '40 每页',
-      value: 40
-    }
-  ],
-  prefix: ({ itemCount }: { itemCount?: number }) => `共计 ${itemCount ?? 0} 条`,
-  onUpdatePage: (page: number) => {
-    pagination.page = page
-  },
-  onUpdatePageSize: (pageSize: number) => {
-    pagination.page = 1
-    pagination.pageSize = pageSize
-  }
+  itemCount: 0
 })
 
 const queryList = (shouldLoading = true) => {
   if (shouldLoading) loadingDispatcher.loading()
 
   const params = new BasePageModel({
+    page: pagination.page,
     pageSize: pagination.pageSize,
-    pageCount: pagination.pageCount,
     searchText: queryParams.searchText
   })
 
@@ -255,11 +225,6 @@ const queryList = (shouldLoading = true) => {
 }
 
 const handlePageChange = () => queryList()
-
-watch(
-  () => [pagination.page, pagination.pageSize],
-  () => queryList()
-)
 
 onMounted(() => {
   queryList()
@@ -282,7 +247,39 @@ onMounted(() => {
       :columns="columns"
       :data="users"
       :loading="loading"
-      :pagination="pagination"
+      :pagination="{
+        ...pagination,
+        showQuickJumper: true,
+        showSizePicker: true,
+        pageSlot: 9,
+        pageSizes: [
+          {
+            label: '10 每页',
+            value: 10
+          },
+          {
+            label: '20 每页',
+            value: 20
+          },
+          {
+            label: '30 每页',
+            value: 30
+          },
+          {
+            label: '40 每页',
+            value: 40
+          }
+        ],
+        onUpdatePage: (page: number) => {
+          pagination.page = page
+          queryList()
+        },
+        onUpdatePageSize: (pageSize: number) => {
+          pagination.page = 1
+          pagination.pageSize = pageSize
+          queryList()
+        }
+      }"
       @update:page="handlePageChange"
     />
   </div>
