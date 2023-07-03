@@ -9,5 +9,6 @@ export const UserApi = {
   getUsers: (params: PageModel) => Request.get<PageResponse<User[]>>(USER_API_PREFIX, { ...params }),
   getUser: (id: number) => Request.get<BaseResponse<User>>(`${USER_API_PREFIX}/${id}`),
   getUserInfo: () => Request.get<BaseResponse<User>>(`${USER_API_PREFIX}/info`),
-  updateUser: (id: number, data: User) => Request.put<BaseResponse<User>>(`${USER_API_PREFIX}/${id}`, { ...data })
+  updateUser: (id: number, data: User) => Request.put<BaseResponse<User>>(`${USER_API_PREFIX}/${id}`, { ...data }),
+  createUser: () => Request.post<BaseResponse<User>>(`${USER_API_PREFIX}`)
 }

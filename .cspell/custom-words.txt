@@ -18,6 +18,7 @@ noreferrer
 Noto
 nprogress
 Pinia
+Popconfirm
 qrcode
 recallwei
 Roboto

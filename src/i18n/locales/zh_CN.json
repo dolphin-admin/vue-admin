@@ -17,12 +17,23 @@
       "Password": "请输入密码",
       "PasswordLength": "密码长度至少为 6 位",
       "ConfirmPassword": "请输入确认密码",
-      "ConfirmPasswordNotMatch": "两次输入的密码不一致"
+      "ConfirmPasswordNotMatch": "两次输入的密码不一致",
+      "Name": "请输入姓名",
+      "FirstName": "请输入名",
+      "LastName": "请输入姓",
+      "Email": "请输入邮箱",
+      "CorrectEmailFormat": "请输入正确格式的邮箱",
+      "CorrectPhoneNumberFormat": "请输入正确格式的手机号"
     },
     "Download": "下载",
     "Upload": "上传",
     "Search": "搜索",
-    "All": "全部"
+    "All": "全部",
+    "Confirm": "确认",
+    "Cancer": "取消",
+    "FailedUploadAvatar": "头像上传失败",
+    "Avatar": "头像",
+    "Name": "姓名"
   },
   "Login": {
     "AsAdmin": "以管理员登录",
@@ -84,5 +95,33 @@
     "Tip": {
       "Search": "请输入图标集合名称"
     }
+  },
+  "UserManagement": {
+    "UserManagement": "用户管理",
+    "Operation": "操作",
+    "Edit": "编辑",
+    "CreateUser": "新建用户",
+    "Enable": "启用",
+    "Disabled": "禁用",
+    "ResetPassword": "重置密码",
+    "UserName": "用户名",
+    "Email": "邮箱",
+    "PhoneNumber": "电话号码",
+    "Name": "姓名",
+    "FirstName": "名",
+    "LastName": "姓",
+    "NickName": "昵称",
+    "Gender": "性别",
+    "Country": "国家",
+    "AvatarUrl": "头像",
+    "Province": "省份",
+    "City": "城市",
+    "Address": "地址",
+    "Biography": "简介",
+    "Verified": "是否验证",
+    "Enabled": "是否启用",
+    "BirthDate": "出生日期",
+    "roles": "角色",
+    "CreatedAt": "进入系统时间"
   }
 }

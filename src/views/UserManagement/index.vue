@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { DataTableColumns } from 'naive-ui'
-import { NButton, NTag } from 'naive-ui'
+import { NButton, NPopconfirm, NTag } from 'naive-ui'
 
 import { UserApi } from '@/api'
 import { BasePageModel } from '@/constants'
@@ -10,196 +10,27 @@ import { formatTime } from '@/utils'
 import CheckIcon from '~icons/ic/baseline-check'
 import UserManagementIcon from '~icons/mdi/account-cog-outline'
 
-const columns = ref<DataTableColumns<User>>([
-  {
-    title: 'ID',
-    key: 'id',
-    width: 50,
-    titleAlign: 'center',
-    align: 'center'
-  },
-  {
-    title: '用户名',
-    key: 'username',
-    width: 120
-  },
-  {
-    title: '电话',
-    key: 'phoneNumber',
-    width: 120
-  },
-  {
-    title: '邮箱',
-    key: 'email',
-    width: 100,
-    resizable: true,
-    ellipsis: {
-      tooltip: true
-    }
-  },
-  {
-    title: '姓名',
-    key: 'name',
-    width: 100
-  },
-  {
-    title: '姓',
-    key: 'lastName',
-    width: 70
-  },
-  {
-    title: '名',
-    key: 'firstName',
-    width: 70
-  },
-  {
-    title: '昵称',
-    key: 'nickName',
-    width: 120,
-    resizable: true,
-    ellipsis: {
-      tooltip: true
-    }
-  },
-  {
-    title: '性别',
-    key: 'genderLabel',
-    width: 50,
-    titleAlign: 'center',
-    align: 'center'
-  },
-  {
-    title: '出生日期',
-    key: 'birthDate',
-    width: 100,
-    titleAlign: 'center',
-    align: 'center',
-    render: (row) => (row.birthDate ? formatTime(row.birthDate, 'YYYY/MM/DD') : '')
-  },
-  {
-    title: '国家',
-    key: 'country',
-    width: 80
-  },
-  {
-    title: '城市',
-    key: 'city',
-    width: 80
-  },
-  {
-    title: '地址',
-    key: 'address',
-    width: 120,
-    resizable: true,
-    ellipsis: {
-      tooltip: true
-    }
-  },
-  {
-    title: '简介',
-    key: 'biography',
-    width: 200,
-    resizable: true,
-    ellipsis: {
-      tooltip: true
-    }
-  },
-  {
-    title: '是否验证',
-    key: 'verified',
-    width: 80,
-    titleAlign: 'center',
-    align: 'center',
-    render: (row) =>
-      row.verified &&
-      h(CheckIcon, {
-        class: 'inline'
-      })
-  },
-  {
-    title: '是否启用',
-    key: 'enabled',
-    width: 80,
-    titleAlign: 'center',
-    align: 'center',
-    render: (row) =>
-      row.enabled &&
-      h(CheckIcon, {
-        class: 'inline'
-      })
-  },
-  {
-    title: '进入系统时间',
-    key: 'createdAt',
-    width: 120,
-    titleAlign: 'center',
-    align: 'center',
-    render: (row) => (row.createdAt ? formatTime(row.createdAt) : '')
-  },
-  {
-    title: '角色',
-    key: 'roles',
-    width: 200,
-    render: (row) => {
-      const tags = (row?.roles || []).map((role) => {
-        return h(
-          NTag,
-          {
-            class: '!mr-2',
-            type: 'primary',
-            bordered: false
-          },
-          {
-            default: () => role
-          }
-        )
-      })
-      return tags
-    }
-  },
-  {
-    title: '操作',
-    key: 'option',
-    width: 220,
-    titleAlign: 'center',
-    align: 'center',
-    render: () =>
-      h(
-        'div',
-        {
-          class: 'space-x-3 flex justify-center'
-        },
-        {
-          default: () =>
-            ['编辑', '启用', '禁用', '重置密码'].map((text) => {
-              return h(
-                NButton,
-                {
-                  type: 'default',
-                  size: 'small'
-                },
-                {
-                  default: () => text
-                }
-              )
-            })
-        }
-      )
-  }
-])
+import { UserFormModal } from './components'
 
 const [loading, loadingDispatcher] = useLoading()
+
+// @ts-ignore
+const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
 const queryParams = reactive({
   searchText: ''
 })
 const tableRef = ref()
+const userFormModalRef = ref()
 const users = ref<User[]>([])
 const pagination = reactive({
   page: 1,
   pageSize: 10,
   itemCount: 0
 })
+
+const userFormData = ref({})
+const isEdit = ref(true)
 
 const queryList = (shouldLoading = true) => {
   if (shouldLoading) loadingDispatcher.loading()
@@ -226,6 +57,215 @@ const queryList = (shouldLoading = true) => {
 
 const handlePageChange = () => queryList()
 
+const Operation = [
+  t('UserManagement.Edit'),
+  t('UserManagement.Enabled'),
+  t('UserManagement.disabled'),
+  t('UserManagement.ResetPassword')
+]
+const columns = ref<DataTableColumns<User>>([
+  {
+    title: 'ID',
+    key: 'id',
+    width: 50,
+    titleAlign: 'center',
+    align: 'center'
+  },
+  {
+    title: t('UserManagement.UserName'),
+    key: 'username',
+    width: 120
+  },
+  {
+    title: t('UserManagement.PhoneNumber'),
+    key: 'phoneNumber',
+    width: 120
+  },
+  {
+    title: t('UserManagement.Email'),
+    key: 'email',
+    width: 100,
+    resizable: true,
+    ellipsis: {
+      tooltip: true
+    }
+  },
+  {
+    title: t('UserManagement.Name'),
+    key: 'name',
+    width: 100
+  },
+  {
+    title: t('UserManagement.LastName'),
+    key: 'lastName',
+    width: 70
+  },
+  {
+    title: t('UserManagement.FirstName'),
+    key: 'firstName',
+    width: 70
+  },
+  {
+    title: t('UserManagement.NickName'),
+    key: 'nickName',
+    width: 120,
+    resizable: true,
+    ellipsis: {
+      tooltip: true
+    }
+  },
+  {
+    title: t('UserManagement.Gender'),
+    key: 'genderLabel',
+    width: 50,
+    titleAlign: 'center',
+    align: 'center'
+  },
+  {
+    title: t('UserManagement.BirthDate'),
+    key: 'birthDate',
+    width: 100,
+    titleAlign: 'center',
+    align: 'center',
+    render: (row) => (row.birthDate ? formatTime(row.birthDate, 'YYYY/MM/DD') : '')
+  },
+  {
+    title: t('UserManagement.Country'),
+    key: 'country',
+    width: 80
+  },
+  {
+    title: t('UserManagement.City'),
+    key: 'city',
+    width: 80
+  },
+  {
+    title: t('UserManagement.Address'),
+    key: 'address',
+    width: 120,
+    resizable: true,
+    ellipsis: {
+      tooltip: true
+    }
+  },
+  {
+    title: t('UserManagement.Biography'),
+    key: 'biography',
+    width: 200,
+    resizable: true,
+    ellipsis: {
+      tooltip: true
+    }
+  },
+  {
+    title: t('UserManagement.Verified'),
+    key: 'verified',
+    width: 80,
+    titleAlign: 'center',
+    align: 'center',
+    render: (row) =>
+      row.verified &&
+      h(CheckIcon, {
+        class: 'inline'
+      })
+  },
+  {
+    title: t('UserManagement.Enabled'),
+    key: 'enabled',
+    width: 80,
+    titleAlign: 'center',
+    align: 'center',
+    render: (row) =>
+      row.enabled &&
+      h(CheckIcon, {
+        class: 'inline'
+      })
+  },
+  {
+    title: t('UserManagement.CreatedAt'),
+    key: 'createdAt',
+    width: 120,
+    titleAlign: 'center',
+    align: 'center',
+    render: (row) => (row.createdAt ? formatTime(row.createdAt) : '')
+  },
+  {
+    title: t('UserManagement.roles'),
+    key: 'roles',
+    width: 200,
+    render: (row) => {
+      const tags = (row?.roles || []).map((role) => {
+        return h(
+          NTag,
+          {
+            class: '!mr-2',
+            type: 'primary',
+            bordered: false
+          },
+          {
+            default: () => role
+          }
+        )
+      })
+      return tags
+    }
+  },
+  {
+    title: t('UserManagement.Operation'),
+    key: 'option',
+    width: 220,
+    titleAlign: 'center',
+    align: 'center',
+    render: (rowData) =>
+      h(
+        'div',
+        {
+          class: 'space-x-3 flex justify-center'
+        },
+        {
+          default: () =>
+            Operation.map((text) => {
+              if (text === Operation[1] || text === Operation[2]) {
+                return h(
+                  NPopconfirm,
+                  {
+                    showIcon: false,
+                    negativeText: t('Common.Cancer'),
+                    positiveText: t('Common.Confirm')
+                  },
+                  {
+                    trigger: () => h(NButton, { type: 'default', size: 'small' }, { default: () => text }),
+                    default: () => `是否${text}`
+                  }
+                )
+              }
+
+              return h(
+                NButton,
+                {
+                  type: 'default',
+                  size: 'small',
+                  onClick: () => {
+                    isEdit.value = true
+                    userFormModalRef.value.handleShowModal()
+                    userFormData.value = rowData
+                  }
+                },
+                {
+                  default: () => text
+                }
+              )
+            })
+        }
+      )
+  }
+])
+
+const handleCreateUser = () => {
+  isEdit.value = false
+  userFormModalRef.value.handleShowModal()
+  userFormData.value = {}
+}
 onMounted(() => {
   queryList()
 })
@@ -233,9 +273,14 @@ onMounted(() => {
 
 <template>
   <div class="h-[calc(100%-112px)]">
-    <div class="ml-1 flex items-center space-x-2 text-2xl">
-      <UserManagementIcon width="28" />
-      <span>用户管理</span>
+    <div class="flex items-center justify-between">
+      <div class="ml-1 flex items-center space-x-2 text-2xl">
+        <UserManagementIcon width="28" />
+        <span>{{ t('UserManagement.UserManagement') }}</span>
+      </div>
+      <div>
+        <n-button @click="handleCreateUser">{{ t('UserManagement.CreateUser') }}</n-button>
+      </div>
     </div>
     <NDataTable
       ref="tableRef"
@@ -281,6 +326,11 @@ onMounted(() => {
         }
       }"
       @update:page="handlePageChange"
+    />
+    <UserFormModal
+      ref="userFormModalRef"
+      :is-edit="isEdit"
+      :user-form-data="userFormData"
     />
   </div>
 </template>
