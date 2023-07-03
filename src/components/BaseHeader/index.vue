@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Lang } from '@/types'
+import UserAvatarIcon from '~icons/carbon/user-avatar-filled-alt'
 import NotificationIcon from '~icons/ic/baseline-notifications-none'
 import LanguageIcon from '~icons/ion/language-outline'
 import HideMenuIcon from '~icons/line-md/menu-fold-left'
@@ -158,25 +159,6 @@ const currentLanguageOptions = computed(() =>
         <span class="dark:text-white">{{ t('Header.SwitchTheme') }}</span>
       </NTooltip>
 
-      <template v-if="userStore.hasData()">
-        <NDropdown
-          :options="userOptions"
-          trigger="hover"
-          @select="selectUserOption"
-        >
-          <div class="flex cursor-pointer select-none items-center space-x-3">
-            <img
-              v-if="userStore.user.avatarUrl"
-              class="h-8 w-8 cursor-pointer rounded-full"
-              :src="userStore.user.avatarUrl"
-              alt=""
-              loading="eager"
-            />
-            <span class="text-sm">{{ userStore.user.username }}</span>
-          </div>
-        </NDropdown>
-      </template>
-
       <NTooltip
         placement="bottom"
         trigger="hover"
@@ -186,6 +168,36 @@ const currentLanguageOptions = computed(() =>
         </template>
         <span class="dark:text-white">{{ t('Header.Settings') }}</span>
       </NTooltip>
+
+      <template v-if="userStore.hasData()">
+        <NDropdown
+          :options="userOptions"
+          trigger="hover"
+          @select="selectUserOption"
+        >
+          <template v-if="userStore.user.avatarUrl">
+            <NAvatar
+              class="cursor-pointer select-none shadow-md !transition-all hover:opacity-90 active:opacity-70"
+              round
+              size="small"
+              :src="userStore.user.avatarUrl"
+            />
+          </template>
+          <template v-else>
+            <NAvatar
+              class="cursor-pointer select-none shadow-md"
+              round
+              object-fit="cover"
+              size="small"
+              style="background-color: inherit"
+            >
+              <NIcon size="24">
+                <UserAvatarIcon class="text-black dark:text-white" />
+              </NIcon>
+            </NAvatar>
+          </template>
+        </NDropdown>
+      </template>
     </div>
   </header>
 </template>
