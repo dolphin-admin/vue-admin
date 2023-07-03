@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { DataTableColumns } from 'naive-ui'
-import { NButton, NTag } from 'naive-ui'
+import { NButton, NPopconfirm, NTag } from 'naive-ui'
 
 import { UserApi } from '@/api'
 import { BasePageModel } from '@/constants'
@@ -9,6 +9,50 @@ import type { User } from '@/types'
 import { formatTime } from '@/utils'
 import CheckIcon from '~icons/ic/baseline-check'
 import UserManagementIcon from '~icons/mdi/account-cog-outline'
+
+import { UserFormModal } from './components'
+
+const [loading, loadingDispatcher] = useLoading()
+
+const queryParams = reactive({
+  searchText: ''
+})
+const tableRef = ref()
+const userFormModalRef = ref()
+const users = ref<User[]>([])
+const pagination = reactive({
+  page: 1,
+  pageSize: 10,
+  itemCount: 0
+})
+
+const userFormData = ref({})
+const isEdit = ref(true)
+
+const queryList = (shouldLoading = true) => {
+  if (shouldLoading) loadingDispatcher.loading()
+
+  const params = new BasePageModel({
+    page: pagination.page,
+    pageSize: pagination.pageSize,
+    searchText: queryParams.searchText
+  })
+
+  UserApi.getUsers(params)
+    .then((res) => {
+      const { data, total } = res || {}
+      users.value = data
+      pagination.itemCount = total
+    })
+    .catch(() => {
+      users.value = []
+    })
+    .finally(() => {
+      if (shouldLoading) loadingDispatcher.loaded()
+    })
+}
+
+const handlePageChange = () => queryList()
 
 const columns = ref<DataTableColumns<User>>([
   {
@@ -163,7 +207,7 @@ const columns = ref<DataTableColumns<User>>([
     width: 220,
     titleAlign: 'center',
     align: 'center',
-    render: () =>
+    render: (rowData) =>
       h(
         'div',
         {
@@ -172,11 +216,31 @@ const columns = ref<DataTableColumns<User>>([
         {
           default: () =>
             ['编辑', '启用', '禁用', '重置密码'].map((text) => {
+              if (text === '启用' || text === '禁用') {
+                return h(
+                  NPopconfirm,
+                  {
+                    showIcon: false,
+                    negativeText: '取消',
+                    positiveText: '确认'
+                  },
+                  {
+                    trigger: () => h(NButton, { type: 'default', size: 'small' }, { default: () => text }),
+                    default: () => `是否${text}`
+                  }
+                )
+              }
+
               return h(
                 NButton,
                 {
                   type: 'default',
-                  size: 'small'
+                  size: 'small',
+                  onClick: () => {
+                    isEdit.value = true
+                    userFormModalRef.value.handleShowModal()
+                    userFormData.value = rowData
+                  }
                 },
                 {
                   default: () => text
@@ -188,44 +252,11 @@ const columns = ref<DataTableColumns<User>>([
   }
 ])
 
-const [loading, loadingDispatcher] = useLoading()
-
-const queryParams = reactive({
-  searchText: ''
-})
-const tableRef = ref()
-const users = ref<User[]>([])
-const pagination = reactive({
-  page: 1,
-  pageSize: 10,
-  itemCount: 0
-})
-
-const queryList = (shouldLoading = true) => {
-  if (shouldLoading) loadingDispatcher.loading()
-
-  const params = new BasePageModel({
-    page: pagination.page,
-    pageSize: pagination.pageSize,
-    searchText: queryParams.searchText
-  })
-
-  UserApi.getUsers(params)
-    .then((res) => {
-      const { data, total } = res || {}
-      users.value = data
-      pagination.itemCount = total
-    })
-    .catch(() => {
-      users.value = []
-    })
-    .finally(() => {
-      if (shouldLoading) loadingDispatcher.loaded()
-    })
+const handleCreateUser = () => {
+  isEdit.value = false
+  userFormModalRef.value.handleShowModal()
+  userFormData.value = {}
 }
-
-const handlePageChange = () => queryList()
-
 onMounted(() => {
   queryList()
 })
@@ -233,9 +264,14 @@ onMounted(() => {
 
 <template>
   <div class="h-[calc(100%-112px)]">
-    <div class="mb-2 ml-1 flex items-center space-x-2 text-2xl">
-      <UserManagementIcon width="28" />
-      <span>用户管理</span>
+    <div class="flex items-center justify-between">
+      <div class="ml-1 flex items-center space-x-2 text-2xl">
+        <UserManagementIcon width="28" />
+        <span>用户管理</span>
+      </div>
+      <div>
+        <n-button @click="handleCreateUser">新建用户</n-button>
+      </div>
     </div>
     <NDataTable
       ref="tableRef"
@@ -281,6 +317,11 @@ onMounted(() => {
         }
       }"
       @update:page="handlePageChange"
+    />
+    <UserFormModal
+      ref="userFormModalRef"
+      :is-edit="isEdit"
+      :user-form-data="userFormData"
     />
   </div>
 </template>
