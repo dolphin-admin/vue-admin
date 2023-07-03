@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { generateQRCode } from '@/utils'
-
 const message = useMessage()
 // @ts-ignore
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
@@ -16,7 +14,7 @@ const makeQRCode = async () => {
   }
   loadingDispatcher.loading()
   try {
-    const qrcodeContent = await generateQRCode(userInput.value, {
+    const qrcodeContent = await QRCodeUtils.generateQRCode(userInput.value, {
       width: 200,
       errorCorrectionLevel: 'L'
     })
