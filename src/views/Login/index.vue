@@ -1,11 +1,4 @@
 <script setup lang="ts">
-import type { FormInst, FormItemRule, FormRules } from 'naive-ui'
-
-import { LoginApi } from '@/api'
-import { useLoading } from '@/hooks'
-import type { MessageSchema } from '@/types'
-import { setToken } from '@/utils'
-
 type RememberedAccountData = {
   username: string
   password: string
@@ -13,6 +6,7 @@ type RememberedAccountData = {
 
 const REMEMBERED_ACCOUNT_DATA_KEY = 'user_password'
 
+const route = useRoute()
 const router = useRouter()
 const message = useMessage()
 // @ts-ignore
@@ -27,6 +21,8 @@ const formData = reactive({
 })
 const formRef = ref<FormInst | null>(null)
 const rememberPassword = ref(false)
+
+const redirectUrl = computed(() => route.query.redirect as string)
 
 const rules: FormRules = {
   username: [
@@ -63,17 +59,22 @@ const login = () => {
 
     submitLoadingDispatcher.loading()
 
-    LoginApi.login(formData)
+    LoginAPI.login(formData)
       .then((res) => {
         const { accessToken } = res.data || {}
-        setToken(accessToken)
+        AuthUtils.setToken(accessToken)
         message.success(t('Login.Success'))
         if (rememberPassword.value) {
           localStorage.setItem(REMEMBERED_ACCOUNT_DATA_KEY, JSON.stringify(formData))
         } else {
           localStorage.removeItem(REMEMBERED_ACCOUNT_DATA_KEY)
         }
-        router.push('/')
+
+        if (redirectUrl.value) {
+          router.replace(redirectUrl.value)
+        } else {
+          router.replace('/')
+        }
       })
       .catch((err) => {
         message.error(err.message ?? t('Login.Failed'))

@@ -1,8 +1,6 @@
 import NProgress from 'nprogress'
 import { createRouter, createWebHistory, type RouteLocationNormalized } from 'vue-router'
 
-import { i18n } from '@/i18n'
-
 import { routes } from './routes'
 
 const { t } = i18n.global

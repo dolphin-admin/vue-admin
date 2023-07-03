@@ -1,6 +1,4 @@
-<script setup lang="ts">
-import { DataTableLayout } from '@/layouts'
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <DataTableLayout>

@@ -3,12 +3,10 @@ import 'vfonts/OpenSans.css'
 import 'vfonts/FiraCode.css'
 import 'nprogress/nprogress.css'
 
-import { i18n } from '@/i18n'
 import router from '@/router'
-import pinia from '@/store'
-import { faviconLoader, naiveUILoader } from '@/tools'
 
 import App from './App.vue'
+import pinia from './pinia'
 
 const app = createApp(App)
 

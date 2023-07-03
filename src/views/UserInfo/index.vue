@@ -1,11 +1,5 @@
 <script setup lang="ts">
-import type { FormInst, FormRules, UploadFileInfo, UploadInst } from 'naive-ui'
-
-import { UploadApi, UserApi } from '@/api'
-import { useLoading } from '@/hooks'
-import { useUserStore } from '@/store'
 import type { User } from '@/types'
-import { getServerFileUrl } from '@/utils'
 import NameIcon from '~icons/mdi/account-outline'
 import BirthDateIcon from '~icons/mdi/bookmark-minus-outline'
 import EmailIcon from '~icons/mdi/email-outline'
@@ -80,16 +74,21 @@ const handleValidateButtonClick = () => {
     submitLoadingDispatcher.loading()
 
     uploadRef.value?.submit()
-    try {
-      const { path } = (await UploadApi.uploadFile({ file: currentFile.value })).data || {}
-      formData.value.avatarUrl = getServerFileUrl(path)
-    } catch {
-      message.error('头像上传失败')
-      return
+
+    if (!formData.value.avatarUrl) {
+      try {
+        const { path } = (await UploadAPI.uploadFile({ file: currentFile.value })).data || {}
+        formData.value.avatarUrl = FileUtils.getServerFileUrl(path)
+      } catch {
+        message.error('头像上传失败')
+        submitLoadingDispatcher.loaded()
+        return
+      }
     }
 
     try {
-      const { data, message: successMessage } = await UserApi.updateUser(formData.value.id!, formData.value)
+      const { data, message: successMessage } = await UserAPI.updateUser(formData.value.id!, formData.value)
+      data.birthDate = data.birthDate && TimeUtils.formatTime(data.birthDate, 'YYYY-MM-DD')
       userStore.setUser(data)
       message.success(successMessage!)
     } catch (err: any) {
@@ -103,38 +102,53 @@ const handleValidateButtonClick = () => {
 const UploadAvatarUrl = (options: { fileList: UploadFileInfo[] }) => {
   const [file] = options.fileList
   currentFile.value = file.file ?? null
+  formData.value.avatarUrl = ''
 }
 
 onMounted(() =>
-  UserApi.getUserInfo().then((res) => {
-    userStore.setUser(res.data)
-    formData.value = res.data
+  UserAPI.getUserInfo().then((res) => {
+    const { data } = res
+    data.birthDate = data.birthDate && TimeUtils.formatTime(data.birthDate, 'YYYY-MM-DD')
+    userStore.setUser(data)
+    formData.value = data
   })
 )
 </script>
 
 <template>
   <div class="flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0 sm:p-4">
-    <NCard class="flex w-full flex-row space-y-8 font-medium sm:!w-2/5">
-      <div class="flex justify-center">
-        <img
+    <NCard class="flex w-full space-y-4 font-medium sm:!w-2/5">
+      <div class="flex flex-col items-center space-y-2">
+        <NAvatar
+          :size="80"
+          round
           :src="computedUserInfo?.avatarUrl"
-          class="h-16 w-16 rounded-full"
         />
-      </div>
-      <div class="flex items-center justify-center text-xl">
-        {{ computedUserInfo?.username }}
-        <template v-if="computedUserInfo?.gender === 0">
-          <MaleIcon class="w-[18px] text-blue-300" />
-        </template>
-        <template v-if="computedUserInfo?.gender === 1">
-          <FemaleIcon class="w-[18px] text-pink-300" />
-        </template>
+
+        <div class="flex items-center justify-center space-x-1 text-lg">
+          <span>{{ computedUserInfo?.username }}</span>
+          <template v-if="computedUserInfo?.gender === 1">
+            <MaleIcon class="w-[18px] text-blue-300" />
+          </template>
+          <template v-if="computedUserInfo?.gender === 0">
+            <FemaleIcon class="w-[18px] text-pink-300" />
+          </template>
+        </div>
+
+        <NEllipsis
+          :line-clamp="3"
+          class="text-xs"
+        >
+          {{ computedUserInfo?.biography }}
+          <template #tooltip>
+            <div class="!max-w-[300px]">{{ computedUserInfo?.biography }}</div>
+          </template>
+        </NEllipsis>
       </div>
 
-      <div class="mb-4 flex justify-center border-b-2 border-b-gray-100 pb-2">
-        {{ computedUserInfo?.biography }}
-      </div>
+      <NDivider class="!my-4">
+        <span>个人信息</span>
+      </NDivider>
       <div class="space-y-4">
         <div class="flex space-x-2">
           <span class="self-center">
@@ -142,12 +156,14 @@ onMounted(() =>
           </span>
           <span>{{ computedUserInfo?.name }}</span>
         </div>
-        <div class="flex space-x-2">
-          <span class="pt-0.5">
-            <BirthDateIcon />
-          </span>
-          <span>{{ computedUserInfo?.birthDate }}</span>
-        </div>
+        <template v-if="computedUserInfo?.birthDate">
+          <div class="flex space-x-2">
+            <span class="pt-0.5">
+              <BirthDateIcon />
+            </span>
+            <span>{{ computedUserInfo?.birthDate }}</span>
+          </div>
+        </template>
         <div class="flex space-x-2">
           <span class="self-center">
             <PhoneIcon />
@@ -259,8 +275,8 @@ onMounted(() =>
             name="性别"
           >
             <NSpace>
-              <NRadio :value="0"> 女 </NRadio>
               <NRadio :value="1"> 男 </NRadio>
+              <NRadio :value="0"> 女 </NRadio>
             </NSpace>
           </NRadioGroup>
         </NFormItem>
@@ -280,9 +296,9 @@ onMounted(() =>
           label="出生日期"
           path="birthDate"
         >
-          <NInput
-            v-model:value="formData.birthDate"
-            placeholder="请输入出生日期"
+          <NDatePicker
+            v-model:formatted-value="formData.birthDate"
+            clearable
           />
         </NFormItem>
         <NFormItem

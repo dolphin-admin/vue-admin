@@ -1,4 +1,3 @@
-import { siteMetaData } from '@/constants'
 import QRCodeIcon from '~icons/ic/baseline-qrcode'
 import HomeIcon from '~icons/ic/sharp-house'
 import UserManagementIcon from '~icons/mdi/account-cog-outline'

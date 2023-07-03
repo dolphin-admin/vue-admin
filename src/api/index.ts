@@ -1,4 +1,3 @@
-export { default as Request } from './axios'
 export * from './icon'
 export * from './login'
 export * from './signup'

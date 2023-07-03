@@ -1,5 +1,3 @@
-import { siteMetaData } from '@/constants'
-
 /**
  * @description Dynamically loading favicon by site meta data.
  */

@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { siteMetaData } from '@/constants'
-import { useThemeStore } from '@/store'
-import type { Lang, MessageSchema } from '@/types'
-import { setLang } from '@/utils'
+import type { Lang } from '@/types'
+
+const { version } = siteMetaData
 
 const themeStore = useThemeStore()
 // @ts-ignore
@@ -15,7 +14,7 @@ const options = [
 
 const handleUpdateLocale = (lang: Lang) => {
   themeStore.changeLocale(lang)
-  setLang(lang)
+  LangUtils.setLang(lang)
 }
 </script>
 
@@ -32,7 +31,7 @@ const handleUpdateLocale = (lang: Lang) => {
       />
       <div class="flex flex-col space-y-2">
         <span class="whitespace-nowrap text-2xl font-semibold">{{ t('App.Name') }}</span>
-        <span class="text-base tracking-wider">v{{ siteMetaData.version }}</span>
+        <span class="text-base tracking-wider">v{{ version }}</span>
       </div>
       <div class="flex items-center space-x-2 whitespace-nowrap">
         <span class="text-sm">{{ t('Language.Choose') }}</span>

@@ -7,10 +7,13 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AuthLayout: typeof import('./layouts/AuthLayout/index.vue')['default']
     AuthProvider: typeof import('./components/AuthProvider/index.vue')['default']
     BaseFooter: typeof import('./components/BaseFooter/index.vue')['default']
     BaseHeader: typeof import('./components/BaseHeader/index.vue')['default']
+    BaseLayout: typeof import('./layouts/BaseLayout/index.vue')['default']
     BaseSidebar: typeof import('./components/BaseSidebar/index.vue')['default']
+    DataTableLayout: typeof import('./layouts/DataTableLayout/index.vue')['default']
     FileUploader: typeof import('./components/FileUploader/index.vue')['default']
     NAvatar: typeof import('naive-ui')['NAvatar']
     NButton: typeof import('naive-ui')['NButton']
@@ -19,7 +22,9 @@ declare module 'vue' {
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
     NDataTable: typeof import('naive-ui')['NDataTable']
     NDatePicker: typeof import('naive-ui')['NDatePicker']
+    NDivider: typeof import('naive-ui')['NDivider']
     NDropdown: typeof import('naive-ui')['NDropdown']
+    NEllipsis: typeof import('naive-ui')['NEllipsis']
     NForm: typeof import('naive-ui')['NForm']
     NFormItem: typeof import('naive-ui')['NFormItem']
     NIcon: typeof import('naive-ui')['NIcon']

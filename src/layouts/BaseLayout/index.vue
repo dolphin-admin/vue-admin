@@ -1,5 +1,5 @@
 <template>
-  <main class="h-screen w-full">
+  <main class="h-screen w-full overflow-hidden">
     <AuthProvider>
       <div class="flex h-full w-full">
         <BaseSidebar />

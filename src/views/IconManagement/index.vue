@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 
-import { IconApi } from '@/api'
 import { iconSetList } from '@/constants'
-import { useLoading } from '@/hooks'
-import type { MessageSchema } from '@/types'
 import SearchIcon from '~icons/ic/sharp-search'
 
 const message = useMessage()
@@ -24,7 +21,7 @@ const handleSearch = (value: string) => {
 
 const getIcons = () => {
   fetchLoadingDispatcher.loading()
-  IconApi.getIconsBySet(selectedIconSet.value)
+  IconAPI.getIconsBySet(selectedIconSet.value)
     .then((res) => {
       const { uncategorized } = res
       iconList.value = uncategorized ?? []

@@ -1,9 +1,4 @@
 <script setup lang="ts">
-import { siteMetaData } from '@/constants'
-import { useUserStore } from '@/store'
-import type { MessageSchema } from '@/types'
-import { isAuthenticated } from '@/utils'
-
 const { version } = siteMetaData
 
 const userStore = useUserStore()
@@ -12,7 +7,7 @@ const router = useRouter()
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
 onBeforeMount(() => {
-  if (isAuthenticated()) {
+  if (AuthUtils.isAuthenticated()) {
     router.replace('/')
   } else {
     userStore.clearUser()

@@ -1,16 +1,40 @@
 import type { Theme } from '@/types'
 
-export const LOCAL_STORAGE_THEME = 'theme'
+export class ThemeUtils {
+  /**
+   * @description 主题存储键名
+   */
+  private static LOCAL_STORAGE_THEME = 'theme'
 
-export const getTheme = () => localStorage.getItem(LOCAL_STORAGE_THEME)
-
-export const setTheme = (theme: Theme) => localStorage.setItem(LOCAL_STORAGE_THEME, theme)
-
-export const clearTheme = () => localStorage.removeItem(LOCAL_STORAGE_THEME)
-
-export const getDefaultThemeMode = (): Theme => {
-  if (getTheme() === 'dark' || (!getTheme() && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-    return 'dark'
+  /**
+   * @description 获取主题
+   */
+  static getTheme() {
+    return localStorage.getItem(this.LOCAL_STORAGE_THEME)
   }
-  return 'light'
+
+  /**
+   * @description 设置主题
+   * @param theme
+   */
+  static setTheme(theme: Theme) {
+    localStorage.setItem(this.LOCAL_STORAGE_THEME, theme)
+  }
+
+  /**
+   * @description 清除主题
+   */
+  static clearTheme() {
+    localStorage.removeItem(this.LOCAL_STORAGE_THEME)
+  }
+
+  /**
+   * @description 获取默认主题
+   */
+  static getDefaultThemeMode(): Theme {
+    if (this.getTheme() === 'dark' || (!this.getTheme() && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      return 'dark'
+    }
+    return 'light'
+  }
 }

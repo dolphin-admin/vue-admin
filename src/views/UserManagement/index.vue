@@ -1,12 +1,5 @@
 <script setup lang="ts">
-import type { DataTableColumns } from 'naive-ui'
-import { NButton, NPopconfirm, NTag } from 'naive-ui'
-
-import { UserApi } from '@/api'
-import { BasePageModel } from '@/constants'
-import { useLoading } from '@/hooks'
 import type { User } from '@/types'
-import { formatTime } from '@/utils'
 import CheckIcon from '~icons/ic/baseline-check'
 import UserManagementIcon from '~icons/mdi/account-cog-outline'
 
@@ -41,7 +34,7 @@ const queryList = (shouldLoading = true) => {
     searchText: queryParams.searchText
   })
 
-  UserApi.getUsers(params)
+  UserAPI.getUsers(params)
     .then((res) => {
       const { data, total } = res || {}
       users.value = data
@@ -127,7 +120,7 @@ const columns = ref<DataTableColumns<User>>([
     width: 100,
     titleAlign: 'center',
     align: 'center',
-    render: (row) => (row.birthDate ? formatTime(row.birthDate, 'YYYY/MM/DD') : '')
+    render: (row) => (row.birthDate ? TimeUtils.formatTime(row.birthDate, 'YYYY/MM/DD') : '')
   },
   {
     title: t('UserManagement.Country'),
@@ -187,7 +180,7 @@ const columns = ref<DataTableColumns<User>>([
     width: 120,
     titleAlign: 'center',
     align: 'center',
-    render: (row) => (row.createdAt ? formatTime(row.createdAt) : '')
+    render: (row) => (row.createdAt ? TimeUtils.formatTime(row.createdAt) : '')
   },
   {
     title: t('UserManagement.roles'),

@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
-
-import { useSidebarStore, useThemeStore } from '@/store'
 import type { CustomMenuOption, Lang } from '@/types'
 import CollapseIcon from '~icons/line-md/chevron-triple-left'
 
