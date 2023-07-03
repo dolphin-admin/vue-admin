@@ -2,13 +2,12 @@ import { darkTheme, dateEnUS, dateZhCN, enUS, lightTheme, zhCN } from 'naive-ui'
 
 import { darkThemeOverrides, lightThemeOverrides } from '@/constants'
 import type { Lang, Theme } from '@/types'
-import { getDefaultDateLocale, getDefaultLocale, getDefaultThemeMode, setTheme } from '@/utils'
 
 export const useThemeStore = defineStore('theme', () => {
-  const themeMode = ref<Theme>(getDefaultThemeMode())
+  const themeMode = ref<Theme>(ThemeUtils.getDefaultThemeMode())
 
-  const locale = ref(getDefaultLocale())
-  const dateLocale = ref(getDefaultDateLocale())
+  const locale = ref(LangUtils.getDefaultLocale())
+  const dateLocale = ref(LangUtils.getDefaultDateLocale())
 
   const theme = computed(() => (themeMode.value === 'light' ? lightTheme : darkTheme))
 
@@ -19,11 +18,11 @@ export const useThemeStore = defineStore('theme', () => {
     if (selectedTheme === 'dark') {
       document.documentElement.classList.add('dark')
       document.documentElement.setAttribute('data-theme', 'dark')
-      setTheme('dark')
+      ThemeUtils.setTheme('dark')
     } else {
       document.documentElement.classList.remove('dark')
       document.documentElement.setAttribute('data-theme', 'light')
-      setTheme('light')
+      ThemeUtils.setTheme('light')
     }
   }
 
@@ -42,7 +41,7 @@ export const useThemeStore = defineStore('theme', () => {
     }
   }
 
-  changeThemeMode(getDefaultThemeMode())
+  changeThemeMode(ThemeUtils.getDefaultThemeMode())
 
   return {
     themeMode,

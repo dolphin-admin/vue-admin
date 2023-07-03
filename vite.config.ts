@@ -46,20 +46,58 @@ export default defineConfig(({ mode }) => {
           'vue',
           'vue-router',
           'pinia',
+          'vue-i18n',
           {
-            '@vueuse/core': ['useToggle', 'useEventListener', 'useDebounceFn']
+            'vue-router': ['RouterLink', 'RouterView'],
+            '@vueuse/core': ['useToggle', 'useEventListener', 'useDebounceFn'],
+            axios: [['default', 'axios']],
+            'naive-ui': [
+              'useDialog',
+              'useMessage',
+              'useNotification',
+              'useLoadingBar',
+              'createDiscreteApi',
+              'NButton',
+              'NTag',
+              'NIcon',
+              'NPopconfirm'
+            ]
           },
           {
-            'naive-ui': ['useDialog', 'useMessage', 'useNotification', 'useLoadingBar', 'createDiscreteApi']
+            from: 'naive-ui',
+            imports: [
+              'FormInst',
+              'FormItemInst',
+              'FormItemRule',
+              'FormRules',
+              'DataTableColumns',
+              'UploadFileInfo',
+              'UploadInst',
+              'UploadCustomRequestOptions'
+            ],
+            type: true
           },
           {
-            'vue-i18n': ['useI18n']
+            from: '@/constants',
+            imports: ['siteMetaData', 'GlobalEnvConfig', 'BasePageModel']
+          },
+          {
+            from: '@/i18n',
+            imports: ['i18n']
+          },
+          {
+            from: '@/types',
+            imports: ['MessageSchema'],
+            type: true
           }
-        ]
+        ],
+        dirs: ['src/api', 'src/hooks', 'src/store', 'src/tools', 'src/utils']
       }),
       Components({
         dts: './src/components.d.ts',
-        resolvers: [NaiveUiResolver()]
+        resolvers: [NaiveUiResolver()],
+        dirs: ['src/components', 'src/layouts'],
+        extensions: ['vue']
       }),
       Icons({ autoInstall: true })
     ],

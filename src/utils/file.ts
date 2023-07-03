@@ -1,3 +1,9 @@
-import { GlobalEnvConfig } from '@/constants'
-
-export const getServerFileUrl = (path: string) => `${GlobalEnvConfig.BASE_API_PROXY}/${path}`
+export class FileUtils {
+  /**
+   * @description 获取文件在文件服务器的地址
+   * @param path 文件存储路径
+   */
+  static getServerFileUrl(path: string): string {
+    return `${GlobalEnvConfig.BASE_API_PROXY}/${path}`
+  }
+}

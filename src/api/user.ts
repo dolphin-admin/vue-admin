@@ -1,14 +1,26 @@
-import { GlobalEnvConfig } from '@/constants'
 import type { BaseResponse, PageModel, PageResponse, User } from '@/types'
 
 import Request from './axios'
+export class UserAPI {
+  private static USER_API_PREFIX = `${GlobalEnvConfig.BASE_API_PREFIX}/users`
 
-const USER_API_PREFIX = `${GlobalEnvConfig.BASE_API_PREFIX}/users`
+  static getUsers(params: PageModel) {
+    return Request.get<PageResponse<User[]>>(this.USER_API_PREFIX, { ...params })
+  }
 
-export const UserApi = {
-  getUsers: (params: PageModel) => Request.get<PageResponse<User[]>>(USER_API_PREFIX, { ...params }),
-  getUser: (id: number) => Request.get<BaseResponse<User>>(`${USER_API_PREFIX}/${id}`),
-  getUserInfo: () => Request.get<BaseResponse<User>>(`${USER_API_PREFIX}/info`),
-  updateUser: (id: number, data: User) => Request.put<BaseResponse<User>>(`${USER_API_PREFIX}/${id}`, { ...data }),
-  createUser: () => Request.post<BaseResponse<User>>(`${USER_API_PREFIX}`)
+  static getUser(id: number) {
+    return Request.get<BaseResponse<User>>(`${this.USER_API_PREFIX}/${id}`)
+  }
+
+  static getUserInfo() {
+    return Request.get<BaseResponse<User>>(`${this.USER_API_PREFIX}/info`)
+  }
+
+  static createUser() {
+    return Request.post<BaseResponse<User>>(this.USER_API_PREFIX)
+  }
+
+  static updateUser(id: number, data: User) {
+    return Request.put<BaseResponse<User>>(`${this.USER_API_PREFIX}/${id}`, { ...data })
+  }
 }

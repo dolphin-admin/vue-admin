@@ -1,11 +1,5 @@
 <script setup lang="ts">
-import type { FormInst, FormRules, UploadFileInfo, UploadInst } from 'naive-ui'
-
-import { UploadApi, UserApi } from '@/api'
-import { useLoading } from '@/hooks'
-import { useUserStore } from '@/store'
 import type { User } from '@/types'
-import { getServerFileUrl } from '@/utils'
 import NameIcon from '~icons/mdi/account-outline'
 import BirthDateIcon from '~icons/mdi/bookmark-minus-outline'
 import EmailIcon from '~icons/mdi/email-outline'
@@ -81,15 +75,15 @@ const handleValidateButtonClick = () => {
 
     uploadRef.value?.submit()
     try {
-      const { path } = (await UploadApi.uploadFile({ file: currentFile.value })).data || {}
-      formData.value.avatarUrl = getServerFileUrl(path)
+      const { path } = (await UploadAPI.uploadFile({ file: currentFile.value })).data || {}
+      formData.value.avatarUrl = FileUtils.getServerFileUrl(path)
     } catch {
       message.error('头像上传失败')
       return
     }
 
     try {
-      const { data, message: successMessage } = await UserApi.updateUser(formData.value.id!, formData.value)
+      const { data, message: successMessage } = await UserAPI.updateUser(formData.value.id!, formData.value)
       userStore.setUser(data)
       message.success(successMessage!)
     } catch (err: any) {
@@ -106,7 +100,7 @@ const UploadAvatarUrl = (options: { fileList: UploadFileInfo[] }) => {
 }
 
 onMounted(() =>
-  UserApi.getUserInfo().then((res) => {
+  UserAPI.getUserInfo().then((res) => {
     userStore.setUser(res.data)
     formData.value = res.data
   })

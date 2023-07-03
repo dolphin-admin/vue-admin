@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { useSidebarStore, useThemeStore, useUserStore } from '@/store'
-import type { Lang, MessageSchema } from '@/types'
-import { clearLang, clearTheme, clearToken, setLang } from '@/utils'
+import type { Lang } from '@/types'
 import NotificationIcon from '~icons/ic/baseline-notifications-none'
 import LanguageIcon from '~icons/ion/language-outline'
 import HideMenuIcon from '~icons/line-md/menu-fold-left'
@@ -43,9 +41,9 @@ const userOptions = [
 ]
 
 const logout = () => {
-  clearToken()
-  clearLang()
-  clearTheme()
+  AuthUtils.clearToken()
+  LangUtils.clearLang()
+  ThemeUtils.clearTheme()
   userStore.clearUser()
   message.success(t('Logout.Success'))
   router.replace('/login')
@@ -57,7 +55,7 @@ const handleUpdateLocale = (lang: Lang) => {
     document.title = route.path === '/' ? t('App.Name') : `${t((route.meta?.title ?? '') as string)} | ${t('App.Name')}`
   }, 150)
   themeStore.changeLocale(lang)
-  setLang(lang)
+  LangUtils.setLang(lang)
 }
 
 const selectUserOption = (key: UserOptionKey) => {

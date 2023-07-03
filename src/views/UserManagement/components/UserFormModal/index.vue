@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import type { FormInst, FormRules, UploadFileInfo, UploadInst } from 'naive-ui'
-
-import { UploadApi, UserApi } from '@/api'
-import { useLoading } from '@/hooks'
 import type { User } from '@/types'
-import { getServerFileUrl } from '@/utils'
 
 const message = useMessage()
 const [submitLoading, submitLoadingDispatcher] = useLoading()
@@ -101,8 +96,8 @@ const submitCallback = () => {
 
     uploadRef.value?.submit()
     try {
-      const { path } = (await UploadApi.uploadFile({ file: currentFile.value })).data || {}
-      formData.value.avatarUrl = getServerFileUrl(path)
+      const { path } = (await UploadAPI.uploadFile({ file: currentFile.value })).data || {}
+      formData.value.avatarUrl = FileUtils.getServerFileUrl(path)
     } catch {
       message.error(t('Common.FailedUploadAvatar'))
       return
@@ -110,7 +105,7 @@ const submitCallback = () => {
 
     try {
       if (props.isEdit) {
-        const { message: successMessage } = await UserApi.updateUser(formData.value.id!, formData.value)
+        const { message: successMessage } = await UserAPI.updateUser(formData.value.id!, formData.value)
         message.success(successMessage!)
         showModal.value = false
       }

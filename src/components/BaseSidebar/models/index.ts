@@ -1,7 +1,3 @@
-import { NIcon } from 'naive-ui'
-import { RouterLink } from 'vue-router'
-
-import { i18n } from '@/i18n'
 import type { MenuMixedOption } from '@/types'
 import QRCodeIcon from '~icons/ic/baseline-qrcode'
 import HomeIcon from '~icons/ic/sharp-house'

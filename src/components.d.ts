@@ -7,10 +7,13 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AuthLayout: typeof import('./layouts/AuthLayout/index.vue')['default']
     AuthProvider: typeof import('./components/AuthProvider/index.vue')['default']
     BaseFooter: typeof import('./components/BaseFooter/index.vue')['default']
     BaseHeader: typeof import('./components/BaseHeader/index.vue')['default']
+    BaseLayout: typeof import('./layouts/BaseLayout/index.vue')['default']
     BaseSidebar: typeof import('./components/BaseSidebar/index.vue')['default']
+    DataTableLayout: typeof import('./layouts/DataTableLayout/index.vue')['default']
     FileUploader: typeof import('./components/FileUploader/index.vue')['default']
     NAvatar: typeof import('naive-ui')['NAvatar']
     NButton: typeof import('naive-ui')['NButton']

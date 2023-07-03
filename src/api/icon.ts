@@ -1,11 +1,11 @@
-import { GlobalEnvConfig } from '@/constants'
 import type { APIv2CollectionResponse } from '@/types'
 
 import Request from './axios'
 
-const { ICON_API_PREFIX } = GlobalEnvConfig
+export class IconAPI {
+  private static ICON_API_PREFIX = GlobalEnvConfig.ICON_API_PREFIX
 
-export const IconApi = {
-  getIconsBySet: (iconSet: string) =>
-    Request.get<APIv2CollectionResponse>(`${ICON_API_PREFIX}/collection?prefix=${iconSet}`)
+  static getIconsBySet(iconSet: string) {
+    return Request.get<APIv2CollectionResponse>(`${this.ICON_API_PREFIX}/collection?prefix=${iconSet}`)
+  }
 }

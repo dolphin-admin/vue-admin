@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { siteMetaData } from '@/constants'
-import type { MessageSchema } from '@/types'
-
 const { version, teamName } = siteMetaData
 
 // @ts-ignore

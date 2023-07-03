@@ -1,14 +1,11 @@
 import type { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
-import axios from 'axios'
 
-import { GlobalEnvConfig } from '@/constants'
 import router from '@/router'
-import { useThemeStore } from '@/store'
 import type { PageModel } from '@/types'
-import { clearToken, getDefaultLang, getToken, isAuthenticated } from '@/utils'
 
 import { axiosConfig } from './config'
 import { errorMessageMap, ResponseStatusCode } from './statusCode'
+
 const themeStore = useThemeStore()
 
 const { message } = createDiscreteApi(['message'], {
@@ -30,10 +27,10 @@ class Request {
     this.instance.interceptors.request.use(
       (req: InternalAxiosRequestConfig) => {
         const { url } = req
-        if (isAuthenticated() && url?.startsWith(GlobalEnvConfig.BASE_API_PREFIX)) {
-          req.headers.Authorization = `Bearer ${getToken()}`
+        if (AuthUtils.isAuthenticated() && url?.startsWith(GlobalEnvConfig.BASE_API_PREFIX)) {
+          req.headers.Authorization = `Bearer ${AuthUtils.getToken()}`
         }
-        req.headers.Language = getDefaultLang()
+        req.headers.Language = LangUtils.getDefaultLang()
         return req
       },
       (err: AxiosError) => Promise.reject(err)
@@ -60,8 +57,13 @@ class Request {
     const errorMessage = errorMessageMap.get(code) || 'Unknown Error!'
     switch (code) {
       case ResponseStatusCode.UNAUTHORIZED:
-        clearToken()
-        router.replace('/login')
+        AuthUtils.clearToken()
+        router.replace({
+          path: '/login',
+          query: {
+            redirect: router.currentRoute.value.fullPath
+          }
+        })
         console.error(errorMessage)
         message.error(errorMessage)
         break

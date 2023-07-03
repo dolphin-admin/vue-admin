@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { useLoading } from '@/hooks'
-import type { MessageSchema } from '@/types'
-import { downloadFile, generateQRCode } from '@/utils'
+import { generateQRCode } from '@/utils'
 
 const message = useMessage()
 // @ts-ignore
@@ -29,6 +27,8 @@ const makeQRCode = async () => {
   }
   loadingDispatcher.loaded()
 }
+
+const downloadFile = () => BrowserUtils.downloadFile(generatedResult.value, 'qrcode.png')
 </script>
 
 <template>
@@ -83,7 +83,7 @@ const makeQRCode = async () => {
           <div class="mt-4 text-center">
             <NButton
               type="primary"
-              @click="() => downloadFile(generatedResult, 'qrcode.png')"
+              @click="() => downloadFile()"
             >
               {{ t('Common.Download') }}
             </NButton>

@@ -1,10 +1,4 @@
 <script setup lang="ts">
-import type { DataTableColumns } from 'naive-ui'
-import { NButton, NPopconfirm, NTag } from 'naive-ui'
-
-import { UserApi } from '@/api'
-import { BasePageModel } from '@/constants'
-import { useLoading } from '@/hooks'
 import type { User } from '@/types'
 import { formatTime } from '@/utils'
 import CheckIcon from '~icons/ic/baseline-check'
@@ -41,7 +35,7 @@ const queryList = (shouldLoading = true) => {
     searchText: queryParams.searchText
   })
 
-  UserApi.getUsers(params)
+  UserAPI.getUsers(params)
     .then((res) => {
       const { data, total } = res || {}
       users.value = data

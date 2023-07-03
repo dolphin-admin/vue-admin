@@ -1,10 +1,4 @@
 <script setup lang="ts">
-import type { FormInst, FormItemInst, FormItemRule, FormRules } from 'naive-ui'
-
-import { SignupApi } from '@/api'
-import { useLoading } from '@/hooks'
-import { setToken } from '@/utils'
-
 const router = useRouter()
 const message = useMessage()
 // @ts-ignore
@@ -65,12 +59,12 @@ const signup = () => {
 
     submitLoadingDispatcher.loading()
 
-    SignupApi.signup(formData)
+    SignupAPI.signup(formData)
       .then((res) => {
         const { accessToken } = res.data || {}
-        setToken(accessToken)
+        AuthUtils.setToken(accessToken)
         message.success(t('Signup.Success'))
-        router.push('/')
+        router.replace('/')
       })
       .catch((err) => {
         message.error(err.message ?? t('Signup.Failed'))

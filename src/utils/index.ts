@@ -1,4 +1,4 @@
-export * from './authentication'
+export * from './auth'
 export * from './browser'
 export * from './file'
 export * from './icon'

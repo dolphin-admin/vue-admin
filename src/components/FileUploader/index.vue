@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import type { UploadCustomRequestOptions } from 'naive-ui'
-
-import { UploadApi } from '@/api'
 import UploadIcon from '~icons/ic/outline-cloud-upload'
 
 export interface Props {
@@ -29,7 +26,7 @@ const customRequest = ({ file, onFinish, onError, onProgress }: UploadCustomRequ
 
   formData.append('file', file.file as File)
 
-  UploadApi.uploadFile(formData, {
+  UploadAPI.uploadFile(formData, {
     onUploadProgress: (_progressEvent) => {
       // ;({ percent: Math.ceil((progressEvent.loaded / progressEvent.total) * 100) })
     }
