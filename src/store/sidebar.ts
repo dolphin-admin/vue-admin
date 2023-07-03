@@ -1,12 +1,12 @@
 export const useSidebarStore = defineStore('sidebar', () => {
   const isCollapse = ref(false)
-  const isDisplay = ref(false) // Only use in mobile mode
+  const isDisplay = ref(true)
 
-  const changeSidebarStatus = (value: boolean) => {
+  const changeSidebarCollapse = (value: boolean) => {
     isCollapse.value = value
   }
 
-  const toggleSidebarStatus = () => {
+  const toggleSidebarCollapse = () => {
     isCollapse.value = !isCollapse.value
   }
 
@@ -20,8 +20,9 @@ export const useSidebarStore = defineStore('sidebar', () => {
 
   return {
     isCollapse,
-    changeSidebarStatus,
-    toggleSidebarStatus,
+    isDisplay,
+    changeSidebarCollapse,
+    toggleSidebarCollapse,
     changeSidebarDisplay,
     toggleSidebarDisplay
   }

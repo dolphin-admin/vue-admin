@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import { RouterLink } from 'vue-router'
+
 import { useSidebarStore, useThemeStore } from '@/store'
 import type { CustomMenuOption, Lang } from '@/types'
-import { renderRouterLink } from '@/utils'
+import CollapseIcon from '~icons/line-md/chevron-triple-left'
 
-import { menuOptions } from './model'
+import { menuOptions } from './models'
 
 const themeStore = useThemeStore()
 const sidebarStore = useSidebarStore()
@@ -24,7 +26,15 @@ const getLabel = (menuItem: CustomMenuOption) => {
     case 'label':
       return exactLabel
     case 'routerLink':
-      return renderRouterLink(exactLabel as string, path ?? '/')
+      return h(
+        RouterLink,
+        {
+          to: path ?? '/'
+        },
+        {
+          default: () => exactLabel as string
+        }
+      )
     default:
       return label
   }
@@ -49,14 +59,27 @@ watch(
     })
   }
 )
+
+watch(
+  () => [sidebarStore.isCollapse, sidebarStore.isDisplay],
+  () => {
+    console.log('collapse', sidebarStore.isCollapse)
+    console.log('display', sidebarStore.isDisplay)
+  }
+)
 </script>
 
 <template>
   <div
-    class="absolute z-[100] h-full border-r border-gray-300 bg-light-default shadow-sm transition-[width] duration-500 dark:border-gray-950 dark:bg-dark-default sm:static"
-    :class="[sidebarStore.isCollapse ? 'w-0 sm:w-16' : ' inset-y-0 left-0 w-56 sm:w-56']"
+    class="absolute inset-0 z-[75] bg-black opacity-40 sm:hidden"
+    :class="sidebarStore.isDisplay ? 'block' : 'hidden'"
+    @click="() => sidebarStore.toggleSidebarDisplay()"
+  />
+  <div
+    class="absolute inset-y-0 left-0 z-[100] h-full border-r border-gray-300 bg-light-default shadow-sm transition-[width] dark:border-gray-950 dark:bg-dark-default sm:static"
+    :class="[sidebarStore.isDisplay ? (sidebarStore.isCollapse ? 'w-16' : 'w-56') : 'w-0']"
   >
-    <div class="flex h-16 w-full select-none items-center justify-center space-x-3">
+    <div class="flex h-16 w-full select-none items-center justify-center">
       <img
         class="animate-pulse cursor-pointer select-none"
         width="36"
@@ -67,14 +90,14 @@ watch(
         @click="() => themeStore.changeThemeMode(themeStore.themeMode === 'light' ? 'dark' : 'light')"
       />
       <span
-        v-show="!sidebarStore.isCollapse"
-        class="cursor-pointer whitespace-nowrap text-sm tracking-wide"
+        class="cursor-pointer whitespace-nowrap text-sm tracking-wide transition-all"
+        :class="[sidebarStore.isDisplay ? (sidebarStore.isCollapse ? 'ml-0 hidden' : 'ml-3 w-auto') : 'hidden']"
         @click="() => router.push('/')"
       >
         {{ t('App.Name') }}
       </span>
     </div>
-    <div class="h-[calc(100%-64px)]">
+    <div class="h-[calc(100%-112px)]">
       <NScrollbar :size="10">
         <NMenu
           :collapsed-icon-size="20"
@@ -82,15 +105,22 @@ watch(
           :options="menuData"
           :collapsed-width="64"
           :root-indent="18"
-          :indent="28"
+          :indent="26"
           :value="currentRouteName"
         />
       </NScrollbar>
     </div>
+    <div class="h-12 w-full p-1">
+      <div
+        class="flex h-full w-full cursor-pointer items-center justify-center rounded-sm transition-all hover:bg-gray-200 active:opacity-75 dark:hover:bg-gray-600"
+        @click="() => sidebarStore.toggleSidebarCollapse()"
+      >
+        <CollapseIcon
+          class="dark:text-white"
+          :class="[sidebarStore.isCollapse ? 'rotate-180' : 'rotate-0']"
+          width="20"
+        />
+      </div>
+    </div>
   </div>
-  <div
-    class="absolute inset-0 z-[75] bg-black opacity-40 sm:hidden"
-    :class="sidebarStore.isCollapse ? 'hidden' : 'block'"
-    @click="() => sidebarStore.toggleSidebarStatus()"
-  ></div>
 </template>

@@ -69,13 +69,17 @@
     "Collapse": "收起侧边栏"
   },
   "Menu": {
+    "Home": "首页",
     "Login": "登录",
     "Signup": "注册",
-    "SystemFunction": "系统功能",
-    "QRCode": "二维码",
     "UserInfo": "用户信息",
+    "SystemFunction": "系统功能",
+    "UserManagement": "用户管理",
+    "RoleManagement": "角色管理",
+    "PermissionManagement": "权限管理",
+    "SystemTool": "系统工具",
     "IconManagement": "图标管理",
-    "UserManagement": "用户管理"
+    "QRCode": "二维码"
   },
   "QRCode": {
     "Tip": {

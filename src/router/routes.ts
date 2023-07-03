@@ -1,4 +1,10 @@
 import { siteMetaData } from '@/constants'
+import QRCodeIcon from '~icons/ic/baseline-qrcode'
+import HomeIcon from '~icons/ic/sharp-house'
+import UserManagementIcon from '~icons/mdi/account-cog-outline'
+import RoleManagementIcon from '~icons/mdi/account-group'
+import IconManagementIcon from '~icons/mdi/emoticon-wink'
+import PermissionManagementIcon from '~icons/mdi/key-chain'
 
 const { appName } = siteMetaData
 
@@ -13,15 +19,8 @@ export const routes = [
         name: 'home',
         component: () => import('@/views/Home'),
         meta: {
-          title: appName
-        }
-      },
-      {
-        path: '/qrcode',
-        name: 'qrcode',
-        component: () => import('@/views/QRCode'),
-        meta: {
-          title: 'Menu.QRCode'
+          title: appName,
+          icon: HomeIcon
         }
       },
       {
@@ -33,19 +32,48 @@ export const routes = [
         }
       },
       {
-        path: '/icon-management',
-        name: 'icon-management',
-        component: () => import('@/views/IconManagement'),
-        meta: {
-          title: 'Menu.IconManagement'
-        }
-      },
-      {
         path: '/user-management',
         name: 'user-management',
         component: () => import('@/views/UserManagement'),
         meta: {
-          title: 'Menu.UserManagement'
+          title: 'Menu.UserManagement',
+          icon: UserManagementIcon
+        }
+      },
+      {
+        path: '/role-management',
+        name: 'role-management',
+        component: () => import('@/views/RoleManagement'),
+        meta: {
+          title: 'Menu.RoleManagement',
+          icon: RoleManagementIcon
+        }
+      },
+      {
+        path: '/permission-management',
+        name: 'permission-management',
+        component: () => import('@/views/PermissionManagement'),
+        meta: {
+          title: 'Menu.PermissionManagement',
+          icon: PermissionManagementIcon
+        }
+      },
+      {
+        path: '/icon-management',
+        name: 'icon-management',
+        component: () => import('@/views/IconManagement'),
+        meta: {
+          title: 'Menu.IconManagement',
+          icon: IconManagementIcon
+        }
+      },
+      {
+        path: '/qrcode',
+        name: 'qrcode',
+        component: () => import('@/views/QRCode'),
+        meta: {
+          title: 'Menu.QRCode',
+          icon: QRCodeIcon
         }
       }
     ]
