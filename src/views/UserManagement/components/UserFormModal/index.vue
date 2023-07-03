@@ -9,6 +9,9 @@ import { getServerFileUrl } from '@/utils'
 const message = useMessage()
 const [submitLoading, submitLoadingDispatcher] = useLoading()
 
+// @ts-ignore
+const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+
 const formRef = ref<FormInst | null>(null)
 const uploadRef = ref<UploadInst | null>(null)
 const formData = ref<User>({})
@@ -18,21 +21,21 @@ const rules: FormRules = {
   name: [
     {
       required: true,
-      message: '请输入用户名字',
+      message: t('Common.Validation.Name'),
       trigger: ['blur', 'input']
     }
   ],
   firstName: [
     {
       required: true,
-      message: '请输入名字',
+      message: t('Common.Validation.FirstName'),
       trigger: ['blur', 'input']
     }
   ],
   lastName: [
     {
       required: true,
-      message: '请输入姓',
+      message: t('Common.Validation.LastName'),
       trigger: ['blur', 'input']
     }
   ],
@@ -41,18 +44,18 @@ const rules: FormRules = {
       key: 'edit',
       required: true,
       trigger: ['blur', 'change'],
-      message: '请输入邮箱'
+      message: t('Common.Validation.Email')
     },
     {
       pattern: /^([a-zA-Z]|[0-9])(\w|-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/,
-      message: '请输入正确格式的邮箱',
+      message: t('Common.Validation.CorrectEmailFormat'),
       trigger: ['input', 'blur']
     }
   ],
   phoneNumber: [
     {
       pattern: /^[1][3456789]\d{9}$/,
-      message: '请输入正确格式的手机号',
+      message: t('Common.Validation.CorrectPhoneNumberFormat'),
       trigger: ['input', 'blur']
     }
   ]
@@ -101,7 +104,7 @@ const submitCallback = () => {
       const { path } = (await UploadApi.uploadFile({ file: currentFile.value })).data || {}
       formData.value.avatarUrl = getServerFileUrl(path)
     } catch {
-      message.error('头像上传失败')
+      message.error(t('Common.FailedUploadAvatar'))
       return
     }
 
@@ -134,10 +137,10 @@ defineExpose({
 <template>
   <NModal
     v-model:show="showModal"
-    :title="isEdit ? '编辑' : '新增'"
+    :title="isEdit ? t('UserManagement.Edit') : t('UserManagement.CreateUser')"
     preset="dialog"
-    positive-text="确认"
-    negative-text="取消"
+    :positive-text="t('Common.Confirm')"
+    :negative-text="t('Common.Cancer')"
   >
     <NForm
       ref="formRef"
@@ -149,7 +152,7 @@ defineExpose({
       class="flex flex-col"
     >
       <NFormItem
-        label="头像"
+        :label="t('Common.Avatar')"
         path="avatarUrl"
       >
         <NUpload
@@ -167,19 +170,19 @@ defineExpose({
         </NUpload>
       </NFormItem>
       <NFormItem
-        label="用户名"
+        :label="t('Common.Username')"
         path="name"
       >
         <NInput
           v-model:value="formData.name"
-          placeholder="请输入用户名"
+          :placeholder="t('Common.Validation.Username')"
           maxlength="20"
           show-count
           clearable
         />
       </NFormItem>
       <NFormItem
-        label="名字"
+        :label="t('Common.Name')"
         path="firstName"
       >
         <NInput
@@ -280,13 +283,13 @@ defineExpose({
         <NButton
           size="small"
           @click="cancelCallback"
-          >取消</NButton
+          >{{ t('Common.Cancer') }}</NButton
         >
         <NButton
           size="small"
           type="success"
           @click="submitCallback"
-          >确认</NButton
+          >{{ t('Common.Confirm') }}</NButton
         >
       </div>
     </template>

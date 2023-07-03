@@ -14,6 +14,9 @@ import { UserFormModal } from './components'
 
 const [loading, loadingDispatcher] = useLoading()
 
+// @ts-ignore
+const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+
 const queryParams = reactive({
   searchText: ''
 })
@@ -54,6 +57,12 @@ const queryList = (shouldLoading = true) => {
 
 const handlePageChange = () => queryList()
 
+const Operation = [
+  t('UserManagement.Edit'),
+  t('UserManagement.Enabled'),
+  t('UserManagement.disabled'),
+  t('UserManagement.ResetPassword')
+]
 const columns = ref<DataTableColumns<User>>([
   {
     title: 'ID',
@@ -63,17 +72,17 @@ const columns = ref<DataTableColumns<User>>([
     align: 'center'
   },
   {
-    title: '用户名',
+    title: t('UserManagement.UserName'),
     key: 'username',
     width: 120
   },
   {
-    title: '电话',
+    title: t('UserManagement.PhoneNumber'),
     key: 'phoneNumber',
     width: 120
   },
   {
-    title: '邮箱',
+    title: t('UserManagement.Email'),
     key: 'email',
     width: 100,
     resizable: true,
@@ -82,22 +91,22 @@ const columns = ref<DataTableColumns<User>>([
     }
   },
   {
-    title: '姓名',
+    title: t('UserManagement.Name'),
     key: 'name',
     width: 100
   },
   {
-    title: '姓',
+    title: t('UserManagement.LastName'),
     key: 'lastName',
     width: 70
   },
   {
-    title: '名',
+    title: t('UserManagement.FirstName'),
     key: 'firstName',
     width: 70
   },
   {
-    title: '昵称',
+    title: t('UserManagement.NickName'),
     key: 'nickName',
     width: 120,
     resizable: true,
@@ -106,14 +115,14 @@ const columns = ref<DataTableColumns<User>>([
     }
   },
   {
-    title: '性别',
+    title: t('UserManagement.Gender'),
     key: 'genderLabel',
     width: 50,
     titleAlign: 'center',
     align: 'center'
   },
   {
-    title: '出生日期',
+    title: t('UserManagement.BirthDate'),
     key: 'birthDate',
     width: 100,
     titleAlign: 'center',
@@ -121,17 +130,17 @@ const columns = ref<DataTableColumns<User>>([
     render: (row) => (row.birthDate ? formatTime(row.birthDate, 'YYYY/MM/DD') : '')
   },
   {
-    title: '国家',
+    title: t('UserManagement.Country'),
     key: 'country',
     width: 80
   },
   {
-    title: '城市',
+    title: t('UserManagement.City'),
     key: 'city',
     width: 80
   },
   {
-    title: '地址',
+    title: t('UserManagement.Address'),
     key: 'address',
     width: 120,
     resizable: true,
@@ -140,7 +149,7 @@ const columns = ref<DataTableColumns<User>>([
     }
   },
   {
-    title: '简介',
+    title: t('UserManagement.Biography'),
     key: 'biography',
     width: 200,
     resizable: true,
@@ -149,7 +158,7 @@ const columns = ref<DataTableColumns<User>>([
     }
   },
   {
-    title: '是否验证',
+    title: t('UserManagement.Verified'),
     key: 'verified',
     width: 80,
     titleAlign: 'center',
@@ -161,7 +170,7 @@ const columns = ref<DataTableColumns<User>>([
       })
   },
   {
-    title: '是否启用',
+    title: t('UserManagement.Enabled'),
     key: 'enabled',
     width: 80,
     titleAlign: 'center',
@@ -173,7 +182,7 @@ const columns = ref<DataTableColumns<User>>([
       })
   },
   {
-    title: '进入系统时间',
+    title: t('UserManagement.CreatedAt'),
     key: 'createdAt',
     width: 120,
     titleAlign: 'center',
@@ -181,7 +190,7 @@ const columns = ref<DataTableColumns<User>>([
     render: (row) => (row.createdAt ? formatTime(row.createdAt) : '')
   },
   {
-    title: '角色',
+    title: t('UserManagement.roles'),
     key: 'roles',
     width: 200,
     render: (row) => {
@@ -202,7 +211,7 @@ const columns = ref<DataTableColumns<User>>([
     }
   },
   {
-    title: '操作',
+    title: t('UserManagement.Operation'),
     key: 'option',
     width: 220,
     titleAlign: 'center',
@@ -215,14 +224,14 @@ const columns = ref<DataTableColumns<User>>([
         },
         {
           default: () =>
-            ['编辑', '启用', '禁用', '重置密码'].map((text) => {
-              if (text === '启用' || text === '禁用') {
+            Operation.map((text) => {
+              if (text === Operation[1] || text === Operation[2]) {
                 return h(
                   NPopconfirm,
                   {
                     showIcon: false,
-                    negativeText: '取消',
-                    positiveText: '确认'
+                    negativeText: t('Common.Cancer'),
+                    positiveText: t('Common.Confirm')
                   },
                   {
                     trigger: () => h(NButton, { type: 'default', size: 'small' }, { default: () => text }),
@@ -267,10 +276,10 @@ onMounted(() => {
     <div class="flex items-center justify-between">
       <div class="ml-1 flex items-center space-x-2 text-2xl">
         <UserManagementIcon width="28" />
-        <span>用户管理</span>
+        <span>{{ t('UserManagement.UserManagement') }}</span>
       </div>
       <div>
-        <n-button @click="handleCreateUser">新建用户</n-button>
+        <n-button @click="handleCreateUser">{{ t('UserManagement.CreateUser') }}</n-button>
       </div>
     </div>
     <NDataTable

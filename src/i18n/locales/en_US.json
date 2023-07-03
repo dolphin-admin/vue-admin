@@ -17,12 +17,23 @@
       "Password": "Please enter password",
       "PasswordLength": "Password length must be greater than 6",
       "ConfirmPassword": "Please enter confirm password",
-      "ConfirmPasswordNotMatch": "Password not match"
+      "ConfirmPasswordNotMatch": "Password not match",
+      "Name": "Please enter name",
+      "FirstName": "Please enter your first name",
+      "LastName": "Please enter your last name",
+      "Email": "Please enter your email",
+      "CorrectEmailFormat": "Please enter the correct email format",
+      "CorrectPhoneNumberFormat": "Please enter phone number in the correct format"
     },
     "Download": "Download",
     "Upload": "Upload",
     "Search": "Search",
-    "All": "All"
+    "All": "All",
+    "Confirm": "Confirm",
+    "Cancer": "Cancer",
+    "FailedUploadAvatar": "Failed upload avatar",
+    "Avatar": "Avatar",
+    "Name": "Name"
   },
   "Login": {
     "AsAdmin": "Login as Admin",
@@ -80,5 +91,33 @@
     "Tip": {
       "Search": "Please enter icon set name"
     }
+  },
+  "UserManagement": {
+    "UserManagement": "User Management",
+    "Operation": "Operation",
+    "Edit": "Edit",
+    "CreateUser": "CreateUser",
+    "Enable": "Enable",
+    "Disabled": "Disabled",
+    "ResetPassword": "Reset password",
+    "UserName": "User name",
+    "Email": "Email",
+    "PhoneNumber": "PhoneNumber",
+    "Name": "Name",
+    "FirstName": "FirstName",
+    "LastName": "LastName",
+    "NickName": "Nick name",
+    "Gender": "Gender",
+    "Country": "Country",
+    "AvatarUrl": "Avatar",
+    "Province": "Province",
+    "City": "City",
+    "Address": "Address",
+    "Biography": "Biography",
+    "Verified": "Verified",
+    "Enabled": "Enabled",
+    "BirthDate": "BirthDate",
+    "Roles": "Roles",
+    "CreatedAt": "Enter system time"
   }
 }
