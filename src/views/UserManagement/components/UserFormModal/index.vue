@@ -132,6 +132,7 @@ defineExpose({
 <template>
   <NModal
     v-model:show="showModal"
+    class="!my-6"
     :title="isEdit ? t('UserManagement.Edit') : t('UserManagement.CreateUser')"
     preset="dialog"
     :positive-text="t('Common.Confirm')"

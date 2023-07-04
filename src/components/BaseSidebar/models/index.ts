@@ -12,7 +12,16 @@ const { t } = i18n.global
 
 export const menuOptions: MenuMixedOption[] = [
   {
-    label: () => h(RouterLink, { to: '/' }, { default: () => t('Menu.Home') }),
+    label: () =>
+      h(
+        RouterLink,
+        {
+          to: '/'
+        },
+        {
+          default: () => t('Menu.Home')
+        }
+      ),
     key: 'home',
     icon: () =>
       h(
@@ -43,7 +52,16 @@ export const menuOptions: MenuMixedOption[] = [
     menuType: 'label',
     children: [
       {
-        label: () => h(RouterLink, { to: '/user-management' }, { default: () => t('Menu.UserManagement') }),
+        label: () =>
+          h(
+            RouterLink,
+            {
+              to: '/user-management'
+            },
+            {
+              default: () => t('Menu.UserManagement')
+            }
+          ),
         labelKey: 'Menu.UserManagement',
         path: '/user-management',
         key: 'user-management',
@@ -60,7 +78,16 @@ export const menuOptions: MenuMixedOption[] = [
         menuType: 'routerLink'
       },
       {
-        label: () => h(RouterLink, { to: '/role-management' }, { default: () => t('Menu.RoleManagement') }),
+        label: () =>
+          h(
+            RouterLink,
+            {
+              to: '/role-management'
+            },
+            {
+              default: () => t('Menu.RoleManagement')
+            }
+          ),
         labelKey: 'Menu.RoleManagement',
         path: '/role-management',
         key: 'role-management',
@@ -77,7 +104,16 @@ export const menuOptions: MenuMixedOption[] = [
         menuType: 'routerLink'
       },
       {
-        label: () => h(RouterLink, { to: '/permission-management' }, { default: () => t('Menu.PermissionManagement') }),
+        label: () =>
+          h(
+            RouterLink,
+            {
+              to: '/permission-management'
+            },
+            {
+              default: () => t('Menu.PermissionManagement')
+            }
+          ),
         labelKey: 'Menu.PermissionManagement',
         path: '/permission-management',
         key: 'permission-management',
@@ -112,7 +148,16 @@ export const menuOptions: MenuMixedOption[] = [
     menuType: 'label',
     children: [
       {
-        label: () => h(RouterLink, { to: '/icon-management' }, { default: () => t('Menu.IconManagement') }),
+        label: () =>
+          h(
+            RouterLink,
+            {
+              to: '/icon-management'
+            },
+            {
+              default: () => t('Menu.IconManagement')
+            }
+          ),
         labelKey: 'Menu.IconManagement',
         path: '/icon-management',
         key: 'icon-management',
@@ -129,7 +174,16 @@ export const menuOptions: MenuMixedOption[] = [
         menuType: 'routerLink'
       },
       {
-        label: () => h(RouterLink, { to: '/qrcode' }, { default: () => t('Menu.QRCode') }),
+        label: () =>
+          h(
+            RouterLink,
+            {
+              to: '/qrcode'
+            },
+            {
+              default: () => t('Menu.QRCode')
+            }
+          ),
         labelKey: 'Menu.QRCode',
         path: '/qrcode',
         key: 'qrcode',

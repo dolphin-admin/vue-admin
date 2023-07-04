@@ -52,10 +52,11 @@ const handlePageChange = () => queryList()
 
 const Operation = [
   t('UserManagement.Edit'),
-  t('UserManagement.Enabled'),
-  t('UserManagement.disabled'),
+  t('UserManagement.Enable'),
+  t('UserManagement.Disabled'),
   t('UserManagement.ResetPassword')
 ]
+
 const columns = ref<DataTableColumns<User>>([
   {
     title: 'ID',
@@ -183,7 +184,7 @@ const columns = ref<DataTableColumns<User>>([
     render: (row) => (row.createdAt ? TimeUtils.formatTime(row.createdAt) : '')
   },
   {
-    title: t('UserManagement.roles'),
+    title: t('UserManagement.Roles'),
     key: 'roles',
     width: 200,
     render: (row) => {
@@ -259,9 +260,8 @@ const handleCreateUser = () => {
   userFormModalRef.value.handleShowModal()
   userFormData.value = {}
 }
-onMounted(() => {
-  queryList()
-})
+
+onMounted(() => queryList())
 </script>
 
 <template>
