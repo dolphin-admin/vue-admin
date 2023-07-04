@@ -49,7 +49,7 @@ export default defineConfig(({ mode }) => {
           'vue-i18n',
           {
             'vue-router': ['RouterLink', 'RouterView'],
-            '@vueuse/core': ['useToggle', 'useEventListener', 'useDebounceFn'],
+            '@vueuse/core': ['useToggle', 'useEventListener', 'useDebounceFn', 'useFullscreen'],
             axios: [['default', 'axios']],
             'naive-ui': [
               'useDialog',
