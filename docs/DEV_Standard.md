@@ -1,5 +1,9 @@
 # 开发规范
 
+## 文件命名风格
+
+- 图片/文档：使用小写字母，下划线拼接。
+
 ## 多语言
 
 使用 `vue-i18n` 提供的 `t()` 函数，多语言翻译文件位于 `/src/i18n/locales/*`，目前支持 `en_US` 和 `zh_CN` 两种语言。
@@ -7,13 +11,15 @@
 ### Vue Setup 内引入
 
 ```typescript
-import type { MessageSchema } from '@/types'
-
 // @ts-ignore
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
 t('App.Name')
 ```
+
+> 为什么 `@ts-ignore`?
+>
+> 目前, `vue-i18n` 存在 `TypeScript` 错误，暂时需要忽略，否则无法通过 `vue-tsc` 类型检查。
 
 ### Vue Setup 外引入
 

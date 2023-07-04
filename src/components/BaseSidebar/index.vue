@@ -23,15 +23,16 @@ const getLabel = (menuItem: CustomMenuOption) => {
     case 'label':
       return exactLabel
     case 'routerLink':
-      return h(
-        RouterLink,
-        {
-          to: path ?? '/'
-        },
-        {
-          default: () => exactLabel as string
-        }
-      )
+      return () =>
+        h(
+          RouterLink,
+          {
+            to: path ?? '/'
+          },
+          {
+            default: () => exactLabel as string
+          }
+        )
     default:
       return label
   }
@@ -54,14 +55,6 @@ watch(
         })
       }
     })
-  }
-)
-
-watch(
-  () => [sidebarStore.isCollapse, sidebarStore.isDisplay],
-  () => {
-    console.log('collapse', sidebarStore.isCollapse)
-    console.log('display', sidebarStore.isDisplay)
   }
 )
 </script>

@@ -56,6 +56,7 @@ const Operation = [
   t('UserManagement.Disabled'),
   t('UserManagement.ResetPassword')
 ]
+
 const columns = ref<DataTableColumns<User>>([
   {
     title: 'ID',
@@ -259,9 +260,8 @@ const handleCreateUser = () => {
   userFormModalRef.value.handleShowModal()
   userFormData.value = {}
 }
-onMounted(() => {
-  queryList()
-})
+
+onMounted(() => queryList())
 </script>
 
 <template>
