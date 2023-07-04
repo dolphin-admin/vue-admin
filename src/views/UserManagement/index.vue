@@ -152,7 +152,7 @@ const columns = ref<DataTableColumns<User>>([
     }
   },
   {
-    title: t('UserManagement.Verified'),
+    title: t('UserManagement.VerifyOrNot'),
     key: 'verified',
     width: 80,
     titleAlign: 'center',
@@ -164,7 +164,7 @@ const columns = ref<DataTableColumns<User>>([
       })
   },
   {
-    title: t('UserManagement.Enabled'),
+    title: t('UserManagement.EnableOrNot'),
     key: 'enabled',
     width: 80,
     titleAlign: 'center',
@@ -229,7 +229,7 @@ const columns = ref<DataTableColumns<User>>([
                   },
                   {
                     trigger: () => h(NButton, { type: 'default', size: 'small' }, { default: () => text }),
-                    default: () => `是否${text}`
+                    default: () => t('Common.IsOrNot') + text
                   }
                 )
               }
@@ -292,19 +292,19 @@ onMounted(() => queryList())
         pageSlot: 9,
         pageSizes: [
           {
-            label: '10 每页',
+            label: '10 ' + t('Common.EachPage'),
             value: 10
           },
           {
-            label: '20 每页',
+            label: '20 ' + t('Common.EachPage'),
             value: 20
           },
           {
-            label: '30 每页',
+            label: '30 ' + t('Common.EachPage'),
             value: 30
           },
           {
-            label: '40 每页',
+            label: '40 ' + t('Common.EachPage'),
             value: 40
           }
         ],

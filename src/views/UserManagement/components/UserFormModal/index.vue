@@ -166,107 +166,107 @@ defineExpose({
         </NUpload>
       </NFormItem>
       <NFormItem
-        :label="t('Common.Username')"
+        :label="t('Common.Name')"
         path="name"
       >
         <NInput
           v-model:value="formData.name"
-          :placeholder="t('Common.Validation.Username')"
+          :placeholder="t('Common.Validation.Name')"
           maxlength="20"
           show-count
           clearable
         />
       </NFormItem>
       <NFormItem
-        :label="t('Common.Name')"
+        :label="t('Common.FirstName')"
         path="firstName"
       >
         <NInput
           v-model:value="formData.firstName"
-          placeholder="请输入名字"
+          :placeholder="t('Common.Validation.FirstName')"
           maxlength="20"
           show-count
           clearable
         />
       </NFormItem>
       <NFormItem
-        label="姓"
+        :label="t('Common.LastName')"
         path="lastName"
       >
         <NInput
           v-model:value="formData.lastName"
-          placeholder="请输入姓"
+          :placeholder="t('Common.Validation.LastName')"
           maxlength="10"
           show-count
           clearable
         />
       </NFormItem>
       <NFormItem
-        label="邮箱"
+        :label="t('Common.Email')"
         path="email"
       >
         <NInput
           v-model:value="formData.email"
-          placeholder="请输入邮箱"
+          :placeholder="t('Common.Validation.Email')"
           maxlength="20"
           show-count
           clearable
         />
       </NFormItem>
       <NFormItem
-        label="性别"
+        :label="t('Common.Gender')"
         path="gender"
       >
         <NRadioGroup
           v-model:value="formData.gender"
-          name="性别"
+          :name="t('Common.Gender')"
         >
           <NSpace>
-            <NRadio :value="0"> 女 </NRadio>
-            <NRadio :value="1"> 男 </NRadio>
+            <NRadio :value="0"> {{ t('Common.Female') }} </NRadio>
+            <NRadio :value="1"> {{ t('Common.Male') }} </NRadio>
           </NSpace>
         </NRadioGroup>
       </NFormItem>
       <NFormItem
-        label="电话号码"
+        :label="t('Common.PhoneNumber')"
         path="phoneNumber"
       >
         <NInput
           v-model:value="formData.phoneNumber"
-          placeholder="请输入电话号码"
+          :placeholder="t('Common.Validation.PhoneNumber')"
           maxlength="20"
           show-count
           clearable
         />
       </NFormItem>
       <NFormItem
-        label="出生日期"
+        :label="t('Common.BirthDate')"
         path="birthDate"
       >
         <NInput
           v-model:value="formData.birthDate"
-          placeholder="请输入出生日期"
+          :placeholder="t('Common.Validation.BirthDate')"
         />
       </NFormItem>
       <NFormItem
-        label="地址"
+        :label="t('Common.Address')"
         path="address"
       >
         <NInput
           v-model:value="formData.address"
-          placeholder="请输入地址"
+          :placeholder="t('Common.Validation.BirthDate')"
           maxlength="30"
           show-count
           clearable
         />
       </NFormItem>
       <NFormItem
-        label="简介"
+        :label="t('Common.Biography')"
         path="biography"
       >
         <NInput
           v-model:value="formData.biography"
-          placeholder="请输入简介"
+          :placeholder="t('Common.Validation.Biography')"
           maxlength="300"
           show-count
           clearable
