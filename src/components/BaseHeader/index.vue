@@ -12,6 +12,8 @@ import FullScreenIcon from '~icons/mdi/fullscreen'
 import FullscreenExitIcon from '~icons/mdi/fullscreen-exit'
 const { isFullscreen, toggle } = useFullscreen()
 
+const toggleFullscreen = toggle
+
 const languageOptions = [
   { label: 'English', key: 'en_US' },
   { label: '简体中文', key: 'zh_CN' }
@@ -121,7 +123,7 @@ const currentLanguageOptions = computed(() =>
             class="hidden cursor-pointer dark:text-white sm:block"
             height="24"
             width="24"
-            @click="toggle"
+            @click="toggleFullscreen"
           />
         </template>
         <span class="dark:text-white">{{ t(isFullscreen ? 'Header.ExitFullScreen' : 'Header.FullScreen') }} </span>
