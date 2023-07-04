@@ -23,7 +23,11 @@
       "LastName": "请输入姓",
       "Email": "请输入邮箱",
       "CorrectEmailFormat": "请输入正确格式的邮箱",
-      "CorrectPhoneNumberFormat": "请输入正确格式的手机号"
+      "CorrectPhoneNumberFormat": "请输入正确格式的手机号",
+      "PhoneNumber": "请输入电话号码",
+      "BirthDate": "请输入出生日期",
+      "Address": "请输入地址",
+      "Biography": "请输入简介"
     },
     "Download": "下载",
     "Upload": "上传",
@@ -33,7 +37,23 @@
     "Cancer": "取消",
     "FailedUploadAvatar": "头像上传失败",
     "Avatar": "头像",
-    "Name": "姓名"
+    "Email": "邮箱",
+    "Gender": "性别",
+    "Male": "男",
+    "Female": "女",
+    "PhoneNumber": "电话号码",
+    "BirthDate": "出生日期",
+    "Address": "地址",
+    "Biography": "简介",
+    "Verified": "是否验证",
+    "Enabled": "是否启用",
+    "Roles": "角色",
+    "CreatedAt": "进入系统时间",
+    "Name": "姓名",
+    "FirstName": "名",
+    "LastName": "姓",
+    "IsOrNot": "是否",
+    "EachPage": "每页"
   },
   "Login": {
     "AsAdmin": "以管理员登录",
@@ -118,10 +138,10 @@
     "City": "城市",
     "Address": "地址",
     "Biography": "简介",
-    "Verified": "是否验证",
-    "Enabled": "是否启用",
+    "VerifyOrNot": "是否验证",
+    "EnableOrNot": "是否启用",
     "BirthDate": "出生日期",
-    "roles": "角色",
+    "Roles": "角色",
     "CreatedAt": "进入系统时间"
   }
 }

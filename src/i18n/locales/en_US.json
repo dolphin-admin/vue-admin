@@ -23,7 +23,11 @@
       "LastName": "Please enter your last name",
       "Email": "Please enter your email",
       "CorrectEmailFormat": "Please enter the correct email format",
-      "CorrectPhoneNumberFormat": "Please enter phone number in the correct format"
+      "CorrectPhoneNumberFormat": "Please enter phone number in the correct format",
+      "PhoneNumber": "Please enter a phone number",
+      "BirthDate": "Please enter the date of birth",
+      "Address": "Please enter an address",
+      "Biography": "Please enter a brief introduction"
     },
     "Download": "Download",
     "Upload": "Upload",
@@ -33,7 +37,23 @@
     "Cancer": "Cancer",
     "FailedUploadAvatar": "Failed upload avatar",
     "Avatar": "Avatar",
-    "Name": "Name"
+    "Email": "Email",
+    "Gender": "Gender",
+    "Male": "Male",
+    "Female": "Female",
+    "PhoneNumber": "PhoneNumber",
+    "BirthDate": "BirthDate",
+    "Address": "Address",
+    "Biography": "Biography",
+    "Verified": "Verified",
+    "Enabled": "Enabled",
+    "Roles": "Roles",
+    "CreatedAt": "Enter system time",
+    "Name": "Name",
+    "FirstName": "First name",
+    "LastName": "Last name",
+    "IsOrNot": "Is or not",
+    "EachPage": "each page"
   },
   "Login": {
     "AsAdmin": "Login as Admin",
@@ -108,8 +128,8 @@
     "Email": "Email",
     "PhoneNumber": "PhoneNumber",
     "Name": "Name",
-    "FirstName": "FirstName",
-    "LastName": "LastName",
+    "FirstName": "First name",
+    "LastName": "Last name",
     "NickName": "Nick name",
     "Gender": "Gender",
     "Country": "Country",
@@ -120,8 +140,11 @@
     "Biography": "Biography",
     "Verified": "Verified",
     "Enabled": "Enabled",
+    "VerifyOrNot": "Verify or not",
+    "EnableOrNot": "Enable or not",
     "BirthDate": "BirthDate",
     "Roles": "Roles",
-    "CreatedAt": "Enter system time"
+    "CreatedAt": "CreatedAt",
+    "IsOrNot": "Is or not"
   }
 }
