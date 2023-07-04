@@ -98,6 +98,10 @@ class Request {
   delete<T>(url: string, params?: Record<string, unknown>, config?: AxiosRequestConfig): Promise<T> {
     return this.instance.delete(url, { params, ...config })
   }
+
+  patch<T>(url: string, data?: Record<string, unknown>, config?: AxiosRequestConfig): Promise<T> {
+    return this.instance.patch(url, data, config)
+  }
 }
 
 export default new Request(axiosConfig)
