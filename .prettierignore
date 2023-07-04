@@ -6,3 +6,5 @@ node_modules
 /public
 /src-tauri
 pnpm-lock.yaml
+/src/auto-imports.d.ts
+/src/components.d.ts

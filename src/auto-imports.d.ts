@@ -119,16 +119,7 @@ declare global {
   // @ts-ignore
   export type { Component, ComponentPublicInstance, ComputedRef, InjectionKey, PropType, Ref, VNode } from 'vue'
   // @ts-ignore
-  export type {
-    FormInst,
-    FormItemInst,
-    FormItemRule,
-    FormRules,
-    DataTableColumns,
-    UploadFileInfo,
-    UploadInst,
-    UploadCustomRequestOptions
-  } from 'naive-ui'
+  export type { FormInst, FormItemInst, FormItemRule, FormRules, DataTableColumns, UploadFileInfo, UploadInst, UploadCustomRequestOptions } from 'naive-ui'
   // @ts-ignore
   export type { MessageSchema } from '@/types'
 }
