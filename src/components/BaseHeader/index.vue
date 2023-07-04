@@ -10,9 +10,7 @@ import MoonIcon from '~icons/line-md/sunny-filled-loop-to-moon-alt-filled-loop-t
 import SettingIcon from '~icons/material-symbols/settings-outline-rounded'
 import FullScreenIcon from '~icons/mdi/fullscreen'
 import FullscreenExitIcon from '~icons/mdi/fullscreen-exit'
-const { isFullscreen, toggle } = useFullscreen()
-
-const toggleFullscreen = toggle
+const { isFullscreen, toggle: toggleFullscreen } = useFullscreen()
 
 const languageOptions = [
   { label: 'English', key: 'en_US' },
