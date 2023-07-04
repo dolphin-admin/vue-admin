@@ -95,6 +95,7 @@ declare global {
   const useDebounceFn: typeof import('@vueuse/core')['useDebounceFn']
   const useDialog: typeof import('naive-ui')['useDialog']
   const useEventListener: typeof import('@vueuse/core')['useEventListener']
+  const useFullscreen: typeof import('@vueuse/core')['useFullscreen']
   const useI18n: typeof import('vue-i18n')['useI18n']
   const useLink: typeof import('vue-router')['useLink']
   const useLoading: typeof import('./hooks/useLoading')['useLoading']

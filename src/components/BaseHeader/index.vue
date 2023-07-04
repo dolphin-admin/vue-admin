@@ -7,8 +7,10 @@ import HideMenuIcon from '~icons/line-md/menu-fold-left'
 import ShowMenuIcon from '~icons/line-md/menu-fold-right'
 import SunIcon from '~icons/line-md/moon-alt-to-sunny-outline-loop-transition'
 import MoonIcon from '~icons/line-md/sunny-filled-loop-to-moon-alt-filled-loop-transition'
-import FullScreenIcon from '~icons/material-symbols/fullscreen'
 import SettingIcon from '~icons/material-symbols/settings-outline-rounded'
+import FullScreenIcon from '~icons/mdi/fullscreen'
+import FullscreenExitIcon from '~icons/mdi/fullscreen-exit'
+const { isFullscreen, toggle: toggleFullscreen } = useFullscreen()
 
 const languageOptions = [
   { label: 'English', key: 'en_US' },
@@ -109,19 +111,20 @@ const currentLanguageOptions = computed(() =>
         </template>
         <span class="dark:text-white">{{ t('Header.Notification') }}</span>
       </NTooltip>
-
       <NTooltip
         placement="bottom"
         trigger="hover"
       >
         <template #trigger>
-          <FullScreenIcon
-            class="cursor-pointer dark:text-white"
+          <component
+            :is="isFullscreen ? FullscreenExitIcon : FullScreenIcon"
+            class="hidden cursor-pointer dark:text-white sm:block"
             height="24"
             width="24"
+            @click="toggleFullscreen"
           />
         </template>
-        <span class="dark:text-white">{{ t('Header.FullScreen') }}</span>
+        <span class="dark:text-white">{{ t(isFullscreen ? 'Header.ExitFullScreen' : 'Header.FullScreen') }} </span>
       </NTooltip>
 
       <NDropdown
