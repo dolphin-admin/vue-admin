@@ -7,8 +7,9 @@ import HideMenuIcon from '~icons/line-md/menu-fold-left'
 import ShowMenuIcon from '~icons/line-md/menu-fold-right'
 import SunIcon from '~icons/line-md/moon-alt-to-sunny-outline-loop-transition'
 import MoonIcon from '~icons/line-md/sunny-filled-loop-to-moon-alt-filled-loop-transition'
-import FullScreenIcon from '~icons/material-symbols/fullscreen'
 import SettingIcon from '~icons/material-symbols/settings-outline-rounded'
+import FullScreenIcon from '~icons/mdi/fullscreen'
+import FullscreenExitIcon from '~icons/mdi/fullscreen-exit'
 
 const languageOptions = [
   { label: 'English', key: 'en_US' },
@@ -40,6 +41,8 @@ const userOptions = [
     key: 'Quit'
   }
 ]
+
+const isFullscreen = ref(false)
 
 const logout = () => {
   AuthUtils.clearToken()
@@ -77,6 +80,17 @@ const selectUserOption = (key: UserOptionKey) => {
 const currentLanguageOptions = computed(() =>
   locale.value === 'zh_CN' ? languageOptions : [languageOptions[1], languageOptions[0]]
 )
+
+const toggleFullscreen = () => {
+  isFullscreen.value = !isFullscreen.value
+  if (document.fullscreenElement) {
+    document.exitFullscreen()
+  } else {
+    document.documentElement.requestFullscreen().catch(() => {
+      message.error('进入全屏失败')
+    })
+  }
+}
 </script>
 
 <template>
@@ -115,13 +129,15 @@ const currentLanguageOptions = computed(() =>
         trigger="hover"
       >
         <template #trigger>
-          <FullScreenIcon
+          <component
+            :is="isFullscreen ? FullscreenExitIcon : FullScreenIcon"
             class="cursor-pointer dark:text-white"
             height="24"
             width="24"
+            @click="toggleFullscreen"
           />
         </template>
-        <span class="dark:text-white">{{ t('Header.FullScreen') }}</span>
+        <span class="dark:text-white">{{ isFullscreen ? t('Header.ExitFullScreen') : t('Header.FullScreen') }} </span>
       </NTooltip>
 
       <NDropdown
