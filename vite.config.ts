@@ -60,7 +60,8 @@ export default defineConfig(({ mode }) => {
               'NButton',
               'NTag',
               'NIcon',
-              'NPopconfirm'
+              'NPopconfirm',
+              'NInput'
             ]
           },
           {

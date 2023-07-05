@@ -53,7 +53,11 @@
     "FirstName": "First name",
     "LastName": "Last name",
     "IsOrNot": "Is or not",
-    "EachPage": "each page"
+    "EachPage": "each page",
+    "Revise": "Revise",
+    "PersonalInformation": "Personal information",
+    "BasicInformation": "Basic Information",
+    "ResetPassword": "Reset password"
   },
   "Login": {
     "AsAdmin": "Login as Admin",
@@ -82,7 +86,9 @@
     "Settings": "Settings",
     "Logout": "Logout",
     "UserCenter": "User center",
-    "LockScreen": "Lock screen"
+    "LockScreen": "Lock screen",
+    "ChangePassword": "Change Password",
+    "Github": "github"
   },
   "Sidebar": {
     "Expand": "Expand sidebar",

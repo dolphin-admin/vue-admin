@@ -53,7 +53,10 @@
     "FirstName": "名",
     "LastName": "姓",
     "IsOrNot": "是否",
-    "EachPage": "每页"
+    "EachPage": "每页",
+    "Revise": "修改",
+    "PersonalInformation": "个人信息",
+    "BasicInformation": "基本信息"
   },
   "Login": {
     "AsAdmin": "以管理员登录",
@@ -82,7 +85,9 @@
     "Settings": "设置",
     "Logout": "退出登录",
     "UserCenter": "用户中心",
-    "LockScreen": "锁屏"
+    "LockScreen": "锁屏",
+    "ChangePassword": "修改密码",
+    "Github": "github"
   },
   "Sidebar": {
     "Expand": "展开侧边栏",

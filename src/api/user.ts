@@ -1,4 +1,4 @@
-import type { BaseResponse, PageModel, PageResponse, User } from '@/types'
+import type { BaseResponse, ChangePasswordInputModel, LoginInputModel, PageModel, PageResponse, User } from '@/types'
 
 import Request from './axios'
 export class UserAPI {
@@ -16,11 +16,27 @@ export class UserAPI {
     return Request.get<BaseResponse<User>>(`${this.USER_API_PREFIX}/info`)
   }
 
-  static createUser() {
-    return Request.post<BaseResponse<User>>(this.USER_API_PREFIX)
+  static createUser(data: LoginInputModel) {
+    return Request.post<BaseResponse<User>>(this.USER_API_PREFIX, { ...data })
   }
 
   static updateUser(id: number, data: User) {
-    return Request.put<BaseResponse<User>>(`${this.USER_API_PREFIX}/${id}`, { ...data })
+    return Request.patch<BaseResponse<User>>(`${this.USER_API_PREFIX}/${id}`, { ...data })
+  }
+
+  static enableUsers(id: number) {
+    return Request.post<BaseResponse<User>>(`${this.USER_API_PREFIX}/${id}/activate`)
+  }
+
+  static disableUsers(id: number) {
+    return Request.post<BaseResponse<User>>(`${this.USER_API_PREFIX}/${id}/deactivate`)
+  }
+
+  static resetPassword(id: number, password: String) {
+    return Request.post<BaseResponse<User>>(`${this.USER_API_PREFIX}/${id}/reset-password`, { password })
+  }
+
+  static changePassword(id: number, data: ChangePasswordInputModel) {
+    return Request.post<BaseResponse<User>>(`${this.USER_API_PREFIX}/${id}/change-password`, { ...data })
   }
 }

@@ -12,6 +12,9 @@ const userStore = useUserStore()
 const message = useMessage()
 const [submitLoading, submitLoadingDispatcher] = useLoading()
 
+// @ts-ignore
+const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+
 const formRef = ref<FormInst | null>(null)
 const uploadRef = ref<UploadInst | null>(null)
 const formData = ref<Partial<User>>({})
@@ -21,21 +24,21 @@ const rules: FormRules = {
   name: [
     {
       required: true,
-      message: '请输入用户名字',
+      message: t('Common.Validation.Name'),
       trigger: ['blur', 'input']
     }
   ],
   firstName: [
     {
       required: true,
-      message: '请输入名字',
+      message: t('Common.Validation.FirstName'),
       trigger: ['blur', 'input']
     }
   ],
   lastName: [
     {
       required: true,
-      message: '请输入姓',
+      message: t('Common.Validation.LastName'),
       trigger: ['blur', 'input']
     }
   ],
@@ -44,18 +47,18 @@ const rules: FormRules = {
       key: 'edit',
       required: true,
       trigger: ['blur', 'change'],
-      message: '请输入邮箱'
+      message: t('Common.Validation.Email')
     },
     {
       pattern: /^([a-zA-Z]|[0-9])(\w|-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/,
-      message: '请输入正确格式的邮箱',
+      message: t('Common.Validation.CorrectEmailFormat'),
       trigger: ['input', 'blur']
     }
   ],
   phoneNumber: [
     {
       pattern: /^[1][3456789]\d{9}$/,
-      message: '请输入正确格式的手机号',
+      message: t('Common.Validation.CorrectPhoneNumberFormat'),
       trigger: ['input', 'blur']
     }
   ]
@@ -80,7 +83,7 @@ const handleValidateButtonClick = () => {
         const { path } = (await UploadAPI.uploadFile({ file: currentFile.value })).data || {}
         formData.value.avatarUrl = FileUtils.getServerFileUrl(path)
       } catch {
-        message.error('头像上传失败')
+        message.error(t('Common.FailedUploadAvatar'))
         submitLoadingDispatcher.loaded()
         return
       }
@@ -147,7 +150,7 @@ onMounted(() =>
       </div>
 
       <NDivider class="!my-4">
-        <span>个人信息</span>
+        <span>{{ t('Common.PersonalInformation') }}</span>
       </NDivider>
       <div class="space-y-4">
         <div class="flex space-x-2">
@@ -188,7 +191,7 @@ onMounted(() =>
     <NCard class="sm:w-3/5">
       <template #header>
         <div class="space-x-6 border-b pb-1 text-center sm:text-left">
-          <span>基本信息</span>
+          <span>{{ t('Common.BasicInformation') }}</span>
         </div>
       </template>
       <NForm
@@ -201,7 +204,7 @@ onMounted(() =>
         class="flex flex-col"
       >
         <NFormItem
-          label="头像"
+          :label="t('Common.Avatar')"
           path="avatarUrl"
         >
           <NUpload
@@ -219,81 +222,81 @@ onMounted(() =>
           </NUpload>
         </NFormItem>
         <NFormItem
-          label="用户名"
+          :label="t('Common.Name')"
           path="name"
         >
           <NInput
             v-model:value="formData.name"
-            placeholder="请输入用户名"
+            :placeholder="t('Common.Validation.Name')"
             maxlength="20"
             show-count
             clearable
           />
         </NFormItem>
         <NFormItem
-          label="名字"
+          :label="t('Common.FirstName')"
           path="firstName"
         >
           <NInput
             v-model:value="formData.firstName"
-            placeholder="请输入名字"
+            :placeholder="t('Common.Validation.FirstName')"
             maxlength="20"
             show-count
             clearable
           />
         </NFormItem>
         <NFormItem
-          label="姓"
+          :label="t('Common.LastName')"
           path="lastName"
         >
           <NInput
             v-model:value="formData.lastName"
-            placeholder="请输入姓"
+            :placeholder="t('Common.Validation.LastName')"
             maxlength="10"
             show-count
             clearable
           />
         </NFormItem>
         <NFormItem
-          label="邮箱"
+          :label="t('Common.Email')"
           path="email"
         >
           <NInput
             v-model:value="formData.email"
-            placeholder="请输入邮箱"
+            :placeholder="t('Common.Validation.Email')"
             maxlength="20"
             show-count
             clearable
           />
         </NFormItem>
         <NFormItem
-          label="性别"
+          :label="t('Common.Gender')"
           path="gender"
         >
           <NRadioGroup
             v-model:value="formData.gender"
-            name="性别"
+            :name="t('Common.Gender')"
           >
             <NSpace>
-              <NRadio :value="1"> 男 </NRadio>
-              <NRadio :value="0"> 女 </NRadio>
+              <NRadio :value="1"> {{ t('Common.Male') }} </NRadio>
+              <NRadio :value="0"> {{ t('Common.Female') }} </NRadio>
             </NSpace>
           </NRadioGroup>
         </NFormItem>
         <NFormItem
-          label="电话号码"
+          :label="t('Common.PhoneNumber')"
           path="phoneNumber"
         >
           <NInput
             v-model:value="formData.phoneNumber"
-            placeholder="请输入电话号码"
+            :placeholder="t('Common.Validation.PhoneNumber')"
             maxlength="20"
             show-count
             clearable
           />
         </NFormItem>
         <NFormItem
-          label="出生日期"
+          :label="t('Common.BirthDate')"
           path="birthDate"
         >
           <NDatePicker
@@ -302,24 +305,24 @@ onMounted(() =>
           />
         </NFormItem>
         <NFormItem
-          label="地址"
+          :label="t('Common.Address')"
           path="address"
         >
           <NInput
             v-model:value="formData.address"
-            placeholder="请输入地址"
+            :placeholder="t('Common.Validation.Address')"
             maxlength="30"
             show-count
             clearable
           />
         </NFormItem>
         <NFormItem
-          label="简介"
+          :label="t('Common.Biography')"
           path="biography"
         >
           <NInput
             v-model:value="formData.biography"
-            placeholder="请输入简介"
+            :placeholder="t('Common.Validation.Biography')"
             maxlength="300"
             show-count
             clearable
@@ -334,7 +337,7 @@ onMounted(() =>
             :disabled="submitLoading"
             @click="handleValidateButtonClick"
           >
-            修改
+            {{ t('Common.Revise') }}
           </NButton>
         </div>
       </NForm>
