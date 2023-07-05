@@ -4,4 +4,5 @@ export type SiteMetaData = {
   favicon: string
   teamName: string
   teamGitHubURL: string
+  repoGitHubURL: string
 }

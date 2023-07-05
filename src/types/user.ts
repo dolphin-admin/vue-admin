@@ -37,3 +37,9 @@ export interface LoginOrSignupResponse {
 }
 
 export type Gender = 0 | 1
+
+export interface ChangePasswordInputModel {
+  oldPassword: string
+  newPassword: string
+  confirmPassword: string
+}

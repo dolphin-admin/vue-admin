@@ -12,6 +12,9 @@
     "Username": "Username",
     "Password": "Password",
     "ConfirmPassword": "Confirm password",
+    "NewPassword": "New password",
+    "OldPassword": "Old password",
+    "ChangePassword": "Change password",
     "Validation": {
       "Username": "Please enter username",
       "Password": "Please enter password",
@@ -27,7 +30,8 @@
       "PhoneNumber": "Please enter a phone number",
       "BirthDate": "Please enter the date of birth",
       "Address": "Please enter an address",
-      "Biography": "Please enter a brief introduction"
+      "Biography": "Please enter a brief introduction",
+      "OldPassword": "Please enter old password"
     },
     "Download": "Download",
     "Upload": "Upload",
@@ -53,7 +57,11 @@
     "FirstName": "First name",
     "LastName": "Last name",
     "IsOrNot": "Is or not",
-    "EachPage": "each page"
+    "EachPage": "each page",
+    "Revise": "Revise",
+    "PersonalInformation": "Personal information",
+    "BasicInformation": "Basic Information",
+    "ResetPassword": "Reset password"
   },
   "Login": {
     "AsAdmin": "Login as Admin",
@@ -82,7 +90,9 @@
     "Settings": "Settings",
     "Logout": "Logout",
     "UserCenter": "User center",
-    "LockScreen": "Lock screen"
+    "LockScreen": "Lock screen",
+    "ChangePassword": "Change Password",
+    "Github": "github"
   },
   "Sidebar": {
     "Expand": "Expand sidebar",

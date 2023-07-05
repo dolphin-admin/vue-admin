@@ -10,14 +10,18 @@ import MoonIcon from '~icons/line-md/sunny-filled-loop-to-moon-alt-filled-loop-t
 import SettingIcon from '~icons/material-symbols/settings-outline-rounded'
 import FullScreenIcon from '~icons/mdi/fullscreen'
 import FullscreenExitIcon from '~icons/mdi/fullscreen-exit'
+import GithubIcon from '~icons/mdi/github'
+
+const { repoGitHubURL } = siteMetaData
 const { isFullscreen, toggle: toggleFullscreen } = useFullscreen()
+const { openNewWindow } = BrowserUtils
 
 const languageOptions = [
   { label: 'English', key: 'en_US' },
   { label: '简体中文', key: 'zh_CN' }
 ]
 
-type UserOptionKey = 'Lock' | 'Quit' | 'UserInfo'
+type UserOptionKey = 'Lock' | 'Quit' | 'UserInfo' | 'ChangePassword'
 
 const themeStore = useThemeStore()
 const sidebarStore = useSidebarStore()
@@ -34,6 +38,10 @@ const userOptions = [
     key: 'UserInfo'
   },
   {
+    label: t('Header.ChangePassword'),
+    key: 'ChangePassword'
+  },
+  {
     label: t('Header.LockScreen'),
     key: 'Lock'
   },
@@ -42,6 +50,46 @@ const userOptions = [
     key: 'Quit'
   }
 ]
+
+const isChangePassword = ref(false)
+const changePasswordRef = ref<FormInst | null>(null)
+const changePasswordData = reactive({
+  oldPassword: '',
+  newPassword: '',
+  confirmPassword: ''
+})
+const changePasswordRules: FormRules = {
+  oldPassword: [
+    {
+      required: true,
+      message: t('Common.OldPassword'),
+      trigger: ['blur', 'input']
+    }
+  ],
+  newPassword: [
+    {
+      required: true,
+      message: t('Common.Validation.Password'),
+      trigger: ['blur', 'input']
+    },
+    {
+      validator: (rule: FormItemRule, value: string) => value.length >= 6,
+      trigger: ['blur', 'input'],
+      message: t('Common.Validation.PasswordLength')
+    }
+  ],
+  confirmPassword: [
+    {
+      required: true,
+      message: t('Common.Validation.ConfirmPassword'),
+      trigger: ['blur', 'input']
+    },
+    {
+      validator: (rule: FormItemRule, value: string) => value === changePasswordData.newPassword,
+      message: t('Common.Validation.ConfirmPasswordNotMatch')
+    }
+  ]
+}
 
 const logout = () => {
   AuthUtils.clearToken()
@@ -71,9 +119,28 @@ const selectUserOption = (key: UserOptionKey) => {
     case 'UserInfo':
       router.push('/user-info')
       break
+    case 'ChangePassword':
+      isChangePassword.value = true
+      break
     default:
       break
   }
+}
+
+const handleChangePassword = () => {
+  changePasswordRef.value!.validate((errors) => {
+    if (errors) {
+      message.error(errors[0][0].message!)
+      return
+    }
+    UserAPI.changePassword(userStore.user.id!, changePasswordData)
+      .then((res) => {
+        message.success(res.message!)
+      })
+      .catch((err) => {
+        message.error(err.message!)
+      })
+  })
 }
 
 const currentLanguageOptions = computed(() =>
@@ -102,6 +169,18 @@ const currentLanguageOptions = computed(() =>
     </div>
 
     <div class="flex h-full items-center justify-end space-x-4">
+      <NTooltip
+        placement="bottom"
+        trigger="hover"
+      >
+        <template #trigger>
+          <GithubIcon
+            class="cursor-pointer dark:text-white"
+            @click="() => openNewWindow(repoGitHubURL)"
+          />
+        </template>
+        <span class="dark:text-white">{{ t('Header.Github') }}</span>
+      </NTooltip>
       <NTooltip
         placement="bottom"
         trigger="hover"
@@ -203,4 +282,57 @@ const currentLanguageOptions = computed(() =>
       </template>
     </div>
   </header>
+  <NModal
+    v-model:show="isChangePassword"
+    preset="dialog"
+    :title="t('Common.ChangePassword')"
+    :positive-text="t('Common.Confirm')"
+    :negative-text="t('Common.Cancer')"
+    @positive-click="handleChangePassword"
+  >
+    <NForm
+      ref="changePasswordRef"
+      :model="changePasswordData"
+      :rules="changePasswordRules"
+    >
+      <NFormItem
+        path="oldPassword"
+        :label="t('Common.OldPassword')"
+      >
+        <NInput
+          v-model:value="changePasswordData.oldPassword"
+          type="password"
+          :placeholder="t('Common.Password')"
+          show-password-on="click"
+          :input-props="{ autocomplete: 'oldPassword' }"
+          @keydown.enter="handleChangePassword"
+        />
+      </NFormItem>
+      <NFormItem
+        path="newPassword"
+        :label="t('Common.NewPassword')"
+      >
+        <NInput
+          v-model:value="changePasswordData.newPassword"
+          type="password"
+          :placeholder="t('Common.Password')"
+          show-password-on="click"
+          :input-props="{ autocomplete: 'new-password' }"
+          @keydown.enter="handleChangePassword"
+        />
+      </NFormItem>
+      <NFormItem
+        path="confirmPassword"
+        :label="t('Common.ConfirmPassword')"
+      >
+        <NInput
+          v-model:value="changePasswordData.confirmPassword"
+          type="password"
+          :placeholder="t('Common.Password')"
+          show-password-on="click"
+          @keydown.enter="handleChangePassword"
+        />
+      </NFormItem>
+    </NForm>
+  </NModal>
 </template>

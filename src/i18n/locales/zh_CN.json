@@ -12,6 +12,9 @@
     "Username": "用户名",
     "Password": "密码",
     "ConfirmPassword": "确认密码",
+    "NewPassword": "新密码",
+    "OldPassword": "旧密码",
+    "ChangePassword": "修改密码",
     "Validation": {
       "Username": "请输入用户名",
       "Password": "请输入密码",
@@ -27,7 +30,8 @@
       "PhoneNumber": "请输入电话号码",
       "BirthDate": "请输入出生日期",
       "Address": "请输入地址",
-      "Biography": "请输入简介"
+      "Biography": "请输入简介",
+      "OldPassword": "请输入旧密码"
     },
     "Download": "下载",
     "Upload": "上传",
@@ -53,7 +57,11 @@
     "FirstName": "名",
     "LastName": "姓",
     "IsOrNot": "是否",
-    "EachPage": "每页"
+    "EachPage": "每页",
+    "Revise": "修改",
+    "PersonalInformation": "个人信息",
+    "BasicInformation": "基本信息",
+    "ResetPassword": "重置密码"
   },
   "Login": {
     "AsAdmin": "以管理员登录",
@@ -82,7 +90,9 @@
     "Settings": "设置",
     "Logout": "退出登录",
     "UserCenter": "用户中心",
-    "LockScreen": "锁屏"
+    "LockScreen": "锁屏",
+    "ChangePassword": "修改密码",
+    "Github": "github"
   },
   "Sidebar": {
     "Expand": "展开侧边栏",

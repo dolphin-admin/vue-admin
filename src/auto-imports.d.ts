@@ -16,6 +16,7 @@ declare global {
   const LoginAPI: typeof import('./api/login')['LoginAPI']
   const NButton: typeof import('naive-ui')['NButton']
   const NIcon: typeof import('naive-ui')['NIcon']
+  const NInput: typeof import('naive-ui')['NInput']
   const NPopconfirm: typeof import('naive-ui')['NPopconfirm']
   const NTag: typeof import('naive-ui')['NTag']
   const QRCodeUtils: typeof import('./utils/qrcode')['QRCodeUtils']

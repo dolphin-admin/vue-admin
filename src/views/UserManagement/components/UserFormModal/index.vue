@@ -10,6 +10,10 @@ const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 const formRef = ref<FormInst | null>(null)
 const uploadRef = ref<UploadInst | null>(null)
 const formData = ref<User>({})
+const createFormData = reactive({
+  username: '',
+  password: ''
+})
 const currentFile = ref<File | null>(null)
 
 const rules: FormRules = {
@@ -37,7 +41,6 @@ const rules: FormRules = {
   email: [
     {
       key: 'edit',
-      required: true,
       trigger: ['blur', 'change'],
       message: t('Common.Validation.Email')
     },
@@ -55,6 +58,27 @@ const rules: FormRules = {
     }
   ]
 }
+const createRules: FormRules = {
+  username: [
+    {
+      required: true,
+      message: t('Common.Validation.Username'),
+      trigger: ['blur', 'input']
+    }
+  ],
+  password: [
+    {
+      required: true,
+      message: t('Common.Validation.Password'),
+      trigger: ['blur', 'input']
+    },
+    {
+      validator: (rule: FormItemRule, value: string) => value.length >= 6,
+      trigger: ['blur', 'input'],
+      message: t('Common.Validation.PasswordLength')
+    }
+  ]
+}
 
 const showModal = ref(false)
 
@@ -69,7 +93,9 @@ watch(
   () => props.userFormData,
   (newValue) => {
     if (newValue) {
+      const newBirthDate = newValue.birthDate && TimeUtils.formatTime(newValue.birthDate, 'YYYY-MM-DD')
       formData.value = newValue
+      formData.value.birthDate = newBirthDate
     } else {
       formData.value = {}
     }
@@ -95,23 +121,34 @@ const submitCallback = () => {
     submitLoadingDispatcher.loading()
 
     uploadRef.value?.submit()
-    try {
-      const { path } = (await UploadAPI.uploadFile({ file: currentFile.value })).data || {}
-      formData.value.avatarUrl = FileUtils.getServerFileUrl(path)
-    } catch {
-      message.error(t('Common.FailedUploadAvatar'))
-      return
-    }
 
-    try {
-      if (props.isEdit) {
+    if (props.isEdit) {
+      try {
+        const { path } = (await UploadAPI.uploadFile({ file: currentFile.value })).data || {}
+        formData.value.avatarUrl = FileUtils.getServerFileUrl(path)
+      } catch {
+        message.error(t('Common.FailedUploadAvatar'))
+        return
+      }
+      try {
         const { message: successMessage } = await UserAPI.updateUser(formData.value.id!, formData.value)
         message.success(successMessage!)
         showModal.value = false
+      } catch (err: any) {
+        message.error(err.message)
       }
-    } catch (err: any) {
-      message.error(err.message)
+    } else {
+      try {
+        const { message: successMessage } = await UserAPI.createUser(createFormData)
+        message.success(successMessage!)
+        createFormData.username = ''
+        createFormData.password = ''
+        showModal.value = false
+      } catch (err: any) {
+        message.error(err.message)
+      }
     }
+
     submitLoadingDispatcher.loaded()
   })
 }
@@ -139,6 +176,7 @@ defineExpose({
     :negative-text="t('Common.Cancer')"
   >
     <NForm
+      v-if="isEdit"
       ref="formRef"
       :rules="rules"
       :model="formData"
@@ -243,9 +281,9 @@ defineExpose({
         :label="t('Common.BirthDate')"
         path="birthDate"
       >
-        <NInput
-          v-model:value="formData.birthDate"
-          :placeholder="t('Common.Validation.BirthDate')"
+        <NDatePicker
+          v-model:formatted-value="formData.birthDate"
+          clearable
         />
       </NFormItem>
       <NFormItem
@@ -254,7 +292,7 @@ defineExpose({
       >
         <NInput
           v-model:value="formData.address"
-          :placeholder="t('Common.Validation.BirthDate')"
+          :placeholder="t('Common.Validation.Address')"
           maxlength="30"
           show-count
           clearable
@@ -273,7 +311,42 @@ defineExpose({
         />
       </NFormItem>
     </NForm>
-
+    <NForm
+      v-else
+      ref="formRef"
+      :rules="createRules"
+      :model="createFormData"
+      label-placement="left"
+      label-width="auto"
+      require-mark-placement="right-hanging"
+      class="flex flex-col"
+    >
+      <NFormItem
+        :label="t('Common.Username')"
+        path="username"
+      >
+        <NInput
+          v-model:value="createFormData.username"
+          :placeholder="t('Common.Validation.Username')"
+          maxlength="20"
+          show-count
+          clearable
+        />
+      </NFormItem>
+      <NFormItem
+        :label="t('Common.Password')"
+        path="password"
+      >
+        <NInput
+          v-model:value="createFormData.password"
+          :placeholder="t('Common.Validation.Password')"
+          maxlength="20"
+          show-count
+          clearable
+          type="password"
+        />
+      </NFormItem>
+    </NForm>
     <template #action>
       <div class="space-x-2">
         <NButton

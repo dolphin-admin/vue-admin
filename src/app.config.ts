@@ -5,5 +5,6 @@ export const siteMetaData: SiteMetaData = Object.freeze({
   version: '0.0.1',
   favicon: '/favicon.ico',
   teamName: 'Bit Ocean',
-  teamGitHubURL: 'https://github.com/bit-ocean-studio'
+  teamGitHubURL: 'https://github.com/bit-ocean-studio',
+  repoGitHubURL: 'https://github.com/bit-ocean-studio/dolphin-admin-web'
 })
