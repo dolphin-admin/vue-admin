@@ -108,6 +108,7 @@
     "RoleManagement": "角色管理",
     "PermissionManagement": "权限管理",
     "SystemTool": "系统工具",
+    "ComponentsPreview": "组件预览",
     "IconManagement": "图标管理",
     "QRCode": "二维码"
   },

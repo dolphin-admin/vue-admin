@@ -6,6 +6,7 @@ import RoleManagementIcon from '~icons/mdi/account-group'
 import IconManagementIcon from '~icons/mdi/emoticon-wink'
 import SystemFunctionIcon from '~icons/mdi/function-variant'
 import PermissionManagementIcon from '~icons/mdi/key-chain'
+import ComponentsPreviewIcon from '~icons/mdi/puzzle'
 import SystemToolIcon from '~icons/mdi/tools'
 
 const { t } = i18n.global
@@ -147,6 +148,32 @@ export const menuOptions: MenuMixedOption[] = [
       ),
     menuType: 'label',
     children: [
+      {
+        label: () =>
+          h(
+            RouterLink,
+            {
+              to: '/components-preview'
+            },
+            {
+              default: () => t('Menu.ComponentsPreview')
+            }
+          ),
+        labelKey: 'Menu.ComponentsPreview',
+        path: '/components-preview',
+        key: 'components-preview',
+        icon: () =>
+          h(
+            NIcon,
+            {
+              size: 16
+            },
+            {
+              default: () => h(ComponentsPreviewIcon)
+            }
+          ),
+        menuType: 'routerLink'
+      },
       {
         label: () =>
           h(

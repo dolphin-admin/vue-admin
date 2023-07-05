@@ -14,6 +14,8 @@ declare module 'vue' {
     BaseLayout: typeof import('./layouts/BaseLayout/index.vue')['default']
     BaseSidebar: typeof import('./components/BaseSidebar/index.vue')['default']
     DataTableLayout: typeof import('./layouts/DataTableLayout/index.vue')['default']
+    DolphinModalDialog: typeof import('./components/DolphinModalDialog/index.vue')['default']
+    DolphinThemeSwitchDevTool: typeof import('./components/DolphinThemeSwitchDevTool/index.vue')['default']
     FileUploader: typeof import('./components/FileUploader/index.vue')['default']
     NAvatar: typeof import('naive-ui')['NAvatar']
     NButton: typeof import('naive-ui')['NButton']

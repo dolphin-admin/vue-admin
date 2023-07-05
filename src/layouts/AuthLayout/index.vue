@@ -38,7 +38,7 @@ onBeforeMount(() => {
         />
       </RouterView>
     </div>
-    <ThemeSwitchDevTool />
+    <DolphinThemeSwitchDevTool />
   </main>
 </template>
 
