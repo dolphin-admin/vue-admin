@@ -31,6 +31,14 @@ export const routes = [
         }
       },
       {
+        path: '/change-password',
+        name: 'change-password',
+        component: () => import('@/views/ChangePassword'),
+        meta: {
+          title: 'Menu.ChangePassword'
+        }
+      },
+      {
         path: '/user-management',
         name: 'user-management',
         component: () => import('@/views/UserManagement'),

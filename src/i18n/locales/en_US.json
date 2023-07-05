@@ -61,7 +61,8 @@
     "Revise": "Revise",
     "PersonalInformation": "Personal information",
     "BasicInformation": "Basic Information",
-    "ResetPassword": "Reset password"
+    "ResetPassword": "Reset password",
+    "Save": "保存"
   },
   "Login": {
     "AsAdmin": "Login as Admin",
@@ -91,8 +92,7 @@
     "Logout": "Logout",
     "UserCenter": "User center",
     "LockScreen": "Lock screen",
-    "ChangePassword": "Change Password",
-    "Github": "github"
+    "ChangePassword": "Change password"
   },
   "Sidebar": {
     "Expand": "Expand sidebar",

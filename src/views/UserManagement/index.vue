@@ -310,6 +310,10 @@ const handleCreateUser = () => {
   queryList()
 }
 
+const handleCancelPassword = () => {
+  resetPasswordData.password = '123456'
+}
+
 const handleConfirmPassword = () => {
   resetPasswordRef.value!.validate((errors) => {
     if (errors) {
@@ -323,10 +327,11 @@ const handleConfirmPassword = () => {
       .catch((err) => {
         message.error(err.message!)
       })
+      .finally(() => {
+        handleCancelPassword()
+      })
   })
 }
-
-const handleCancelPassword = () => {}
 
 onMounted(() => queryList())
 </script>
