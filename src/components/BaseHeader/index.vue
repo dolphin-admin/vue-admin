@@ -38,16 +38,16 @@ const userOptions = [
     key: 'UserInfo'
   },
   {
+    label: t('Header.ChangePassword'),
+    key: 'ChangePassword'
+  },
+  {
     label: t('Header.LockScreen'),
     key: 'Lock'
   },
   {
     label: t('Header.Logout'),
     key: 'Quit'
-  },
-  {
-    label: t('Header.ChangePassword'),
-    key: 'ChangePassword'
   }
 ]
 
@@ -62,7 +62,7 @@ const changePasswordRules: FormRules = {
   oldPassword: [
     {
       required: true,
-      message: t('Common.'),
+      message: t('Common.OldPassword'),
       trigger: ['blur', 'input']
     }
   ],
@@ -174,16 +174,6 @@ const currentLanguageOptions = computed(() =>
         trigger="hover"
       >
         <template #trigger>
-          <NotificationIcon class="cursor-pointer dark:text-white" />
-        </template>
-        <span class="dark:text-white">{{ t('Header.Notification') }}</span>
-      </NTooltip>
-
-      <NTooltip
-        placement="bottom"
-        trigger="hover"
-      >
-        <template #trigger>
           <GithubIcon
             class="cursor-pointer dark:text-white"
             @click="() => openNewWindow(repoGitHubURL)"
@@ -191,7 +181,15 @@ const currentLanguageOptions = computed(() =>
         </template>
         <span class="dark:text-white">{{ t('Header.Github') }}</span>
       </NTooltip>
-
+      <NTooltip
+        placement="bottom"
+        trigger="hover"
+      >
+        <template #trigger>
+          <NotificationIcon class="cursor-pointer dark:text-white" />
+        </template>
+        <span class="dark:text-white">{{ t('Header.Notification') }}</span>
+      </NTooltip>
       <NTooltip
         placement="bottom"
         trigger="hover"
@@ -312,7 +310,7 @@ const currentLanguageOptions = computed(() =>
       </NFormItem>
       <NFormItem
         path="newPassword"
-        :label="t('Common.newPassword')"
+        :label="t('Common.NewPassword')"
       >
         <NInput
           v-model:value="changePasswordData.newPassword"
