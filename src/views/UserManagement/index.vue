@@ -323,10 +323,15 @@ const handleConfirmPassword = () => {
       .catch((err) => {
         message.error(err.message!)
       })
+      .finally(() => {
+        resetPasswordData.password = '123456'
+      })
   })
 }
 
-const handleCancelPassword = () => {}
+const handleCancelPassword = () => {
+  resetPasswordData.password = '123456'
+}
 
 onMounted(() => queryList())
 </script>
