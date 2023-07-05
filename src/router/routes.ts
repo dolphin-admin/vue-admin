@@ -4,6 +4,7 @@ import UserManagementIcon from '~icons/mdi/account-cog-outline'
 import RoleManagementIcon from '~icons/mdi/account-group'
 import IconManagementIcon from '~icons/mdi/emoticon-wink'
 import PermissionManagementIcon from '~icons/mdi/key-chain'
+import ComponentsPreviewIcon from '~icons/mdi/puzzle'
 
 const { appName } = siteMetaData
 
@@ -55,6 +56,15 @@ export const routes = [
         meta: {
           title: 'Menu.PermissionManagement',
           icon: PermissionManagementIcon
+        }
+      },
+      {
+        path: '/components-preview',
+        name: 'components-preview',
+        component: () => import('@/views/ComponentsPreview'),
+        meta: {
+          title: 'Menu.ComponentsPreview',
+          icon: ComponentsPreviewIcon
         }
       },
       {
