@@ -76,7 +76,8 @@
     "Failed": "注册失败"
   },
   "Logout": {
-    "Success": "登出成功"
+    "Success": "登出成功",
+    "LoginAgain": "用户身份状态已失效，请重新登录"
   },
   "UserInfo": {
     "Fetching": "正在获取用户信息...",
@@ -103,11 +104,13 @@
     "Login": "登录",
     "Signup": "注册",
     "UserInfo": "用户信息",
+    "ChangePassword": "修改密码",
     "SystemFunction": "系统功能",
     "UserManagement": "用户管理",
     "RoleManagement": "角色管理",
     "PermissionManagement": "权限管理",
     "SystemTool": "系统工具",
+    "ComponentsPreview": "组件预览",
     "IconManagement": "图标管理",
     "QRCode": "二维码"
   },

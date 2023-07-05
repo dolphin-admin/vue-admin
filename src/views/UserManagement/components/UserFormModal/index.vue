@@ -1,6 +1,13 @@
 <script setup lang="ts">
 import type { User } from '@/types'
 
+export interface Props {
+  userFormData?: User
+  isEdit: Boolean
+}
+
+const props = defineProps<Props>()
+
 const message = useMessage()
 const [submitLoading, submitLoadingDispatcher] = useLoading()
 
@@ -15,6 +22,7 @@ const createFormData = reactive({
   password: ''
 })
 const currentFile = ref<File | null>(null)
+const showModal = ref(false)
 
 const rules: FormRules = {
   name: [
@@ -80,29 +88,6 @@ const createRules: FormRules = {
   ]
 }
 
-const showModal = ref(false)
-
-export interface Props {
-  userFormData?: User
-  isEdit: Boolean
-}
-
-const props = defineProps<Props>()
-
-watch(
-  () => props.userFormData,
-  (newValue) => {
-    if (newValue) {
-      const newBirthDate = newValue.birthDate && TimeUtils.formatTime(newValue.birthDate, 'YYYY-MM-DD')
-      formData.value = newValue
-      formData.value.birthDate = newBirthDate
-    } else {
-      formData.value = {}
-    }
-  },
-  { immediate: true }
-)
-
 const UploadAvatarUrl = (options: { fileList: UploadFileInfo[] }) => {
   const [file] = options.fileList
   currentFile.value = file.file ?? null
@@ -123,12 +108,14 @@ const submitCallback = () => {
     uploadRef.value?.submit()
 
     if (props.isEdit) {
-      try {
-        const { path } = (await UploadAPI.uploadFile({ file: currentFile.value })).data || {}
-        formData.value.avatarUrl = FileUtils.getServerFileUrl(path)
-      } catch {
-        message.error(t('Common.FailedUploadAvatar'))
-        return
+      if (!formData.value.avatarUrl) {
+        try {
+          const { path } = (await UploadAPI.uploadFile({ file: currentFile.value })).data || {}
+          formData.value.avatarUrl = FileUtils.getServerFileUrl(path)
+        } catch {
+          message.error(t('Common.FailedUploadAvatar'))
+          return
+        }
       }
       try {
         const { message: successMessage } = await UserAPI.updateUser(formData.value.id!, formData.value)
@@ -161,6 +148,21 @@ const cancelCallback = () => {
 const handleShowModal = () => {
   showModal.value = true
 }
+
+watch(
+  () => props.userFormData,
+  (newValue) => {
+    if (newValue) {
+      const newBirthDate = newValue.birthDate && TimeUtils.formatTime(newValue.birthDate, 'YYYY-MM-DD')
+      formData.value = newValue
+      formData.value.birthDate = newBirthDate
+    } else {
+      formData.value = {}
+    }
+  },
+  { immediate: true }
+)
+
 defineExpose({
   handleShowModal
 })
@@ -311,6 +313,7 @@ defineExpose({
         />
       </NFormItem>
     </NForm>
+
     <NForm
       v-else
       ref="formRef"
@@ -339,11 +342,12 @@ defineExpose({
       >
         <NInput
           v-model:value="createFormData.password"
+          type="password"
           :placeholder="t('Common.Validation.Password')"
           maxlength="20"
-          show-count
           clearable
-          type="password"
+          show-password-on="click"
+          :input-props="{ autocomplete: 'new-password' }"
         />
       </NFormItem>
     </NForm>
@@ -352,14 +356,16 @@ defineExpose({
         <NButton
           size="small"
           @click="cancelCallback"
-          >{{ t('Common.Cancer') }}</NButton
         >
+          {{ t('Common.Cancer') }}
+        </NButton>
         <NButton
           size="small"
-          type="success"
+          type="primary"
           @click="submitCallback"
-          >{{ t('Common.Confirm') }}</NButton
         >
+          {{ t('Common.Confirm') }}
+        </NButton>
       </div>
     </template>
   </NModal>

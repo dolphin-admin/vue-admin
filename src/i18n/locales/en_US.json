@@ -76,7 +76,8 @@
     "Failed": "Signup failed"
   },
   "Logout": {
-    "Success": "Logout success"
+    "Success": "Logout success",
+    "LoginAgain": "User identity status has expired, please log in again"
   },
   "UserInfo": {
     "Fetching": "Fetching user info...",
@@ -103,10 +104,12 @@
     "Login": "Login",
     "Signup": "Signup",
     "UserInfo": "User Info",
+    "ChangePassword": "Change Password",
     "SystemFunction": "System Function",
     "UserManagement": "User Management",
     "RoleManagement": "Role Management",
     "PermissionManagement": "Permission Management",
+    "ComponentsPreview": "Components Preview",
     "SystemTool": "System Tool",
     "IconManagement": "Icon Management",
     "QRCode": "QRCode"
