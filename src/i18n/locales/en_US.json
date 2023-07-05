@@ -12,6 +12,9 @@
     "Username": "Username",
     "Password": "Password",
     "ConfirmPassword": "Confirm password",
+    "NewPassword": "New password",
+    "OldPassword": "Old password",
+    "ChangePassword": "Change password",
     "Validation": {
       "Username": "Please enter username",
       "Password": "Please enter password",
@@ -27,7 +30,8 @@
       "PhoneNumber": "Please enter a phone number",
       "BirthDate": "Please enter the date of birth",
       "Address": "Please enter an address",
-      "Biography": "Please enter a brief introduction"
+      "Biography": "Please enter a brief introduction",
+      "OldPassword": "Please enter old password"
     },
     "Download": "Download",
     "Upload": "Upload",

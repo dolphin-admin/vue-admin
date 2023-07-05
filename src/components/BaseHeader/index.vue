@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ChangePasswordInputModel, Lang } from '@/types'
+import type { Lang } from '@/types'
 import UserAvatarIcon from '~icons/carbon/user-avatar-filled-alt'
 import NotificationIcon from '~icons/ic/baseline-notifications-none'
 import LanguageIcon from '~icons/ion/language-outline'
@@ -53,12 +53,16 @@ const userOptions = [
 
 const isChangePassword = ref(false)
 const changePasswordRef = ref<FormInst | null>(null)
-const changePasswordData = reactive<ChangePasswordInputModel>({})
+const changePasswordData = reactive({
+  oldPassword: '',
+  newPassword: '',
+  confirmPassword: ''
+})
 const changePasswordRules: FormRules = {
   oldPassword: [
     {
       required: true,
-      message: '请输入旧密码',
+      message: t('Common.'),
       trigger: ['blur', 'input']
     }
   ],
@@ -283,9 +287,9 @@ const currentLanguageOptions = computed(() =>
   <NModal
     v-model:show="isChangePassword"
     preset="dialog"
-    title="修改密码"
-    positive-text="确认"
-    negative-text="取消"
+    :title="t('Common.ChangePassword')"
+    :positive-text="t('Common.Confirm')"
+    :negative-text="t('Common.Cancer')"
     @positive-click="handleChangePassword"
   >
     <NForm
@@ -295,7 +299,7 @@ const currentLanguageOptions = computed(() =>
     >
       <NFormItem
         path="oldPassword"
-        label="旧密码"
+        :label="t('Common.OldPassword')"
       >
         <NInput
           v-model:value="changePasswordData.oldPassword"
@@ -308,7 +312,7 @@ const currentLanguageOptions = computed(() =>
       </NFormItem>
       <NFormItem
         path="newPassword"
-        label="新密码"
+        :label="t('Common.newPassword')"
       >
         <NInput
           v-model:value="changePasswordData.newPassword"
@@ -321,14 +325,13 @@ const currentLanguageOptions = computed(() =>
       </NFormItem>
       <NFormItem
         path="confirmPassword"
-        label="确认密码"
+        :label="t('Common.ConfirmPassword')"
       >
         <NInput
           v-model:value="changePasswordData.confirmPassword"
           type="password"
           :placeholder="t('Common.Password')"
           show-password-on="click"
-          :input-props="{ autocomplete: 'new-password' }"
           @keydown.enter="handleChangePassword"
         />
       </NFormItem>
