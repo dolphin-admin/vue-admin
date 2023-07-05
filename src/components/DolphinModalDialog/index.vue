@@ -56,4 +56,3 @@ watch(
     <slot />
   </NModal>
 </template>
-\
