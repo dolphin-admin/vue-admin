@@ -133,7 +133,7 @@ const handleChangePassword = () => {
       :loading="submitLoading"
       @click="() => handleChangePassword()"
     >
-      {{ t('Common.ChangePassword') }}
+      {{ t('Common.Save') }}
     </NButton>
   </NForm>
 </template>
