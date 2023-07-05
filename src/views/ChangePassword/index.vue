@@ -12,6 +12,7 @@ const changePasswordData = reactive({
   newPassword: '',
   confirmPassword: ''
 })
+
 const changePasswordRules: FormRules = {
   oldPassword: [
     {
@@ -45,6 +46,15 @@ const changePasswordRules: FormRules = {
   ]
 }
 
+const logout = () => {
+  AuthUtils.clearToken()
+  // LangUtils.clearLang()
+  ThemeUtils.clearTheme()
+  userStore.clearUser()
+  router.replace('/login')
+  message.success(t('Logout.LoginAgain'))
+}
+
 const handleChangePassword = () => {
   changePasswordRef.value!.validate((errors) => {
     if (errors) {
@@ -60,80 +70,86 @@ const handleChangePassword = () => {
 
     UserAPI.changePassword(userStore.user.id!, changePasswordData)
       .then((res) => {
-        message.success(res.message!)
-        router.replace('/')
+        if (res.message) {
+          message.success(res.message)
+        }
+        logout()
       })
       .catch((err) => {
-        message.error(err.message!)
-        submitLoadingDispatcher.loaded()
+        message.error(err.message)
       })
       .finally(() => {
-        changePasswordData.oldPassword = ''
-        changePasswordData.newPassword = ''
-        changePasswordData.confirmPassword = ''
+        submitLoadingDispatcher.loaded()
       })
   })
 }
 </script>
 
 <template>
-  <NForm
-    ref="changePasswordRef"
-    label-placement="left"
-    label-align="center"
-    :label-width="80"
-    class="absolute inset-0 m-auto mt-4 !w-[400px] max-w-[85%] px-10"
-    :model="changePasswordData"
-    :rules="changePasswordRules"
-  >
-    <NFormItem
-      path="oldPassword"
-      :label="t('Common.OldPassword')"
+  <main class="flex justify-start">
+    <NCard
+      class="h-fit w-full sm:!w-2/5"
+      hoverable
+      content-style="width: 100%;"
     >
-      <NInput
-        v-model:value="changePasswordData.oldPassword"
-        type="password"
-        :placeholder="t('Common.Password')"
-        show-password-on="click"
-        :input-props="{ autocomplete: 'oldPassword' }"
-        @keydown.enter="handleChangePassword"
-      />
-    </NFormItem>
-    <NFormItem
-      path="newPassword"
-      :label="t('Common.NewPassword')"
-      first
-    >
-      <NInput
-        v-model:value="changePasswordData.newPassword"
-        type="password"
-        :placeholder="t('Common.Password')"
-        show-password-on="click"
-        :input-props="{ autocomplete: 'new-password' }"
-        @keydown.enter="handleChangePassword"
-      />
-    </NFormItem>
-    <NFormItem
-      path="confirmPassword"
-      :label="t('Common.ConfirmPassword')"
-    >
-      <NInput
-        v-model:value="changePasswordData.confirmPassword"
-        type="password"
-        :placeholder="t('Common.Password')"
-        show-password-on="click"
-        @keydown.enter="handleChangePassword"
-      />
-    </NFormItem>
+      <NForm
+        ref="changePasswordRef"
+        label-placement="left"
+        label-align="right"
+        :label-width="80"
+        :model="changePasswordData"
+        :rules="changePasswordRules"
+      >
+        <NFormItem
+          path="oldPassword"
+          :label="t('Common.OldPassword')"
+        >
+          <NInput
+            v-model:value="changePasswordData.oldPassword"
+            type="password"
+            :placeholder="t('Common.Password')"
+            show-password-on="click"
+            :input-props="{ autocomplete: 'oldPassword' }"
+            @keydown.enter="handleChangePassword"
+          />
+        </NFormItem>
+        <NFormItem
+          path="newPassword"
+          :label="t('Common.NewPassword')"
+          first
+        >
+          <NInput
+            v-model:value="changePasswordData.newPassword"
+            type="password"
+            :placeholder="t('Common.Password')"
+            show-password-on="click"
+            :input-props="{ autocomplete: 'new-password' }"
+            @keydown.enter="handleChangePassword"
+          />
+        </NFormItem>
+        <NFormItem
+          path="confirmPassword"
+          :label="t('Common.ConfirmPassword')"
+        >
+          <NInput
+            v-model:value="changePasswordData.confirmPassword"
+            type="password"
+            :placeholder="t('Common.Password')"
+            show-password-on="click"
+            @keydown.enter="handleChangePassword"
+          />
+        </NFormItem>
 
-    <NButton
-      type="primary"
-      class="rounded"
-      :disabled="submitLoading"
-      :loading="submitLoading"
-      @click="() => handleChangePassword()"
-    >
-      {{ t('Common.Save') }}
-    </NButton>
-  </NForm>
+        <NButton
+          type="primary"
+          class="rounded"
+          :disabled="submitLoading"
+          :loading="submitLoading"
+          @click="() => handleChangePassword()"
+        >
+          {{ t('Common.Save') }}
+        </NButton>
+      </NForm>
+    </NCard>
+  </main>
 </template>

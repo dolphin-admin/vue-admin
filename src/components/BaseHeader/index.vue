@@ -53,7 +53,7 @@ const userOptions = [
 
 const logout = () => {
   AuthUtils.clearToken()
-  LangUtils.clearLang()
+  // LangUtils.clearLang()
   ThemeUtils.clearTheme()
   userStore.clearUser()
   message.success(t('Logout.Success'))

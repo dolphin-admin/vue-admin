@@ -11,12 +11,13 @@ const [loading, loadingDispatcher] = useLoading()
 // @ts-ignore
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
-const queryParams = reactive({
-  searchText: ''
-})
 const tableRef = ref()
 const resetPasswordRef = ref<FormInst | null>(null)
 const userFormModalRef = ref()
+
+const queryParams = reactive({
+  searchText: ''
+})
 const users = ref<User[]>([])
 const pagination = reactive({
   page: 1,
@@ -24,7 +25,7 @@ const pagination = reactive({
   itemCount: 0
 })
 const resetPasswordData = reactive({
-  password: '123456'
+  password: AuthUtils.DEFAULT_PASSWORD
 })
 const resetPasswordRules: FormRules = {
   password: [
@@ -310,8 +311,8 @@ const handleCreateUser = () => {
   queryList()
 }
 
-const handleCancelPassword = () => {
-  resetPasswordData.password = '123456'
+const handleResetPassword = () => {
+  resetPasswordData.password = AuthUtils.DEFAULT_PASSWORD
 }
 
 const handleConfirmPassword = () => {
@@ -328,7 +329,7 @@ const handleConfirmPassword = () => {
         message.error(err.message!)
       })
       .finally(() => {
-        handleCancelPassword()
+        handleResetPassword()
       })
   })
 }
@@ -403,7 +404,7 @@ onMounted(() => queryList())
         :positive-text="t('Common.Confirm')"
         :negative-text="t('Common.Cancer')"
         @positive-click="handleConfirmPassword"
-        @negative-click="handleCancelPassword"
+        @negative-click="handleResetPassword"
       >
         <NForm
           ref="resetPasswordRef"
@@ -418,6 +419,8 @@ onMounted(() => queryList())
               v-model:value="resetPasswordData.password"
               type="password"
               :placeholder="t('Common.Password')"
+              maxlength="20"
+              clearable
               show-password-on="click"
               :input-props="{ autocomplete: 'new-password' }"
               @keydown.enter="handleConfirmPassword"

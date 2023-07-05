@@ -4,6 +4,10 @@ export class AuthUtils {
    */
   private static LOCAL_STORAGE_TOKEN = 'access_token'
 
+  static DEFAULT_ADMIN_USERNAME = 'SuperAdmin'
+
+  static DEFAULT_PASSWORD = '123456'
+
   /**
    * @description 获取 Token
    */

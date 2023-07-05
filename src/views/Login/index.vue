@@ -93,8 +93,8 @@ const loginAsBasic = () => {
 
 const loginAsAdmin = () => {
   submitType.value = 'ADMIN'
-  formData.username = 'SuperAdmin'
-  formData.password = '123456'
+  formData.username = AuthUtils.DEFAULT_ADMIN_USERNAME
+  formData.password = AuthUtils.DEFAULT_PASSWORD
   login()
 }
 
