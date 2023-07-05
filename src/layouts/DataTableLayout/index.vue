@@ -15,7 +15,7 @@ const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
           <span>{{ t(route.meta.title as string) }}</span>
         </template>
       </div>
-      <slot name="createUser" />
+      <slot name="operate" />
     </div>
     <slot name="table" />
   </div>

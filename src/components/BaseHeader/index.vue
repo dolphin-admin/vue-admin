@@ -21,7 +21,7 @@ const languageOptions = [
   { label: '简体中文', key: 'zh_CN' }
 ]
 
-type UserOptionKey = 'Lock' | 'Quit' | 'UserInfo'
+type UserOptionKey = 'Lock' | 'Quit' | 'UserInfo' | 'ChangePassword'
 
 const themeStore = useThemeStore()
 const sidebarStore = useSidebarStore()
@@ -133,12 +133,12 @@ const handleChangePassword = () => {
       message.error(errors[0][0].message!)
       return
     }
-    UserAPI.changePassword(userStore.user.id, changePasswordData)
+    UserAPI.changePassword(userStore.user.id!, changePasswordData)
       .then((res) => {
-        message.success(res.message)
+        message.success(res.message!)
       })
       .catch((err) => {
-        message.error(err.message)
+        message.error(err.message!)
       })
   })
 }

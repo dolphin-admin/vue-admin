@@ -318,10 +318,10 @@ const handleConfirmPassword = () => {
     }
     UserAPI.resetPassword(currentId.value, resetPasswordData.password)
       .then((res) => {
-        message.success(res.message)
+        message.success(res.message!)
       })
       .catch((err) => {
-        message.error(err.message)
+        message.error(err.message!)
       })
   })
 }
@@ -333,7 +333,7 @@ onMounted(() => queryList())
 
 <template>
   <DataTableLayout class="relative">
-    <template #createUser>
+    <template #operate>
       <NButton
         class="absolute right-0 top-0"
         @click="handleCreateUser"
