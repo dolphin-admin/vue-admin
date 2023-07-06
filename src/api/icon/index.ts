@@ -1,10 +1,12 @@
-import type { APIv2CollectionResponse } from '@/types'
-
-import Request from './axios'
+import Request from '../axios'
+import type { APIv2CollectionResponse } from './type'
 
 export class IconAPI {
   private static ICON_API_PREFIX = GlobalEnvConfig.ICON_API_PREFIX
 
+  /**
+   * 图标集列表
+   */
   static getIconsBySet(iconSet: string) {
     return Request.get<APIv2CollectionResponse>(`${this.ICON_API_PREFIX}/collection?prefix=${iconSet}`)
   }

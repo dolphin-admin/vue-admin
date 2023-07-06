@@ -1,3 +1,6 @@
+/**
+ * 全局环境变量
+ */
 export const GlobalEnvConfig = Object.freeze({
   PORT: import.meta.env.VITE_PORT ?? '',
   BASE_API_PREFIX: import.meta.env.VITE_BASE_API_PREFIX ?? '',

@@ -4,7 +4,7 @@ import type { TimeFormatter } from '@/types'
 
 export class TimeUtils {
   /**
-   * @description 格式化时间
+   * 格式化时间
    * @param time 时间
    * @param format 格式
    */

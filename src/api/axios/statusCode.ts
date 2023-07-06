@@ -1,3 +1,6 @@
+/**
+ * @description 响应状态码
+ */
 export enum ResponseStatusCode {
   SUCCESS = 200,
   BAD_REQUEST = 400,
@@ -8,6 +11,9 @@ export enum ResponseStatusCode {
   INTERNAL_SERVER_ERROR = 500
 }
 
+/**
+ * @description 响应状态码对应的错误信息
+ */
 export const errorMessageMap = new Map<ResponseStatusCode, string>([
   [ResponseStatusCode.BAD_REQUEST, '400: Bad Request!'],
   [ResponseStatusCode.UNAUTHORIZED, '401: Unauthorized!'],

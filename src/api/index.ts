@@ -1,5 +1,3 @@
 export * from './icon'
-export * from './login'
-export * from './signup'
 export * from './upload'
 export * from './user'

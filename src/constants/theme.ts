@@ -1,5 +1,8 @@
 import type { GlobalThemeOverrides } from 'naive-ui'
 
+/**
+ * 全局亮色主题配置项
+ */
 export const lightThemeOverrides: GlobalThemeOverrides = {
   common: {
     primaryColor: '#0078D7',
@@ -9,6 +12,9 @@ export const lightThemeOverrides: GlobalThemeOverrides = {
   }
 }
 
+/**
+ * 全局暗色主题配置项
+ */
 export const darkThemeOverrides: GlobalThemeOverrides = {
   common: {
     primaryColor: '#0078D7',
