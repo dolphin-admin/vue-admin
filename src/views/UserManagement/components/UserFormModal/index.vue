@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { User } from '@/types'
+import UserAvatarIcon from '~icons/carbon/user-avatar-filled-alt'
 
 export interface Props {
   userFormData?: User
@@ -199,10 +200,20 @@ defineExpose({
           :default-upload="false"
           @change="UploadAvatarUrl"
         >
-          <NAvatar
-            :size="80"
-            :src="formData.avatarUrl"
-          />
+          <template v-if="formData.avatarUrl">
+            <NAvatar
+              :size="80"
+              :src="formData.avatarUrl"
+            />
+          </template>
+          <template v-else>
+            <NIcon
+              size="80"
+              depth="3"
+            >
+              <UserAvatarIcon />
+            </NIcon>
+          </template>
         </NUpload>
       </NFormItem>
       <NFormItem
