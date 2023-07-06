@@ -2,7 +2,15 @@
 
 ## 文件命名风格
 
-- 图片/文档：使用小写字母，下划线拼接。
+- `.ts`：小驼峰
+- `.vue`：大驼峰
+- 图片/文档：使用小写字母，下划线拼接
+
+## 图标
+
+使用 `NIcon` 组合 `unplugin-icons` 的图标组件。
+
+优先使用 [Google Material Icons](https://icones.js.org/collection/ic/) 图标。
 
 ## 多语言
 
