@@ -2,15 +2,15 @@
 import type { Lang } from '@/types'
 import UserAvatarIcon from '~icons/carbon/user-avatar-filled-alt'
 import NotificationIcon from '~icons/ic/baseline-notifications-none'
+import SettingIcon from '~icons/ic/outline-settings'
+import FullScreenIcon from '~icons/ic/round-fullscreen'
+import ExitFullscreenIcon from '~icons/ic/round-fullscreen-exit'
 import LanguageIcon from '~icons/ion/language-outline'
+import GithubIcon from '~icons/line-md/github-loop'
 import HideMenuIcon from '~icons/line-md/menu-fold-left'
 import ShowMenuIcon from '~icons/line-md/menu-fold-right'
 import SunIcon from '~icons/line-md/moon-alt-to-sunny-outline-loop-transition'
 import MoonIcon from '~icons/line-md/sunny-filled-loop-to-moon-alt-filled-loop-transition'
-import SettingIcon from '~icons/material-symbols/settings-outline-rounded'
-import FullScreenIcon from '~icons/mdi/fullscreen'
-import FullscreenExitIcon from '~icons/mdi/fullscreen-exit'
-import GithubIcon from '~icons/mdi/github'
 
 const { repoGitHubURL } = siteMetaData
 const { isFullscreen, toggle: toggleFullscreen } = useFullscreen()
@@ -102,11 +102,13 @@ const currentLanguageOptions = computed(() =>
         trigger="hover"
       >
         <template #trigger>
-          <component
-            :is="sidebarStore.isDisplay ? HideMenuIcon : ShowMenuIcon"
+          <NIcon
+            size="20"
             class="cursor-pointer"
             @click="() => sidebarStore.toggleSidebarDisplay()"
-          />
+          >
+            <component :is="sidebarStore.isDisplay ? HideMenuIcon : ShowMenuIcon" />
+          </NIcon>
         </template>
         <span class="dark:text-white">{{ t(sidebarStore.isCollapse ? 'Sidebar.Expand' : 'Sidebar.Collapse') }}</span>
       </NTooltip>
@@ -118,10 +120,13 @@ const currentLanguageOptions = computed(() =>
         trigger="hover"
       >
         <template #trigger>
-          <GithubIcon
-            class="cursor-pointer dark:text-white"
+          <NIcon
+            size="20"
+            class="cursor-pointer"
             @click="() => openNewWindow(repoGitHubURL)"
-          />
+          >
+            <GithubIcon />
+          </NIcon>
         </template>
         <span class="dark:text-white">GitHub</span>
       </NTooltip>
@@ -130,7 +135,12 @@ const currentLanguageOptions = computed(() =>
         trigger="hover"
       >
         <template #trigger>
-          <NotificationIcon class="cursor-pointer dark:text-white" />
+          <NIcon
+            size="20"
+            class="cursor-pointer"
+          >
+            <NotificationIcon />
+          </NIcon>
         </template>
         <span class="dark:text-white">{{ t('Header.Notification') }}</span>
       </NTooltip>
@@ -139,31 +149,40 @@ const currentLanguageOptions = computed(() =>
         trigger="hover"
       >
         <template #trigger>
-          <component
-            :is="isFullscreen ? FullscreenExitIcon : FullScreenIcon"
-            class="hidden cursor-pointer dark:text-white sm:block"
-            height="24"
-            width="24"
+          <NIcon
+            size="24"
+            class="hidden cursor-pointer sm:block"
             @click="toggleFullscreen"
-          />
+          >
+            <component :is="isFullscreen ? ExitFullscreenIcon : FullScreenIcon" />
+          </NIcon>
         </template>
         <span class="dark:text-white">{{ t(isFullscreen ? 'Header.ExitFullScreen' : 'Header.FullScreen') }} </span>
       </NTooltip>
 
       <NDropdown
-        trigger="click"
+        trigger="hover"
         :options="currentLanguageOptions"
         @select="handleUpdateLocale"
       >
-        <NTooltip
-          placement="bottom"
-          trigger="hover"
+        <!--
+          <NTooltip
+            placement="bottom"
+            trigger="hover"
+          >
+            <template #trigger>
+        -->
+        <NIcon
+          size="20"
+          class="cursor-pointer"
         >
-          <template #trigger>
-            <LanguageIcon class="cursor-pointer dark:text-white" />
-          </template>
-          <span class="dark:text-white">{{ t('Header.Language') }}</span>
-        </NTooltip>
+          <LanguageIcon />
+        </NIcon>
+        <!--
+            </template>
+            <span class="dark:text-white">{{ t('Header.Language') }}</span>
+          </NTooltip>
+        -->
       </NDropdown>
 
       <NTooltip
@@ -171,16 +190,19 @@ const currentLanguageOptions = computed(() =>
         trigger="hover"
       >
         <template #trigger>
-          <SunIcon
-            v-if="themeStore.themeMode === 'light'"
-            class="cursor-pointer dark:text-white"
-            @click="() => themeStore.changeThemeMode(themeStore.themeMode === 'light' ? 'dark' : 'light')"
-          />
-          <MoonIcon
-            v-else
-            class="cursor-pointer dark:text-white"
-            @click="() => themeStore.changeThemeMode(themeStore.themeMode === 'light' ? 'dark' : 'light')"
-          />
+          <NIcon
+            size="20"
+            class="cursor-pointer"
+          >
+            <SunIcon
+              v-if="themeStore.themeMode === 'light'"
+              @click="() => themeStore.changeThemeMode(themeStore.themeMode === 'light' ? 'dark' : 'light')"
+            />
+            <MoonIcon
+              v-else
+              @click="() => themeStore.changeThemeMode(themeStore.themeMode === 'light' ? 'dark' : 'light')"
+            />
+          </NIcon>
         </template>
         <span class="dark:text-white">{{ t('Header.SwitchTheme') }}</span>
       </NTooltip>
@@ -190,7 +212,12 @@ const currentLanguageOptions = computed(() =>
         trigger="hover"
       >
         <template #trigger>
-          <SettingIcon class="cursor-pointer dark:text-white" />
+          <NIcon
+            size="20"
+            class="cursor-pointer"
+          >
+            <SettingIcon />
+          </NIcon>
         </template>
         <span class="dark:text-white">{{ t('Header.Settings') }}</span>
       </NTooltip>
@@ -210,17 +237,12 @@ const currentLanguageOptions = computed(() =>
             />
           </template>
           <template v-else>
-            <NAvatar
-              class="cursor-pointer select-none shadow-md"
-              round
-              object-fit="cover"
-              size="small"
-              style="background-color: inherit"
+            <NIcon
+              size="22"
+              class="cursor-pointer"
             >
-              <NIcon size="24">
-                <UserAvatarIcon class="text-black dark:text-white" />
-              </NIcon>
-            </NAvatar>
+              <UserAvatarIcon />
+            </NIcon>
           </template>
         </NDropdown>
       </template>
