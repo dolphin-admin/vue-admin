@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { User } from '@/types'
+import UserAvatarIcon from '~icons/carbon/user-avatar-filled-alt'
 import NameIcon from '~icons/mdi/account-outline'
 import BirthDateIcon from '~icons/mdi/bookmark-minus-outline'
 import EmailIcon from '~icons/mdi/email-outline'
@@ -124,11 +125,21 @@ onMounted(() =>
   <div class="flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0 sm:p-4">
     <NCard class="flex w-full space-y-4 font-medium sm:!w-2/5">
       <div class="flex flex-col items-center space-y-2">
-        <NAvatar
-          :size="80"
-          round
-          :src="computedUserInfo?.avatarUrl"
-        />
+        <template v-if="computedUserInfo?.avatarUrl">
+          <NAvatar
+            :size="80"
+            round
+            :src="computedUserInfo?.avatarUrl"
+          />
+        </template>
+        <template v-else>
+          <NIcon
+            size="80"
+            depth="3"
+          >
+            <UserAvatarIcon />
+          </NIcon>
+        </template>
 
         <div class="flex items-center justify-center space-x-1 text-lg">
           <span>{{ computedUserInfo?.username }}</span>
@@ -217,10 +228,22 @@ onMounted(() =>
             :default-upload="false"
             @change="UploadAvatarUrl"
           >
-            <NAvatar
-              :size="80"
-              :src="formData.avatarUrl"
-            />
+            <template v-if="formData.avatarUrl">
+              <NAvatar
+                :size="80"
+                :src="formData.avatarUrl"
+                class="cursor-pointer"
+              />
+            </template>
+            <template v-else>
+              <NIcon
+                size="88"
+                class="cursor-pointer"
+                depth="3"
+              >
+                <UserAvatarIcon />
+              </NIcon>
+            </template>
           </NUpload>
         </NFormItem>
         <NFormItem
