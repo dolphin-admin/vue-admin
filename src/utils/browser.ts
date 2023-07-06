@@ -1,6 +1,6 @@
 export class BrowserUtils {
   /**
-   * @description 复制到剪切板
+   * 复制到剪切板
    * @param text 需要复制的文本
    */
   static setClipBoardText(text: string): Promise<void> {
@@ -8,7 +8,7 @@ export class BrowserUtils {
   }
 
   /**
-   * @description 打开新窗口
+   * 打开新窗口
    * @param url 目标地址 URL
    */
   static openNewWindow(url: string) {
@@ -20,7 +20,7 @@ export class BrowserUtils {
   }
 
   /**
-   * @description 下载文件
+   * 下载文件
    * @param imgURL 图片地址
    * @param fileName 下载后的文件名
    */

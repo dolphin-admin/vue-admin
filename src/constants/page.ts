@@ -1,5 +1,12 @@
 import type { PageModel } from '@/types'
 
+/**
+ * 分页模型
+ * @description 用于分页查询的基本参数
+ * - `page`: 当前页码
+ * - `pageSize`: 每页条数
+ * - `searchText`: 搜索文本
+ */
 export class BasePageModel {
   page: number
 

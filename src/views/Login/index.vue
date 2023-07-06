@@ -59,7 +59,7 @@ const login = () => {
 
     submitLoadingDispatcher.loading()
 
-    LoginAPI.login(formData)
+    UserAPI.login(formData)
       .then((res) => {
         const { accessToken } = res.data || {}
         AuthUtils.setToken(accessToken)

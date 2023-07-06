@@ -1,3 +1,7 @@
+/**
+ * 根据字母 a-z 顺序对 /.cspell/custom-words 中的单词进行排序
+ */
+
 const fs = require('fs')
 const os = require('os')
 

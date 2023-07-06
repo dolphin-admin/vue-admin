@@ -22,24 +22,7 @@ export interface User {
   roles?: string[]
 }
 
-export interface LoginInputModel {
-  username: string
-  password: string
-}
-
-export interface SignupInputModel extends LoginInputModel {
-  confirmPassword: string
-}
-
-export interface LoginOrSignupResponse {
-  user: User
-  accessToken: string
-}
-
+/**
+ * 性别
+ */
 export type Gender = 0 | 1
-
-export interface ChangePasswordInputModel {
-  oldPassword: string
-  newPassword: string
-  confirmPassword: string
-}

@@ -7,14 +7,14 @@ export class ThemeUtils {
   private static LOCAL_STORAGE_THEME = 'theme'
 
   /**
-   * @description 获取主题
+   * 获取主题
    */
   static getTheme() {
     return localStorage.getItem(this.LOCAL_STORAGE_THEME)
   }
 
   /**
-   * @description 设置主题
+   * 设置主题
    * @param theme
    */
   static setTheme(theme: Theme) {
@@ -22,14 +22,14 @@ export class ThemeUtils {
   }
 
   /**
-   * @description 清除主题
+   * 清除主题
    */
   static clearTheme() {
     localStorage.removeItem(this.LOCAL_STORAGE_THEME)
   }
 
   /**
-   * @description 获取默认主题
+   * 获取默认主题
    */
   static getDefaultThemeMode(): Theme {
     if (this.getTheme() === 'dark' || (!this.getTheme() && window.matchMedia('(prefers-color-scheme: dark)').matches)) {

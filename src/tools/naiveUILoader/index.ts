@@ -1,5 +1,7 @@
 /**
- * @description Resolve the style conflict between Tailwind CSS and Naive UI.
+ * @description 解决样式冲突问题
+ * @see
+ * - [Naive UI](https://www.naiveui.com/en-US/os-theme/docs/style-conflict)
  */
 export const naiveUILoader = () => {
   const meta = document.createElement('meta')

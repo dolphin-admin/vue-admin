@@ -1,5 +1,8 @@
 /// <reference types="vite/client" />
 
+/**
+ * 环境变量类型
+ */
 interface ImportMetaEnv {
   readonly VITE_PORT: string
   readonly VITE_BASE_API_PREFIX: string

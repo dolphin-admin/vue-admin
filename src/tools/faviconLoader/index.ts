@@ -1,5 +1,5 @@
 /**
- * @description Dynamically loading favicon by site meta data.
+ * @description 根据站点元数据动态加载 favicon
  */
 export const faviconLoader = () => {
   const { favicon } = siteMetaData

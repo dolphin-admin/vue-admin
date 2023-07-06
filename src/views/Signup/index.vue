@@ -59,7 +59,7 @@ const signup = () => {
 
     submitLoadingDispatcher.loading()
 
-    SignupAPI.signup(formData)
+    UserAPI.signup(formData)
       .then((res) => {
         const { accessToken } = res.data || {}
         AuthUtils.setToken(accessToken)

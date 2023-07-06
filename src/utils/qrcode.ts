@@ -4,7 +4,7 @@ import type { QRCodeOptions } from '@/types'
 
 export class QRCodeUtils {
   /**
-   * @description 生成二维码
+   * 生成二维码
    * @param data 二维码数据内容，可以是字符串或者对象
    * @param options 二维码配置项
    */

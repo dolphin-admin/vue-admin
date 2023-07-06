@@ -3,8 +3,9 @@ import { createRouter, createWebHistory, type RouteLocationNormalized } from 'vu
 
 import { routes } from './routes'
 
-const { t } = i18n.global
 NProgress.configure({ showSpinner: false })
+
+const { t } = i18n.global
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,6 +13,11 @@ const router = createRouter({
   scrollBehavior: () => ({ left: 0, top: 0 })
 })
 
+/**
+ * 处理目标路由
+ * @description
+ * - 拼接站点标题
+ */
 const processTargetRoute = (to: RouteLocationNormalized) => {
   document.title = to.path === '/' ? t('App.Name') : `${t((to.meta?.title ?? '') as string)} | ${t('App.Name')}` // Change the title of the document
 }
@@ -24,8 +30,6 @@ router.beforeEach((to, from, next) => {
   next()
 })
 
-router.afterEach(() => {
-  NProgress.done()
-})
+router.afterEach(() => NProgress.done())
 
 export default router

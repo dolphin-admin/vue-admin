@@ -2,15 +2,46 @@
 
 ## 文件命名风格
 
-- `.ts`：小驼峰
-- `.vue`：大驼峰
-- 图片/文档：使用小写字母，下划线拼接
+| 文件类型  | 命名风格                       | 示例                |
+| --------- | ------------------------------ | ------------------- |
+| `.vue`    | 大驼峰文件名下包含 `index.vue` | `Layout/index.vue`  |
+| `.ts`     | 小驼峰                         | `index.ts`,`env.ts` |
+| Vue Store | 小驼峰                         | `userStore.ts`      |
+| Vue Hook  | 小驼峰                         | `useLoading.ts`     |
+| 文档      | 使用小写字母，下划线拼接       | `custom_doc.md`     |
+| 图片      | 使用小写字母，下划线拼接       | `custom_img.png`    |
+
+## 模块化
+
+例如 `/src/utils` 模块目录下的文件，使用 `index.ts` 重导出，通过 `unplugin-auto-import` 插件自动引入。
+`/src/utils` 和 `/src/api` 下的文件，都是用 `class` 的方式导出，所有的方法都是静态方法，不需要实例化。
+
+## 书写注释
+
+通用模块方法，需要使用 `JSDoc` 书写注释，例如：
+
+```typescript
+/**
+ * @description 两数相加
+ */
+function add(a: number, b: number): number {
+  return a + b
+}
+```
 
 ## 图标
 
 使用 `NIcon` 组合 `unplugin-icons` 的图标组件。
 
 优先使用 [Google Material Icons](https://icones.js.org/collection/ic/) 图标。
+
+```vue
+<template>
+  <NIcon>
+    <GitHubIcon />
+  </NIcon>
+</template>
+```
 
 ## 多语言
 
