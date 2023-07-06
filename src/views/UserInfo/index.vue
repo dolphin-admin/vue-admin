@@ -95,7 +95,9 @@ const handleValidateButtonClick = () => {
       userStore.setUser(data)
       message.success(successMessage!)
     } catch (err: any) {
-      message.error(err.message)
+      if (err.message) {
+        message.error(err.message)
+      }
     }
 
     submitLoadingDispatcher.loaded()
