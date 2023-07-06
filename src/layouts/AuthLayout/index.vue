@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import Favicon from '@/assets/images/favicon.png'
+
 const { version } = siteMetaData
 
 const userStore = useUserStore()
@@ -20,7 +22,7 @@ onBeforeMount(() => {
     <div class="invisible relative w-0 bg-blue-200 dark:bg-gray-600 sm:visible sm:w-1/2">
       <div class="absolute inset-0 m-auto flex h-fit w-fit select-none flex-col space-y-2 text-center font-mono">
         <NImage
-          src="@/assets/images/favicon.png"
+          :src="Favicon"
           alt=""
           width="180"
           height="180"

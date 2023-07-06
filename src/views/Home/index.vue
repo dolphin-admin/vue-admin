@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Lang } from '@/types'
+import Favicon from '@/assets/images/favicon.png'
 
 const { version } = siteMetaData
 
@@ -25,7 +26,7 @@ const handleUpdateLocale = (lang: Lang) => {
         class="animate-pulse cursor-pointer select-none"
         width="160"
         height="160"
-        src="@/assets/images/favicon.png"
+        :src="Favicon"
         alt=""
         @click="() => themeStore.changeThemeMode(themeStore.themeMode === 'light' ? 'dark' : 'light')"
       />

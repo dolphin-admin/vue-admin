@@ -220,7 +220,6 @@ onMounted(() =>
             <NAvatar
               :size="80"
               :src="formData.avatarUrl"
-              fallback-src="@/assets/images/user.png"
             />
           </NUpload>
         </NFormItem>
