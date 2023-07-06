@@ -70,7 +70,7 @@ const downloadFile = () => BrowserUtils.downloadFile(generatedResult.value, 'qrc
           hoverable
           content-style="display: flex;justify-content: center;align-items: center;flex-direction: column;"
         >
-          <n-image
+          <NImage
             v-if="generatedResult"
             class="shadow-lg"
             width="200"
