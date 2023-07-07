@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import type { MessageSchema } from '@/types'
+
 const router = useRouter()
-const message = useMessage()
-// @ts-ignore
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+const message = useMessage()
 const [submitLoading, submitLoadingDispatcher] = useLoading(false)
 
 const formData = reactive({
@@ -17,31 +18,31 @@ const rules: FormRules = {
   username: [
     {
       required: true,
-      message: t('Common.Validation.Username'),
+      message: t('Validation.Username'),
       trigger: ['blur', 'input']
     }
   ],
   password: [
     {
       required: true,
-      message: t('Common.Validation.Password'),
+      message: t('Validation.Password'),
       trigger: ['blur', 'input']
     },
     {
       validator: (rule: FormItemRule, value: string) => value.length >= 6,
       trigger: ['blur', 'input'],
-      message: t('Common.Validation.PasswordLength')
+      message: t('Validation.PasswordLength')
     }
   ],
   confirmPassword: [
     {
       required: true,
-      message: t('Common.Validation.ConfirmPassword'),
+      message: t('Validation.ConfirmPassword'),
       trigger: ['blur', 'input']
     },
     {
       validator: (rule: FormItemRule, value: string) => value === formData.password,
-      message: t('Common.Validation.ConfirmPasswordNotMatch')
+      message: t('Validation.ConfirmPasswordNotMatch')
     }
   ]
 }
@@ -95,7 +96,7 @@ const signup = () => {
       <NInput
         v-model:value="formData.username"
         type="text"
-        :placeholder="t('Common.Username')"
+        :placeholder="t('User.Username')"
         :input-props="{ autocomplete: 'username' }"
         @keydown.enter="() => signup()"
       />
@@ -109,7 +110,7 @@ const signup = () => {
       <NInput
         v-model:value="formData.password"
         type="password"
-        :placeholder="t('Common.Password')"
+        :placeholder="t('User.Password')"
         show-password-on="click"
         :input-props="{ autocomplete: 'new-password' }"
         @keydown.enter="() => signup()"

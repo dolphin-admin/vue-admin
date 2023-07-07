@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Lang } from '@/types'
+import type { Lang, MessageSchema } from '@/types'
 import UserAvatarIcon from '~icons/carbon/user-avatar-filled-alt'
 import NotificationIcon from '~icons/ic/baseline-notifications-none'
 import SettingIcon from '~icons/ic/outline-settings'
@@ -28,9 +28,8 @@ const sidebarStore = useSidebarStore()
 const userStore = useUserStore()
 const route = useRoute()
 const router = useRouter()
-const message = useMessage()
-// @ts-ignore
 const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({ useScope: 'global' })
+const message = useMessage()
 
 const userOptions = [
   {
@@ -52,9 +51,7 @@ const userOptions = [
 ]
 
 const logout = () => {
-  AuthUtils.clearToken()
-  // LangUtils.clearLang()
-  ThemeUtils.clearTheme()
+  AuthUtils.clearLocalStorage()
   userStore.clearUser()
   message.success(t('Logout.Success'))
   router.replace('/login')
@@ -110,7 +107,7 @@ const currentLanguageOptions = computed(() =>
             <component :is="sidebarStore.isDisplay ? HideMenuIcon : ShowMenuIcon" />
           </NIcon>
         </template>
-        <span class="dark:text-white">{{ t(sidebarStore.isCollapse ? 'Sidebar.Expand' : 'Sidebar.Collapse') }}</span>
+        {{ t(sidebarStore.isDisplay ? 'Sidebar.Hide' : 'Sidebar.Show') }}
       </NTooltip>
     </div>
 
@@ -128,8 +125,9 @@ const currentLanguageOptions = computed(() =>
             <GithubIcon />
           </NIcon>
         </template>
-        <span class="dark:text-white">GitHub</span>
+        GitHub
       </NTooltip>
+
       <NTooltip
         placement="bottom"
         trigger="hover"
@@ -142,8 +140,9 @@ const currentLanguageOptions = computed(() =>
             <NotificationIcon />
           </NIcon>
         </template>
-        <span class="dark:text-white">{{ t('Header.Notification') }}</span>
+        {{ t('Header.Notification') }}
       </NTooltip>
+
       <NTooltip
         placement="bottom"
         trigger="hover"
@@ -157,7 +156,7 @@ const currentLanguageOptions = computed(() =>
             <component :is="isFullscreen ? ExitFullscreenIcon : FullScreenIcon" />
           </NIcon>
         </template>
-        <span class="dark:text-white">{{ t(isFullscreen ? 'Header.ExitFullScreen' : 'Header.FullScreen') }} </span>
+        {{ t(isFullscreen ? 'Header.ExitFullScreen' : 'Header.FullScreen') }}
       </NTooltip>
 
       <NDropdown
@@ -165,24 +164,12 @@ const currentLanguageOptions = computed(() =>
         :options="currentLanguageOptions"
         @select="handleUpdateLocale"
       >
-        <!--
-          <NTooltip
-            placement="bottom"
-            trigger="hover"
-          >
-            <template #trigger>
-        -->
         <NIcon
           size="20"
           class="cursor-pointer"
         >
           <LanguageIcon />
         </NIcon>
-        <!--
-            </template>
-            <span class="dark:text-white">{{ t('Header.Language') }}</span>
-          </NTooltip>
-        -->
       </NDropdown>
 
       <NTooltip
@@ -194,17 +181,13 @@ const currentLanguageOptions = computed(() =>
             size="20"
             class="cursor-pointer"
           >
-            <SunIcon
-              v-if="themeStore.themeMode === 'light'"
-              @click="() => themeStore.changeThemeMode(themeStore.themeMode === 'light' ? 'dark' : 'light')"
-            />
-            <MoonIcon
-              v-else
+            <component
+              :is="themeStore.themeMode === 'light' ? SunIcon : MoonIcon"
               @click="() => themeStore.changeThemeMode(themeStore.themeMode === 'light' ? 'dark' : 'light')"
             />
           </NIcon>
         </template>
-        <span class="dark:text-white">{{ t('Header.SwitchTheme') }}</span>
+        {{ t('Header.SwitchTheme') }}
       </NTooltip>
 
       <NTooltip
@@ -219,7 +202,7 @@ const currentLanguageOptions = computed(() =>
             <SettingIcon />
           </NIcon>
         </template>
-        <span class="dark:text-white">{{ t('Header.Settings') }}</span>
+        {{ t('Header.Settings') }}
       </NTooltip>
 
       <template v-if="userStore.hasData()">

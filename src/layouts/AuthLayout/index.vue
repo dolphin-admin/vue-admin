@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import Favicon from '@/assets/images/favicon.png'
+import type { MessageSchema } from '@/types'
 
 const { version } = siteMetaData
 
 const userStore = useUserStore()
 const router = useRouter()
-// @ts-ignore
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
 onBeforeMount(() => {
@@ -22,11 +21,12 @@ onBeforeMount(() => {
   <main class="flex h-screen w-screen">
     <div class="invisible relative w-0 bg-blue-200 dark:bg-gray-600 sm:visible sm:w-1/2">
       <div class="absolute inset-0 m-auto flex h-fit w-fit select-none flex-col space-y-2 text-center font-mono">
-        <NImage
-          :src="Favicon"
+        <img
+          src="@/assets/images/favicon.png"
           alt=""
           width="180"
           height="180"
+          loading="eager"
         />
         <span class="text-xl font-semibold">{{ t('App.Name') }}</span>
         <span class="text-base">v{{ version }}</span>

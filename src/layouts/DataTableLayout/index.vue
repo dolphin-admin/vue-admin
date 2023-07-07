@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import type { MessageSchema } from '@/types'
+
 const route = useRoute()
-// @ts-ignore
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 </script>
 

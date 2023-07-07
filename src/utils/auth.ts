@@ -42,4 +42,12 @@ export class AuthUtils {
   static isAuthenticated(): boolean {
     return !!localStorage.getItem(this.LOCAL_STORAGE_TOKEN)
   }
+
+  /**
+   * 清空 localStorage
+   * @description 用于退出登录
+   */
+  static clearLocalStorage() {
+    localStorage.clear()
+  }
 }

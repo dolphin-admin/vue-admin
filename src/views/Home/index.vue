@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import type { Lang } from '@/types'
-import Favicon from '@/assets/images/favicon.png'
+import type { Lang, MessageSchema } from '@/types'
 
 const { version } = siteMetaData
 
 const themeStore = useThemeStore()
-// @ts-ignore
 const { t, locale } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
 const options = [
@@ -22,12 +20,13 @@ const handleUpdateLocale = (lang: Lang) => {
 <template>
   <main class="absolute inset-0 m-auto dark:bg-black">
     <div class="absolute inset-0 m-auto flex h-fit w-1/3 flex-col items-center space-y-4 pb-20 text-center">
-      <NImage
+      <img
         class="animate-pulse cursor-pointer select-none"
         width="160"
         height="160"
-        :src="Favicon"
+        src="@/assets/images/favicon.png"
         alt=""
+        loading="eager"
         @click="() => themeStore.changeThemeMode(themeStore.themeMode === 'light' ? 'dark' : 'light')"
       />
       <div class="flex flex-col space-y-2">
