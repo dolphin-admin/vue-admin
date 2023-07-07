@@ -8,8 +8,6 @@ import ChangePasswordIcon from '~icons/mdi/key'
 import PermissionManagementIcon from '~icons/mdi/key-chain'
 import ComponentsPreviewIcon from '~icons/mdi/puzzle'
 
-const { appName } = siteMetaData
-
 export const routes = [
   {
     path: '/',
@@ -21,7 +19,7 @@ export const routes = [
         name: 'home',
         component: () => import('@/views/Home'),
         meta: {
-          title: appName,
+          title: 'Menu.Home',
           icon: HomeIcon
         }
       },

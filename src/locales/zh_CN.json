@@ -8,6 +8,7 @@
     "500": "服务器错误",
     "All": "全部",
     "Search": "搜索",
+    "Refresh": "刷新",
     "Operation": "操作",
     "Create": "新建",
     "Edit": "编辑",
@@ -26,7 +27,9 @@
     "ConfirmPassword": "确认密码",
     "OldPassword": "旧密码",
     "NewPassword": "新密码",
-    "ChangePassword": "修改密码"
+    "ChangePassword": "修改密码",
+    "IsLoadingData": "正在加载数据...",
+    "LoadingDataError": "加载数据失败"
   },
   "Validation": {
     "Username": "请输入用户名",

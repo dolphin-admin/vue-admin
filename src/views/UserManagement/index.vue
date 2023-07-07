@@ -1,12 +1,31 @@
 <script setup lang="ts">
-import type { MessageSchema, User } from '@/types'
+import type { Lang, MessageSchema, User } from '@/types'
 import CheckIcon from '~icons/ic/baseline-check'
+import RefreshIcon from '~icons/ic/round-refresh'
 
 import { UserFormModal } from './components'
+import { userColumnsI18nKeyMap } from './models'
 
-const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({ useScope: 'global' })
 const message = useMessage()
 const [loading, loadingDispatcher] = useLoading()
+
+const resetPasswordRules: FormRules = {
+  password: [
+    {
+      required: true,
+      message: t('Validation.Password'),
+      trigger: ['blur', 'input']
+    },
+    {
+      validator: (_: FormItemRule, value: string) => value.length >= 6,
+      trigger: ['blur', 'input'],
+      message: t('Validation.PasswordLength')
+    }
+  ]
+}
+
+const operationKeys = ['Common.Edit', 'Common.Enable', 'Common.Disable', 'UserManagement.ResetPassword']
 
 const tableRef = ref()
 const resetPasswordRef = ref<FormInst | null>(null)
@@ -24,30 +43,21 @@ const pagination = reactive({
 const resetPasswordData = reactive({
   password: AuthUtils.DEFAULT_PASSWORD
 })
-const resetPasswordRules: FormRules = {
-  password: [
-    {
-      required: true,
-      message: t('Validation.Password'),
-      trigger: ['blur', 'input']
-    },
-    {
-      validator: (_: FormItemRule, value: string) => value.length >= 6,
-      trigger: ['blur', 'input'],
-      message: t('Validation.PasswordLength')
-    }
-  ]
-}
+
 const currentId = ref()
 const userFormData = ref({})
 const isEdit = ref(true)
 
-const Operation = [t('Common.Edit'), t('Common.Enable'), t('Common.Disable'), t('UserManagement.ResetPassword')]
-
 const isResetPassword = ref(false)
 
 const queryList = (shouldLoading = true) => {
-  if (shouldLoading) loadingDispatcher.loading()
+  if (loading.value) {
+    return
+  }
+
+  if (shouldLoading) {
+    loadingDispatcher.loading()
+  }
 
   const params = new BasePageModel({
     page: pagination.page,
@@ -62,16 +72,19 @@ const queryList = (shouldLoading = true) => {
       pagination.itemCount = total
     })
     .catch(() => {
+      message.error(t('Common.LoadingDataError'))
       users.value = []
     })
     .finally(() => {
-      if (shouldLoading) loadingDispatcher.loaded()
+      if (shouldLoading) {
+        loadingDispatcher.loaded()
+      }
     })
 }
 
-const handlePageChange = () => queryList()
+const processOptionColumnWidth = () => (locale.value === 'zh_CN' ? 200 : 280)
 
-const columns = ref<DataTableColumns<User>>([
+const columns = ref<DataTableBaseColumn<User>[]>([
   {
     title: 'ID',
     key: 'id',
@@ -140,6 +153,11 @@ const columns = ref<DataTableColumns<User>>([
   {
     title: t('User.Country'),
     key: 'country',
+    width: 80
+  },
+  {
+    title: t('User.Province'),
+    key: 'province',
     width: 80
   },
   {
@@ -220,8 +238,8 @@ const columns = ref<DataTableColumns<User>>([
   },
   {
     title: t('Common.Operation'),
-    key: 'option',
-    width: 220,
+    key: 'operation',
+    width: processOptionColumnWidth(),
     titleAlign: 'center',
     align: 'center',
     render: (rowData) =>
@@ -232,8 +250,8 @@ const columns = ref<DataTableColumns<User>>([
         },
         {
           default: () =>
-            Operation.map((text) => {
-              if (text === Operation[1] || text === Operation[2]) {
+            operationKeys.map((key) => {
+              if (key === operationKeys[1] || key === operationKeys[2]) {
                 return h(
                   NPopconfirm,
                   {
@@ -241,7 +259,7 @@ const columns = ref<DataTableColumns<User>>([
                     negativeText: t('Common.Cancel'),
                     positiveText: t('Common.Confirm'),
                     onPositiveClick: () => {
-                      if (text === Operation[1]) {
+                      if (key === operationKeys[1]) {
                         UserAPI.enableUsers(rowData.id!)
                           .then((res) => {
                             message.success(res.message!)
@@ -251,7 +269,7 @@ const columns = ref<DataTableColumns<User>>([
                             message.success(err.message!)
                           })
                       }
-                      if (text === Operation[2]) {
+                      if (key === operationKeys[2]) {
                         UserAPI.disableUsers(rowData.id!)
                           .then((res) => {
                             message.success(res.message!)
@@ -264,8 +282,8 @@ const columns = ref<DataTableColumns<User>>([
                     }
                   },
                   {
-                    trigger: () => h(NButton, { type: 'default', size: 'small' }, { default: () => text }),
-                    default: () => `${t('Common.IsOrNot')} ${text}`
+                    trigger: () => h(NButton, { type: 'default', size: 'small' }, { default: () => t(key) }),
+                    default: () => `${t('Common.IsOrNot')}${t(key)}`
                   }
                 )
               }
@@ -275,11 +293,11 @@ const columns = ref<DataTableColumns<User>>([
                   type: 'default',
                   size: 'small',
                   onClick: () => {
-                    if (text === Operation[3]) {
+                    if (key === operationKeys[3]) {
                       isResetPassword.value = true
                       currentId.value = rowData.id
                     }
-                    if (text === Operation[0]) {
+                    if (key === operationKeys[0]) {
                       isEdit.value = true
                       userFormModalRef.value.handleShowModal()
                       userFormData.value = rowData
@@ -287,7 +305,7 @@ const columns = ref<DataTableColumns<User>>([
                   }
                 },
                 {
-                  default: () => text
+                  default: () => t(key)
                 }
               )
             })
@@ -326,30 +344,61 @@ const handleConfirmPassword = () => {
   })
 }
 
+watch(
+  () => locale.value,
+  () => {
+    columns.value = columns.value.map((column) => {
+      const { key, width } = column
+      const i18nKey = userColumnsI18nKeyMap.get(key.toString())
+      return {
+        ...column,
+        // 重写多语言
+        title: i18nKey ? t(i18nKey) : column.title,
+        // 处理操作列宽度
+        width: key === 'operation' ? processOptionColumnWidth() : width
+      }
+    })
+  }
+)
+
 onMounted(() => queryList())
 </script>
 
 <template>
   <DataTableLayout class="relative">
     <template #operate>
-      <NButton
-        class="absolute right-0 top-0"
-        @click="handleCreateUser"
-        >{{ t('UserManagement.CreateUser') }}</NButton
-      >
+      <div class="flex items-center space-x-3">
+        <NTooltip>
+          <template #trigger>
+            <NButton
+              circle
+              :disabled="loading"
+              @click="() => queryList()"
+            >
+              <template #icon>
+                <NIcon :component="RefreshIcon" />
+              </template>
+            </NButton>
+          </template>
+          {{ t('Common.Refresh') }}
+        </NTooltip>
+        <NButton @click="handleCreateUser">
+          {{ t('UserManagement.CreateUser') }}
+        </NButton>
+      </div>
     </template>
-    <template #table>
-      <NDataTable
-        ref="tableRef"
-        class="mt-4 h-[calc(100%-48px)]"
-        remote
-        flex-height
-        size="small"
-        :scroll-x="3000"
-        :columns="columns"
-        :data="users"
-        :loading="loading"
-        :pagination="{
+
+    <NDataTable
+      ref="tableRef"
+      class="mt-4 h-[calc(100%-48px)]"
+      remote
+      flex-height
+      size="small"
+      :scroll-x="3000"
+      :columns="columns"
+      :data="users"
+      :loading="loading"
+      :pagination="{
           ...pagination,
           showQuickJumper: true,
           showSizePicker: true,
@@ -382,44 +431,45 @@ onMounted(() => queryList())
             queryList()
           }
         }"
-        @update:page="handlePageChange"
-      />
-      <UserFormModal
-        ref="userFormModalRef"
-        :is-edit="isEdit"
-        :user-form-data="userFormData"
-      />
-      <NModal
-        v-model:show="isResetPassword"
-        preset="dialog"
-        :title="t('UserManagement.ResetPassword')"
-        :positive-text="t('Common.Confirm')"
-        :negative-text="t('Common.Cancel')"
-        @positive-click="handleConfirmPassword"
-        @negative-click="handleResetPassword"
+      @update:page="() => queryList()"
+    />
+
+    <NModal
+      v-model:show="isResetPassword"
+      preset="dialog"
+      :title="t('UserManagement.ResetPassword')"
+      :positive-text="t('Common.Confirm')"
+      :negative-text="t('Common.Cancel')"
+      @positive-click="handleConfirmPassword"
+      @negative-click="handleResetPassword"
+    >
+      <NForm
+        ref="resetPasswordRef"
+        :model="resetPasswordData"
+        :rules="resetPasswordRules"
       >
-        <NForm
-          ref="resetPasswordRef"
-          :model="resetPasswordData"
-          :rules="resetPasswordRules"
+        <NFormItem
+          path="password"
+          :label="t('Common.ConfirmPassword')"
         >
-          <NFormItem
-            path="password"
-            :label="t('Common.ConfirmPassword')"
-          >
-            <NInput
-              v-model:value="resetPasswordData.password"
-              type="password"
-              :placeholder="t('User.Password')"
-              maxlength="20"
-              clearable
-              show-password-on="click"
-              :input-props="{ autocomplete: 'new-password' }"
-              @keydown.enter="handleConfirmPassword"
-            />
-          </NFormItem>
-        </NForm>
-      </NModal>
-    </template>
+          <NInput
+            v-model:value="resetPasswordData.password"
+            type="password"
+            :placeholder="t('User.Password')"
+            maxlength="20"
+            clearable
+            show-password-on="click"
+            :input-props="{ autocomplete: 'new-password' }"
+            @keydown.enter="handleConfirmPassword"
+          />
+        </NFormItem>
+      </NForm>
+    </NModal>
+
+    <UserFormModal
+      ref="userFormModalRef"
+      :is-edit="isEdit"
+      :user-form-data="userFormData"
+    />
   </DataTableLayout>
 </template>

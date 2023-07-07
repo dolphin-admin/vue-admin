@@ -8,6 +8,7 @@
     "500": "Internal Server Error",
     "All": "All",
     "Search": "Search",
+    "Refresh": "Refresh",
     "Operation": "Operation",
     "Create": "Create",
     "Edit": "Edit",
@@ -26,7 +27,9 @@
     "ConfirmPassword": "Confirm password",
     "OldPassword": "Old password",
     "NewPassword": "New password",
-    "ChangePassword": "Change password"
+    "ChangePassword": "Change password",
+    "IsLoadingData": "Loading data ...",
+    "LoadingDataError": "Loading data error"
   },
   "Validation": {
     "Username": "Please enter username",

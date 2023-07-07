@@ -1,37 +1,38 @@
 <script setup lang="ts">
-import type { MessageSchema, Tag } from '@/types'
+import type { MessageSchema, Tab } from '@/types'
 import MenuIcon from '~icons/ic/round-grid-view'
 import ArrowIcon from '~icons/line-md/arrow-left'
-const tagStore = useTagStore()
+
+const tabStore = useTabStore()
 const route = useRoute()
 const router = useRouter()
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
-type TagsOptionKey = 'clearAllTags'
+type TabsOptionKey = 'CLEAR_ALL_TAGS'
 
 const options = [
   {
     label: t('Tab.Clear'),
-    key: 'clearAllTags'
+    key: 'CLEAR_ALL_TAGS'
   }
 ]
 
-const handleCloseTag = (tag: Tag, index: number) => {
-  const baseTagLength = tagStore.tags.length
-  if (baseTagLength === 1) {
-    router.push(tag.href)
+const handleCloseTab = (tab: Tab, index: number) => {
+  const baseTabLength = tabStore.tabs.length
+  if (baseTabLength === 1) {
+    router.push(tab.href)
     return
   }
-  router.push(tagStore.tags[index - 1].href)
-  tagStore.removeTagItem(index)
+  router.push(tabStore.tabs[index - 1].href)
+  tabStore.removeTabItem(index)
 }
 
-const handleClearAllTags = () => tagStore.clearAllTags(route.path)
+const handleClearAllTabs = () => tabStore.clearAllTabs(route.path)
 
-const selectTagsOption = (key: TagsOptionKey) => {
+const selectTabsOption = (key: TabsOptionKey) => {
   switch (key) {
-    case 'clearAllTags':
-      handleClearAllTags()
+    case 'CLEAR_ALL_TAGS':
+      handleClearAllTabs()
       break
     default:
       break
@@ -45,13 +46,13 @@ const selectTagsOption = (key: TagsOptionKey) => {
   >
     <NScrollbar x-scrollable>
       <NTag
-        v-for="(tagItem, index) in tagStore.tags"
+        v-for="(tagItem, index) in tabStore.tabs"
         :key="index"
         closable
         class="!cursor-pointer !select-none"
         :type="route.path === tagItem.href ? 'primary' : 'default'"
         @click="() => router.push(tagItem.href)"
-        @close="() => handleCloseTag(tagItem, index)"
+        @close="() => handleCloseTab(tagItem, index)"
       >
         {{ t(tagItem.labelKey) }}
         <template #icon>
@@ -59,10 +60,12 @@ const selectTagsOption = (key: TagsOptionKey) => {
         </template>
       </NTag>
     </NScrollbar>
+
     <NDivider
       vertical
       class="mx-2 sm:mx-4"
     />
+
     <div class="flex shrink-0 items-center space-x-0 sm:space-x-4">
       <div class="hidden h-fit cursor-pointer items-center sm:flex">
         <NIcon
@@ -70,16 +73,18 @@ const selectTagsOption = (key: TagsOptionKey) => {
           :component="ArrowIcon"
         />
       </div>
+
       <div class="hidden !rotate-180 cursor-pointer items-center sm:flex">
         <NIcon
           size="18"
           :component="ArrowIcon"
         />
       </div>
+
       <NDropdown
         trigger="hover"
         :options="options"
-        @select="selectTagsOption"
+        @select="selectTabsOption"
       >
         <NIcon
           size="20"

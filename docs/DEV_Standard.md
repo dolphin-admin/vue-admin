@@ -22,7 +22,8 @@
 
 ```typescript
 /**
- * @description 两数相加
+ * 两数相加
+ * @description 两个参数，返回两数之和
  */
 function add(a: number, b: number): number {
   return a + b
@@ -37,9 +38,7 @@ function add(a: number, b: number): number {
 
 ```vue
 <template>
-  <NIcon>
-    <GitHubIcon />
-  </NIcon>
+  <NIcon :component="GitHubIcon" />
 </template>
 ```
 
@@ -51,6 +50,7 @@ function add(a: number, b: number): number {
 
 ```typescript
 import type { MessageSchema } from '@/types'
+
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
 t('App.Name')

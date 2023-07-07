@@ -106,7 +106,7 @@ declare global {
   const useRouter: typeof import('vue-router')['useRouter']
   const useSidebarStore: typeof import('./store/sidebar/index')['useSidebarStore']
   const useSlots: typeof import('vue')['useSlots']
-  const useTagStore: typeof import('./store/tag/index')['useTagStore']
+  const useTabStore: typeof import('./store/tab/index')['useTabStore']
   const useThemeStore: typeof import('./store/theme/index')['useThemeStore']
   const useToggle: typeof import('@vueuse/core')['useToggle']
   const useUserStore: typeof import('./store/user/index')['useUserStore']
@@ -120,5 +120,5 @@ declare global {
   // @ts-ignore
   export type { Component, ComponentPublicInstance, ComputedRef, InjectionKey, PropType, Ref, VNode } from 'vue'
   // @ts-ignore
-  export type { FormInst, FormItemInst, FormItemRule, FormRules, DataTableColumns, UploadFileInfo, UploadInst, UploadCustomRequestOptions } from 'naive-ui'
+  export type { FormInst, FormItemInst, FormItemRule, FormRules, DataTableColumns, DataTableColumn, DataTableBaseColumn, UploadFileInfo, UploadInst, UploadCustomRequestOptions } from 'naive-ui'
 }

@@ -18,6 +18,6 @@ const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
       </div>
       <slot name="operate" />
     </div>
-    <slot name="table" />
+    <slot />
   </div>
 </template>

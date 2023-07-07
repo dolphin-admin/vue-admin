@@ -72,6 +72,8 @@ export default defineConfig(({ mode }) => {
               'FormItemRule',
               'FormRules',
               'DataTableColumns',
+              'DataTableColumn',
+              'DataTableBaseColumn',
               'UploadFileInfo',
               'UploadInst',
               'UploadCustomRequestOptions'
