@@ -63,7 +63,7 @@ watch(
     :class="[sidebarStore.isDisplay ? (sidebarStore.isCollapse ? 'w-16' : 'w-56') : 'w-0']"
   >
     <!-- Header -->
-    <div class="flex h-16 w-full select-none items-center justify-center">
+    <div class="flex h-14 w-full select-none items-center justify-center">
       <img
         class="animate-pulse cursor-pointer select-none"
         width="36"
@@ -83,7 +83,7 @@ watch(
     </div>
 
     <!-- 菜单 -->
-    <div class="h-[calc(100%-112px)]">
+    <div class="h-[calc(100%-104px)]">
       <NScrollbar :size="10">
         <NMenu
           :collapsed-icon-size="20"
@@ -98,7 +98,10 @@ watch(
     </div>
 
     <!-- 底部折叠按钮 -->
-    <div class="h-12 w-full p-1">
+    <div
+      v-if="sidebarStore.isDisplay"
+      class="h-12 w-full p-1"
+    >
       <div
         class="hover-container flex h-full w-full cursor-pointer items-center justify-center rounded-sm transition-all hover:bg-gray-200 active:opacity-75 dark:hover:bg-gray-600"
         @click="() => sidebarStore.toggleSidebarCollapse()"

@@ -13,7 +13,7 @@
             >
               <component
                 :is="Component"
-                class="relative min-h-[calc(100%-112px)] w-full p-2 sm:p-4"
+                class="relative min-h-[calc(100%-152px)] w-full p-2 sm:p-4"
               />
             </Transition>
           </RouterView>
