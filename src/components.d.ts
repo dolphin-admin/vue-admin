@@ -12,10 +12,9 @@ declare module 'vue' {
     BaseFooter: typeof import('./components/BaseFooter/index.vue')['default']
     BaseHeader: typeof import('./components/BaseHeader/index.vue')['default']
     BaseLayout: typeof import('./layouts/BaseLayout/index.vue')['default']
+    BaseModalDialog: typeof import('./components/BaseModalDialog/index.vue')['default']
     BaseSidebar: typeof import('./components/BaseSidebar/index.vue')['default']
     DataTableLayout: typeof import('./layouts/DataTableLayout/index.vue')['default']
-    BaseModalDialog: typeof import('./components/BaseModalDialog/index.vue')['default']
-    ThemeSwitchDevTool: typeof import('./components/ThemeSwitchDevTool/index.vue')['default']
     FileUploader: typeof import('./components/FileUploader/index.vue')['default']
     NAvatar: typeof import('naive-ui')['NAvatar']
     NButton: typeof import('naive-ui')['NButton']
@@ -46,5 +45,6 @@ declare module 'vue' {
     NUpload: typeof import('naive-ui')['NUpload']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    ThemeSwitchDevTool: typeof import('./components/ThemeSwitchDevTool/index.vue')['default']
   }
 }

@@ -19,11 +19,11 @@ const toggleShowModal = (e: boolean) => {
     <span @click="() => openModal()">
       {{ t('打开弹窗') }}
     </span>
-    <DolphinModalDialog
+    <BaseModalDialog
       v-model:show-modal="showModal"
       @update:show-modal="toggleShowModal"
     >
       {{ t('弹窗内容') }}
-    </DolphinModalDialog>
+    </BaseModalDialog>
   </div>
 </template>
