@@ -2,8 +2,10 @@
 import { Icon } from '@iconify/vue'
 
 import { iconSetList } from '@/constants'
+import type { MessageSchema } from '@/types'
 import SearchIcon from '~icons/ic/sharp-search'
 
+const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 const message = useMessage()
 const [fetchLoading, fetchLoadingDispatcher] = useLoading()
 
@@ -11,9 +13,6 @@ const iconList = ref<string[]>([])
 const searchIconList = ref<string[]>([])
 const selectedIconSet = ref('')
 const searchText = ref('')
-
-// @ts-ignore
-const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
 const handleSearch = (value: string) => {
   searchIconList.value = iconList.value.filter((icon) => icon.toLowerCase().includes(value.toLocaleLowerCase()))
@@ -35,7 +34,7 @@ const getIcons = () => {
 const handleIconSetChange = (key: string) => {
   if (key === selectedIconSet.value) return
   if (fetchLoading.value) {
-    message.loading('正在获取图标数据...')
+    message.loading(t('正在获取图标数据...'))
     return
   }
   selectedIconSet.value = key
@@ -65,7 +64,7 @@ onBeforeMount(() => {
       <NInput
         v-model:value="searchText"
         size="large"
-        :placeholder="t('IconManagement.Tip.Search')"
+        :placeholder="t('IconManagement.SearchPlaceholder')"
         clearable
         autofocus
         @input="handleSearch"

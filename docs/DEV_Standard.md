@@ -50,15 +50,15 @@ function add(a: number, b: number): number {
 ### Vue Setup 内引入
 
 ```typescript
-// @ts-ignore
+import type { MessageSchema } from '@/types'
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
 t('App.Name')
 ```
 
-> 为什么 `@ts-ignore`?
+> ~~为什么 `@ts-ignore`?~~
 >
-> 目前, `vue-i18n` 存在 `TypeScript` 错误，暂时需要忽略，否则无法通过 `vue-tsc` 类型检查。
+> ~~目前, `vue-i18n` 存在 `TypeScript` 错误，暂时需要忽略，否则无法通过 `vue-tsc` 类型检查。~~
 
 ### Vue Setup 外引入
 
@@ -69,6 +69,10 @@ const { t } = i18n.global
 
 t('App.Name')
 ```
+
+### 组件 props 数据传递多语言
+
+使用 watch 监听，数据中存储 i18n key，watch 中调用 `t()` 进行渲染。
 
 ## 响应式设计 RWD
 

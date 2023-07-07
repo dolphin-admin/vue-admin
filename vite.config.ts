@@ -84,12 +84,7 @@ export default defineConfig(({ mode }) => {
           },
           {
             from: '@/i18n',
-            imports: ['i18n']
-          },
-          {
-            from: '@/types',
-            imports: ['MessageSchema'],
-            type: true
+            imports: [['default', 'i18n']]
           }
         ],
         dirs: ['src/api', 'src/hooks', 'src/store', 'src/tools', 'src/utils']
@@ -105,10 +100,10 @@ export default defineConfig(({ mode }) => {
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
-        /*
+        /**
          * NOTE:
          * Fix vue-i18n loader bug
-         * Reference: https://github.com/intlify/vue-i18n-next/issues/789
+         * @see https://github.com/intlify/vue-i18n-next/issues/789
          */
         'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js'
       },

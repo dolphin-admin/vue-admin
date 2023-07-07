@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { User } from '@/types'
+import type { MessageSchema, User } from '@/types'
 import UserAvatarIcon from '~icons/carbon/user-avatar-filled-alt'
 import NameIcon from '~icons/mdi/account-outline'
 import BirthDateIcon from '~icons/mdi/bookmark-minus-outline'
@@ -10,11 +10,9 @@ import PhoneIcon from '~icons/mdi/phone'
 import AddressIcon from '~icons/mdi/store-plus-outline'
 
 const userStore = useUserStore()
+const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 const message = useMessage()
 const [submitLoading, submitLoadingDispatcher] = useLoading()
-
-// @ts-ignore
-const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
 const formRef = ref<FormInst | null>(null)
 const uploadRef = ref<UploadInst | null>(null)
@@ -25,21 +23,21 @@ const rules: FormRules = {
   name: [
     {
       required: true,
-      message: t('Common.Validation.Name'),
+      message: t('Validation.Name'),
       trigger: ['blur', 'input']
     }
   ],
   firstName: [
     {
       required: true,
-      message: t('Common.Validation.FirstName'),
+      message: t('Validation.FirstName'),
       trigger: ['blur', 'input']
     }
   ],
   lastName: [
     {
       required: true,
-      message: t('Common.Validation.LastName'),
+      message: t('Validation.LastName'),
       trigger: ['blur', 'input']
     }
   ],
@@ -48,18 +46,18 @@ const rules: FormRules = {
       key: 'edit',
       required: true,
       trigger: ['blur', 'change'],
-      message: t('Common.Validation.Email')
+      message: t('Validation.Email')
     },
     {
       pattern: /^([a-zA-Z]|[0-9])(\w|-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/,
-      message: t('Common.Validation.CorrectEmailFormat'),
+      message: t('Validation.EmailFormat'),
       trigger: ['input', 'blur']
     }
   ],
   phoneNumber: [
     {
       pattern: /^[1][3456789]\d{9}$/,
-      message: t('Common.Validation.CorrectPhoneNumberFormat'),
+      message: t('Validation.PhoneNumberFormat'),
       trigger: ['input', 'blur']
     }
   ]
@@ -83,8 +81,9 @@ const handleValidateButtonClick = () => {
       try {
         const { path } = (await UploadAPI.uploadFile({ file: currentFile.value })).data || {}
         formData.value.avatarUrl = FileUtils.getServerFileUrl(path)
+        message.success(t('Message.UploadAvatar.Success'))
       } catch {
-        message.error(t('Common.FailedUploadAvatar'))
+        message.error(t('Message.UploadAvatar.Failed'))
         submitLoadingDispatcher.loaded()
         return
       }
@@ -163,7 +162,7 @@ onMounted(() =>
       </div>
 
       <NDivider class="!my-4">
-        <span>{{ t('Common.PersonalInformation') }}</span>
+        <span>{{ t('UserInfo.PersonalInfo') }}</span>
       </NDivider>
       <div class="space-y-4">
         <div class="flex space-x-2">
@@ -204,7 +203,7 @@ onMounted(() =>
     <NCard class="sm:w-3/5">
       <template #header>
         <div class="space-x-6 border-b pb-1 text-center sm:text-left">
-          <span>{{ t('Common.BasicInformation') }}</span>
+          <span>{{ t('UserInfo.BasicInfo') }}</span>
         </div>
       </template>
       <NForm
@@ -217,7 +216,7 @@ onMounted(() =>
         class="flex flex-col"
       >
         <NFormItem
-          :label="t('Common.Avatar')"
+          :label="t('User.Avatar')"
           path="avatarUrl"
         >
           <NUpload
@@ -247,81 +246,81 @@ onMounted(() =>
           </NUpload>
         </NFormItem>
         <NFormItem
-          :label="t('Common.Name')"
+          :label="t('User.Name')"
           path="name"
         >
           <NInput
             v-model:value="formData.name"
-            :placeholder="t('Common.Validation.Name')"
+            :placeholder="t('Validation.Name')"
             maxlength="20"
             show-count
             clearable
           />
         </NFormItem>
         <NFormItem
-          :label="t('Common.FirstName')"
+          :label="t('User.FirstName')"
           path="firstName"
         >
           <NInput
             v-model:value="formData.firstName"
-            :placeholder="t('Common.Validation.FirstName')"
+            :placeholder="t('Validation.FirstName')"
             maxlength="20"
             show-count
             clearable
           />
         </NFormItem>
         <NFormItem
-          :label="t('Common.LastName')"
+          :label="t('User.LastName')"
           path="lastName"
         >
           <NInput
             v-model:value="formData.lastName"
-            :placeholder="t('Common.Validation.LastName')"
+            :placeholder="t('Validation.LastName')"
             maxlength="10"
             show-count
             clearable
           />
         </NFormItem>
         <NFormItem
-          :label="t('Common.Email')"
+          :label="t('User.Email')"
           path="email"
         >
           <NInput
             v-model:value="formData.email"
-            :placeholder="t('Common.Validation.Email')"
+            :placeholder="t('Validation.Email')"
             maxlength="20"
             show-count
             clearable
           />
         </NFormItem>
         <NFormItem
-          :label="t('Common.Gender')"
+          :label="t('User.Gender')"
           path="gender"
         >
           <NRadioGroup
             v-model:value="formData.gender"
-            :name="t('Common.Gender')"
+            :name="t('User.Gender')"
           >
             <NSpace>
-              <NRadio :value="1"> {{ t('Common.Male') }} </NRadio>
-              <NRadio :value="0"> {{ t('Common.Female') }} </NRadio>
+              <NRadio :value="1"> {{ t('User.Male') }} </NRadio>
+              <NRadio :value="0"> {{ t('User.Female') }} </NRadio>
             </NSpace>
           </NRadioGroup>
         </NFormItem>
         <NFormItem
-          :label="t('Common.PhoneNumber')"
+          :label="t('User.PhoneNumber')"
           path="phoneNumber"
         >
           <NInput
             v-model:value="formData.phoneNumber"
-            :placeholder="t('Common.Validation.PhoneNumber')"
+            :placeholder="t('Validation.PhoneNumber')"
             maxlength="20"
             show-count
             clearable
           />
         </NFormItem>
         <NFormItem
-          :label="t('Common.BirthDate')"
+          :label="t('User.BirthDate')"
           path="birthDate"
         >
           <NDatePicker
@@ -330,24 +329,24 @@ onMounted(() =>
           />
         </NFormItem>
         <NFormItem
-          :label="t('Common.Address')"
+          :label="t('User.Address')"
           path="address"
         >
           <NInput
             v-model:value="formData.address"
-            :placeholder="t('Common.Validation.Address')"
+            :placeholder="t('Validation.Address')"
             maxlength="30"
             show-count
             clearable
           />
         </NFormItem>
         <NFormItem
-          :label="t('Common.Biography')"
+          :label="t('User.Biography')"
           path="biography"
         >
           <NInput
             v-model:value="formData.biography"
-            :placeholder="t('Common.Validation.Biography')"
+            :placeholder="t('Validation.Biography')"
             maxlength="300"
             show-count
             clearable
@@ -362,7 +361,7 @@ onMounted(() =>
             :disabled="submitLoading"
             @click="handleValidateButtonClick"
           >
-            {{ t('Common.Revise') }}
+            {{ t('Common.Save') }}
           </NButton>
         </div>
       </NForm>

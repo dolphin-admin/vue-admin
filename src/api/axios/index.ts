@@ -71,7 +71,7 @@ class Request {
     const errorMessage = errorMessageMap.get(code) || 'Unknown Error!'
     switch (code) {
       case ResponseStatusCode.UNAUTHORIZED:
-        AuthUtils.clearToken()
+        AuthUtils.clearLocalStorage()
         router.replace({
           path: '/login',
           query: {

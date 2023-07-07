@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import type { MessageSchema } from '@/types'
+
+const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+
 const showModal = ref<boolean>(false)
 
 const openModal = () => {
@@ -12,12 +16,14 @@ const toggleShowModal = (e: boolean) => {
 
 <template>
   <div>
-    <span @click="() => openModal()"> 打开弹窗 </span>
+    <span @click="() => openModal()">
+      {{ t('打开弹窗') }}
+    </span>
     <DolphinModalDialog
       v-model:show-modal="showModal"
       @update:show-modal="toggleShowModal"
     >
-      弹窗内容
+      {{ t('弹窗内容') }}
     </DolphinModalDialog>
   </div>
 </template>

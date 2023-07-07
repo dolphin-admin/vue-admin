@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import type { MessageSchema } from '@/types'
+
 const { version, teamName, teamGitHubURL } = siteMetaData
 
-// @ts-ignore
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
 const { openNewWindow } = BrowserUtils

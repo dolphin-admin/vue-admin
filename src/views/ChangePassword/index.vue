@@ -1,9 +1,10 @@
 <script setup lang="ts">
+import type { Lang, MessageSchema } from '@/types'
+
 const router = useRouter()
 const userStore = useUserStore()
-const message = useMessage()
-// @ts-ignore
 const { t } = useI18n<{ message: MessageSchema }, Lang>({ useScope: 'global' })
+const message = useMessage()
 const [submitLoading, submitLoadingDispatcher] = useLoading(false)
 
 const changePasswordRef = ref<FormInst | null>(null)
@@ -17,39 +18,37 @@ const changePasswordRules: FormRules = {
   oldPassword: [
     {
       required: true,
-      message: t('Common.Validation.OldPassword'),
+      message: t('Validation.OldPassword'),
       trigger: ['blur', 'input']
     }
   ],
   newPassword: [
     {
       required: true,
-      message: t('Common.Validation.Password'),
+      message: t('Validation.Password'),
       trigger: ['blur', 'input']
     },
     {
-      validator: (rule: FormItemRule, value: string) => value.length >= 6,
+      validator: (_: FormItemRule, value: string) => value.length >= 6,
       trigger: ['blur', 'input'],
-      message: t('Common.Validation.PasswordLength')
+      message: t('Validation.PasswordLength')
     }
   ],
   confirmPassword: [
     {
       required: true,
-      message: t('Common.Validation.ConfirmPassword'),
+      message: t('Common.ConfirmPassword'),
       trigger: ['blur', 'input']
     },
     {
-      validator: (rule: FormItemRule, value: string) => value === changePasswordData.newPassword,
-      message: t('Common.Validation.ConfirmPasswordNotMatch')
+      validator: (_: FormItemRule, value: string) => value === changePasswordData.newPassword,
+      message: t('Validation.ConfirmPasswordNotMatch')
     }
   ]
 }
 
 const logout = () => {
-  AuthUtils.clearToken()
-  // LangUtils.clearLang()
-  ThemeUtils.clearTheme()
+  AuthUtils.clearLocalStorage()
   userStore.clearUser()
   router.replace('/login')
   message.success(t('Logout.LoginAgain'))
@@ -107,7 +106,7 @@ const handleChangePassword = () => {
           <NInput
             v-model:value="changePasswordData.oldPassword"
             type="password"
-            :placeholder="t('Common.Password')"
+            :placeholder="t('User.Password')"
             show-password-on="click"
             :input-props="{ autocomplete: 'oldPassword' }"
             @keydown.enter="handleChangePassword"
@@ -121,7 +120,7 @@ const handleChangePassword = () => {
           <NInput
             v-model:value="changePasswordData.newPassword"
             type="password"
-            :placeholder="t('Common.Password')"
+            :placeholder="t('User.Password')"
             show-password-on="click"
             :input-props="{ autocomplete: 'new-password' }"
             @keydown.enter="handleChangePassword"
@@ -134,7 +133,7 @@ const handleChangePassword = () => {
           <NInput
             v-model:value="changePasswordData.confirmPassword"
             type="password"
-            :placeholder="t('Common.Password')"
+            :placeholder="t('User.Password')"
             show-password-on="click"
             @keydown.enter="handleChangePassword"
           />

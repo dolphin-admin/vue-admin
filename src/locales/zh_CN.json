@@ -1,0 +1,158 @@
+{
+  "App": {
+    "Name": "海豚管理系统"
+  },
+  "Common": {
+    "403": "无访问权限",
+    "404": "页面未找到",
+    "500": "服务器错误",
+    "All": "全部",
+    "Search": "搜索",
+    "Operation": "操作",
+    "Create": "新建",
+    "Edit": "编辑",
+    "Save": "保存",
+    "Confirm": "确认",
+    "Cancel": "取消",
+    "Enable": "启用",
+    "Disable": "禁用",
+    "Verify": "验证",
+    "EachPage": "每页 { count } 条",
+    "Download": "下载",
+    "Upload": "上传",
+    "IsOrNot": "是否",
+    "RememberPassword": "记住密码",
+    "ForgetPassword": "忘记密码",
+    "ConfirmPassword": "确认密码",
+    "OldPassword": "旧密码",
+    "NewPassword": "新密码",
+    "ChangePassword": "修改密码"
+  },
+  "Validation": {
+    "Username": "请输入用户名",
+    "Password": "请输入密码",
+    "PasswordLength": "密码长度至少为 6 位",
+    "OldPassword": "请输入旧密码",
+    "ConfirmPassword": "请输入确认密码",
+    "ConfirmPasswordNotMatch": "两次输入的密码不一致",
+    "Name": "请输入姓名",
+    "FirstName": "请输入名",
+    "LastName": "请输入姓",
+    "Email": "请输入邮箱",
+    "EmailFormat": "请输入正确格式的邮箱",
+    "PhoneNumber": "请输入电话号码",
+    "PhoneNumberFormat": "请输入正确格式的手机号",
+    "BirthDate": "请输入生日",
+    "Country": "请输入国家",
+    "Province": "请输入省份",
+    "City": "请输入城市",
+    "Address": "请输入地址",
+    "Biography": "请输入简介",
+    "QRCodeContent": "请输入二维码内容"
+  },
+  "Message": {
+    "UploadAvatar": {
+      "Success": "头像上传成功",
+      "Failed": "头像上传失败"
+    },
+    "GenerateQRCode": {
+      "Success": "二维码生成成功",
+      "Failed": "二维码生成失败"
+    }
+  },
+  "User": {
+    "Username": "用户名",
+    "Password": "密码",
+    "Name": "姓名",
+    "FirstName": "名",
+    "LastName": "姓",
+    "NickName": "昵称",
+    "Avatar": "头像",
+    "Email": "邮箱",
+    "PhoneNumber": "电话号码",
+    "BirthDate": "生日",
+    "Country": "国家",
+    "Province": "省份",
+    "City": "城市",
+    "Address": "地址",
+    "Biography": "简介",
+    "Roles": "角色",
+    "Gender": "性别",
+    "Male": "男",
+    "Female": "女"
+  },
+  "Language": {
+    "Choose": "选择语言：",
+    "Current": "简体中文"
+  },
+  "Header": {
+    "Notification": "通知",
+    "FullScreen": "全屏",
+    "ExitFullScreen": "退出全屏",
+    "Language": "语言",
+    "SwitchTheme": "切换主题",
+    "Settings": "设置",
+    "UserCenter": "用户中心",
+    "LockScreen": "锁屏",
+    "ChangePassword": "修改密码",
+    "Logout": "退出登录"
+  },
+  "Sidebar": {
+    "Show": "显示侧边栏",
+    "Hide": "隐藏侧边栏",
+    "Expand": "展开侧边栏",
+    "Collapse": "收起侧边栏"
+  },
+  "Menu": {
+    "Home": "首页",
+    "Login": "登录",
+    "Signup": "注册",
+    "UserInfo": "用户信息",
+    "ChangePassword": "修改密码",
+    "SystemFunction": "系统功能",
+    "UserManagement": "用户管理",
+    "RoleManagement": "角色管理",
+    "PermissionManagement": "权限管理",
+    "SystemTool": "系统工具",
+    "ComponentsPreview": "组件预览",
+    "IconManagement": "图标管理",
+    "QRCode": "二维码"
+  },
+  "Login": {
+    "AsVisitor": "以访客登录",
+    "AsAdmin": "以管理员登录",
+    "SwitchToSignup": "切换至注册",
+    "Success": "登录成功",
+    "Failed": "登录失败"
+  },
+  "Signup": {
+    "SwitchToLogin": "切换至登录",
+    "Success": "注册成功",
+    "Failed": "注册失败"
+  },
+  "Logout": {
+    "Success": "登出成功",
+    "LoginAgain": "用户身份状态已失效，请重新登录"
+  },
+  "UserInfo": {
+    "PersonalInfo": "个人信息",
+    "BasicInfo": "基本信息",
+    "Fetching": "正在获取用户信息...",
+    "FetchError": "获取用户信息失败"
+  },
+  "UserManagement": {
+    "EnterTime": "进入系统时间",
+    "CreateUser": "新建用户",
+    "EditUser": "编辑用户",
+    "ResetPassword": "重置密码",
+    "VerifyOrNot": "是否验证",
+    "EnableOrNot": "是否启用"
+  },
+  "QRCode": {
+    "ContentPlaceholder": "请输入二维码内容",
+    "Generate": "生成二维码"
+  },
+  "IconManagement": {
+    "SearchPlaceholder": "请输入图标集合名称"
+  }
+}

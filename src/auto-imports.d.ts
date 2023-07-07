@@ -42,7 +42,7 @@ declare global {
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const h: typeof import('vue')['h']
-  const i18n: typeof import('@/i18n')['i18n']
+  const i18n: typeof import('@/i18n')['default']
   const inject: typeof import('vue')['inject']
   const isProxy: typeof import('vue')['isProxy']
   const isReactive: typeof import('vue')['isReactive']
@@ -120,6 +120,4 @@ declare global {
   export type { Component, ComponentPublicInstance, ComputedRef, InjectionKey, PropType, Ref, VNode } from 'vue'
   // @ts-ignore
   export type { FormInst, FormItemInst, FormItemRule, FormRules, DataTableColumns, UploadFileInfo, UploadInst, UploadCustomRequestOptions } from 'naive-ui'
-  // @ts-ignore
-  export type { MessageSchema } from '@/types'
 }

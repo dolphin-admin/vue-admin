@@ -1,0 +1,158 @@
+{
+  "App": {
+    "Name": "Dolphin Admin"
+  },
+  "Common": {
+    "403": "Forbidden",
+    "404": "Not Found",
+    "500": "Internal Server Error",
+    "All": "All",
+    "Search": "Search",
+    "Operation": "Operation",
+    "Create": "Create",
+    "Edit": "Edit",
+    "Save": "Save",
+    "Confirm": "Confirm",
+    "Cancel": "Cancel",
+    "Enable": "Enable",
+    "Disable": "Disable",
+    "Verify": "Verify",
+    "EachPage": "Each page { count } records",
+    "Download": "Download",
+    "Upload": "Upload",
+    "IsOrNot": "Is or not",
+    "RememberPassword": "Remember password",
+    "ForgetPassword": "Forget password",
+    "ConfirmPassword": "Confirm password",
+    "OldPassword": "Old password",
+    "NewPassword": "New password",
+    "ChangePassword": "Change password"
+  },
+  "Validation": {
+    "Username": "Please enter username",
+    "Password": "Please enter password",
+    "PasswordLength": "Password length must be greater than 6",
+    "OldPassword": "Please enter old password",
+    "ConfirmPassword": "Please enter confirm password",
+    "ConfirmPasswordNotMatch": "Password not match",
+    "Name": "Please enter name",
+    "FirstName": "Please enter your first name",
+    "LastName": "Please enter your last name",
+    "Email": "Please enter your email",
+    "EmailFormat": "Please enter the correct email format",
+    "PhoneNumber": "Please enter a phone number",
+    "PhoneNumberFormat": "Please enter phone number in the correct format",
+    "BirthDate": "Please enter your birth date",
+    "Country": "Please enter your country",
+    "Province": "Please enter your province",
+    "City": "Please enter your city",
+    "Address": "Please enter your address",
+    "Biography": "Please enter your biography",
+    "QRCodeContent": "Please enter QRCode content"
+  },
+  "Message": {
+    "UploadAvatar": {
+      "Success": "Upload avatar success",
+      "Failed": "Upload avatar failed"
+    },
+    "GenerateQRCode": {
+      "Success": "QRCode generate success",
+      "Failed": "QRCode generate failed"
+    }
+  },
+  "User": {
+    "Username": "Username",
+    "Password": "Password",
+    "Name": "Name",
+    "FirstName": "First name",
+    "LastName": "Last name",
+    "NickName": "Nick name",
+    "Avatar": "Avatar",
+    "Email": "Email",
+    "PhoneNumber": "Phone number",
+    "BirthDate": "Birth date",
+    "Country": "Country",
+    "Province": "Province",
+    "City": "City",
+    "Address": "Address",
+    "Biography": "Biography",
+    "Roles": "Roles",
+    "Gender": "Gender",
+    "Male": "Male",
+    "Female": "Female"
+  },
+  "Language": {
+    "Choose": "Choose language:",
+    "Current": "English"
+  },
+  "Header": {
+    "Notification": "Notification",
+    "FullScreen": "Full screen",
+    "ExitFullScreen": "Exit full screen",
+    "Language": "Language",
+    "SwitchTheme": "Switch theme",
+    "Settings": "Settings",
+    "UserCenter": "User center",
+    "LockScreen": "Lock screen",
+    "ChangePassword": "Change password",
+    "Logout": "Logout"
+  },
+  "Sidebar": {
+    "Show": "Show sidebar",
+    "Hide": "Hide sidebar",
+    "Expand": "Expand sidebar",
+    "Collapse": "Collapse sidebar"
+  },
+  "Menu": {
+    "Home": "Home",
+    "Login": "Login",
+    "Signup": "Signup",
+    "UserInfo": "User Info",
+    "ChangePassword": "Change Password",
+    "SystemFunction": "System Function",
+    "UserManagement": "User Management",
+    "RoleManagement": "Role Management",
+    "PermissionManagement": "Permission Management",
+    "ComponentsPreview": "Components Preview",
+    "SystemTool": "System Tool",
+    "IconManagement": "Icon Management",
+    "QRCode": "QRCode"
+  },
+  "Login": {
+    "AsVisitor": "Login as Visitor",
+    "AsAdmin": "Login as Admin",
+    "SwitchToSignup": "Switch to Signup",
+    "Success": "Login success",
+    "Failed": "Login failed"
+  },
+  "Signup": {
+    "SwitchToLogin": "Switch to Login",
+    "Success": "Signup success",
+    "Failed": "Signup failed"
+  },
+  "Logout": {
+    "Success": "Logout success",
+    "LoginAgain": "User identity status has expired, please log in again"
+  },
+  "UserInfo": {
+    "PersonalInfo": "Personal info",
+    "BasicInfo": "Basic info",
+    "Fetching": "Fetching user info...",
+    "FetchError": "Fetch user info failed"
+  },
+  "UserManagement": {
+    "EnterTime": "Enter time",
+    "CreateUser": "Create user",
+    "EditUser": "Edit user",
+    "ResetPassword": "Reset password",
+    "VerifyOrNot": "Verify or not",
+    "EnableOrNot": "Enable or not"
+  },
+  "QRCode": {
+    "ContentPlaceholder": "Please enter QRCode content",
+    "Generate": "Generate QRCode"
+  },
+  "IconManagement": {
+    "SearchPlaceholder": "Please enter icon set name"
+  }
+}

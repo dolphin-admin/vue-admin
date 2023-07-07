@@ -19,7 +19,7 @@ const router = createRouter({
  * - 拼接站点标题
  */
 const processTargetRoute = (to: RouteLocationNormalized) => {
-  document.title = to.path === '/' ? t('App.Name') : `${t((to.meta?.title ?? '') as string)} | ${t('App.Name')}` // Change the title of the document
+  document.title = to.path === '/' ? t('App.Name') : `${t((to.meta?.title ?? '') as string)} | ${t('App.Name')}`
 }
 
 router.beforeEach((to, from, next) => {

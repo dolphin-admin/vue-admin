@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { MessageSchema } from '@/types'
 import UploadIcon from '~icons/ic/outline-cloud-upload'
 
 export interface Props {
@@ -8,6 +9,8 @@ export interface Props {
 const props = withDefaults(defineProps<Props>(), {
   accept: 'image/*'
 })
+
+const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
 // const message = useMessage()
 
@@ -58,12 +61,12 @@ const customRequest = ({ file, onFinish, onError, onProgress }: UploadCustomRequ
           <UploadIcon />
         </NIcon>
       </div>
-      <NText>点击或者拖动文件到该区域来上传</NText>
+      <NText>{{ t('点击或者拖动文件到该区域来上传') }}</NText>
       <NP
         depth="3"
         class="mt-2"
       >
-        请不要上传敏感数据
+        {{ t(' 请不要上传敏感数据') }}
       </NP>
     </NUploadDragger>
   </NUpload>

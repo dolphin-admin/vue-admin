@@ -1,7 +1,8 @@
 <script setup lang="ts">
-const message = useMessage()
-// @ts-ignore
+import type { MessageSchema } from '@/types'
+
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+const message = useMessage()
 const [loading, loadingDispatcher] = useLoading(false)
 
 const userInput = ref('')
@@ -9,7 +10,7 @@ const generatedResult = ref('')
 
 const makeQRCode = async () => {
   if (!userInput.value) {
-    message.error(t('QRCode.Tip.Input'))
+    message.error(t('Validation.QRCodeContent'))
     return
   }
   loadingDispatcher.loading()
@@ -19,9 +20,9 @@ const makeQRCode = async () => {
       errorCorrectionLevel: 'L'
     })
     generatedResult.value = qrcodeContent
-    message.success(t('QRCode.Generate.Success'))
+    message.success(t('Message.GenerateQRCode.Success'))
   } catch (err) {
-    message.error(t('QRCode.Generate.Failed'))
+    message.error(t('Message.GenerateQRCode.Failed'))
   }
   loadingDispatcher.loaded()
 }
@@ -42,7 +43,7 @@ const downloadFile = () => BrowserUtils.downloadFile(generatedResult.value, 'qrc
             v-model:value="userInput"
             class="!w-full"
             type="textarea"
-            :placeholder="t('QRCode.Tip.Input')"
+            :placeholder="t('QRCode.ContentPlaceholder')"
             maxlength="420"
             show-count
             clearable
@@ -59,7 +60,7 @@ const downloadFile = () => BrowserUtils.downloadFile(generatedResult.value, 'qrc
               :disabled="loading"
               @click="() => makeQRCode()"
             >
-              {{ t('QRCode.Generate.Text') }}
+              {{ t('QRCode.Generate') }}
             </NButton>
           </div>
         </NCard>

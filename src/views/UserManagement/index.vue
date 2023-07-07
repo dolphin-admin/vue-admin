@@ -1,15 +1,12 @@
 <script setup lang="ts">
-import type { User } from '@/types'
+import type { MessageSchema, User } from '@/types'
 import CheckIcon from '~icons/ic/baseline-check'
 
 import { UserFormModal } from './components'
 
-const message = useMessage()
-
-const [loading, loadingDispatcher] = useLoading()
-
-// @ts-ignore
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+const message = useMessage()
+const [loading, loadingDispatcher] = useLoading()
 
 const tableRef = ref()
 const resetPasswordRef = ref<FormInst | null>(null)
@@ -31,13 +28,13 @@ const resetPasswordRules: FormRules = {
   password: [
     {
       required: true,
-      message: t('Common.Validation.Password'),
+      message: t('Validation.Password'),
       trigger: ['blur', 'input']
     },
     {
-      validator: (rule: FormItemRule, value: string) => value.length >= 6,
+      validator: (_: FormItemRule, value: string) => value.length >= 6,
       trigger: ['blur', 'input'],
-      message: t('Common.Validation.PasswordLength')
+      message: t('Validation.PasswordLength')
     }
   ]
 }
@@ -45,12 +42,7 @@ const currentId = ref()
 const userFormData = ref({})
 const isEdit = ref(true)
 
-const Operation = [
-  t('UserManagement.Edit'),
-  t('UserManagement.Enable'),
-  t('UserManagement.Disabled'),
-  t('UserManagement.ResetPassword')
-]
+const Operation = [t('Common.Edit'), t('Common.Enable'), t('Common.Disable'), t('UserManagement.ResetPassword')]
 
 const isResetPassword = ref(false)
 
@@ -88,17 +80,17 @@ const columns = ref<DataTableColumns<User>>([
     align: 'center'
   },
   {
-    title: t('UserManagement.UserName'),
+    title: t('User.Username'),
     key: 'username',
     width: 120
   },
   {
-    title: t('UserManagement.PhoneNumber'),
+    title: t('User.PhoneNumber'),
     key: 'phoneNumber',
     width: 120
   },
   {
-    title: t('UserManagement.Email'),
+    title: t('User.Email'),
     key: 'email',
     width: 100,
     resizable: true,
@@ -107,22 +99,22 @@ const columns = ref<DataTableColumns<User>>([
     }
   },
   {
-    title: t('UserManagement.Name'),
+    title: t('User.Name'),
     key: 'name',
     width: 100
   },
   {
-    title: t('UserManagement.LastName'),
+    title: t('User.LastName'),
     key: 'lastName',
     width: 70
   },
   {
-    title: t('UserManagement.FirstName'),
+    title: t('User.FirstName'),
     key: 'firstName',
     width: 70
   },
   {
-    title: t('UserManagement.NickName'),
+    title: t('User.NickName'),
     key: 'nickName',
     width: 120,
     resizable: true,
@@ -131,14 +123,14 @@ const columns = ref<DataTableColumns<User>>([
     }
   },
   {
-    title: t('UserManagement.Gender'),
+    title: t('User.Gender'),
     key: 'genderLabel',
     width: 50,
     titleAlign: 'center',
     align: 'center'
   },
   {
-    title: t('UserManagement.BirthDate'),
+    title: t('User.BirthDate'),
     key: 'birthDate',
     width: 100,
     titleAlign: 'center',
@@ -146,17 +138,17 @@ const columns = ref<DataTableColumns<User>>([
     render: (row) => (row.birthDate ? TimeUtils.formatTime(row.birthDate, 'YYYY/MM/DD') : '')
   },
   {
-    title: t('UserManagement.Country'),
+    title: t('User.Country'),
     key: 'country',
     width: 80
   },
   {
-    title: t('UserManagement.City'),
+    title: t('User.City'),
     key: 'city',
     width: 80
   },
   {
-    title: t('UserManagement.Address'),
+    title: t('User.Address'),
     key: 'address',
     width: 120,
     resizable: true,
@@ -165,7 +157,7 @@ const columns = ref<DataTableColumns<User>>([
     }
   },
   {
-    title: t('UserManagement.Biography'),
+    title: t('User.Biography'),
     key: 'biography',
     width: 200,
     resizable: true,
@@ -198,7 +190,7 @@ const columns = ref<DataTableColumns<User>>([
       })
   },
   {
-    title: t('UserManagement.CreatedAt'),
+    title: t('UserManagement.EnterTime'),
     key: 'createdAt',
     width: 120,
     titleAlign: 'center',
@@ -206,7 +198,7 @@ const columns = ref<DataTableColumns<User>>([
     render: (row) => (row.createdAt ? TimeUtils.formatTime(row.createdAt) : '')
   },
   {
-    title: t('UserManagement.Roles'),
+    title: t('User.Roles'),
     key: 'roles',
     width: 200,
     render: (row) => {
@@ -227,7 +219,7 @@ const columns = ref<DataTableColumns<User>>([
     }
   },
   {
-    title: t('UserManagement.Operation'),
+    title: t('Common.Operation'),
     key: 'option',
     width: 220,
     titleAlign: 'center',
@@ -246,7 +238,7 @@ const columns = ref<DataTableColumns<User>>([
                   NPopconfirm,
                   {
                     showIcon: false,
-                    negativeText: t('Common.Cancer'),
+                    negativeText: t('Common.Cancel'),
                     positiveText: t('Common.Confirm'),
                     onPositiveClick: () => {
                       if (text === Operation[1]) {
@@ -273,7 +265,7 @@ const columns = ref<DataTableColumns<User>>([
                   },
                   {
                     trigger: () => h(NButton, { type: 'default', size: 'small' }, { default: () => text }),
-                    default: () => t('Common.IsOrNot') + text
+                    default: () => `${t('Common.IsOrNot')} ${text}`
                   }
                 )
               }
@@ -364,19 +356,19 @@ onMounted(() => queryList())
           pageSlot: 9,
           pageSizes: [
             {
-              label: '10 ' + t('Common.EachPage'),
+              label: t('Common.EachPage', { count: 10 }),
               value: 10
             },
             {
-              label: '20 ' + t('Common.EachPage'),
+              label: t('Common.EachPage', { count: 20 }),
               value: 20
             },
             {
-              label: '30 ' + t('Common.EachPage'),
+              label: t('Common.EachPage', { count: 30 }),
               value: 30
             },
             {
-              label: '40 ' + t('Common.EachPage'),
+              label: t('Common.EachPage', { count: 40 }),
               value: 40
             }
           ],
@@ -400,9 +392,9 @@ onMounted(() => queryList())
       <NModal
         v-model:show="isResetPassword"
         preset="dialog"
-        :title="t('Common.ResetPassword')"
+        :title="t('UserManagement.ResetPassword')"
         :positive-text="t('Common.Confirm')"
-        :negative-text="t('Common.Cancer')"
+        :negative-text="t('Common.Cancel')"
         @positive-click="handleConfirmPassword"
         @negative-click="handleResetPassword"
       >
@@ -418,7 +410,7 @@ onMounted(() => queryList())
             <NInput
               v-model:value="resetPasswordData.password"
               type="password"
-              :placeholder="t('Common.Password')"
+              :placeholder="t('User.Password')"
               maxlength="20"
               clearable
               show-password-on="click"
