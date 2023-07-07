@@ -33,7 +33,7 @@ const message = useMessage()
 
 const userOptions = [
   {
-    label: t('Header.UserCenter'),
+    label: t('Menu.UserInfo'),
     key: 'UserInfo'
   },
   {

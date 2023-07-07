@@ -23,7 +23,7 @@ export const menuOptions: MenuMixedOption[] = [
           default: () => t('Menu.Home')
         }
       ),
-    key: 'Home',
+    key: 'home',
     icon: () =>
       h(
         NIcon,

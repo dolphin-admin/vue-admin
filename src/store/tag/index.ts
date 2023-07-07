@@ -5,6 +5,7 @@ export const useTagStore = defineStore('tag', () => {
    * 展示标签页的数据列表，默认空值
    */
   const tags = ref<Tag[]>([])
+
   /**
    * 添加标签页
    */
@@ -23,12 +24,14 @@ export const useTagStore = defineStore('tag', () => {
     if (tags.value.length === 1) return
     tags.value.splice(index, 1)
   }
+
   /**
-   * 清空标签页,
+   * 清空标签页
    */
   const clearAllTags = (currentPath: string) => {
     tags.value = tags.value.filter((item) => item.href === currentPath)
   }
+
   return {
     tags,
     addTagItem,

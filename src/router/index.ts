@@ -24,6 +24,7 @@ const processTargetRoute = (to: RouteLocationNormalized) => {
 
 const processRouteTag = (to: RouteLocationNormalized) => {
   const tagStore = useTagStore()
+  if (to.path === '/login') return
   tagStore.addTagItem({
     href: to.path,
     labelKey: to.meta?.title as string,
