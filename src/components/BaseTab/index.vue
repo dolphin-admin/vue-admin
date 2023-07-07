@@ -8,14 +8,13 @@ const router = useRouter()
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
 const handleCloseTag = (tag: Tag, index: number) => {
-  tagStore.removeTagItem(index)
-  const baseTagDataLength = tagStore.tags.length
-  if (baseTagDataLength === 1) {
-    router.push('/')
-  }
-  if (tag === tagStore.tags[baseTagDataLength - 1]) {
+  const baseTagLength = tagStore.tags.length
+  if (baseTagLength === 1) {
     router.push(tag.href)
+    return
   }
+  router.push(tagStore.tags[index - 1].href)
+  tagStore.removeTagItem(index)
 }
 </script>
 

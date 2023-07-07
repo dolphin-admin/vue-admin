@@ -24,7 +24,7 @@ const processTargetRoute = (to: RouteLocationNormalized) => {
 
 const processRouteTag = (to: RouteLocationNormalized) => {
   const tagStore = useTagStore()
-  tagStore.tags.push({
+  tagStore.addTagItem({
     href: to.path,
     labelKey: to.meta?.title as string,
     icon: to.meta?.icon as any

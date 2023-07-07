@@ -8,12 +8,19 @@ export const useTagStore = defineStore('tag', () => {
   /**
    * 添加标签页
    */
-  const addTagItem = (tag: Tag) => tags.value.push(tag)
+  const addTagItem = (tag: Tag) => {
+    const exist = tags.value.some((item) => {
+      return item.labelKey === tag.labelKey
+    })
+    if (exist) return
+    tags.value.push(tag)
+  }
 
   /**
    * 移除标签页
    */
   const removeTagItem = (index: number) => {
+    if (tags.value.length === 1) return
     tags.value.splice(index, 1)
   }
 
