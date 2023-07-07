@@ -3,10 +3,10 @@ import 'vfonts/OpenSans.css'
 import 'vfonts/FiraCode.css'
 import 'nprogress/nprogress.css'
 
+import pinia from '@/pinia'
 import router from '@/router'
 
 import App from './App.vue'
-import pinia from './pinia'
 
 // 初始化 Vue 应用前执行脚本
 faviconLoader()

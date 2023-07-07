@@ -1,26 +1,19 @@
+import type { Tag } from '@/types'
+
 export const useTagStore = defineStore('tag', () => {
   /**
    * 展示标签页的数据列表，默认空值
    */
-  const tags = ref([{ key: 'Home', path: '/' }])
+  const tags = ref<Tag[]>([])
   /**
    * 添加标签页
    */
-  const addTagItem = (value: any) => {
-    const exists = tags.value.some((item) => item.key === value.key)
-    if (exists) return
-    tags.value.push(value)
-  }
+  const addTagItem = (tag: Tag) => tags.value.push(tag)
 
   /**
-   * 减少标签页
+   * 移除标签页
    */
-  const removeTagItem = (value: string) => {
-    if (tags.value.length === 1) return
-    const index = tags.value.findIndex((item) => item.key === value)
-    if (index === tags.value.length - 1) {
-      tags.value.pop()
-    }
+  const removeTagItem = (index: number) => {
     tags.value.splice(index, 1)
   }
 

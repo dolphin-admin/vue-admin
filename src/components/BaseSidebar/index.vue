@@ -6,7 +6,6 @@ import { menuOptions } from './models'
 
 const themeStore = useThemeStore()
 const sidebarStore = useSidebarStore()
-const tagStore = useTagStore()
 const route = useRoute()
 const router = useRouter()
 const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({ useScope: 'global' })
@@ -36,8 +35,6 @@ const getLabel = (menuItem: CustomMenuOption) => {
       return label
   }
 }
-
-const handleAddTag = (value: string) => tagStore.addTagItem({ key: value, path: route.path })
 
 watch(
   () => locale.value,
@@ -96,11 +93,6 @@ watch(
           :root-indent="18"
           :indent="26"
           :value="currentRouteName"
-          :on-update:value="
-            (key) => {
-              handleAddTag(key)
-            }
-          "
         />
       </NScrollbar>
     </div>
