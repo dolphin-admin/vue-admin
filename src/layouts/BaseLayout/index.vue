@@ -5,6 +5,7 @@
         <BaseSidebar />
         <div class="relative h-full flex-1 overflow-y-auto overflow-x-hidden">
           <BaseHeader />
+          <BaseTab />
           <RouterView v-slot="{ Component }">
             <Transition
               name="slide-fade"
