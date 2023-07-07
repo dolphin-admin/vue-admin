@@ -14,6 +14,7 @@ declare module 'vue' {
     BaseLayout: typeof import('./layouts/BaseLayout/index.vue')['default']
     BaseModalDialog: typeof import('./components/BaseModalDialog/index.vue')['default']
     BaseSidebar: typeof import('./components/BaseSidebar/index.vue')['default']
+    BaseTab: typeof import('./components/BaseTab/index.vue')['default']
     DataTableLayout: typeof import('./layouts/DataTableLayout/index.vue')['default']
     FileUploader: typeof import('./components/FileUploader/index.vue')['default']
     NAvatar: typeof import('naive-ui')['NAvatar']

@@ -22,11 +22,22 @@ const processTargetRoute = (to: RouteLocationNormalized) => {
   document.title = to.path === '/' ? t('App.Name') : `${t((to.meta?.title ?? '') as string)} | ${t('App.Name')}`
 }
 
+const processRouteTag = (to: RouteLocationNormalized) => {
+  const tagStore = useTagStore()
+  if (to.path === '/login') return
+  tagStore.addTagItem({
+    href: to.path,
+    labelKey: to.meta?.title as string,
+    icon: to.meta?.icon as any
+  })
+}
+
 router.beforeEach((to, from, next) => {
   if (to.path !== from.path) {
     NProgress.start()
   }
   processTargetRoute(to)
+  processRouteTag(to)
   next()
 })
 

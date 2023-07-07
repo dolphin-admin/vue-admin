@@ -92,10 +92,12 @@
     "Language": "Language",
     "SwitchTheme": "Switch theme",
     "Settings": "Settings",
-    "UserCenter": "User center",
     "LockScreen": "Lock screen",
     "ChangePassword": "Change password",
     "Logout": "Logout"
+  },
+  "Tab": {
+    "Clear": "Clear"
   },
   "Sidebar": {
     "Show": "Show sidebar",

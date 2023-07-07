@@ -30,4 +30,12 @@ export class BrowserUtils {
     aElement.setAttribute('download', fileName)
     aElement.click()
   }
+
+  /**
+   * 判定是否是移动端
+   */
+  static isMobileDevice() {
+    const { userAgent } = navigator
+    return /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent)
+  }
 }

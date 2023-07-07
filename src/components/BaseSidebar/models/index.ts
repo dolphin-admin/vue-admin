@@ -65,7 +65,7 @@ export const menuOptions: MenuMixedOption[] = [
           ),
         labelKey: 'Menu.UserManagement',
         path: '/user-management',
-        key: 'user-management',
+        key: 'UserManagement',
         icon: () =>
           h(
             NIcon,
@@ -91,7 +91,7 @@ export const menuOptions: MenuMixedOption[] = [
           ),
         labelKey: 'Menu.RoleManagement',
         path: '/role-management',
-        key: 'role-management',
+        key: 'RoleManagement',
         icon: () =>
           h(
             NIcon,
@@ -117,7 +117,7 @@ export const menuOptions: MenuMixedOption[] = [
           ),
         labelKey: 'Menu.PermissionManagement',
         path: '/permission-management',
-        key: 'permission-management',
+        key: 'PermissionManagement',
         icon: () =>
           h(
             NIcon,
@@ -161,7 +161,7 @@ export const menuOptions: MenuMixedOption[] = [
           ),
         labelKey: 'Menu.ComponentsPreview',
         path: '/components-preview',
-        key: 'components-preview',
+        key: 'ComponentsPreview',
         icon: () =>
           h(
             NIcon,
@@ -187,7 +187,7 @@ export const menuOptions: MenuMixedOption[] = [
           ),
         labelKey: 'Menu.IconManagement',
         path: '/icon-management',
-        key: 'icon-management',
+        key: 'IconManagement',
         icon: () =>
           h(
             NIcon,
@@ -213,7 +213,7 @@ export const menuOptions: MenuMixedOption[] = [
           ),
         labelKey: 'Menu.QRCode',
         path: '/qrcode',
-        key: 'qrcode',
+        key: 'QRCode',
         icon: () =>
           h(
             NIcon,

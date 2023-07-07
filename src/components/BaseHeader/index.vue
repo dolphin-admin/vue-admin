@@ -33,7 +33,7 @@ const message = useMessage()
 
 const userOptions = [
   {
-    label: t('Header.UserCenter'),
+    label: t('Menu.UserInfo'),
     key: 'UserInfo'
   },
   {
@@ -91,7 +91,7 @@ const currentLanguageOptions = computed(() =>
 
 <template>
   <header
-    class="sticky top-0 z-50 flex h-16 w-full items-center justify-between border-b border-gray-300 bg-light-default p-4 shadow-sm dark:border-gray-950 dark:bg-dark-default"
+    class="sticky top-0 z-50 flex h-14 w-full items-center justify-between border-b border-gray-300 bg-light-default p-4 dark:border-gray-950 dark:bg-dark-default"
   >
     <div class="flex h-full items-center justify-start space-x-3">
       <NTooltip

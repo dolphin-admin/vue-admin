@@ -95,7 +95,7 @@ const handleChangePassword = () => {
         ref="changePasswordRef"
         label-placement="left"
         label-align="right"
-        :label-width="80"
+        :label-width="90"
         :model="changePasswordData"
         :rules="changePasswordRules"
       >

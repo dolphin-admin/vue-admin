@@ -9,6 +9,7 @@ hoverable
 icns
 icones
 iconify
+iemobile
 Langauge
 lintstaged
 Neue
@@ -30,3 +31,4 @@ uncategorized
 unplugin
 vfonts
 vueuse
+webos

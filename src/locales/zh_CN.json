@@ -92,10 +92,12 @@
     "Language": "语言",
     "SwitchTheme": "切换主题",
     "Settings": "设置",
-    "UserCenter": "用户中心",
     "LockScreen": "锁屏",
     "ChangePassword": "修改密码",
     "Logout": "退出登录"
+  },
+  "Tab": {
+    "Clear": "清空"
   },
   "Sidebar": {
     "Show": "显示侧边栏",
