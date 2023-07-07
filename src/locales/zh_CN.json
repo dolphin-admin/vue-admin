@@ -97,6 +97,9 @@
     "ChangePassword": "修改密码",
     "Logout": "退出登录"
   },
+  "Tab": {
+    "Clear": "清空"
+  },
   "Sidebar": {
     "Show": "显示侧边栏",
     "Hide": "隐藏侧边栏",

@@ -23,10 +23,16 @@ export const useTagStore = defineStore('tag', () => {
     if (tags.value.length === 1) return
     tags.value.splice(index, 1)
   }
-
+  /**
+   * 清空标签页,
+   */
+  const clearAllTags = (currentPath: string) => {
+    tags.value = tags.value.filter((item) => item.href === currentPath)
+  }
   return {
     tags,
     addTagItem,
-    removeTagItem
+    removeTagItem,
+    clearAllTags
   }
 })

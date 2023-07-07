@@ -7,6 +7,15 @@ const route = useRoute()
 const router = useRouter()
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
+type TagsOptionKey = 'clearAllTags'
+
+const options = [
+  {
+    label: t('Tab.Clear'),
+    key: 'clearAllTags'
+  }
+]
+
 const handleCloseTag = (tag: Tag, index: number) => {
   const baseTagLength = tagStore.tags.length
   if (baseTagLength === 1) {
@@ -15,6 +24,18 @@ const handleCloseTag = (tag: Tag, index: number) => {
   }
   router.push(tagStore.tags[index - 1].href)
   tagStore.removeTagItem(index)
+}
+
+const handleClearAllTags = () => tagStore.clearAllTags(route.path)
+
+const selectTagsOption = (key: TagsOptionKey) => {
+  switch (key) {
+    case 'clearAllTags':
+      handleClearAllTags()
+      break
+    default:
+      break
+  }
 }
 </script>
 
@@ -55,11 +76,17 @@ const handleCloseTag = (tag: Tag, index: number) => {
           :component="ArrowIcon"
         />
       </div>
-      <NIcon
-        size="20"
-        class="cursor-pointer"
-        :component="MenuIcon"
-      />
+      <NDropdown
+        trigger="hover"
+        :options="options"
+        @select="selectTagsOption"
+      >
+        <NIcon
+          size="20"
+          class="cursor-pointer"
+          :component="MenuIcon"
+        />
+      </NDropdown>
     </div>
   </main>
 </template>
