@@ -6,6 +6,7 @@ import { menuOptions } from './models'
 
 const themeStore = useThemeStore()
 const sidebarStore = useSidebarStore()
+const baseTagStore = useBaseTagStore()
 const route = useRoute()
 const router = useRouter()
 
@@ -36,6 +37,10 @@ const getLabel = (menuItem: CustomMenuOption) => {
     default:
       return label
   }
+}
+
+const handleAddTag = (value: string) => {
+  baseTagStore.addBaseTagData({ key: value, path: route.path })
 }
 
 watch(
@@ -97,6 +102,11 @@ watch(
           :root-indent="18"
           :indent="26"
           :value="currentRouteName"
+          :on-update:value="
+            (key) => {
+              handleAddTag(key)
+            }
+          "
         />
       </NScrollbar>
     </div>

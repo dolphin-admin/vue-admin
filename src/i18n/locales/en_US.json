@@ -112,7 +112,8 @@
     "ComponentsPreview": "Components Preview",
     "SystemTool": "System Tool",
     "IconManagement": "Icon Management",
-    "QRCode": "QRCode"
+    "QRCode": "QRCode",
+    "user-management": "hello"
   },
   "QRCode": {
     "Tip": {
