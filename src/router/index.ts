@@ -26,8 +26,12 @@ const processTargetRoute = (to: RouteLocationNormalized) => {
  * 处理添加标签页
  */
 const processRouteTag = (to: RouteLocationNormalized) => {
+  // 如果路由配置了 disableAuth，则不添加标签页
+  if (to.meta?.disableAuth) {
+    return
+  }
+
   const tagStore = useTabStore()
-  if (to.path === '/login') return
   tagStore.addTabItem({
     href: to.path,
     labelKey: to.meta?.title as string,

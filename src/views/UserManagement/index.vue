@@ -4,7 +4,7 @@ import CheckIcon from '~icons/ic/baseline-check'
 import RefreshIcon from '~icons/ic/round-refresh'
 
 import { UserFormModal } from './components'
-import { userColumnsI18nKeyMap } from './models'
+import { userColumnsI18nKeyMap } from './private'
 
 const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({ useScope: 'global' })
 const message = useMessage()
@@ -390,7 +390,7 @@ onMounted(() => queryList())
 
     <NDataTable
       ref="tableRef"
-      class="mt-4 h-[calc(100%-48px)]"
+      class="h-[calc(100%-42px)]"
       remote
       flex-height
       size="small"

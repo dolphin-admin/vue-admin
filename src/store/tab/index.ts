@@ -18,10 +18,7 @@ export const useTabStore = defineStore('tab', () => {
   /**
    * 移除标签页
    */
-  const removeTabItem = (index: number) => {
-    if (tabs.value.length === 1) return
-    tabs.value.splice(index, 1)
-  }
+  const removeTabItem = (index: number) => tabs.value.splice(index, 1)
 
   /**
    * 清空标签页

@@ -1,6 +1,43 @@
-@use 'base.scss';
-@use 'font.scss';
+@use "base.scss";
+@use "font.scss";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.6;
+  font-size: 16px;
+}
 
 #app {
   height: auto;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+[data-theme="dark"] {
+  color: #ffffff;
+}
+
+.global_hide-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  -webkit-overflow-scrolling: touch; /* iOS (Safari and Chrome) */
+
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    background: transparent; /* Chrome, Safari, and Edge */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: transparent;
+  }
 }

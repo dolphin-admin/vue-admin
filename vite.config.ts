@@ -71,9 +71,9 @@ export default defineConfig(({ mode }) => {
               'FormItemInst',
               'FormItemRule',
               'FormRules',
-              'DataTableColumns',
-              'DataTableColumn',
               'DataTableBaseColumn',
+              'DataTableColumn',
+              'DataTableColumns',
               'UploadFileInfo',
               'UploadInst',
               'UploadCustomRequestOptions'
@@ -94,6 +94,12 @@ export default defineConfig(({ mode }) => {
       Components({
         dts: './src/components.d.ts',
         resolvers: [NaiveUiResolver()],
+        types: [
+          {
+            from: 'vue-router',
+            names: ['RouterLink', 'RouterView']
+          }
+        ],
         dirs: ['src/components', 'src/layouts'],
         extensions: ['vue']
       }),
@@ -103,8 +109,7 @@ export default defineConfig(({ mode }) => {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
         /**
-         * NOTE:
-         * Fix vue-i18n loader bug
+         * NOTE: Fix vue-i18n loader bug
          * @see https://github.com/intlify/vue-i18n-next/issues/789
          */
         'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js'

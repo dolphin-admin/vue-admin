@@ -2,18 +2,23 @@
 import type { CustomMenuOption, Lang, MessageSchema } from '@/types'
 import CollapseIcon from '~icons/line-md/chevron-triple-left'
 
-import { menuOptions } from './models'
+import { menuOptions } from './private'
 
-const themeStore = useThemeStore()
-const sidebarStore = useSidebarStore()
+const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({ useScope: 'global' })
+
 const route = useRoute()
 const router = useRouter()
-const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({ useScope: 'global' })
+const themeStore = useThemeStore()
+const sidebarStore = useSidebarStore()
 
 const menuData = ref<any>(menuOptions)
 
 const currentRouteName = computed(() => route.name as string)
 
+/**
+ * 获取菜单项的 label
+ * @param menuItem 菜单项
+ */
 const getLabel = (menuItem: CustomMenuOption) => {
   const { menuType, label, labelKey, path } = menuItem || {}
   const exactLabel = labelKey ? t(labelKey) : label
@@ -36,6 +41,7 @@ const getLabel = (menuItem: CustomMenuOption) => {
   }
 }
 
+// 监听语言变化，更新菜单项的 label
 watch(
   () => locale.value,
   () => {
@@ -83,7 +89,7 @@ watch(
     </div>
 
     <!-- 菜单 -->
-    <div class="h-[calc(100%-104px)]">
+    <div class="h-[calc(100%-96px)]">
       <NScrollbar :size="10">
         <NMenu
           :collapsed-icon-size="20"
@@ -100,18 +106,18 @@ watch(
     <!-- 底部折叠按钮 -->
     <div
       v-if="sidebarStore.isDisplay"
-      class="h-12 w-full p-1"
+      class="h-10 w-full p-1"
     >
       <div
         class="hover-container flex h-full w-full cursor-pointer items-center justify-center rounded-sm transition-all hover:bg-gray-200 active:opacity-75 dark:hover:bg-gray-600"
         @click="() => sidebarStore.toggleSidebarCollapse()"
       >
         <NIcon
-          size="20"
-          class="icon-animation"
-        >
-          <CollapseIcon :class="[sidebarStore.isCollapse ? 'rotate-180' : 'rotate-0']" />
-        </NIcon>
+          size="18"
+          class="icon-animation transition-all"
+          :class="[sidebarStore.isCollapse ? '!rotate-180' : '!rotate-0']"
+          :component="CollapseIcon"
+        />
       </div>
     </div>
   </div>
