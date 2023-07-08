@@ -2,6 +2,7 @@
 import type { Lang, MessageSchema, User } from '@/types'
 import CheckIcon from '~icons/ic/baseline-check'
 import RefreshIcon from '~icons/ic/round-refresh'
+import ResetPasswordIcon from '~icons/ic/sharp-power-settings-new'
 
 import { UserFormModal } from './components'
 import { userColumnsI18nKeyMap } from './private'
@@ -443,14 +444,26 @@ onMounted(() => queryList())
       @positive-click="handleConfirmPassword"
       @negative-click="handleResetPassword"
     >
+      <template #icon>
+        <NIcon
+          size="24"
+          :component="ResetPasswordIcon"
+        />
+      </template>
       <NForm
         ref="resetPasswordRef"
         :model="resetPasswordData"
         :rules="resetPasswordRules"
       >
+        <input
+          type="text"
+          name="username"
+          autocomplete="username"
+          style="display: none"
+        />
         <NFormItem
           path="password"
-          :label="t('Common.ConfirmPassword')"
+          :label="t('User.Password')"
         >
           <NInput
             v-model:value="resetPasswordData.password"
@@ -459,7 +472,7 @@ onMounted(() => queryList())
             maxlength="20"
             clearable
             show-password-on="click"
-            :input-props="{ autocomplete: 'new-password' }"
+            :input-props="{ autocomplete: 'password' }"
             @keydown.enter="handleConfirmPassword"
           />
         </NFormItem>
