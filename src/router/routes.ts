@@ -99,7 +99,7 @@ export const routes = [
       {
         path: '/clipboard',
         name: 'clipboard',
-        component: () => import('@/views/clipboard'),
+        component: () => import('@/views/Clipboard'),
         meta: {
           title: 'Menu.Clipboard',
           icon: CopyIcon
