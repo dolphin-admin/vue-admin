@@ -107,7 +107,6 @@ declare global {
   const useSidebarStore: typeof import('./store/sidebar/index')['useSidebarStore']
   const useSlots: typeof import('vue')['useSlots']
   const useTabStore: typeof import('./store/tab/index')['useTabStore']
-  const useTagStore: typeof import('./store/tag/index')['useTagStore']
   const useThemeStore: typeof import('./store/theme/index')['useThemeStore']
   const useToggle: typeof import('@vueuse/core')['useToggle']
   const useUserStore: typeof import('./store/user/index')['useUserStore']

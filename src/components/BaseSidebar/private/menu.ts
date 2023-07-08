@@ -66,7 +66,7 @@ export const menuOptions: MenuMixedOption[] = [
           ),
         labelKey: 'Menu.UserManagement',
         path: '/user-management',
-        key: 'UserManagement',
+        key: 'user-management',
         icon: () =>
           h(
             NIcon,
@@ -92,7 +92,7 @@ export const menuOptions: MenuMixedOption[] = [
           ),
         labelKey: 'Menu.RoleManagement',
         path: '/role-management',
-        key: 'RoleManagement',
+        key: 'role-management',
         icon: () =>
           h(
             NIcon,
@@ -118,7 +118,7 @@ export const menuOptions: MenuMixedOption[] = [
           ),
         labelKey: 'Menu.PermissionManagement',
         path: '/permission-management',
-        key: 'PermissionManagement',
+        key: 'permission-management',
         icon: () =>
           h(
             NIcon,
@@ -162,7 +162,7 @@ export const menuOptions: MenuMixedOption[] = [
           ),
         labelKey: 'Menu.ComponentsPreview',
         path: '/components-preview',
-        key: 'ComponentsPreview',
+        key: 'components-preview',
         icon: () =>
           h(
             NIcon,
@@ -188,7 +188,7 @@ export const menuOptions: MenuMixedOption[] = [
           ),
         labelKey: 'Menu.IconManagement',
         path: '/icon-management',
-        key: 'IconManagement',
+        key: 'icon-management',
         icon: () =>
           h(
             NIcon,
@@ -240,7 +240,7 @@ export const menuOptions: MenuMixedOption[] = [
           ),
         labelKey: 'Menu.Clipboard',
         path: '/clipboard',
-        key: 'Clipboard',
+        key: 'clipboard',
         icon: () =>
           h(
             NIcon,
