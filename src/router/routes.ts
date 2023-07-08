@@ -1,3 +1,4 @@
+import CopyIcon from '~icons/ic/baseline-content-copy'
 import QRCodeIcon from '~icons/ic/baseline-qrcode'
 import HomeIcon from '~icons/ic/sharp-house'
 import UserInfoIcon from '~icons/mdi/account-circle'
@@ -93,6 +94,15 @@ export const routes = [
         meta: {
           title: 'Menu.QRCode',
           icon: QRCodeIcon
+        }
+      },
+      {
+        path: '/clipboard',
+        name: 'clipboard',
+        component: () => import('@/views/clipboard'),
+        meta: {
+          title: 'Menu.Clipboard',
+          icon: CopyIcon
         }
       }
     ]

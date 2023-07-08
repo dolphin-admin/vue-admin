@@ -1,4 +1,5 @@
 import type { MenuMixedOption } from '@/types'
+import CopyIcon from '~icons/ic/baseline-content-copy'
 import QRCodeIcon from '~icons/ic/baseline-qrcode'
 import HomeIcon from '~icons/ic/sharp-house'
 import UserManagementIcon from '~icons/mdi/account-cog-outline'
@@ -222,6 +223,32 @@ export const menuOptions: MenuMixedOption[] = [
             },
             {
               default: () => h(QRCodeIcon)
+            }
+          ),
+        menuType: 'routerLink'
+      },
+      {
+        label: () =>
+          h(
+            RouterLink,
+            {
+              to: '/clipboard'
+            },
+            {
+              default: () => t('Menu.Clipboard')
+            }
+          ),
+        labelKey: 'Menu.Clipboard',
+        path: '/clipboard',
+        key: 'Clipboard',
+        icon: () =>
+          h(
+            NIcon,
+            {
+              size: 16
+            },
+            {
+              default: () => h(CopyIcon)
             }
           ),
         menuType: 'routerLink'

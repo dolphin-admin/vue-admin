@@ -61,6 +61,9 @@
     "GenerateQRCode": {
       "Success": "QRCode generate success",
       "Failed": "QRCode generate failed"
+    },
+    "Copy": {
+      "CopySuccessfully": "Copy successfully"
     }
   },
   "User": {
@@ -121,7 +124,8 @@
     "ComponentsPreview": "Components Preview",
     "SystemTool": "System Tool",
     "IconManagement": "Icon Management",
-    "QRCode": "QRCode"
+    "QRCode": "QRCode",
+    "Clipboard": "Clipboard"
   },
   "Login": {
     "AsVisitor": "Login as Visitor",
@@ -159,5 +163,8 @@
   },
   "IconManagement": {
     "SearchPlaceholder": "Please enter icon set name"
+  },
+  "Clipboard": {
+    "CopyToClipboard": "Copy to clipboard"
   }
 }
