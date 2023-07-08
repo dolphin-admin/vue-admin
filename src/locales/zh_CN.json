@@ -63,7 +63,8 @@
       "Failed": "二维码生成失败"
     },
     "Copy": {
-      "CopySuccessfully": "复制成功"
+      "Success": "复制成功",
+      "Failed": "复制失败"
     }
   },
   "User": {
