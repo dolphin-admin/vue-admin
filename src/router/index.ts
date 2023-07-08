@@ -22,13 +22,20 @@ const processTargetRoute = (to: RouteLocationNormalized) => {
   document.title = to.path === '/' ? t('App.Name') : `${t((to.meta?.title ?? '') as string)} | ${t('App.Name')}`
 }
 
+/**
+ * 处理添加标签页
+ */
 const processRouteTag = (to: RouteLocationNormalized) => {
-  const tagStore = useTagStore()
-  if (to.path === '/login') return
-  tagStore.addTagItem({
+  // 如果路由配置了 disableAuth，则不添加标签页
+  if (to.meta?.disableAuth) {
+    return
+  }
+
+  const tagStore = useTabStore()
+  tagStore.addTabItem({
     href: to.path,
     labelKey: to.meta?.title as string,
-    icon: to.meta?.icon as any
+    icon: shallowRef(to.meta?.icon as any) // shallowRef 包裹组件，避免深层响应
   })
 }
 

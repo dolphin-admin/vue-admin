@@ -2,8 +2,6 @@
 
 <template>
   <DataTableLayout>
-    <template #table>
-      <NDataTable />
-    </template>
+    <NDataTable />
   </DataTableLayout>
 </template>

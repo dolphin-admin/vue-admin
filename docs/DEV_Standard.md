@@ -16,13 +16,18 @@
 例如 `/src/utils` 模块目录下的文件，使用 `index.ts` 重导出，通过 `unplugin-auto-import` 插件自动引入。
 `/src/utils` 和 `/src/api` 下的文件，都是用 `class` 的方式导出，所有的方法都是静态方法，不需要实例化。
 
+### 组件、页面
+
+组件、页面下私有的类型、常量、方法，统一放在组件目录下的 `/private/*` 目录下。
+
 ## 书写注释
 
 通用模块方法，需要使用 `JSDoc` 书写注释，例如：
 
 ```typescript
 /**
- * @description 两数相加
+ * 两数相加
+ * @description 两个参数，返回两数之和
  */
 function add(a: number, b: number): number {
   return a + b
@@ -37,9 +42,7 @@ function add(a: number, b: number): number {
 
 ```vue
 <template>
-  <NIcon>
-    <GitHubIcon />
-  </NIcon>
+  <NIcon :component="GitHubIcon" />
 </template>
 ```
 
@@ -51,6 +54,7 @@ function add(a: number, b: number): number {
 
 ```typescript
 import type { MessageSchema } from '@/types'
+
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
 t('App.Name')

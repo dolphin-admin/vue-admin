@@ -1,4 +1,4 @@
 export * from './sidebar'
-export * from './tag'
+export * from './tab'
 export * from './theme'
 export * from './user'

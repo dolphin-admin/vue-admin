@@ -12,24 +12,14 @@ import ShowMenuIcon from '~icons/line-md/menu-fold-right'
 import SunIcon from '~icons/line-md/moon-alt-to-sunny-outline-loop-transition'
 import MoonIcon from '~icons/line-md/sunny-filled-loop-to-moon-alt-filled-loop-transition'
 
-const { repoGitHubURL } = siteMetaData
-const { isFullscreen, toggle: toggleFullscreen } = useFullscreen()
-const { openNewWindow } = BrowserUtils
+import type { UserOptionKey } from './private'
+import { languageOptions } from './private'
 
-const languageOptions = [
-  { label: 'English', key: 'en_US' },
-  { label: '简体中文', key: 'zh_CN' }
-]
-
-type UserOptionKey = 'Lock' | 'Quit' | 'UserInfo' | 'ChangePassword'
-
-const themeStore = useThemeStore()
-const sidebarStore = useSidebarStore()
-const userStore = useUserStore()
-const route = useRoute()
-const router = useRouter()
 const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({ useScope: 'global' })
-const message = useMessage()
+
+const { repoGitHubURL } = siteMetaData
+
+const { openNewWindow } = BrowserUtils
 
 const userOptions = [
   {
@@ -50,13 +40,29 @@ const userOptions = [
   }
 ]
 
-const logout = () => {
-  AuthUtils.clearLocalStorage()
-  userStore.clearUser()
-  message.success(t('Logout.Success'))
-  router.replace('/login')
-}
+const themeStore = useThemeStore()
+const sidebarStore = useSidebarStore()
+const userStore = useUserStore()
+const route = useRoute()
+const router = useRouter()
+const message = useMessage()
+const { isFullscreen, toggle: toggleFullscreen } = useFullscreen()
 
+/**
+ * 动态获取当前语言的下拉框选项
+ */
+const currentLanguageOptions = computed(() =>
+  locale.value === 'zh_CN' ? languageOptions : [languageOptions[1], languageOptions[0]]
+)
+
+/**
+ * 更新语言
+ * @param lang 语言
+ * @description
+ * - 为了更好的用户体验（因为下拉框选项消失的过渡动画），这里延迟 150ms 执行更新语言的操作
+ * - 更新 Document 的标题
+ * - 将选择的语言存储到 localStorage 中，以便下次进入应用时加载上次选择的语言
+ */
 const handleUpdateLocale = (lang: Lang) => {
   setTimeout(() => {
     locale.value = lang
@@ -66,6 +72,20 @@ const handleUpdateLocale = (lang: Lang) => {
   LangUtils.setLang(lang)
 }
 
+/**
+ * 退出登录
+ */
+const logout = () => {
+  AuthUtils.clearLocalStorage()
+  userStore.clearUser()
+  message.success(t('Logout.Success'))
+  router.replace('/login')
+}
+
+/**
+ * 选择用户下拉框选项
+ * @param key 选项的 key
+ */
 const selectUserOption = (key: UserOptionKey) => {
   switch (key) {
     case 'Lock':
@@ -83,15 +103,11 @@ const selectUserOption = (key: UserOptionKey) => {
       break
   }
 }
-
-const currentLanguageOptions = computed(() =>
-  locale.value === 'zh_CN' ? languageOptions : [languageOptions[1], languageOptions[0]]
-)
 </script>
 
 <template>
   <header
-    class="sticky top-0 z-50 flex h-14 w-full items-center justify-between border-b border-gray-300 bg-light-default p-4 dark:border-gray-950 dark:bg-dark-default"
+    class="sticky top-0 z-50 flex h-14 w-full items-center justify-between border-b border-gray-300 bg-light-default p-2 dark:border-gray-950 dark:bg-dark-default sm:p-4"
   >
     <div class="flex h-full items-center justify-start space-x-3">
       <NTooltip
@@ -100,12 +116,11 @@ const currentLanguageOptions = computed(() =>
       >
         <template #trigger>
           <NIcon
-            size="20"
             class="cursor-pointer"
+            size="20"
+            :component="sidebarStore.isDisplay ? HideMenuIcon : ShowMenuIcon"
             @click="() => sidebarStore.toggleSidebarDisplay()"
-          >
-            <component :is="sidebarStore.isDisplay ? HideMenuIcon : ShowMenuIcon" />
-          </NIcon>
+          />
         </template>
         {{ t(sidebarStore.isDisplay ? 'Sidebar.Hide' : 'Sidebar.Show') }}
       </NTooltip>
@@ -118,12 +133,11 @@ const currentLanguageOptions = computed(() =>
       >
         <template #trigger>
           <NIcon
-            size="20"
             class="cursor-pointer"
+            size="20"
+            :component="GithubIcon"
             @click="() => openNewWindow(repoGitHubURL)"
-          >
-            <GithubIcon />
-          </NIcon>
+          />
         </template>
         GitHub
       </NTooltip>
@@ -134,11 +148,10 @@ const currentLanguageOptions = computed(() =>
       >
         <template #trigger>
           <NIcon
-            size="20"
             class="cursor-pointer"
-          >
-            <NotificationIcon />
-          </NIcon>
+            size="20"
+            :component="NotificationIcon"
+          />
         </template>
         {{ t('Header.Notification') }}
       </NTooltip>
@@ -149,12 +162,11 @@ const currentLanguageOptions = computed(() =>
       >
         <template #trigger>
           <NIcon
-            size="24"
             class="hidden cursor-pointer sm:block"
+            size="24"
+            :component="isFullscreen ? ExitFullscreenIcon : FullScreenIcon"
             @click="toggleFullscreen"
-          >
-            <component :is="isFullscreen ? ExitFullscreenIcon : FullScreenIcon" />
-          </NIcon>
+          />
         </template>
         {{ t(isFullscreen ? 'Header.ExitFullScreen' : 'Header.FullScreen') }}
       </NTooltip>
@@ -165,11 +177,10 @@ const currentLanguageOptions = computed(() =>
         @select="handleUpdateLocale"
       >
         <NIcon
-          size="20"
           class="cursor-pointer"
-        >
-          <LanguageIcon />
-        </NIcon>
+          size="20"
+          :component="LanguageIcon"
+        />
       </NDropdown>
 
       <NTooltip
@@ -178,14 +189,11 @@ const currentLanguageOptions = computed(() =>
       >
         <template #trigger>
           <NIcon
-            size="20"
             class="cursor-pointer"
-          >
-            <component
-              :is="themeStore.themeMode === 'light' ? SunIcon : MoonIcon"
-              @click="() => themeStore.changeThemeMode(themeStore.themeMode === 'light' ? 'dark' : 'light')"
-            />
-          </NIcon>
+            size="20"
+            :component="themeStore.themeMode === 'light' ? MoonIcon : SunIcon"
+            @click="() => themeStore.changeThemeMode(themeStore.themeMode === 'light' ? 'dark' : 'light')"
+          />
         </template>
         {{ t('Header.SwitchTheme') }}
       </NTooltip>
@@ -196,19 +204,18 @@ const currentLanguageOptions = computed(() =>
       >
         <template #trigger>
           <NIcon
-            size="20"
             class="cursor-pointer"
-          >
-            <SettingIcon />
-          </NIcon>
+            size="20"
+            :component="SettingIcon"
+          />
         </template>
         {{ t('Header.Settings') }}
       </NTooltip>
 
       <template v-if="userStore.hasData()">
         <NDropdown
-          :options="userOptions"
           trigger="hover"
+          :options="userOptions"
           @select="selectUserOption"
         >
           <template v-if="userStore.user.avatarUrl">
@@ -221,11 +228,10 @@ const currentLanguageOptions = computed(() =>
           </template>
           <template v-else>
             <NIcon
-              size="22"
               class="cursor-pointer"
-            >
-              <UserAvatarIcon />
-            </NIcon>
+              size="22"
+              :component="UserAvatarIcon"
+            />
           </template>
         </NDropdown>
       </template>

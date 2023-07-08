@@ -23,6 +23,7 @@ Dolphin Admin Web 是一个基于 `Vue 3/Vite/TypeScript/Naive UI/Tailwind CSS` 
 - [x] 使用 `Husky`，`lint-staged`, `commitlint`, `cz-git` 进行 Git 提交管理
 - [ ] 使用 `Docker` 和 `Docker Compose` 进行容器化
 - [x] 使用 `@/*` 作为绝对路径
+- [x] 使用 `Tauri` 进行桌面应用打包
 - [x] 部署在 Vercel 上，零配置
 
 ## 技术栈
@@ -83,22 +84,32 @@ pnpm i
 
 配置 `.env` 文件，参考 [.env.example](./.env.example).
 
-### 安装
+### PC 端应用
+
+#### 安装
 
 ```bash
 pnpm i
 ```
 
-### 启动
+#### 启动
 
 ```bash
 pnpm dev
 ```
 
-### 构建
+#### 构建
 
 ```bash
 pnpm build
+```
+
+### 桌面端应用
+
+#### 启动
+
+```bash
+pnpm dev:desktop
 ```
 
 ## 部署

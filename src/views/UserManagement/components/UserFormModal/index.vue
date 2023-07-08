@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { MessageSchema, User } from '@/types'
 import UserAvatarIcon from '~icons/carbon/user-avatar-filled-alt'
+import CreateIcon from '~icons/ic/sharp-add'
+import EditIcon from '~icons/ic/sharp-edit'
 
 export interface Props {
   userFormData?: User
@@ -10,6 +12,7 @@ export interface Props {
 const props = defineProps<Props>()
 
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+
 const message = useMessage()
 const [submitLoading, submitLoadingDispatcher] = useLoading()
 
@@ -23,45 +26,45 @@ const createFormData = reactive({
 const currentFile = ref<File | null>(null)
 const showModal = ref(false)
 
-const rules: FormRules = {
+const editRules: FormRules = {
   name: [
     {
       required: true,
-      message: t('Validation.Name'),
-      trigger: ['blur', 'input']
+      trigger: ['blur', 'input'],
+      renderMessage: () => t('Validation.Name')
     }
   ],
   firstName: [
     {
       required: true,
-      message: t('Validation.FirstName'),
-      trigger: ['blur', 'input']
+      trigger: ['blur', 'input'],
+      renderMessage: () => t('Validation.FirstName')
     }
   ],
   lastName: [
     {
       required: true,
-      message: t('Validation.LastName'),
-      trigger: ['blur', 'input']
+      trigger: ['blur', 'input'],
+      renderMessage: () => t('Validation.LastName')
     }
   ],
   email: [
     {
       key: 'edit',
       trigger: ['blur', 'change'],
-      message: t('Validation.Email')
+      renderMessage: () => t('Validation.Email')
     },
     {
       pattern: /^([a-zA-Z]|[0-9])(\w|-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/,
-      message: t('Validation.EmailFormat'),
-      trigger: ['input', 'blur']
+      trigger: ['input', 'blur'],
+      renderMessage: () => t('Validation.EmailFormat')
     }
   ],
   phoneNumber: [
     {
       pattern: /^[1][3456789]\d{9}$/,
-      message: t('Validation.PhoneNumberFormat'),
-      trigger: ['input', 'blur']
+      trigger: ['input', 'blur'],
+      renderMessage: () => t('Validation.PhoneNumberFormat')
     }
   ]
 }
@@ -69,20 +72,20 @@ const createRules: FormRules = {
   username: [
     {
       required: true,
-      message: t('Validation.Username'),
-      trigger: ['blur', 'input']
+      trigger: ['blur', 'input'],
+      renderMessage: () => t('Validation.Username')
     }
   ],
   password: [
     {
       required: true,
-      message: t('Validation.Password'),
-      trigger: ['blur', 'input']
+      trigger: ['blur', 'input'],
+      renderMessage: () => t('Validation.Password')
     },
     {
       validator: (_: FormItemRule, value: string) => value.length >= 6,
       trigger: ['blur', 'input'],
-      message: t('Validation.PasswordLength')
+      renderMessage: () => t('Validation.PasswordLength')
     }
   ]
 }
@@ -177,19 +180,25 @@ defineExpose({
     :positive-text="t('Common.Confirm')"
     :negative-text="t('Common.Cancel')"
   >
+    <template #icon>
+      <NIcon
+        size="24"
+        :component="isEdit ? EditIcon : CreateIcon"
+      />
+    </template>
     <NForm
       v-if="isEdit"
       ref="formRef"
-      :rules="rules"
       :model="formData"
+      :rules="editRules"
       label-placement="left"
       label-width="auto"
       require-mark-placement="right-hanging"
       class="flex flex-col"
     >
       <NFormItem
-        :label="t('User.Avatar')"
         path="avatarUrl"
+        :label="t('User.Avatar')"
       >
         <NUpload
           ref="uploadRef"
@@ -215,9 +224,10 @@ defineExpose({
           </template>
         </NUpload>
       </NFormItem>
+
       <NFormItem
-        :label="t('User.Name')"
         path="name"
+        :label="t('User.Name')"
       >
         <NInput
           v-model:value="formData.name"
@@ -227,9 +237,10 @@ defineExpose({
           clearable
         />
       </NFormItem>
+
       <NFormItem
-        :label="t('User.FirstName')"
         path="firstName"
+        :label="t('User.FirstName')"
       >
         <NInput
           v-model:value="formData.firstName"
@@ -239,9 +250,10 @@ defineExpose({
           clearable
         />
       </NFormItem>
+
       <NFormItem
-        :label="t('User.LastName')"
         path="lastName"
+        :label="t('User.LastName')"
       >
         <NInput
           v-model:value="formData.lastName"
@@ -251,9 +263,10 @@ defineExpose({
           clearable
         />
       </NFormItem>
+
       <NFormItem
-        :label="t('User.Email')"
         path="email"
+        :label="t('User.Email')"
       >
         <NInput
           v-model:value="formData.email"
@@ -263,9 +276,10 @@ defineExpose({
           clearable
         />
       </NFormItem>
+
       <NFormItem
-        :label="t('User.Gender')"
         path="gender"
+        :label="t('User.Gender')"
       >
         <NRadioGroup
           v-model:value="formData.gender"
@@ -277,9 +291,10 @@ defineExpose({
           </NSpace>
         </NRadioGroup>
       </NFormItem>
+
       <NFormItem
-        :label="t('User.PhoneNumber')"
         path="phoneNumber"
+        :label="t('User.PhoneNumber')"
       >
         <NInput
           v-model:value="formData.phoneNumber"
@@ -289,18 +304,20 @@ defineExpose({
           clearable
         />
       </NFormItem>
+
       <NFormItem
-        :label="t('User.BirthDate')"
         path="birthDate"
+        :label="t('User.BirthDate')"
       >
         <NDatePicker
           v-model:formatted-value="formData.birthDate"
           clearable
         />
       </NFormItem>
+
       <NFormItem
-        :label="t('User.Address')"
         path="address"
+        :label="t('User.Address')"
       >
         <NInput
           v-model:value="formData.address"
@@ -310,9 +327,10 @@ defineExpose({
           clearable
         />
       </NFormItem>
+
       <NFormItem
-        :label="t('User.Biography')"
         path="biography"
+        :label="t('User.Biography')"
       >
         <NInput
           v-model:value="formData.biography"
@@ -327,16 +345,16 @@ defineExpose({
     <NForm
       v-else
       ref="formRef"
-      :rules="createRules"
       :model="createFormData"
+      :rules="createRules"
       label-placement="left"
       label-width="auto"
       require-mark-placement="right-hanging"
       class="flex flex-col"
     >
       <NFormItem
-        :label="t('User.Username')"
         path="username"
+        :label="t('User.Username')"
       >
         <NInput
           v-model:value="createFormData.username"
@@ -344,11 +362,13 @@ defineExpose({
           maxlength="20"
           show-count
           clearable
+          :input-props="{ autocomplete: 'username' }"
         />
       </NFormItem>
+
       <NFormItem
-        :label="t('User.Password')"
         path="password"
+        :label="t('User.Password')"
       >
         <NInput
           v-model:value="createFormData.password"
@@ -357,7 +377,7 @@ defineExpose({
           maxlength="20"
           clearable
           show-password-on="click"
-          :input-props="{ autocomplete: 'new-password' }"
+          :input-props="{ autocomplete: 'password' }"
         />
       </NFormItem>
     </NForm>
