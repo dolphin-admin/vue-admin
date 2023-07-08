@@ -1,5 +1,5 @@
-@use "base.scss";
-@use "font.scss";
+@use 'base.scss';
+@use 'font.scss';
 
 *,
 *::before,
@@ -22,7 +22,7 @@ body {
   color-scheme: dark;
 }
 
-[data-theme="dark"] {
+[data-theme='dark'] {
   color: #ffffff;
 }
 
