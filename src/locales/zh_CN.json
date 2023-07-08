@@ -126,14 +126,16 @@
   "Login": {
     "AsVisitor": "以访客登录",
     "AsAdmin": "以管理员登录",
-    "SwitchToSignup": "切换至注册",
     "Success": "登录成功",
-    "Failed": "登录失败"
+    "Failed": "登录失败",
+    "NeedAccount": "需要账号？",
+    "ThirdPartyLogin": "第三方登录",
+    "LoginWithGitHub": "GitHub 登录"
   },
   "Signup": {
-    "SwitchToLogin": "切换至登录",
     "Success": "注册成功",
-    "Failed": "注册失败"
+    "Failed": "注册失败",
+    "AlreadyHaveAccount": "已有账号？"
   },
   "Logout": {
     "Success": "登出成功",

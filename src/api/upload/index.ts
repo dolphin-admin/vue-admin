@@ -1,7 +1,7 @@
 import type { BaseResponse } from '@/types'
 
 import Request from '../axios'
-import type { UploadOptions, UploadResponse } from './type'
+import type { UploadOptions, UploadResponse } from './types'
 
 export class UploadAPI {
   private static UPLOAD_API_PREFIX = `${GlobalEnvConfig.BASE_API_PREFIX}/upload`

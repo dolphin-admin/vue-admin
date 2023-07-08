@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import type { MessageSchema } from '@/types'
 
-const router = useRouter()
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+
+const router = useRouter()
 const message = useMessage()
 const [submitLoading, submitLoadingDispatcher] = useLoading(false)
 
@@ -18,31 +19,31 @@ const rules: FormRules = {
   username: [
     {
       required: true,
-      message: t('Validation.Username'),
-      trigger: ['blur', 'input']
+      trigger: ['blur', 'input'],
+      renderMessage: () => t('Validation.Username')
     }
   ],
   password: [
     {
       required: true,
-      message: t('Validation.Password'),
-      trigger: ['blur', 'input']
+      trigger: ['blur', 'input'],
+      renderMessage: () => t('Validation.Password')
     },
     {
-      validator: (rule: FormItemRule, value: string) => value.length >= 6,
+      validator: (_: FormItemRule, value: string) => value.length >= 6,
       trigger: ['blur', 'input'],
-      message: t('Validation.PasswordLength')
+      renderMessage: () => t('Validation.PasswordLength')
     }
   ],
   confirmPassword: [
     {
       required: true,
-      message: t('Validation.ConfirmPassword'),
-      trigger: ['blur', 'input']
+      trigger: ['blur', 'input'],
+      renderMessage: () => t('Validation.ConfirmPassword')
     },
     {
-      validator: (rule: FormItemRule, value: string) => value === formData.password,
-      message: t('Validation.ConfirmPasswordNotMatch')
+      validator: (_: FormItemRule, value: string) => value === formData.password,
+      renderMessage: () => t('Validation.ConfirmPasswordNotMatch')
     }
   ]
 }
@@ -142,13 +143,17 @@ const signup = () => {
       {{ t('Menu.Signup') }}
     </NButton>
 
-    <NButton
-      class="w-100"
-      text
-      size="tiny"
-      @click="() => router.push('/login')"
-    >
-      {{ t('Signup.SwitchToLogin') }}
-    </NButton>
+    <div class="flex items-center space-x-0.5 text-xs">
+      <span>{{ t('Signup.AlreadyHaveAccount') }}</span>
+      <NButton
+        type="primary"
+        text
+        @click="() => router.push('/login')"
+      >
+        <span class="text-xs font-semibold underline-offset-4 hover:underline">
+          {{ t('Menu.Login') }}
+        </span>
+      </NButton>
+    </div>
   </NForm>
 </template>

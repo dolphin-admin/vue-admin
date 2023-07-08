@@ -1,19 +1,18 @@
 <script setup lang="ts">
 import type { MessageSchema } from '@/types'
+import GitHubIcon from '~icons/line-md/github'
 
-type RememberedAccountData = {
-  username: string
-  password: string
-}
+import type { RememberedAccountData } from './private'
 
-const REMEMBERED_ACCOUNT_DATA_KEY = 'user_password'
+const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
 const route = useRoute()
 const router = useRouter()
-const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+const userStore = useUserStore()
 const message = useMessage()
 
 const [submitLoading, submitLoadingDispatcher] = useLoading(false)
+const [githubLoading, githubLoadingDispatcher] = useLoading(false)
 const submitType = ref<'BASIC' | 'ADMIN'>('BASIC')
 
 const formData = reactive({
@@ -29,24 +28,27 @@ const rules: FormRules = {
   username: [
     {
       required: true,
-      message: t('Validation.Username'),
-      trigger: ['blur', 'input']
+      trigger: ['blur', 'input'],
+      renderMessage: () => t('Validation.Username')
     }
   ],
   password: [
     {
       required: true,
-      message: t('Validation.Password'),
-      trigger: ['blur', 'input']
+      trigger: ['blur', 'input'],
+      renderMessage: () => t('Validation.Password')
     },
     {
       validator: (_: FormItemRule, value: string) => value.length >= 6,
       trigger: ['blur', 'input'],
-      message: t('Validation.PasswordLength')
+      renderMessage: () => t('Validation.PasswordLength')
     }
   ]
 }
 
+/**
+ * 登录
+ */
 const login = () => {
   formRef.value!.validate((errors) => {
     if (errors) {
@@ -60,15 +62,16 @@ const login = () => {
 
     submitLoadingDispatcher.loading()
 
-    UserAPI.login(formData)
+    AuthAPI.login(formData)
       .then((res) => {
-        const { accessToken } = res.data || {}
+        const { accessToken, user } = res.data || {}
         AuthUtils.setToken(accessToken)
+        userStore.setUser(user)
         message.success(t('Login.Success'))
         if (rememberPassword.value) {
-          localStorage.setItem(REMEMBERED_ACCOUNT_DATA_KEY, JSON.stringify(formData))
+          AuthUtils.setRememberedAccount(JSON.stringify(formData))
         } else {
-          localStorage.removeItem(REMEMBERED_ACCOUNT_DATA_KEY)
+          AuthUtils.clearRememberedAccount()
         }
 
         if (redirectUrl.value) {
@@ -87,11 +90,17 @@ const login = () => {
   })
 }
 
+/**
+ * 基础登录
+ */
 const loginAsBasic = () => {
   submitType.value = 'BASIC'
   login()
 }
 
+/**
+ * 以管理员身份登录
+ */
 const loginAsAdmin = () => {
   submitType.value = 'ADMIN'
   formData.username = AuthUtils.DEFAULT_ADMIN_USERNAME
@@ -99,10 +108,73 @@ const loginAsAdmin = () => {
   login()
 }
 
+/**
+ * GitHub OAuth2 登录
+ */
+const loginWithGitHub = () => {
+  if (githubLoading.value) {
+    return
+  }
+  githubLoadingDispatcher.loading()
+
+  const authURL = GitHubAuthUtils.getAuthUrl()
+
+  // 打开授权子窗口
+  GitHubAuthUtils.openAuthWindow(authURL)
+
+  // 添加新窗口关闭事件监听器
+  const messageEventListener = (event: MessageEvent) => {
+    // 确保消息来自 GitHub 授权子窗口
+    if (event.origin !== window.location.origin) {
+      return
+    }
+    // 接收到数据移除监听器
+    window.removeEventListener('message', messageEventListener)
+
+    // 处理从新窗口传递过来的 GitHub 访问令牌
+    const githubAuthCode = event.data
+
+    AuthAPI.loginWithGitHub(githubAuthCode)
+      .then((res) => {
+        const { accessToken, user } = res.data || {}
+        AuthUtils.setToken(accessToken)
+        userStore.setUser(user)
+        message.success(t('Login.Success'))
+
+        if (redirectUrl.value) {
+          router.replace(redirectUrl.value)
+        } else {
+          router.replace('/')
+        }
+      })
+      .catch((err) => {
+        message.error(err.message ?? t('Login.Failed'))
+        githubLoadingDispatcher.loaded()
+      })
+  }
+
+  // 父窗口监听子窗口传递过来的消息
+  window.addEventListener('message', messageEventListener)
+}
+
+/**
+ * 忘记密码
+ */
 const forgetPassword = () => {}
 
+onBeforeMount(() => {
+  // 如果是授权子窗口，则将授权码传递给父窗口
+  if (window.opener) {
+    const code = route.query.code as string
+    if (code) {
+      window.opener.postMessage(code, window.location.origin)
+    }
+    setTimeout(() => window.close(), 0)
+  }
+})
+
 onMounted(() => {
-  const localStorageData = localStorage.getItem(REMEMBERED_ACCOUNT_DATA_KEY)
+  const localStorageData = AuthUtils.getRememberedAccount()
   if (localStorageData) {
     try {
       const { username, password } = JSON.parse(localStorageData) as RememberedAccountData
@@ -135,7 +207,7 @@ onMounted(() => {
         type="text"
         :placeholder="t('User.Username')"
         :input-props="{ autocomplete: 'username' }"
-        @keyup.enter="() => loginAsBasic()"
+        @keyup.enter="loginAsBasic"
       />
     </NFormItem>
 
@@ -147,11 +219,11 @@ onMounted(() => {
       <NInput
         v-model:value="formData.password"
         type="password"
-        show-password-on="mousedown"
+        show-password-on="click"
         :placeholder="t('User.Password')"
         :maxlength="16"
         :input-props="{ autocomplete: 'current-password' }"
-        @keyup.enter="() => loginAsBasic()"
+        @keyup.enter="loginAsBasic"
       />
     </NFormItem>
 
@@ -164,6 +236,7 @@ onMounted(() => {
         {{ t('Common.RememberPassword') }}
       </NCheckbox>
       <div
+        v-if="false"
         class="cursor-pointer hover:text-blue-600"
         @click="forgetPassword"
       >
@@ -177,7 +250,7 @@ onMounted(() => {
         type="primary"
         :disabled="submitLoading"
         :loading="submitType === 'BASIC' && submitLoading"
-        @click="() => loginAsBasic()"
+        @click="loginAsBasic"
       >
         {{ t('Menu.Login') }}
       </NButton>
@@ -187,18 +260,42 @@ onMounted(() => {
         type="primary"
         :disabled="submitLoading"
         :loading="submitType === 'ADMIN' && submitLoading"
-        @click="() => loginAsAdmin()"
+        @click="loginAsAdmin"
       >
         {{ t('Login.AsAdmin') }}
       </NButton>
     </div>
 
+    <div class="flex items-center space-x-0.5 text-xs">
+      <span>{{ t('Login.NeedAccount') }}</span>
+      <NButton
+        type="primary"
+        text
+        @click="() => router.push('/signup')"
+      >
+        <span class="text-xs font-semibold underline-offset-4 hover:underline">
+          {{ t('Menu.Signup') }}
+        </span>
+      </NButton>
+    </div>
+
+    <NDivider>
+      <span class="text-xs">{{ t('Login.ThirdPartyLogin') }}</span>
+    </NDivider>
+
     <NButton
-      text
-      size="tiny"
-      @click="() => router.push('/signup')"
+      color="#595D5F"
+      :loading="githubLoading"
+      :disabled="githubLoading"
+      @click="loginWithGitHub"
     >
-      {{ t('Login.SwitchToSignup') }}
+      <template #icon>
+        <NIcon
+          color="white"
+          :component="GitHubIcon"
+        />
+      </template>
+      <span class="text-white">{{ t('Login.LoginWithGitHub') }}</span>
     </NButton>
   </NForm>
 </template>

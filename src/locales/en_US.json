@@ -126,14 +126,16 @@
   "Login": {
     "AsVisitor": "Login as Visitor",
     "AsAdmin": "Login as Admin",
-    "SwitchToSignup": "Switch to Signup",
     "Success": "Login success",
-    "Failed": "Login failed"
+    "Failed": "Login failed",
+    "NeedAccount": "Need an account?",
+    "ThirdPartyLogin": "Third party login",
+    "LoginWithGitHub": "Sign in with GitHub"
   },
   "Signup": {
-    "SwitchToLogin": "Switch to Login",
     "Success": "Signup success",
-    "Failed": "Signup failed"
+    "Failed": "Signup failed",
+    "AlreadyHaveAccount": "Already have an account?"
   },
   "Logout": {
     "Success": "Logout success",
