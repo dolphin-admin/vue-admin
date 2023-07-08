@@ -105,6 +105,6 @@ pnpm dev:desktop
 
 Go to Vercel and select your Git repository, choose Vite as template, add production environment variables, and click deploy.
 
-## 许可证
+## License
 
 [MIT](/LICENSE) License &copy; 2023 [Bruce Song](https://github.com/recallwei) from [Bit Ocean](https://github.com/bit-ocean-studio)
