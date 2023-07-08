@@ -1,4 +1,5 @@
 import type { MenuMixedOption } from '@/types'
+import CopyIcon from '~icons/ic/baseline-content-copy'
 import QRCodeIcon from '~icons/ic/baseline-qrcode'
 import HomeIcon from '~icons/ic/sharp-house'
 import UserManagementIcon from '~icons/mdi/account-cog-outline'
@@ -65,7 +66,7 @@ export const menuOptions: MenuMixedOption[] = [
           ),
         labelKey: 'Menu.UserManagement',
         path: '/user-management',
-        key: 'UserManagement',
+        key: 'user-management',
         icon: () =>
           h(
             NIcon,
@@ -91,7 +92,7 @@ export const menuOptions: MenuMixedOption[] = [
           ),
         labelKey: 'Menu.RoleManagement',
         path: '/role-management',
-        key: 'RoleManagement',
+        key: 'role-management',
         icon: () =>
           h(
             NIcon,
@@ -117,7 +118,7 @@ export const menuOptions: MenuMixedOption[] = [
           ),
         labelKey: 'Menu.PermissionManagement',
         path: '/permission-management',
-        key: 'PermissionManagement',
+        key: 'permission-management',
         icon: () =>
           h(
             NIcon,
@@ -161,7 +162,7 @@ export const menuOptions: MenuMixedOption[] = [
           ),
         labelKey: 'Menu.ComponentsPreview',
         path: '/components-preview',
-        key: 'ComponentsPreview',
+        key: 'components-preview',
         icon: () =>
           h(
             NIcon,
@@ -187,7 +188,7 @@ export const menuOptions: MenuMixedOption[] = [
           ),
         labelKey: 'Menu.IconManagement',
         path: '/icon-management',
-        key: 'IconManagement',
+        key: 'icon-management',
         icon: () =>
           h(
             NIcon,
@@ -222,6 +223,32 @@ export const menuOptions: MenuMixedOption[] = [
             },
             {
               default: () => h(QRCodeIcon)
+            }
+          ),
+        menuType: 'routerLink'
+      },
+      {
+        label: () =>
+          h(
+            RouterLink,
+            {
+              to: '/clipboard'
+            },
+            {
+              default: () => t('Menu.Clipboard')
+            }
+          ),
+        labelKey: 'Menu.Clipboard',
+        path: '/clipboard',
+        key: 'clipboard',
+        icon: () =>
+          h(
+            NIcon,
+            {
+              size: 16
+            },
+            {
+              default: () => h(CopyIcon)
             }
           ),
         menuType: 'routerLink'
