@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import type { MessageSchema } from '@/types'
+
+const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+
 const numberData = reactive({
   startValue: 0,
   endValue: 3000,
@@ -13,7 +17,7 @@ const handleNumber = () => numberAnimationRef.value.handleNumberValue(numberData
 <template>
   <main>
     <NCard
-      title="数字动画"
+      :title="t('数字动画')"
       hoverable
     >
       <div class="flex flex-col items-center space-y-4 sm:space-y-4">
@@ -32,21 +36,21 @@ const handleNumber = () => numberAnimationRef.value.handleNumberValue(numberData
             :show-feedback="false"
           >
             <NFormItem
-              label="请输入开始值"
+              :label="t('请输入开始值')"
               path="startValue"
             >
               <NInputNumber v-model:value="numberData.startValue" />
             </NFormItem>
 
             <NFormItem
-              label="请输入结束值"
+              :label="t('请输入结束值')"
               path="endValue"
             >
               <NInputNumber v-model:value="numberData.endValue" />
             </NFormItem>
 
             <NFormItem
-              label="请输入持续时间"
+              :label="t('请输入持续时间')"
               path="duration"
             >
               <NInputNumber v-model:value="numberData.duration" />
@@ -59,9 +63,9 @@ const handleNumber = () => numberAnimationRef.value.handleNumberValue(numberData
             type="primary"
             @click="handleNumber"
           >
-            开始
+            {{ t('开始') }}
           </NButton>
-          <NButton>暂停/继续</NButton>
+          <NButton>{{ t('暂停/继续') }}</NButton>
         </div>
       </div>
     </NCard>
