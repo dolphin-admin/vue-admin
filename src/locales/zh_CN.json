@@ -22,6 +22,10 @@
     "Download": "下载",
     "Upload": "上传",
     "IsOrNot": "是否",
+    "Start": "开始",
+    "Pause": "暂停",
+    "Stop": "停止",
+    "Continue": "继续",
     "RememberPassword": "记住密码",
     "ForgetPassword": "忘记密码",
     "ConfirmPassword": "确认密码",
@@ -133,14 +137,16 @@
   "Login": {
     "AsVisitor": "以访客登录",
     "AsAdmin": "以管理员登录",
-    "SwitchToSignup": "切换至注册",
     "Success": "登录成功",
-    "Failed": "登录失败"
+    "Failed": "登录失败",
+    "NeedAccount": "需要账号？",
+    "ThirdPartyLogin": "第三方登录",
+    "LoginWithGitHub": "GitHub 登录"
   },
   "Signup": {
-    "SwitchToLogin": "切换至登录",
     "Success": "注册成功",
-    "Failed": "注册失败"
+    "Failed": "注册失败",
+    "AlreadyHaveAccount": "已有账号？"
   },
   "Logout": {
     "Success": "登出成功",
@@ -169,5 +175,10 @@
   },
   "Clipboard": {
     "CopyToClipboard": "复制到剪切板"
+  },
+  "DigitalAnimation": {
+    "StartValuePlaceholder": "请输入开始值",
+    "EndValuePlaceholder": "请输入结束值",
+    "DurationPlaceholder": "请输入动画时长"
   }
 }

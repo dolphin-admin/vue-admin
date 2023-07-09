@@ -22,6 +22,10 @@
     "Download": "Download",
     "Upload": "Upload",
     "IsOrNot": "Is or not",
+    "Start": "Start",
+    "Pause": "Pause",
+    "Stop": "Stop",
+    "Continue": "Continue",
     "RememberPassword": "Remember password",
     "ForgetPassword": "Forget password",
     "ConfirmPassword": "Confirm password",
@@ -133,14 +137,16 @@
   "Login": {
     "AsVisitor": "Login as Visitor",
     "AsAdmin": "Login as Admin",
-    "SwitchToSignup": "Switch to Signup",
     "Success": "Login success",
-    "Failed": "Login failed"
+    "Failed": "Login failed",
+    "NeedAccount": "Need an account?",
+    "ThirdPartyLogin": "Third party login",
+    "LoginWithGitHub": "Sign in with GitHub"
   },
   "Signup": {
-    "SwitchToLogin": "Switch to Login",
     "Success": "Signup success",
-    "Failed": "Signup failed"
+    "Failed": "Signup failed",
+    "AlreadyHaveAccount": "Already have an account?"
   },
   "Logout": {
     "Success": "Logout success",
@@ -169,5 +175,10 @@
   },
   "Clipboard": {
     "CopyToClipboard": "Copy to clipboard"
+  },
+  "DigitalAnimation": {
+    "StartValuePlaceholder": "Please enter start value",
+    "EndValuePlaceholder": "Please enter end value",
+    "DurationPlaceholder": "Please enter duration"
   }
 }

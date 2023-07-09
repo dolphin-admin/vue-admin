@@ -1,24 +1,10 @@
 import type { BaseResponse, PageModel, PageResponse, User } from '@/types'
 
 import Request from '../axios'
-import type { ChangePasswordModel, LoginModel, SignupModel, UserTokenResponse } from './type'
+import type { ChangePasswordModel, CreateModel } from './types'
 
 export class UserAPI {
   private static USER_API_PREFIX = `${GlobalEnvConfig.BASE_API_PREFIX}/users`
-
-  /**
-   * 登录
-   */
-  static login(data: LoginModel) {
-    return Request.post<BaseResponse<UserTokenResponse>>(`${GlobalEnvConfig.BASE_API_PREFIX}/login`, { ...data })
-  }
-
-  /**
-   * 注册
-   */
-  static signup(data: SignupModel) {
-    return Request.post<BaseResponse<UserTokenResponse>>(`${GlobalEnvConfig.BASE_API_PREFIX}/signup`, { ...data })
-  }
 
   /**
    * 用户列表
@@ -45,7 +31,7 @@ export class UserAPI {
   /**
    * 创建用户
    */
-  static createUser(data: LoginModel) {
+  static createUser(data: CreateModel) {
     return Request.post<BaseResponse<User>>(this.USER_API_PREFIX, { ...data })
   }
 

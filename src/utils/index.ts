@@ -1,6 +1,7 @@
 export * from './auth'
 export * from './browser'
 export * from './file'
+export * from './github'
 export * from './icon'
 export * from './lang'
 export * from './qrcode'
