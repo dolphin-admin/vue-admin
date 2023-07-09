@@ -1,5 +1,6 @@
 import type { MenuMixedOption } from '@/types'
 import CopyIcon from '~icons/ic/baseline-content-copy'
+import DigitalAnimationIcon from '~icons/ic/baseline-hourglass-empty'
 import QRCodeIcon from '~icons/ic/baseline-qrcode'
 import HomeIcon from '~icons/ic/sharp-house'
 import UserManagementIcon from '~icons/mdi/account-cog-outline'
@@ -249,6 +250,50 @@ export const menuOptions: MenuMixedOption[] = [
             },
             {
               default: () => h(CopyIcon)
+            }
+          ),
+        menuType: 'routerLink'
+      }
+    ]
+  },
+  {
+    label: t('Menu.BuiltinComponent'),
+    labelKey: 'Menu.BuiltinComponent',
+    key: 'builtin-component',
+    icon: () =>
+      h(
+        NIcon,
+        {
+          size: 16
+        },
+        {
+          default: () => h(ComponentsPreviewIcon)
+        }
+      ),
+    menuType: 'label',
+    children: [
+      {
+        label: () =>
+          h(
+            RouterLink,
+            {
+              to: '/digital-animation'
+            },
+            {
+              default: () => t('Menu.DigitalAnimation')
+            }
+          ),
+        labelKey: 'Menu.DigitalAnimation',
+        path: '/digital-animation',
+        key: 'digital-animation',
+        icon: () =>
+          h(
+            NIcon,
+            {
+              size: 16
+            },
+            {
+              default: () => h(DigitalAnimationIcon)
             }
           ),
         menuType: 'routerLink'

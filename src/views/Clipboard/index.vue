@@ -17,6 +17,7 @@ const handleCopyText = async () => {
   }
   loadingDispatcher.loaded()
 }
+
 watch(
   () => locale.value,
   () => {
@@ -41,6 +42,7 @@ watch(
         autofocus
         show-count
         clearable
+        hoverable
         :autosize="{
           minRows: 8,
           maxRows: 20
