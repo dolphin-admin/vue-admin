@@ -1,57 +1,51 @@
 <script setup lang="ts">
-import { NumberAnimation } from './components'
-
 const numberData = reactive({
-  duration: 3000,
   startValue: 0,
-  endValue: 3000
+  endValue: 3000,
+  duration: 3000
 })
-const isStart = ref(false)
 
 const numberAnimationRef = ref()
 
-const handleNumber = () => {
-  numberAnimationRef.value.handleNumberValue(numberData)
-  isStart.value = true
-}
+const handleNumber = () => numberAnimationRef.value.handleNumberValue(numberData)
 </script>
+
 <template>
   <main>
     <NCard
       title="数字动画"
       hoverable
     >
-      <div class="flex flex-col items-center space-y-6">
-        <div>
-          <NumberAnimation
-            ref="numberAnimationRef"
-            :number-data="numberData"
-            :is-start="isStart"
-          />
-        </div>
+      <div class="flex flex-col items-center space-y-4 sm:space-y-4">
+        <NumberAnimation
+          ref="numberAnimationRef"
+          class="font-semibold text-blue-500"
+          :number-data="numberData"
+          font-size="60"
+        />
+
         <div>
           <NForm
-            class="!inline-flex items-center justify-between"
             label-placement="top"
             :model="numberData"
-            inline
+            class="flex flex-col items-center space-y-3 sm:flex-row sm:space-x-6 sm:space-y-0"
+            :show-feedback="false"
           >
             <NFormItem
-              :span="12"
               label="请输入开始值"
-              path="inputNumberValue"
+              path="startValue"
             >
               <NInputNumber v-model:value="numberData.startValue" />
             </NFormItem>
+
             <NFormItem
-              :span="12"
               label="请输入结束值"
-              path="inputNumberValue"
+              path="endValue"
             >
               <NInputNumber v-model:value="numberData.endValue" />
             </NFormItem>
+
             <NFormItem
-              :span="12"
               label="请输入持续时间"
               path="duration"
             >
@@ -59,13 +53,14 @@ const handleNumber = () => {
             </NFormItem>
           </NForm>
         </div>
-        <div>
+
+        <div class="flex items-center space-x-4">
           <NButton
             type="primary"
-            class="!mr-4"
             @click="handleNumber"
-            >开始</NButton
           >
+            开始
+          </NButton>
           <NButton>暂停/继续</NButton>
         </div>
       </div>
