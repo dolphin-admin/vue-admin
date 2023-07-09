@@ -69,12 +69,4 @@ export class AuthUtils {
   static clearRememberedAccount() {
     localStorage.removeItem(this.LOCAL_STORAGE_REMEMBERED_ACCOUNT)
   }
-
-  /**
-   * 清空 localStorage
-   * @description 用于退出登录
-   */
-  static clearLocalStorage() {
-    localStorage.clear()
-  }
 }

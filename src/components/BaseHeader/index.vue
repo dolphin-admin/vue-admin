@@ -76,7 +76,7 @@ const handleUpdateLocale = (lang: Lang) => {
  * 退出登录
  */
 const logout = () => {
-  AuthUtils.clearLocalStorage()
+  AuthUtils.clearToken()
   userStore.clearUser()
   message.success(t('Logout.Success'))
   router.replace('/login')
