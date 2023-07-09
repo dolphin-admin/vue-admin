@@ -61,6 +61,10 @@
     "GenerateQRCode": {
       "Success": "二维码生成成功",
       "Failed": "二维码生成失败"
+    },
+    "Copy": {
+      "Success": "复制成功",
+      "Failed": "复制失败"
     }
   },
   "User": {
@@ -121,7 +125,10 @@
     "SystemTool": "系统工具",
     "ComponentsPreview": "组件预览",
     "IconManagement": "图标管理",
-    "QRCode": "二维码"
+    "QRCode": "二维码",
+    "Clipboard": "剪切板",
+    "BuiltinComponent": "内置组件",
+    "DigitalAnimation": "数字动画"
   },
   "Login": {
     "AsVisitor": "以访客登录",
@@ -161,5 +168,8 @@
   },
   "IconManagement": {
     "SearchPlaceholder": "请输入图标集合名称"
+  },
+  "Clipboard": {
+    "CopyToClipboard": "复制到剪切板"
   }
 }

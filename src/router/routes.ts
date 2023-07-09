@@ -1,3 +1,5 @@
+import CopyIcon from '~icons/ic/baseline-content-copy'
+import DigitalAnimationIcon from '~icons/ic/baseline-hourglass-empty'
 import QRCodeIcon from '~icons/ic/baseline-qrcode'
 import HomeIcon from '~icons/ic/sharp-house'
 import UserInfoIcon from '~icons/mdi/account-circle'
@@ -93,6 +95,24 @@ export const routes = [
         meta: {
           title: 'Menu.QRCode',
           icon: QRCodeIcon
+        }
+      },
+      {
+        path: '/clipboard',
+        name: 'clipboard',
+        component: () => import('@/views/Clipboard'),
+        meta: {
+          title: 'Menu.Clipboard',
+          icon: CopyIcon
+        }
+      },
+      {
+        path: '/digital-animation',
+        name: 'digital-animation',
+        component: () => import('@/views/DigitalAnimation'),
+        meta: {
+          title: 'Menu.DigitalAnimation',
+          icon: DigitalAnimationIcon
         }
       }
     ]

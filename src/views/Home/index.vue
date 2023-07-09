@@ -3,8 +3,9 @@ import type { Lang, MessageSchema } from '@/types'
 
 const { version } = siteMetaData
 
-const themeStore = useThemeStore()
 const { t, locale } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+
+const themeStore = useThemeStore()
 
 const options = [
   { label: 'English', value: 'en_US' },
