@@ -22,6 +22,10 @@
     "Download": "下载",
     "Upload": "上传",
     "IsOrNot": "是否",
+    "Start": "开始",
+    "Pause": "暂停",
+    "Stop": "停止",
+    "Continue": "继续",
     "RememberPassword": "记住密码",
     "ForgetPassword": "忘记密码",
     "ConfirmPassword": "确认密码",
@@ -171,5 +175,10 @@
   },
   "Clipboard": {
     "CopyToClipboard": "复制到剪切板"
+  },
+  "DigitalAnimation": {
+    "StartValuePlaceholder": "请输入开始值",
+    "EndValuePlaceholder": "请输入结束值",
+    "DurationPlaceholder": "请输入动画时长"
   }
 }

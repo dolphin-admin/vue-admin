@@ -33,21 +33,21 @@ const handleNumber = () => numberAnimationRef.value.handleNumberValue(numberData
             :show-feedback="false"
           >
             <NFormItem
-              :label="t('请输入开始值')"
+              :label="t('DigitalAnimation.StartValuePlaceholder')"
               path="startValue"
             >
               <NInputNumber v-model:value="numberData.startValue" />
             </NFormItem>
 
             <NFormItem
-              :label="t('请输入结束值')"
+              :label="t('DigitalAnimation.EndValuePlaceholder')"
               path="endValue"
             >
               <NInputNumber v-model:value="numberData.endValue" />
             </NFormItem>
 
             <NFormItem
-              :label="t('请输入持续时间')"
+              :label="t('DigitalAnimation.DurationPlaceholder')"
               path="duration"
             >
               <NInputNumber v-model:value="numberData.duration" />
@@ -60,9 +60,9 @@ const handleNumber = () => numberAnimationRef.value.handleNumberValue(numberData
             type="primary"
             @click="handleNumber"
           >
-            {{ t('开始') }}
+            {{ t('Common.Start') }}
           </NButton>
-          <NButton>{{ t('暂停/继续') }}</NButton>
+          <NButton>{{ t('Common.Pause') + '/' + t('Common.Continue') }}</NButton>
         </div>
       </div>
     </NCard>
