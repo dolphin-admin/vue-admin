@@ -16,14 +16,11 @@ const handleNumber = () => numberAnimationRef.value.handleNumberValue(numberData
 
 <template>
   <main>
-    <NCard
-      :title="t('数字动画')"
-      hoverable
-    >
+    <NCard hoverable>
       <div class="flex flex-col items-center space-y-4 sm:space-y-4">
         <NumberAnimation
           ref="numberAnimationRef"
-          class="font-semibold text-blue-500"
+          class="text-4xl font-semibold text-blue-500 sm:text-6xl"
           :number-data="numberData"
           font-size="60"
         />
