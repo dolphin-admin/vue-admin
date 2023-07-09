@@ -61,7 +61,7 @@ const signup = () => {
 
     submitLoadingDispatcher.loading()
 
-    UserAPI.signup(formData)
+    AuthAPI.signup(formData)
       .then((res) => {
         const { accessToken } = res.data || {}
         AuthUtils.setToken(accessToken)
@@ -143,7 +143,7 @@ const signup = () => {
       {{ t('Menu.Signup') }}
     </NButton>
 
-    <div class="flex items-center space-x-0.5 text-xs">
+    <div class="flex items-center space-x-1 text-xs">
       <span>{{ t('Signup.AlreadyHaveAccount') }}</span>
       <NButton
         type="primary"

@@ -266,7 +266,7 @@ onMounted(() => {
       </NButton>
     </div>
 
-    <div class="flex items-center space-x-0.5 text-xs">
+    <div class="flex items-center space-x-1 text-xs">
       <span>{{ t('Login.NeedAccount') }}</span>
       <NButton
         type="primary"

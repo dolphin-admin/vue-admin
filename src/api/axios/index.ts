@@ -72,12 +72,14 @@ class Request {
     switch (code) {
       case ResponseStatusCode.UNAUTHORIZED:
         AuthUtils.clearLocalStorage()
-        router.replace({
-          path: '/login',
-          query: {
-            redirect: router.currentRoute.value.fullPath
-          }
-        })
+        if (router.currentRoute.value.path !== '/login') {
+          router.replace({
+            path: '/login',
+            query: {
+              redirect: router.currentRoute.value.fullPath
+            }
+          })
+        }
         console.error(errorMessage)
         message.error(errorMessage)
         break
