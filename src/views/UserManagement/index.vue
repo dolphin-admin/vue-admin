@@ -359,6 +359,7 @@ watch(
         width: key === 'operation' ? processOptionColumnWidth() : width
       }
     })
+    queryList()
   }
 )
 

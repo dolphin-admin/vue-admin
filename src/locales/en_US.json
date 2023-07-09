@@ -63,7 +63,8 @@
       "Failed": "QRCode generate failed"
     },
     "Copy": {
-      "CopySuccessfully": "Copy successfully"
+      "Success": "Copy Success",
+      "Failed": "Copy failed"
     }
   },
   "User": {
