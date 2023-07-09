@@ -1,5 +1,4 @@
-export const ChineseLyrics = `
-海底
+export const ChineseLyrics = `海底 - 一只榴莲
 散落的月光
 穿过了云
 躲着人群
