@@ -125,7 +125,9 @@
     "SystemTool": "System Tool",
     "IconManagement": "Icon Management",
     "QRCode": "QRCode",
-    "Clipboard": "Clipboard"
+    "Clipboard": "Clipboard",
+    "BuiltinComponent": "Builtin Component",
+    "DigitalAnimation": "Digital Animation"
   },
   "Login": {
     "AsVisitor": "Login as Visitor",
