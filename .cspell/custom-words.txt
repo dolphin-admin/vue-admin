@@ -32,3 +32,4 @@ unplugin
 vfonts
 vueuse
 webos
+echarts
