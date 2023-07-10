@@ -132,7 +132,9 @@
     "QRCode": "QRCode",
     "Clipboard": "Clipboard",
     "BuiltinComponent": "Built-in Component",
-    "DigitalAnimation": "Digital Animation"
+    "DigitalAnimation": "Digital Animation",
+    "UniversalComponents": "Universal Components",
+    "Echarts": "Echarts"
   },
   "Login": {
     "AsVisitor": "Login as Visitor",

@@ -9,6 +9,7 @@ import IconManagementIcon from '~icons/mdi/emoticon-wink'
 import ChangePasswordIcon from '~icons/mdi/key'
 import PermissionManagementIcon from '~icons/mdi/key-chain'
 import ComponentsPreviewIcon from '~icons/mdi/puzzle'
+import ChartIcon from '~icons/ic/baseline-bar-chart'
 
 export const routes = [
   {
@@ -113,6 +114,15 @@ export const routes = [
         meta: {
           title: 'Menu.DigitalAnimation',
           icon: DigitalAnimationIcon
+        }
+      },
+      {
+        path: '/echarts',
+        name: 'echarts',
+        component: () => import('@/views/Echarts'),
+        meta: {
+          title: 'Menu.Echarts',
+          icon: ChartIcon
         }
       }
     ]

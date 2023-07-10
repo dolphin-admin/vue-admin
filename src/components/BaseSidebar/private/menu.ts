@@ -10,6 +10,8 @@ import SystemFunctionIcon from '~icons/mdi/function-variant'
 import PermissionManagementIcon from '~icons/mdi/key-chain'
 import ComponentsPreviewIcon from '~icons/mdi/puzzle'
 import SystemToolIcon from '~icons/mdi/tools'
+import ChartIcon from '~icons/ic/baseline-bar-chart'
+import UniversalComponentsIcon from '~icons/ic/baseline-auto-awesome-mosaic'
 
 const { t } = i18n.global
 
@@ -250,6 +252,50 @@ export const menuOptions: MenuMixedOption[] = [
             },
             {
               default: () => h(CopyIcon)
+            }
+          ),
+        menuType: 'routerLink'
+      }
+    ]
+  },
+  {
+    label: t('Menu.UniversalComponents'),
+    labelKey: 'Menu.UniversalComponents',
+    key: 'universal-components',
+    icon: () =>
+      h(
+        NIcon,
+        {
+          size: 16
+        },
+        {
+          default: () => h(UniversalComponentsIcon)
+        }
+      ),
+    menuType: 'label',
+    children: [
+      {
+        label: () =>
+          h(
+            RouterLink,
+            {
+              to: '/echarts'
+            },
+            {
+              default: () => t('Menu.Echarts')
+            }
+          ),
+        labelKey: 'Menu.Echarts',
+        path: '/echarts',
+        key: 'echarts',
+        icon: () =>
+          h(
+            NIcon,
+            {
+              size: 16
+            },
+            {
+              default: () => h(ChartIcon)
             }
           ),
         menuType: 'routerLink'

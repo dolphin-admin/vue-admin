@@ -132,7 +132,9 @@
     "QRCode": "二维码",
     "Clipboard": "剪切板",
     "BuiltinComponent": "内置组件",
-    "DigitalAnimation": "数字动画"
+    "DigitalAnimation": "数字动画",
+    "UniversalComponents": "通用组件",
+    "Echarts": "图表"
   },
   "Login": {
     "AsVisitor": "以访客登录",
