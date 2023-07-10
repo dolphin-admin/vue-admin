@@ -83,8 +83,6 @@ const login = () => {
       .catch((err) => {
         message.error(err.message ?? t('Login.Failed'))
         submitLoadingDispatcher.loaded()
-      })
-      .finally(() => {
         formData.password = ''
       })
   })

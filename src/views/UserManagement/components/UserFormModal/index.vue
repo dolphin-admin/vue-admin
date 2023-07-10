@@ -286,8 +286,8 @@ defineExpose({
           :name="t('User.Gender')"
         >
           <NSpace>
-            <NRadio :value="0"> {{ t('User.Female') }} </NRadio>
             <NRadio :value="1"> {{ t('User.Male') }} </NRadio>
+            <NRadio :value="0"> {{ t('User.Female') }} </NRadio>
           </NSpace>
         </NRadioGroup>
       </NFormItem>

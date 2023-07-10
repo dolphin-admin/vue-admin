@@ -73,12 +73,16 @@ class Request {
       case ResponseStatusCode.UNAUTHORIZED:
         AuthUtils.clearToken()
         if (router.currentRoute.value.path !== '/login') {
-          router.replace({
-            path: '/login',
-            query: {
-              redirect: router.currentRoute.value.fullPath
-            }
-          })
+          if (router.currentRoute.value.path !== '/') {
+            router.replace({
+              path: '/login',
+              query: {
+                redirect: router.currentRoute.value.fullPath
+              }
+            })
+          } else {
+            router.replace('/login')
+          }
         }
         console.error(errorMessage)
         message.error(errorMessage)
