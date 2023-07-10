@@ -1,58 +1,96 @@
 <script setup lang="ts">
-interface NumberData {
-  duration: number
-  startValue: number
-  endValue: number
-}
+import type { Props, Status } from './private'
 
-interface Props {
-  numberData: NumberData
-  fontSize: string | number
-}
+// TODO: 如果 Duration 设置较大，仍然可能出现问题
 
 const props = withDefaults(defineProps<Props>(), {
-  numberData: () => ({
-    duration: 3000,
-    startValue: 0,
-    endValue: 0
-  })
+  startValue: 0, // 开始值
+  endValue: 0, // 结束值
+  duration: 3000, // 持续时间，单位毫秒
+  delay: 500 // 延迟执行时间，单位毫秒
 })
 
-const numberValue = ref(0)
+// 当前值
+const currentValue = ref(0)
 
-const intervalIdRef = ref<any>(null)
+// 当前状态
+const currentStatus = ref<Status>('pending')
 
-const handleNumberValue = (data: NumberData) => {
-  numberValue.value = data.startValue
+// 当前计时器
+const currentInterval = ref<NodeJS.Timer | null>(null)
+
+const emit = defineEmits<{
+  (e: 'status:change', status: Status): void
+}>()
+
+/**
+ * 开始
+ */
+const start = () => {
+  // 如果当前状态为 running，直接返回
+  if (currentStatus.value === 'running') {
+    return
+  }
+  // 如果当前状态为 stopped，重置当前值
+  if (currentStatus.value === 'stopped') {
+    currentValue.value = props.startValue
+  }
+  currentStatus.value = 'running'
   setTimeout(() => {
-    if (intervalIdRef.value) {
-      clearInterval(intervalIdRef.value)
+    if (currentInterval.value) {
+      clearInterval(currentInterval.value)
     }
-    let incrementNumber = Math.floor(((data.endValue - data.startValue) / data.duration) * 5)
+    // 计算增量
+    let incrementNumber = Math.floor(((props.endValue - props.startValue) / props.duration) * 5)
     if (incrementNumber < 1) {
       incrementNumber = 1
     }
-    intervalIdRef.value = setInterval(() => {
-      numberValue.value += incrementNumber
-      if (numberValue.value > data.endValue) {
-        if (intervalIdRef.value) {
-          clearInterval(intervalIdRef.value)
+    // 开始执行
+    currentInterval.value = setInterval(() => {
+      currentValue.value += incrementNumber
+      // 如果当前值大于等于结束值，停止计时器
+      if (currentValue.value > props.endValue) {
+        if (currentInterval.value) {
+          clearInterval(currentInterval.value)
         }
-        numberValue.value = data.endValue
+        currentValue.value = props.endValue
+        currentStatus.value = 'stopped'
       }
     }, 5)
-  }, 500)
+  }, props.delay)
 }
 
-onMounted(() => handleNumberValue(props.numberData))
+/**
+ * 暂停
+ */
+const pause = () => {
+  if (currentStatus.value !== 'running') {
+    return
+  }
+  currentStatus.value = 'paused'
+  if (currentInterval.value) {
+    clearInterval(currentInterval.value)
+  }
+}
+
+onMounted(() => {
+  currentValue.value = props.startValue
+  start()
+})
+
+watch(
+  () => currentStatus.value,
+  () => emit('status:change', currentStatus.value)
+)
 
 defineExpose({
-  handleNumberValue
+  start,
+  pause
 })
 </script>
 
 <template>
   <div>
-    {{ numberValue }}
+    {{ currentValue }}
   </div>
 </template>
