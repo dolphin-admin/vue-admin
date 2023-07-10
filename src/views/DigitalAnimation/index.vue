@@ -26,7 +26,6 @@ const handlePause = () => numberAnimationRef.value.handleIsPause()
           ref="numberAnimationRef"
           class="text-4xl font-semibold text-blue-500 sm:text-6xl"
           :number-data="numberData"
-          font-size="60"
         />
 
         <div>
