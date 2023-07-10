@@ -19,11 +19,18 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const numberValue = ref(0)
+const isPause = ref(false)
+const isContinue = ref(false)
+const lastNumber = ref(0)
 
 const intervalIdRef = ref<any>(null)
 
 const handleNumberValue = (data: NumberData) => {
-  numberValue.value = data.startValue
+  if (isContinue.value) {
+    numberValue.value = lastNumber.value
+  } else {
+    numberValue.value = data.startValue
+  }
   setTimeout(() => {
     if (intervalIdRef.value) {
       clearInterval(intervalIdRef.value)
@@ -34,20 +41,45 @@ const handleNumberValue = (data: NumberData) => {
     }
     intervalIdRef.value = setInterval(() => {
       numberValue.value += incrementNumber
+      if (isPause.value) {
+        if (intervalIdRef.value) {
+          clearInterval(intervalIdRef.value)
+        }
+        lastNumber.value = numberValue.value
+        isPause.value = false
+      }
       if (numberValue.value > data.endValue) {
         if (intervalIdRef.value) {
           clearInterval(intervalIdRef.value)
         }
         numberValue.value = data.endValue
+        lastNumber.value = data.endValue
       }
     }, 5)
   }, 500)
 }
 
+const handleIsPause = () => {
+  isPause.value = true
+}
+
+const handleIsContinue = () => {
+  isContinue.value = true
+  handleNumberValue(props.numberData)
+}
+
+const handleIsStart = () => {
+  isPause.value = false
+  isContinue.value = false
+  handleNumberValue(props.numberData)
+}
+
 onMounted(() => handleNumberValue(props.numberData))
 
 defineExpose({
-  handleNumberValue
+  handleIsPause,
+  handleIsStart,
+  handleIsContinue
 })
 </script>
 

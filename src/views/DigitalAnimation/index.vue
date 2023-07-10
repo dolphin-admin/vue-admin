@@ -11,7 +11,11 @@ const numberData = reactive({
 
 const numberAnimationRef = ref()
 
-const handleNumber = () => numberAnimationRef.value.handleNumberValue(numberData)
+const handleNumber = () => numberAnimationRef.value.handleIsStart()
+
+const handleContinue = () => numberAnimationRef.value.handleIsContinue()
+
+const handlePause = () => numberAnimationRef.value.handleIsPause()
 </script>
 
 <template>
@@ -62,7 +66,8 @@ const handleNumber = () => numberAnimationRef.value.handleNumberValue(numberData
           >
             {{ t('Common.Start') }}
           </NButton>
-          <NButton>{{ t('Common.Pause') + '/' + t('Common.Continue') }}</NButton>
+          <NButton @click="handlePause">{{ t('Common.Pause') }}</NButton>
+          <NButton @click="handleContinue">{{ t('Common.Continue') }}</NButton>
         </div>
       </div>
     </NCard>
