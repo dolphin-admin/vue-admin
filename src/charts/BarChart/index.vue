@@ -1,32 +1,30 @@
 <script setup lang="ts">
-import { echarts, ECOption } from '..'
+import type { BarChartProps, ECharts, ECOption } from '..'
+import { echarts } from '..'
 
-interface BarChartProps {
-  value: number[]
-  label: string[]
-}
-
-interface Props {
-  id: string
-  title: string
-  data: BarChartProps
-}
-
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<BarChartProps>(), {
   id: '',
   title: '',
-  data: () => ({
-    value: [],
-    label: []
-  })
+  data: () => [],
+  color: '#0078D7'
 })
 
-const chart = ref<any>(null)
+const chart = ref<ECharts | null>(null)
+
+/**
+ * 监听窗口大小变化
+ */
+const handleResize = () => chart.value!.resize()
+
+// 监听窗口大小变化，重新计算图表的大小
+useEventListener(window, 'resize', handleResize)
 
 const getChartData = () => {
   const option: ECOption = {
     title: {
-      text: props.title
+      text: props.title,
+      top: 0,
+      left: 'center'
     },
     tooltip: {
       trigger: 'axis',
@@ -43,37 +41,37 @@ const getChartData = () => {
     xAxis: [
       {
         type: 'category',
-        data: props.data.label,
+        data: props.data.map((item) => item.label),
         axisTick: {
           alignWithLabel: true
         }
       }
     ],
-    yAxis: [
-      {
-        type: 'value'
-      }
-    ],
+    yAxis: [{ type: 'value' }],
     series: [
       {
-        name: 'Direct',
         type: 'bar',
+        name: props.title,
+        color: props.color,
         barWidth: '60%',
-        data: props.data.value
+        data: props.data.map((item) => item.value)
       }
     ]
   }
-  chart.value.setOption(option)
+  chart.value!.setOption(option)
 }
 
+// 初始化图表
 const initChart = () => {
   chart.value = echarts.init(document.getElementById(props.id)!)
   getChartData()
 }
 
+// 在组件挂载的时候初始化图表
 onMounted(() => initChart())
 
-onUnmounted(() => chart.value.dispose())
+// 在组件卸载的时候销毁图表
+onUnmounted(() => chart.value!.dispose())
 
 watch(
   () => props.data,
@@ -83,8 +81,5 @@ watch(
 </script>
 
 <template>
-  <div
-    :id="props.id"
-    class="w-80 h-80"
-  />
+  <div :id="props.id" />
 </template>

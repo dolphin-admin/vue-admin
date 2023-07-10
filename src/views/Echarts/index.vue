@@ -1,16 +1,16 @@
 <script setup lang="ts">
-const BarChartData = {
-  value: [10, 52, 200, 334, 390, 330, 220],
-  label: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-}
+import { barChartData } from './private'
 </script>
 
 <template>
-  <div>
-    <BarChart
-      title="柱状图"
-      :data="BarChartData"
-      id="BarChart"
-    />
+  <div class="h-full">
+    <NCard class="h-1/3 !w-1/3">
+      <BarChart
+        id="BarChart"
+        class="h-full w-full"
+        title="热门歌曲排行"
+        :data="barChartData"
+      />
+    </NCard>
   </div>
 </template>
