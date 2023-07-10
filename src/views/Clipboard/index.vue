@@ -6,19 +6,16 @@ import { ChineseLyrics, EnglishLyrics } from './private'
 const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({ useScope: 'global' })
 
 const message = useMessage()
-const [loading, loadingDispatcher] = useLoading(false)
 
 const clipboardValue = ref('')
 
 const handleCopyText = async () => {
-  loadingDispatcher.loading()
   try {
     await BrowserUtils.setClipBoardText(clipboardValue.value)
     message.success(t('Message.Copy.Success'))
   } catch {
     message.error(t('Message.Copy.Failed'))
   }
-  loadingDispatcher.loaded()
 }
 
 watch(
@@ -57,8 +54,6 @@ watch(
       <div class="flex items-center justify-center">
         <NButton
           type="primary"
-          :loading="loading"
-          :disabled="loading"
           class="!mt-3"
           @click="handleCopyText"
         >

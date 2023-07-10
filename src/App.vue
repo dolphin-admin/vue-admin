@@ -8,7 +8,8 @@ const themeStore = useThemeStore()
     :date-locale="themeStore.dateLocale"
     :theme="themeStore.theme"
     :theme-overrides="themeStore.themeOverrides"
-    preflight-style-disabled
+    abstract
+    inline-theme-disabled
   >
     <NLoadingBarProvider>
       <NMessageProvider>
@@ -25,6 +26,7 @@ const themeStore = useThemeStore()
         </RouterView>
       </NMessageProvider>
     </NLoadingBarProvider>
+    <NGlobalStyle />
   </NConfigProvider>
 </template>
 

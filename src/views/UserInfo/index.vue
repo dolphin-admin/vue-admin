@@ -200,7 +200,7 @@ onMounted(() =>
       </div>
     </NCard>
 
-    <NCard class="sm:w-3/5">
+    <NCard class="sm:!w-3/5">
       <template #header>
         <div class="space-x-6 border-b pb-1 text-center sm:text-left">
           <span>{{ t('UserInfo.BasicInfo') }}</span>
