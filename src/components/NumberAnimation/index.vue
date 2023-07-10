@@ -7,7 +7,6 @@ interface NumberData {
 
 interface Props {
   numberData: NumberData
-  fontSize: string | number
 }
 
 const props = withDefaults(defineProps<Props>(), {
