@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// TODO: 考虑统一导出 Component 中的类型
+import type { Status } from '@/components/NumberAnimation/private'
 import type { MessageSchema } from '@/types'
 
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
@@ -9,13 +11,18 @@ const numberData = reactive({
   duration: 3000
 })
 
+// TODO: 考虑为 Ref 标注类型
 const numberAnimationRef = ref()
 
-const handleNumber = () => numberAnimationRef.value.handleIsStart()
+const currentStatus = ref<Status>('pending')
 
-const handleContinue = () => numberAnimationRef.value.handleIsContinue()
+const handleStart = () => numberAnimationRef.value.start()
 
-const handlePause = () => numberAnimationRef.value.handleIsPause()
+const handlePause = () => numberAnimationRef.value.pause()
+
+const handleStatusChange = (status: Status) => {
+  currentStatus.value = status
+}
 </script>
 
 <template>
@@ -25,7 +32,8 @@ const handlePause = () => numberAnimationRef.value.handleIsPause()
         <NumberAnimation
           ref="numberAnimationRef"
           class="text-4xl font-semibold text-blue-500 sm:text-6xl"
-          :number-data="numberData"
+          v-bind="numberData"
+          @status:change="handleStatusChange"
         />
 
         <div>
@@ -61,12 +69,23 @@ const handlePause = () => numberAnimationRef.value.handleIsPause()
         <div class="flex items-center space-x-4">
           <NButton
             type="primary"
-            @click="handleNumber"
+            :disabled="currentStatus !== 'pending' && currentStatus !== 'stopped'"
+            @click="handleStart"
           >
             {{ t('Common.Start') }}
           </NButton>
-          <NButton @click="handlePause">{{ t('Common.Pause') }}</NButton>
-          <NButton @click="handleContinue">{{ t('Common.Continue') }}</NButton>
+          <NButton
+            :disabled="currentStatus !== 'running'"
+            @click="handlePause"
+          >
+            {{ t('Common.Pause') }}
+          </NButton>
+          <NButton
+            :disabled="currentStatus !== 'paused'"
+            @click="handleStart"
+          >
+            {{ t('Common.Continue') }}
+          </NButton>
         </div>
       </div>
     </NCard>
