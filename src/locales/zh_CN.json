@@ -26,6 +26,7 @@
     "Pause": "暂停",
     "Stop": "停止",
     "Continue": "继续",
+    "Copy": "复制",
     "RememberPassword": "记住密码",
     "ForgetPassword": "忘记密码",
     "ConfirmPassword": "确认密码",
@@ -174,9 +175,6 @@
   },
   "IconManagement": {
     "SearchPlaceholder": "请输入图标集合名称"
-  },
-  "Clipboard": {
-    "CopyToClipboard": "复制到剪切板"
   },
   "DigitalAnimation": {
     "StartValuePlaceholder": "请输入开始值",

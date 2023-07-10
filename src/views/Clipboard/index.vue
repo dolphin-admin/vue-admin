@@ -57,7 +57,7 @@ watch(
           class="!mt-3"
           @click="handleCopyText"
         >
-          {{ t('Clipboard.CopyToClipboard') }}
+          {{ t('Common.Copy') }}
         </NButton>
       </div>
     </NCard>

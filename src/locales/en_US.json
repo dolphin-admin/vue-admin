@@ -26,6 +26,7 @@
     "Pause": "Pause",
     "Stop": "Stop",
     "Continue": "Continue",
+    "Copy": "Copy",
     "RememberPassword": "Remember password",
     "ForgetPassword": "Forget password",
     "ConfirmPassword": "Confirm password",
@@ -174,9 +175,6 @@
   },
   "IconManagement": {
     "SearchPlaceholder": "Please enter icon set name"
-  },
-  "Clipboard": {
-    "CopyToClipboard": "Copy to clipboard"
   },
   "DigitalAnimation": {
     "StartValuePlaceholder": "Please enter start value",
