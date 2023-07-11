@@ -2,6 +2,8 @@
 import type { ECharts, ECOption, LineChartProps } from '..'
 import { echarts } from '..'
 
+const ThemeStore = useThemeStore()
+
 const props = withDefaults(defineProps<LineChartProps>(), {
   title: '',
   data: () => []
@@ -50,7 +52,7 @@ const getChartData = () => {
 
 // 初始化图表
 const initChart = () => {
-  chart.value = echarts.init(chartRef.value!)
+  chart.value = echarts.init(chartRef.value!, ThemeStore.themeMode)
   getChartData()
 }
 

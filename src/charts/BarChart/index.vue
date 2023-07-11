@@ -2,6 +2,8 @@
 import type { BarChartProps, ECharts, ECOption } from '..'
 import { echarts } from '..'
 
+const ThemeStore = useThemeStore()
+
 const props = withDefaults(defineProps<BarChartProps>(), {
   title: '',
   data: () => [],
@@ -44,7 +46,7 @@ const getChartData = () => {
     },
     xAxis: {
       type: 'category',
-      data: props.data.map((item) => item.label),
+      data: props.data.map((item) => item.name),
       axisTick: {
         alignWithLabel: true
       }
@@ -63,7 +65,7 @@ const getChartData = () => {
 
 // 初始化图表
 const initChart = () => {
-  chart.value = echarts.init(chartRef.value!)
+  chart.value = echarts.init(chartRef.value!, ThemeStore.themeMode, { locale: 'EN' })
   getChartData()
 }
 

@@ -2,6 +2,8 @@
 import type { ECharts, ECOption, PieChartProps } from '..'
 import { echarts } from '..'
 
+const ThemeStore = useThemeStore()
+
 const props = withDefaults(defineProps<PieChartProps>(), {
   title: '',
   subtext: '',
@@ -57,7 +59,7 @@ const getChartData = () => {
 
 // 初始化图表
 const initChart = () => {
-  chart.value = echarts.init(chartRef.value!)
+  chart.value = echarts.init(chartRef.value!, ThemeStore.themeMode)
   getChartData()
 }
 

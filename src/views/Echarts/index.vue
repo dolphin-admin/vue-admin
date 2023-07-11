@@ -3,7 +3,7 @@ import { barChartData, lineChartData, pieChartData } from './private'
 </script>
 
 <template>
-  <main class="space-y-4">
+  <main class="flex-col space-y-4">
     <div class="flex space-x-4">
       <NCard class="h-[300px] !w-1/2">
         <BarChart

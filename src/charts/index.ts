@@ -57,33 +57,24 @@ type ECharts = echarts.ECharts
 export { echarts }
 export type { ECharts, ECOption }
 
-export interface BarChartItem {
-  label: string
+export interface BaseChartItem {
+  name: string
   value: number
 }
 
 export interface BarChartProps {
   title: string
-  data: BarChartItem[]
+  data: BaseChartItem[]
   color?: string
-}
-
-export interface PieChartItem {
-  name: string
-  value: number
 }
 
 export interface PieChartProps {
   title: string
   subtext: string
-  data: PieChartItem[]
+  data: BaseChartItem[]
 }
 
-export interface LineChartItem {
-  name: string
-  value: number
-}
 export interface LineChartProps {
   title: string
-  data: LineChartItem[]
+  data: BaseChartItem[]
 }
