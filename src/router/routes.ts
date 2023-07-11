@@ -71,11 +71,11 @@ export const routes = [
         }
       },
       {
-        path: '/icon-management',
-        name: 'icon-management',
-        component: () => import('@/views/IconManagement'),
+        path: '/icon',
+        name: 'icon',
+        component: () => import('@/views/Icon'),
         meta: {
-          title: 'Menu.IconManagement',
+          title: 'Menu.Icon',
           icon: IconManagementIcon
         }
       },

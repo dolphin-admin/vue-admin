@@ -157,15 +157,15 @@ export const menuOptions: MenuMixedOption[] = [
           h(
             RouterLink,
             {
-              to: '/icon-management'
+              to: '/icon'
             },
             {
-              default: () => t('Menu.IconManagement')
+              default: () => t('Menu.Icon')
             }
           ),
-        labelKey: 'Menu.IconManagement',
-        path: '/icon-management',
-        key: 'icon-management',
+        labelKey: 'Menu.Icon',
+        path: '/icon',
+        key: 'icon',
         icon: () =>
           h(
             NIcon,

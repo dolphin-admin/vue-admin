@@ -128,7 +128,7 @@
     "RoleManagement": "Role Management",
     "PermissionManagement": "Permission Management",
     "SystemTool": "System Tool",
-    "IconManagement": "Icon Management",
+    "Icon": "Icon",
     "QRCode": "QRCode",
     "Clipboard": "Clipboard",
     "BuiltinComponent": "Built-in Component",
@@ -172,7 +172,7 @@
     "ContentPlaceholder": "Please enter QRCode content",
     "Generate": "Generate QRCode"
   },
-  "IconManagement": {
+  "Icon": {
     "SearchPlaceholder": "Please enter icon set name"
   },
   "DigitalAnimation": {

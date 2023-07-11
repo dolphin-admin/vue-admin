@@ -64,7 +64,7 @@ onBeforeMount(() => {
       <NInput
         v-model:value="searchText"
         size="large"
-        :placeholder="t('IconManagement.SearchPlaceholder')"
+        :placeholder="t('Icon.SearchPlaceholder')"
         clearable
         autofocus
         @input="handleSearch"
