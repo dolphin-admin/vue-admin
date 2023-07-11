@@ -90,6 +90,7 @@
     "Address": "Address",
     "Biography": "Biography",
     "Roles": "Roles",
+    "AuthType": "Auth type",
     "Gender": "Gender",
     "Male": "Male",
     "Female": "Female"

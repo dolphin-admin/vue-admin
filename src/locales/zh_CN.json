@@ -90,6 +90,7 @@
     "Address": "地址",
     "Biography": "简介",
     "Roles": "角色",
+    "AuthType": "认证类型",
     "Gender": "性别",
     "Male": "男",
     "Female": "女"
