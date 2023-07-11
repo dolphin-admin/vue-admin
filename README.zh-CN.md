@@ -27,6 +27,7 @@ Dolphin Admin Web 是一个基于 Vue 3 + Vite + Naive UI + TypeScript + Tailwin
 - [x] 使用 [Husky](https://typicode.github.io/husky/)，[lint-staged](https://github.com/okonet/lint-staged),
       [commitlint](https://commitlint.js.org/#/), [cz-git](https://cz-git.qbb.sh/) 进行 Git 提交管理
 - [x] 支持绝对路径引入，使用 `@/*`
+- [x] 支持第三方登录，例如 GitHub、Google 等
 - [x] 支持桌面端，使用 [Tauri](https://tauri.app/) 进行桌面应用打包
 - [x] 部署在 [Vercel](https://vercel.com/) 上，零配置
 
