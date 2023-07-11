@@ -1,3 +1,4 @@
+import ChartIcon from '~icons/ic/baseline-bar-chart'
 import CopyIcon from '~icons/ic/baseline-content-copy'
 import DigitalAnimationIcon from '~icons/ic/baseline-hourglass-empty'
 import QRCodeIcon from '~icons/ic/baseline-qrcode'
@@ -8,8 +9,6 @@ import RoleManagementIcon from '~icons/mdi/account-group'
 import IconManagementIcon from '~icons/mdi/emoticon-wink'
 import ChangePasswordIcon from '~icons/mdi/key'
 import PermissionManagementIcon from '~icons/mdi/key-chain'
-import ComponentsPreviewIcon from '~icons/mdi/puzzle'
-import ChartIcon from '~icons/ic/baseline-bar-chart'
 
 export const routes = [
   {
@@ -69,15 +68,6 @@ export const routes = [
         meta: {
           title: 'Menu.PermissionManagement',
           icon: PermissionManagementIcon
-        }
-      },
-      {
-        path: '/components-preview',
-        name: 'components-preview',
-        component: () => import('@/views/ComponentsPreview'),
-        meta: {
-          title: 'Menu.ComponentsPreview',
-          icon: ComponentsPreviewIcon
         }
       },
       {

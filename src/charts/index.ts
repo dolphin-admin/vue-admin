@@ -59,7 +59,6 @@ export interface BaseChartItem {
 }
 
 export interface BarChartProps {
-  id: string
   title: string
   data: BaseChartItem[]
   color?: string

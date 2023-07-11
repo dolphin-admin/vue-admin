@@ -1,4 +1,6 @@
 import type { MenuMixedOption } from '@/types'
+import UniversalComponentsIcon from '~icons/ic/baseline-auto-awesome-mosaic'
+import ChartIcon from '~icons/ic/baseline-bar-chart'
 import CopyIcon from '~icons/ic/baseline-content-copy'
 import DigitalAnimationIcon from '~icons/ic/baseline-hourglass-empty'
 import QRCodeIcon from '~icons/ic/baseline-qrcode'
@@ -10,8 +12,6 @@ import SystemFunctionIcon from '~icons/mdi/function-variant'
 import PermissionManagementIcon from '~icons/mdi/key-chain'
 import ComponentsPreviewIcon from '~icons/mdi/puzzle'
 import SystemToolIcon from '~icons/mdi/tools'
-import ChartIcon from '~icons/ic/baseline-bar-chart'
-import UniversalComponentsIcon from '~icons/ic/baseline-auto-awesome-mosaic'
 
 const { t } = i18n.global
 
@@ -152,32 +152,6 @@ export const menuOptions: MenuMixedOption[] = [
       ),
     menuType: 'label',
     children: [
-      {
-        label: () =>
-          h(
-            RouterLink,
-            {
-              to: '/components-preview'
-            },
-            {
-              default: () => t('Menu.ComponentsPreview')
-            }
-          ),
-        labelKey: 'Menu.ComponentsPreview',
-        path: '/components-preview',
-        key: 'components-preview',
-        icon: () =>
-          h(
-            NIcon,
-            {
-              size: 16
-            },
-            {
-              default: () => h(ComponentsPreviewIcon)
-            }
-          ),
-        menuType: 'routerLink'
-      },
       {
         label: () =>
           h(

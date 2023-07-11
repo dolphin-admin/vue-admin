@@ -3,8 +3,8 @@ import { barChartData } from './private'
 </script>
 
 <template>
-  <div class="h-full">
-    <NCard class="h-1/3 !w-1/3">
+  <main class="flex">
+    <NCard class="h-[300px] !w-1/2">
       <BarChart
         id="BarChart"
         class="h-full w-full"
@@ -12,5 +12,5 @@ import { barChartData } from './private'
         :data="barChartData"
       />
     </NCard>
-  </div>
+  </main>
 </template>

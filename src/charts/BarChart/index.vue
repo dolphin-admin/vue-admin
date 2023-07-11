@@ -3,18 +3,22 @@ import type { BarChartProps, ECharts, ECOption } from '..'
 import { echarts } from '..'
 
 const props = withDefaults(defineProps<BarChartProps>(), {
-  id: '',
   title: '',
   data: () => [],
   color: '#0078D7'
 })
 
+const chartRef = ref<HTMLDivElement | null>(null)
 const chart = ref<ECharts | null>(null)
 
 /**
  * 监听窗口大小变化
  */
-const handleResize = () => chart.value!.resize()
+const handleResize = () => {
+  if (chart.value) {
+    chart.value.resize()
+  }
+}
 
 // 监听窗口大小变化，重新计算图表的大小
 useEventListener(window, 'resize', handleResize)
@@ -38,32 +42,28 @@ const getChartData = () => {
       bottom: '3%',
       containLabel: true
     },
-    xAxis: [
-      {
-        type: 'category',
-        data: props.data.map((item) => item.label),
-        axisTick: {
-          alignWithLabel: true
-        }
+    xAxis: {
+      type: 'category',
+      data: props.data.map((item) => item.label),
+      axisTick: {
+        alignWithLabel: true
       }
-    ],
-    yAxis: [{ type: 'value' }],
-    series: [
-      {
-        type: 'bar',
-        name: props.title,
-        color: props.color,
-        barWidth: '60%',
-        data: props.data.map((item) => item.value)
-      }
-    ]
+    },
+    yAxis: { type: 'value' },
+    series: {
+      type: 'bar',
+      name: props.title,
+      color: props.color,
+      barWidth: '60%',
+      data: props.data.map((item) => item.value)
+    }
   }
   chart.value!.setOption(option)
 }
 
 // 初始化图表
 const initChart = () => {
-  chart.value = echarts.init(document.getElementById(props.id)!)
+  chart.value = echarts.init(chartRef.value!)
   getChartData()
 }
 
@@ -81,5 +81,5 @@ watch(
 </script>
 
 <template>
-  <div :id="props.id" />
+  <div ref="chartRef" />
 </template>
