@@ -2,18 +2,20 @@
 import type { MessageSchema } from '@/types'
 
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+
 const message = useMessage()
-const [loading, loadingDispatcher] = useLoading(false)
 
 const userInput = ref('')
 const generatedResult = ref('')
 
+/**
+ * 生成二维码
+ */
 const makeQRCode = async () => {
   if (!userInput.value) {
     message.error(t('Validation.QRCodeContent'))
     return
   }
-  loadingDispatcher.loading()
   try {
     const qrcodeContent = await QRCodeUtils.generateQRCode(userInput.value, {
       width: 200,
@@ -24,9 +26,11 @@ const makeQRCode = async () => {
   } catch (err) {
     message.error(t('Message.GenerateQRCode.Failed'))
   }
-  loadingDispatcher.loaded()
 }
 
+/**
+ * 下载二维码
+ */
 const downloadFile = () => BrowserUtils.downloadFile(generatedResult.value, 'qrcode.png')
 </script>
 
@@ -44,10 +48,9 @@ const downloadFile = () => BrowserUtils.downloadFile(generatedResult.value, 'qrc
             class="!w-full"
             type="textarea"
             :placeholder="t('QRCode.ContentPlaceholder')"
-            maxlength="420"
             show-count
             clearable
-            :loading="loading"
+            hoverable
             :autosize="{
               minRows: 8,
               maxRows: 20
@@ -56,9 +59,7 @@ const downloadFile = () => BrowserUtils.downloadFile(generatedResult.value, 'qrc
           <div class="mt-4 text-center">
             <NButton
               type="primary"
-              :loading="loading"
-              :disabled="loading"
-              @click="() => makeQRCode()"
+              @click="makeQRCode"
             >
               {{ t('QRCode.Generate') }}
             </NButton>
@@ -82,7 +83,7 @@ const downloadFile = () => BrowserUtils.downloadFile(generatedResult.value, 'qrc
           <div class="mt-4 text-center">
             <NButton
               type="primary"
-              @click="() => downloadFile()"
+              @click="downloadFile"
             >
               {{ t('Common.Download') }}
             </NButton>

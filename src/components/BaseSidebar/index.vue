@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { CustomMenuOption, Lang, MessageSchema } from '@/types'
+import type { Lang, MessageSchema } from '@/types'
 import CollapseIcon from '~icons/line-md/chevron-triple-left'
 
 import { menuOptions } from './private'
 
-const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({ useScope: 'global' })
+const { t } = useI18n<{ message: MessageSchema }, Lang>({ useScope: 'global' })
 
 const route = useRoute()
 const router = useRouter()
@@ -14,53 +14,6 @@ const sidebarStore = useSidebarStore()
 const menuData = ref<any>(menuOptions)
 
 const currentRouteName = computed(() => route.name as string)
-
-/**
- * 获取菜单项的 label
- * @param menuItem 菜单项
- */
-const getLabel = (menuItem: CustomMenuOption) => {
-  const { menuType, label, labelKey, path } = menuItem || {}
-  const exactLabel = labelKey ? t(labelKey) : label
-  switch (menuType) {
-    case 'label':
-      return exactLabel
-    case 'routerLink':
-      return () =>
-        h(
-          RouterLink,
-          {
-            to: path ?? '/'
-          },
-          {
-            default: () => exactLabel as string
-          }
-        )
-    default:
-      return label
-  }
-}
-
-// 监听语言变化，更新菜单项的 label
-watch(
-  () => locale.value,
-  () => {
-    menuData.value = menuOptions.map((item: CustomMenuOption) => {
-      const currentItem = item
-      return {
-        ...item,
-        label: getLabel(currentItem),
-        children: item.children?.map((childItem: CustomMenuOption) => {
-          const currentChildItem = childItem
-          return {
-            ...currentChildItem,
-            label: getLabel(currentChildItem)
-          }
-        })
-      }
-    })
-  }
-)
 </script>
 
 <template>

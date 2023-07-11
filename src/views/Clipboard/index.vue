@@ -9,7 +9,10 @@ const message = useMessage()
 
 const clipboardValue = ref('')
 
-const handleCopyText = async () => {
+/**
+ * 复制文本
+ */
+const handleCopy = async () => {
   try {
     await BrowserUtils.setClipBoardText(clipboardValue.value)
     message.success(t('Message.Copy.Success'))
@@ -18,6 +21,7 @@ const handleCopyText = async () => {
   }
 }
 
+// 监听语言变化，给予默认值
 watch(
   () => locale.value,
   () => {
@@ -42,7 +46,6 @@ watch(
       <NInput
         v-model:value="clipboardValue"
         type="textarea"
-        autofocus
         show-count
         clearable
         hoverable
@@ -55,7 +58,7 @@ watch(
         <NButton
           type="primary"
           class="!mt-3"
-          @click="handleCopyText"
+          @click="handleCopy"
         >
           {{ t('Common.Copy') }}
         </NButton>
