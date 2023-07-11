@@ -124,7 +124,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     title: t('User.Username'),
     key: 'username',
     width: 120,
-    fixed: 'left'
+    fixed: !BrowserUtils.isMobileDevice() ? 'left' : undefined
   },
   {
     title: t('User.PhoneNumber'),
@@ -271,7 +271,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     width: processOptionColumnWidth(),
     titleAlign: 'center',
     align: 'center',
-    fixed: 'right',
+    fixed: !BrowserUtils.isMobileDevice() ? 'right' : undefined,
     render: (row) =>
       h(
         'div',
