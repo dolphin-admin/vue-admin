@@ -19,9 +19,16 @@ export class AuthAPI {
   }
 
   /**
-   * 图标集列表
+   * GitHub 登录
    */
   static loginWithGitHub(code: string) {
     return Request.post<BaseResponse<UserTokenResponse>>(`${GlobalEnvConfig.BASE_API_PREFIX}/login/github`, { code })
+  }
+
+  /**
+   * Google 登录
+   */
+  static loginWithGoogle(code: string) {
+    return Request.post<BaseResponse<UserTokenResponse>>(`${GlobalEnvConfig.BASE_API_PREFIX}/login/google`, { code })
   }
 }

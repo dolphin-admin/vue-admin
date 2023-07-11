@@ -144,12 +144,16 @@
     "Failed": "Login failed",
     "NeedAccount": "Need an account?",
     "ThirdPartyLogin": "Third party login",
-    "LoginWithGitHub": "Sign in with GitHub"
+    "LoginWithGitHub": "Sign in with GitHub",
+    "LoginWithGoogle": "Sign in with Google"
   },
   "Signup": {
     "Success": "Signup success",
     "Failed": "Signup failed",
     "AlreadyHaveAccount": "Already have an account?"
+  },
+  "AuthRedirect": {
+    "Authorizing": "Authorizing..."
   },
   "Logout": {
     "Success": "Logout success",

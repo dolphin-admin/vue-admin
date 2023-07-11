@@ -144,12 +144,16 @@
     "Failed": "登录失败",
     "NeedAccount": "需要账号？",
     "ThirdPartyLogin": "第三方登录",
-    "LoginWithGitHub": "GitHub 登录"
+    "LoginWithGitHub": "GitHub 登录",
+    "LoginWithGoogle": "Google 登录"
   },
   "Signup": {
     "Success": "注册成功",
     "Failed": "注册失败",
     "AlreadyHaveAccount": "已有账号？"
+  },
+  "AuthRedirect": {
+    "Authorizing": "正在授权..."
   },
   "Logout": {
     "Success": "登出成功",

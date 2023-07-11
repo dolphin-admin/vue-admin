@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { MessageSchema } from '@/types'
 
-import { GitHubButton } from './components'
+import { GitHubLogin, GoogleLogin } from './components'
 import type { RememberedAccountData } from './private'
 
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
@@ -222,7 +222,10 @@ onMounted(() => {
       <span class="text-xs">{{ t('Login.ThirdPartyLogin') }}</span>
     </NDivider>
 
-    <GitHubButton />
+    <div class="flex flex-col space-y-2">
+      <GitHubLogin />
+      <GoogleLogin />
+    </div>
   </NForm>
 </template>
 
