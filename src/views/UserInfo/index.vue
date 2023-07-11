@@ -23,49 +23,54 @@ const rules: FormRules = {
   name: [
     {
       required: true,
-      message: t('Validation.Name'),
-      trigger: ['blur', 'input']
+      trigger: ['blur', 'input'],
+      message: () => t('Validation.Name'),
+      renderMessage: () => t('Validation.Name')
     }
   ],
   firstName: [
     {
       required: true,
-      message: t('Validation.FirstName'),
-      trigger: ['blur', 'input']
+      trigger: ['blur', 'input'],
+      message: () => t('Validation.FirstName'),
+      renderMessage: () => t('Validation.FirstName')
     }
   ],
   lastName: [
     {
       required: true,
-      message: t('Validation.LastName'),
-      trigger: ['blur', 'input']
+      trigger: ['blur', 'input'],
+      message: () => t('Validation.LastName'),
+      renderMessage: () => t('Validation.LastName')
     }
   ],
   email: [
     {
-      key: 'edit',
       required: true,
       trigger: ['blur', 'change'],
-      message: t('Validation.Email')
+      message: () => t('Validation.Email'),
+      renderMessage: () => t('Validation.Email')
     },
     {
       pattern: /^([a-zA-Z]|[0-9])(\w|-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/,
-      message: t('Validation.EmailFormat'),
-      trigger: ['input', 'blur']
+      trigger: ['input', 'blur'],
+      message: () => t('Validation.EmailFormat'),
+      renderMessage: () => t('Validation.EmailFormat')
     }
   ],
   phoneNumber: [
     {
       pattern: /^[1][3456789]\d{9}$/,
-      message: t('Validation.PhoneNumberFormat'),
-      trigger: ['input', 'blur']
+      trigger: ['input', 'blur'],
+      message: () => t('Validation.PhoneNumberFormat'),
+      renderMessage: () => t('Validation.PhoneNumberFormat')
     }
   ]
 }
 const computedUserInfo = computed(() => userStore.user)
 
 const handleValidateButtonClick = () => {
-  formRef.value?.validate(async (errors) => {
+  formRef.value!.validate(async (errors) => {
     if (errors) {
       message.error(errors[0][0].message!)
       return

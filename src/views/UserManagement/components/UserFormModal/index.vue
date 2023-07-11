@@ -31,6 +31,7 @@ const editRules: FormRules = {
     {
       required: true,
       trigger: ['blur', 'input'],
+      message: () => t('Validation.Name'),
       renderMessage: () => t('Validation.Name')
     }
   ],
@@ -38,6 +39,7 @@ const editRules: FormRules = {
     {
       required: true,
       trigger: ['blur', 'input'],
+      message: () => t('Validation.FirstName'),
       renderMessage: () => t('Validation.FirstName')
     }
   ],
@@ -45,6 +47,7 @@ const editRules: FormRules = {
     {
       required: true,
       trigger: ['blur', 'input'],
+      message: () => t('Validation.LastName'),
       renderMessage: () => t('Validation.LastName')
     }
   ],
@@ -52,11 +55,13 @@ const editRules: FormRules = {
     {
       key: 'edit',
       trigger: ['blur', 'change'],
+      message: () => t('Validation.Email'),
       renderMessage: () => t('Validation.Email')
     },
     {
       pattern: /^([a-zA-Z]|[0-9])(\w|-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/,
       trigger: ['input', 'blur'],
+      message: () => t('Validation.EmailFormat'),
       renderMessage: () => t('Validation.EmailFormat')
     }
   ],
@@ -64,6 +69,7 @@ const editRules: FormRules = {
     {
       pattern: /^[1][3456789]\d{9}$/,
       trigger: ['input', 'blur'],
+      message: () => t('Validation.PhoneNumberFormat'),
       renderMessage: () => t('Validation.PhoneNumberFormat')
     }
   ]
@@ -73,6 +79,7 @@ const createRules: FormRules = {
     {
       required: true,
       trigger: ['blur', 'input'],
+      message: () => t('Validation.Username'),
       renderMessage: () => t('Validation.Username')
     }
   ],
@@ -80,11 +87,13 @@ const createRules: FormRules = {
     {
       required: true,
       trigger: ['blur', 'input'],
+      message: () => t('Validation.Password'),
       renderMessage: () => t('Validation.Password')
     },
     {
       validator: (_: FormItemRule, value: string) => value.length >= 6,
       trigger: ['blur', 'input'],
+      message: () => t('Validation.PasswordLength'),
       renderMessage: () => t('Validation.PasswordLength')
     }
   ]
@@ -97,7 +106,7 @@ const UploadAvatarUrl = (options: { fileList: UploadFileInfo[] }) => {
 
 const submitCallback = () => {
   showModal.value = true
-  formRef.value?.validate(async (errors) => {
+  formRef.value!.validate(async (errors) => {
     if (errors) {
       message.error(errors[0][0].message!)
       return

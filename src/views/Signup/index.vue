@@ -20,6 +20,7 @@ const rules: FormRules = {
     {
       required: true,
       trigger: ['blur', 'input'],
+      message: () => t('Validation.Username'),
       renderMessage: () => t('Validation.Username')
     }
   ],
@@ -27,11 +28,13 @@ const rules: FormRules = {
     {
       required: true,
       trigger: ['blur', 'input'],
+      message: () => t('Validation.Password'),
       renderMessage: () => t('Validation.Password')
     },
     {
       validator: (_: FormItemRule, value: string) => value.length >= 6,
       trigger: ['blur', 'input'],
+      message: () => t('Validation.PasswordLength'),
       renderMessage: () => t('Validation.PasswordLength')
     }
   ],
@@ -39,10 +42,12 @@ const rules: FormRules = {
     {
       required: true,
       trigger: ['blur', 'input'],
+      message: () => t('Validation.ConfirmPassword'),
       renderMessage: () => t('Validation.ConfirmPassword')
     },
     {
       validator: (_: FormItemRule, value: string) => value === formData.password,
+      message: () => t('Validation.ConfirmPasswordNotMatch'),
       renderMessage: () => t('Validation.ConfirmPasswordNotMatch')
     }
   ]

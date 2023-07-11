@@ -11,6 +11,7 @@ interface ImportMetaEnv {
   readonly VITE_ICON_API_PREFIX: string
   readonly VITE_ICON_API_PROXY: string
   readonly VITE_GITHUB_CLIENT_ID: string
+  readonly VITE_GOOGLE_CLIENT_ID: string
 }
 
 interface ImportMeta {
