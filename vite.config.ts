@@ -61,7 +61,9 @@ export default defineConfig(({ mode }) => {
               'NTag',
               'NIcon',
               'NPopconfirm',
-              'NInput'
+              'NInput',
+              'NAvatar',
+              'NImage'
             ]
           },
           {

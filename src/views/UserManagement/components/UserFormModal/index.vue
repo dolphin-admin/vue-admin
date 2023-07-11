@@ -218,9 +218,8 @@ defineExpose({
             <NIcon
               size="80"
               depth="3"
-            >
-              <UserAvatarIcon />
-            </NIcon>
+              :component="UserAvatarIcon"
+            />
           </template>
         </NUpload>
       </NFormItem>

@@ -135,9 +135,8 @@ onMounted(() =>
           <NIcon
             size="80"
             depth="3"
-          >
-            <UserAvatarIcon />
-          </NIcon>
+            :component="UserAvatarIcon"
+          />
         </template>
 
         <div class="flex items-center justify-center space-x-1 text-lg">
@@ -239,9 +238,8 @@ onMounted(() =>
                 size="88"
                 class="cursor-pointer"
                 depth="3"
-              >
-                <UserAvatarIcon />
-              </NIcon>
+                :component="UserAvatarIcon"
+              />
             </template>
           </NUpload>
         </NFormItem>
