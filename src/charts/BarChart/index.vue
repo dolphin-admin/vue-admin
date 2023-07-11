@@ -80,6 +80,14 @@ watch(
   () => getChartData(),
   { deep: true }
 )
+
+watch(
+  () => ThemeStore.themeMode,
+  () => {
+    chart.value!.dispose()
+    initChart()
+  }
+)
 </script>
 
 <template>
