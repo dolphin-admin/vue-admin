@@ -4,7 +4,6 @@ import { echarts } from '..'
 
 const props = withDefaults(defineProps<LineChartProps>(), {
   title: '',
-  xAxisData: () => [],
   data: () => []
 })
 
@@ -35,18 +34,16 @@ const getChartData = () => {
     },
     xAxis: {
       type: 'category',
-      data: props.xAxisData
+      data: props.data.map((item) => item.name)
     },
     yAxis: {
       type: 'value'
     },
-    series: [
-      {
-        data: props.data,
-        type: 'line',
-        smooth: true
-      }
-    ]
+    series: {
+      data: props.data.map((item) => item.value),
+      type: 'line',
+      smooth: true
+    }
   }
   chart.value!.setOption(option)
 }

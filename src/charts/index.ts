@@ -4,6 +4,7 @@ import type {
   AxisPointerComponentOption,
   DatasetComponentOption,
   GridComponentOption,
+  LegendComponentOption,
   TitleComponentOption,
   TooltipComponentOption
 } from 'echarts/components'
@@ -31,6 +32,7 @@ type ECOption = ComposeOption<
   | AxisPointerComponentOption
   | GridComponentOption
   | DatasetComponentOption
+  | LegendComponentOption
 >
 
 // 注册组件，按需引入
@@ -77,8 +79,11 @@ export interface PieChartProps {
   data: PieChartItem[]
 }
 
+export interface LineChartItem {
+  name: string
+  value: number
+}
 export interface LineChartProps {
   title: string
-  xAxisData: string[]
-  data: number[]
+  data: LineChartItem[]
 }

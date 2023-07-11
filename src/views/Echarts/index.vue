@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { barChartData, lineChartData, lineChartXAxisData, pieChartData } from './private'
+import { barChartData, lineChartData, pieChartData } from './private'
 </script>
 
 <template>
-  <main class="flex-col space-y-4">
+  <main class="space-y-4">
     <div class="flex space-x-4">
       <NCard class="h-[300px] !w-1/2">
         <BarChart
@@ -25,7 +25,6 @@ import { barChartData, lineChartData, lineChartXAxisData, pieChartData } from '.
     <div class="flex space-x-4">
       <NCard class="h-[300px] !w-1/2">
         <LineChart
-          :x-axis-data="lineChartXAxisData"
           class="h-full w-full"
           title="热门歌曲分布"
           :data="lineChartData"
