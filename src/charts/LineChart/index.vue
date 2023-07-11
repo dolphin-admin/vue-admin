@@ -1,21 +1,21 @@
 <script setup lang="ts">
-import type { BarChartProps, ECharts, ECOption } from '..'
+import type { ECharts, ECOption, LineChartProps } from '..'
 import { echarts } from '..'
 
 const ThemeStore = useThemeStore()
 
-const props = withDefaults(defineProps<BarChartProps>(), {
+const props = withDefaults(defineProps<LineChartProps>(), {
   title: '',
-  data: () => [],
-  color: '#0078D7'
+  data: () => []
 })
 
 const chartRef = ref<HTMLDivElement | null>(null)
 const chart = ref<ECharts | null>(null)
 
-/**
- * 监听窗口大小变化
+/*
+ *监听窗口大小变化
  */
+
 const handleResize = () => {
   if (chart.value) {
     chart.value.resize()
@@ -29,35 +29,22 @@ const getChartData = () => {
   const option: ECOption = {
     title: {
       text: props.title,
-      top: 0,
       left: 'center'
     },
     tooltip: {
-      trigger: 'axis',
-      axisPointer: {
-        type: 'shadow'
-      }
-    },
-    grid: {
-      left: '3%',
-      right: '4%',
-      bottom: '3%',
-      containLabel: true
+      trigger: 'item'
     },
     xAxis: {
       type: 'category',
-      data: props.data.map((item) => item.name),
-      axisTick: {
-        alignWithLabel: true
-      }
+      data: props.data.map((item) => item.name)
     },
-    yAxis: { type: 'value' },
+    yAxis: {
+      type: 'value'
+    },
     series: {
-      type: 'bar',
-      name: props.title,
-      color: props.color,
-      barWidth: '60%',
-      data: props.data.map((item) => item.value)
+      data: props.data.map((item) => item.value),
+      type: 'line',
+      smooth: true
     }
   }
   chart.value!.setOption(option)

@@ -116,11 +116,11 @@ export const routes = [
         }
       },
       {
-        path: '/echarts',
-        name: 'echarts',
-        component: () => import('@/views/Echarts'),
+        path: '/charts',
+        name: 'charts',
+        component: () => import('@/views/Charts'),
         meta: {
-          title: 'Menu.Echarts',
+          title: 'Menu.Charts',
           icon: ChartIcon
         }
       }

@@ -4,6 +4,7 @@ import type {
   AxisPointerComponentOption,
   DatasetComponentOption,
   GridComponentOption,
+  LegendComponentOption,
   TitleComponentOption,
   TooltipComponentOption
 } from 'echarts/components'
@@ -11,6 +12,7 @@ import {
   AxisPointerComponent,
   DatasetComponent,
   GridComponent,
+  LegendComponent,
   TitleComponent,
   TooltipComponent,
   TransformComponent
@@ -30,6 +32,7 @@ type ECOption = ComposeOption<
   | AxisPointerComponentOption
   | GridComponentOption
   | DatasetComponentOption
+  | LegendComponentOption
 >
 
 // 注册组件，按需引入
@@ -45,7 +48,8 @@ echarts.use([
   PieChart,
   LabelLayout,
   UniversalTransition,
-  CanvasRenderer
+  CanvasRenderer,
+  LegendComponent
 ])
 
 type ECharts = echarts.ECharts
@@ -54,7 +58,7 @@ export { echarts }
 export type { ECharts, ECOption }
 
 export interface BaseChartItem {
-  label: string
+  name: string
   value: number
 }
 
@@ -62,4 +66,15 @@ export interface BarChartProps {
   title: string
   data: BaseChartItem[]
   color?: string
+}
+
+export interface PieChartProps {
+  title: string
+  subtext: string
+  data: BaseChartItem[]
+}
+
+export interface LineChartProps {
+  title: string
+  data: BaseChartItem[]
 }

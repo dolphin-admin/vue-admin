@@ -1,21 +1,22 @@
 <script setup lang="ts">
-import type { BarChartProps, ECharts, ECOption } from '..'
+import type { ECharts, ECOption, PieChartProps } from '..'
 import { echarts } from '..'
 
 const ThemeStore = useThemeStore()
 
-const props = withDefaults(defineProps<BarChartProps>(), {
+const props = withDefaults(defineProps<PieChartProps>(), {
   title: '',
-  data: () => [],
-  color: '#0078D7'
+  subtext: '',
+  data: () => []
 })
 
 const chartRef = ref<HTMLDivElement | null>(null)
 const chart = ref<ECharts | null>(null)
 
-/**
- * 监听窗口大小变化
+/*
+ *监听窗口大小变化
  */
+
 const handleResize = () => {
   if (chart.value) {
     chart.value.resize()
@@ -29,35 +30,28 @@ const getChartData = () => {
   const option: ECOption = {
     title: {
       text: props.title,
-      top: 0,
+      subtext: props.subtext,
       left: 'center'
     },
     tooltip: {
-      trigger: 'axis',
-      axisPointer: {
-        type: 'shadow'
-      }
+      trigger: 'item'
     },
-    grid: {
-      left: '3%',
-      right: '4%',
-      bottom: '3%',
-      containLabel: true
+    legend: {
+      orient: 'horizontal',
+      bottom: 'bottom',
+      data: props.data.map((item) => item.name)
     },
-    xAxis: {
-      type: 'category',
-      data: props.data.map((item) => item.name),
-      axisTick: {
-        alignWithLabel: true
-      }
-    },
-    yAxis: { type: 'value' },
     series: {
-      type: 'bar',
-      name: props.title,
-      color: props.color,
-      barWidth: '60%',
-      data: props.data.map((item) => item.value)
+      type: 'pie',
+      radius: '50%',
+      data: props.data,
+      emphasis: {
+        itemStyle: {
+          shadowBlur: 10,
+          shadowOffsetX: 0,
+          shadowColor: 'rgba(0, 0, 0, 0.5)'
+        }
+      }
     }
   }
   chart.value!.setOption(option)
