@@ -1,44 +1,14 @@
 <script setup lang="ts">
-import type { MessageSchema, Tab } from '@/types'
+import type { Tab } from '@/types'
 import MenuIcon from '~icons/ic/round-grid-view'
 import ArrowIcon from '~icons/line-md/arrow-left'
 
 import type { ScrollDirection, TabsOptionKey } from './private'
-
-const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+import { tabsOptions } from './private'
 
 const route = useRoute()
 const router = useRouter()
 const tabStore = useTabStore()
-
-let scrollInterval: ReturnType<typeof setInterval> | null = null
-
-const scrollbarRef = ref<HTMLElement | null>(null)
-
-// 滚动动画 Id，配合 requestAnimationFrame 使用
-let animationFrameId: number | null = null
-
-const tabsOptions = [
-  {
-    label: t('Tab.Clear'),
-    key: 'CLEAR_ALL_TAGS'
-  }
-]
-
-const handleCloseTab = (tab: Tab, index: number) => {
-  if (tab.href === route.path && tabStore.tabs.length > 1) {
-    router.push(tabStore.tabs[index - 1].href)
-  } else {
-    router.push(tabStore.tabs[index + 1].href)
-  }
-
-  // 如果标签页为空，则跳转到首页
-  if (tabStore.tabs.length === 1 && tab.href !== '/') {
-    router.push('/')
-  }
-
-  tabStore.removeTabItem(index)
-}
 
 /**
  * 选项卡右侧下拉列表
@@ -47,11 +17,33 @@ const handleCloseTab = (tab: Tab, index: number) => {
 const selectTabsOption = (key: TabsOptionKey) => {
   switch (key) {
     case 'CLEAR_ALL_TABS':
-      tabStore.clearAllTabs(route.path)
+      tabStore.clearAll()
+      router.push('/')
       break
     default:
       break
   }
+}
+
+let scrollInterval: ReturnType<typeof setInterval> | null = null
+
+const scrollbarRef = ref<HTMLElement | null>(null)
+
+// 滚动动画 Id，配合 requestAnimationFrame 使用
+let animationFrameId: number | null = null
+
+const handleCloseTab = (tab: Tab, index: number) => {
+  if (tab.href === route.path && tabStore.tabs.length > 1) {
+    // 如果关闭的是当前标签页，则跳转到后一个标签页
+    router.push(tabStore.tabs[index + 1].href)
+  }
+
+  // 如果标签页为空，则跳转到首页
+  if (tabStore.tabs.length === 1) {
+    router.push('/')
+  }
+
+  tabStore.removeTab(index)
 }
 
 /**
@@ -138,14 +130,14 @@ const haveScrollBar = () => {
     >
       <NTag
         v-for="(tagItem, index) in tabStore.tabs"
-        :key="index"
+        :key="tagItem.href"
         class="!cursor-pointer !select-none"
         :type="route.path === tagItem.href ? 'primary' : 'default'"
         :closable="!(tabStore.tabs.length === 1 && tagItem.href === '/')"
         @click="() => router.push(tagItem.href)"
         @close="() => handleCloseTab(tagItem, index)"
       >
-        {{ t(tagItem.labelKey) }}
+        <component :is="tagItem.label" />
         <template #icon>
           <NIcon :component="tagItem.icon" />
         </template>

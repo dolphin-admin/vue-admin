@@ -21,7 +21,7 @@ export const menuOptions: MenuMixedOption[] = [
       h(
         RouterLink,
         {
-          to: '/'
+          to: '/home'
         },
         {
           default: () => t('Menu.Home')
@@ -41,8 +41,7 @@ export const menuOptions: MenuMixedOption[] = [
     isRouterLink: true
   },
   {
-    label: t('Menu.SystemFunction'),
-    labelKey: 'Menu.SystemFunction',
+    label: () => t('Menu.SystemFunction'),
     key: 'system-function',
     icon: () =>
       h(
@@ -67,7 +66,6 @@ export const menuOptions: MenuMixedOption[] = [
               default: () => t('Menu.UserManagement')
             }
           ),
-        labelKey: 'Menu.UserManagement',
         path: '/user-management',
         key: 'user-management',
         icon: () =>
@@ -93,7 +91,6 @@ export const menuOptions: MenuMixedOption[] = [
               default: () => t('Menu.RoleManagement')
             }
           ),
-        labelKey: 'Menu.RoleManagement',
         path: '/role-management',
         key: 'role-management',
         icon: () =>
@@ -119,7 +116,6 @@ export const menuOptions: MenuMixedOption[] = [
               default: () => t('Menu.PermissionManagement')
             }
           ),
-        labelKey: 'Menu.PermissionManagement',
         path: '/permission-management',
         key: 'permission-management',
         icon: () =>
@@ -137,8 +133,7 @@ export const menuOptions: MenuMixedOption[] = [
     ]
   },
   {
-    label: t('Menu.SystemTool'),
-    labelKey: 'Menu.SystemTool',
+    label: () => t('Menu.SystemTool'),
     key: 'system-tool',
     icon: () =>
       h(
@@ -215,7 +210,6 @@ export const menuOptions: MenuMixedOption[] = [
               default: () => t('Menu.Clipboard')
             }
           ),
-        labelKey: 'Menu.Clipboard',
         path: '/clipboard',
         key: 'clipboard',
         icon: () =>
@@ -233,8 +227,7 @@ export const menuOptions: MenuMixedOption[] = [
     ]
   },
   {
-    label: t('Menu.UniversalComponents'),
-    labelKey: 'Menu.UniversalComponents',
+    label: () => t('Menu.UniversalComponents'),
     key: 'universal-components',
     icon: () =>
       h(
@@ -277,8 +270,7 @@ export const menuOptions: MenuMixedOption[] = [
     ]
   },
   {
-    label: t('Menu.BuiltinComponent'),
-    labelKey: 'Menu.BuiltinComponent',
+    label: () => t('Menu.BuiltinComponent'),
     key: 'builtin-component',
     icon: () =>
       h(
@@ -303,7 +295,6 @@ export const menuOptions: MenuMixedOption[] = [
               default: () => t('Menu.DigitalAnimation')
             }
           ),
-        labelKey: 'Menu.DigitalAnimation',
         path: '/digital-animation',
         key: 'digital-animation',
         icon: () =>

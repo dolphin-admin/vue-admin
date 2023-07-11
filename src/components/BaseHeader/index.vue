@@ -23,19 +23,19 @@ const { openNewWindow } = BrowserUtils
 
 const userOptions = [
   {
-    label: t('Menu.UserInfo'),
+    label: () => t('Menu.UserInfo'),
     key: 'UserInfo'
   },
   {
-    label: t('Header.ChangePassword'),
+    label: () => t('Header.ChangePassword'),
     key: 'ChangePassword'
   },
   {
-    label: t('Header.LockScreen'),
+    label: () => t('Header.LockScreen'),
     key: 'Lock'
   },
   {
-    label: t('Header.Logout'),
+    label: () => t('Header.Logout'),
     key: 'Quit'
   }
 ]

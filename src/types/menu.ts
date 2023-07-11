@@ -10,7 +10,6 @@ export type MenuType = 'label' | 'routerLink'
 
 export type CustomMenuOption = MenuOption & {
   menuType?: MenuType
-  labelKey?: string
   path?: string
 }
 

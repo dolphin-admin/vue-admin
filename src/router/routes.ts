@@ -18,6 +18,15 @@ export const routes = [
     children: [
       {
         path: '/',
+        name: 'navigation',
+        component: () => import('@/views/Navigation'),
+        meta: {
+          title: 'Menu.Navigation',
+          dismissTab: true
+        }
+      },
+      {
+        path: '/home',
         name: 'home',
         component: () => import('@/views/Home'),
         meta: {
@@ -128,7 +137,8 @@ export const routes = [
         component: () => import('@/views/Login'),
         meta: {
           title: 'Menu.Login',
-          disableAuth: true
+          disableAuth: true,
+          dismissTab: true
         }
       },
       {
@@ -137,7 +147,8 @@ export const routes = [
         component: () => import('@/views/Signup'),
         meta: {
           title: 'Menu.Signup',
-          disableAuth: true
+          disableAuth: true,
+          dismissTab: true
         }
       }
     ]
@@ -148,7 +159,8 @@ export const routes = [
     component: () => import('@/views/NotFound'),
     meta: {
       title: '404',
-      disableAuth: true
+      disableAuth: true,
+      dismissTab: true
     }
   }
 ]

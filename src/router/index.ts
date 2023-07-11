@@ -19,22 +19,26 @@ const router = createRouter({
  * - 拼接站点标题
  */
 const processTargetRoute = (to: RouteLocationNormalized) => {
-  document.title = to.path === '/' ? t('App.Name') : `${t((to.meta?.title ?? '') as string)} | ${t('App.Name')}`
+  if (to.meta.title) {
+    document.title = `${t(to.meta.title as string)} | ${t('App.Name')}`
+  } else {
+    document.title = `${t('App.Name')}`
+  }
 }
 
 /**
  * 处理添加标签页
  */
 const processRouteTag = (to: RouteLocationNormalized) => {
-  // 如果路由配置了 disableAuth，则不添加标签页
-  if (to.meta?.disableAuth) {
+  // 如果路由配置了 dismissTab，则不添加标签页
+  if (to.meta?.dismissTab) {
     return
   }
 
   const tagStore = useTabStore()
-  tagStore.addTabItem({
+  tagStore.addTab({
     href: to.path,
-    labelKey: to.meta?.title as string,
+    label: () => t(to.meta?.title as string),
     icon: shallowRef(to.meta?.icon as any) // shallowRef 包裹组件，避免深层响应
   })
 }

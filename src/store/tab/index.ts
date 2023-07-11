@@ -9,28 +9,30 @@ export const useTabStore = defineStore('tab', () => {
   /**
    * 添加标签页
    */
-  const addTabItem = (tab: Tab) => {
-    const exist = tabs.value.some((tabItem) => tabItem.labelKey === tab.labelKey)
-    if (exist) return
+  const addTab = (tab: Tab) => {
+    const exist = tabs.value.some((tabItem) => tabItem.href === tab.href)
+    if (exist) {
+      return
+    }
     tabs.value.push(tab)
   }
 
   /**
    * 移除标签页
    */
-  const removeTabItem = (index: number) => tabs.value.splice(index, 1)
+  const removeTab = (index: number) => tabs.value.splice(index, 1)
 
   /**
    * 清空标签页
    */
-  const clearAllTabs = (currentPath: string) => {
-    tabs.value = tabs.value.filter((item) => item.href === currentPath)
+  const clearAll = () => {
+    tabs.value = []
   }
 
   return {
     tabs,
-    addTabItem,
-    removeTabItem,
-    clearAllTabs
+    addTab,
+    removeTab,
+    clearAll
   }
 })
