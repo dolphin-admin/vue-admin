@@ -19,6 +19,7 @@
     "Disable": "禁用",
     "Verify": "验证",
     "EachPage": "每页 { count } 条",
+    "TotalPage": "共计 { totalPage } 条",
     "Download": "下载",
     "Upload": "上传",
     "IsOrNot": "是否",

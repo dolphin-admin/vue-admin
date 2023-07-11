@@ -19,6 +19,7 @@
     "Disable": "Disable",
     "Verify": "Verify",
     "EachPage": "Each page { count } records",
+    "TotalPage": "Total  { totalPage } ",
     "Download": "Download",
     "Upload": "Upload",
     "IsOrNot": "Is or not",
