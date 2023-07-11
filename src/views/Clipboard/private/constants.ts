@@ -1,4 +1,5 @@
 export const ChineseLyrics = `海底 - 一只榴莲
+
 散落的月光
 穿过了云
 躲着人群
@@ -55,6 +56,7 @@ export const ChineseLyrics = `海底 - 一只榴莲
 你明明讨厌窒息`
 
 export const EnglishLyrics = `22 - Taylor Swift
+
 It feels like a perfect night to dress up like hipsters
 And make fun of our exes, uh uh, uh uh
 It feels like a perfect night for breakfast at midnight

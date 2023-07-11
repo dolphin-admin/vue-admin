@@ -50,7 +50,7 @@ watch(
         clearable
         hoverable
         :autosize="{
-          minRows: 8,
+          minRows: 20,
           maxRows: 20
         }"
       />
