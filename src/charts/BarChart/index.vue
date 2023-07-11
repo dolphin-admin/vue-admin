@@ -65,7 +65,7 @@ const getChartData = () => {
 
 // 初始化图表
 const initChart = () => {
-  chart.value = echarts.init(chartRef.value!, ThemeStore.themeMode, { locale: 'EN' })
+  chart.value = echarts.init(chartRef.value!, ThemeStore.themeMode)
   getChartData()
 }
 
