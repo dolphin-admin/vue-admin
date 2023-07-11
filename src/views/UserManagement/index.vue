@@ -462,7 +462,6 @@ onMounted(() => queryList())
             queryList()
           },
           prefix: (info) => t('Common.TotalPage', {totalPage: info.itemCount})
-
         }"
       @update:page="() => queryList()"
     />
