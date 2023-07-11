@@ -460,7 +460,8 @@ onMounted(() => queryList())
             pagination.page = 1
             pagination.pageSize = pageSize
             queryList()
-          }
+          },
+          prefix: (info) => t('Common.TotalPage', {totalPage: info.itemCount})
         }"
       @update:page="() => queryList()"
     />
