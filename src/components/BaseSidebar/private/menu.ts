@@ -1,4 +1,6 @@
 import type { MenuMixedOption } from '@/types'
+import UniversalComponentsIcon from '~icons/ic/baseline-auto-awesome-mosaic'
+import ChartIcon from '~icons/ic/baseline-bar-chart'
 import CopyIcon from '~icons/ic/baseline-content-copy'
 import DigitalAnimationIcon from '~icons/ic/baseline-hourglass-empty'
 import QRCodeIcon from '~icons/ic/baseline-qrcode'
@@ -155,32 +157,6 @@ export const menuOptions: MenuMixedOption[] = [
           h(
             RouterLink,
             {
-              to: '/components-preview'
-            },
-            {
-              default: () => t('Menu.ComponentsPreview')
-            }
-          ),
-        labelKey: 'Menu.ComponentsPreview',
-        path: '/components-preview',
-        key: 'components-preview',
-        icon: () =>
-          h(
-            NIcon,
-            {
-              size: 16
-            },
-            {
-              default: () => h(ComponentsPreviewIcon)
-            }
-          ),
-        menuType: 'routerLink'
-      },
-      {
-        label: () =>
-          h(
-            RouterLink,
-            {
               to: '/icon-management'
             },
             {
@@ -250,6 +226,50 @@ export const menuOptions: MenuMixedOption[] = [
             },
             {
               default: () => h(CopyIcon)
+            }
+          ),
+        menuType: 'routerLink'
+      }
+    ]
+  },
+  {
+    label: t('Menu.UniversalComponents'),
+    labelKey: 'Menu.UniversalComponents',
+    key: 'universal-components',
+    icon: () =>
+      h(
+        NIcon,
+        {
+          size: 16
+        },
+        {
+          default: () => h(UniversalComponentsIcon)
+        }
+      ),
+    menuType: 'label',
+    children: [
+      {
+        label: () =>
+          h(
+            RouterLink,
+            {
+              to: '/echarts'
+            },
+            {
+              default: () => t('Menu.Echarts')
+            }
+          ),
+        labelKey: 'Menu.Echarts',
+        path: '/echarts',
+        key: 'echarts',
+        icon: () =>
+          h(
+            NIcon,
+            {
+              size: 16
+            },
+            {
+              default: () => h(ChartIcon)
             }
           ),
         menuType: 'routerLink'

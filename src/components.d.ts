@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     AuthLayout: typeof import('./layouts/AuthLayout/index.vue')['default']
     AuthProvider: typeof import('./components/AuthProvider/index.vue')['default']
+    BarChart: typeof import('./charts/BarChart/index.vue')['default']
     BaseFooter: typeof import('./components/BaseFooter/index.vue')['default']
     BaseHeader: typeof import('./components/BaseHeader/index.vue')['default']
     BaseLayout: typeof import('./layouts/BaseLayout/index.vue')['default']

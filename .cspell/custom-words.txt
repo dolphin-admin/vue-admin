@@ -2,6 +2,7 @@ axios
 Bootstrapper
 commitlint
 degit
+echarts
 esbuild
 FiraCode
 fullscreen
@@ -27,6 +28,7 @@ rushstack
 signup
 tailwindcss
 tauri
+titlebar
 uncategorized
 unplugin
 vfonts

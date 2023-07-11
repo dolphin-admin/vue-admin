@@ -1,26 +1,16 @@
 <script setup lang="ts">
-import type { Lang, MessageSchema } from '@/types'
+import type { MessageSchema } from '@/types'
 
 const { version } = siteMetaData
 
-const { t, locale } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
 const themeStore = useThemeStore()
-
-const options = [
-  { label: 'English', value: 'en_US' },
-  { label: '简体中文', value: 'zh_CN' }
-]
-
-const handleUpdateLocale = (lang: Lang) => {
-  themeStore.changeLocale(lang)
-  LangUtils.setLang(lang)
-}
 </script>
 
 <template>
   <main class="absolute inset-0 m-auto dark:bg-black">
-    <div class="absolute inset-0 m-auto flex h-fit w-1/3 flex-col items-center space-y-4 pb-20 text-center">
+    <div class="absolute inset-0 m-auto flex h-fit w-1/3 flex-col items-center space-y-4 text-center">
       <img
         class="animate-pulse cursor-pointer select-none"
         width="160"
@@ -34,20 +24,6 @@ const handleUpdateLocale = (lang: Lang) => {
         <span class="whitespace-nowrap text-2xl font-semibold">{{ t('App.Name') }}</span>
         <span class="text-base tracking-wider">v{{ version }}</span>
       </div>
-      <div class="flex items-center space-x-2 whitespace-nowrap">
-        <span class="text-sm">{{ t('Language.Choose') }}</span>
-        <NSelect
-          v-model:value="locale"
-          :options="options"
-          :consistent-menu-width="false"
-          size="small"
-          @update:value="(e) => handleUpdateLocale(e)"
-        />
-      </div>
-      <NDatePicker
-        type="date"
-        size="small"
-      />
     </div>
   </main>
 </template>

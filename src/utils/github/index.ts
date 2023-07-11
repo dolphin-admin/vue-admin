@@ -38,7 +38,7 @@ export class GitHubAuthUtils {
     const top = window.screenY + (window.outerHeight - this.AUTH_WINDOW_HEIGHT) / 2
 
     // 窗口参数
-    const options = `width=${this.AUTH_WINDOW_WIDTH},height=${this.AUTH_WINDOW_HEIGHT},left=${left},top=${top}`
+    const options = `width=${this.AUTH_WINDOW_WIDTH},height=${this.AUTH_WINDOW_HEIGHT},left=${left},top=${top},location=no,menubar=no,toolbar=no,titlebar=no,scrollbars=yes,resizable=yes`
 
     return window.open(url, title, options)
   }
