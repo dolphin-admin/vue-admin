@@ -34,8 +34,13 @@ let animationFrameId: number | null = null
 
 const handleCloseTab = (tab: Tab, index: number) => {
   if (tab.href === route.path && tabStore.tabs.length > 1) {
-    // 如果关闭的是当前标签页，则跳转到后一个标签页
-    router.push(tabStore.tabs[index + 1].href)
+    if (index === tabStore.tabs.length - 1) {
+      // 如果关闭的是最后一个标签页，则跳转到前一个标签页
+      router.push(tabStore.tabs[index - 1].href)
+    } else {
+      // 如果关闭的是当前标签页，则跳转到后一个标签页
+      router.push(tabStore.tabs[index + 1].href)
+    }
   }
 
   // 如果标签页为空，则跳转到首页
