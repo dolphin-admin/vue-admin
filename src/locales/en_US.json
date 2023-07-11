@@ -131,10 +131,10 @@
     "IconManagement": "Icon Management",
     "QRCode": "QRCode",
     "Clipboard": "Clipboard",
-    "BuiltinComponent": "Built-in Component",
-    "DigitalAnimation": "Digital Animation",
     "UniversalComponents": "Universal Components",
-    "Echarts": "Echarts"
+    "Charts": "Charts",
+    "BuiltinComponent": "Built-in Component",
+    "DigitalAnimation": "Digital Animation"
   },
   "Login": {
     "AsVisitor": "Login as Visitor",

@@ -253,15 +253,14 @@ export const menuOptions: MenuMixedOption[] = [
           h(
             RouterLink,
             {
-              to: '/echarts'
+              to: '/charts'
             },
             {
-              default: () => t('Menu.Echarts')
+              default: () => t('Menu.Charts')
             }
           ),
-        labelKey: 'Menu.Echarts',
-        path: '/echarts',
-        key: 'echarts',
+        path: '/charts',
+        key: 'charts',
         icon: () =>
           h(
             NIcon,
