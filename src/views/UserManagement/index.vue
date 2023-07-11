@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Lang, MessageSchema, User } from '@/types'
+import UserAvatarIcon from '~icons/carbon/user-avatar-filled-alt'
 import CheckIcon from '~icons/ic/baseline-check'
 import RefreshIcon from '~icons/ic/round-refresh'
 import ResetPasswordIcon from '~icons/ic/sharp-power-settings-new'
@@ -94,9 +95,36 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     align: 'center'
   },
   {
+    title: t('User.Avatar'),
+    key: 'avatar',
+    width: 50,
+    titleAlign: 'center',
+    align: 'center',
+    render: (row) =>
+      h(
+        'div',
+        {
+          class: 'flex align-center justify-center'
+        },
+        row.avatarUrl
+          ? h(NImage, {
+              width: 40,
+              lazy: true,
+              src: row.avatarUrl,
+              class: 'rounded-full'
+            })
+          : h(NIcon, {
+              size: '40',
+              depth: '3',
+              component: UserAvatarIcon
+            })
+      )
+  },
+  {
     title: t('User.Username'),
     key: 'username',
-    width: 120
+    width: 120,
+    fixed: 'left'
   },
   {
     title: t('User.PhoneNumber'),
@@ -243,7 +271,8 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     width: processOptionColumnWidth(),
     titleAlign: 'center',
     align: 'center',
-    render: (rowData) =>
+    fixed: 'right',
+    render: (row) =>
       h(
         'div',
         {
@@ -261,7 +290,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
                     positiveText: t('Common.Confirm'),
                     onPositiveClick: () => {
                       if (key === operationKeys[1]) {
-                        UserAPI.enableUsers(rowData.id!)
+                        UserAPI.enableUsers(row.id!)
                           .then((res) => {
                             message.success(res.message!)
                             queryList()
@@ -271,7 +300,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
                           })
                       }
                       if (key === operationKeys[2]) {
-                        UserAPI.disableUsers(rowData.id!)
+                        UserAPI.disableUsers(row.id!)
                           .then((res) => {
                             message.success(res.message!)
                             queryList()
@@ -296,12 +325,12 @@ const columns = ref<DataTableBaseColumn<User>[]>([
                   onClick: () => {
                     if (key === operationKeys[3]) {
                       isResetPassword.value = true
-                      currentId.value = rowData.id
+                      currentId.value = row.id
                     }
                     if (key === operationKeys[0]) {
                       isEdit.value = true
                       userFormModalRef.value.handleShowModal()
-                      userFormData.value = rowData
+                      userFormData.value = row
                     }
                   }
                 },
