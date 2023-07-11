@@ -11,6 +11,7 @@ import {
   AxisPointerComponent,
   DatasetComponent,
   GridComponent,
+  LegendComponent,
   TitleComponent,
   TooltipComponent,
   TransformComponent
@@ -45,7 +46,8 @@ echarts.use([
   PieChart,
   LabelLayout,
   UniversalTransition,
-  CanvasRenderer
+  CanvasRenderer,
+  LegendComponent
 ])
 
 type ECharts = echarts.ECharts
@@ -53,13 +55,30 @@ type ECharts = echarts.ECharts
 export { echarts }
 export type { ECharts, ECOption }
 
-export interface BaseChartItem {
+export interface BarChartItem {
   label: string
   value: number
 }
 
 export interface BarChartProps {
   title: string
-  data: BaseChartItem[]
+  data: BarChartItem[]
   color?: string
+}
+
+export interface PieChartItem {
+  name: string
+  value: number
+}
+
+export interface PieChartProps {
+  title: string
+  subtext: string
+  data: PieChartItem[]
+}
+
+export interface LineChartProps {
+  title: string
+  xAxisData: string[]
+  data: number[]
 }
