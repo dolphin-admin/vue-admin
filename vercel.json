@@ -10,7 +10,7 @@
     },
     {
       "source": "/socket.io/:path*",
-      "destination": "http://202.182.125.116:3000/:path*"
+      "destination": "http://202.182.125.116:3000/socket.io/:path*"
     },
     {
       "source": "/:path*",
