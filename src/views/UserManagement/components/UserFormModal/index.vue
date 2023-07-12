@@ -11,6 +11,10 @@ export interface Props {
 
 const props = defineProps<Props>()
 
+const emit = defineEmits<{
+  (e: 'save'): void
+}>()
+
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
 const message = useMessage()
@@ -74,6 +78,7 @@ const editRules: FormRules = {
     }
   ]
 }
+
 const createRules: FormRules = {
   username: [
     {
@@ -99,12 +104,12 @@ const createRules: FormRules = {
   ]
 }
 
-const UploadAvatarUrl = (options: { fileList: UploadFileInfo[] }) => {
+const uploadAvatarUrl = (options: { fileList: UploadFileInfo[] }) => {
   const [file] = options.fileList
-  currentFile.value = file.file ?? null
+  currentFile.value = file?.file ?? null
 }
 
-const submitCallback = () => {
+const handleSubmit = () => {
   showModal.value = true
   formRef.value!.validate(async (errors) => {
     if (errors) {
@@ -116,10 +121,10 @@ const submitCallback = () => {
     }
     submitLoadingDispatcher.loading()
 
-    uploadRef.value?.submit()
+    uploadRef.value!.submit()
 
     if (props.isEdit) {
-      if (!formData.value.avatarUrl) {
+      if (currentFile.value) {
         try {
           const { path } = (await UploadAPI.uploadFile({ file: currentFile.value })).data || {}
           formData.value.avatarUrl = FileUtils.getServerFileUrl(path)
@@ -133,6 +138,7 @@ const submitCallback = () => {
         const { message: successMessage } = await UserAPI.updateUser(formData.value.id!, formData.value)
         message.success(successMessage!)
         showModal.value = false
+        emit('save')
       } catch (err: any) {
         message.error(err.message)
       }
@@ -143,6 +149,7 @@ const submitCallback = () => {
         createFormData.username = ''
         createFormData.password = ''
         showModal.value = false
+        emit('save')
       } catch (err: any) {
         message.error(err.message)
       }
@@ -152,7 +159,7 @@ const submitCallback = () => {
   })
 }
 
-const cancelCallback = () => {
+const handleCancel = () => {
   showModal.value = false
   formData.value = {}
 }
@@ -195,6 +202,7 @@ defineExpose({
         :component="isEdit ? EditIcon : CreateIcon"
       />
     </template>
+
     <NForm
       v-if="isEdit"
       ref="formRef"
@@ -215,7 +223,7 @@ defineExpose({
           :max="1"
           list-type="image-card"
           :default-upload="false"
-          @change="UploadAvatarUrl"
+          @change="uploadAvatarUrl"
         >
           <template v-if="formData.avatarUrl">
             <NAvatar
@@ -393,14 +401,14 @@ defineExpose({
       <div class="space-x-2">
         <NButton
           size="small"
-          @click="cancelCallback"
+          @click="handleCancel"
         >
           {{ t('Common.Cancel') }}
         </NButton>
         <NButton
           size="small"
           type="primary"
-          @click="submitCallback"
+          @click="handleSubmit"
         >
           {{ t('Common.Confirm') }}
         </NButton>

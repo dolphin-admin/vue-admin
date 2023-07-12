@@ -12,6 +12,7 @@ import { UserFormModal } from './components'
 import { userColumnsI18nKeyMap } from './private'
 
 const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({ useScope: 'global' })
+
 const message = useMessage()
 const [loading, loadingDispatcher] = useLoading()
 
@@ -19,13 +20,15 @@ const resetPasswordRules: FormRules = {
   password: [
     {
       required: true,
+      trigger: ['blur', 'input'],
       message: t('Validation.Password'),
-      trigger: ['blur', 'input']
+      renderMessage: () => t('Validation.Password')
     },
     {
       validator: (_: FormItemRule, value: string) => value.length >= 6,
       trigger: ['blur', 'input'],
-      message: t('Validation.PasswordLength')
+      message: t('Validation.PasswordLength'),
+      renderMessage: () => t('Validation.PasswordLength')
     }
   ]
 }
@@ -389,7 +392,6 @@ const handleCreateUser = () => {
   isEdit.value = false
   userFormModalRef.value.handleShowModal()
   userFormData.value = {}
-  queryList()
 }
 
 const handleResetPassword = () => {
@@ -555,6 +557,7 @@ onMounted(() => queryList())
       ref="userFormModalRef"
       :is-edit="isEdit"
       :user-form-data="userFormData"
+      @save="queryList"
     />
   </DataTableLayout>
 </template>

@@ -9,8 +9,9 @@ import MaleIcon from '~icons/mdi/gender-male'
 import PhoneIcon from '~icons/mdi/phone'
 import AddressIcon from '~icons/mdi/store-plus-outline'
 
-const userStore = useUserStore()
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+
+const userStore = useUserStore()
 const message = useMessage()
 const [submitLoading, submitLoadingDispatcher] = useLoading()
 
@@ -80,9 +81,8 @@ const handleValidateButtonClick = () => {
     }
     submitLoadingDispatcher.loading()
 
-    uploadRef.value?.submit()
-
-    if (!formData.value.avatarUrl) {
+    uploadRef.value!.submit()
+    if (currentFile.value) {
       try {
         const { path } = (await UploadAPI.uploadFile({ file: currentFile.value })).data || {}
         formData.value.avatarUrl = FileUtils.getServerFileUrl(path)
@@ -109,10 +109,9 @@ const handleValidateButtonClick = () => {
   })
 }
 
-const UploadAvatarUrl = (options: { fileList: UploadFileInfo[] }) => {
+const uploadAvatarUrl = (options: { fileList: UploadFileInfo[] }) => {
   const [file] = options.fileList
-  currentFile.value = file.file ?? null
-  formData.value.avatarUrl = ''
+  currentFile.value = file?.file ?? null
 }
 
 onMounted(() =>
@@ -229,7 +228,7 @@ onMounted(() =>
             :max="1"
             list-type="image-card"
             :default-upload="false"
-            @change="UploadAvatarUrl"
+            @change="uploadAvatarUrl"
           >
             <template v-if="formData.avatarUrl">
               <NAvatar
