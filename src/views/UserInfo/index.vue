@@ -76,8 +76,7 @@ const handleValidateButtonClick = () => {
     submitLoadingDispatcher.loading()
 
     uploadRef.value?.submit()
-
-    if (!formData.value.avatarUrl) {
+    if (currentFile.value) {
       try {
         const { path } = (await UploadAPI.uploadFile({ file: currentFile.value })).data || {}
         formData.value.avatarUrl = FileUtils.getServerFileUrl(path)
@@ -104,10 +103,8 @@ const handleValidateButtonClick = () => {
   })
 }
 
-const UploadAvatarUrl = (options: { fileList: UploadFileInfo[] }) => {
-  const [file] = options.fileList
-  currentFile.value = file.file ?? null
-  formData.value.avatarUrl = ''
+const UploadAvatarUrl = (options: { fileList: Array<UploadFileInfo> }) => {
+  currentFile.value = options.fileList[0]?.file ?? null
 }
 
 onMounted(() =>

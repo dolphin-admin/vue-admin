@@ -348,7 +348,6 @@ const handleCreateUser = () => {
   isEdit.value = false
   userFormModalRef.value.handleShowModal()
   userFormData.value = {}
-  queryList()
 }
 
 const handleResetPassword = () => {
@@ -514,6 +513,7 @@ onMounted(() => queryList())
       ref="userFormModalRef"
       :is-edit="isEdit"
       :user-form-data="userFormData"
+      @status:save="queryList"
     />
   </DataTableLayout>
 </template>

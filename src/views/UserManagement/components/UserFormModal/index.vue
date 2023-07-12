@@ -90,9 +90,13 @@ const createRules: FormRules = {
   ]
 }
 
-const UploadAvatarUrl = (options: { fileList: UploadFileInfo[] }) => {
-  const [file] = options.fileList
-  currentFile.value = file.file ?? null
+const emit = defineEmits<{
+  (e: 'status:save'): void
+}>()
+
+const UploadAvatarUrl = (options: { fileList: Array<UploadFileInfo> }) => {
+  currentFile.value = options.fileList[0]?.file ?? null
+  console.log(options.fileList[0]?.fullPath)
 }
 
 const submitCallback = () => {
@@ -110,7 +114,7 @@ const submitCallback = () => {
     uploadRef.value?.submit()
 
     if (props.isEdit) {
-      if (!formData.value.avatarUrl) {
+      if (currentFile.value) {
         try {
           const { path } = (await UploadAPI.uploadFile({ file: currentFile.value })).data || {}
           formData.value.avatarUrl = FileUtils.getServerFileUrl(path)
@@ -124,6 +128,7 @@ const submitCallback = () => {
         const { message: successMessage } = await UserAPI.updateUser(formData.value.id!, formData.value)
         message.success(successMessage!)
         showModal.value = false
+        emit('status:save')
       } catch (err: any) {
         message.error(err.message)
       }
@@ -134,6 +139,7 @@ const submitCallback = () => {
         createFormData.username = ''
         createFormData.password = ''
         showModal.value = false
+        emit('status:save')
       } catch (err: any) {
         message.error(err.message)
       }
@@ -186,6 +192,7 @@ defineExpose({
         :component="isEdit ? EditIcon : CreateIcon"
       />
     </template>
+
     <NForm
       v-if="isEdit"
       ref="formRef"
