@@ -137,7 +137,8 @@
     "UniversalComponents": "Universal Components",
     "Charts": "Charts",
     "BuiltinComponent": "Built-in Component",
-    "DigitalAnimation": "Digital Animation"
+    "DigitalAnimation": "Digital Animation",
+    "Excel": "Excel"
   },
   "Login": {
     "AsVisitor": "Login as Visitor",
@@ -186,5 +187,8 @@
     "StartValuePlaceholder": "Please enter start value",
     "EndValuePlaceholder": "Please enter end value",
     "DurationPlaceholder": "Please enter duration"
+  },
+  "Excel": {
+    "FileName": "Please enter a file name"
   }
 }

@@ -12,6 +12,7 @@ import SystemFunctionIcon from '~icons/mdi/function-variant'
 import PermissionManagementIcon from '~icons/mdi/key-chain'
 import ComponentsPreviewIcon from '~icons/mdi/puzzle'
 import SystemToolIcon from '~icons/mdi/tools'
+import ExcelIcon from '~icons/ic/sharp-explicit'
 
 const { t } = i18n.global
 
@@ -220,6 +221,31 @@ export const menuOptions: MenuMixedOption[] = [
             },
             {
               default: () => h(CopyIcon)
+            }
+          ),
+        menuType: 'routerLink'
+      },
+      {
+        label: () =>
+          h(
+            RouterLink,
+            {
+              to: '/excel'
+            },
+            {
+              default: () => t('Menu.Excel')
+            }
+          ),
+        path: '/excel',
+        key: 'excel',
+        icon: () =>
+          h(
+            NIcon,
+            {
+              size: 16
+            },
+            {
+              default: () => h(ExcelIcon)
             }
           ),
         menuType: 'routerLink'
