@@ -9,8 +9,9 @@ import MaleIcon from '~icons/mdi/gender-male'
 import PhoneIcon from '~icons/mdi/phone'
 import AddressIcon from '~icons/mdi/store-plus-outline'
 
-const userStore = useUserStore()
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+
+const userStore = useUserStore()
 const message = useMessage()
 const [submitLoading, submitLoadingDispatcher] = useLoading()
 
@@ -65,7 +66,7 @@ const rules: FormRules = {
 const computedUserInfo = computed(() => userStore.user)
 
 const handleValidateButtonClick = () => {
-  formRef.value?.validate(async (errors) => {
+  formRef.value!.validate(async (errors) => {
     if (errors) {
       message.error(errors[0][0].message!)
       return
@@ -75,7 +76,7 @@ const handleValidateButtonClick = () => {
     }
     submitLoadingDispatcher.loading()
 
-    uploadRef.value?.submit()
+    uploadRef.value!.submit()
     if (currentFile.value) {
       try {
         const { path } = (await UploadAPI.uploadFile({ file: currentFile.value })).data || {}
@@ -103,8 +104,9 @@ const handleValidateButtonClick = () => {
   })
 }
 
-const UploadAvatarUrl = (options: { fileList: Array<UploadFileInfo> }) => {
-  currentFile.value = options.fileList[0]?.file ?? null
+const uploadAvatarUrl = (options: { fileList: UploadFileInfo[] }) => {
+  const [file] = options.fileList
+  currentFile.value = file?.file ?? null
 }
 
 onMounted(() =>
@@ -221,7 +223,7 @@ onMounted(() =>
             :max="1"
             list-type="image-card"
             :default-upload="false"
-            @change="UploadAvatarUrl"
+            @change="uploadAvatarUrl"
           >
             <template v-if="formData.avatarUrl">
               <NAvatar

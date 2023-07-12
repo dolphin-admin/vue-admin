@@ -11,6 +11,10 @@ export interface Props {
 
 const props = defineProps<Props>()
 
+const emit = defineEmits<{
+  (e: 'save'): void
+}>()
+
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
 const message = useMessage()
@@ -31,6 +35,7 @@ const editRules: FormRules = {
     {
       required: true,
       trigger: ['blur', 'input'],
+      message: t('Validation.Name'),
       renderMessage: () => t('Validation.Name')
     }
   ],
@@ -38,6 +43,7 @@ const editRules: FormRules = {
     {
       required: true,
       trigger: ['blur', 'input'],
+      message: t('Validation.FirstName'),
       renderMessage: () => t('Validation.FirstName')
     }
   ],
@@ -45,6 +51,7 @@ const editRules: FormRules = {
     {
       required: true,
       trigger: ['blur', 'input'],
+      message: t('Validation.LastName'),
       renderMessage: () => t('Validation.LastName')
     }
   ],
@@ -52,11 +59,13 @@ const editRules: FormRules = {
     {
       key: 'edit',
       trigger: ['blur', 'change'],
+      message: t('Validation.Email'),
       renderMessage: () => t('Validation.Email')
     },
     {
       pattern: /^([a-zA-Z]|[0-9])(\w|-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/,
       trigger: ['input', 'blur'],
+      message: t('Validation.EmailFormat'),
       renderMessage: () => t('Validation.EmailFormat')
     }
   ],
@@ -64,15 +73,18 @@ const editRules: FormRules = {
     {
       pattern: /^[1][3456789]\d{9}$/,
       trigger: ['input', 'blur'],
+      message: t('Validation.PhoneNumberFormat'),
       renderMessage: () => t('Validation.PhoneNumberFormat')
     }
   ]
 }
+
 const createRules: FormRules = {
   username: [
     {
       required: true,
       trigger: ['blur', 'input'],
+      message: t('Validation.Username'),
       renderMessage: () => t('Validation.Username')
     }
   ],
@@ -80,28 +92,26 @@ const createRules: FormRules = {
     {
       required: true,
       trigger: ['blur', 'input'],
+      message: t('Validation.Password'),
       renderMessage: () => t('Validation.Password')
     },
     {
       validator: (_: FormItemRule, value: string) => value.length >= 6,
       trigger: ['blur', 'input'],
+      message: t('Validation.PasswordLength'),
       renderMessage: () => t('Validation.PasswordLength')
     }
   ]
 }
 
-const emit = defineEmits<{
-  (e: 'status:save'): void
-}>()
-
-const UploadAvatarUrl = (options: { fileList: Array<UploadFileInfo> }) => {
-  currentFile.value = options.fileList[0]?.file ?? null
-  console.log(options.fileList[0]?.fullPath)
+const uploadAvatarUrl = (options: { fileList: UploadFileInfo[] }) => {
+  const [file] = options.fileList
+  currentFile.value = file?.file ?? null
 }
 
-const submitCallback = () => {
+const handleSubmit = () => {
   showModal.value = true
-  formRef.value?.validate(async (errors) => {
+  formRef.value!.validate(async (errors) => {
     if (errors) {
       message.error(errors[0][0].message!)
       return
@@ -111,7 +121,7 @@ const submitCallback = () => {
     }
     submitLoadingDispatcher.loading()
 
-    uploadRef.value?.submit()
+    uploadRef.value!.submit()
 
     if (props.isEdit) {
       if (currentFile.value) {
@@ -128,7 +138,7 @@ const submitCallback = () => {
         const { message: successMessage } = await UserAPI.updateUser(formData.value.id!, formData.value)
         message.success(successMessage!)
         showModal.value = false
-        emit('status:save')
+        emit('save')
       } catch (err: any) {
         message.error(err.message)
       }
@@ -139,7 +149,7 @@ const submitCallback = () => {
         createFormData.username = ''
         createFormData.password = ''
         showModal.value = false
-        emit('status:save')
+        emit('save')
       } catch (err: any) {
         message.error(err.message)
       }
@@ -149,7 +159,7 @@ const submitCallback = () => {
   })
 }
 
-const cancelCallback = () => {
+const handleCancel = () => {
   showModal.value = false
   formData.value = {}
 }
@@ -213,7 +223,7 @@ defineExpose({
           :max="1"
           list-type="image-card"
           :default-upload="false"
-          @change="UploadAvatarUrl"
+          @change="uploadAvatarUrl"
         >
           <template v-if="formData.avatarUrl">
             <NAvatar
@@ -391,14 +401,14 @@ defineExpose({
       <div class="space-x-2">
         <NButton
           size="small"
-          @click="cancelCallback"
+          @click="handleCancel"
         >
           {{ t('Common.Cancel') }}
         </NButton>
         <NButton
           size="small"
           type="primary"
-          @click="submitCallback"
+          @click="handleSubmit"
         >
           {{ t('Common.Confirm') }}
         </NButton>
