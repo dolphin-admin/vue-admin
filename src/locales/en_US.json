@@ -134,6 +134,7 @@
     "Icon": "Icon",
     "QRCode": "QRCode",
     "Clipboard": "Clipboard",
+    "WebSocket": "WebSocket",
     "UniversalComponents": "Universal Components",
     "Charts": "Charts",
     "BuiltinComponent": "Built-in Component",
