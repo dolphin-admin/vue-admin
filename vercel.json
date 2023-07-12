@@ -9,6 +9,10 @@
       "destination": "https://api.iconify.design/:path*"
     },
     {
+      "source": "/socket.io/:path*",
+      "destination": "http://202.182.125.116:3000/:path*"
+    },
+    {
       "source": "/:path*",
       "destination": "/index.html"
     }
