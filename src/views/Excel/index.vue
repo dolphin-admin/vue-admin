@@ -1,57 +1,18 @@
 <script setup lang="ts">
 import type { MessageSchema } from '@/types'
+import { header } from './private'
+const message = useMessage()
 
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
-const message = useMessage()
-
 //文件名字
+const users = ref<any>([])
 const filename = ref('')
 
-type headerItemProps = {
-  key: string
-  width: number
-  ignore: boolean
-}
-
-const header: headerItemProps[] = [
-  {
-    key: 'id',
-    width: 20,
-    ignore: false
-  },
-  {
-    key: 'username',
-    width: 40,
-    ignore: false
-  },
-  {
-    key: 'email',
-    width: 40,
-    ignore: false
-  },
-  {
-    key: 'name',
-    width: 40,
-    ignore: false
-  },
-  {
-    key: 'verified',
-    width: 10,
-    ignore: false
-  }
-]
-
-const pagination = reactive({
-  page: 1,
-  pageSize: 10,
-  itemCount: 0
-})
-const users = ref<any>([])
 const queryList = () => {
   const params = new BasePageModel({
-    page: pagination.page,
-    pageSize: pagination.pageSize
+    page: 1,
+    pageSize: 10
   })
   UserAPI.getUsers(params)
     .then((res) => {
@@ -69,7 +30,7 @@ const handleExportExcel = () => {
     message.info(t('Excel.FileName'))
     return
   }
-  ExcelUtils.handleDownloadExcel(header, users.value, filename.value)
+  ExcelUtils.exportExcel(header, users.value, filename.value)
 }
 
 onMounted(() => {
@@ -91,12 +52,12 @@ onMounted(() => {
       <NButton
         type="primary"
         @click="handleExportExcel"
-        >导出</NButton
+        >{{ t('Excel.Import') }}</NButton
       >
     </div>
     <div>
       <NUpload :default-upload="false">
-        <NButton>导入Excel</NButton>
+        <NButton>{{ t('Excel.Export') }}</NButton>
       </NUpload>
     </div>
   </main>

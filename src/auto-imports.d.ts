@@ -10,6 +10,7 @@ declare global {
   const BasePageModel: typeof import('@/constants')['BasePageModel']
   const BrowserUtils: typeof import('./utils/browser/index')['BrowserUtils']
   const EffectScope: typeof import('vue')['EffectScope']
+  const ExcelUtils: typeof import('./utils/excel/index')['ExcelUtils']
   const FileUtils: typeof import('./utils/file/index')['FileUtils']
   const GitHubAuthUtils: typeof import('./utils/github/index')['GitHubAuthUtils']
   const GlobalEnvConfig: typeof import('@/constants')['GlobalEnvConfig']

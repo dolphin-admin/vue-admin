@@ -138,7 +138,7 @@
     "Charts": "图表",
     "BuiltinComponent": "内置组件",
     "DigitalAnimation": "数字动画",
-    "Excel": "表格"
+    "Excel": "Excel"
   },
   "Login": {
     "AsVisitor": "以访客登录",
@@ -189,6 +189,8 @@
     "DurationPlaceholder": "请输入动画时长"
   },
   "Excel": {
-    "FileName": "请输入文件名称"
+    "FileName": "请输入文件名称",
+    "Import": "导入",
+    "Export": "导出excel"
   }
 }

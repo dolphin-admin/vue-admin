@@ -1,6 +1,6 @@
 import * as XLSX from 'xlsx'
 
-import type { headerItemProps } from '@/types'
+import type { HeaderItemProps } from '@/types'
 
 export class ExcelUtils {
   /**
@@ -9,7 +9,7 @@ export class ExcelUtils {
    * @param data 导出的数据
    * @param filename 导出文件的名字
    */
-  static handleDownloadExcel(header: headerItemProps[], data: any, filename: string) {
+  static exportExcel(header: HeaderItemProps[], data: any, filename: string) {
     if (data.length === 0) return
     const dataArray = []
     const itemWidth = []
@@ -26,7 +26,6 @@ export class ExcelUtils {
       dataArray.push(newItem)
     })
 
-    console.log(dataArray)
     const exportFileName = filename + '.xlsx'
     //单页脚本
     const wsName = 'SheetJS'

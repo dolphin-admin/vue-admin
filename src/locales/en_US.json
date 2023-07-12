@@ -189,6 +189,8 @@
     "DurationPlaceholder": "Please enter duration"
   },
   "Excel": {
-    "FileName": "Please enter a file name"
+    "FileName": "Please enter a file name",
+    "Import": "Import",
+    "Export": "Export excel"
   }
 }

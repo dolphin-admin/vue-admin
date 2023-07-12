@@ -1,5 +1,5 @@
-export interface headerItemProps {
+export interface HeaderItemProps {
   key: string
   width: number
-  ignore: boolean
+  ignore?: boolean
 }
