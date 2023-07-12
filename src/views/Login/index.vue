@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { MessageSchema } from '@/types'
 
-import { GitHubButton } from './components'
+import { GitHubLogin, GoogleLogin } from './components'
 import type { RememberedAccountData } from './private'
 
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
@@ -29,6 +29,7 @@ const rules: FormRules = {
     {
       required: true,
       trigger: ['blur', 'input'],
+      message: () => t('Validation.Username'),
       renderMessage: () => t('Validation.Username')
     }
   ],
@@ -36,11 +37,13 @@ const rules: FormRules = {
     {
       required: true,
       trigger: ['blur', 'input'],
+      message: () => t('Validation.Password'),
       renderMessage: () => t('Validation.Password')
     },
     {
       validator: (_: FormItemRule, value: string) => value.length >= 6,
       trigger: ['blur', 'input'],
+      message: () => t('Validation.PasswordLength'),
       renderMessage: () => t('Validation.PasswordLength')
     }
   ]
@@ -222,7 +225,10 @@ onMounted(() => {
       <span class="text-xs">{{ t('Login.ThirdPartyLogin') }}</span>
     </NDivider>
 
-    <GitHubButton />
+    <div class="flex flex-col space-y-2">
+      <GitHubLogin />
+      <GoogleLogin />
+    </div>
   </NForm>
 </template>
 

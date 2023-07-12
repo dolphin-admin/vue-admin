@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import type { Lang, MessageSchema, User } from '@/types'
+import { AuthType } from '@/types'
+import GitHubIcon from '~icons/ant-design/github-outlined'
 import UserAvatarIcon from '~icons/carbon/user-avatar-filled-alt'
 import CheckIcon from '~icons/ic/baseline-check'
 import RefreshIcon from '~icons/ic/round-refresh'
 import ResetPasswordIcon from '~icons/ic/sharp-power-settings-new'
+import GoogleIcon from '~icons/logos/google-icon'
 
 import { UserFormModal } from './components'
 import { userColumnsI18nKeyMap } from './private'
@@ -151,12 +154,12 @@ const columns = ref<DataTableBaseColumn<User>[]>([
   {
     title: t('User.LastName'),
     key: 'lastName',
-    width: 70
+    width: 80
   },
   {
     title: t('User.FirstName'),
     key: 'firstName',
-    width: 70
+    width: 80
   },
   {
     title: t('User.NickName'),
@@ -170,7 +173,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
   {
     title: t('User.Gender'),
     key: 'genderLabel',
-    width: 50,
+    width: 60,
     titleAlign: 'center',
     align: 'center'
   },
@@ -218,7 +221,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
   {
     title: t('UserManagement.VerifyOrNot'),
     key: 'verified',
-    width: 80,
+    width: 100,
     titleAlign: 'center',
     align: 'center',
     render: (row) =>
@@ -230,7 +233,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
   {
     title: t('UserManagement.EnableOrNot'),
     key: 'enabled',
-    width: 80,
+    width: 100,
     titleAlign: 'center',
     align: 'center',
     render: (row) =>
@@ -242,10 +245,48 @@ const columns = ref<DataTableBaseColumn<User>[]>([
   {
     title: t('UserManagement.EnterTime'),
     key: 'createdAt',
-    width: 120,
+    width: 140,
     titleAlign: 'center',
     align: 'center',
     render: (row) => (row.createdAt ? TimeUtils.formatTime(row.createdAt) : '')
+  },
+  {
+    title: t('User.AuthType'),
+    key: 'authTypes',
+    width: 200,
+    render: (row) => {
+      const tags = (row?.authTypes || []).map((authType) => {
+        switch (authType) {
+          case AuthType[0]:
+            return h(
+              NTag,
+              {
+                class: '!mr-2',
+                bordered: false
+              },
+              {
+                default: () => authType,
+                icon: () => h(NIcon, { size: '14', class: 'mr-0.5' }, h(GitHubIcon, { class: 'scale-125' }))
+              }
+            )
+          case AuthType[1]:
+            return h(
+              NTag,
+              {
+                class: '!mr-2',
+                bordered: false
+              },
+              {
+                default: () => authType,
+                icon: () => h(NIcon, { size: '14', class: 'mr-0.5' }, h(GoogleIcon))
+              }
+            )
+          default:
+            return undefined
+        }
+      })
+      return tags
+    }
   },
   {
     title: t('User.Roles'),

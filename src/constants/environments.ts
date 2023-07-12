@@ -9,6 +9,7 @@ export const GlobalEnvConfig = Object.freeze({
   ICON_API_PREFIX: import.meta.env.VITE_ICON_API_PREFIX ?? '',
   ICON_API_PROXY: import.meta.env.VITE_ICON_API_PROXY ?? '',
   GITHUB_CLIENT_ID: import.meta.env.VITE_GITHUB_CLIENT_ID ?? '',
+  GOOGLE_CLIENT_ID: import.meta.env.VITE_GOOGLE_CLIENT_ID ?? '',
   MODE: import.meta.env.MODE,
   IS_DEV: import.meta.env.DEV,
   IS_PROD: import.meta.env.PROD

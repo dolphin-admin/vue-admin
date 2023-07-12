@@ -1,13 +1,13 @@
-export class GitHubAuthUtils {
+export class GoogleAuthUtils {
   /**
-   * GitHub OAuth2.0 授权地址
+   * Google OAuth2.0 授权地址
    */
-  static GITHUB_AUTH_URL = 'https://github.com/login/oauth/authorize'
+  static GOOGLE_AUTH_URL = 'https://accounts.google.com/o/oauth2/v2/auth'
 
   /**
-   * GitHub OAuth2.0 回调地址
+   * Google OAuth2.0 回调地址
    */
-  static GITHUB_REDIRECT_URL = `${GlobalEnvConfig.APP_BASE_URL}/auth-redirect?type=github`
+  static GOOGLE_REDIRECT_URL = `${GlobalEnvConfig.APP_BASE_URL}/auth-redirect?type=google`
 
   /**
    * 授权窗口宽度
@@ -20,18 +20,18 @@ export class GitHubAuthUtils {
   private static AUTH_WINDOW_HEIGHT = 600
 
   /**
-   * 获取 GitHub OAuth2.0 授权地址
+   * 获取 Google OAuth2.0 授权地址
    */
   static getAuthUrl(): string {
-    return `${this.GITHUB_AUTH_URL}?client_id=${GlobalEnvConfig.GITHUB_CLIENT_ID}&redirect_uri=${this.GITHUB_REDIRECT_URL}`
+    return `${this.GOOGLE_AUTH_URL}?client_id=${GlobalEnvConfig.GOOGLE_CLIENT_ID}&redirect_uri=${this.GOOGLE_REDIRECT_URL}&response_type=code&scope=openid%20profile%20email`
   }
 
   /**
-   * 打开 GitHub 授权窗口
+   * 打开 Google 授权窗口
    * @param url 授权地址
    */
   static openAuthWindow(url: string) {
-    const title = 'GitHub Authorization'
+    const title = 'Google Authorization'
 
     // 窗口位置
     const left = window.screenX + (window.outerWidth - this.AUTH_WINDOW_WIDTH) / 2

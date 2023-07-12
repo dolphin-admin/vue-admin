@@ -154,11 +154,21 @@ export const routes = [
     ]
   },
   {
+    path: '/auth-redirect',
+    name: 'auth-redirect',
+    component: () => import('@/views/AuthRedirect'),
+    meta: {
+      title: 'AuthRedirect.Authorizing',
+      disableAuth: true,
+      dismissTab: true
+    }
+  },
+  {
     path: '/:pathMatch(.*)*',
     name: 'not-found',
     component: () => import('@/views/NotFound'),
     meta: {
-      title: '404',
+      title: 'Common.404',
       disableAuth: true,
       dismissTab: true
     }

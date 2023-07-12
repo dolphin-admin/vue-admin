@@ -18,5 +18,6 @@ export const userColumnsI18nKeyMap = new Map([
   ['enabled', 'UserManagement.EnableOrNot'],
   ['createdAt', 'UserManagement.EnterTime'],
   ['roles', 'User.Roles'],
+  ['authTypes', 'User.AuthType'],
   ['operation', 'Common.Operation']
 ])
