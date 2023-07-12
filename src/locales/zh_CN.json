@@ -134,6 +134,7 @@
     "Icon": "图标",
     "QRCode": "二维码",
     "Clipboard": "剪切板",
+    "WebSocket": "WebSocket",
     "UniversalComponents": "通用组件",
     "Charts": "图表",
     "BuiltinComponent": "内置组件",

@@ -121,9 +121,8 @@ const handleSubmit = () => {
     }
     submitLoadingDispatcher.loading()
 
-    uploadRef.value!.submit()
-
     if (props.isEdit) {
+      uploadRef.value!.submit()
       if (currentFile.value) {
         try {
           const { path } = (await UploadAPI.uploadFile({ file: currentFile.value })).data || {}
