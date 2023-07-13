@@ -137,21 +137,21 @@ export const routes = [
         }
       },
       {
-        path: '/excel',
-        name: 'excel',
-        component: () => import('@/views/Excel'),
-        meta: {
-          title: 'Menu.Excel',
-          icon: ExcelIcon
-        }
-      },
-      {
         path: '/print',
         name: 'print',
         component: () => import('@/views/Print'),
         meta: {
           title: 'Menu.Print',
           icon: PrintIcon
+        }
+      },
+      {
+        path: '/excel',
+        name: 'excel',
+        component: () => import('@/views/Excel'),
+        meta: {
+          title: 'Menu.Excel',
+          icon: ExcelIcon
         }
       }
     ]

@@ -138,13 +138,13 @@
     "Icon": "Icon",
     "QRCode": "QRCode",
     "Clipboard": "Clipboard",
+    "Print": "Print",
+    "Excel": "Excel",
     "WebSocket": "WebSocket",
     "UniversalComponents": "Universal Components",
     "Charts": "Charts",
     "BuiltinComponent": "Built-in Component",
-    "DigitalAnimation": "Digital Animation",
-    "Excel": "Excel",
-    "Print": "Print"
+    "DigitalAnimation": "Digital Animation"
   },
   "Login": {
     "AsVisitor": "Login as Visitor",

@@ -227,9 +227,6 @@ export const menuOptions: MenuMixedOption[] = [
           ),
         menuType: 'routerLink'
       },
-                  }
-          )
-      },
       {
         label: () =>
           h(
@@ -252,8 +249,8 @@ export const menuOptions: MenuMixedOption[] = [
             {
               default: () => h(PrintIcon)
             }
-=======
-            }
+          )
+      },
       {
         label: () =>
           h(
@@ -300,6 +297,7 @@ export const menuOptions: MenuMixedOption[] = [
             },
             {
               default: () => h(WebSocketIcon)
+            }
           )
       }
     ]
