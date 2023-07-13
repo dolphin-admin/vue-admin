@@ -1,4 +1,5 @@
 {
+  "clearUrls": true,
   "rewrites": [
     {
       "source": "/base-api/:path*",
@@ -10,11 +11,7 @@
     },
     {
       "source": "/socket.io/:path*",
-      "destination": "http://202.182.125.116:3000/socket.io/:path*",
-      "has": [
-        { "type": "header", "key": "connection", "value": "upgrade" },
-        { "type": "header", "key": "upgrade", "value": "websocket" }
-      ]
+      "destination": "http://202.182.125.116:3000/socket.io/:path*"
     },
     {
       "source": "/:path*",
