@@ -12,6 +12,9 @@ import ChangePasswordIcon from '~icons/mdi/key'
 import PermissionManagementIcon from '~icons/mdi/key-chain'
 import WebSocketIcon from '~icons/tabler/brand-socket-io'
 import PrintIcon from '~icons/ic/outline-local-printshop'
+import Looks404Icon from '~icons/ic/outline-looks-4'
+import Looks403Icon from '~icons/ic/outline-looks-3'
+import Looks500Icon from '~icons/ic/outline-looks-5'
 
 export const routes = [
   {
@@ -153,6 +156,36 @@ export const routes = [
           title: 'Menu.Excel',
           icon: ExcelIcon
         }
+      },
+      {
+        path: '/:pathMatch(.*)*',
+        name: '404',
+        component: () => import('@/views/404'),
+        meta: {
+          title: 'Common.404',
+          disableAuth: true,
+          icon: Looks404Icon
+        }
+      },
+      {
+        path: '/500',
+        name: '500',
+        component: () => import('@/views/500'),
+        meta: {
+          title: 'Common.500',
+          disableAuth: true,
+          icon: Looks500Icon
+        }
+      },
+      {
+        path: '/403',
+        name: '403',
+        component: () => import('@/views/403'),
+        meta: {
+          title: 'Common.403',
+          disableAuth: true,
+          icon: Looks403Icon
+        }
       }
     ]
   },
@@ -189,16 +222,6 @@ export const routes = [
     component: () => import('@/views/AuthRedirect'),
     meta: {
       title: 'AuthRedirect.Authorizing',
-      disableAuth: true,
-      dismissTab: true
-    }
-  },
-  {
-    path: '/:pathMatch(.*)*',
-    name: 'not-found',
-    component: () => import('@/views/NotFound'),
-    meta: {
-      title: 'Common.404',
       disableAuth: true,
       dismissTab: true
     }
