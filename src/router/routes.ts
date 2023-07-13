@@ -2,6 +2,7 @@ import ChartIcon from '~icons/ic/baseline-bar-chart'
 import CopyIcon from '~icons/ic/baseline-content-copy'
 import DigitalAnimationIcon from '~icons/ic/baseline-hourglass-empty'
 import QRCodeIcon from '~icons/ic/baseline-qrcode'
+import ExcelIcon from '~icons/ic/sharp-explicit'
 import HomeIcon from '~icons/ic/sharp-house'
 import UserInfoIcon from '~icons/mdi/account-circle'
 import UserManagementIcon from '~icons/mdi/account-cog-outline'
@@ -132,6 +133,15 @@ export const routes = [
         meta: {
           title: 'Menu.Charts',
           icon: ChartIcon
+        }
+      },
+      {
+        path: '/excel',
+        name: 'excel',
+        component: () => import('@/views/Excel'),
+        meta: {
+          title: 'Menu.Excel',
+          icon: ExcelIcon
         }
       }
     ]
