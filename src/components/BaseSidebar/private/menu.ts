@@ -12,7 +12,7 @@ import SystemFunctionIcon from '~icons/mdi/function-variant'
 import PermissionManagementIcon from '~icons/mdi/key-chain'
 import ComponentsPreviewIcon from '~icons/mdi/puzzle'
 import SystemToolIcon from '~icons/mdi/tools'
-import ExcelIcon from '~icons/ic/sharp-explicit'
+import ExcelIcon from '~icons/mdi/microsoft-excel'
 import WebSocketIcon from '~icons/tabler/brand-socket-io'
 import PrintIcon from '~icons/ic/outline-local-printshop'
 
@@ -227,6 +227,33 @@ export const menuOptions: MenuMixedOption[] = [
           ),
         menuType: 'routerLink'
       },
+                  }
+          )
+      },
+      {
+        label: () =>
+          h(
+            RouterLink,
+            {
+              to: '/print'
+            },
+            {
+              default: () => t('Menu.Print')
+            }
+          ),
+        path: '/print',
+        key: 'print',
+        icon: () =>
+          h(
+            NIcon,
+            {
+              size: 16
+            },
+            {
+              default: () => h(PrintIcon)
+            }
+=======
+            }
       {
         label: () =>
           h(
@@ -273,31 +300,6 @@ export const menuOptions: MenuMixedOption[] = [
             },
             {
               default: () => h(WebSocketIcon)
-            }
-          )
-      },
-      {
-        label: () =>
-          h(
-            RouterLink,
-            {
-              to: '/print'
-            },
-            {
-              default: () => t('Menu.Print')
-            }
-          ),
-        path: '/print',
-        key: 'print',
-        icon: () =>
-          h(
-            NIcon,
-            {
-              size: 16
-            },
-            {
-              default: () => h(PrintIcon)
-            }
           )
       }
     ]

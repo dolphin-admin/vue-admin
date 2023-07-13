@@ -28,6 +28,9 @@
     "Stop": "停止",
     "Continue": "继续",
     "Copy": "复制",
+    "Import": "导入",
+    "Export": "导出",
+    "Print": "打印",
     "RememberPassword": "记住密码",
     "ForgetPassword": "忘记密码",
     "ConfirmPassword": "确认密码",
@@ -35,10 +38,7 @@
     "NewPassword": "新密码",
     "ChangePassword": "修改密码",
     "IsLoadingData": "正在加载数据...",
-    "LoadingDataError": "加载数据失败",
-    "Import": "导入",
-    "Export": "导出",
-    "Print": "打印"
+    "LoadingDataError": "加载数据失败"
   },
   "Validation": {
     "Username": "请输入用户名",
@@ -60,7 +60,8 @@
     "City": "请输入城市",
     "Address": "请输入地址",
     "Biography": "请输入简介",
-    "QRCodeContent": "请输入二维码内容"
+    "QRCodeContent": "请输入二维码内容",
+    "FileName": "请输入文件名"
   },
   "Message": {
     "UploadAvatar": {
@@ -136,14 +137,14 @@
     "SystemTool": "系统工具",
     "Icon": "图标",
     "QRCode": "二维码",
+    "Print": "打印",
     "Clipboard": "剪切板",
+    "Excel": "Excel",
     "WebSocket": "WebSocket",
     "UniversalComponents": "通用组件",
     "Charts": "图表",
     "BuiltinComponent": "内置组件",
-    "DigitalAnimation": "数字动画",
-    "Excel": "Excel",
-    "Print": "打印"
+    "DigitalAnimation": "数字动画"
   },
   "Login": {
     "AsVisitor": "以访客登录",
@@ -192,8 +193,5 @@
     "StartValuePlaceholder": "请输入开始值",
     "EndValuePlaceholder": "请输入结束值",
     "DurationPlaceholder": "请输入动画时长"
-  },
-  "Excel": {
-    "FileName": "请输入文件名称"
   }
 }

@@ -1,5 +1,4 @@
 {
-  "clearUrls": true,
   "rewrites": [
     {
       "source": "/base-api/:path*",

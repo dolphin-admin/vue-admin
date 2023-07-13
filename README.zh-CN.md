@@ -21,6 +21,8 @@ Dolphin Admin Web 是一个基于 Vue 3 + Vite + Naive UI + TypeScript + Tailwin
       [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components) 自动引入组件、Hook、工具类，解放双手
 - [x] 使用 [vue-i18n](https://vue-i18n.intlify.dev/)，支持国际化
 - [x] 使用 [ECharts](https://echarts.apache.org/zh/index.html) 进行封装图表组件
+- [x] 使用 [xlsx](https://www.npmjs.com/package/xlsx) 进行 Excel 文件导入、导出
+- [x] 使用 [socket.io] 进行实时通信
 - [x] 使用 [ESLint](https://eslint.org/) 执行代码检查
 - [x] 使用 [Prettier](https://prettier.io/) 执行代码格式化
 - [x] 使用 [CSpell](https://cspell.org/) 执行代码拼写检查

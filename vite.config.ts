@@ -15,11 +15,11 @@ export default defineConfig(({ mode }) => {
 
   const port = parseInt(VITE_PORT, 10)
   const proxy: Record<string, string | ProxyOptions> = {
-    '/socket.io': {
-      target: VITE_BASE_API_PROXY,
-      ws: true,
-      changeOrigin: true
-    }
+    // '/socket.io': {
+    //   target: VITE_BASE_API_PROXY,
+    //   ws: true,
+    //   changeOrigin: true
+    // }
   }
   if (VITE_BASE_API_PREFIX && VITE_BASE_API_PROXY) {
     proxy[VITE_BASE_API_PREFIX] = {
