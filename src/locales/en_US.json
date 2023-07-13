@@ -28,6 +28,8 @@
     "Stop": "Stop",
     "Continue": "Continue",
     "Copy": "Copy",
+    "Import": "Import",
+    "Export": "Export",
     "RememberPassword": "Remember password",
     "ForgetPassword": "Forget password",
     "ConfirmPassword": "Confirm password",
@@ -35,9 +37,7 @@
     "NewPassword": "New password",
     "ChangePassword": "Change password",
     "IsLoadingData": "Loading data ...",
-    "LoadingDataError": "Loading data error",
-    "Import": "Import",
-    "Export": "Export"
+    "LoadingDataError": "Loading data error"
   },
   "Validation": {
     "Username": "Please enter username",
@@ -59,7 +59,8 @@
     "City": "Please enter your city",
     "Address": "Please enter your address",
     "Biography": "Please enter your biography",
-    "QRCodeContent": "Please enter QRCode content"
+    "QRCodeContent": "Please enter QRCode content",
+    "FileName": "Please enter file name"
   },
   "Message": {
     "UploadAvatar": {
@@ -190,8 +191,5 @@
     "StartValuePlaceholder": "Please enter start value",
     "EndValuePlaceholder": "Please enter end value",
     "DurationPlaceholder": "Please enter duration"
-  },
-  "Excel": {
-    "FileName": "Please enter a file name"
   }
 }

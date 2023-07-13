@@ -9,18 +9,24 @@ export class ExcelUtils {
    * @param data 导出的数据
    * @param filename 导出文件的名字
    */
-  static exportExcel(header: HeaderItem[], data: any, filename: string) {
-    if (data.length === 0) return
-    const dataArray = []
-    const itemWidth = []
-    const itemHeader: string[] = []
-    for (let { key, width, ignore } of header) {
-      if (!ignore) {
-        itemHeader.push(key)
-        itemWidth.push({ width: width })
-      }
+  static export(header: HeaderItem[], data: any, filename: string) {
+    if (data.length === 0) {
+      return
     }
+
+    const dataArray = []
+    const itemWidth: { width: number }[] = []
+    const itemHeader: string[] = []
+
+    header.forEach((headerItem) => {
+      if (!headerItem.ignore) {
+        itemHeader.push(headerItem.key)
+        itemWidth.push({ width: headerItem.width })
+      }
+    })
+
     dataArray.push(itemHeader)
+
     data.forEach((item: any) => {
       let newItem = itemHeader.map((i) => item[i])
       dataArray.push(newItem)
