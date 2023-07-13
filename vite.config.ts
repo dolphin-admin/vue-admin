@@ -18,8 +18,7 @@ export default defineConfig(({ mode }) => {
     '/socket.io': {
       target: VITE_BASE_API_PROXY,
       ws: true,
-      changeOrigin: true,
-      rewrite: (path: string) => path.replace(/^\/socket.io/, '')
+      changeOrigin: true
     }
   }
   if (VITE_BASE_API_PREFIX && VITE_BASE_API_PROXY) {
