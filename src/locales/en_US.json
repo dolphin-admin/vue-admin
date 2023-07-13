@@ -144,7 +144,8 @@
     "UniversalComponents": "Universal Components",
     "Charts": "Charts",
     "BuiltinComponent": "Built-in Component",
-    "DigitalAnimation": "Digital Animation"
+    "DigitalAnimation": "Digital Animation",
+    "ErrorPage": "Error Page"
   },
   "Login": {
     "AsVisitor": "Login as Visitor",

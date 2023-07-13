@@ -144,7 +144,8 @@
     "UniversalComponents": "通用组件",
     "Charts": "图表",
     "BuiltinComponent": "内置组件",
-    "DigitalAnimation": "数字动画"
+    "DigitalAnimation": "数字动画",
+    "ErrorPage": "错误页面"
   },
   "Login": {
     "AsVisitor": "以访客登录",

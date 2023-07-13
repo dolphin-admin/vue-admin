@@ -15,6 +15,10 @@ import SystemToolIcon from '~icons/mdi/tools'
 import ExcelIcon from '~icons/mdi/microsoft-excel'
 import WebSocketIcon from '~icons/tabler/brand-socket-io'
 import PrintIcon from '~icons/ic/outline-local-printshop'
+import ErrorPageIcon from '~icons/ic/baseline-error-outline'
+import Looks404Icon from '~icons/ic/outline-looks-4'
+import Looks403Icon from '~icons/ic/outline-looks-3'
+import Looks500Icon from '~icons/ic/outline-looks-5'
 
 const { t } = i18n.global
 
@@ -380,6 +384,98 @@ export const menuOptions: MenuMixedOption[] = [
             },
             {
               default: () => h(DigitalAnimationIcon)
+            }
+          ),
+        menuType: 'routerLink'
+      }
+    ]
+  },
+  {
+    label: () => t('Menu.ErrorPage'),
+    key: 'error-page',
+    icon: () =>
+      h(
+        NIcon,
+        {
+          size: 16
+        },
+        {
+          default: () => h(ErrorPageIcon)
+        }
+      ),
+    menuType: 'label',
+    children: [
+      {
+        label: () =>
+          h(
+            RouterLink,
+            {
+              to: '/404'
+            },
+            {
+              default: () => t('Common.404')
+            }
+          ),
+        path: '/404',
+        key: '404',
+        icon: () =>
+          h(
+            NIcon,
+            {
+              size: 16
+            },
+            {
+              default: () => h(Looks404Icon)
+            }
+          ),
+        menuType: 'routerLink'
+      },
+      {
+        label: () =>
+          h(
+            RouterLink,
+            {
+              to: '/403'
+            },
+            {
+              default: () => t('Common.403')
+            }
+          ),
+        path: '/403',
+        key: '403',
+        icon: () =>
+          h(
+            NIcon,
+            {
+              size: 16
+            },
+            {
+              default: () => h(Looks403Icon)
+            }
+          ),
+        menuType: 'routerLink'
+      },
+      {
+        label: () =>
+          h(
+            RouterLink,
+            {
+              to: '/500'
+            },
+            {
+              default: () => t('Common.500')
+            }
+          ),
+        path: '/500',
+        key: '500',
+        icon: () =>
+          h(
+            NIcon,
+            {
+              size: 16
+            },
+            {
+              default: () => h(Looks500Icon)
             }
           ),
         menuType: 'routerLink'
