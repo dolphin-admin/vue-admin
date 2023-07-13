@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { MessageSchema } from '@/types'
 import { header } from './private'
+
 const message = useMessage()
 
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
@@ -52,12 +53,12 @@ onMounted(() => {
       <NButton
         type="primary"
         @click="handleExportExcel"
-        >{{ t('Excel.Import') }}</NButton
+        >{{ t('Common.Import') }}</NButton
       >
     </div>
     <div>
       <NUpload :default-upload="false">
-        <NButton>{{ t('Excel.Export') }}</NButton>
+        <NButton>{{ t('Common.Export') }}</NButton>
       </NUpload>
     </div>
   </main>

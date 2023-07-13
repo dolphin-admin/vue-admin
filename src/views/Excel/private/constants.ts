@@ -1,6 +1,6 @@
-import type { HeaderItemProps } from '@/types'
+import type { HeaderItem } from '@/types'
 
-export const header: HeaderItemProps[] = [
+export const header: HeaderItem[] = [
   {
     key: 'id',
     width: 20,
@@ -23,7 +23,6 @@ export const header: HeaderItemProps[] = [
   },
   {
     key: 'verified',
-    width: 10,
-    ignore: false
+    width: 10
   }
 ]

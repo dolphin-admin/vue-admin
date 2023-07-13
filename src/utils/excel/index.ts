@@ -1,6 +1,6 @@
 import * as XLSX from 'xlsx'
 
-import type { HeaderItemProps } from '@/types'
+import type { HeaderItem } from '@/types'
 
 export class ExcelUtils {
   /**
@@ -9,7 +9,7 @@ export class ExcelUtils {
    * @param data 导出的数据
    * @param filename 导出文件的名字
    */
-  static exportExcel(header: HeaderItemProps[], data: any, filename: string) {
+  static exportExcel(header: HeaderItem[], data: any, filename: string) {
     if (data.length === 0) return
     const dataArray = []
     const itemWidth = []

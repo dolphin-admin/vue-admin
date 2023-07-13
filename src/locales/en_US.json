@@ -35,7 +35,9 @@
     "NewPassword": "New password",
     "ChangePassword": "Change password",
     "IsLoadingData": "Loading data ...",
-    "LoadingDataError": "Loading data error"
+    "LoadingDataError": "Loading data error",
+    "Import": "Import",
+    "Export": "Export"
   },
   "Validation": {
     "Username": "Please enter username",
@@ -189,8 +191,6 @@
     "DurationPlaceholder": "Please enter duration"
   },
   "Excel": {
-    "FileName": "Please enter a file name",
-    "Import": "Import",
-    "Export": "Export excel"
+    "FileName": "Please enter a file name"
   }
 }
