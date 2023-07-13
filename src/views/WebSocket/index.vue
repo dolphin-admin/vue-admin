@@ -14,7 +14,7 @@ const handleSendMessage = () => {
 }
 
 onBeforeMount(() => {
-  socket.value = io('/websocket')
+  socket.value = io(GlobalEnvConfig.BASE_API_PROXY + '/websocket')
   socket.value.on('connect', () => {
     console.log('connect')
   })
