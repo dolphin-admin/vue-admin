@@ -8,6 +8,7 @@ type Song = {
   title: string
   length: string
 }
+
 const columns = [
   {
     title: 'No',
@@ -22,6 +23,7 @@ const columns = [
     key: 'length'
   }
 ]
+
 const data: Song[] = [
   { no: 3, title: 'Wonderwall', length: '4:18' },
   { no: 4, title: "Don't Look Back in Anger", length: '4:48' },
@@ -58,7 +60,8 @@ function handlePrint() {
     <NButton
       type="primary"
       @click="handlePrint"
-      >{{ t('Common.Print') }}
+    >
+      {{ t('Common.Print') }}
     </NButton>
   </main>
 </template>
