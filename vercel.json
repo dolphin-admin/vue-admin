@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/base-api/:path*",
-      "destination": "http://202.182.125.116:3000/:path*"
+      "destination": "https://dolphin-admin-api.bit-ocean.studio/:path*"
     },
     {
       "source": "/iconify-api/:path*",
@@ -10,7 +10,7 @@
     },
     {
       "source": "/socket.io/:path*",
-      "destination": "http://202.182.125.116:3000/socket.io/:path*"
+      "destination": "https://dolphin-admin-api.bit-ocean.studio/socket.io/:path*"
     },
     {
       "source": "/:path*",
