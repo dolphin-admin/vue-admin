@@ -11,6 +11,7 @@ import IconManagementIcon from '~icons/mdi/emoticon-wink'
 import ChangePasswordIcon from '~icons/mdi/key'
 import PermissionManagementIcon from '~icons/mdi/key-chain'
 import WebSocketIcon from '~icons/tabler/brand-socket-io'
+import PrintIcon from '~icons/ic/outline-local-printshop'
 
 export const routes = [
   {
@@ -142,6 +143,15 @@ export const routes = [
         meta: {
           title: 'Menu.Excel',
           icon: ExcelIcon
+        }
+      },
+      {
+        path: '/print',
+        name: 'print',
+        component: () => import('@/views/Print'),
+        meta: {
+          title: 'Menu.Print',
+          icon: PrintIcon
         }
       }
     ]

@@ -37,7 +37,8 @@
     "IsLoadingData": "Loading data ...",
     "LoadingDataError": "Loading data error",
     "Import": "Import",
-    "Export": "Export"
+    "Export": "Export",
+    "Print": "Print"
   },
   "Validation": {
     "Username": "Please enter username",
@@ -141,7 +142,8 @@
     "Charts": "Charts",
     "BuiltinComponent": "Built-in Component",
     "DigitalAnimation": "Digital Animation",
-    "Excel": "Excel"
+    "Excel": "Excel",
+    "Print": "Print"
   },
   "Login": {
     "AsVisitor": "Login as Visitor",

@@ -37,7 +37,8 @@
     "IsLoadingData": "正在加载数据...",
     "LoadingDataError": "加载数据失败",
     "Import": "导入",
-    "Export": "导出"
+    "Export": "导出",
+    "Print": "打印"
   },
   "Validation": {
     "Username": "请输入用户名",
@@ -141,7 +142,8 @@
     "Charts": "图表",
     "BuiltinComponent": "内置组件",
     "DigitalAnimation": "数字动画",
-    "Excel": "Excel"
+    "Excel": "Excel",
+    "Print": "打印"
   },
   "Login": {
     "AsVisitor": "以访客登录",
