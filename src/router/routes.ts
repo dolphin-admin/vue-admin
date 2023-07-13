@@ -10,6 +10,7 @@ import RoleManagementIcon from '~icons/mdi/account-group'
 import IconManagementIcon from '~icons/mdi/emoticon-wink'
 import ChangePasswordIcon from '~icons/mdi/key'
 import PermissionManagementIcon from '~icons/mdi/key-chain'
+import WebSocketIcon from '~icons/tabler/brand-socket-io'
 
 export const routes = [
   {
@@ -105,6 +106,15 @@ export const routes = [
         meta: {
           title: 'Menu.Clipboard',
           icon: CopyIcon
+        }
+      },
+      {
+        path: '/websocket',
+        name: 'websocket',
+        component: () => import('@/views/WebSocket'),
+        meta: {
+          title: 'Menu.WebSocket',
+          icon: WebSocketIcon
         }
       },
       {

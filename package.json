@@ -26,6 +26,7 @@
     "nprogress": "0.2.0",
     "pinia": "^2.1.4",
     "qrcode": "^1.5.3",
+    "socket.io-client": "^4.7.1",
     "vue": "^3.3.4",
     "vue-i18n": "9.2.2",
     "vue-router": "^4.2.4",

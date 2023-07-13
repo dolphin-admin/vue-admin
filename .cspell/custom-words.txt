@@ -26,6 +26,7 @@ recallwei
 Roboto
 rushstack
 signup
+tabler
 tailwindcss
 tauri
 titlebar

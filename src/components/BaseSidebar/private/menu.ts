@@ -13,6 +13,7 @@ import PermissionManagementIcon from '~icons/mdi/key-chain'
 import ComponentsPreviewIcon from '~icons/mdi/puzzle'
 import SystemToolIcon from '~icons/mdi/tools'
 import ExcelIcon from '~icons/ic/sharp-explicit'
+import WebSocketIcon from '~icons/tabler/brand-socket-io'
 
 const { t } = i18n.global
 
@@ -249,7 +250,31 @@ export const menuOptions: MenuMixedOption[] = [
             }
           ),
         menuType: 'routerLink'
-      }
+      },
+              {
+        label: () =>
+          h(
+            RouterLink,
+            {
+        to: '/websocket'
+            },
+            {
+              default: () => t('Menu.WebSocket')
+            }
+          ),
+        path: '/websocket',
+        key: 'websocket',
+            icon: () =>
+          h(
+            NIcon,
+            {
+              size: 16
+            },
+            {
+                default: () => h(WebSocketIcon)
+            }
+          ),
+      
     ]
   },
   {

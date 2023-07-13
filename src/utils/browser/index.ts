@@ -37,8 +37,7 @@ export class BrowserUtils {
    * 判定是否是移动端
    */
   static isMobileDevice() {
-    const { userAgent } = navigator
-    return /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent)
+    return window.matchMedia('only screen and (max-width: 640px)').matches
   }
 
   /**

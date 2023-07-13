@@ -7,7 +7,7 @@ export const useSidebarStore = defineStore('sidebar', () => {
   /**
    * 是否显示侧边栏，默认显示
    */
-  const isDisplay = ref(true)
+  const isDisplay = ref(!BrowserUtils.isMobileDevice())
 
   /**
    * 修改折叠状态

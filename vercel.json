@@ -1,4 +1,5 @@
 {
+  "clearUrls": true,
   "rewrites": [
     {
       "source": "/base-api/:path*",
@@ -9,8 +10,22 @@
       "destination": "https://api.iconify.design/:path*"
     },
     {
+      "source": "/socket.io/:path*",
+      "destination": "http://202.182.125.116:3000/socket.io/:path*"
+    },
+    {
       "source": "/:path*",
       "destination": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/socket.io/:path*",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET,OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type" }
+      ]
     }
   ]
 }
