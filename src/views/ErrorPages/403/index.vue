@@ -7,24 +7,15 @@ const router = useRouter()
 </script>
 
 <template>
-  <main class="absolute inset-0 m-auto">
-    <div class="absolute inset-0 m-auto flex h-fit w-1/3 flex-col items-center space-y-4 pb-20 text-center">
-      <img
-        class="animate-pulse cursor-pointer select-none"
-        width="200"
-        height="200"
-        src="@/assets/images/403.png"
-        alt=""
-        loading="eager"
-      />
-      <div class="flex select-none flex-col space-y-2">
-        <span class="text-2xl font-semibold">403 {{ t('Common.403') }}</span>
-      </div>
-      <NButton
-        type="primary"
-        @click="() => router.push('/')"
-        >返回</NButton
-      >
-    </div>
+  <main class="absolute inset-0 m-auto flex items-center justify-center pb-20">
+    <NResult
+      status="403"
+      :title="'403 ' + t('Common.403')"
+      description=""
+    >
+      <template #footer>
+        <NButton @click="router.push('/')">{{ t('Common.Back') }}</NButton>
+      </template>
+    </NResult>
   </main>
 </template>
