@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { MenuInst, MenuOption } from 'naive-ui'
+
 import type { Lang, MessageSchema } from '@/types'
 import CollapseIcon from '~icons/line-md/chevron-triple-left'
 
@@ -10,19 +12,40 @@ const route = useRoute()
 const router = useRouter()
 const sidebarStore = useSidebarStore()
 
+const menuInstRef = ref<MenuInst | null>(null)
 const menuData = ref(menuOptions)
+const selectedKey = ref()
+const accordion = ref(false)
 
-const currentRouteName = computed(() => route.name as string)
+const handleChangeRouter = () => {
+  selectedKey.value = route.name
+  menuInstRef.value?.showOption(route.name as string)
+}
+
+const handleChangeMenu = (key: string, item: MenuOption) => {
+  if (item.children) {
+    return
+  }
+  router.push({ name: key })
+}
+
+watch(
+  () => route.name,
+  () => handleChangeRouter(),
+  { immediate: true }
+)
 </script>
 
 <template>
   <div
     class="absolute inset-y-0 left-0 z-[100] h-full border-r border-gray-300 bg-light-default shadow-sm transition-[width] dark:border-gray-950 dark:bg-dark-default sm:static"
     :class="[sidebarStore.isDisplay ? (sidebarStore.isCollapse ? 'w-16' : 'w-56') : 'w-0']"
-    @click="router.push('/')"
   >
     <!-- Header -->
-    <div class="flex h-14 w-full select-none items-center justify-center">
+    <div
+      class="flex h-14 w-full select-none items-center justify-center"
+      @click="router.push('/')"
+    >
       <img
         class="animate-pulse cursor-pointer select-none"
         width="36"
@@ -43,13 +66,17 @@ const currentRouteName = computed(() => route.name as string)
     <div class="h-[calc(100%-96px)]">
       <NScrollbar :size="10">
         <NMenu
+          ref="menuInstRef"
           :collapsed-icon-size="20"
           :collapsed="sidebarStore.isCollapse"
           :options="menuData"
           :collapsed-width="64"
           :root-indent="18"
           :indent="26"
-          :value="currentRouteName"
+          :value="selectedKey"
+          :accordion="accordion"
+          inverted
+          @update:value="handleChangeMenu"
         />
       </NScrollbar>
     </div>

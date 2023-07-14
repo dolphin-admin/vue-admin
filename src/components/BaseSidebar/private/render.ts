@@ -1,4 +1,6 @@
+import router from '@/router'
 import type { MessageKeySchema } from '@/types'
+
 const { t } = i18n.global
 
 export const renderLabel = (label: () => string) => {
@@ -9,7 +11,8 @@ export const renderLabel = (label: () => string) => {
         tooltip: {
           placement: 'right',
           showArrow: false
-        }
+        },
+        class: 'select-none'
       },
       {
         default: label
@@ -22,27 +25,20 @@ export const renderLabel = (label: () => string) => {
  * @param label 文本
  * @param to 链接
  */
-export const renderLinkLabel = (label: () => string, to: string) => {
+export const renderLink = (label: () => string, to: string) => {
   return () =>
     h(
-      RouterLink,
+      NEllipsis,
       {
-        to
+        tooltip: {
+          placement: 'right',
+          showArrow: false
+        },
+        class: 'select-none',
+        onClick: () => router.push(to)
       },
       {
-        default: () =>
-          h(
-            NEllipsis,
-            {
-              tooltip: {
-                placement: 'right',
-                showArrow: false
-              }
-            },
-            {
-              default: label
-            }
-          )
+        default: label
       }
     )
 }
