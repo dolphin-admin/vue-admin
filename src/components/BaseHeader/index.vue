@@ -53,7 +53,10 @@ const openDiscordURL = () => openNewWindow('https://discord.gg/UKhpUQgwCT')
 const handleUpdateLocale = (lang: Lang) => {
   setTimeout(() => {
     locale.value = lang
-    document.title = route.path === '/' ? t('App.Name') : `${t((route.meta?.title ?? '') as string)} | ${t('App.Name')}`
+    document.title =
+      route.path === '/'
+        ? t('App.Name')
+        : `${typeof route.meta.title === 'function' ? route.meta.title() : route.meta.title} | ${t('App.Name')}`
   }, 150)
   themeStore.changeLocale(lang)
   LangUtils.setLang(lang)

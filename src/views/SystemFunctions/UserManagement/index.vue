@@ -9,7 +9,6 @@ import ResetPasswordIcon from '~icons/ic/sharp-power-settings-new'
 import GoogleIcon from '~icons/logos/google-icon'
 
 import { UserFormModal } from './components'
-import { userColumnsI18nKeyMap } from './private'
 
 const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({ useScope: 'global' })
 
@@ -21,13 +20,13 @@ const resetPasswordRules: FormRules = {
     {
       required: true,
       trigger: ['blur', 'input'],
-      message: t('Validation.Password'),
+      message: () => t('Validation.Password'),
       renderMessage: () => t('Validation.Password')
     },
     {
       validator: (_: FormItemRule, value: string) => value.length >= 6,
       trigger: ['blur', 'input'],
-      message: t('Validation.PasswordLength'),
+      message: () => t('Validation.PasswordLength'),
       renderMessage: () => t('Validation.PasswordLength')
     }
   ]
@@ -90,8 +89,6 @@ const queryList = (shouldLoading = true) => {
     })
 }
 
-const processOptionColumnWidth = () => (locale.value === 'zh_CN' ? 200 : 280)
-
 const columns = ref<DataTableBaseColumn<User>[]>([
   {
     title: 'ID',
@@ -101,7 +98,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     align: 'center'
   },
   {
-    title: t('User.Avatar'),
+    title: () => t('User.Avatar'),
     key: 'avatar',
     width: 50,
     titleAlign: 'center',
@@ -113,32 +110,34 @@ const columns = ref<DataTableBaseColumn<User>[]>([
           class: 'flex align-center justify-center'
         },
         row.avatarUrl
-          ? h(NImage, {
-              width: 40,
-              lazy: true,
-              src: row.avatarUrl,
-              class: 'rounded-full'
-            })
-          : h(NIcon, {
-              size: '40',
-              depth: '3',
-              component: UserAvatarIcon
-            })
+          ? () =>
+              h(NImage, {
+                width: 40,
+                lazy: true,
+                src: row.avatarUrl,
+                class: 'rounded-full'
+              })
+          : () =>
+              h(NIcon, {
+                size: '40',
+                depth: '3',
+                component: UserAvatarIcon
+              })
       )
   },
   {
-    title: t('User.Username'),
+    title: () => t('User.Username'),
     key: 'username',
     width: 120,
     fixed: !BrowserUtils.isMobileDevice() ? 'left' : undefined
   },
   {
-    title: t('User.PhoneNumber'),
+    title: () => t('User.PhoneNumber'),
     key: 'phoneNumber',
     width: 120
   },
   {
-    title: t('User.Email'),
+    title: () => t('User.Email'),
     key: 'email',
     width: 100,
     resizable: true,
@@ -147,22 +146,22 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     }
   },
   {
-    title: t('User.Name'),
+    title: () => t('User.Name'),
     key: 'name',
     width: 100
   },
   {
-    title: t('User.LastName'),
+    title: () => t('User.LastName'),
     key: 'lastName',
     width: 80
   },
   {
-    title: t('User.FirstName'),
+    title: () => t('User.FirstName'),
     key: 'firstName',
     width: 80
   },
   {
-    title: t('User.NickName'),
+    title: () => t('User.NickName'),
     key: 'nickName',
     width: 120,
     resizable: true,
@@ -171,14 +170,14 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     }
   },
   {
-    title: t('User.Gender'),
+    title: () => t('User.Gender'),
     key: 'genderLabel',
     width: 60,
     titleAlign: 'center',
     align: 'center'
   },
   {
-    title: t('User.BirthDate'),
+    title: () => t('User.BirthDate'),
     key: 'birthDate',
     width: 100,
     titleAlign: 'center',
@@ -186,22 +185,22 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     render: (row) => (row.birthDate ? TimeUtils.formatTime(row.birthDate, 'YYYY/MM/DD') : '')
   },
   {
-    title: t('User.Country'),
+    title: () => t('User.Country'),
     key: 'country',
     width: 80
   },
   {
-    title: t('User.Province'),
+    title: () => t('User.Province'),
     key: 'province',
     width: 80
   },
   {
-    title: t('User.City'),
+    title: () => t('User.City'),
     key: 'city',
     width: 80
   },
   {
-    title: t('User.Address'),
+    title: () => t('User.Address'),
     key: 'address',
     width: 120,
     resizable: true,
@@ -210,7 +209,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     }
   },
   {
-    title: t('User.Biography'),
+    title: () => t('User.Biography'),
     key: 'biography',
     width: 200,
     resizable: true,
@@ -219,7 +218,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     }
   },
   {
-    title: t('UserManagement.VerifyOrNot'),
+    title: () => t('UserManagement.VerifyOrNot'),
     key: 'verified',
     width: 100,
     titleAlign: 'center',
@@ -231,7 +230,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
       })
   },
   {
-    title: t('UserManagement.EnableOrNot'),
+    title: () => t('UserManagement.EnableOrNot'),
     key: 'enabled',
     width: 100,
     titleAlign: 'center',
@@ -243,7 +242,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
       })
   },
   {
-    title: t('UserManagement.EnterTime'),
+    title: () => t('UserManagement.EnterTime'),
     key: 'createdAt',
     width: 140,
     titleAlign: 'center',
@@ -251,7 +250,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     render: (row) => (row.createdAt ? TimeUtils.formatTime(row.createdAt) : '')
   },
   {
-    title: t('User.AuthType'),
+    title: () => t('User.AuthType'),
     key: 'authTypes',
     width: 200,
     render: (row) => {
@@ -266,7 +265,18 @@ const columns = ref<DataTableBaseColumn<User>[]>([
               },
               {
                 default: () => authType,
-                icon: () => h(NIcon, { size: '14', class: 'mr-0.5' }, h(GitHubIcon, { class: 'scale-125' }))
+                icon: () =>
+                  h(
+                    NIcon,
+                    {
+                      size: '14',
+                      class: 'mr-0.5'
+                    },
+                    () =>
+                      h(GitHubIcon, {
+                        class: 'scale-125'
+                      })
+                  )
               }
             )
           case AuthType[1]:
@@ -278,7 +288,15 @@ const columns = ref<DataTableBaseColumn<User>[]>([
               },
               {
                 default: () => authType,
-                icon: () => h(NIcon, { size: '14', class: 'mr-0.5' }, h(GoogleIcon))
+                icon: () =>
+                  h(
+                    NIcon,
+                    {
+                      size: '14',
+                      class: 'mr-0.5'
+                    },
+                    h(GoogleIcon)
+                  )
               }
             )
           default:
@@ -289,7 +307,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     }
   },
   {
-    title: t('User.Roles'),
+    title: () => t('User.Roles'),
     key: 'roles',
     width: 200,
     render: (row) => {
@@ -310,9 +328,9 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     }
   },
   {
-    title: t('Common.Operation'),
+    title: () => t('Common.Operation'),
     key: 'operation',
-    width: processOptionColumnWidth(),
+    width: 320,
     titleAlign: 'center',
     align: 'center',
     fixed: !BrowserUtils.isMobileDevice() ? 'right' : undefined,
@@ -417,22 +435,10 @@ const handleConfirmPassword = () => {
   })
 }
 
+// 切换语言时重新查询列表
 watch(
   () => locale.value,
-  () => {
-    columns.value = columns.value.map((column) => {
-      const { key, width } = column
-      const i18nKey = userColumnsI18nKeyMap.get(key.toString())
-      return {
-        ...column,
-        // 重写多语言
-        title: i18nKey ? t(i18nKey) : column.title,
-        // 处理操作列宽度
-        width: key === 'operation' ? processOptionColumnWidth() : width
-      }
-    })
-    queryList()
-  }
+  () => queryList()
 )
 
 onMounted(() => queryList())

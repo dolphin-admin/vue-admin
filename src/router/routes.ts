@@ -1,12 +1,12 @@
 import ChartIcon from '~icons/ic/baseline-bar-chart'
 import CopyIcon from '~icons/ic/baseline-content-copy'
+import UnauthorizedIcon from '~icons/ic/baseline-do-not-disturb'
 import DigitalAnimationIcon from '~icons/ic/baseline-hourglass-empty'
 import QRCodeIcon from '~icons/ic/baseline-qrcode'
 import PrintIcon from '~icons/ic/outline-local-printshop'
-import UnauthorizedIcon from '~icons/ic/outline-looks-3'
-import NotFoundIcon from '~icons/ic/outline-looks-4'
-import InternalServerErrorIcon from '~icons/ic/outline-looks-5'
 import HomeIcon from '~icons/ic/sharp-house'
+import IAmATeapotIcon from '~icons/icon-park-outline/tea-drink'
+import InternalServerErrorIcon from '~icons/lucide/server-off'
 import UserInfoIcon from '~icons/mdi/account-circle'
 import UserManagementIcon from '~icons/mdi/account-cog-outline'
 import RoleManagementIcon from '~icons/mdi/account-group'
@@ -15,7 +15,15 @@ import ChangePasswordIcon from '~icons/mdi/key'
 import PermissionManagementIcon from '~icons/mdi/key-chain'
 import ExcelIcon from '~icons/mdi/microsoft-excel'
 import WebSocketIcon from '~icons/tabler/brand-socket-io'
+import NotFoundIcon from '~icons/tabler/error-404'
 
+import {
+  BUILTIN_COMPONENTS_PREFIX,
+  ERROR_PAGES_PREFIX,
+  SYSTEM_FUNCTIONS_PREFIX,
+  SYSTEM_TOOLS_PREFIX,
+  UNIVERSAL_COMPONENTS_PREFIX
+} from './prefix'
 const { t } = i18n.global
 
 export const routes = [
@@ -42,10 +50,11 @@ export const routes = [
           icon: HomeIcon
         }
       },
+      // User
       {
         path: '/user-info',
         name: 'user-info',
-        component: () => import('@/views/UserInfo'),
+        component: () => import('@/views/User/UserInfo'),
         meta: {
           title: () => t('Menu.UserInfo'),
           icon: UserInfoIcon
@@ -54,124 +63,147 @@ export const routes = [
       {
         path: '/change-password',
         name: 'change-password',
-        component: () => import('@/views/ChangePassword'),
+        component: () => import('@/views/User/ChangePassword'),
         meta: {
           title: () => t('Menu.ChangePassword'),
           icon: ChangePasswordIcon
         }
       },
+      // System Functions
       {
-        path: '/user-management',
+        path: `${SYSTEM_FUNCTIONS_PREFIX}/user-management`,
         name: 'user-management',
-        component: () => import('@/views/UserManagement'),
+        component: () => import('@/views/SystemFunctions/UserManagement'),
         meta: {
           title: () => t('Menu.UserManagement'),
           icon: UserManagementIcon
         }
       },
       {
-        path: '/role-management',
+        path: `${SYSTEM_FUNCTIONS_PREFIX}/role-management`,
         name: 'role-management',
-        component: () => import('@/views/RoleManagement'),
+        component: () => import('@/views/SystemFunctions/RoleManagement'),
         meta: {
           title: () => t('Menu.RoleManagement'),
           icon: RoleManagementIcon
         }
       },
       {
-        path: '/permission-management',
+        path: `${SYSTEM_FUNCTIONS_PREFIX}/permission-management`,
         name: 'permission-management',
-        component: () => import('@/views/PermissionManagement'),
+        component: () => import('@/views/SystemFunctions/PermissionManagement'),
         meta: {
           title: () => t('Menu.PermissionManagement'),
           icon: PermissionManagementIcon
         }
       },
+      // System Tools
       {
-        path: '/icon',
+        path: `${SYSTEM_TOOLS_PREFIX}/icon`,
         name: 'icon',
-        component: () => import('@/views/Icon'),
+        component: () => import('@/views/SystemTools/Icon'),
         meta: {
           title: () => t('Menu.Icon'),
           icon: IconManagementIcon
         }
       },
       {
-        path: '/qrcode',
+        path: `${SYSTEM_TOOLS_PREFIX}/qrcode`,
         name: 'qrcode',
-        component: () => import('@/views/QRCode'),
+        component: () => import('@/views/SystemTools/QRCode'),
         meta: {
           title: () => t('Menu.QRCode'),
           icon: QRCodeIcon
         }
       },
       {
-        path: '/clipboard',
+        path: `${SYSTEM_TOOLS_PREFIX}/clipboard`,
         name: 'clipboard',
-        component: () => import('@/views/Clipboard'),
+        component: () => import('@/views/SystemTools/Clipboard'),
         meta: {
           title: () => t('Menu.Clipboard'),
           icon: CopyIcon
         }
       },
       {
-        path: '/print',
+        path: `${SYSTEM_TOOLS_PREFIX}/print`,
         name: 'print',
-        component: () => import('@/views/Print'),
+        component: () => import('@/views/SystemTools/Print'),
         meta: {
           title: () => t('Menu.Print'),
           icon: PrintIcon
         }
       },
       {
-        path: '/excel',
+        path: `${SYSTEM_TOOLS_PREFIX}/excel`,
         name: 'excel',
-        component: () => import('@/views/Excel'),
+        component: () => import('@/views/SystemTools/Excel'),
         meta: {
           title: () => t('Menu.Excel'),
           icon: ExcelIcon
         }
       },
       {
-        path: '/websocket',
+        path: `${SYSTEM_TOOLS_PREFIX}/websocket`,
         name: 'websocket',
-        component: () => import('@/views/WebSocket'),
+        component: () => import('@/views/SystemTools/WebSocket'),
         meta: {
           title: () => t('Menu.WebSocket'),
           icon: WebSocketIcon
         }
       },
+      // Universal Components
       {
-        path: '/digital-animation',
-        name: 'digital-animation',
-        component: () => import('@/views/DigitalAnimation'),
-        meta: {
-          title: () => t('Menu.DigitalAnimation'),
-          icon: DigitalAnimationIcon
-        }
-      },
-      {
-        path: '/charts',
+        path: `${UNIVERSAL_COMPONENTS_PREFIX}/charts`,
         name: 'charts',
-        component: () => import('@/views/Charts'),
+        component: () => import('@/views/UniversalComponents/Charts'),
         meta: {
           title: () => t('Menu.Charts'),
           icon: ChartIcon
         }
       },
+      // Builtin Components
       {
-        path: '/403',
+        path: `${BUILTIN_COMPONENTS_PREFIX}/digital-animation`,
+        name: 'digital-animation',
+        component: () => import('@/views/BuiltinComponents/DigitalAnimation'),
+        meta: {
+          title: () => t('Menu.DigitalAnimation'),
+          icon: DigitalAnimationIcon
+        }
+      },
+      // Error Pages
+      {
+        path: `${ERROR_PAGES_PREFIX}/403`,
         name: '403',
-        component: () => import('@/views/403'),
+        component: () => import('@/views/ErrorPages/403'),
         meta: {
           title: () => t('Menu.403'),
           icon: UnauthorizedIcon
         }
       },
       {
-        path: '/500',
+        path: `${ERROR_PAGES_PREFIX}/404`,
+        name: '404',
+        component: () => import('@/views/ErrorPages/404'),
+        meta: {
+          title: () => t('Menu.404'),
+          icon: NotFoundIcon
+        }
+      },
+      {
+        path: `${ERROR_PAGES_PREFIX}/418`,
+        name: '418',
+        component: () => import('@/views/ErrorPages/418'),
+        meta: {
+          title: () => t('Menu.418'),
+          icon: IAmATeapotIcon
+        }
+      },
+      {
+        path: `${ERROR_PAGES_PREFIX}/500`,
         name: '500',
-        component: () => import('@/views/500'),
+        component: () => import('@/views/ErrorPages/500'),
         meta: {
           title: () => t('Menu.500'),
           icon: InternalServerErrorIcon
@@ -180,7 +212,7 @@ export const routes = [
       {
         path: '/:pathMatch(.*)*',
         name: '404',
-        component: () => import('@/views/404'),
+        component: () => import('@/views/ErrorPages/404'),
         meta: {
           title: () => t('Menu.404'),
           icon: NotFoundIcon
@@ -188,6 +220,7 @@ export const routes = [
       }
     ]
   },
+  // Auth
   {
     path: '/',
     name: 'auth-layout',
@@ -196,9 +229,9 @@ export const routes = [
       {
         path: '/login',
         name: 'login',
-        component: () => import('@/views/Login'),
+        component: () => import('@/views/Auth/Login'),
         meta: {
-          title: 'Menu.Login',
+          title: () => t('Menu.Login'),
           disableAuth: true,
           dismissTab: true
         }
@@ -206,9 +239,9 @@ export const routes = [
       {
         path: '/signup',
         name: 'signup',
-        component: () => import('@/views/Signup'),
+        component: () => import('@/views/Auth/Signup'),
         meta: {
-          title: 'Menu.Signup',
+          title: () => t('Menu.Signup'),
           disableAuth: true,
           dismissTab: true
         }
@@ -218,9 +251,9 @@ export const routes = [
   {
     path: '/auth-redirect',
     name: 'auth-redirect',
-    component: () => import('@/views/AuthRedirect'),
+    component: () => import('@/views/Auth/AuthRedirect'),
     meta: {
-      title: 'AuthRedirect.Authorizing',
+      title: () => t('AuthRedirect.Authorizing'),
       disableAuth: true,
       dismissTab: true
     }
