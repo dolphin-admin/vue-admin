@@ -145,7 +145,10 @@
     "Charts": "Charts",
     "BuiltinComponent": "Built-in Component",
     "DigitalAnimation": "Digital Animation",
-    "ErrorPage": "Error Page"
+    "ErrorPage": "Error Page",
+    "403": "403",
+    "404": "404",
+    "500": "500"
   },
   "Login": {
     "AsVisitor": "Login as Visitor",

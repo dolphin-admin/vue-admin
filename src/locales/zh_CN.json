@@ -145,7 +145,10 @@
     "Charts": "图表",
     "BuiltinComponent": "内置组件",
     "DigitalAnimation": "数字动画",
-    "ErrorPage": "错误页面"
+    "ErrorPage": "错误页面",
+    "403": "403",
+    "404": "404",
+    "500": "500"
   },
   "Login": {
     "AsVisitor": "以访客登录",

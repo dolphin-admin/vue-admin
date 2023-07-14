@@ -8,10 +8,9 @@ const { t } = useI18n<{ message: MessageSchema }, Lang>({ useScope: 'global' })
 
 const route = useRoute()
 const router = useRouter()
-const themeStore = useThemeStore()
 const sidebarStore = useSidebarStore()
 
-const menuData = ref<any>(menuOptions)
+const menuData = ref(menuOptions)
 
 const currentRouteName = computed(() => route.name as string)
 </script>
@@ -20,6 +19,7 @@ const currentRouteName = computed(() => route.name as string)
   <div
     class="absolute inset-y-0 left-0 z-[100] h-full border-r border-gray-300 bg-light-default shadow-sm transition-[width] dark:border-gray-950 dark:bg-dark-default sm:static"
     :class="[sidebarStore.isDisplay ? (sidebarStore.isCollapse ? 'w-16' : 'w-56') : 'w-0']"
+    @click="router.push('/')"
   >
     <!-- Header -->
     <div class="flex h-14 w-full select-none items-center justify-center">
@@ -30,12 +30,10 @@ const currentRouteName = computed(() => route.name as string)
         src="@/assets/images/favicon.png"
         alt=""
         loading="eager"
-        @click="() => themeStore.changeThemeMode(themeStore.themeMode === 'light' ? 'dark' : 'light')"
       />
       <span
         class="cursor-pointer whitespace-nowrap text-sm tracking-wide transition-all"
         :class="[sidebarStore.isDisplay ? (sidebarStore.isCollapse ? 'ml-0 hidden' : 'ml-3 w-auto') : 'hidden']"
-        @click="() => router.push('/')"
       >
         {{ t('App.Name') }}
       </span>
@@ -79,7 +77,7 @@ const currentRouteName = computed(() => route.name as string)
   <div
     class="absolute inset-0 z-[75] bg-black opacity-40 sm:hidden"
     :class="sidebarStore.isDisplay ? 'block' : 'hidden'"
-    @click="() => sidebarStore.toggleSidebarDisplay()"
+    @click="sidebarStore.toggleSidebarDisplay()"
   />
 </template>
 

@@ -6,6 +6,7 @@ import SettingIcon from '~icons/ic/outline-settings'
 import FullScreenIcon from '~icons/ic/round-fullscreen'
 import ExitFullscreenIcon from '~icons/ic/round-fullscreen-exit'
 import LanguageIcon from '~icons/ion/language-outline'
+import DiscordIcon from '~icons/line-md/discord'
 import GithubIcon from '~icons/line-md/github-loop'
 import HideMenuIcon from '~icons/line-md/menu-fold-left'
 import ShowMenuIcon from '~icons/line-md/menu-fold-right'
@@ -13,32 +14,13 @@ import SunIcon from '~icons/line-md/moon-alt-to-sunny-outline-loop-transition'
 import MoonIcon from '~icons/line-md/sunny-filled-loop-to-moon-alt-filled-loop-transition'
 
 import type { UserOptionKey } from './private'
-import { languageOptions } from './private'
+import { languageOptions, userOptions } from './private'
 
 const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({ useScope: 'global' })
 
 const { repoGitHubURL } = siteMetaData
 
 const { openNewWindow } = BrowserUtils
-
-const userOptions = [
-  {
-    label: () => t('Menu.UserInfo'),
-    key: 'UserInfo'
-  },
-  {
-    label: () => t('Header.ChangePassword'),
-    key: 'ChangePassword'
-  },
-  {
-    label: () => t('Header.LockScreen'),
-    key: 'Lock'
-  },
-  {
-    label: () => t('Header.Logout'),
-    key: 'Quit'
-  }
-]
 
 const themeStore = useThemeStore()
 const sidebarStore = useSidebarStore()
@@ -54,6 +36,11 @@ const { isFullscreen, toggle: toggleFullscreen } = useFullscreen()
 const currentLanguageOptions = computed(() =>
   locale.value === 'zh_CN' ? languageOptions : [languageOptions[1], languageOptions[0]]
 )
+
+/**
+ * 打开 Discord 邀请链接
+ */
+const openDiscordURL = () => openNewWindow('https://discord.gg/UKhpUQgwCT')
 
 /**
  * 更新语言
@@ -119,7 +106,7 @@ const selectUserOption = (key: UserOptionKey) => {
             class="cursor-pointer"
             size="20"
             :component="sidebarStore.isDisplay ? HideMenuIcon : ShowMenuIcon"
-            @click="() => sidebarStore.toggleSidebarDisplay()"
+            @click="sidebarStore.toggleSidebarDisplay"
           />
         </template>
         {{ t(sidebarStore.isDisplay ? 'Sidebar.Hide' : 'Sidebar.Show') }}
@@ -135,11 +122,12 @@ const selectUserOption = (key: UserOptionKey) => {
           <NIcon
             class="cursor-pointer"
             size="20"
-            :component="GithubIcon"
-            @click="() => openNewWindow(repoGitHubURL)"
+            color="#5865F2"
+            :component="DiscordIcon"
+            @click="openDiscordURL"
           />
         </template>
-        GitHub
+        Discord
       </NTooltip>
 
       <NTooltip
@@ -150,11 +138,28 @@ const selectUserOption = (key: UserOptionKey) => {
           <NIcon
             class="cursor-pointer"
             size="20"
-            :component="NotificationIcon"
+            :component="GithubIcon"
+            @click="openNewWindow(repoGitHubURL)"
           />
         </template>
-        {{ t('Header.Notification') }}
+        GitHub
       </NTooltip>
+
+      <template v-if="false">
+        <NTooltip
+          placement="bottom"
+          trigger="hover"
+        >
+          <template #trigger>
+            <NIcon
+              class="cursor-pointer"
+              size="20"
+              :component="NotificationIcon"
+            />
+          </template>
+          {{ t('Header.Notification') }}
+        </NTooltip>
+      </template>
 
       <NTooltip
         placement="bottom"
@@ -191,26 +196,29 @@ const selectUserOption = (key: UserOptionKey) => {
           <NIcon
             class="cursor-pointer"
             size="20"
-            :component="themeStore.themeMode === 'light' ? MoonIcon : SunIcon"
+            :color="themeStore.themeMode === 'light' ? '#FDC022' : '#FED736'"
+            :component="themeStore.themeMode === 'light' ? SunIcon : MoonIcon"
             @click="() => themeStore.changeThemeMode(themeStore.themeMode === 'light' ? 'dark' : 'light')"
           />
         </template>
         {{ t('Header.SwitchTheme') }}
       </NTooltip>
 
-      <NTooltip
-        placement="bottom"
-        trigger="hover"
-      >
-        <template #trigger>
-          <NIcon
-            class="cursor-pointer"
-            size="20"
-            :component="SettingIcon"
-          />
-        </template>
-        {{ t('Header.Settings') }}
-      </NTooltip>
+      <template v-if="false">
+        <NTooltip
+          placement="bottom"
+          trigger="hover"
+        >
+          <template #trigger>
+            <NIcon
+              class="cursor-pointer"
+              size="20"
+              :component="SettingIcon"
+            />
+          </template>
+          {{ t('Header.Settings') }}
+        </NTooltip>
+      </template>
 
       <template v-if="userStore.hasData()">
         <NDropdown
