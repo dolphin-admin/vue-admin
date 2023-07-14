@@ -1,6 +1,5 @@
 import type { MenuOption } from 'naive-ui'
 
-import { ERROR_PAGES_PREFIX } from '@/router'
 import UniversalComponentsIcon from '~icons/ic/baseline-auto-awesome-mosaic'
 import ChartIcon from '~icons/ic/baseline-bar-chart'
 import CopyIcon from '~icons/ic/baseline-content-copy'
@@ -23,11 +22,11 @@ import SystemToolsIcon from '~icons/mdi/tools'
 import WebSocketIcon from '~icons/tabler/brand-socket-io'
 import NotFoundIcon from '~icons/tabler/error-404'
 
-import { renderIcon, renderLabel, renderLink, renderT as t } from './render'
+import { renderIcon, renderLabel, renderT as t } from './render'
 
 export const menuOptions: MenuOption[] = [
   {
-    label: renderLink(t('Menu.Home'), '/home'),
+    label: renderLabel(t('Menu.Home')),
     key: 'home',
     icon: renderIcon(HomeIcon)
   },
@@ -37,18 +36,18 @@ export const menuOptions: MenuOption[] = [
     icon: renderIcon(SystemFunctionsIcon),
     children: [
       {
-        label: renderLink(t('Menu.UserManagement'), '/user-management'),
+        label: renderLabel(t('Menu.UserManagement')),
         key: 'user-management',
         icon: renderIcon(UserManagementIcon)
       },
       {
-        label: renderLink(t('Menu.RoleManagement'), '/role-management'),
+        label: renderLabel(t('Menu.RoleManagement')),
         key: 'role-management',
         icon: renderIcon(RoleManagementIcon),
         show: false
       },
       {
-        label: renderLink(t('Menu.PermissionManagement'), '/permission-management'),
+        label: renderLabel(t('Menu.PermissionManagement')),
         key: 'permission-management',
         icon: renderIcon(PermissionManagementIcon),
         show: false
@@ -61,33 +60,33 @@ export const menuOptions: MenuOption[] = [
     icon: renderIcon(SystemToolsIcon),
     children: [
       {
-        label: renderLink(t('Menu.Icon'), '/icon'),
+        label: renderLabel(t('Menu.Icon')),
         key: 'icon',
         icon: renderIcon(IconManagementIcon),
         show: false
       },
       {
-        label: renderLink(t('Menu.QRCode'), '/qrcode'),
+        label: renderLabel(t('Menu.QRCode')),
         key: 'qrcode',
         icon: renderIcon(QRCodeIcon)
       },
       {
-        label: renderLink(t('Menu.Clipboard'), '/clipboard'),
+        label: renderLabel(t('Menu.Clipboard')),
         key: 'clipboard',
         icon: renderIcon(CopyIcon)
       },
       {
-        label: renderLink(t('Menu.Print'), '/print'),
+        label: renderLabel(t('Menu.Print')),
         key: 'print',
         icon: renderIcon(PrintIcon)
       },
       {
-        label: renderLink(t('Menu.Excel'), '/excel'),
+        label: renderLabel(t('Menu.Excel')),
         key: 'excel',
         icon: renderIcon(ExcelIcon)
       },
       {
-        label: renderLink(t('Menu.WebSocket'), '/websocket'),
+        label: renderLabel(t('Menu.WebSocket')),
         key: 'websocket',
         icon: renderIcon(WebSocketIcon)
       }
@@ -99,7 +98,7 @@ export const menuOptions: MenuOption[] = [
     icon: renderIcon(UniversalComponentsIcon),
     children: [
       {
-        label: renderLink(t('Menu.Charts'), '/charts'),
+        label: renderLabel(t('Menu.Charts')),
         key: 'charts',
         icon: renderIcon(ChartIcon)
       }
@@ -111,7 +110,7 @@ export const menuOptions: MenuOption[] = [
     icon: renderIcon(BuiltinComponentsIcon),
     children: [
       {
-        label: renderLink(t('Menu.DigitalAnimation'), '/digital-animation'),
+        label: renderLabel(t('Menu.DigitalAnimation')),
         key: 'digital-animation',
         icon: renderIcon(DigitalAnimationIcon)
       }
@@ -123,22 +122,22 @@ export const menuOptions: MenuOption[] = [
     icon: renderIcon(ErrorPagesIcon),
     children: [
       {
-        label: renderLink(t('Menu.403'), `${ERROR_PAGES_PREFIX}/403`),
+        label: renderLabel(t('Menu.403')),
         key: '403',
         icon: renderIcon(UnauthorizedIcon)
       },
       {
-        label: renderLink(t('Menu.404'), `${ERROR_PAGES_PREFIX}/404`),
+        label: renderLabel(t('Menu.404')),
         key: '404',
         icon: renderIcon(NotFoundIcon)
       },
       {
-        label: renderLink(t('Menu.418'), `${ERROR_PAGES_PREFIX}/418`),
+        label: renderLabel(t('Menu.418')),
         key: '418',
         icon: renderIcon(IAmATeapotIcon)
       },
       {
-        label: renderLink(t('Menu.500'), `${ERROR_PAGES_PREFIX}/500`),
+        label: renderLabel(t('Menu.500')),
         key: '500',
         icon: renderIcon(InternalServerErrorIcon)
       }
