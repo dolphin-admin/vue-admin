@@ -4,14 +4,14 @@ import { ERROR_PAGES_PREFIX } from '@/router'
 import UniversalComponentsIcon from '~icons/ic/baseline-auto-awesome-mosaic'
 import ChartIcon from '~icons/ic/baseline-bar-chart'
 import CopyIcon from '~icons/ic/baseline-content-copy'
+import UnauthorizedIcon from '~icons/ic/baseline-do-not-disturb'
 import ErrorPagesIcon from '~icons/ic/baseline-error-outline'
 import DigitalAnimationIcon from '~icons/ic/baseline-hourglass-empty'
 import QRCodeIcon from '~icons/ic/baseline-qrcode'
 import PrintIcon from '~icons/ic/outline-local-printshop'
-import UnauthorizedIcon from '~icons/ic/outline-looks-3'
-import NotFoundIcon from '~icons/ic/outline-looks-4'
-import InternalServerErrorIcon from '~icons/ic/outline-looks-5'
 import HomeIcon from '~icons/ic/sharp-house'
+import IAmATeapotIcon from '~icons/icon-park-outline/tea-drink'
+import InternalServerErrorIcon from '~icons/lucide/server-off'
 import UserManagementIcon from '~icons/mdi/account-cog-outline'
 import RoleManagementIcon from '~icons/mdi/account-group'
 import IconManagementIcon from '~icons/mdi/emoticon-wink'
@@ -21,6 +21,7 @@ import ExcelIcon from '~icons/mdi/microsoft-excel'
 import BuiltinComponentsIcon from '~icons/mdi/puzzle'
 import SystemToolsIcon from '~icons/mdi/tools'
 import WebSocketIcon from '~icons/tabler/brand-socket-io'
+import NotFoundIcon from '~icons/tabler/error-404'
 
 import { renderIcon, renderLabel, renderLink, renderT as t } from './render'
 
@@ -130,6 +131,11 @@ export const menuOptions: MenuOption[] = [
         label: renderLink(t('Menu.404'), `${ERROR_PAGES_PREFIX}/404`),
         key: '404',
         icon: renderIcon(NotFoundIcon)
+      },
+      {
+        label: renderLink(t('Menu.418'), `${ERROR_PAGES_PREFIX}/418`),
+        key: '418',
+        icon: renderIcon(IAmATeapotIcon)
       },
       {
         label: renderLink(t('Menu.500'), `${ERROR_PAGES_PREFIX}/500`),

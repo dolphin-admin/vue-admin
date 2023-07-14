@@ -5,6 +5,7 @@
   "Common": {
     "403": "Forbidden",
     "404": "Not Found",
+    "418": "I'm A Teapot",
     "500": "Internal Server Error",
     "All": "All",
     "Search": "Search",
@@ -149,6 +150,7 @@
     "ErrorPages": "Error Page",
     "403": "403",
     "404": "404",
+    "418": "418",
     "500": "500"
   },
   "Login": {

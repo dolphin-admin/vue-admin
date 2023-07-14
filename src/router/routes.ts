@@ -1,12 +1,12 @@
 import ChartIcon from '~icons/ic/baseline-bar-chart'
 import CopyIcon from '~icons/ic/baseline-content-copy'
+import UnauthorizedIcon from '~icons/ic/baseline-do-not-disturb'
 import DigitalAnimationIcon from '~icons/ic/baseline-hourglass-empty'
 import QRCodeIcon from '~icons/ic/baseline-qrcode'
 import PrintIcon from '~icons/ic/outline-local-printshop'
-import UnauthorizedIcon from '~icons/ic/outline-looks-3'
-import NotFoundIcon from '~icons/ic/outline-looks-4'
-import InternalServerErrorIcon from '~icons/ic/outline-looks-5'
 import HomeIcon from '~icons/ic/sharp-house'
+import IAmATeapotIcon from '~icons/icon-park-outline/tea-drink'
+import InternalServerErrorIcon from '~icons/lucide/server-off'
 import UserInfoIcon from '~icons/mdi/account-circle'
 import UserManagementIcon from '~icons/mdi/account-cog-outline'
 import RoleManagementIcon from '~icons/mdi/account-group'
@@ -15,6 +15,7 @@ import ChangePasswordIcon from '~icons/mdi/key'
 import PermissionManagementIcon from '~icons/mdi/key-chain'
 import ExcelIcon from '~icons/mdi/microsoft-excel'
 import WebSocketIcon from '~icons/tabler/brand-socket-io'
+import NotFoundIcon from '~icons/tabler/error-404'
 
 import {
   BUILTIN_COMPONENTS_PREFIX,
@@ -182,6 +183,15 @@ export const routes = [
         meta: {
           title: () => t('Menu.404'),
           icon: NotFoundIcon
+        }
+      },
+      {
+        path: `${ERROR_PAGES_PREFIX}/418`,
+        name: '418',
+        component: () => import('@/views/ErrorPages/418'),
+        meta: {
+          title: () => t('Menu.418'),
+          icon: IAmATeapotIcon
         }
       },
       {
