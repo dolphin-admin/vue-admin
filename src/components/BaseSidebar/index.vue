@@ -75,7 +75,6 @@ watch(
           :indent="26"
           :value="selectedKey"
           :accordion="accordion"
-          inverted
           @update:value="handleChangeMenu"
         />
       </NScrollbar>

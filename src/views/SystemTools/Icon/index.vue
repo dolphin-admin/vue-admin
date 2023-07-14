@@ -6,6 +6,7 @@ import type { MessageSchema } from '@/types'
 import SearchIcon from '~icons/ic/sharp-search'
 
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+
 const message = useMessage()
 const [fetchLoading, fetchLoadingDispatcher] = useLoading()
 
