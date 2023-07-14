@@ -69,7 +69,8 @@ export default defineConfig(({ mode }) => {
               'NPopconfirm',
               'NInput',
               'NAvatar',
-              'NImage'
+              'NImage',
+              'NEllipsis'
             ]
           },
           {

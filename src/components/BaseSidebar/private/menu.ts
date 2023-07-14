@@ -1,484 +1,139 @@
-import type { MenuMixedOption } from '@/types'
+import type { MenuOption } from 'naive-ui'
+
 import UniversalComponentsIcon from '~icons/ic/baseline-auto-awesome-mosaic'
 import ChartIcon from '~icons/ic/baseline-bar-chart'
 import CopyIcon from '~icons/ic/baseline-content-copy'
+import ErrorPageIcon from '~icons/ic/baseline-error-outline'
 import DigitalAnimationIcon from '~icons/ic/baseline-hourglass-empty'
 import QRCodeIcon from '~icons/ic/baseline-qrcode'
+import PrintIcon from '~icons/ic/outline-local-printshop'
+import UnauthorizedIcon from '~icons/ic/outline-looks-3'
+import NotFoundIcon from '~icons/ic/outline-looks-4'
+import InternalServerErrorIcon from '~icons/ic/outline-looks-5'
 import HomeIcon from '~icons/ic/sharp-house'
 import UserManagementIcon from '~icons/mdi/account-cog-outline'
 import RoleManagementIcon from '~icons/mdi/account-group'
 import IconManagementIcon from '~icons/mdi/emoticon-wink'
 import SystemFunctionIcon from '~icons/mdi/function-variant'
 import PermissionManagementIcon from '~icons/mdi/key-chain'
+import ExcelIcon from '~icons/mdi/microsoft-excel'
 import ComponentsPreviewIcon from '~icons/mdi/puzzle'
 import SystemToolIcon from '~icons/mdi/tools'
-import ExcelIcon from '~icons/mdi/microsoft-excel'
 import WebSocketIcon from '~icons/tabler/brand-socket-io'
-import PrintIcon from '~icons/ic/outline-local-printshop'
-import ErrorPageIcon from '~icons/ic/baseline-error-outline'
-import Looks404Icon from '~icons/ic/outline-looks-4'
-import Looks403Icon from '~icons/ic/outline-looks-3'
-import Looks500Icon from '~icons/ic/outline-looks-5'
 
-const { t } = i18n.global
+import { renderIcon, renderLabel, renderLinkLabel, renderT as t } from './render'
 
-export const menuOptions: MenuMixedOption[] = [
+export const menuOptions: MenuOption[] = [
   {
-    label: () =>
-      h(
-        RouterLink,
-        {
-          to: '/home'
-        },
-        {
-          default: () => t('Menu.Home')
-        }
-      ),
+    label: renderLinkLabel(t('Menu.Home'), '/home'),
     key: 'home',
-    icon: () =>
-      h(
-        NIcon,
-        {
-          size: 16
-        },
-        {
-          default: () => h(HomeIcon)
-        }
-      ),
-    isRouterLink: true
+    icon: renderIcon(HomeIcon)
   },
   {
-    label: () => t('Menu.SystemFunction'),
+    label: renderLabel(t('Menu.SystemFunction')),
     key: 'system-function',
-    icon: () =>
-      h(
-        NIcon,
-        {
-          size: 16
-        },
-        {
-          default: () => h(SystemFunctionIcon)
-        }
-      ),
-    menuType: 'label',
+    icon: renderIcon(SystemFunctionIcon),
     children: [
       {
-        label: () =>
-          h(
-            RouterLink,
-            {
-              to: '/user-management'
-            },
-            {
-              default: () => t('Menu.UserManagement')
-            }
-          ),
-        path: '/user-management',
+        label: renderLinkLabel(t('Menu.UserManagement'), '/user-management'),
         key: 'user-management',
-        icon: () =>
-          h(
-            NIcon,
-            {
-              size: 16
-            },
-            {
-              default: () => h(UserManagementIcon)
-            }
-          ),
-        menuType: 'routerLink'
+        icon: renderIcon(UserManagementIcon)
       },
       {
-        label: () =>
-          h(
-            RouterLink,
-            {
-              to: '/role-management'
-            },
-            {
-              default: () => t('Menu.RoleManagement')
-            }
-          ),
-        path: '/role-management',
+        label: renderLinkLabel(t('Menu.RoleManagement'), '/role-management'),
         key: 'role-management',
-        icon: () =>
-          h(
-            NIcon,
-            {
-              size: 16
-            },
-            {
-              default: () => h(RoleManagementIcon)
-            }
-          ),
-        menuType: 'routerLink'
+        icon: renderIcon(RoleManagementIcon),
+        show: false
       },
       {
-        label: () =>
-          h(
-            RouterLink,
-            {
-              to: '/permission-management'
-            },
-            {
-              default: () => t('Menu.PermissionManagement')
-            }
-          ),
-        path: '/permission-management',
+        label: renderLinkLabel(t('Menu.PermissionManagement'), '/permission-management'),
         key: 'permission-management',
-        icon: () =>
-          h(
-            NIcon,
-            {
-              size: 16
-            },
-            {
-              default: () => h(PermissionManagementIcon)
-            }
-          ),
-        menuType: 'routerLink'
+        icon: renderIcon(PermissionManagementIcon),
+        show: false
       }
     ]
   },
   {
-    label: () => t('Menu.SystemTool'),
+    label: renderLabel(t('Menu.SystemTool')),
     key: 'system-tool',
-    icon: () =>
-      h(
-        NIcon,
-        {
-          size: 16
-        },
-        {
-          default: () => h(SystemToolIcon)
-        }
-      ),
-    menuType: 'label',
+    icon: renderIcon(SystemToolIcon),
     children: [
       {
-        label: () =>
-          h(
-            RouterLink,
-            {
-              to: '/icon'
-            },
-            {
-              default: () => t('Menu.Icon')
-            }
-          ),
-        labelKey: 'Menu.Icon',
-        path: '/icon',
+        label: renderLinkLabel(t('Menu.Icon'), '/icon'),
         key: 'icon',
-        icon: () =>
-          h(
-            NIcon,
-            {
-              size: 16
-            },
-            {
-              default: () => h(IconManagementIcon)
-            }
-          ),
-        menuType: 'routerLink'
+        icon: renderIcon(IconManagementIcon),
+        show: false
       },
       {
-        label: () =>
-          h(
-            RouterLink,
-            {
-              to: '/qrcode'
-            },
-            {
-              default: () => t('Menu.QRCode')
-            }
-          ),
-        labelKey: 'Menu.QRCode',
-        path: '/qrcode',
+        label: renderLinkLabel(t('Menu.QRCode'), '/qrcode'),
         key: 'QRCode',
-        icon: () =>
-          h(
-            NIcon,
-            {
-              size: 16
-            },
-            {
-              default: () => h(QRCodeIcon)
-            }
-          ),
-        menuType: 'routerLink'
+        icon: renderIcon(QRCodeIcon)
       },
       {
-        label: () =>
-          h(
-            RouterLink,
-            {
-              to: '/clipboard'
-            },
-            {
-              default: () => t('Menu.Clipboard')
-            }
-          ),
-        path: '/clipboard',
+        label: renderLinkLabel(t('Menu.Clipboard'), '/clipboard'),
         key: 'clipboard',
-        icon: () =>
-          h(
-            NIcon,
-            {
-              size: 16
-            },
-            {
-              default: () => h(CopyIcon)
-            }
-          ),
-        menuType: 'routerLink'
+        icon: renderIcon(CopyIcon)
       },
       {
-        label: () =>
-          h(
-            RouterLink,
-            {
-              to: '/print'
-            },
-            {
-              default: () => t('Menu.Print')
-            }
-          ),
-        path: '/print',
+        label: renderLinkLabel(t('Menu.Print'), '/print'),
         key: 'print',
-        icon: () =>
-          h(
-            NIcon,
-            {
-              size: 16
-            },
-            {
-              default: () => h(PrintIcon)
-            }
-          )
+        icon: renderIcon(PrintIcon)
       },
       {
-        label: () =>
-          h(
-            RouterLink,
-            {
-              to: '/excel'
-            },
-            {
-              default: () => t('Menu.Excel')
-            }
-          ),
-        path: '/excel',
+        label: renderLinkLabel(t('Menu.Excel'), '/excel'),
         key: 'excel',
-        icon: () =>
-          h(
-            NIcon,
-            {
-              size: 16
-            },
-            {
-              default: () => h(ExcelIcon)
-            }
-          ),
-        menuType: 'routerLink'
+        icon: renderIcon(ExcelIcon)
       },
       {
-        label: () =>
-          h(
-            RouterLink,
-            {
-              to: '/websocket'
-            },
-            {
-              default: () => t('Menu.WebSocket')
-            }
-          ),
-        path: '/websocket',
+        label: renderLinkLabel(t('Menu.WebSocket'), '/websocket'),
         key: 'websocket',
-        icon: () =>
-          h(
-            NIcon,
-            {
-              size: 16
-            },
-            {
-              default: () => h(WebSocketIcon)
-            }
-          )
+        icon: renderIcon(WebSocketIcon)
       }
     ]
   },
   {
-    label: () => t('Menu.UniversalComponents'),
+    label: renderLabel(t('Menu.UniversalComponents')),
     key: 'universal-components',
-    icon: () =>
-      h(
-        NIcon,
-        {
-          size: 16
-        },
-        {
-          default: () => h(UniversalComponentsIcon)
-        }
-      ),
-    menuType: 'label',
+    icon: renderIcon(UniversalComponentsIcon),
     children: [
       {
-        label: () =>
-          h(
-            RouterLink,
-            {
-              to: '/charts'
-            },
-            {
-              default: () => t('Menu.Charts')
-            }
-          ),
-        path: '/charts',
+        label: renderLinkLabel(t('Menu.Charts'), '/charts'),
         key: 'charts',
-        icon: () =>
-          h(
-            NIcon,
-            {
-              size: 16
-            },
-            {
-              default: () => h(ChartIcon)
-            }
-          ),
-        menuType: 'routerLink'
+        icon: renderIcon(ChartIcon)
       }
     ]
   },
   {
-    label: () => t('Menu.BuiltinComponent'),
+    label: renderLabel(t('Menu.BuiltinComponent')),
     key: 'builtin-component',
-    icon: () =>
-      h(
-        NIcon,
-        {
-          size: 16
-        },
-        {
-          default: () => h(ComponentsPreviewIcon)
-        }
-      ),
-    menuType: 'label',
+    icon: renderIcon(ComponentsPreviewIcon),
     children: [
       {
-        label: () =>
-          h(
-            RouterLink,
-            {
-              to: '/digital-animation'
-            },
-            {
-              default: () => t('Menu.DigitalAnimation')
-            }
-          ),
-        path: '/digital-animation',
+        label: renderLinkLabel(t('Menu.DigitalAnimation'), '/digital-animation'),
         key: 'digital-animation',
-        icon: () =>
-          h(
-            NIcon,
-            {
-              size: 16
-            },
-            {
-              default: () => h(DigitalAnimationIcon)
-            }
-          ),
-        menuType: 'routerLink'
+        icon: renderIcon(DigitalAnimationIcon)
       }
     ]
   },
   {
-    label: () => t('Menu.ErrorPage'),
+    label: renderLabel(t('Menu.ErrorPage')),
     key: 'error-page',
-    icon: () =>
-      h(
-        NIcon,
-        {
-          size: 16
-        },
-        {
-          default: () => h(ErrorPageIcon)
-        }
-      ),
-    menuType: 'label',
+    icon: renderIcon(ErrorPageIcon),
     children: [
       {
-        label: () =>
-          h(
-            RouterLink,
-            {
-              to: '/404'
-            },
-            {
-              default: () => t('Common.404')
-            }
-          ),
-        path: '/404',
-        key: '404',
-        icon: () =>
-          h(
-            NIcon,
-            {
-              size: 16
-            },
-            {
-              default: () => h(Looks404Icon)
-            }
-          ),
-        menuType: 'routerLink'
-      },
-      {
-        label: () =>
-          h(
-            RouterLink,
-            {
-              to: '/403'
-            },
-            {
-              default: () => t('Common.403')
-            }
-          ),
-        path: '/403',
+        label: renderLinkLabel(t('Menu.403'), '/403'),
         key: '403',
-        icon: () =>
-          h(
-            NIcon,
-            {
-              size: 16
-            },
-            {
-              default: () => h(Looks403Icon)
-            }
-          ),
-        menuType: 'routerLink'
+        icon: renderIcon(UnauthorizedIcon)
       },
       {
-        label: () =>
-          h(
-            RouterLink,
-            {
-              to: '/500'
-            },
-            {
-              default: () => t('Common.500')
-            }
-          ),
-        path: '/500',
+        label: renderLinkLabel(t('Menu.404'), '/404'),
+        key: '404',
+        icon: renderIcon(NotFoundIcon)
+      },
+      {
+        label: renderLinkLabel(t('Menu.500'), '/500'),
         key: '500',
-        icon: () =>
-          h(
-            NIcon,
-            {
-              size: 16
-            },
-            {
-              default: () => h(Looks500Icon)
-            }
-          ),
-        menuType: 'routerLink'
+        icon: renderIcon(InternalServerErrorIcon)
       }
     ]
   }

@@ -18,6 +18,7 @@ declare global {
   const LangUtils: typeof import('./utils/lang/index')['LangUtils']
   const NAvatar: typeof import('naive-ui')['NAvatar']
   const NButton: typeof import('naive-ui')['NButton']
+  const NEllipsis: typeof import('naive-ui')['NEllipsis']
   const NIcon: typeof import('naive-ui')['NIcon']
   const NImage: typeof import('naive-ui')['NImage']
   const NInput: typeof import('naive-ui')['NInput']

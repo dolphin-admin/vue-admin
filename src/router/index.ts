@@ -1,4 +1,5 @@
 import NProgress from 'nprogress'
+import type { VNodeChild } from 'vue'
 import { createRouter, createWebHistory, type RouteLocationNormalized } from 'vue-router'
 
 import { routes } from './routes'
@@ -20,7 +21,7 @@ const router = createRouter({
  */
 const processTargetRoute = (to: RouteLocationNormalized) => {
   if (to.meta.title) {
-    document.title = `${t(to.meta.title as string)} | ${t('App.Name')}`
+    document.title = `${typeof to.meta.title === 'function' ? to.meta.title() : to.meta.title} | ${t('App.Name')}`
   } else {
     document.title = `${t('App.Name')}`
   }
@@ -38,7 +39,7 @@ const processRouteTag = (to: RouteLocationNormalized) => {
   const tagStore = useTabStore()
   tagStore.addTab({
     href: to.path,
-    label: () => t(to.meta?.title as string),
+    label: to.meta?.title as string | (() => VNodeChild),
     icon: shallowRef(to.meta?.icon as any) // shallowRef 包裹组件，避免深层响应
   })
 }

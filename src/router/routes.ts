@@ -2,7 +2,10 @@ import ChartIcon from '~icons/ic/baseline-bar-chart'
 import CopyIcon from '~icons/ic/baseline-content-copy'
 import DigitalAnimationIcon from '~icons/ic/baseline-hourglass-empty'
 import QRCodeIcon from '~icons/ic/baseline-qrcode'
-import ExcelIcon from '~icons/mdi/microsoft-excel'
+import PrintIcon from '~icons/ic/outline-local-printshop'
+import UnauthorizedIcon from '~icons/ic/outline-looks-3'
+import NotFoundIcon from '~icons/ic/outline-looks-4'
+import InternalServerErrorIcon from '~icons/ic/outline-looks-5'
 import HomeIcon from '~icons/ic/sharp-house'
 import UserInfoIcon from '~icons/mdi/account-circle'
 import UserManagementIcon from '~icons/mdi/account-cog-outline'
@@ -10,11 +13,10 @@ import RoleManagementIcon from '~icons/mdi/account-group'
 import IconManagementIcon from '~icons/mdi/emoticon-wink'
 import ChangePasswordIcon from '~icons/mdi/key'
 import PermissionManagementIcon from '~icons/mdi/key-chain'
+import ExcelIcon from '~icons/mdi/microsoft-excel'
 import WebSocketIcon from '~icons/tabler/brand-socket-io'
-import PrintIcon from '~icons/ic/outline-local-printshop'
-import Looks404Icon from '~icons/ic/outline-looks-4'
-import Looks403Icon from '~icons/ic/outline-looks-3'
-import Looks500Icon from '~icons/ic/outline-looks-5'
+
+const { t } = i18n.global
 
 export const routes = [
   {
@@ -27,7 +29,7 @@ export const routes = [
         name: 'navigation',
         component: () => import('@/views/Navigation'),
         meta: {
-          title: 'Menu.Navigation',
+          title: () => t('Menu.Navigation'),
           dismissTab: true
         }
       },
@@ -36,7 +38,7 @@ export const routes = [
         name: 'home',
         component: () => import('@/views/Home'),
         meta: {
-          title: 'Menu.Home',
+          title: () => t('Menu.Home'),
           icon: HomeIcon
         }
       },
@@ -45,7 +47,7 @@ export const routes = [
         name: 'user-info',
         component: () => import('@/views/UserInfo'),
         meta: {
-          title: 'Menu.UserInfo',
+          title: () => t('Menu.UserInfo'),
           icon: UserInfoIcon
         }
       },
@@ -54,7 +56,7 @@ export const routes = [
         name: 'change-password',
         component: () => import('@/views/ChangePassword'),
         meta: {
-          title: 'Menu.ChangePassword',
+          title: () => t('Menu.ChangePassword'),
           icon: ChangePasswordIcon
         }
       },
@@ -63,7 +65,7 @@ export const routes = [
         name: 'user-management',
         component: () => import('@/views/UserManagement'),
         meta: {
-          title: 'Menu.UserManagement',
+          title: () => t('Menu.UserManagement'),
           icon: UserManagementIcon
         }
       },
@@ -72,7 +74,7 @@ export const routes = [
         name: 'role-management',
         component: () => import('@/views/RoleManagement'),
         meta: {
-          title: 'Menu.RoleManagement',
+          title: () => t('Menu.RoleManagement'),
           icon: RoleManagementIcon
         }
       },
@@ -81,7 +83,7 @@ export const routes = [
         name: 'permission-management',
         component: () => import('@/views/PermissionManagement'),
         meta: {
-          title: 'Menu.PermissionManagement',
+          title: () => t('Menu.PermissionManagement'),
           icon: PermissionManagementIcon
         }
       },
@@ -90,7 +92,7 @@ export const routes = [
         name: 'icon',
         component: () => import('@/views/Icon'),
         meta: {
-          title: 'Menu.Icon',
+          title: () => t('Menu.Icon'),
           icon: IconManagementIcon
         }
       },
@@ -99,7 +101,7 @@ export const routes = [
         name: 'qrcode',
         component: () => import('@/views/QRCode'),
         meta: {
-          title: 'Menu.QRCode',
+          title: () => t('Menu.QRCode'),
           icon: QRCodeIcon
         }
       },
@@ -108,35 +110,8 @@ export const routes = [
         name: 'clipboard',
         component: () => import('@/views/Clipboard'),
         meta: {
-          title: 'Menu.Clipboard',
+          title: () => t('Menu.Clipboard'),
           icon: CopyIcon
-        }
-      },
-      {
-        path: '/websocket',
-        name: 'websocket',
-        component: () => import('@/views/WebSocket'),
-        meta: {
-          title: 'Menu.WebSocket',
-          icon: WebSocketIcon
-        }
-      },
-      {
-        path: '/digital-animation',
-        name: 'digital-animation',
-        component: () => import('@/views/DigitalAnimation'),
-        meta: {
-          title: 'Menu.DigitalAnimation',
-          icon: DigitalAnimationIcon
-        }
-      },
-      {
-        path: '/charts',
-        name: 'charts',
-        component: () => import('@/views/Charts'),
-        meta: {
-          title: 'Menu.Charts',
-          icon: ChartIcon
         }
       },
       {
@@ -144,7 +119,7 @@ export const routes = [
         name: 'print',
         component: () => import('@/views/Print'),
         meta: {
-          title: 'Menu.Print',
+          title: () => t('Menu.Print'),
           icon: PrintIcon
         }
       },
@@ -153,28 +128,35 @@ export const routes = [
         name: 'excel',
         component: () => import('@/views/Excel'),
         meta: {
-          title: 'Menu.Excel',
+          title: () => t('Menu.Excel'),
           icon: ExcelIcon
         }
       },
       {
-        path: '/:pathMatch(.*)*',
-        name: '404',
-        component: () => import('@/views/404'),
+        path: '/websocket',
+        name: 'websocket',
+        component: () => import('@/views/WebSocket'),
         meta: {
-          title: 'Common.404',
-          disableAuth: true,
-          icon: Looks404Icon
+          title: () => t('Menu.WebSocket'),
+          icon: WebSocketIcon
         }
       },
       {
-        path: '/500',
-        name: '500',
-        component: () => import('@/views/500'),
+        path: '/digital-animation',
+        name: 'digital-animation',
+        component: () => import('@/views/DigitalAnimation'),
         meta: {
-          title: 'Common.500',
-          disableAuth: true,
-          icon: Looks500Icon
+          title: () => t('Menu.DigitalAnimation'),
+          icon: DigitalAnimationIcon
+        }
+      },
+      {
+        path: '/charts',
+        name: 'charts',
+        component: () => import('@/views/Charts'),
+        meta: {
+          title: () => t('Menu.Charts'),
+          icon: ChartIcon
         }
       },
       {
@@ -182,9 +164,26 @@ export const routes = [
         name: '403',
         component: () => import('@/views/403'),
         meta: {
-          title: 'Common.403',
-          disableAuth: true,
-          icon: Looks403Icon
+          title: () => t('Menu.403'),
+          icon: UnauthorizedIcon
+        }
+      },
+      {
+        path: '/500',
+        name: '500',
+        component: () => import('@/views/500'),
+        meta: {
+          title: () => t('Menu.500'),
+          icon: InternalServerErrorIcon
+        }
+      },
+      {
+        path: '/:pathMatch(.*)*',
+        name: '404',
+        component: () => import('@/views/404'),
+        meta: {
+          title: () => t('Menu.404'),
+          icon: NotFoundIcon
         }
       }
     ]
