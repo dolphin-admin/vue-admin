@@ -25,19 +25,19 @@ export const renderLabel = (label: () => string) => {
 export const renderLinkLabel = (label: () => string, to: string) => {
   return () =>
     h(
-      NEllipsis,
+      RouterLink,
       {
-        tooltip: {
-          placement: 'right',
-          showArrow: false
-        }
+        to
       },
       {
         default: () =>
           h(
-            RouterLink,
+            NEllipsis,
             {
-              to
+              tooltip: {
+                placement: 'right',
+                showArrow: false
+              }
             },
             {
               default: label
