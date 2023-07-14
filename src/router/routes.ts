@@ -50,10 +50,11 @@ export const routes = [
           icon: HomeIcon
         }
       },
+      // User
       {
         path: '/user-info',
         name: 'user-info',
-        component: () => import('@/views/UserInfo'),
+        component: () => import('@/views/User/UserInfo'),
         meta: {
           title: () => t('Menu.UserInfo'),
           icon: UserInfoIcon
@@ -62,12 +63,13 @@ export const routes = [
       {
         path: '/change-password',
         name: 'change-password',
-        component: () => import('@/views/ChangePassword'),
+        component: () => import('@/views/User/ChangePassword'),
         meta: {
           title: () => t('Menu.ChangePassword'),
           icon: ChangePasswordIcon
         }
       },
+      // System Functions
       {
         path: `${SYSTEM_FUNCTIONS_PREFIX}/user-management`,
         name: 'user-management',
@@ -95,6 +97,7 @@ export const routes = [
           icon: PermissionManagementIcon
         }
       },
+      // System Tools
       {
         path: `${SYSTEM_TOOLS_PREFIX}/icon`,
         name: 'icon',
@@ -149,6 +152,7 @@ export const routes = [
           icon: WebSocketIcon
         }
       },
+      // Universal Components
       {
         path: `${UNIVERSAL_COMPONENTS_PREFIX}/charts`,
         name: 'charts',
@@ -158,6 +162,7 @@ export const routes = [
           icon: ChartIcon
         }
       },
+      // Builtin Components
       {
         path: `${BUILTIN_COMPONENTS_PREFIX}/digital-animation`,
         name: 'digital-animation',
@@ -167,6 +172,7 @@ export const routes = [
           icon: DigitalAnimationIcon
         }
       },
+      // Error Pages
       {
         path: `${ERROR_PAGES_PREFIX}/403`,
         name: '403',
@@ -214,6 +220,7 @@ export const routes = [
       }
     ]
   },
+  // Auth
   {
     path: '/',
     name: 'auth-layout',
