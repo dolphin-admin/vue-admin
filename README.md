@@ -24,7 +24,7 @@ backend management template based on Vue 3 + Vite + Naive UI + TypeScript + Tail
 - [x] [vue-i18n](https://vue-i18n.intlify.dev/), support internationalization
 - [x] [ECharts](https://echarts.apache.org/) for data visualization
 - [x] [xlsx](https://www.npmjs.com/package/xlsx) for Excel file import and export
-- [x] [socket.io] for real-time communication
+- [x] [Socket.IO](https://socket.io/) for real-time communication
 - [x] [ESLint](https://eslint.org/) for code checking
 - [x] [Prettier](https://prettier.io/) for code formatting
 - [x] [CSpell](https://cspell.org/) for code spelling checking

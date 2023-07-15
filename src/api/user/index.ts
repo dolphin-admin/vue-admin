@@ -45,14 +45,14 @@ export class UserAPI {
   /**
    * 启用用户
    */
-  static enableUsers(id: number) {
+  static enableUser(id: number) {
     return Request.post<BaseResponse<User>>(`${this.USER_API_PREFIX}/${id}/activate`)
   }
 
   /**
    * 禁用用户
    */
-  static disableUsers(id: number) {
+  static disableUser(id: number) {
     return Request.post<BaseResponse<User>>(`${this.USER_API_PREFIX}/${id}/deactivate`)
   }
 

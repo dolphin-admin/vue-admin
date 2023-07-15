@@ -41,18 +41,15 @@ watch(
 </script>
 
 <template>
-  <main>
+  <main class="absolute inset-0 flex">
     <NCard class="flex w-full flex-col space-y-2">
       <NInput
         v-model:value="clipboardValue"
+        class="h-[calc(100%-46px)]"
         type="textarea"
         show-count
         clearable
         hoverable
-        :autosize="{
-          minRows: 20,
-          maxRows: 20
-        }"
       />
       <div class="flex items-center justify-center">
         <NButton

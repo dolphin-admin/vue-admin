@@ -33,8 +33,6 @@ const resetPasswordRules: FormRules = {
   ]
 }
 
-const operationKeys = ['Common.Edit', 'Common.Enable', 'Common.Disable', 'UserManagement.ResetPassword']
-
 const tableRef = ref()
 const resetPasswordRef = ref<FormInst | null>(null)
 const userFormModalRef = ref()
@@ -360,68 +358,93 @@ const columns = ref<DataTableBaseColumn<User>[]>([
         {
           class: 'space-x-3 flex justify-center'
         },
-        {
-          default: () =>
-            operationKeys.map((key) => {
-              if (key === operationKeys[1] || key === operationKeys[2]) {
-                return h(
-                  NPopconfirm,
-                  {
-                    showIcon: false,
-                    negativeText: t('Common.Cancel'),
-                    positiveText: t('Common.Confirm'),
-                    onPositiveClick: () => {
-                      if (key === operationKeys[1]) {
-                        UserAPI.enableUsers(row.id!)
-                          .then((res) => {
-                            message.success(res.message!)
-                            queryList()
-                          })
-                          .catch((err) => {
-                            message.success(err.message!)
-                          })
-                      }
-                      if (key === operationKeys[2]) {
-                        UserAPI.disableUsers(row.id!)
-                          .then((res) => {
-                            message.success(res.message!)
-                            queryList()
-                          })
-                          .catch((err) => {
-                            message.success(err.message!)
-                          })
-                      }
-                    }
-                  },
-                  {
-                    trigger: () => h(NButton, { type: 'default', size: 'small' }, { default: () => t(key) }),
-                    default: () => `${t('Common.IsOrNot')}${t(key)}`
-                  }
-                )
+        [
+          h(
+            NButton,
+            {
+              type: 'default',
+              size: 'small',
+              onClick: () => {
+                isEdit.value = true
+                userFormModalRef.value.handleShowModal()
+                userFormData.value = row
               }
-              return h(
-                NButton,
-                {
-                  type: 'default',
-                  size: 'small',
-                  onClick: () => {
-                    if (key === operationKeys[3]) {
-                      isResetPassword.value = true
-                      currentId.value = row.id
-                    }
-                    if (key === operationKeys[0]) {
-                      isEdit.value = true
-                      userFormModalRef.value.handleShowModal()
-                      userFormData.value = row
-                    }
-                  }
-                },
-                {
-                  default: () => t(key)
-                }
-              )
-            })
-        }
+            },
+            {
+              default: () => t('Common.Edit')
+            }
+          ),
+          h(
+            NPopconfirm,
+            {
+              showIcon: false,
+              negativeText: t('Common.Cancel'),
+              positiveText: t('Common.Confirm'),
+              onPositiveClick: () => {
+                UserAPI.enableUser(row.id!)
+                  .then((res) => {
+                    message.success(res.message!)
+                    queryList()
+                  })
+                  .catch((err) => message.error(err?.message))
+              }
+            },
+            {
+              trigger: () =>
+                h(
+                  NButton,
+                  {
+                    type: 'default',
+                    size: 'small'
+                  },
+                  { default: () => t('Common.Enable') }
+                ),
+              default: () => `${t('Common.IsOrNot')}${t('Common.Enable')}`
+            }
+          ),
+          h(
+            NPopconfirm,
+            {
+              showIcon: false,
+              negativeText: t('Common.Cancel'),
+              positiveText: t('Common.Confirm'),
+              onPositiveClick: () => {
+                UserAPI.disableUser(row.id!)
+                  .then((res) => {
+                    message.success(res.message!)
+                    queryList()
+                  })
+                  .catch((err) => message.error(err?.message))
+              }
+            },
+            {
+              trigger: () =>
+                h(
+                  NButton,
+                  {
+                    type: 'default',
+                    size: 'small'
+                  },
+                  { default: () => t('Common.Disable') }
+                ),
+              default: () => `${t('Common.IsOrNot')}${t('Common.Disable')}`
+            }
+          ),
+          h(
+            NButton,
+            {
+              type: 'default',
+              size: 'small',
+              onClick: () => {
+                isResetPassword.value = true
+                currentId.value = row.id
+              }
+            },
+            {
+              default: () => t('UserManagement.ResetPassword')
+            }
+          )
+        ]
       )
   }
 ])
@@ -487,7 +510,8 @@ onMounted(() => queryList())
             <NButton
               type="primary"
               size="small"
-              >{{ t('Common.Search') }}</NButton
+            >
+              {{ t('Common.Search') }}</NButton
             >
           </div>
           <NDatePicker
