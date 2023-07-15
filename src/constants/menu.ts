@@ -22,7 +22,7 @@ import SystemToolsIcon from '~icons/mdi/tools'
 import WebSocketIcon from '~icons/tabler/brand-socket-io'
 import NotFoundIcon from '~icons/tabler/error-404'
 
-const { renderMenuIcon, renderMenuLabel, renderT: t } = RenderUtils
+const { renderMenuIcon, renderMenuLabel, t } = RenderUtils
 
 export const menuOptions: MenuOption[] = [
   {

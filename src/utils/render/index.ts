@@ -1,6 +1,6 @@
 import type { MessageKeySchema } from '@/types'
 
-const { t } = i18n.global
+const { t: renderT } = i18n.global
 
 export class RenderUtils {
   /**
@@ -46,7 +46,7 @@ export class RenderUtils {
    * 渲染国际化文本
    * @param key 国际化 key
    */
-  static renderT(key: MessageKeySchema) {
-    return () => t(key)
+  static t(key: MessageKeySchema) {
+    return () => renderT(key)
   }
 }
