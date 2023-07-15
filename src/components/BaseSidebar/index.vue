@@ -1,10 +1,7 @@
 <script setup lang="ts">
-import type { MenuInst, MenuOption } from 'naive-ui'
-
+import { menuOptions } from '@/constants'
 import type { Lang, MessageSchema } from '@/types'
 import CollapseIcon from '~icons/line-md/chevron-triple-left'
-
-import { menuOptions } from './private'
 
 const { t } = useI18n<{ message: MessageSchema }, Lang>({ useScope: 'global' })
 

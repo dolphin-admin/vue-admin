@@ -22,124 +22,124 @@ import SystemToolsIcon from '~icons/mdi/tools'
 import WebSocketIcon from '~icons/tabler/brand-socket-io'
 import NotFoundIcon from '~icons/tabler/error-404'
 
-import { renderIcon, renderLabel, renderT as t } from './render'
+const { renderMenuIcon, renderMenuLabel, renderT: t } = RenderUtils
 
 export const menuOptions: MenuOption[] = [
   {
-    label: renderLabel(t('Menu.Home')),
+    label: renderMenuLabel(t('Menu.Home')),
     key: 'home',
-    icon: renderIcon(HomeIcon)
+    icon: renderMenuIcon(HomeIcon)
   },
   {
-    label: renderLabel(t('Menu.SystemFunctions')),
+    label: renderMenuLabel(t('Menu.SystemFunctions')),
     key: 'system-functions',
-    icon: renderIcon(SystemFunctionsIcon),
+    icon: renderMenuIcon(SystemFunctionsIcon),
     children: [
       {
-        label: renderLabel(t('Menu.UserManagement')),
+        label: renderMenuLabel(t('Menu.UserManagement')),
         key: 'user-management',
-        icon: renderIcon(UserManagementIcon)
+        icon: renderMenuIcon(UserManagementIcon)
       },
       {
-        label: renderLabel(t('Menu.RoleManagement')),
+        label: renderMenuLabel(t('Menu.RoleManagement')),
         key: 'role-management',
-        icon: renderIcon(RoleManagementIcon),
+        icon: renderMenuIcon(RoleManagementIcon),
         show: false
       },
       {
-        label: renderLabel(t('Menu.PermissionManagement')),
+        label: renderMenuLabel(t('Menu.PermissionManagement')),
         key: 'permission-management',
-        icon: renderIcon(PermissionManagementIcon),
+        icon: renderMenuIcon(PermissionManagementIcon),
         show: false
       }
     ]
   },
   {
-    label: renderLabel(t('Menu.SystemTools')),
+    label: renderMenuLabel(t('Menu.SystemTools')),
     key: 'system-tools',
-    icon: renderIcon(SystemToolsIcon),
+    icon: renderMenuIcon(SystemToolsIcon),
     children: [
       {
-        label: renderLabel(t('Menu.Icon')),
+        label: renderMenuLabel(t('Menu.Icon')),
         key: 'icon',
-        icon: renderIcon(IconManagementIcon),
+        icon: renderMenuIcon(IconManagementIcon),
         show: false
       },
       {
-        label: renderLabel(t('Menu.QRCode')),
+        label: renderMenuLabel(t('Menu.QRCode')),
         key: 'qrcode',
-        icon: renderIcon(QRCodeIcon)
+        icon: renderMenuIcon(QRCodeIcon)
       },
       {
-        label: renderLabel(t('Menu.Clipboard')),
+        label: renderMenuLabel(t('Menu.Clipboard')),
         key: 'clipboard',
-        icon: renderIcon(CopyIcon)
+        icon: renderMenuIcon(CopyIcon)
       },
       {
-        label: renderLabel(t('Menu.Print')),
+        label: renderMenuLabel(t('Menu.Print')),
         key: 'print',
-        icon: renderIcon(PrintIcon)
+        icon: renderMenuIcon(PrintIcon)
       },
       {
-        label: renderLabel(t('Menu.Excel')),
+        label: renderMenuLabel(t('Menu.Excel')),
         key: 'excel',
-        icon: renderIcon(ExcelIcon)
+        icon: renderMenuIcon(ExcelIcon)
       },
       {
-        label: renderLabel(t('Menu.WebSocket')),
+        label: renderMenuLabel(t('Menu.WebSocket')),
         key: 'websocket',
-        icon: renderIcon(WebSocketIcon)
+        icon: renderMenuIcon(WebSocketIcon)
       }
     ]
   },
   {
-    label: renderLabel(t('Menu.UniversalComponents')),
+    label: renderMenuLabel(t('Menu.UniversalComponents')),
     key: 'universal-components',
-    icon: renderIcon(UniversalComponentsIcon),
+    icon: renderMenuIcon(UniversalComponentsIcon),
     children: [
       {
-        label: renderLabel(t('Menu.Charts')),
+        label: renderMenuLabel(t('Menu.Charts')),
         key: 'charts',
-        icon: renderIcon(ChartIcon)
+        icon: renderMenuIcon(ChartIcon)
       }
     ]
   },
   {
-    label: renderLabel(t('Menu.BuiltinComponents')),
+    label: renderMenuLabel(t('Menu.BuiltinComponents')),
     key: 'builtin-components',
-    icon: renderIcon(BuiltinComponentsIcon),
+    icon: renderMenuIcon(BuiltinComponentsIcon),
     children: [
       {
-        label: renderLabel(t('Menu.DigitalAnimation')),
+        label: renderMenuLabel(t('Menu.DigitalAnimation')),
         key: 'digital-animation',
-        icon: renderIcon(DigitalAnimationIcon)
+        icon: renderMenuIcon(DigitalAnimationIcon)
       }
     ]
   },
   {
-    label: renderLabel(t('Menu.ErrorPages')),
+    label: renderMenuLabel(t('Menu.ErrorPages')),
     key: 'error-pages',
-    icon: renderIcon(ErrorPagesIcon),
+    icon: renderMenuIcon(ErrorPagesIcon),
     children: [
       {
-        label: renderLabel(t('Menu.403')),
+        label: renderMenuLabel(t('Menu.403')),
         key: '403',
-        icon: renderIcon(UnauthorizedIcon)
+        icon: renderMenuIcon(UnauthorizedIcon)
       },
       {
-        label: renderLabel(t('Menu.404')),
+        label: renderMenuLabel(t('Menu.404')),
         key: '404',
-        icon: renderIcon(NotFoundIcon)
+        icon: renderMenuIcon(NotFoundIcon)
       },
       {
-        label: renderLabel(t('Menu.418')),
+        label: renderMenuLabel(t('Menu.418')),
         key: '418',
-        icon: renderIcon(IAmATeapotIcon)
+        icon: renderMenuIcon(IAmATeapotIcon)
       },
       {
-        label: renderLabel(t('Menu.500')),
+        label: renderMenuLabel(t('Menu.500')),
         key: '500',
-        icon: renderIcon(InternalServerErrorIcon)
+        icon: renderMenuIcon(InternalServerErrorIcon)
       }
     ]
   }
