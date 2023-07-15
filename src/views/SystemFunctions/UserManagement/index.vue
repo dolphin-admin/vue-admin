@@ -445,7 +445,7 @@ onMounted(() => queryList())
 </script>
 
 <template>
-  <DataTableLayout class="relative">
+  <DataTableLayout>
     <template #operate>
       <div class="flex items-center space-x-3">
         <NTooltip>
@@ -470,7 +470,6 @@ onMounted(() => queryList())
 
     <NDataTable
       ref="tableRef"
-      class="h-[calc(100%-42px)]"
       remote
       flex-height
       size="small"

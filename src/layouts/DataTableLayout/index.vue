@@ -1,20 +1,14 @@
-<script setup lang="ts">
-const route = useRoute()
-</script>
-
 <template>
-  <div class="h-[calc(100%-144px)]">
-    <div class="mb-2 flex items-center justify-between">
-      <div class="flex items-center space-x-2 pl-1 text-2xl">
-        <template v-if="route.meta.icon">
-          <component :is="route.meta.icon" />
-        </template>
-        <template v-if="route.meta.title">
-          <span>{{ typeof route.meta.title === 'function' ? route.meta.title() : route.meta.title }}</span>
-        </template>
-      </div>
+  <div class="flex h-[calc(100%-144px)] flex-col">
+    <div class="mb-4">
       <slot name="operate" />
     </div>
     <slot />
   </div>
 </template>
+
+<style scoped lang="scss">
+:deep(.n-data-table) {
+  flex-grow: 1;
+}
+</style>
