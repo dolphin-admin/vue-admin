@@ -10,6 +10,7 @@
     "All": "全部",
     "Search": "搜索",
     "Refresh": "刷新",
+    "Reset": "重置",
     "Operation": "操作",
     "Create": "新建",
     "Edit": "编辑",
@@ -40,7 +41,8 @@
     "NewPassword": "新密码",
     "ChangePassword": "修改密码",
     "IsLoadingData": "正在加载数据...",
-    "LoadingDataError": "加载数据失败"
+    "LoadingDataError": "加载数据失败",
+    "KeywordSearch": "关键字搜索"
   },
   "Validation": {
     "Username": "请输入用户名",

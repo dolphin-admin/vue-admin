@@ -57,6 +57,7 @@ export default defineConfig(({ mode }) => {
             'vue-router': ['RouterLink', 'RouterView'],
             '@vueuse/core': ['useToggle', 'useEventListener', 'useDebounceFn', 'useFullscreen'],
             axios: [['default', 'axios']],
+            dayjs: [['default', 'dayjs']],
             'naive-ui': [
               'useDialog',
               'useMessage',
