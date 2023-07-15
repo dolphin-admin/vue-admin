@@ -211,7 +211,6 @@ export const routes = [
       },
       {
         path: '/:pathMatch(.*)*',
-        name: '404',
         component: () => import('@/views/ErrorPages/404'),
         meta: {
           title: () => t('Menu.404'),
