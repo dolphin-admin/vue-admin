@@ -4,8 +4,9 @@ import { AuthType } from '@/types'
 import GitHubIcon from '~icons/ant-design/github-outlined'
 import UserAvatarIcon from '~icons/carbon/user-avatar-filled-alt'
 import CheckIcon from '~icons/ic/baseline-check'
-import RefreshIcon from '~icons/ic/round-refresh'
+import ResetIcon from '~icons/ic/round-refresh'
 import ResetPasswordIcon from '~icons/ic/sharp-power-settings-new'
+import SearchIcon from '~icons/line-md/search'
 import GoogleIcon from '~icons/logos/google-icon'
 
 import { UserFormModal } from './components'
@@ -39,7 +40,8 @@ const resetPasswordRef = ref<FormInst | null>(null)
 const userFormModalRef = ref()
 
 const queryParams = reactive({
-  searchText: ''
+  searchText: '',
+  daterange: null
 })
 const users = ref<User[]>([])
 const pagination = reactive({
@@ -72,6 +74,12 @@ const queryList = (shouldLoading = true) => {
     searchText: queryParams.searchText
   })
 
+  if (queryParams.daterange && Array.isArray(queryParams.daterange)) {
+    const [startDate, endDate] = queryParams.daterange as string[]
+    params.startDate = dayjs(startDate).startOf('day').toISOString()
+    params.endDate = dayjs(endDate).endOf('day').toISOString()
+  }
+
   UserAPI.getUsers(params)
     .then((res) => {
       const { data, total } = res || {}
@@ -89,6 +97,15 @@ const queryList = (shouldLoading = true) => {
     })
 }
 
+const handleReset = () => {
+  queryParams.searchText = ''
+  queryParams.daterange = null
+  pagination.page = 1
+  pagination.pageSize = 10
+  pagination.itemCount = 0
+  queryList()
+}
+
 const columns = ref<DataTableBaseColumn<User>[]>([
   {
     title: 'ID',
@@ -100,7 +117,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
   {
     title: () => t('User.Avatar'),
     key: 'avatar',
-    width: 50,
+    width: 55,
     titleAlign: 'center',
     align: 'center',
     render: (row) =>
@@ -129,6 +146,9 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     title: () => t('User.Username'),
     key: 'username',
     width: 120,
+    ellipsis: {
+      tooltip: true
+    },
     fixed: !BrowserUtils.isMobileDevice() ? 'left' : undefined
   },
   {
@@ -447,24 +467,57 @@ onMounted(() => queryList())
 <template>
   <DataTableLayout>
     <template #operate>
-      <div class="flex items-center space-x-3">
-        <NTooltip>
-          <template #trigger>
-            <NButton
-              circle
-              :disabled="loading"
-              @click="() => queryList()"
+      <div class="flex flex-col items-center space-y-2 sm:flex-row sm:justify-between sm:space-y-0">
+        <div class="flex flex-col items-center space-y-2 sm:flex-row sm:space-x-3 sm:space-y-0">
+          <div class="flex w-full items-center !space-x-2 sm:w-fit">
+            <NInput
+              v-model:value="queryParams.searchText"
+              class="sm:!w-[200px]"
+              clearable
+              :placeholder="t('Common.KeywordSearch')"
+              @keydown.enter="() => queryList()"
             >
-              <template #icon>
-                <NIcon :component="RefreshIcon" />
+              <template #prefix>
+                <NIcon
+                  :component="SearchIcon"
+                  class="mr-1"
+                />
               </template>
-            </NButton>
-          </template>
-          {{ t('Common.Refresh') }}
-        </NTooltip>
-        <NButton @click="handleCreateUser">
-          {{ t('UserManagement.CreateUser') }}
-        </NButton>
+            </NInput>
+            <NButton
+              type="primary"
+              size="small"
+              >{{ t('Common.Search') }}</NButton
+            >
+          </div>
+          <NDatePicker
+            v-model:value="queryParams.daterange"
+            class="sm:!w-[250px]"
+            type="daterange"
+            clearable
+            input-readonly
+            @update:value="() => queryList()"
+          />
+        </div>
+        <div class="flex w-full justify-end space-x-3 sm:items-center">
+          <NTooltip>
+            <template #trigger>
+              <NButton
+                circle
+                :disabled="loading"
+                @click="handleReset"
+              >
+                <template #icon>
+                  <NIcon :component="ResetIcon" />
+                </template>
+              </NButton>
+            </template>
+            {{ t('Common.Reset') }}
+          </NTooltip>
+          <NButton @click="handleCreateUser">
+            {{ t('UserManagement.CreateUser') }}
+          </NButton>
+        </div>
       </div>
     </template>
 

@@ -18,4 +18,6 @@ export interface PageModel {
   page: number
   pageSize: number
   searchText?: string
+  startDate?: string
+  endDate?: string
 }

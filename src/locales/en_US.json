@@ -10,6 +10,7 @@
     "All": "All",
     "Search": "Search",
     "Refresh": "Refresh",
+    "Reset": "Reset",
     "Operation": "Operation",
     "Create": "Create",
     "Edit": "Edit",
@@ -40,7 +41,8 @@
     "NewPassword": "New password",
     "ChangePassword": "Change password",
     "IsLoadingData": "Loading data ...",
-    "LoadingDataError": "Loading data error"
+    "LoadingDataError": "Loading data error",
+    "KeywordSearch": "Keyword search"
   },
   "Validation": {
     "Username": "Please enter username",
