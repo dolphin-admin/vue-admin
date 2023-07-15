@@ -469,21 +469,27 @@ onMounted(() => queryList())
     <template #operate>
       <div class="flex flex-col items-center space-y-2 sm:flex-row sm:justify-between sm:space-y-0">
         <div class="flex flex-col items-center space-y-2 sm:flex-row sm:space-x-3 sm:space-y-0">
-          <NInput
-            v-model:value="queryParams.searchText"
-            class="sm:!w-[200px]"
-            clearable
-            :placeholder="t('Common.KeywordSearch')"
-            @keydown.enter="() => queryList()"
-          >
-            <template #prefix>
-              <NIcon
-                :component="SearchIcon"
-                class="mr-1"
-              />
-            </template>
-          </NInput>
-          <NButton size="small">{{ t('Common.Search') }}</NButton>
+          <div class="flex w-full items-center !space-x-2 sm:w-fit">
+            <NInput
+              v-model:value="queryParams.searchText"
+              class="sm:!w-[200px]"
+              clearable
+              :placeholder="t('Common.KeywordSearch')"
+              @keydown.enter="() => queryList()"
+            >
+              <template #prefix>
+                <NIcon
+                  :component="SearchIcon"
+                  class="mr-1"
+                />
+              </template>
+            </NInput>
+            <NButton
+              type="primary"
+              size="small"
+              >{{ t('Common.Search') }}</NButton
+            >
+          </div>
           <NDatePicker
             v-model:value="queryParams.daterange"
             class="sm:!w-[250px]"
