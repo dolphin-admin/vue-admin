@@ -114,6 +114,8 @@ const selectUserOption = (key: UserOptionKey) => {
         </template>
         {{ t(sidebarStore.isDisplay ? 'Sidebar.Hide' : 'Sidebar.Show') }}
       </NTooltip>
+
+      <BaseBreadcrumb />
     </div>
 
     <div class="flex h-full items-center justify-end space-x-4">

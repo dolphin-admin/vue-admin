@@ -15,12 +15,12 @@ const { openNewWindow } = BrowserUtils
     <span>{{ t('App.Name') }} - v{{ version }}</span>
     <span>©</span>
     <img
-      class="cursor-pointer transition-all hover:-translate-y-1 hover:scale-110 active:-translate-y-0 active:scale-105 active:opacity-75"
+      class="-mb-2 cursor-pointer pb-2 transition-all hover:-translate-y-1 hover:scale-110 active:-translate-y-0 active:scale-105 active:opacity-75"
       src="@/assets/images/bit_ocean.png"
       alt=""
       loading="eager"
       width="18"
-      @click="() => openNewWindow(teamGitHubURL)"
+      @click="openNewWindow(teamGitHubURL)"
     />
     <span>{{ teamName }}</span>
   </footer>

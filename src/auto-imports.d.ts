@@ -25,6 +25,7 @@ declare global {
   const NPopconfirm: typeof import('naive-ui')['NPopconfirm']
   const NTag: typeof import('naive-ui')['NTag']
   const QRCodeUtils: typeof import('./utils/qrcode/index')['QRCodeUtils']
+  const RenderUtils: typeof import('./utils/render/index')['RenderUtils']
   const RouterLink: typeof import('vue-router')['RouterLink']
   const RouterView: typeof import('vue-router')['RouterView']
   const ThemeUtils: typeof import('./utils/theme/index')['ThemeUtils']
@@ -125,5 +126,5 @@ declare global {
   // @ts-ignore
   export type { Component, ComponentPublicInstance, ComputedRef, InjectionKey, PropType, Ref, VNode } from 'vue'
   // @ts-ignore
-  export type { FormInst, FormItemInst, FormItemRule, FormRules, DataTableBaseColumn, DataTableColumn, DataTableColumns, UploadFileInfo, UploadInst, UploadCustomRequestOptions } from 'naive-ui'
+  export type { DataTableBaseColumn, DataTableColumn, DataTableColumns, DropdownOption, FormInst, FormItemInst, FormItemRule, FormRules, MenuInst, MenuOption, UploadCustomRequestOptions, UploadFileInfo, UploadInst } from 'naive-ui'
 }
