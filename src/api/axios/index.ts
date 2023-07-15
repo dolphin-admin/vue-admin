@@ -93,7 +93,9 @@ class Request {
         break
       case ResponseStatusCode.BAD_REQUEST:
       case ResponseStatusCode.NOT_FOUND:
+      case ResponseStatusCode.METHOD_NOT_ALLOWED:
       case ResponseStatusCode.CONFLICT:
+      case ResponseStatusCode.TOO_MANY_REQUESTS:
       default:
         console.error(errorMessage)
     }
