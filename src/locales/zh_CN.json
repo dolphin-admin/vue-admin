@@ -203,8 +203,22 @@
     "FrontendFrameworkLeaderboard": "前端框架排行榜",
     "Icon": "图标",
     "Framework": "框架",
+    "Type": "类型",
     "Description": "简介",
-    "Stars": "星数"
+    "Stars": "星数",
+    "React": "React 是 Facebook 开发的用于构建用户界面的 JavaScript 库，尤其适用于单页应用程序。它用于处理 Web 和移动应用的视图层。React 允许开发人员创建可以在不重新加载页面的情况下更改数据的大型 Web 应用程序。",
+    "Angular": "Angular 是 Google 开发的一个构建 Web 应用的平台。它提供了创建单页应用程序的方式，并拥有强大的双向数据绑定、模块化、模板和依赖注入工具。",
+    "Vue": "Vue.js 是一个用于构建用户界面的 JavaScript 框架。核心库只关注视图层，易于学习并与其他库或现有项目集成。当与现代工具和支持库结合使用时，Vue 也能够驱动复杂的单页应用程序。",
+    "Svelte": "Svelte 是一种构建用户界面的全新方法。与 React 和 Vue 这样的传统框架在浏览器中完成大部分工作不同，Svelte 将这些工作转移到了构建应用程序时的编译步骤中。",
+    "Solidjs": "Solid 是一个用于构建用户界面的声明式 JavaScript 库。它不使用虚拟 DOM 差异算法，而是将模板编译到高度优化的细粒度反应系统中，使其效率极高。",
+    "Nextjs": "Next.js 是 Vercel 开发的一个 React 框架，它允许对基于 React 的 Web 应用进行服务器端渲染和生成静态网站。它包括零配置、自动代码分割和基于文件系统的路由等特性。",
+    "Nuxtjs": "Nuxt.js 是一个用于创建 Vue.js 应用的框架，它允许进行服务器端渲染（SSR），单页应用（SPA），或静态生成的网站（SSG）。Nuxt.js 预设了所有配置，使你的 Vue.js 应用开发变得愉快。",
+    "Gatsby": "Gatsby 是一个基于 React 的免费和开源框架，帮助开发者构建超快的网站和应用。它可以从任何地方（CMS，Markdown 文件，API 等）拉取数据，并生成静态网页，这些网页仍具有单页应用（SPA）的速度和功能。",
+    "Docusaurus": "Docusaurus 是一个现代的静态网站生成器（SSG），帮助你轻松创建、维护和更新文档网站。它由 React 驱动，可以用你自己的 React 代码进行定制。",
+    "Astro": "Astro 是一个前端框架，让你可以用更少的客户端 JavaScript 构建更快、更现代的网站。Astro 让你用你最喜欢的 JavaScript 框架（如 React、Vue、Svelte）编写组件，但在构建时将它们渲染为静态 HTML 和 CSS。",
+    "ExpireTip": "该数据截至 2023/07/17，数据来源于 GitHub",
+    "DOM": "打印 DOM",
+    "HTMLStr": "打印 HTML 字符串"
   },
   "DigitalAnimation": {
     "StartValuePlaceholder": "请输入开始值",

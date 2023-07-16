@@ -2,8 +2,10 @@ astro
 axios
 Bootstrapper
 commitlint
+daterange
 degit
 echarts
+emojione
 esbuild
 FiraCode
 fullscreen
@@ -13,6 +15,7 @@ icones
 iconify
 iemobile
 Langauge
+leaderboard
 lintstaged
 lucide
 Neue
@@ -23,6 +26,7 @@ noreferrer
 Noto
 nprogress
 nuxt
+nuxtjs
 Pinia
 Popconfirm
 printshop
@@ -31,9 +35,11 @@ recallwei
 Roboto
 rushstack
 signup
+solidjs
 tabler
 tailwindcss
 tauri
+templating
 titlebar
 uncategorized
 unplugin
