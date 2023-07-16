@@ -149,12 +149,12 @@
     "Charts": "Charts",
     "BuiltinComponents": "Built-in Component",
     "DigitalAnimation": "Digital Animation",
+    "Timeline": "Timeline",
     "ErrorPages": "Error Page",
     "403": "403",
     "404": "404",
     "418": "418",
-    "500": "500",
-    "Timeline": "Timeline"
+    "500": "500"
   },
   "Login": {
     "AsVisitor": "Login as Visitor",
@@ -206,5 +206,8 @@
     "StartValuePlaceholder": "Please enter start value",
     "EndValuePlaceholder": "Please enter end value",
     "DurationPlaceholder": "Please enter duration"
+  },
+  "Timeline": {
+    "WebDevRoadmap": "Web Dev Roadmap"
   }
 }

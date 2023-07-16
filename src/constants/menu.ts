@@ -23,7 +23,7 @@ import WebSocketIcon from '~icons/tabler/brand-socket-io'
 import NotFoundIcon from '~icons/tabler/error-404'
 import TimelineIcon from '~icons/ic/baseline-timeline'
 
-const { renderMenuIcon, renderMenuLabel, t } = RenderUtils
+const { renderIcon: renderMenuIcon, renderMenuLabel, t } = RenderUtils
 
 export const menuOptions: MenuOption[] = [
   {

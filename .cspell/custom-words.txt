@@ -16,6 +16,7 @@ Langauge
 lintstaged
 lucide
 Neue
+nextjs
 nocheck
 noopenner
 noreferrer
