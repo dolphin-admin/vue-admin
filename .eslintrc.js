@@ -51,5 +51,13 @@ module.exports = defineConfig({
     'no-undef': 'off', // TypeScript already checked it.
     '@typescript-eslint/no-shadow': 'error',
     'tailwindcss/no-custom-classname': 'off'
-  }
+  },
+  overrides: [
+    {
+      files: ['**/*.vue'],
+      rules: {
+        '@typescript-eslint/no-use-before-define': 'off'
+      }
+    }
+  ]
 })

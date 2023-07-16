@@ -1,4 +1,4 @@
-import type { BaseResponse, PageModel, PageResponse, User } from '@/types'
+import type { BaseResponse, PageRequestModel, PageResponse, User } from '@/types'
 
 import Request from '../axios'
 import type { ChangePasswordModel, CreateModel } from './types'
@@ -9,7 +9,7 @@ export class UserAPI {
   /**
    * 用户列表
    */
-  static getUsers(params: PageModel) {
+  static getUsers(params: PageRequestModel) {
     return Request.get<PageResponse<User[]>>(this.USER_API_PREFIX, { ...params })
   }
 

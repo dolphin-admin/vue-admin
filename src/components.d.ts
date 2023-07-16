@@ -8,7 +8,6 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AuthLayout: typeof import('./layouts/AuthLayout/index.vue')['default']
-    AuthProvider: typeof import('./components/AuthProvider/index.vue')['default']
     BarChart: typeof import('./charts/BarChart/index.vue')['default']
     BaseBreadcrumb: typeof import('./components/BaseBreadcrumb/index.vue')['default']
     BaseFooter: typeof import('./components/BaseFooter/index.vue')['default']
@@ -35,6 +34,7 @@ declare module 'vue' {
     NForm: typeof import('naive-ui')['NForm']
     NFormItem: typeof import('naive-ui')['NFormItem']
     NGlobalStyle: typeof import('naive-ui')['NGlobalStyle']
+    NGradientText: typeof import('naive-ui')['NGradientText']
     NIcon: typeof import('naive-ui')['NIcon']
     NImage: typeof import('naive-ui')['NImage']
     NInput: typeof import('naive-ui')['NInput']
