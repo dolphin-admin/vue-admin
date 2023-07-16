@@ -153,7 +153,8 @@
     "403": "403",
     "404": "404",
     "418": "418",
-    "500": "500"
+    "500": "500",
+    "Timeline": "Timeline"
   },
   "Login": {
     "AsVisitor": "Login as Visitor",

@@ -16,6 +16,7 @@ import PermissionManagementIcon from '~icons/mdi/key-chain'
 import ExcelIcon from '~icons/mdi/microsoft-excel'
 import WebSocketIcon from '~icons/tabler/brand-socket-io'
 import NotFoundIcon from '~icons/tabler/error-404'
+import TimelineIcon from '~icons/ic/baseline-timeline'
 
 import {
   BUILTIN_COMPONENTS_PREFIX,
@@ -170,6 +171,16 @@ export const routes = [
         meta: {
           title: () => t('Menu.DigitalAnimation'),
           icon: DigitalAnimationIcon
+        }
+      },
+      // Timeline component
+      {
+        path: `${BUILTIN_COMPONENTS_PREFIX}/timeline`,
+        name: 'timeline',
+        component: () => import('@/views/BuiltinComponents/Timeline'),
+        meta: {
+          title: () => t('Menu.Timeline'),
+          icon: TimelineIcon
         }
       },
       // Error Pages
