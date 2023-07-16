@@ -25,11 +25,11 @@ export class RenderUtils {
   }
 
   /**
-   * 渲染菜单图标
+   * 渲染图标
    * @param icon 图标
    * @param size 图标大小
    */
-  static renderMenuIcon(icon: any, size: number = 16) {
+  static renderIcon(icon: any, size: number = 16) {
     return () =>
       h(
         NIcon,
