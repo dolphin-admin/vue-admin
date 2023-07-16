@@ -25,6 +25,7 @@ nprogress
 nuxt
 Pinia
 Popconfirm
+printshop
 qrcode
 recallwei
 Roboto

@@ -1,44 +1,36 @@
 <script setup lang="ts">
 import type { Props } from './private'
 
-// TODO: 如果 Duration 设置较大，仍然可能出现问题
-
-const props = defineProps<{
-  TimelineRoute: Props[]
-}>()
-
-import type { MessageSchema } from '@/types'
-
-const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+const props = withDefaults(defineProps<Props>(), {
+  data: () => [],
+  horizontal: false,
+  itemPlacement: 'left'
+})
 
 const { isMobileDevice } = BrowserUtils
 </script>
 
 <template>
   <main>
-    <NCard
-      class="sm:!w-fit"
-      hoverable
-      bordered
-      :title="t('Timeline.WebDevRoadmap')"
+    <NTimeline
+      :horizontal="!isMobileDevice()"
+      :item-placement="props.itemPlacement"
+      :icon-size="props.iconSize"
     >
-      <NTimeline
-        :horizontal="!isMobileDevice()"
-        item-placement="left"
-        :icon-size="40"
+      <NTimelineItem
+        v-for="(item, index) in props.data"
+        :key="index"
+        :color="item.color"
+        :time="item.time"
+        :title="item.title"
+        :content="item.content"
+        :line-type="item.lineType ?? 'default'"
+        :type="item.type ?? 'default'"
       >
-        <NTimelineItem
-          v-for="(item, index) in props.TimelineRoute"
-          :key="index"
-          :color="item.color"
-          :content="item.content"
-          :time="item.time"
-        >
-          <template #icon>
-            <component :is="item.icon" />
-          </template>
-        </NTimelineItem>
-      </NTimeline>
-    </NCard>
+        <template #icon>
+          <component :is="item.icon" />
+        </template>
+      </NTimelineItem>
+    </NTimeline>
   </main>
 </template>
