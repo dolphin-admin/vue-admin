@@ -79,6 +79,10 @@
     "Copy": {
       "Success": "Copy Success",
       "Failed": "Copy failed"
+    },
+    "Print": {
+      "Success": "Print Success",
+      "Failed": "Print failed"
     }
   },
   "User": {
