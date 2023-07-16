@@ -23,6 +23,7 @@ Noto
 nprogress
 Pinia
 Popconfirm
+printshop
 qrcode
 recallwei
 Roboto
