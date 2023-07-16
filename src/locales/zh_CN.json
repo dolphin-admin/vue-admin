@@ -79,6 +79,10 @@
     "Copy": {
       "Success": "复制成功",
       "Failed": "复制失败"
+    },
+    "Print": {
+      "Success": "打印成功",
+      "Failed": "打印失败"
     }
   },
   "User": {
