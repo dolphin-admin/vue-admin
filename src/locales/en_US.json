@@ -79,10 +79,6 @@
     "Copy": {
       "Success": "Copy Success",
       "Failed": "Copy failed"
-    },
-    "Print": {
-      "Success": "Print Success",
-      "Failed": "Print failed"
     }
   },
   "User": {
@@ -202,6 +198,27 @@
   },
   "Icon": {
     "SearchPlaceholder": "Please enter icon set name"
+  },
+  "Print": {
+    "FrontendFrameworkLeaderboard": "Front-end Framework Leaderboard",
+    "Icon": "Icon",
+    "Framework": "Framework",
+    "Type": "Type",
+    "Description": "Description",
+    "Stars": "Stars",
+    "React": "React is a JavaScript library developed by Facebook for building user interfaces, particularly for single-page applications. It's used for handling the view layer in web and mobile apps. React allows developers to create large web applications that can change data, without reloading the page.",
+    "Angular": "Angular is a platform for building web applications, developed by Google. It provides a way to create single-page applications, and has robust tools for two-way data binding, modularization, templating, and dependency injection.",
+    "Vue": "Vue.js is a JavaScript framework for building user interfaces. The core library is focused on the view layer only and is easy to pick up and integrate with other libraries or existing projects. Vue is also capable of powering sophisticated Single-Page Applications when used in combination with modern tooling and supporting libraries.",
+    "Svelte": "Svelte is a radical new approach to building user interfaces. Whereas traditional frameworks like React and Vue do the bulk of their work in the browser, Svelte shifts that work into a compile step that happens when you build your app.",
+    "Solidjs": "Solid is a declarative JavaScript library for building user interfaces. It does not use a virtual DOM diffing algorithm, instead it compiles its templates down to highly optimized fine-grained reactivity system, which makes it extremely efficient.",
+    "Nextjs": "Next.js is a React framework developed by Vercel, and it allows for server-side rendering and generating static websites for React based web applications. It includes features like zero-config, automatic code splitting and file-system based routing.",
+    "Nuxtjs": "Nuxt.js is a framework for creating Vue.js applications, it allows for server side rendering (SSR), single page applications (SPA), or statically generated sites (SSG). Nuxt.js presets all the configuration needed to make your development of a Vue.js application enjoyable.",
+    "Gatsby": "Gatsby is a free and open source framework based on React that helps developers build blazing fast websites and apps. It can pull data from anywhere (CMSs, Markdown files, APIs etc.) and generates static web pages that still have the speed and functionality of a single page app (SPA).",
+    "Docusaurus": "Docusaurus is a modern static website generator (SSG) that helps you to create, maintain, and update documentation websites easily. It's powered by React and can be customized with your own React code.",
+    "Astro": "Astro is a front-end framework that allows you to build faster, modern websites with less client-side JavaScript. Astro lets you write components using your favorite JavaScript framework (like React, Vue, Svelte), but then renders them to static HTML and CSS at build time.",
+    "ExpireTip": "The data is as of 2023/07/17, from GitHub",
+    "DOM": "Print DOM",
+    "HTMLStr": "Print HTML Str"
   },
   "DigitalAnimation": {
     "StartValuePlaceholder": "Please enter start value",

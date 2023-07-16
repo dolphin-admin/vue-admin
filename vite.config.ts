@@ -80,6 +80,7 @@ export default defineConfig(({ mode }) => {
               'DataTableBaseColumn',
               'DataTableColumn',
               'DataTableColumns',
+              'DataTableCreateSummary',
               'DropdownOption',
               'FormInst',
               'FormItemInst',

@@ -29,12 +29,13 @@ export class RenderUtils {
    * @param icon 图标
    * @param size 图标大小
    */
-  static renderIcon(icon: any, size: number = 16) {
+  static renderIcon(icon: any, size: number = 16, options?: any) {
     return () =>
       h(
         NIcon,
         {
-          size
+          size,
+          ...options
         },
         {
           default: () => h(icon)
