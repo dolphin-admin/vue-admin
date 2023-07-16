@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import type { Lang, MessageSchema, User } from '@/types'
-import { AuthType } from '@/types'
+import type { DataTableFilterState, DataTableSortState } from 'naive-ui'
+
+import type { Lang, MessageSchema, Sorter, User } from '@/types'
+import { AuthType, OrderType } from '@/types'
 import GitHubIcon from '~icons/ant-design/github-outlined'
 import UserAvatarIcon from '~icons/carbon/user-avatar-filled-alt'
 import CheckIcon from '~icons/ic/baseline-check'
@@ -10,6 +12,99 @@ import SearchIcon from '~icons/line-md/search'
 import GoogleIcon from '~icons/logos/google-icon'
 
 import { UserFormModal } from './components'
+import { UserPageModel } from './private'
+
+const { isMobileDevice } = BrowserUtils
+
+const idColumn: DataTableBaseColumn<User> = {
+  title: 'ID',
+  key: 'id',
+  width: 50,
+  titleAlign: 'center',
+  align: 'center',
+  sorter: true
+}
+
+const createdAtColumn: DataTableBaseColumn<User> = {
+  title: () => t('UserManagement.EnterTime'),
+  key: 'createdAt',
+  width: 140,
+  titleAlign: 'center',
+  align: 'center',
+  sorter: true,
+  render: (row) => (row.createdAt ? TimeUtils.formatTime(row.createdAt) : '')
+}
+
+const authTypeColumn: DataTableBaseColumn<User> = {
+  title: () => t('User.AuthType'),
+  key: 'authTypes',
+  width: 200,
+  filter: true,
+  filterMultiple: true,
+  defaultFilterOptionValues: [],
+  filterOptions: [
+    {
+      label: 'GitHub',
+      value: 0
+    },
+    {
+      label: 'Google',
+      value: 1
+    }
+  ],
+  render: (row) => {
+    const tags = (row?.authTypes || []).map((authType) => {
+      switch (authType) {
+        case AuthType[0]:
+          return h(
+            NTag,
+            {
+              class: '!mr-2',
+              bordered: false
+            },
+            {
+              default: () => authType,
+              icon: () =>
+                h(
+                  NIcon,
+                  {
+                    size: '14',
+                    class: 'mr-0.5'
+                  },
+                  () =>
+                    h(GitHubIcon, {
+                      class: 'scale-125'
+                    })
+                )
+            }
+          )
+        case AuthType[1]:
+          return h(
+            NTag,
+            {
+              class: '!mr-2',
+              bordered: false
+            },
+            {
+              default: () => authType,
+              icon: () =>
+                h(
+                  NIcon,
+                  {
+                    size: '14',
+                    class: 'mr-0.5'
+                  },
+                  () => h(GoogleIcon)
+                )
+            }
+          )
+        default:
+          return undefined
+      }
+    })
+    return tags
+  }
+}
 
 const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({ useScope: 'global' })
 
@@ -39,7 +134,9 @@ const userFormModalRef = ref()
 
 const queryParams = reactive({
   searchText: '',
-  daterange: null
+  daterange: null,
+  sorters: [] as Sorter[],
+  authTypes: ''
 })
 const users = ref<User[]>([])
 const pagination = reactive({
@@ -50,6 +147,9 @@ const pagination = reactive({
 const resetPasswordData = reactive({
   password: AuthUtils.DEFAULT_PASSWORD
 })
+const idColumnReactive = reactive(idColumn)
+const createdAtColumnReactive = reactive(createdAtColumn)
+const authTypeColumnReactive = reactive(authTypeColumn)
 
 const currentId = ref()
 const userFormData = ref({})
@@ -57,25 +157,28 @@ const isEdit = ref(true)
 
 const isResetPassword = ref(false)
 
-const queryList = (shouldLoading = true) => {
+const queryList = () => {
   if (loading.value) {
     return
   }
 
-  if (shouldLoading) {
-    loadingDispatcher.loading()
-  }
+  loadingDispatcher.loading()
 
-  const params = new BasePageModel({
+  const params = new UserPageModel({
     page: pagination.page,
     pageSize: pagination.pageSize,
-    searchText: queryParams.searchText
+    searchText: queryParams.searchText,
+    sorters: queryParams.sorters
   })
 
   if (queryParams.daterange && Array.isArray(queryParams.daterange)) {
     const [startDate, endDate] = queryParams.daterange as string[]
     params.startDate = dayjs(startDate).startOf('day').toISOString()
     params.endDate = dayjs(endDate).endOf('day').toISOString()
+  }
+
+  if (queryParams.authTypes) {
+    params.authTypes = queryParams.authTypes
   }
 
   UserAPI.getUsers(params)
@@ -88,30 +191,55 @@ const queryList = (shouldLoading = true) => {
       message.error(t('Common.LoadingDataError'))
       users.value = []
     })
-    .finally(() => {
-      if (shouldLoading) {
-        loadingDispatcher.loaded()
-      }
-    })
+    .finally(() => loadingDispatcher.loaded())
 }
 
+/**
+ * 重置查询条件
+ */
 const handleReset = () => {
   queryParams.searchText = ''
   queryParams.daterange = null
   pagination.page = 1
   pagination.pageSize = 10
   pagination.itemCount = 0
+  queryParams.sorters = []
+  idColumnReactive.sortOrder = false
+  createdAtColumnReactive.sortOrder = false
+  queryParams.authTypes = ''
+  authTypeColumnReactive.filterOptionValues = []
+  queryList()
+}
+
+const handleSorterChange = (options: DataTableSortState | null) => {
+  if (!options) {
+    return
+  }
+  if (options.order) {
+    queryParams.sorters = [
+      {
+        key: options.columnKey as string,
+        order: OrderType[options.order]
+      }
+    ]
+  } else {
+    queryParams.sorters = []
+  }
+  queryList()
+}
+
+const handleFiltersChange = (filters: DataTableFilterState) => {
+  const { authTypes } = filters
+  if (authTypes && Array.isArray(authTypes) && authTypes.length > 0) {
+    queryParams.authTypes = authTypes.join()
+  } else {
+    queryParams.authTypes = ''
+  }
   queryList()
 }
 
 const columns = ref<DataTableBaseColumn<User>[]>([
-  {
-    title: 'ID',
-    key: 'id',
-    width: 50,
-    titleAlign: 'center',
-    align: 'center'
-  },
+  idColumn,
   {
     title: () => t('User.Avatar'),
     key: 'avatar',
@@ -125,19 +253,17 @@ const columns = ref<DataTableBaseColumn<User>[]>([
           class: 'flex align-center justify-center'
         },
         row.avatarUrl
-          ? () =>
-              h(NImage, {
-                width: 40,
-                lazy: true,
-                src: row.avatarUrl,
-                class: 'rounded-full'
-              })
-          : () =>
-              h(NIcon, {
-                size: '40',
-                depth: '3',
-                component: UserAvatarIcon
-              })
+          ? h(NAvatar, {
+              src: row.avatarUrl,
+              round: true,
+              lazy: true,
+              class: 'my-1'
+            })
+          : h(NIcon, {
+              size: '40',
+              depth: '3',
+              component: UserAvatarIcon
+            })
       )
   },
   {
@@ -152,7 +278,10 @@ const columns = ref<DataTableBaseColumn<User>[]>([
   {
     title: () => t('User.PhoneNumber'),
     key: 'phoneNumber',
-    width: 120
+    width: 120,
+    ellipsis: {
+      tooltip: true
+    }
   },
   {
     title: () => t('User.Email'),
@@ -166,17 +295,26 @@ const columns = ref<DataTableBaseColumn<User>[]>([
   {
     title: () => t('User.Name'),
     key: 'name',
-    width: 100
+    width: 100,
+    ellipsis: {
+      tooltip: true
+    }
   },
   {
     title: () => t('User.LastName'),
     key: 'lastName',
-    width: 80
+    width: 80,
+    ellipsis: {
+      tooltip: true
+    }
   },
   {
     title: () => t('User.FirstName'),
     key: 'firstName',
-    width: 80
+    width: 80,
+    ellipsis: {
+      tooltip: true
+    }
   },
   {
     title: () => t('User.NickName'),
@@ -259,71 +397,8 @@ const columns = ref<DataTableBaseColumn<User>[]>([
         class: 'inline'
       })
   },
-  {
-    title: () => t('UserManagement.EnterTime'),
-    key: 'createdAt',
-    width: 140,
-    titleAlign: 'center',
-    align: 'center',
-    render: (row) => (row.createdAt ? TimeUtils.formatTime(row.createdAt) : '')
-  },
-  {
-    title: () => t('User.AuthType'),
-    key: 'authTypes',
-    width: 200,
-    render: (row) => {
-      const tags = (row?.authTypes || []).map((authType) => {
-        switch (authType) {
-          case AuthType[0]:
-            return h(
-              NTag,
-              {
-                class: '!mr-2',
-                bordered: false
-              },
-              {
-                default: () => authType,
-                icon: () =>
-                  h(
-                    NIcon,
-                    {
-                      size: '14',
-                      class: 'mr-0.5'
-                    },
-                    () =>
-                      h(GitHubIcon, {
-                        class: 'scale-125'
-                      })
-                  )
-              }
-            )
-          case AuthType[1]:
-            return h(
-              NTag,
-              {
-                class: '!mr-2',
-                bordered: false
-              },
-              {
-                default: () => authType,
-                icon: () =>
-                  h(
-                    NIcon,
-                    {
-                      size: '14',
-                      class: 'mr-0.5'
-                    },
-                    h(GoogleIcon)
-                  )
-              }
-            )
-          default:
-            return undefined
-        }
-      })
-      return tags
-    }
-  },
+  createdAtColumn,
+  authTypeColumn,
   {
     title: () => t('User.Roles'),
     key: 'roles',
@@ -510,9 +585,10 @@ onMounted(() => queryList())
             <NButton
               type="primary"
               size="small"
+              @click="() => queryList()"
             >
-              {{ t('Common.Search') }}</NButton
-            >
+              {{ t('Common.Search') }}
+            </NButton>
           </div>
           <NDatePicker
             v-model:value="queryParams.daterange"
@@ -556,6 +632,7 @@ onMounted(() => queryList())
       :loading="loading"
       :pagination="{
           ...pagination,
+          simple: isMobileDevice(),
           showQuickJumper: true,
           showSizePicker: true,
           pageSlot: 9,
@@ -588,6 +665,8 @@ onMounted(() => queryList())
           },
           prefix: (info) => t('Common.TotalPage', {totalPage: info.itemCount})
         }"
+      @update:sorter="handleSorterChange"
+      @update:filters="handleFiltersChange"
       @update:page="() => queryList()"
     />
 

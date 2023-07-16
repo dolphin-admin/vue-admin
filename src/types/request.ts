@@ -1,3 +1,4 @@
+import type { BasePageModel } from '../constants/page'
 interface Response {
   code?: number | string
   message?: string
@@ -14,10 +15,29 @@ export interface PageResponse<T = any> extends Response {
   total: number
 }
 
-export interface PageModel {
+export enum OrderType {
+  descend = 'desc',
+  ascend = 'asc'
+}
+
+interface PageBaseModel {
   page: number
   pageSize: number
   searchText?: string
   startDate?: string
   endDate?: string
+}
+
+export interface PageRequestModel extends PageBaseModel {
+  sort?: string
+  order?: string
+}
+
+export interface Sorter {
+  key: string
+  order: OrderType
+}
+
+export interface PageModel extends BasePageModel {
+  sorters?: Sorter[]
 }

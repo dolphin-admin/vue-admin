@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import type { MessageSchema } from '@/types'
+import LoadingIcon from '~icons/svg-spinners/blocks-shuffle-3'
+
+const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+
 const themeStore = useThemeStore()
 </script>
 
@@ -13,19 +18,34 @@ const themeStore = useThemeStore()
   >
     <NLoadingBarProvider>
       <NMessageProvider>
-        <RouterView
+        <RouterView 
           v-slot="{ Component }"
           class="display-content"
         >
-          <Transition
-            name="router"
-            mode="out-in"
-          >
-            <component
-              :is="Component"
-              class="text-base"
-            />
-          </Transition>
+          <template v-if="Component">
+            <Transition
+              name="router"
+              mode="out-in"
+            >
+              <Suspense>
+                <component
+                  :is="Component"
+                  class="text-base"
+                />
+                <template #fallback>
+                  <main class="flex h-screen flex-col items-center justify-center">
+                    <NIcon
+                      :component="LoadingIcon"
+                      size="60"
+                      class="text-blue-200 dark:text-blue-400"
+                    />
+                    <span class="mb-1 mt-4 text-xl">{{ t('App.Name') }}</span>
+                    <NGradientText type="primary">Powered by Bit Ocean</NGradientText>
+                  </main>
+                </template>
+              </Suspense>
+            </Transition>
+          </template>
         </RouterView>
       </NMessageProvider>
     </NLoadingBarProvider>
