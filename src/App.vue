@@ -13,7 +13,10 @@ const themeStore = useThemeStore()
   >
     <NLoadingBarProvider>
       <NMessageProvider>
-        <RouterView v-slot="{ Component }">
+        <RouterView
+          v-slot="{ Component }"
+          class="display-content"
+        >
           <Transition
             name="router"
             mode="out-in"
@@ -38,5 +41,11 @@ const themeStore = useThemeStore()
 .router-enter-from,
 .router-leave-to {
   opacity: 0;
+}
+
+@media print {
+  .display-content {
+    display: none;
+  }
 }
 </style>
