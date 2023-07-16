@@ -153,12 +153,12 @@
     "Charts": "图表",
     "BuiltinComponents": "内置组件",
     "DigitalAnimation": "数字动画",
+    "Timeline": "时间线",
     "ErrorPages": "错误页面",
     "403": "403",
     "404": "404",
     "418": "418",
-    "500": "500",
-    "Timeline": "时间线"
+    "500": "500"
   },
   "Login": {
     "AsVisitor": "以访客登录",
@@ -207,5 +207,8 @@
     "StartValuePlaceholder": "请输入开始值",
     "EndValuePlaceholder": "请输入结束值",
     "DurationPlaceholder": "请输入动画时长"
+  },
+  "Timeline": {
+    "WebDevRoadmap": "Web 开发学习路线"
   }
 }
