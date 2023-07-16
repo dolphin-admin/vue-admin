@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { webLearnRoute } from './private'
 import type { MessageSchema } from '@/types'
+
+import { webLearnRoute } from './private'
 
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
@@ -15,23 +16,11 @@ const { isMobileDevice } = BrowserUtils
       bordered
       :title="t('Timeline.WebDevRoadmap')"
     >
-      <NTimeline
+      <Timeline
+        :data="webLearnRoute"
         :horizontal="!isMobileDevice()"
-        item-placement="left"
-        :icon-size="40"
-      >
-        <NTimelineItem
-          v-for="(item, index) in webLearnRoute"
-          :key="index"
-          :color="item.color"
-          :content="item.content"
-          :time="item.time"
-        >
-          <template #icon>
-            <component :is="item.icon" />
-          </template>
-        </NTimelineItem>
-      </NTimeline>
+        :icon-size="28"
+      />
     </NCard>
   </main>
 </template>
