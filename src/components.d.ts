@@ -59,5 +59,6 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     ThemeSwitchDevTool: typeof import('./components/ThemeSwitchDevTool/index.vue')['default']
+    Timeline: typeof import('./components/Timeline/index.vue')['default']
   }
 }
