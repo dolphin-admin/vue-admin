@@ -7,7 +7,6 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    '(chore': update)
     AuthLayout: typeof import('./layouts/AuthLayout/index.vue')['default']
     BarChart: typeof import('./charts/BarChart/index.vue')['default']
     BaseBreadcrumb: typeof import('./components/BaseBreadcrumb/index.vue')['default']
