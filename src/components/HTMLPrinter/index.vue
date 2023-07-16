@@ -1,10 +1,8 @@
 <script setup lang="ts">
-const props = defineProps({
-  // 打印内容
-  content: {
-    type: String,
-    default: ''
-  }
+import type { Props } from './private'
+
+const props = withDefaults(defineProps<Props>(), {
+  content: '' // 打印内容（HTML 字符串）
 })
 
 const dynamicContent = computed(() => props.content)
@@ -26,7 +24,7 @@ const dynamicContent = computed(() => props.content)
 
 @media print {
   @page {
-    margin-bottom: 0mm;
+    margin: 0mm;
   }
   .print-content {
     visibility: visible;

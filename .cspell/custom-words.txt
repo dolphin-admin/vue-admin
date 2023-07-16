@@ -1,3 +1,4 @@
+astro
 axios
 Bootstrapper
 commitlint
@@ -20,6 +21,7 @@ noopenner
 noreferrer
 Noto
 nprogress
+nuxt
 Pinia
 Popconfirm
 qrcode

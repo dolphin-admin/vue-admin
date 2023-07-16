@@ -79,10 +79,6 @@
     "Copy": {
       "Success": "Copy Success",
       "Failed": "Copy failed"
-    },
-    "Print": {
-      "Success": "Print Success",
-      "Failed": "Print failed"
     }
   },
   "User": {
@@ -201,6 +197,9 @@
   },
   "Icon": {
     "SearchPlaceholder": "Please enter icon set name"
+  },
+  "Print": {
+    "FrontendFrameworkLeaderboard": "Front-end Framework Leaderboard"
   },
   "DigitalAnimation": {
     "StartValuePlaceholder": "Please enter start value",

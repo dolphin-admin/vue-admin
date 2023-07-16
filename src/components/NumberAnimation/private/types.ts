@@ -1,7 +1,19 @@
 export interface Props {
-  startValue: number
-  endValue: number
+  /**
+   * 起始值
+   */
+  startValue?: number
+  /**
+   * 结束值
+   */
+  endValue?: number
+  /**
+   * 动画时长
+   */
   duration?: number
+  /**
+   * 延迟时间
+   */
   delay?: number
 }
 

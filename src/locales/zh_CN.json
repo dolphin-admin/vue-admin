@@ -79,10 +79,6 @@
     "Copy": {
       "Success": "复制成功",
       "Failed": "复制失败"
-    },
-    "Print": {
-      "Success": "打印成功",
-      "Failed": "打印失败"
     }
   },
   "User": {
@@ -201,6 +197,13 @@
   },
   "Icon": {
     "SearchPlaceholder": "请输入图标集合名称"
+  },
+  "Print": {
+    "FrontendFrameworkLeaderboard": "前端框架排行榜",
+    "Icon": "图标",
+    "Framework": "框架",
+    "Description": "简介",
+    "Stars": "星数"
   },
   "DigitalAnimation": {
     "StartValuePlaceholder": "请输入开始值",
