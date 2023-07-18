@@ -3,6 +3,8 @@ import CopyIcon from '~icons/ic/baseline-content-copy'
 import UnauthorizedIcon from '~icons/ic/baseline-do-not-disturb'
 import DigitalAnimationIcon from '~icons/ic/baseline-hourglass-empty'
 import QRCodeIcon from '~icons/ic/baseline-qrcode'
+import TimelineIcon from '~icons/ic/baseline-timeline'
+import ChatroomIcon from '~icons/ic/outline-chat-bubble-outline'
 import PrintIcon from '~icons/ic/outline-local-printshop'
 import HomeIcon from '~icons/ic/sharp-house'
 import IAmATeapotIcon from '~icons/icon-park-outline/tea-drink'
@@ -16,11 +18,11 @@ import PermissionManagementIcon from '~icons/mdi/key-chain'
 import ExcelIcon from '~icons/mdi/microsoft-excel'
 import WebSocketIcon from '~icons/tabler/brand-socket-io'
 import NotFoundIcon from '~icons/tabler/error-404'
-import TimelineIcon from '~icons/ic/baseline-timeline'
 
 import {
   BUILTIN_COMPONENTS_PREFIX,
   ERROR_PAGES_PREFIX,
+  SYSTEM_APPLICATION_PREFIX,
   SYSTEM_FUNCTIONS_PREFIX,
   SYSTEM_TOOLS_PREFIX,
   UNIVERSAL_COMPONENTS_PREFIX
@@ -98,6 +100,17 @@ export const routes = [
           icon: PermissionManagementIcon
         }
       },
+      // system-application
+      {
+        path: `${SYSTEM_APPLICATION_PREFIX}/chatroom`,
+        name: 'chatroom',
+        component: () => import('@/views/SystemApplication/Chatroom'),
+        meta: {
+          title: () => t('Menu.Chatroom'),
+          icon: ChatroomIcon
+        }
+      },
+
       // System Tools
       {
         path: `${SYSTEM_TOOLS_PREFIX}/icon`,

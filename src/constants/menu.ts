@@ -7,8 +7,11 @@ import UnauthorizedIcon from '~icons/ic/baseline-do-not-disturb'
 import ErrorPagesIcon from '~icons/ic/baseline-error-outline'
 import DigitalAnimationIcon from '~icons/ic/baseline-hourglass-empty'
 import QRCodeIcon from '~icons/ic/baseline-qrcode'
+import TimelineIcon from '~icons/ic/baseline-timeline'
+import ChatroomIcon from '~icons/ic/outline-chat-bubble-outline'
 import PrintIcon from '~icons/ic/outline-local-printshop'
 import HomeIcon from '~icons/ic/sharp-house'
+import SystemApplicationIcon from '~icons/ic/sharp-polyline'
 import IAmATeapotIcon from '~icons/icon-park-outline/tea-drink'
 import InternalServerErrorIcon from '~icons/lucide/server-off'
 import UserManagementIcon from '~icons/mdi/account-cog-outline'
@@ -21,7 +24,6 @@ import BuiltinComponentsIcon from '~icons/mdi/puzzle'
 import SystemToolsIcon from '~icons/mdi/tools'
 import WebSocketIcon from '~icons/tabler/brand-socket-io'
 import NotFoundIcon from '~icons/tabler/error-404'
-import TimelineIcon from '~icons/ic/baseline-timeline'
 
 const { renderIcon: renderMenuIcon, renderMenuLabel, t } = RenderUtils
 
@@ -52,6 +54,18 @@ export const menuOptions: MenuOption[] = [
         key: 'permission-management',
         icon: renderMenuIcon(PermissionManagementIcon),
         show: false
+      }
+    ]
+  },
+  {
+    label: renderMenuLabel(t('Menu.SystemApplication')),
+    key: 'system-application',
+    icon: renderMenuIcon(SystemApplicationIcon),
+    children: [
+      {
+        label: renderMenuLabel(t('Menu.Chatroom')),
+        key: 'chatroom',
+        icon: renderMenuIcon(ChatroomIcon)
       }
     ]
   },

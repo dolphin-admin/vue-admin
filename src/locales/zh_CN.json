@@ -138,6 +138,8 @@
     "UserManagement": "用户管理",
     "RoleManagement": "角色管理",
     "PermissionManagement": "权限管理",
+    "SystemApplication": "系统应用",
+    "Chatroom": "聊天室",
     "SystemTools": "系统工具",
     "Icon": "图标",
     "QRCode": "二维码",
