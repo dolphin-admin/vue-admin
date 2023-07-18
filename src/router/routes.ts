@@ -3,6 +3,7 @@ import CopyIcon from '~icons/ic/baseline-content-copy'
 import UnauthorizedIcon from '~icons/ic/baseline-do-not-disturb'
 import DigitalAnimationIcon from '~icons/ic/baseline-hourglass-empty'
 import QRCodeIcon from '~icons/ic/baseline-qrcode'
+import TimelineIcon from '~icons/ic/baseline-timeline'
 import PrintIcon from '~icons/ic/outline-local-printshop'
 import HomeIcon from '~icons/ic/sharp-house'
 import IAmATeapotIcon from '~icons/icon-park-outline/tea-drink'
@@ -16,11 +17,12 @@ import PermissionManagementIcon from '~icons/mdi/key-chain'
 import ExcelIcon from '~icons/mdi/microsoft-excel'
 import WebSocketIcon from '~icons/tabler/brand-socket-io'
 import NotFoundIcon from '~icons/tabler/error-404'
-import TimelineIcon from '~icons/ic/baseline-timeline'
+import ChatChannelsIcon from '~icons/tabler/message-2'
 
 import {
   BUILTIN_COMPONENTS_PREFIX,
   ERROR_PAGES_PREFIX,
+  SYSTEM_APPLICATIONS_PREFIX,
   SYSTEM_FUNCTIONS_PREFIX,
   SYSTEM_TOOLS_PREFIX,
   UNIVERSAL_COMPONENTS_PREFIX
@@ -96,6 +98,16 @@ export const routes = [
         meta: {
           title: () => t('Menu.PermissionManagement'),
           icon: PermissionManagementIcon
+        }
+      },
+      // system-application
+      {
+        path: `${SYSTEM_APPLICATIONS_PREFIX}/chat-channels`,
+        name: 'chat-channels',
+        component: () => import('@/views/SystemApplications/ChatChannels'),
+        meta: {
+          title: () => t('Menu.ChatChannels'),
+          icon: ChatChannelsIcon
         }
       },
       // System Tools

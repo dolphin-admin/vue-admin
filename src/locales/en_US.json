@@ -138,6 +138,8 @@
     "UserManagement": "User Management",
     "RoleManagement": "Role Management",
     "PermissionManagement": "Permission Management",
+    "SystemApplications": "System Applications",
+    "ChatChannels": "Chat Channels",
     "SystemTools": "System Tool",
     "Icon": "Icon",
     "QRCode": "QRCode",
