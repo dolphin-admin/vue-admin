@@ -3,7 +3,7 @@ import type { MessageSchema } from '@/types'
 import ArrowLeftIcon from '~icons/ic/round-keyboard-arrow-left'
 import UilEllipsisHIcon from '~icons/uil/ellipsis-h'
 
-import { Channel, Chatroom, Online } from './components'
+import { ChannelList, ChatList, UserList } from './components'
 
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
@@ -23,20 +23,20 @@ const options = [
 const handleSelect = (key: OptionKey) => {
   switch (key) {
     case 'Channel':
-      currentPage.value = Channel
+      currentPage.value = ChannelList
       break
     case 'Online':
-      currentPage.value = Online
+      currentPage.value = UserList
       break
     default:
       break
   }
 }
 
-const currentPage = ref(Chatroom)
+const currentPage = ref(ChatList)
 
 const handleReturn = () => {
-  currentPage.value = Chatroom
+  currentPage.value = ChatList
 }
 </script>
 
