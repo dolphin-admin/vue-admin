@@ -91,6 +91,13 @@ class Request {
         console.error(errorMessage)
         message.error(errorMessage)
         break
+      case ResponseStatusCode.INTERNAL_SERVER_ERROR:
+      case ResponseStatusCode.BAD_GATEWAY:
+      case ResponseStatusCode.GATEWAY_TIMEOUT:
+        if (router.currentRoute.value.path !== '/login') {
+          router.replace('/500')
+        }
+        break
       case ResponseStatusCode.BAD_REQUEST:
       case ResponseStatusCode.NOT_FOUND:
       case ResponseStatusCode.METHOD_NOT_ALLOWED:
