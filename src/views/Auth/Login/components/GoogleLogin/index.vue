@@ -54,7 +54,9 @@ const loginWithGoogle = () => {
         }
       })
       .catch((err) => {
-        message.error(err.message ?? t('Login.Failed'))
+        if (err.message) {
+          message.error(err.message)
+        }
         loadingDispatcher.loaded()
       })
   }

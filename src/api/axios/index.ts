@@ -6,6 +6,8 @@ import type { PageModel } from '@/types'
 import { axiosConfig } from './config'
 import { errorMessageMap, ResponseStatusCode } from './statusCode'
 
+const { t } = i18n.global
+
 const themeStore = useThemeStore()
 
 const { message } = createDiscreteApi(['message'], {
@@ -72,6 +74,7 @@ class Request {
     switch (code) {
       case ResponseStatusCode.UNAUTHORIZED:
         AuthUtils.clearToken()
+        message.error(t('Common.401'))
         if (router.currentRoute.value.path !== '/login') {
           if (router.currentRoute.value.path !== '/') {
             router.replace({
@@ -84,8 +87,6 @@ class Request {
             router.replace('/login')
           }
         }
-        console.error(errorMessage)
-        message.error(errorMessage)
         break
       case ResponseStatusCode.FORBIDDEN:
         console.error(errorMessage)
@@ -94,8 +95,9 @@ class Request {
       case ResponseStatusCode.INTERNAL_SERVER_ERROR:
       case ResponseStatusCode.BAD_GATEWAY:
       case ResponseStatusCode.GATEWAY_TIMEOUT:
+        message.error(t('Common.500'))
         if (router.currentRoute.value.path !== '/login') {
-          router.replace('/500')
+          router.replace('/error-page/500')
         }
         break
       case ResponseStatusCode.BAD_REQUEST:

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { MessageSchema } from '@/types'
+
 import { header } from './private'
 
 const message = useMessage()
@@ -26,7 +27,7 @@ const queryList = () => {
 }
 
 const handleExport = () => {
-  if (filename.value === '') {
+  if (!filename.value?.trim()) {
     message.info(t('Validation.FileName'))
     return
   }
@@ -40,7 +41,7 @@ onMounted(() => {
 
 <template>
   <main class="space-y-4">
-    <div class="space-x-4 flex">
+    <div class="flex space-x-4">
       <div>
         <NInput
           v-model:value="filename"

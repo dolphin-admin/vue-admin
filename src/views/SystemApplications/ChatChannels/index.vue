@@ -43,7 +43,7 @@ const handleReturn = () => {
 <template>
   <main class="relative flex w-full justify-between">
     <div class="hidden w-52 shrink-0 border border-gray-300 sm:block">
-      <Channel />
+      <ChannelList />
     </div>
     <div class="relative flex w-full flex-col border-gray-300 sm:flex-1 sm:border-y">
       <div class="visible flex justify-between sm:invisible">
@@ -59,7 +59,7 @@ const handleReturn = () => {
       <component :is="currentPage" />
     </div>
     <div class="hidden w-52 shrink-0 border border-gray-300 sm:block">
-      <Online />
+      <UserList />
     </div>
   </main>
 </template>

@@ -75,7 +75,9 @@ const handleChangePassword = () => {
         logout()
       })
       .catch((err) => {
-        message.error(err.message)
+        if (err.message) {
+          message.error(err.message)
+        }
       })
       .finally(() => {
         submitLoadingDispatcher.loaded()
