@@ -2,36 +2,121 @@
 import type { Socket } from 'socket.io-client'
 import { io } from 'socket.io-client'
 
+import type { MessageSchema } from '@/types'
+
+const { t, locale } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 const userStore = useUserStore()
 const message = useMessage()
 
-const socket = ref<Socket | null>(null)
+const inputValue = ref('')
+const socket = ref<Socket>(
+  io(`${GlobalEnvConfig.BASE_API_PROXY}/demo`, {
+    autoConnect: false // 禁止自动连接
+  })
+)
 
+/**
+ * 获取当前需要发送的信息
+ * @param userMessage 用户消息
+ */
+const getSendInfo = (userMessage?: string) => ({
+  id: userStore.user.id,
+  username: userStore.user.username,
+  ...(userMessage && { message: userMessage })
+})
+
+/**
+ * 建立连接
+ */
+const handleConnect = () => {
+  socket.value.connect()
+  socket.value.emit('join', getSendInfo())
+}
+
+/**
+ * 断开连接
+ */
+const handleDisconnect = () => {
+  socket.value.emit('leave', getSendInfo())
+  socket.value.disconnect()
+}
+
+/**
+ * 发送消息
+ */
 const handleSendMessage = () => {
-  const sendMessage = `你好，我是${userStore.user.username}，我刚刚给你发送了一条信息`
-  socket.value!.emit('message', sendMessage)
-  message.success('您成功发送了一条消息')
+  if (!inputValue.value.trim()) {
+    message.error(t('WebSocket.ContentIsEmpty'))
+    return
+  }
+  socket.value.emit('message', getSendInfo(inputValue.value))
+  message.success(t('WebSocket.SendSuccess'))
 }
 
 onBeforeMount(() => {
-  socket.value = io(GlobalEnvConfig.BASE_API_PROXY + '/websocket')
-  socket.value.on('connect', () => {
-    console.log('connect')
-  })
-  socket.value.on('disconnect', () => {
-    console.log('disconnect')
-  })
-  socket.value.on('message', (data) => {
-    console.log(data)
-    message.success(data)
-  })
+  // 监听连接
+  socket.value.on('connect', () => message.info(t('WebSocket.Established')))
+  // 监听断开连接
+  socket.value.on('disconnect', () => message.info(t('WebSocket.Disconnected')))
+  /**
+   * NOTE: 服务端发送的信息为多语言 object，所以需要根据当前语言环境进行判断
+   * 例如：
+   * {
+   *   zh_CN: 'xxx',
+   *   en_US: 'xxx'
+   * }
+   */
+  // 监听服务端发送的消息
+  socket.value.on('message', (data) => message.success(data[locale.value]))
+  // 监听用户加入
+  socket.value.on('join', (data) => message.info(data[locale.value]))
+  // 监听用户离开
+  socket.value.on('leave', (data) => message.info(data[locale.value]))
 })
 
-onBeforeUnmount(() => socket.value!.disconnect())
+// 组件销毁时断开连接
+onBeforeUnmount(() => handleDisconnect())
 </script>
 
 <template>
   <main>
-    <NButton @click="handleSendMessage">发送信息</NButton>
+    <NCard hoverable>
+      <NBlockquote>{{ t('WebSocket.Tip') }}</NBlockquote>
+      <div class="flex flex-col space-y-3">
+        <div class="flex items-center space-x-4">
+          <NButton
+            :type="socket.connected ? 'default' : 'primary'"
+            :disabled="socket.connected"
+            @click="handleConnect"
+          >
+            {{ t('WebSocket.Establish') }}
+          </NButton>
+          <NButton
+            secondary
+            :type="socket.connected ? 'error' : 'default'"
+            :disabled="socket.disconnected"
+            @click="handleDisconnect"
+          >
+            {{ t('WebSocket.Disconnect') }}
+          </NButton>
+        </div>
+        <div class="flex items-center space-x-4">
+          <NInput
+            v-model:value="inputValue"
+            clearable
+            show-count
+            maxlength="50"
+            type="text"
+          />
+          <NButton
+            :type="socket.connected ? 'success' : 'default'"
+            :disabled="socket.disconnected"
+            @click="handleSendMessage"
+          >
+            {{ t('WebSocket.SendMessage') }}
+          </NButton>
+        </div>
+      </div>
+    </NCard>
   </main>
 </template>

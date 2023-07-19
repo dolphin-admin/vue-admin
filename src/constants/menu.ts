@@ -61,7 +61,7 @@ export const menuOptions: MenuOption[] = [
     label: renderMenuLabel(t('Menu.SystemApplications')),
     key: 'system-applications',
     icon: renderMenuIcon(SystemApplicationsIcon),
-    show: false,
+    show: GlobalEnvConfig.IS_DEV,
     children: [
       {
         label: renderMenuLabel(t('Menu.ChatChannels')),

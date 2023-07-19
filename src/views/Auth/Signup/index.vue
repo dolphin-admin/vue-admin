@@ -74,7 +74,9 @@ const signup = () => {
         router.replace('/')
       })
       .catch((err) => {
-        message.error(err.message ?? t('Signup.Failed'))
+        if (err.message) {
+          message.error(err.message)
+        }
         submitLoadingDispatcher.loaded()
       })
       .finally(() => {

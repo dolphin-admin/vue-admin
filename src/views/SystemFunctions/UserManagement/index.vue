@@ -461,7 +461,11 @@ const columns = ref<DataTableBaseColumn<User>[]>([
                     message.success(res.message!)
                     queryList()
                   })
-                  .catch((err) => message.error(err?.message))
+                  .catch((err) => {
+                    if (err.message) {
+                      message.error(err.message)
+                    }
+                  })
               }
             },
             {
@@ -489,7 +493,11 @@ const columns = ref<DataTableBaseColumn<User>[]>([
                     message.success(res.message!)
                     queryList()
                   })
-                  .catch((err) => message.error(err?.message))
+                  .catch((err) => {
+                    if (err.message) {
+                      message.error(err.message)
+                    }
+                  })
               }
             },
             {
@@ -545,7 +553,9 @@ const handleConfirmPassword = () => {
         message.success(res.message!)
       })
       .catch((err) => {
-        message.error(err.message!)
+        if (err.message) {
+          message.error(err.message)
+        }
       })
       .finally(() => {
         handleResetPassword()

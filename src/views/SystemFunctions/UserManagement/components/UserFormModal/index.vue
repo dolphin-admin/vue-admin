@@ -139,7 +139,9 @@ const handleSubmit = () => {
         showModal.value = false
         emit('save')
       } catch (err: any) {
-        message.error(err.message)
+        if (err.message) {
+          message.error(err.message)
+        }
       }
     } else {
       try {
@@ -150,7 +152,9 @@ const handleSubmit = () => {
         showModal.value = false
         emit('save')
       } catch (err: any) {
-        message.error(err.message)
+        if (err.message) {
+          message.error(err.message)
+        }
       }
     }
 

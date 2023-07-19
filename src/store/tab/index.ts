@@ -23,6 +23,16 @@ export const useTabStore = defineStore('tab', () => {
   const removeTab = (index: number) => tabs.value.splice(index, 1)
 
   /**
+   * 根据路由移除标签页
+   */
+  const removeTabByHref = (href: string) => {
+    const index = tabs.value.findIndex((tab) => tab.href === href)
+    if (index !== -1) {
+      removeTab(index)
+    }
+  }
+
+  /**
    * 清空标签页
    */
   const clearAll = () => {
@@ -33,6 +43,7 @@ export const useTabStore = defineStore('tab', () => {
     tabs,
     addTab,
     removeTab,
+    removeTabByHref,
     clearAll
   }
 })

@@ -3,7 +3,15 @@ import type { MessageSchema } from '@/types'
 
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
+const route = useRoute()
 const router = useRouter()
+const tabStore = useTabStore()
+
+const handleBack = () => {
+  router.push('/')
+  console.log(route.fullPath)
+  tabStore.removeTabByHref(route.fullPath)
+}
 </script>
 
 <template>
@@ -14,7 +22,7 @@ const router = useRouter()
       description=""
     >
       <template #footer>
-        <NButton @click="router.push('/')">{{ t('Common.Back') }}</NButton>
+        <NButton @click="handleBack">{{ t('Common.Back') }}</NButton>
       </template>
     </NResult>
   </main>
