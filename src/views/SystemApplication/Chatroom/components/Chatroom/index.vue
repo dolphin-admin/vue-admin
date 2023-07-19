@@ -59,7 +59,7 @@ const value = ref('')
       </div>
     </div>
   </div>
-  <div class="absolute bottom-1 mt-2 w-[100%] p-2 dark:bg-black">
+  <div class="absolute bottom-0 mt-2 w-[100%] p-2 dark:bg-black">
     <NInput
       v-model:value="value"
       size="large"

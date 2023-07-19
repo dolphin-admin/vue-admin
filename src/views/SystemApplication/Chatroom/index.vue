@@ -34,6 +34,7 @@ const handleSelect = (key: OptionKey) => {
 }
 
 const currentPage = ref(Chatroom)
+const isMobileDevice = computed(() => BrowserUtils.isMobileDevice())
 
 const handleReturn = () => {
   currentPage.value = Chatroom
@@ -46,17 +47,26 @@ const handleReturn = () => {
       <Channel />
     </div>
     <div class="relative flex w-full flex-col border-gray-300 sm:flex-1 sm:border-y">
-      <div class="visible flex justify-between sm:invisible">
-        <NIcon @click="handleReturn"><component :is="ArrowLeftIcon" /></NIcon>
+      <div class="visible flex justify-between font-bold sm:invisible">
+        <NIcon
+          size="20"
+          color="#5865F2"
+          :component="ArrowLeftIcon"
+          @click="handleReturn"
+        />
         <NDropdown
           trigger="hover"
           :options="options"
           @select="handleSelect"
         >
-          <NIcon> <component :is="UilEllipsisHIcon" /></NIcon>
+          <NIcon
+            size="20"
+            color="#5865F2"
+            :component="UilEllipsisHIcon"
+          />
         </NDropdown>
       </div>
-      <component :is="currentPage" />
+      <component :is="isMobileDevice ? currentPage : Chatroom" />
     </div>
     <div class="hidden w-52 shrink-0 border border-gray-300 sm:block">
       <Online />

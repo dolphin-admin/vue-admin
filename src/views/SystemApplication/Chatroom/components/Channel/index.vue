@@ -17,7 +17,7 @@ const activeKey = ref<string | null>(null)
         :options="chatroomMenuOptions"
       />
     </div>
-    <div class="bg-grey-300 absolute bottom-0 flex h-14 w-full items-center justify-between border p-2">
+    <div class="bg-grey-300 absolute bottom-0 flex h-14 w-full items-center justify-between border-t p-2">
       <div class="flex h-full items-center justify-start space-x-2">
         <div class="h-8 w-8 shrink-0">
           <img
