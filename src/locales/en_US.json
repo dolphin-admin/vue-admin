@@ -223,6 +223,16 @@
     "DOM": "Print DOM",
     "HTMLStr": "Print HTML Str"
   },
+  "WebSocket": {
+    "Tip": "Open a new tab, or open a new browser to experience this feature. Click to establish a connection to communicate with the server. After sending the message, the server will broadcast the message to all users.",
+    "Establish": "Establish connection",
+    "Disconnect": "Disconnect",
+    "SendMessage": "Send message",
+    "Established": "Established success",
+    "Disconnected": "Disconnected",
+    "SendSuccess": "Send success",
+    "ContentIsEmpty": "Content should not be empty"
+  },
   "DigitalAnimation": {
     "StartValuePlaceholder": "Please enter start value",
     "EndValuePlaceholder": "Please enter end value",

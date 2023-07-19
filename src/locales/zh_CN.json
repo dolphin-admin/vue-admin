@@ -223,6 +223,16 @@
     "DOM": "打印 DOM",
     "HTMLStr": "打印 HTML 字符串"
   },
+  "WebSocket": {
+    "Tip": "打开新标签页，或打开新浏览器来体验此功能。点击建立连接，与服务器通信。发送消息后，服务端会向所有用户进行消息广播。",
+    "Establish": "建立连接",
+    "Disconnect": "断开连接",
+    "SendMessage": "发送消息",
+    "Established": "已建立连接",
+    "Disconnected": "已断开连接",
+    "SendSuccess": "发送成功",
+    "ContentIsEmpty": "发送内容不能为空"
+  },
   "DigitalAnimation": {
     "StartValuePlaceholder": "请输入开始值",
     "EndValuePlaceholder": "请输入结束值",
