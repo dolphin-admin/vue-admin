@@ -31,7 +31,7 @@ Dolphin Admin Web 是一个基于 Vue 3 + Vite + Naive UI + TypeScript + Tailwin
 - [x] 支持绝对路径引入，使用 `@/*`
 - [x] 支持第三方登录，例如 GitHub、Google 等
 - [x] 支持桌面端，使用 [Tauri](https://tauri.app/) 进行桌面应用打包
-- [x] 部署在 [Vercel](https://vercel.com/) 上，零配置
+- [x] ~~部署在 [Vercel](https://vercel.com/) 上，零配置~~（Vercel 不支持 WebSocket，请自主部署）
 
 ## TODO
 

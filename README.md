@@ -33,7 +33,7 @@ backend management template based on Vue 3 + Vite + Naive UI + TypeScript + Tail
 - [x] Support absolute path import, use `@/*`
 - [x] Support third-party login like GitHub, Google, etc.
 - [x] Support desktop, use [Tauri](https://tauri.app/) for desktop application packaging
-- [x] Deploy on [Vercel](https://vercel.com/), zero configuration
+- [x] ~~Deploy on [Vercel](https://vercel.com/), zero configuration~~ (Vercel does not support WebSocket, please deploy byself)
 
 ## TODO
 

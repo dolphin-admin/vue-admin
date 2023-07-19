@@ -51,6 +51,7 @@ const handleSendMessage = () => {
   }
   socket.value.emit('message', getSendInfo(inputValue.value))
   message.success(t('WebSocket.SendSuccess'))
+  inputValue.value = ''
 }
 
 onBeforeMount(() => {
@@ -103,10 +104,11 @@ onBeforeUnmount(() => handleDisconnect())
         <div class="flex items-center space-x-4">
           <NInput
             v-model:value="inputValue"
+            type="text"
             clearable
             show-count
             maxlength="50"
-            type="text"
+            @keydown.enter="handleSendMessage"
           />
           <NButton
             :type="socket.connected ? 'success' : 'default'"
