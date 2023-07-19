@@ -97,7 +97,7 @@ class Request {
       case ResponseStatusCode.GATEWAY_TIMEOUT:
         message.error(t('Common.500'))
         if (router.currentRoute.value.path !== '/login') {
-          router.replace('/error-page/500')
+          router.replace('/error-pages/500')
         }
         break
       case ResponseStatusCode.BAD_REQUEST:
