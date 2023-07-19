@@ -139,6 +139,13 @@ export default defineConfig(({ mode }) => {
       strictPort: true,
       open: false,
       proxy
+    },
+    preview: {
+      host: true,
+      port,
+      strictPort: true,
+      open: false,
+      proxy
     }
   }
 })
