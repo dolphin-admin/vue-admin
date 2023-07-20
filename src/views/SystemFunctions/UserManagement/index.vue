@@ -14,6 +14,8 @@ import GoogleIcon from '~icons/logos/google-icon'
 import { UserFormModal } from './components'
 import { UserPageModel } from './private'
 
+const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({ useScope: 'global' })
+
 const { isMobileDevice } = BrowserUtils
 
 const idColumn: DataTableBaseColumn<User> = {
@@ -105,8 +107,6 @@ const authTypeColumn: DataTableBaseColumn<User> = {
     return tags
   }
 }
-
-const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({ useScope: 'global' })
 
 const message = useMessage()
 const [loading, loadingDispatcher] = useLoading()
