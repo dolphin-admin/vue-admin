@@ -11,11 +11,11 @@ type OptionKey = 'Channel' | 'Online'
 
 const options = [
   {
-    label: t('频道选择'),
+    label: () => t('频道选择'),
     key: 'Channel'
   },
   {
-    label: t('在线人数'),
+    label: () => t('在线人数'),
     key: 'Online'
   }
 ]
@@ -23,23 +23,21 @@ const options = [
 const handleSelect = (key: OptionKey) => {
   switch (key) {
     case 'Channel':
-      currentPage.value = ChannelList
+      currentPage.value = shallowRef(ChannelList)
       break
     case 'Online':
-      currentPage.value = UserList
+      currentPage.value = shallowRef(UserList)
       break
     default:
       break
   }
 }
 
-const currentPage = ref(ChatList)
+const currentPage = ref(shallowRef(ChatList))
 
 const handleReturn = () => {
   currentPage.value = ChatList
 }
-
-const isMobileDevice = computed(() => BrowserUtils.isMobileDevice())
 </script>
 
 <template>
@@ -65,7 +63,7 @@ const isMobileDevice = computed(() => BrowserUtils.isMobileDevice())
           />
         </NDropdown>
       </div>
-      <component :is="isMobileDevice ? currentPage : ChatList" />
+      <component :is="currentPage" />
     </div>
     <div class="hidden w-52 shrink-0 border border-gray-300 sm:block">
       <UserList />

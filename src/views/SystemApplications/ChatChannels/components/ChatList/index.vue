@@ -5,6 +5,7 @@ import { io } from 'socket.io-client'
 import type { MessageSchema } from '@/types'
 
 const { t, locale } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+
 const userStore = useUserStore()
 const message = useMessage()
 
@@ -97,14 +98,14 @@ onBeforeUnmount(() => handleDisconnect())
               class="cursor-pointer select-none rounded-full border"
               width="50"
               height="50"
-              :src="item.avatarUrl"
               alt=""
               loading="eager"
+              :src="item.avatarUrl"
             />
           </div>
           <div class="w-[calc(100%-56px)]">
-            <span class="mr-1 inline-block text-sm">{{ item.name }}</span
-            ><small>{{ item.time }}</small>
+            <span class="mr-1 inline-block text-sm">{{ item.name }}</span>
+            <small>{{ item.time }}</small>
             <p class="break-words">
               {{ item.emitData }}
             </p>
@@ -119,7 +120,7 @@ onBeforeUnmount(() => handleDisconnect())
         show-count
         size="large"
         @keydown.enter="handleSendMessage"
-      ></NInput>
+      />
     </div>
   </div>
 </template>

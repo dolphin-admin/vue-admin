@@ -9,6 +9,9 @@ const userStore = useUserStore()
 const message = useMessage()
 
 const inputValue = ref('')
+
+const isConnecting = ref(false)
+
 const socket = ref<Socket>(
   io(`${GlobalEnvConfig.BASE_API_PROXY}/demo`, {
     autoConnect: false // 禁止自动连接
@@ -29,6 +32,7 @@ const getSendInfo = (userMessage?: string) => ({
  * 建立连接
  */
 const handleConnect = () => {
+  isConnecting.value = true
   socket.value.connect()
   socket.value.emit('join', getSendInfo())
 }
@@ -56,7 +60,10 @@ const handleSendMessage = () => {
 
 onBeforeMount(() => {
   // 监听连接
-  socket.value.on('connect', () => message.info(t('WebSocket.Established')))
+  socket.value.on('connect', () => {
+    isConnecting.value = false
+    message.info(t('WebSocket.Established'))
+  })
   // 监听断开连接
   socket.value.on('disconnect', () => message.info(t('WebSocket.Disconnected')))
   /**
@@ -88,6 +95,7 @@ onBeforeUnmount(() => handleDisconnect())
           <NButton
             :type="socket.connected ? 'default' : 'primary'"
             :disabled="socket.connected"
+            :loading="isConnecting"
             @click="handleConnect"
           >
             {{ t('WebSocket.Establish') }}
