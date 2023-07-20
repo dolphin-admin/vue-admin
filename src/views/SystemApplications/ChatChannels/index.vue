@@ -38,6 +38,8 @@ const currentPage = ref(ChatList)
 const handleReturn = () => {
   currentPage.value = ChatList
 }
+
+const isMobileDevice = computed(() => BrowserUtils.isMobileDevice())
 </script>
 
 <template>
@@ -46,17 +48,24 @@ const handleReturn = () => {
       <ChannelList />
     </div>
     <div class="relative flex w-full flex-col border-gray-300 sm:flex-1 sm:border-y">
-      <div class="visible flex justify-between sm:invisible">
-        <NIcon @click="handleReturn"><component :is="ArrowLeftIcon" /></NIcon>
+      <div class="visible flex justify-between sm:invisible sm:h-2">
+        <NIcon
+          size="20"
+          :component="ArrowLeftIcon"
+          @click="handleReturn"
+        />
         <NDropdown
           trigger="hover"
           :options="options"
           @select="handleSelect"
         >
-          <NIcon> <component :is="UilEllipsisHIcon" /></NIcon>
+          <NIcon
+            size="20"
+            :component="UilEllipsisHIcon"
+          />
         </NDropdown>
       </div>
-      <component :is="currentPage" />
+      <component :is="isMobileDevice ? currentPage : ChatList" />
     </div>
     <div class="hidden w-52 shrink-0 border border-gray-300 sm:block">
       <UserList />
