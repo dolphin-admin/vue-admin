@@ -3,28 +3,28 @@ import type { MenuOption } from 'naive-ui'
 import IcBaselineAlignVerticalCenterIcon from '~icons/ic/baseline-align-vertical-center'
 import MessageIcon from '~icons/ic/outline-message'
 
-const { renderIcon: renderMenuIcon, renderMenuLabel } = RenderUtils
+const { renderIcon, renderMenuLabel } = RenderUtils
 
 export const chatroomMenuOptions: MenuOption[] = [
   {
-    label: renderMenuLabel('TEXT CHANNELS'),
+    label: renderMenuLabel(() => 'TEXT CHANNELS'),
     key: 'TEXT CHANNELS',
-    icon: renderMenuIcon(IcBaselineAlignVerticalCenterIcon),
+    icon: renderIcon(IcBaselineAlignVerticalCenterIcon),
     children: [
       {
-        label: renderMenuLabel('general'),
+        label: renderMenuLabel(() => 'general'),
         key: 'general',
-        icon: renderMenuIcon(IcBaselineAlignVerticalCenterIcon)
+        icon: renderIcon(IcBaselineAlignVerticalCenterIcon)
       },
       {
-        label: renderMenuLabel('issues'),
+        label: renderMenuLabel(() => 'issues'),
         key: 'issues',
-        icon: renderMenuIcon(MessageIcon)
+        icon: renderIcon(MessageIcon)
       },
       {
-        label: renderMenuLabel('changelog'),
+        label: renderMenuLabel(() => 'changelog'),
         key: 'changelog',
-        icon: renderMenuIcon(IcBaselineAlignVerticalCenterIcon)
+        icon: renderIcon(IcBaselineAlignVerticalCenterIcon)
       }
     ]
   }

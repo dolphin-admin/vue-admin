@@ -11,11 +11,11 @@ type OptionKey = 'Channel' | 'Online'
 
 const options = [
   {
-    label: t('频道选择'),
+    label: () => t('频道选择'),
     key: 'Channel'
   },
   {
-    label: t('在线人数'),
+    label: () => t('在线人数'),
     key: 'Online'
   }
 ]
@@ -23,17 +23,17 @@ const options = [
 const handleSelect = (key: OptionKey) => {
   switch (key) {
     case 'Channel':
-      currentPage.value = ChannelList
+      currentPage.value = shallowRef(ChannelList)
       break
     case 'Online':
-      currentPage.value = UserList
+      currentPage.value = shallowRef(UserList)
       break
     default:
       break
   }
 }
 
-const currentPage = ref(ChatList)
+const currentPage = ref(shallowRef(ChatList))
 
 const handleReturn = () => {
   currentPage.value = ChatList
@@ -46,14 +46,21 @@ const handleReturn = () => {
       <ChannelList />
     </div>
     <div class="relative flex w-full flex-col border-gray-300 sm:flex-1 sm:border-y">
-      <div class="visible flex justify-between sm:invisible">
-        <NIcon @click="handleReturn"><component :is="ArrowLeftIcon" /></NIcon>
+      <div class="visible flex justify-between sm:invisible sm:h-2">
+        <NIcon
+          size="20"
+          :component="ArrowLeftIcon"
+          @click="handleReturn"
+        />
         <NDropdown
           trigger="hover"
           :options="options"
           @select="handleSelect"
         >
-          <NIcon> <component :is="UilEllipsisHIcon" /></NIcon>
+          <NIcon
+            size="20"
+            :component="UilEllipsisHIcon"
+          />
         </NDropdown>
       </div>
       <component :is="currentPage" />
