@@ -28,23 +28,23 @@ export class ExcelUtils {
     dataArray.push(itemHeader)
 
     data.forEach((item: any) => {
-      let newItem = itemHeader.map((i) => item[i])
+      const newItem = itemHeader.map((i) => item[i])
       dataArray.push(newItem)
     })
 
-    const exportFileName = filename + '.xlsx'
-    //单页脚本
+    const exportFileName = `${filename}.xlsx`
+    // 单页脚本
     const wsName = 'SheetJS'
-    //初始化文件
+    // 初始化文件
     const wb = XLSX.utils.book_new()
     // 初始化一个excel文档，此时需要传入数据
     const ws = XLSX.utils.aoa_to_sheet(dataArray)
 
     ws['!cols'] = itemWidth
 
-    //文档插入文件定义名称
+    // 文档插入文件定义名称
     XLSX.utils.book_append_sheet(wb, ws, wsName)
-    //下载
+    // 下载
     XLSX.writeFile(wb, exportFileName)
   }
 }

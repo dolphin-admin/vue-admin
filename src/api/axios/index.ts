@@ -89,7 +89,6 @@ class Request {
         }
         break
       case ResponseStatusCode.FORBIDDEN:
-        console.error(errorMessage)
         message.error(errorMessage)
         break
       case ResponseStatusCode.INTERNAL_SERVER_ERROR:

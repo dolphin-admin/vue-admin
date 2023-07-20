@@ -56,7 +56,8 @@ module.exports = defineConfig({
     {
       files: ['**/*.vue'],
       rules: {
-        '@typescript-eslint/no-use-before-define': 'off'
+        '@typescript-eslint/no-use-before-define': 'off',
+        'vue/no-v-html': 'off'
       }
     }
   ]

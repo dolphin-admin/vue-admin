@@ -641,40 +641,40 @@ onMounted(() => queryList())
       :data="users"
       :loading="loading"
       :pagination="{
-          ...pagination,
-          simple: isMobileDevice(),
-          showQuickJumper: true,
-          showSizePicker: true,
-          pageSlot: 9,
-          pageSizes: [
-            {
-              label: t('Common.EachPage', { count: 10 }),
-              value: 10
-            },
-            {
-              label: t('Common.EachPage', { count: 20 }),
-              value: 20
-            },
-            {
-              label: t('Common.EachPage', { count: 30 }),
-              value: 30
-            },
-            {
-              label: t('Common.EachPage', { count: 40 }),
-              value: 40
-            }
-          ],
-          onUpdatePage: (page: number) => {
-            pagination.page = page
-            queryList()
+        ...pagination,
+        simple: isMobileDevice(),
+        showQuickJumper: true,
+        showSizePicker: true,
+        pageSlot: 9,
+        pageSizes: [
+          {
+            label: t('Common.EachPage', { count: 10 }),
+            value: 10
           },
-          onUpdatePageSize: (pageSize: number) => {
-            pagination.page = 1
-            pagination.pageSize = pageSize
-            queryList()
+          {
+            label: t('Common.EachPage', { count: 20 }),
+            value: 20
           },
-          prefix: (info) => t('Common.TotalPage', {totalPage: info.itemCount})
-        }"
+          {
+            label: t('Common.EachPage', { count: 30 }),
+            value: 30
+          },
+          {
+            label: t('Common.EachPage', { count: 40 }),
+            value: 40
+          }
+        ],
+        onUpdatePage: (page: number) => {
+          pagination.page = page
+          queryList()
+        },
+        onUpdatePageSize: (pageSize: number) => {
+          pagination.page = 1
+          pagination.pageSize = pageSize
+          queryList()
+        },
+        prefix: (info) => t('Common.TotalPage', { totalPage: info.itemCount })
+      }"
       @update:sorter="handleSorterChange"
       @update:filters="handleFiltersChange"
       @update:page="() => queryList()"

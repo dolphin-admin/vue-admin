@@ -9,7 +9,6 @@ const tabStore = useTabStore()
 
 const handleBack = () => {
   router.push('/')
-  console.log(route.fullPath)
   tabStore.removeTabByHref(route.fullPath)
 }
 </script>

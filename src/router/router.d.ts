@@ -1,4 +1,3 @@
-import { VNode } from 'vue'
 import 'vue-router'
 
 declare module 'vue-router' {
