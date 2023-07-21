@@ -86,6 +86,7 @@ export default defineConfig(({ mode }) => {
               'FormItemInst',
               'FormItemRule',
               'FormRules',
+              'FormValidationError',
               'MenuInst',
               'MenuOption',
               'UploadCustomRequestOptions',
