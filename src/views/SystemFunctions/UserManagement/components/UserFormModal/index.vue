@@ -109,57 +109,60 @@ const uploadAvatarUrl = (options: { fileList: UploadFileInfo[] }) => {
   currentFile.value = file?.file ?? null
 }
 
-const handleSubmit = () => {
+const handleSubmit = async () => {
   showModal.value = true
-  formRef.value!.validate(async (errors) => {
-    if (errors) {
-      message.error(errors[0][0].message!)
-      return
+  try {
+    await formRef.value!.validate()
+  } catch (errors) {
+    const errorMessage = (errors as FormValidationError[])[0][0].message
+    if (errorMessage) {
+      message.error(errorMessage)
     }
-    if (submitLoading.value) {
-      return
-    }
-    submitLoadingDispatcher.loading()
+  }
 
-    if (props.isEdit) {
-      uploadRef.value!.submit()
-      if (currentFile.value) {
-        try {
-          const { path } = (await UploadAPI.uploadFile({ file: currentFile.value })).data || {}
-          formData.value.avatarUrl = path
-          message.success(t('Message.UploadAvatar.Success'))
-        } catch {
-          message.error(t('Message.UploadAvatar.Failed'))
-          return
-        }
-      }
+  if (submitLoading.value) {
+    return
+  }
+  submitLoadingDispatcher.loading()
+
+  if (props.isEdit) {
+    uploadRef.value!.submit()
+    if (currentFile.value) {
       try {
-        const { message: successMessage } = await UserAPI.updateUser(formData.value.id!, formData.value)
-        message.success(successMessage!)
-        showModal.value = false
-        emit('save')
-      } catch (err: any) {
-        if (err.message) {
-          message.error(err.message)
-        }
-      }
-    } else {
-      try {
-        const { message: successMessage } = await UserAPI.createUser(createFormData)
-        message.success(successMessage!)
-        createFormData.username = ''
-        createFormData.password = ''
-        showModal.value = false
-        emit('save')
-      } catch (err: any) {
-        if (err.message) {
-          message.error(err.message)
-        }
+        const { path } = (await UploadAPI.uploadFile({ file: currentFile.value })).data || {}
+        formData.value.avatarUrl = path
+        message.success(t('Message.UploadAvatar.Success'))
+      } catch {
+        message.error(t('Message.UploadAvatar.Failed'))
+        return
       }
     }
+    try {
+      const { message: successMessage } = await UserAPI.updateUser(formData.value.id!, formData.value)
+      message.success(successMessage!)
+      showModal.value = false
+      emit('save')
+    } catch (err: any) {
+      if (err.message) {
+        message.error(err.message)
+      }
+    }
+  } else {
+    try {
+      const { message: successMessage } = await UserAPI.createUser(createFormData)
+      message.success(successMessage!)
+      createFormData.username = ''
+      createFormData.password = ''
+      showModal.value = false
+      emit('save')
+    } catch (err: any) {
+      if (err.message) {
+        message.error(err.message)
+      }
+    }
+  }
 
-    submitLoadingDispatcher.loaded()
-  })
+  submitLoadingDispatcher.loaded()
 }
 
 const handleCancel = () => {
@@ -194,10 +197,12 @@ defineExpose({
   <NModal
     v-model:show="showModal"
     class="!my-6"
-    :title="isEdit ? t('UserManagement.EditUser') : t('UserManagement.CreateUser')"
     preset="dialog"
+    :title="isEdit ? t('UserManagement.EditUser') : t('UserManagement.CreateUser')"
     :positive-text="t('Common.Confirm')"
     :negative-text="t('Common.Cancel')"
+    @positive-click="handleSubmit"
+    @negative-click="handleCancel"
   >
     <template #icon>
       <NIcon
@@ -400,22 +405,5 @@ defineExpose({
         />
       </NFormItem>
     </NForm>
-    <template #action>
-      <div class="space-x-2">
-        <NButton
-          size="small"
-          @click="handleCancel"
-        >
-          {{ t('Common.Cancel') }}
-        </NButton>
-        <NButton
-          size="small"
-          type="primary"
-          @click="handleSubmit"
-        >
-          {{ t('Common.Confirm') }}
-        </NButton>
-      </div>
-    </template>
   </NModal>
 </template>
