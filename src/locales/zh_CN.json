@@ -231,7 +231,8 @@
     "Established": "已建立连接",
     "Disconnected": "已断开连接",
     "SendSuccess": "发送成功",
-    "ContentIsEmpty": "发送内容不能为空"
+    "ContentIsEmpty": "发送内容不能为空",
+    "NotConnected": "未建立连接"
   },
   "DigitalAnimation": {
     "StartValuePlaceholder": "请输入开始值",

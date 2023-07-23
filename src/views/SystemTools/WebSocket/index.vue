@@ -49,6 +49,10 @@ const handleDisconnect = () => {
  * 发送消息
  */
 const handleSendMessage = () => {
+  if (!socket.value.connected) {
+    message.error(t('WebSocket.NotConnected'))
+    return
+  }
   if (!inputValue.value.trim()) {
     message.error(t('WebSocket.ContentIsEmpty'))
     return

@@ -231,7 +231,8 @@
     "Established": "Established success",
     "Disconnected": "Disconnected",
     "SendSuccess": "Send success",
-    "ContentIsEmpty": "Content should not be empty"
+    "ContentIsEmpty": "Content should not be empty",
+    "NotConnected": "Not connected"
   },
   "DigitalAnimation": {
     "StartValuePlaceholder": "Please enter start value",
