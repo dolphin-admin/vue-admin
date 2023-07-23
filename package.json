@@ -5,7 +5,7 @@
   "author": "Bruce Song <recall4056@gmail.com> (https://github.com/recallwei/)",
   "scripts": {
     "dev": "vite",
-    "build": "export NODE_OPTIONS=\"--max-old-space-size=4096\" && pnpm type:check && pnpm build-only",
+    "build": "pnpm type:check && pnpm build-only",
     "preview": "vite preview",
     "build-only": "vite build",
     "dev:desktop": "tauri dev",
