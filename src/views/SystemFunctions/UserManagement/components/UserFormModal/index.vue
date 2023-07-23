@@ -117,11 +117,11 @@ const handleSubmit = async () => {
     if (errorMessage) {
       message.error(errorMessage)
     }
-    return
+    return false
   }
 
   if (submitLoading.value) {
-    return
+    return true
   }
   submitLoadingDispatcher.loading()
 
@@ -134,7 +134,7 @@ const handleSubmit = async () => {
         message.success(t('Message.UploadAvatar.Success'))
       } catch {
         message.error(t('Message.UploadAvatar.Failed'))
-        return
+        return false
       }
     }
     try {
@@ -163,6 +163,7 @@ const handleSubmit = async () => {
   }
 
   submitLoadingDispatcher.loaded()
+  return true
 }
 
 const handleCancel = () => {

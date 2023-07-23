@@ -580,7 +580,7 @@ const handleConfirmPassword = async () => {
 
   resetPasswordLoadingDispatcher.loading()
 
-  UserAPI.resetPassword(currentId.value, resetPasswordData.password)
+  await UserAPI.resetPassword(currentId.value, resetPasswordData.password)
     .then((res) => {
       if (res.message) {
         message.success(res.message)
