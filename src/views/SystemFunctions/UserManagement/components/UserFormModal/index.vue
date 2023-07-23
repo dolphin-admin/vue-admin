@@ -110,7 +110,6 @@ const uploadAvatarUrl = (options: { fileList: UploadFileInfo[] }) => {
 }
 
 const handleSubmit = async () => {
-  showModal.value = true
   try {
     await formRef.value!.validate()
   } catch (errors) {
@@ -118,6 +117,7 @@ const handleSubmit = async () => {
     if (errorMessage) {
       message.error(errorMessage)
     }
+    return
   }
 
   if (submitLoading.value) {
@@ -170,6 +170,10 @@ const handleCancel = () => {
   formData.value = {}
 }
 
+/**
+ * TODO: 重构
+ * 使用参数传递的方式，不要用 defineExpose 暴露方法给父组件
+ */
 const handleShowModal = () => {
   showModal.value = true
 }
@@ -199,6 +203,7 @@ defineExpose({
     class="!my-6"
     preset="dialog"
     :title="isEdit ? t('UserManagement.EditUser') : t('UserManagement.CreateUser')"
+    :loading="submitLoading"
     :positive-text="t('Common.Confirm')"
     :negative-text="t('Common.Cancel')"
     @positive-click="handleSubmit"

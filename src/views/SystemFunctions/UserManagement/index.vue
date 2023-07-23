@@ -110,6 +110,9 @@ const authTypeColumn: DataTableBaseColumn<User> = {
 
 const message = useMessage()
 const [loading, loadingDispatcher] = useLoading()
+const [resetPasswordLoading, resetPasswordLoadingDispatcher] = useLoading()
+const [enableLoading, enableLoadingDispatcher] = useLoading()
+const [disableLoading, disableLoadingDispatcher] = useLoading()
 
 const resetPasswordRules: FormRules = {
   password: [
@@ -155,7 +158,7 @@ const currentId = ref()
 const userFormData = ref({})
 const isEdit = ref(true)
 
-const isResetPassword = ref(false)
+const showResetPasswordDialog = ref(false)
 
 const queryList = () => {
   if (loading.value) {
@@ -453,12 +456,22 @@ const columns = ref<DataTableBaseColumn<User>[]>([
             NPopconfirm,
             {
               showIcon: false,
-              negativeText: t('Common.Cancel'),
+              positiveButtonProps: {
+                loading: enableLoading.value,
+                disabled: enableLoading.value
+              },
               positiveText: t('Common.Confirm'),
-              onPositiveClick: () => {
-                UserAPI.enableUser(row.id!)
+              negativeText: t('Common.Cancel'),
+              onPositiveClick: async () => {
+                if (!row.id) {
+                  return
+                }
+                enableLoadingDispatcher.loading()
+                await UserAPI.enableUser(row.id)
                   .then((res) => {
-                    message.success(res.message!)
+                    if (res.message) {
+                      message.success(res.message)
+                    }
                     queryList()
                   })
                   .catch((err) => {
@@ -466,6 +479,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
                       message.error(err.message)
                     }
                   })
+                  .finally(() => enableLoadingDispatcher.loaded())
               }
             },
             {
@@ -485,12 +499,22 @@ const columns = ref<DataTableBaseColumn<User>[]>([
             NPopconfirm,
             {
               showIcon: false,
-              negativeText: t('Common.Cancel'),
               positiveText: t('Common.Confirm'),
-              onPositiveClick: () => {
-                UserAPI.disableUser(row.id!)
+              negativeText: t('Common.Cancel'),
+              positiveButtonProps: {
+                loading: disableLoading.value,
+                disabled: disableLoading.value
+              },
+              onPositiveClick: async () => {
+                if (!row.id) {
+                  return
+                }
+                disableLoadingDispatcher.loading()
+                await UserAPI.disableUser(row.id)
                   .then((res) => {
-                    message.success(res.message!)
+                    if (res.message) {
+                      message.success(res.message)
+                    }
                     queryList()
                   })
                   .catch((err) => {
@@ -498,6 +522,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
                       message.error(err.message)
                     }
                   })
+                  .finally(() => disableLoadingDispatcher.loaded())
               }
             },
             {
@@ -519,7 +544,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
               type: 'default',
               size: 'small',
               onClick: () => {
-                isResetPassword.value = true
+                showResetPasswordDialog.value = true
                 currentId.value = row.id
               }
             },
@@ -542,25 +567,34 @@ const handleResetPassword = () => {
   resetPasswordData.password = AuthUtils.DEFAULT_PASSWORD
 }
 
-const handleConfirmPassword = () => {
-  resetPasswordRef.value!.validate((errors) => {
-    if (errors) {
-      message.error(errors[0][0].message!)
-      return
+const handleConfirmPassword = async () => {
+  try {
+    await resetPasswordRef.value!.validate()
+  } catch (errors) {
+    const errorMessage = (errors as FormValidationError[])[0][0].message
+    if (errorMessage) {
+      message.error(errorMessage)
     }
-    UserAPI.resetPassword(currentId.value, resetPasswordData.password)
-      .then((res) => {
-        message.success(res.message!)
-      })
-      .catch((err) => {
-        if (err.message) {
-          message.error(err.message)
-        }
-      })
-      .finally(() => {
-        handleResetPassword()
-      })
-  })
+    return
+  }
+
+  resetPasswordLoadingDispatcher.loading()
+
+  UserAPI.resetPassword(currentId.value, resetPasswordData.password)
+    .then((res) => {
+      if (res.message) {
+        message.success(res.message)
+      }
+    })
+    .catch((err) => {
+      if (err.message) {
+        message.error(err.message)
+      }
+    })
+    .finally(() => {
+      resetPasswordLoadingDispatcher.loaded()
+      handleResetPassword()
+    })
 }
 
 // 切换语言时重新查询列表
@@ -681,9 +715,10 @@ onMounted(() => queryList())
     />
 
     <NModal
-      v-model:show="isResetPassword"
+      v-model:show="showResetPasswordDialog"
       preset="dialog"
       :title="t('UserManagement.ResetPassword')"
+      :loading="resetPasswordLoading"
       :positive-text="t('Common.Confirm')"
       :negative-text="t('Common.Cancel')"
       @positive-click="handleConfirmPassword"
