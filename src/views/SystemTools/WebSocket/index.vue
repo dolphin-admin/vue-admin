@@ -13,7 +13,7 @@ const inputValue = ref('')
 const isConnecting = ref(false)
 
 const socket = ref<Socket>(
-  io(`${GlobalEnvConfig.BASE_API_PROXY}/demo`, {
+  io('/demo', {
     autoConnect: false // 禁止自动连接
   })
 )
