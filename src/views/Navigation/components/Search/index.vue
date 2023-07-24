@@ -2,7 +2,9 @@
 import { menuOptionsFlat } from '@/constants'
 import type { MessageSchema } from '@/types'
 import SearchIcon from '~icons/ic/round-search'
+
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+
 const router = useRouter()
 
 const searchText = ref('')
@@ -39,7 +41,7 @@ const handleEnter = () => {
   }
   menuOptionsFlat.forEach((item: any) => {
     if (item.label().children.default().toLowerCase() === searchText.value.trim().toLowerCase()) {
-      router.push(item.key)
+      router.push({ name: item.key as string })
     }
   })
 }
@@ -59,7 +61,7 @@ const handleEnter = () => {
       <input
         v-model="searchText"
         class="h-11 w-[100%] rounded-t-3xl border pl-10 outline-none transition-all dark:bg-none"
-        :class="[isShowRound ? '' : 'rounded-b-3xl']"
+        :class="{ 'rounded-b-3xl': !isShowRound }"
         type="text"
         required
         :placeholder="t('Common.KeywordSearch')"
@@ -78,13 +80,12 @@ const handleEnter = () => {
           v-for="(item, index) in searchMenuOptionsFlat"
           :key="index"
           class="space-x-2 hover:bg-gray-100 dark:hover:bg-black"
-          @click="router.push(item.key as string)"
+          @click="router.push({ name: item.key as string })"
         >
-          <NIcon
-            :component="item.icon"
-            size="24"
-          />
-          <component :is="item.label" />
+          <template v-if="item.show">
+            <component :is="item.icon as any" />
+            <component :is="item.label" />
+          </template>
         </div>
       </NScrollbar>
     </div>
