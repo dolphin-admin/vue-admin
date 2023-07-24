@@ -240,5 +240,8 @@
   },
   "Timeline": {
     "WebDevRoadmap": "Web 开发学习路线"
+  },
+  "Navigation": {
+    "AddShortcut": "添加快捷方式"
   }
 }

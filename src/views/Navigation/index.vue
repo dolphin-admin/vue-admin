@@ -19,7 +19,7 @@ const handleUpdateValue = (value: string) => {
 }
 
 const onNegativeClick = () => {
-  message.success(t('取消'))
+  message.success(t('Common.Cancel'))
   showModal.value = false
 }
 
@@ -80,7 +80,7 @@ onMounted(() => {
             />
           </div>
           <div>
-            {{ t('添加快捷方式') }}
+            {{ t('Navigation.AddShortcut') }}
           </div>
         </div>
       </div>
@@ -89,9 +89,9 @@ onMounted(() => {
       v-model:show="showModal"
       :mask-closable="false"
       preset="dialog"
-      :title="t('添加快捷方式')"
-      :positive-text="t('确认')"
-      :negative-text="t('取消')"
+      :title="t('Navigation.AddShortcut')"
+      :positive-text="t('Common.Confirm')"
+      :negative-text="t('Common.Cancel')"
       @positive-click="onPositiveClick"
       @negative-click="onNegativeClick"
     >
