@@ -1,31 +1,50 @@
 <script setup lang="ts">
-import type { MenuOption } from 'naive-ui'
-
+import ClearIcon from '~icons/ic/baseline-clear'
 const router = useRouter()
 
 const props = defineProps<{
-  item: MenuOption
+  data: MenuOption
 }>()
 
-const handleJump = (key: any) => {
-  router.push({ name: key })
+const emit = defineEmits<{
+  (e: 'status:close', status: string): void
+}>()
+
+const handleClose = () => {
+  emit('status:close', props.data.key as string)
 }
 </script>
 
 <template>
   <div
-    class="flex w-[1/4] flex-col items-center justify-center space-y-2 rounded-md hover:bg-gray-200 sm:h-[112px] sm:w-[112px]"
-    @click="handleJump(props.item.key)"
+    class="parent relative flex w-[1/4] flex-col items-center justify-center space-y-2 rounded-md hover:bg-gray-200 dark:hover:bg-slate-500 sm:h-[112px] sm:w-[112px]"
+    @click="router.push({ name: props.data.key as string })"
   >
-    <div class="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100">
+    <div
+      class="close bg-gary-100 invisible absolute right-2 top-2 flex h-4 w-4 items-center justify-center rounded-full bg-gray-100"
+      @click.stop="handleClose"
+    >
       <NIcon
         class="cursor-pointer"
-        :component="props.item.icon"
+        :component="ClearIcon"
+        :size="12"
+      />
+    </div>
+    <div class="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 dark:bg-black">
+      <NIcon
+        class="cursor-pointer"
+        :component="props.data.icon"
         :size="24"
       />
     </div>
     <div>
-      <component :is="props.item.label" />
+      <component :is="props.data.label" />
     </div>
   </div>
 </template>
+
+<style scoped lang="scss">
+.parent:hover .close {
+  visibility: visible;
+}
+</style>

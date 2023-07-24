@@ -27,7 +27,7 @@ import ChatChannelsIcon from '~icons/tabler/message-2'
 
 const { renderIcon: renderMenuIcon, renderMenuLabel, t } = RenderUtils
 
-const menuOptions: MenuOption[] = [
+export const menuOptions: MenuOption[] = [
   {
     label: renderMenuLabel(t('Menu.Home')),
     key: 'home',
@@ -184,6 +184,4 @@ const flattenMenuOptions = (options: MenuOption[]): MenuOption[] => {
   })
 }
 
-const menuOptionsFlat: MenuOption[] = flattenMenuOptions(menuOptions)
-
-export { menuOptions, menuOptionsFlat }
+export const menuOptionsFlat: MenuOption[] = flattenMenuOptions(menuOptions)
