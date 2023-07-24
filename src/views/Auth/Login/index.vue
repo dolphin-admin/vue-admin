@@ -52,45 +52,48 @@ const rules: FormRules = {
 /**
  * 登录
  */
-const login = () => {
-  formRef.value!.validate((errors) => {
-    if (errors) {
-      message.error(errors[0][0].message!)
-      return
+const login = async () => {
+  try {
+    await formRef.value!.validate()
+  } catch (errors) {
+    const errorMessage = (errors as FormValidationError[])[0][0].message
+    if (errorMessage) {
+      message.error(errorMessage)
     }
+    return
+  }
 
-    if (submitLoading.value) {
-      return
-    }
+  if (submitLoading.value) {
+    return
+  }
 
-    submitLoadingDispatcher.loading()
+  submitLoadingDispatcher.loading()
 
-    AuthAPI.login(formData)
-      .then((res) => {
-        const { accessToken, user } = res.data || {}
-        AuthUtils.setToken(accessToken)
-        userStore.setUser(user)
-        message.success(t('Login.Success'))
-        if (rememberPassword.value) {
-          AuthUtils.setRememberedAccount(JSON.stringify(formData))
-        } else {
-          AuthUtils.clearRememberedAccount()
-        }
+  AuthAPI.login(formData)
+    .then((res) => {
+      const { accessToken, user } = res.data || {}
+      AuthUtils.setToken(accessToken)
+      userStore.setUser(user)
+      message.success(t('Login.Success'))
+      if (rememberPassword.value) {
+        AuthUtils.setRememberedAccount(JSON.stringify(formData))
+      } else {
+        AuthUtils.clearRememberedAccount()
+      }
 
-        if (redirectUrl.value) {
-          router.replace(redirectUrl.value)
-        } else {
-          router.replace('/')
-        }
-      })
-      .catch((err) => {
-        if (err.message) {
-          message.error(err.message)
-        }
-        submitLoadingDispatcher.loaded()
-        formData.password = ''
-      })
-  })
+      if (redirectUrl.value) {
+        router.replace(redirectUrl.value)
+      } else {
+        router.replace('/')
+      }
+    })
+    .catch((err) => {
+      if (err.message) {
+        message.error(err.message)
+      }
+      submitLoadingDispatcher.loaded()
+      formData.password = ''
+    })
 }
 
 /**

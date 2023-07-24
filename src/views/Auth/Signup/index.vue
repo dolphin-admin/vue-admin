@@ -53,37 +53,39 @@ const rules: FormRules = {
   ]
 }
 
-const signup = () => {
-  formRef.value!.validate((errors) => {
-    if (errors) {
-      message.error(errors[0][0].message!)
-      return
+const signup = async () => {
+  try {
+    await formRef.value!.validate()
+  } catch (errors) {
+    const errorMessage = (errors as FormValidationError[])[0][0].message
+    if (errorMessage) {
+      message.error(errorMessage)
     }
+    return
+  }
+  if (submitLoading.value) {
+    return
+  }
 
-    if (submitLoading.value) {
-      return
-    }
+  submitLoadingDispatcher.loading()
 
-    submitLoadingDispatcher.loading()
-
-    AuthAPI.signup(formData)
-      .then((res) => {
-        const { accessToken } = res.data || {}
-        AuthUtils.setToken(accessToken)
-        message.success(t('Signup.Success'))
-        router.replace('/')
-      })
-      .catch((err) => {
-        if (err.message) {
-          message.error(err.message)
-        }
-        submitLoadingDispatcher.loaded()
-      })
-      .finally(() => {
-        formData.password = ''
-        formData.confirmPassword = ''
-      })
-  })
+  AuthAPI.signup(formData)
+    .then((res) => {
+      const { accessToken } = res.data || {}
+      AuthUtils.setToken(accessToken)
+      message.success(t('Signup.Success'))
+      router.replace('/')
+    })
+    .catch((err) => {
+      if (err.message) {
+        message.error(err.message)
+      }
+      submitLoadingDispatcher.loaded()
+    })
+    .finally(() => {
+      formData.password = ''
+      formData.confirmPassword = ''
+    })
 }
 </script>
 

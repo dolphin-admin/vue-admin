@@ -92,10 +92,35 @@ t('App.Name')
 
 上述代码，在小于 `sm` 断点情况下宽度是 0，`sm` 断点之后宽度是 `16px`。
 
-## 数据表格
+## 组件规范
+
+### 数据表格
 
 - 固定表头
 - 批量删除
 - 无数据提示
 - 加载数据提示
 - 长字段省略
+
+### 表单验证
+
+统一使用异步方法验证：
+
+```typescript
+const handleSubmit = async () => {
+  try {
+    await formRef.value!.validate()
+  } catch (errors) {
+    const errorMessage = (errors as FormValidationError[])[0][0].message
+    if (errorMessage) {
+      message.error(errorMessage)
+    }
+    return
+  }
+}
+```
+
+### 弹窗
+
+- 使用 Dialog 预设
+- 提交、保存后需要按钮 loading 动画 + disabled 状态
