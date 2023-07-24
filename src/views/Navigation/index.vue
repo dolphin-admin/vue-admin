@@ -3,7 +3,7 @@ import { menuOptions, menuOptionsFlat } from '@/constants'
 import type { MessageSchema } from '@/types'
 import PlusIcon from '~icons/ic/outline-plus'
 
-import { Search, shortcutItem } from './components'
+import { Search, ShortcutItem } from './components'
 
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
@@ -16,7 +16,6 @@ const menuOptionsData = computed(() => {
 })
 
 const recursiveMenuOption = (options: any) => {
-  const shortcuts = NavigationUtils.getShortcuts()
   const filteredOptions: any[] = []
   options.forEach((item: any) => {
     const newItem = { ...item }
@@ -24,7 +23,8 @@ const recursiveMenuOption = (options: any) => {
       const children = recursiveMenuOption(newItem.children)
       newItem.children = children
     }
-    if (newItem.show !== false && !shortcuts.includes(newItem.key)) {
+    // 菜单项不显示的时候
+    if (newItem.show !== false) {
       filteredOptions.push(newItem)
     }
   })
@@ -41,19 +41,19 @@ const onPositiveClick = () => {
     showModal.value = true
     return
   }
-  NavigationUtils.setAddShortcuts(currentValue.value)
+  NavigationUtils.setShortcut(currentValue.value)
   const newLocalStorage = NavigationUtils.getShortcuts()
   keys.value = menuOptionsFlat.filter((item) => newLocalStorage.includes(item.key))
 }
 
 const handleStatusClose = (status: string) => {
-  NavigationUtils.setReductionShortcuts(status)
+  NavigationUtils.removeShortcut(status)
   keys.value = keys.value.filter((item: any) => item.key !== status)
 }
 
 onMounted(() => {
-  const LocalStorageData = NavigationUtils.getShortcuts()
-  keys.value = menuOptionsFlat.filter((item) => LocalStorageData.includes(item.key))
+  const shortcuts = NavigationUtils.getShortcuts()
+  keys.value = menuOptionsFlat.filter((item) => shortcuts.includes(item.key))
 })
 </script>
 
@@ -67,12 +67,10 @@ onMounted(() => {
           v-for="(item, index) in keys"
           :key="index"
         >
-          <template v-if="index <= 9">
-            <shortcutItem
-              :data="item"
-              @status:close="handleStatusClose"
-            />
-          </template>
+          <ShortcutItem
+            :data="item"
+            @close="handleStatusClose"
+          />
         </div>
         <div
           class="flex w-[1/4] flex-col items-center justify-center space-y-2 rounded-md hover:bg-gray-200 dark:hover:bg-slate-500 sm:h-[112px] sm:w-[112px]"
@@ -93,7 +91,6 @@ onMounted(() => {
     </div>
     <NModal
       v-model:show="showModal"
-      :mask-closable="false"
       preset="dialog"
       :title="t('Navigation.AddShortcut')"
       :positive-text="t('Common.Confirm')"

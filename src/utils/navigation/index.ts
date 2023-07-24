@@ -5,7 +5,7 @@ export class NavigationUtils {
   static LOCAL_STORAGE_NAVIGATION_SHORTCUTS = 'navigation_shortcuts'
 
   /**
-   * 获取 AddShortcut
+   * 获取快捷方式列表
    */
   static getShortcuts() {
     const shortcuts = localStorage.getItem(this.LOCAL_STORAGE_NAVIGATION_SHORTCUTS)
@@ -20,20 +20,21 @@ export class NavigationUtils {
   /**
    * 增加快捷方式
    */
-  static setAddShortcuts(value: string) {
-    const oldValue = NavigationUtils.getShortcuts()
-    oldValue.push(value)
-    const valueStorage = JSON.stringify(oldValue)
-    localStorage.setItem(this.LOCAL_STORAGE_NAVIGATION_SHORTCUTS, valueStorage)
+  static setShortcut(key: string) {
+    const shortcuts = this.getShortcuts()
+    shortcuts.push(key)
+    const stringifiedValue = JSON.stringify(shortcuts)
+    localStorage.setItem(this.LOCAL_STORAGE_NAVIGATION_SHORTCUTS, stringifiedValue)
   }
 
   /**
    * 移除快捷方式
    */
-  static setReductionShortcuts(value: string) {
-    const oldValue = NavigationUtils.getShortcuts()
-    const newValue = oldValue.filter((item: string) => item !== value)
-    const valueStorage = JSON.stringify(newValue)
-    localStorage.setItem(this.LOCAL_STORAGE_NAVIGATION_SHORTCUTS, valueStorage)
+  static removeShortcut(key: string) {
+    const shortcuts = this.getShortcuts()
+    localStorage.setItem(
+      this.LOCAL_STORAGE_NAVIGATION_SHORTCUTS,
+      JSON.stringify(shortcuts.filter((item: string) => item !== key))
+    )
   }
 }

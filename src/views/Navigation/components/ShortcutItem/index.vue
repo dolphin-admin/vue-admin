@@ -7,11 +7,11 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (e: 'status:close', status: string): void
+  close: [status: string]
 }>()
 
 const handleClose = () => {
-  emit('status:close', props.data.key as string)
+  emit('close', props.data.key as string)
 }
 </script>
 
