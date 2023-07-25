@@ -13,7 +13,7 @@ const inputValue = ref('')
 const isConnecting = ref(false)
 
 const socket = ref<Socket>(
-  io(`${GlobalEnvConfig.BASE_API_PROXY}/demo`, {
+  io('/demo', {
     autoConnect: false // 禁止自动连接
   })
 )
@@ -49,6 +49,10 @@ const handleDisconnect = () => {
  * 发送消息
  */
 const handleSendMessage = () => {
+  if (!socket.value.connected) {
+    message.error(t('WebSocket.NotConnected'))
+    return
+  }
   if (!inputValue.value.trim()) {
     message.error(t('WebSocket.ContentIsEmpty'))
     return

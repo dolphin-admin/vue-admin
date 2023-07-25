@@ -54,35 +54,41 @@ const logout = () => {
   message.success(t('Logout.LoginAgain'))
 }
 
-const handleChangePassword = () => {
-  changePasswordRef.value!.validate((errors) => {
-    if (errors) {
-      message.error(errors[0][0].message!)
-      return
+const handleChangePassword = async () => {
+  try {
+    await changePasswordRef.value!.validate()
+  } catch (errors) {
+    const errorMessage = (errors as FormValidationError[])[0][0].message
+    if (errorMessage) {
+      message.error(errorMessage)
     }
+    return
+  }
+  if (submitLoading.value) {
+    return
+  }
 
-    if (submitLoading.value) {
-      return
-    }
+  if (submitLoading.value) {
+    return
+  }
 
-    submitLoadingDispatcher.loading()
+  submitLoadingDispatcher.loading()
 
-    UserAPI.changePassword(userStore.user.id!, changePasswordData)
-      .then((res) => {
-        if (res.message) {
-          message.success(res.message)
-        }
-        logout()
-      })
-      .catch((err) => {
-        if (err.message) {
-          message.error(err.message)
-        }
-      })
-      .finally(() => {
-        submitLoadingDispatcher.loaded()
-      })
-  })
+  UserAPI.changePassword(userStore.user.id!, changePasswordData)
+    .then((res) => {
+      if (res.message) {
+        message.success(res.message)
+      }
+      logout()
+    })
+    .catch((err) => {
+      if (err.message) {
+        message.error(err.message)
+      }
+    })
+    .finally(() => {
+      submitLoadingDispatcher.loaded()
+    })
 }
 </script>
 
