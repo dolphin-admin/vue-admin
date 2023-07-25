@@ -123,6 +123,13 @@ const haveScrollBar = () => {
   }
   return false
 }
+
+const drop = (event: DragEvent) => {
+  event.preventDefault()
+  tabStore.dragTabs()
+}
+
+const dragOver = (event: DragEvent) => event.preventDefault()
 </script>
 
 <template>
@@ -132,6 +139,8 @@ const haveScrollBar = () => {
     <div
       ref="scrollbarRef"
       class="global_hide-scrollbar flex w-full items-center space-x-2 overflow-x-auto"
+      @drop="drop"
+      @dragover="dragOver"
     >
       <NTag
         v-for="(tagItem, index) in tabStore.tabs"
@@ -139,8 +148,11 @@ const haveScrollBar = () => {
         class="!cursor-pointer !select-none"
         :type="route.path === tagItem.href ? 'primary' : 'default'"
         :closable="!(tabStore.tabs.length === 1 && tagItem.href === '/')"
+        :draggable="true"
         @click="() => router.push(tagItem.href)"
         @close="() => handleCloseTab(tagItem, index)"
+        @dragstart="() => tabStore.setCurrent(index)"
+        @dragenter="() => tabStore.setReplace(index)"
       >
         <component :is="tagItem.label" />
         <template #icon>

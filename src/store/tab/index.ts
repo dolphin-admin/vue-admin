@@ -7,6 +7,14 @@ export const useTabStore = defineStore('tab', () => {
   const tabs = ref<Tab[]>([])
 
   /**
+   * 当前拖拽的元素位置和拖拽到的位置
+   */
+  const record = reactive({
+    current: -1,
+    replace: -1
+  })
+
+  /**
    * 添加标签页
    */
   const addTab = (tab: Tab) => {
@@ -39,11 +47,40 @@ export const useTabStore = defineStore('tab', () => {
     tabs.value = []
   }
 
+  /**
+   * 拖拽修改标签页
+   */
+  const dragTabs = () => {
+    if (record.current === -1 || record.replace === -1) {
+      return
+    }
+    const [removedValue] = tabs.value.splice(record.current, 1)
+    tabs.value.splice(record.replace, 0, removedValue)
+  }
+
+  /**
+   * 修改记录值current
+   */
+  const setCurrent = (index: number) => {
+    record.current = index
+  }
+
+  /**
+   * 修改记录值Replace
+   */
+  const setReplace = (index: number) => {
+    record.replace = index
+  }
+
   return {
     tabs,
+    record,
     addTab,
     removeTab,
     removeTabByHref,
-    clearAll
+    clearAll,
+    dragTabs,
+    setCurrent,
+    setReplace
   }
 })
