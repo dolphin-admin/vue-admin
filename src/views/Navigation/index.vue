@@ -10,6 +10,10 @@ const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 const keys = ref<any>([])
 const showModal = ref(false)
 const currentValue = ref('')
+const record = reactive({
+  current: -1,
+  replace: -1
+})
 
 const menuOptionsData = computed(() => {
   return recursiveMenuOption(menuOptions)
@@ -54,6 +58,31 @@ const handleStatusClose = (status: string) => {
   keys.value = keys.value.filter((item: any) => item.key !== status)
 }
 
+const reorder = (value: any, current: number, replace: number) => {
+  if (current === -1 || replace === -1) {
+    return
+  }
+  const [removedValue] = value.splice(current, 1)
+  value.splice(replace, 0, removedValue)
+}
+
+const dragStart = (index: number) => {
+  record.current = index
+}
+
+const dragEnter = (index: number) => {
+  record.replace = index
+}
+
+const drop = (event: DragEvent) => {
+  event.preventDefault()
+  reorder(keys.value, record.current, record.replace)
+}
+
+const dragOver = (event: DragEvent) => {
+  event.preventDefault()
+}
+
 onMounted(() => {
   const shortcuts = NavigationUtils.getShortcuts()
   keys.value = menuOptionsFlat.filter((item) => shortcuts.includes(item.key))
@@ -65,10 +94,17 @@ onMounted(() => {
     <div class="flex w-[80%] flex-col items-center space-y-2 sm:w-[500px]">
       <div class="animate-pulse text-4xl text-blue-600">Bit Ocean</div>
       <Search />
-      <div class="grid w-full grid-cols-3 grid-rows-3 p-2 sm:grid-cols-4 sm:grid-rows-2">
+      <div
+        class="grid w-full grid-cols-3 grid-rows-3 p-2 sm:grid-cols-4 sm:grid-rows-2"
+        @drop="drop"
+        @dragover="dragOver"
+      >
         <div
           v-for="(item, index) in keys"
           :key="index"
+          :draggable="true"
+          @dragstart="dragStart(index)"
+          @dragenter="dragEnter(index)"
         >
           <ShortcutItem
             :data="item"

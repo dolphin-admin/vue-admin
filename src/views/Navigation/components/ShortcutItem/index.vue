@@ -10,9 +10,7 @@ const emit = defineEmits<{
   close: [status: string]
 }>()
 
-const handleClose = () => {
-  emit('close', props.data.key as string)
-}
+const handleClose = () => emit('close', props.data.key as string)
 </script>
 
 <template>
