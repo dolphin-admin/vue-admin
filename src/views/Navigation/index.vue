@@ -36,14 +36,17 @@ const handleUpdateValue = (value: string) => {
 }
 
 const onPositiveClick = () => {
-  const LocalStorage = NavigationUtils.getShortcuts()
-  if (!currentValue.value || LocalStorage.includes(currentValue.value)) {
+  const localStorage = NavigationUtils.getShortcuts()
+  if (!currentValue.value || localStorage.includes(currentValue.value)) {
     showModal.value = true
     return
   }
-  NavigationUtils.setShortcut(currentValue.value)
-  const newLocalStorage = NavigationUtils.getShortcuts()
-  keys.value = menuOptionsFlat.filter((item) => newLocalStorage.includes(item.key))
+  NavigationUtils.addShortcut(currentValue.value)
+  menuOptionsFlat.forEach((item) => {
+    if (item.key === currentValue.value) {
+      keys.value.push(item)
+    }
+  })
 }
 
 const handleStatusClose = (status: string) => {
@@ -99,7 +102,7 @@ onMounted(() => {
     >
       <NTreeSelect
         default-expand-all
-        :options="(menuOptionsData as TreeSelectOption[])"
+        :options="menuOptionsData"
         check-strategy="child"
         @update:value="handleUpdateValue"
       />

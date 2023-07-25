@@ -20,7 +20,7 @@ export class NavigationUtils {
   /**
    * 增加快捷方式
    */
-  static setShortcut(key: string) {
+  static addShortcut(key: string) {
     const shortcuts = this.getShortcuts()
     shortcuts.push(key)
     const stringifiedValue = JSON.stringify(shortcuts)
