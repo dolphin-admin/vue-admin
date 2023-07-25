@@ -165,3 +165,23 @@ export const menuOptions: MenuOption[] = [
     ]
   }
 ]
+
+const flattenMenuOptions = (options: MenuOption[]): MenuOption[] => {
+  return options.flatMap((option) => {
+    const newPath = [
+      {
+        label: option.label,
+        key: option.key,
+        icon: option.icon,
+        show: option.show !== false
+      }
+    ]
+
+    if (option.children) {
+      return flattenMenuOptions(option.children)
+    }
+    return newPath
+  })
+}
+
+export const menuOptionsFlat: MenuOption[] = flattenMenuOptions(menuOptions)

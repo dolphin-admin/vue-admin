@@ -241,5 +241,8 @@
   },
   "Timeline": {
     "WebDevRoadmap": "Web Dev Roadmap"
+  },
+  "Navigation": {
+    "AddShortcut": "Add shortcut"
   }
 }
