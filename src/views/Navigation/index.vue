@@ -58,12 +58,12 @@ const handleStatusClose = (status: string) => {
   keys.value = keys.value.filter((item: any) => item.key !== status)
 }
 
-const reorder = (languages: any, current: number, replace: number) => {
+const reorder = (value: any, current: number, replace: number) => {
   if (current === -1 || replace === -1) {
     return
   }
-  const [removedLanguage] = languages.splice(current, 1)
-  languages.splice(replace, 0, removedLanguage)
+  const [removedValue] = value.splice(current, 1)
+  value.splice(replace, 0, removedValue)
 }
 
 const dragStart = (index: number) => {
@@ -96,8 +96,8 @@ onMounted(() => {
       <Search />
       <div
         class="grid w-full grid-cols-3 grid-rows-3 p-2 sm:grid-cols-4 sm:grid-rows-2"
-        @drop="drop($event)"
-        @dragover="dragOver($event)"
+        @drop="drop"
+        @dragover="dragOver"
       >
         <div
           v-for="(item, index) in keys"
