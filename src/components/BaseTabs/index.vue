@@ -11,6 +11,14 @@ const router = useRouter()
 const tabStore = useTabStore()
 
 /**
+ * 当前拖拽的元素位置和拖拽到的位置
+ */
+const record = reactive({
+  current: -1,
+  replace: -1
+})
+
+/**
  * 选项卡右侧下拉列表
  * @param key 选项key
  */
@@ -124,12 +132,21 @@ const haveScrollBar = () => {
   return false
 }
 
-const drop = (event: DragEvent) => {
-  event.preventDefault()
-  tabStore.dragTabs()
+const dragTabs = () => {
+  if (record.current === -1 || record.replace === -1) {
+    return
+  }
+  const [removedValue] = tabStore.tabs.splice(record.current, 1)
+  tabStore.tabs.splice(record.replace, 0, removedValue)
 }
 
-const dragOver = (event: DragEvent) => event.preventDefault()
+const setCurrent = (index: number) => {
+  record.current = index
+}
+
+const setReplace = (index: number) => {
+  record.replace = index
+}
 </script>
 
 <template>
@@ -139,8 +156,8 @@ const dragOver = (event: DragEvent) => event.preventDefault()
     <div
       ref="scrollbarRef"
       class="global_hide-scrollbar flex w-full items-center space-x-2 overflow-x-auto"
-      @drop="drop"
-      @dragover="dragOver"
+      @drop.prevent="dragTabs"
+      @dragover.prevent
     >
       <NTag
         v-for="(tagItem, index) in tabStore.tabs"
@@ -149,10 +166,10 @@ const dragOver = (event: DragEvent) => event.preventDefault()
         :type="route.path === tagItem.href ? 'primary' : 'default'"
         :closable="!(tabStore.tabs.length === 1 && tagItem.href === '/')"
         :draggable="true"
-        @click="() => router.push(tagItem.href)"
-        @close="() => handleCloseTab(tagItem, index)"
-        @dragstart="() => tabStore.setCurrent(index)"
-        @dragenter="() => tabStore.setReplace(index)"
+        @click="router.push(tagItem.href)"
+        @close="handleCloseTab(tagItem, index)"
+        @dragstart="setCurrent(index)"
+        @dragenter="setReplace(index)"
       >
         <component :is="tagItem.label" />
         <template #icon>
