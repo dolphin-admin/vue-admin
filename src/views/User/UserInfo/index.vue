@@ -130,8 +130,8 @@ onMounted(() =>
       <div class="flex flex-col items-center space-y-2">
         <template v-if="computedUserInfo?.avatarUrl">
           <NAvatar
-            :size="80"
             round
+            :size="80"
             :src="computedUserInfo?.avatarUrl"
           />
         </template>
@@ -154,8 +154,8 @@ onMounted(() =>
         </div>
 
         <NEllipsis
-          :line-clamp="3"
           class="text-xs"
+          :line-clamp="3"
         >
           {{ computedUserInfo?.biography }}
           <template #tooltip>
@@ -211,16 +211,15 @@ onMounted(() =>
       </template>
       <NForm
         ref="formRef"
-        :rules="rules"
         :model="formData"
+        :rules="rules"
         label-placement="left"
-        label-width="auto"
+        label-width="100"
         require-mark-placement="right-hanging"
-        class="flex flex-col"
       >
         <NFormItem
-          :label="t('User.Avatar')"
           path="avatarUrl"
+          :label="t('User.Avatar')"
         >
           <NUpload
             ref="uploadRef"
@@ -248,8 +247,8 @@ onMounted(() =>
           </NUpload>
         </NFormItem>
         <NFormItem
-          :label="t('User.Name')"
           path="name"
+          :label="t('User.Name')"
         >
           <NInput
             v-model:value="formData.name"
@@ -260,27 +259,27 @@ onMounted(() =>
           />
         </NFormItem>
         <NFormItem
-          :label="t('User.FirstName')"
           path="firstName"
+          :label="t('User.FirstName')"
         >
           <NInput
             v-model:value="formData.firstName"
-            :placeholder="t('Validation.FirstName')"
             maxlength="20"
             show-count
             clearable
+            :placeholder="t('Validation.FirstName')"
           />
         </NFormItem>
         <NFormItem
-          :label="t('User.LastName')"
           path="lastName"
+          :label="t('User.LastName')"
         >
           <NInput
             v-model:value="formData.lastName"
-            :placeholder="t('Validation.LastName')"
             maxlength="10"
             show-count
             clearable
+            :placeholder="t('Validation.LastName')"
           />
         </NFormItem>
         <NFormItem
@@ -289,15 +288,15 @@ onMounted(() =>
         >
           <NInput
             v-model:value="formData.email"
-            :placeholder="t('Validation.Email')"
             maxlength="20"
             show-count
             clearable
+            :placeholder="t('Validation.Email')"
           />
         </NFormItem>
         <NFormItem
-          :label="t('User.Gender')"
           path="gender"
+          :label="t('User.Gender')"
         >
           <NRadioGroup
             v-model:value="formData.gender"
@@ -310,52 +309,53 @@ onMounted(() =>
           </NRadioGroup>
         </NFormItem>
         <NFormItem
-          :label="t('User.PhoneNumber')"
           path="phoneNumber"
+          :label="t('User.PhoneNumber')"
         >
           <NInput
             v-model:value="formData.phoneNumber"
-            :placeholder="t('Validation.PhoneNumber')"
             maxlength="20"
             show-count
             clearable
+            :placeholder="t('Validation.PhoneNumber')"
           />
         </NFormItem>
         <NFormItem
-          :label="t('User.BirthDate')"
           path="birthDate"
+          :label="t('User.BirthDate')"
         >
           <NDatePicker
             v-model:formatted-value="formData.birthDate"
+            class="w-full"
             clearable
           />
         </NFormItem>
         <NFormItem
-          :label="t('User.Address')"
           path="address"
+          :label="t('User.Address')"
         >
           <NInput
             v-model:value="formData.address"
-            :placeholder="t('Validation.Address')"
             maxlength="30"
             show-count
             clearable
+            :placeholder="t('Validation.Address')"
           />
         </NFormItem>
         <NFormItem
-          :label="t('User.Biography')"
           path="biography"
+          :label="t('User.Biography')"
         >
           <NInput
             v-model:value="formData.biography"
-            :placeholder="t('Validation.Biography')"
             maxlength="300"
             show-count
             clearable
+            :placeholder="t('Validation.Biography')"
           />
         </NFormItem>
 
-        <div class="self-center sm:self-start">
+        <div class="flex justify-center">
           <NButton
             round
             type="primary"
