@@ -101,11 +101,12 @@ const handleChangePassword = async () => {
     >
       <NForm
         ref="changePasswordRef"
-        label-placement="left"
-        label-align="right"
-        :label-width="90"
         :model="changePasswordData"
         :rules="changePasswordRules"
+        label-placement="left"
+        label-align="right"
+        label-width="90"
+        require-mark-placement="right-hanging"
       >
         <NFormItem
           path="oldPassword"
@@ -147,15 +148,17 @@ const handleChangePassword = async () => {
           />
         </NFormItem>
 
-        <NButton
-          type="primary"
-          class="rounded"
-          :disabled="submitLoading"
-          :loading="submitLoading"
-          @click="() => handleChangePassword()"
-        >
-          {{ t('Common.Save') }}
-        </NButton>
+        <div class="flex justify-center">
+          <NButton
+            type="primary"
+            class="rounded"
+            :disabled="submitLoading"
+            :loading="submitLoading"
+            @click="() => handleChangePassword()"
+          >
+            {{ t('Common.Save') }}
+          </NButton>
+        </div>
       </NForm>
     </NCard>
   </main>
