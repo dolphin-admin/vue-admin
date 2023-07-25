@@ -114,14 +114,14 @@ const uploadAvatarUrl = (options: { fileList: UploadFileInfo[] }) => {
   currentFile.value = file?.file ?? null
 }
 
-onMounted(() => {
+onMounted(() =>
   UserAPI.getUserInfo().then((res) => {
     const { data } = res
     data.birthDate = data.birthDate && TimeUtils.formatTime(data.birthDate, 'YYYY-MM-DD')
     userStore.setUser(data)
     formData.value = data
   })
-})
+)
 </script>
 
 <template>
