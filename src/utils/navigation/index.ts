@@ -1,6 +1,6 @@
 export class NavigationUtils {
   /**
-   *  LocalStorage 健值名 AddShortcut
+   *  LocalStorage 健值名 navigation_shortcuts
    */
   static LOCAL_STORAGE_NAVIGATION_SHORTCUTS = 'navigation_shortcuts'
 
