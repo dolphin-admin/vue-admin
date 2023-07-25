@@ -7,14 +7,17 @@ const userStore = useUserStore()
 const router = useRouter()
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
-onBeforeMount(() => {
+// 检查登录状态
+const checkLogin = async () => {
   // 如果已经登录，直接跳转到首页，否则清除用户信息
   if (AuthUtils.isAuthenticated()) {
     router.replace('/')
   } else {
     userStore.clearUser()
   }
-})
+}
+
+await checkLogin()
 </script>
 
 <template>
