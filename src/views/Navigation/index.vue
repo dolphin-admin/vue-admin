@@ -16,8 +16,8 @@ const record = reactive({
   current: -1,
   replace: -1
 })
-const cursor = ref('cursor-grab')
 const menuOptionsData = ref<any>([])
+const isDragging = ref(false)
 
 const recursiveMenuOption = (options: any) => {
   const shortcuts = NavigationUtils.getShortcuts()
@@ -74,12 +74,12 @@ const reorder = (value: any, current: number, replace: number) => {
 
 const dragStart = (index: number) => {
   record.current = index
-  cursor.value = 'cursor-move'
+  isDragging.value = true
 }
 
 const dragEnter = (index: number) => {
   record.replace = index
-  cursor.value = 'cursor-grab'
+  isDragging.value = false
 }
 
 const drop = () => reorder(keys.value, record.current, record.replace)
@@ -118,7 +118,7 @@ onMounted(() => {
           v-for="(item, index) in keys"
           :key="index"
           class="hover:cursor-pointer active:cursor-grabbing"
-          :class="cursor"
+          :class="{ 'cursor-move': isDragging }"
           :draggable="true"
           @dragstart="dragStart(index)"
           @dragenter="dragEnter(index)"
