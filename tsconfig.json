@@ -1,27 +1,7 @@
 {
-  "compilerOptions": {
-    "module": "ESNext",
-    "moduleResolution": "node",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "types": ["node", "jsdom", "unplugin-icons/types/vue", "naive-ui/volar"],
-    "target": "ESNext",
-    "strict": true,
-    "esModuleInterop": true,
-    "jsx": "preserve",
-    "sourceMap": true,
-    "skipLibCheck": true,
-    "resolveJsonModule": true,
-    "strictNullChecks": true,
-    "forceConsistentCasingInFileNames": true,
-    "useDefineForClassFields": true,
-    "noImplicitThis": true,
-    "isolatedModules": true,
-    "composite": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-  },
-  "include": ["src/**/*", "src/**/*.vue", "src/**/*.json", "vite.config.*", ".eslintrc.js"],
-  "exclude": ["dist", "node_modules"]
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.web.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
 }

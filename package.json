@@ -1,14 +1,20 @@
 {
   "private": true,
-  "name": "dolphin-admin-web",
+  "name": "dolphin-admin",
   "version": "0.0.1",
   "author": "Bruce Song <recall4056@gmail.com> (https://github.com/recallwei/)",
   "scripts": {
-    "dev": "vite",
-    "build": "pnpm type:check && pnpm build-only",
-    "preview": "vite preview",
-    "build-only": "vite build",
-    "dev:desktop": "tauri dev",
+    "web:dev": "pnpm --filter=web dev",
+    "web:build": "pnpm web:type:check && pnpm --filter=web build",
+    "web:preview": "pnpm --filter=web preview",
+    "desktop:dev": "pnpm --filter=web desktop:dev",
+    "desktop:build": "pnpm --filter=web desktop:build",
+    "server:dev": "pnpm --filter=server dev",
+    "server:build": "pnpm --filter=server build",
+    "server:start": "pnpm --filter=server start",
+    "docs:dev": "pnpm --filter=docs dev",
+    "docs:build": "pnpm --filter=docs build",
+    "docs:preview": "pnpm --filter=docs preview",
     "prepare": "husky install",
     "cspell:check": "cspell **",
     "cspell:sort": "node ./scripts/cspell-sort.js",
@@ -16,41 +22,29 @@
     "eslint:fix": "pnpm check:lint -- --fix",
     "prettier:check": "prettier --check .",
     "prettier:fix": "prettier --check --write --ignore-unknown .",
-    "type:check": "vue-tsc --noEmit -p tsconfig.json --composite false",
-    "commit": "npx git-cz",
+    "web:type:check": "vue-tsc --noEmit -p tsconfig.web.json --composite false",
+    "server:type:check": "tsc --pretty --noEmit -p tsconfig.node.json",
+    "cz": "npx git-cz",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
   },
   "dependencies": {
-    "@tauri-apps/api": "^1.4.0",
-    "@vueuse/core": "^10.2.1",
     "axios": "^1.4.0",
     "dayjs": "^1.11.9",
-    "echarts": "^5.4.3",
-    "nprogress": "0.2.0",
-    "pinia": "^2.1.4",
+    "lodash": "^4.17.21",
     "qrcode": "^1.5.3",
-    "socket.io-client": "^4.7.1",
-    "vue": "^3.3.4",
-    "vue-i18n": "9.2.2",
-    "vue-router": "^4.2.4",
-    "xlsx": "https://cdn.sheetjs.com/xlsx-0.19.3/xlsx-0.19.3.tgz"
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.7",
     "@commitlint/config-conventional": "^17.6.7",
-    "@iconify/json": "^2.2.93",
-    "@iconify/vue": "^4.1.1",
     "@rushstack/eslint-patch": "^1.3.2",
-    "@tauri-apps/cli": "^1.4.0",
     "@types/jsdom": "^21.1.1",
-    "@types/node": "^20.4.2",
+    "@types/node": "^20.4.5",
     "@types/nprogress": "^0.2.0",
     "@types/qrcode": "^1.5.1",
     "@typescript-eslint/parser": "^5.61.0",
-    "@vitejs/plugin-vue": "^4.2.3",
     "@vue/eslint-config-prettier": "^8.0.0",
     "@vue/eslint-config-typescript": "^11.0.3",
-    "autoprefixer": "^10.4.14",
     "commitizen": "^4.3.0",
     "conventional-changelog-cli": "^3.0.0",
     "cspell": "^6.31.2",
@@ -68,28 +62,19 @@
     "eslint-plugin-vue": "^9.15.1",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.3",
-    "naive-ui": "^2.34.4",
-    "postcss": "^8.4.26",
     "prettier": "3.0.0",
-    "sass": "^1.64.0",
-    "tailwindcss": "^3.3.3",
     "typescript": "~5.1.6",
-    "unplugin-auto-import": "^0.16.6",
-    "unplugin-icons": "^0.16.5",
-    "unplugin-vue-components": "^0.25.1",
-    "vfonts": "^0.0.3",
-    "vite": "^4.4.5",
-    "vue-tsc": "^1.8.5"
+    "vue-tsc": "^1.8.6"
   },
   "config": {
     "commitizen": {
-      "path": "node_modules/cz-git"
+      "path": "./node_modules/cz-git"
     }
   },
   "packageManager": "pnpm@8.6.0",
   "engines": {
-    "node": ">=18.15.0",
-    "npm": ">=9.2.0"
+    "node": ">=16.20.1",
+    "pnpm": ">=8.0.0"
   },
   "license": "MIT"
 }
