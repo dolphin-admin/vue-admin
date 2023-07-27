@@ -2,5 +2,5 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 # npx lint-staged
-## npx cspell '**'
+## pnpm cspell:check
 ## pnpm prettier:fix

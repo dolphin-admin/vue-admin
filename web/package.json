@@ -11,7 +11,6 @@
     "desktop:build": "tauri build"
   },
   "peerDependencies": {
-
     "axios": "^1.4.0",
     "dayjs": "^1.11.9",
     "lodash": "^4.17.21",
@@ -45,5 +44,6 @@
     "unplugin-icons": "^0.16.5",
     "unplugin-vue-components": "^0.25.1",
     "vfonts": "^0.0.3"
-  }
+  },
+  "license": "MIT"
 }
