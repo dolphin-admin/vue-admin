@@ -1,47 +1,29 @@
 {
   "compilerOptions": {
-    "module": "ESNext",
+    "target": "ES6",
+    "module": "CommonJS",
+    "rootDir": ".",
     "moduleResolution": "node",
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ESNext"
-    ],
-    "types": [
-      "node",
-      "jsdom",
-      "unplugin-icons/types/vue",
-      "naive-ui/volar"
-    ],
-    "target": "ESNext",
-    "strict": true,
-    "esModuleInterop": true,
-    "jsx": "preserve",
-    "sourceMap": true,
-    "skipLibCheck": true,
-    "resolveJsonModule": true,
-    "strictNullChecks": true,
-    "forceConsistentCasingInFileNames": true,
-    "useDefineForClassFields": true,
-    "noImplicitThis": true,
-    "isolatedModules": true,
-    "composite": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
-    }
+      "@/*": ["src/*"],
+      "@prisma/pg": ["src/prisma/generated/pg"],
+      "@prisma/mongo": ["src/prisma/generated/mongo"]
+    },
+    "sourceMap": true,
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true, // 装饰器支持
+    "emitDecoratorMetadata": true
   },
-  "include": [
-    "src/**/*",
-    "src/**/*.vue",
-    "src/**/*.json",
-    "vite.config.*",
-    ".eslintrc.js"
-  ],
-  "exclude": [
-    "dist",
-    "node_modules"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["dist", "node_modules", ".eslintrc.js"],
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+  }
 }
