@@ -51,6 +51,7 @@ spreadsheetml
 tabler
 tailwindcss
 tauri
+taze
 templating
 Timestamptz
 titlebar

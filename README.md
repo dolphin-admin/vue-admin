@@ -30,6 +30,7 @@ backend management template based on Vue 3 + Vite + Naive UI + TypeScript + Tail
 - [x] [CSpell](https://cspell.org/) for code spelling checking
 - [x] [Husky](https://typicode.github.io/husky/), [lint-staged](https://github.com/okonet/lint-staged),
       [commitlint](https://commitlint.js.org/#/), [cz-git](https://cz-git.qbb.sh/) for Git commit management
+- [x] [taze](https://github.com/antfu/taze) for dependency version management
 - [x] Support absolute path import, use `@/*`
 - [x] Support third-party login like GitHub, Google, etc.
 - [x] Support desktop, use [Tauri](https://tauri.app/) for desktop application packaging
