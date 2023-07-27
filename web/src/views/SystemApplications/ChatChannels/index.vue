@@ -20,6 +20,8 @@ const options = [
   }
 ]
 
+const currentPage = ref(shallowRef(ChatList))
+
 const handleSelect = (key: OptionKey) => {
   switch (key) {
     case 'Channel':
@@ -32,8 +34,6 @@ const handleSelect = (key: OptionKey) => {
       break
   }
 }
-
-const currentPage = ref(shallowRef(ChatList))
 
 const handleReturn = () => {
   currentPage.value = ChatList

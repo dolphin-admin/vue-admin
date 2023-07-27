@@ -10,7 +10,7 @@ const { openNewWindow } = BrowserUtils
 
 <template>
   <footer
-    class="z-50 flex h-10 w-full items-center justify-center space-x-2 border-t border-gray-300 bg-light-default text-xs shadow-sm dark:border-gray-950 dark:bg-dark-default"
+    class="bg-light-default dark:bg-dark-default z-50 flex h-10 w-full items-center justify-center space-x-2 border-t border-gray-300 text-xs shadow-sm dark:border-gray-950"
   >
     <span>{{ t('App.Name') }} - v{{ version }}</span>
     <span>©</span>

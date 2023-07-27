@@ -51,8 +51,8 @@ class Request {
         }
         // 网络错误，跳转到 404 页面
         if (!window.navigator.onLine) {
-          console.error('Network Error!')
           router.replace('/404')
+          message.error(t('Common.NetworkError'))
         }
         return Promise.reject(data)
       }
@@ -105,7 +105,6 @@ class Request {
       case ResponseStatusCode.CONFLICT:
       case ResponseStatusCode.TOO_MANY_REQUESTS:
       default:
-        console.error(errorMessage)
     }
   }
 

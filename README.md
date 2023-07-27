@@ -88,13 +88,13 @@ pnpm i
 #### Development
 
 ```bash
-pnpm dev
+pnpm web:dev
 ```
 
 #### Build
 
 ```bash
-pnpm build
+pnpm web:build
 ```
 
 ### Desktop App
@@ -102,7 +102,7 @@ pnpm build
 #### Development
 
 ```bash
-pnpm dev:desktop
+pnpm desktop:dev
 ```
 
 ## Deploy

@@ -12,7 +12,7 @@ module.exports = defineConfig({
   parser: 'vue-eslint-parser',
   parserOptions: {
     parser: '@typescript-eslint/parser',
-    project: path.join(__dirname, 'tsconfig.json'),
+    project: path.join(__dirname, 'tsconfig.web.json'),
     ecmaVersion: 2022,
     sourceType: 'module'
   },
@@ -56,7 +56,6 @@ module.exports = defineConfig({
     {
       files: ['**/*.vue'],
       rules: {
-        '@typescript-eslint/no-use-before-define': 'off',
         'vue/no-v-html': 'off'
       }
     }

@@ -8,6 +8,7 @@
     "404": "Not Found",
     "418": "I'm A Teapot",
     "500": "Internal Server Error",
+    "NetworkError": "Network Error",
     "All": "All",
     "Search": "Search",
     "Refresh": "Refresh",
