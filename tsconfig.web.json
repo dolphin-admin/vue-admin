@@ -2,8 +2,17 @@
   "compilerOptions": {
     "module": "ESNext",
     "moduleResolution": "node",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "types": ["node", "jsdom", "unplugin-icons/types/vue", "naive-ui/volar"],
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
+    "types": [
+      "node",
+      "jsdom",
+      "unplugin-icons/types/vue",
+      "naive-ui/volar"
+    ],
     "target": "ESNext",
     "strict": true,
     "esModuleInterop": true,
@@ -19,9 +28,21 @@
     "composite": true,
     "baseUrl": "./web",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ]
     }
   },
-  "include": ["src/**/*", "src/**/*.vue", "src/**/*.json", "vite.config.*", ".eslintrc.js"],
-  "exclude": ["dist", "node_modules"]
+  "include": [
+    "web/src/**/*.ts",
+    "web/src/**/*.dts",
+    "web/src/**/*.vue",
+    "**/*.json",
+    "web/vite.config.*",
+    ".eslintrc.js"
+  ],
+  "exclude": [
+    "dist",
+    "node_modules"
+  ]
 }

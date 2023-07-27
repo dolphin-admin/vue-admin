@@ -35,7 +35,7 @@ watch(
 
 <template>
   <div
-    class="absolute inset-y-0 left-0 z-[100] h-full border-r border-gray-300 bg-light-default shadow-sm transition-[width] dark:border-gray-950 dark:bg-dark-default sm:static"
+    class="bg-light-default dark:bg-dark-default absolute inset-y-0 left-0 z-[100] h-full border-r border-gray-300 shadow-sm transition-[width] dark:border-gray-950 sm:static"
     :class="[sidebarStore.isDisplay ? (sidebarStore.isCollapse ? 'w-16' : 'w-56') : 'w-0']"
   >
     <!-- Header -->

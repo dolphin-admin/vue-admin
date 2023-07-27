@@ -94,7 +94,7 @@ const signup = async () => {
     ref="formRef"
     :rules="rules"
     :model="formData"
-    class="absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg bg-light-default px-4 py-8 shadow-md transition-colors dark:bg-dark-default sm:w-[260px] md:w-[340px]"
+    class="bg-light-default dark:bg-dark-default absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg px-4 py-8 shadow-md transition-colors sm:w-[260px] md:w-[340px]"
   >
     <div class="select-none text-center text-lg font-semibold">{{ t('Menu.Signup') }}</div>
 

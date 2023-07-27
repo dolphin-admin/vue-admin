@@ -86,13 +86,13 @@ pnpm i
 #### 启动
 
 ```bash
-pnpm dev
+pnpm web:dev
 ```
 
 #### 构建
 
 ```bash
-pnpm build
+pnpm web:build
 ```
 
 ### 桌面端应用
@@ -100,7 +100,7 @@ pnpm build
 #### 启动
 
 ```bash
-pnpm dev:desktop
+pnpm desktop:dev
 ```
 
 ## 部署

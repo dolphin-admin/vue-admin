@@ -151,7 +151,7 @@ const setReplace = (index: number) => {
 
 <template>
   <main
-    class="flex h-12 w-full items-center justify-between border-b border-gray-300 bg-light-default px-2 py-1 shadow dark:border-gray-950 dark:bg-dark-default sm:px-4"
+    class="bg-light-default dark:bg-dark-default flex h-12 w-full items-center justify-between border-b border-gray-300 px-2 py-1 shadow dark:border-gray-950 sm:px-4"
   >
     <div
       ref="scrollbarRef"

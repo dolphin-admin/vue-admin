@@ -97,7 +97,7 @@ const selectUserOption = (key: UserOptionKey) => {
 
 <template>
   <header
-    class="sticky top-0 z-50 flex h-14 w-full items-center justify-between border-b border-gray-300 bg-light-default p-2 dark:border-gray-950 dark:bg-dark-default sm:p-4"
+    class="bg-light-default dark:bg-dark-default sticky top-0 z-50 flex h-14 w-full items-center justify-between border-b border-gray-300 p-2 dark:border-gray-950 sm:p-4"
   >
     <div class="flex h-full items-center justify-start space-x-3">
       <NTooltip
