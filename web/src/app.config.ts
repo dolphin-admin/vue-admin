@@ -9,6 +9,8 @@ import type { SiteMetaData } from '@/types'
  * - `teamName`: 团队名称
  * - `teamGitHubURL`: 团队 GitHub 地址
  * - `repoGitHubURL`: 仓库 GitHub 地址
+ * - `docsURL`: 文档地址
+ * - `discordURL`: Discord 地址
  */
 export const siteMetaData: SiteMetaData = Object.freeze({
   appName: 'Dolphin Admin',
@@ -16,5 +18,7 @@ export const siteMetaData: SiteMetaData = Object.freeze({
   favicon: '/favicon.ico',
   teamName: 'Bit Ocean',
   teamGitHubURL: 'https://github.com/bit-ocean-studio',
-  repoGitHubURL: 'https://github.com/bit-ocean-studio/dolphin-admin-web'
+  repoGitHubURL: 'https://github.com/bit-ocean-studio/dolphin-admin-web',
+  docsURL: 'https://dolphin-admin-docs.bit-ocean.studio',
+  discordURL: 'https://discord.gg/UKhpUQgwCT'
 })
