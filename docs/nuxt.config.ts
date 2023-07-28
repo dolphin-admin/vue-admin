@@ -16,5 +16,6 @@ export default defineNuxtConfig({
   // Vite 配置
   vite: {
     base: '/'
-  }
+  },
+  modules: ['@nuxtjs/tailwindcss']
 })
