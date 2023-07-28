@@ -71,7 +71,7 @@ When using this template, please try to update your own information correctly ac
 
 ### Environment
 
-- Node.js >=16.14.0
+- Node.js >=16.20.1
 - pnpm
 
 ### Configuration Environment Variables

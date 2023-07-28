@@ -69,7 +69,7 @@ Dolphin Admin Web 是一个基于 Vue 3 + Vite + Naive UI + TypeScript + Tailwin
 
 ### 环境
 
-- Node.js >=16.14.0
+- Node.js >=16.20.1
 - pnpm
 
 ### 配置环境变量
