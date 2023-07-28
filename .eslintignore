@@ -11,3 +11,9 @@ web/src/types/components.d.ts
 web/src-tauri
 web/postcss.config.js
 web/tailwind.config.js
+
+server/build
+server/dist
+server/storage
+server/src/prisma/generated
+server/src/prisma/migrations

@@ -12,3 +12,9 @@ web/public
 web/src/types/auto-imports.d.ts
 web/src/types/components.d.ts
 web/src-tauri
+
+server/build
+server/dist
+server/storage
+server/src/prisma/generated
+server/src/prisma/migrations
