@@ -5,4 +5,6 @@ export type SiteMetaData = {
   teamName: string
   teamGitHubURL: string
   repoGitHubURL: string
+  docsURL: string
+  discordURL: string
 }
