@@ -8,6 +8,12 @@ lerna-debug.log*
 
 node_modules
 .DS_Store
+.fleet
+.idea
+.output
+.nuxt
+.nitro
+.cache
 build
 dist
 dist-ssr
