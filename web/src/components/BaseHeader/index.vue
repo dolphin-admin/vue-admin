@@ -158,7 +158,7 @@ const selectUserOption = (key: UserOptionKey) => {
             @click="openNewWindow(docsURL)"
           />
         </template>
-        {{ t("Common.Docs") }}
+        {{ t('Common.Docs') }}
       </NTooltip>
 
       <template v-if="false">
