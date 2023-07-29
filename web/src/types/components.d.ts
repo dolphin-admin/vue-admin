@@ -11,6 +11,7 @@ declare module 'vue' {
     BarChart: typeof import('./../charts/BarChart/index.vue')['default']
     BaseBreadcrumb: typeof import('./../components/BaseBreadcrumb/index.vue')['default']
     BaseFooter: typeof import('./../components/BaseFooter/index.vue')['default']
+    BaseGlobalLoading: typeof import('./../components/BaseGlobalLoading/index.vue')['default']
     BaseHeader: typeof import('./../components/BaseHeader/index.vue')['default']
     BaseLayout: typeof import('./../layouts/BaseLayout/index.vue')['default']
     BaseSidebar: typeof import('./../components/BaseSidebar/index.vue')['default']

@@ -3,12 +3,13 @@ import type { MessageSchema } from '@/types'
 
 const { version } = siteMetaData
 
-const userStore = useUserStore()
-const router = useRouter()
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
+const userStore = useUserStore()
+const router = useRouter()
+
 // 检查登录状态
-const checkLogin = async () => {
+const checkLogin = () => {
   // 如果已经登录，直接跳转到首页，否则清除用户信息
   if (AuthUtils.isAuthenticated()) {
     router.replace('/')
@@ -17,7 +18,7 @@ const checkLogin = async () => {
   }
 }
 
-await checkLogin()
+onBeforeMount(() => checkLogin())
 </script>
 
 <template>
