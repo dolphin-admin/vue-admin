@@ -1,22 +1,19 @@
 <script setup lang="ts">
 import type { MessageSchema } from '@/types'
-import { GeoJSON, geoPath, geoMercator } from 'd3-geo'
-import { Feature } from 'geojson'
 import * as d3 from 'd3'
-import countries from './private/countries.json'
-import countrymesh from './private/countrymesh.json'
-import { records } from './private'
+
+import { records, countrymesh, countries } from './mock'
 
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
 const svgContainer = ref(null)
 
 const initChart = () => {
-  // Specify the chart’s dimensions.
-  const width = 928
+  // 指定宽高
+  const width = 1024
   const height = width / 2
 
-  // Fit the projection.
+  // 调整投影
   const projection = d3.geoEqualEarth().fitExtent(
     [
       [2, 2],
@@ -26,7 +23,7 @@ const initChart = () => {
   )
   const path = d3.geoPath(projection)
 
-  // Create the SVG container.
+  // 创建 SVG Container
   const svg = d3
     .select(svgContainer.value)
     .attr('width', width)
@@ -34,10 +31,8 @@ const initChart = () => {
     .attr('viewBox', [0, 0, width, height])
     .attr('style', 'max-width: 100%; height: auto;')
 
-  // // Add a white sphere with a black border.
   svg.append('path').datum(countries).attr('fill', 'white').attr('d', path)
 
-  // Add a path for each country and color it according te this data.
   svg
     .append('g')
     .selectAll('path')
@@ -54,7 +49,6 @@ const initChart = () => {
     .append('title')
     .text((d: any) => `${d.properties.name}`)
 
-  // Add a white mesh.
   svg.append('path').datum(countrymesh).attr('fill', 'none').attr('stroke', 'white').attr('d', path)
 
   //添加用户信息的位置
@@ -73,18 +67,20 @@ const initChart = () => {
     .on('mouseout', function (this: SVGCircleElement, d: any) {
       d3.select(this).select('title').remove()
     })
-    .attr('r', 6)
-    .attr('fill', 'red')
+    .attr('r', 2.8)
+    .attr('fill', '#FF6666')
 }
 
-onMounted(() => {
-  initChart()
-})
+onMounted(() => initChart())
 </script>
 
 <template>
-  <div class="flex flex-col justify-center items-center">
-    <div>{{ t('TrafficStatistics.TrafficStatistics') }}</div>
-    <div><svg ref="svgContainer"></svg></div>
-  </div>
+  <main>
+    <NCard
+      hoverable
+      content-style="display: flex;justify-content: center;align-items: center;"
+    >
+      <svg ref="svgContainer"></svg>
+    </NCard>
+  </main>
 </template>
