@@ -18,6 +18,7 @@ import ExcelIcon from '~icons/mdi/microsoft-excel'
 import WebSocketIcon from '~icons/tabler/brand-socket-io'
 import NotFoundIcon from '~icons/tabler/error-404'
 import ChatChannelsIcon from '~icons/tabler/message-2'
+import TrafficStatisticsIcon from '~icons/ic/twotone-ramp-left'
 
 import {
   BUILTIN_COMPONENTS_PREFIX,
@@ -25,7 +26,8 @@ import {
   SYSTEM_APPLICATIONS_PREFIX,
   SYSTEM_FUNCTIONS_PREFIX,
   SYSTEM_TOOLS_PREFIX,
-  UNIVERSAL_COMPONENTS_PREFIX
+  UNIVERSAL_COMPONENTS_PREFIX,
+  WEBSITE_ANALYTICS_PREFIX
 } from './prefix'
 const { t } = i18n.global
 
@@ -238,6 +240,16 @@ export const routes = [
         meta: {
           title: () => t('Menu.404'),
           icon: NotFoundIcon
+        }
+      },
+      // Website AnalyticsIcon
+      {
+        path: `${WEBSITE_ANALYTICS_PREFIX}/traffic-statistics`,
+        name: 'traffic-statistics',
+        component: () => import('@/views/WebsiteAnalytics/TrafficStatistics'),
+        meta: {
+          title: () => t('Menu.TrafficStatistics'),
+          icon: TrafficStatisticsIcon
         }
       }
     ]

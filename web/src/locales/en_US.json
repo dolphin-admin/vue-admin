@@ -159,7 +159,9 @@
     "403": "403",
     "404": "404",
     "418": "418",
-    "500": "500"
+    "500": "500",
+    "WebsiteAnalytics": "Website Analytics",
+    "TrafficStatistics": "Traffic Statistics"
   },
   "Login": {
     "AsVisitor": "Login as Visitor",
