@@ -17,5 +17,23 @@ export default defineNuxtConfig({
   vite: {
     base: '/'
   },
-  modules: ['@nuxtjs/tailwindcss', '@nuxt/content']
+  ssr: false,
+  modules: ['@nuxtjs/tailwindcss', '@nuxt/content'],
+  content: {
+    // ignores: ['/draft/'],
+    markdown: {
+      remarkPlugins: {
+        'remark-emoji': {
+          emoticon: true
+        }
+      },
+      rehypePlugins: []
+    },
+    highlight: {
+      theme: {
+        default: 'dracula-soft',
+        dark: 'github-dark'
+      }
+    }
+  }
 })
