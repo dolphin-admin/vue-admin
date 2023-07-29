@@ -37,7 +37,7 @@
     "web/src/**/*.ts",
     "web/src/**/*.dts",
     "web/src/**/*.vue",
-    "**/*.json",
+    "web/src/**/*.json",
     "web/vite.config.*",
     ".eslintrc.js"
   ],

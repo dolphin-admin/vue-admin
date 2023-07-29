@@ -17,5 +17,5 @@ export default defineNuxtConfig({
   vite: {
     base: '/'
   },
-  modules: ['@nuxtjs/tailwindcss']
+  modules: ['@nuxtjs/tailwindcss', '@nuxt/content']
 })
