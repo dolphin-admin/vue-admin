@@ -12,13 +12,14 @@ import HideMenuIcon from '~icons/line-md/menu-fold-left'
 import ShowMenuIcon from '~icons/line-md/menu-fold-right'
 import SunIcon from '~icons/line-md/moon-alt-to-sunny-outline-loop-transition'
 import MoonIcon from '~icons/line-md/sunny-filled-loop-to-moon-alt-filled-loop-transition'
+import DocsIcon from '~icons/line-md/document-list'
 
 import type { UserOptionKey } from './private'
 import { languageOptions, userOptions } from './private'
 
 const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({ useScope: 'global' })
 
-const { repoGitHubURL } = siteMetaData
+const { repoGitHubURL, discordURL, docsURL } = siteMetaData
 
 const { openNewWindow } = BrowserUtils
 
@@ -36,11 +37,6 @@ const { isFullscreen, toggle: toggleFullscreen } = useFullscreen()
 const currentLanguageOptions = computed(() =>
   locale.value === 'zh_CN' ? languageOptions : [languageOptions[1], languageOptions[0]]
 )
-
-/**
- * 打开 Discord 邀请链接
- */
-const openDiscordURL = () => openNewWindow('https://discord.gg/UKhpUQgwCT')
 
 /**
  * 更新语言
@@ -129,7 +125,7 @@ const selectUserOption = (key: UserOptionKey) => {
             size="20"
             color="#5865F2"
             :component="DiscordIcon"
-            @click="openDiscordURL"
+            @click="openNewWindow(discordURL)"
           />
         </template>
         Discord
@@ -148,6 +144,21 @@ const selectUserOption = (key: UserOptionKey) => {
           />
         </template>
         GitHub
+      </NTooltip>
+
+      <NTooltip
+        placement="bottom"
+        trigger="hover"
+      >
+        <template #trigger>
+          <NIcon
+            class="cursor-pointer"
+            size="20"
+            :component="DocsIcon"
+            @click="openNewWindow(docsURL)"
+          />
+        </template>
+        {{ t('Common.Docs') }}
       </NTooltip>
 
       <template v-if="false">

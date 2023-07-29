@@ -9,6 +9,7 @@
     "418": "I'm A Teapot",
     "500": "Internal Server Error",
     "NetworkError": "Network Error",
+    "Docs": "Docs",
     "All": "All",
     "Search": "Search",
     "Refresh": "Refresh",

@@ -1,7 +1,6 @@
 {
-  "private": true,
   "name": "server",
-  "version": "0.0.1",
+  "private": true,
   "author": "Bruce Song <recall4056@gmail.com> (https://github.com/recallwei/)",
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon",

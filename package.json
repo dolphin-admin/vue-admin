@@ -1,6 +1,6 @@
 {
-  "private": true,
   "name": "dolphin-admin",
+  "private": true,
   "version": "0.0.1",
   "author": "Bruce Song <recall4056@gmail.com> (https://github.com/recallwei/)",
   "scripts": {
@@ -26,6 +26,7 @@
     "docs:dev": "pnpm --filter=docs dev",
     "docs:build": "pnpm --filter=docs build",
     "docs:preview": "pnpm --filter=docs preview",
+    "docs:generate": "pnpm --filter=docs generate",
     "cspell:check": "cspell **",
     "cspell:sort": "node ./scripts/cspell-sort.js",
     "eslint:check": "eslint \"**/*.{ts,tsx,js,tsx,vue}\" --color",

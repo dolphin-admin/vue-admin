@@ -18,3 +18,7 @@ server/dist
 server/storage
 server/src/prisma/generated
 server/src/prisma/migrations
+
+docs/.nuxt
+docs/.output
+docs/.dist
