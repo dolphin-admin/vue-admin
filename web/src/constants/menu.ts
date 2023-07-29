@@ -24,6 +24,8 @@ import SystemToolsIcon from '~icons/mdi/tools'
 import WebSocketIcon from '~icons/tabler/brand-socket-io'
 import NotFoundIcon from '~icons/tabler/error-404'
 import ChatChannelsIcon from '~icons/tabler/message-2'
+import WebsiteAnalyticsIcon from '~icons/ic/baseline-web-asset'
+import TrafficStatisticsIcon from '~icons/ic/twotone-ramp-left'
 
 const { renderIcon: renderMenuIcon, renderMenuLabel, t } = RenderUtils
 
@@ -161,6 +163,18 @@ export const menuOptions: MenuOption[] = [
         label: renderMenuLabel(t('Menu.500')),
         key: '500',
         icon: renderMenuIcon(InternalServerErrorIcon)
+      }
+    ]
+  },
+  {
+    label: renderMenuLabel(t('Menu.WebsiteAnalytics')),
+    key: 'website-analytics',
+    icon: renderMenuIcon(WebsiteAnalyticsIcon),
+    children: [
+      {
+        label: renderMenuLabel(t('Menu.TrafficStatistics')),
+        key: 'traffic-statistics',
+        icon: renderMenuIcon(TrafficStatisticsIcon)
       }
     ]
   }
