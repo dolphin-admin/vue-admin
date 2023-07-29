@@ -19,6 +19,7 @@ import WebSocketIcon from '~icons/tabler/brand-socket-io'
 import NotFoundIcon from '~icons/tabler/error-404'
 import ChatChannelsIcon from '~icons/tabler/message-2'
 import TrafficStatisticsIcon from '~icons/ic/twotone-ramp-left'
+import ListTemplatesIcon from '~icons/ic/outline-list-alt'
 
 import {
   BUILTIN_COMPONENTS_PREFIX,
@@ -27,8 +28,10 @@ import {
   SYSTEM_FUNCTIONS_PREFIX,
   SYSTEM_TOOLS_PREFIX,
   UNIVERSAL_COMPONENTS_PREFIX,
-  WEBSITE_ANALYTICS_PREFIX
+  WEBSITE_ANALYTICS_PREFIX,
+  CODE_TEMPLATES_PREFIX
 } from './prefix'
+
 const { t } = i18n.global
 
 export const routes = [
@@ -250,6 +253,16 @@ export const routes = [
         meta: {
           title: () => t('Menu.TrafficStatistics'),
           icon: TrafficStatisticsIcon
+        }
+      },
+      // Code Templates
+      {
+        path: `${CODE_TEMPLATES_PREFIX}/list-templates`,
+        name: 'list-templates',
+        component: () => import('@/views/CodeTemplates/ListTemplates'),
+        meta: {
+          title: () => t('Menu.ListTemplates'),
+          icon: ListTemplatesIcon
         }
       }
     ]

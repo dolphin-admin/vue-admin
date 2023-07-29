@@ -1,0 +1,4 @@
+<template>
+  <DataTableLayout>
+  </DataTableLayout>
+</template>

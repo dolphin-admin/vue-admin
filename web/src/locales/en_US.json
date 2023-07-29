@@ -161,7 +161,9 @@
     "418": "418",
     "500": "500",
     "WebsiteAnalytics": "Website Analytics",
-    "TrafficStatistics": "Traffic Statistics"
+    "TrafficStatistics": "Traffic Statistics",
+    "CodeTemplates": "Code Templates",
+    "ListTemplates": "List Templates"
   },
   "Login": {
     "AsVisitor": "Login as Visitor",

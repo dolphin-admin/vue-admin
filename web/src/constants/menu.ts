@@ -26,6 +26,8 @@ import NotFoundIcon from '~icons/tabler/error-404'
 import ChatChannelsIcon from '~icons/tabler/message-2'
 import WebsiteAnalyticsIcon from '~icons/ic/baseline-web-asset'
 import TrafficStatisticsIcon from '~icons/ic/twotone-ramp-left'
+import CodeTemplatesIcon from '~icons/ic/round-texture'
+import ListTemplatesIcon from '~icons/ic/outline-list-alt'
 
 const { renderIcon: renderMenuIcon, renderMenuLabel, t } = RenderUtils
 
@@ -175,6 +177,18 @@ export const menuOptions: MenuOption[] = [
         label: renderMenuLabel(t('Menu.TrafficStatistics')),
         key: 'traffic-statistics',
         icon: renderMenuIcon(TrafficStatisticsIcon)
+      }
+    ]
+  },
+  {
+    label: renderMenuLabel(t('Menu.CodeTemplates')),
+    key: 'code-templates',
+    icon: renderMenuIcon(CodeTemplatesIcon),
+    children: [
+      {
+        label: renderMenuLabel(t('Menu.ListTemplates')),
+        key: 'list-templates',
+        icon: renderMenuIcon(ListTemplatesIcon)
       }
     ]
   }

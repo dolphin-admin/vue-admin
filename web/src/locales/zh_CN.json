@@ -161,7 +161,9 @@
     "418": "418",
     "500": "500",
     "WebsiteAnalytics": "站点分析",
-    "TrafficStatistics": "流量统计"
+    "TrafficStatistics": "流量统计",
+    "CodeTemplates": "代码模版",
+    "ListTemplates": "列表模版"
   },
   "Login": {
     "AsVisitor": "以访客登录",
@@ -248,8 +250,5 @@
   },
   "Navigation": {
     "AddShortcut": "添加快捷方式"
-  },
-  "TrafficStatistics": {
-    "TrafficStatistics": "流量统计"
   }
 }
