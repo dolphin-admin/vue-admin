@@ -1,3 +1,5 @@
 <template>
-  <DataTableLayout> </DataTableLayout>
+  <DataTableLayout>
+    <div />
+  </DataTableLayout>
 </template>
