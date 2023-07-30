@@ -1,7 +1,9 @@
 {
   "extends": "./tsconfig.base.json",
   "include": [
-    "web/src/**/*.ts"
+    "web/src/**/*.ts",
+    "web/src/**/*.tsx",
+    "web/src/**/*.vue"
   ],
   "exclude": [
     "dist",
