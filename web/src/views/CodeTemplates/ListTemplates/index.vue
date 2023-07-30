@@ -15,11 +15,10 @@ const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({ useScope: 'glo
 
 const { isMobileDevice } = BrowserUtils
 
-const [showDialogLoading, showDialogLoadingDispatcher] = useLoading()
-const [deleteLoading, deleteLoadingDispatcher] = useLoading()
-
 const message = useMessage()
 const [loading, loadingDispatcher] = useLoading()
+const [showDialogLoading, showDialogLoadingDispatcher] = useLoading()
+const [deleteLoading, deleteLoadingDispatcher] = useLoading()
 
 const showDialog = ref(false)
 const isEdit = ref(true)
