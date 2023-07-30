@@ -81,12 +81,12 @@
       "Failed": "QRCode generate failed"
     },
     "Copy": {
-      "Success": "Copy Success",
+      "Success": "Copy success",
       "Failed": "Copy failed"
     },
     "Delete": {
-      "Success": "Delete Success",
-      "Failed": "Delete Failed"
+      "Success": "Delete success",
+      "Failed": "Delete failed"
     }
   },
   "User": {
