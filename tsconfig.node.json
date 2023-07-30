@@ -9,10 +9,11 @@
   ],
   "compilerOptions": {
     "baseUrl": "./server",
-    "outDir": "dist",
+    "rootDir": "./server/src",
+    "outDir": "./server/dist",
     "module": "CommonJS",
     "target": "ES2021",
-    "composite": true,
+    "incremental": false,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "paths": {

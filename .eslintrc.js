@@ -5,6 +5,7 @@ const path = require('path')
 
 module.exports = defineConfig({
   root: true,
+  ignorePatterns: ['.eslintrc.js'],
   overrides: [
     // Vue 文件配置
     {
@@ -63,7 +64,8 @@ module.exports = defineConfig({
       files: ['server/**/*.ts'],
       env: {
         es2023: true,
-        node: true
+        node: true,
+        jest: true
       },
       parser: '@typescript-eslint/parser',
       parserOptions: {

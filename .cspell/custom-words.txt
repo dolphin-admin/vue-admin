@@ -25,6 +25,7 @@ lintstaged
 lucide
 middlewares
 msword
+nestjs
 Neue
 nextjs
 ngneat
