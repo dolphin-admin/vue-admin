@@ -7,6 +7,7 @@
     "build": "pnpm clear && tsc --build",
     "start": "cross-env NODE_ENV=production pnpm build && ts-node --files ./dist/src/index.js",
     "clear": "tsc --build --clean",
+    "type:check": "tsc --pretty --noEmit",
     "prisma:generate": "prisma generate && prisma generate --schema=./src/prisma/mongo.schema.prisma",
     "prisma:generate:watch": "prisma generate --watch && prisma generate --watch --schema=./src/prisma/mongo.schema.prisma",
     "prisma:migrate:dev": "prisma migrate dev --skip-seed",

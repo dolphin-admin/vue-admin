@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "rootDir": "./",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "allowJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true
+  }
+}

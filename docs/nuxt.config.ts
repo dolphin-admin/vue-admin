@@ -11,6 +11,7 @@ export default defineNuxtConfig({
    * https://nuxt.com/docs/getting-started/installation#new-project
    */
   typescript: {
+    typeCheck: true,
     shim: false
   },
   // Vite 配置
