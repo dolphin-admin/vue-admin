@@ -157,9 +157,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
               },
               positiveText: t('Common.Confirm'),
               negativeText: t('Common.Cancel'),
-              onPositiveClick: () => {
-                message.success(t('Message.Delete.Success'))
-              }
+              onPositiveClick: () => message.success(t('Message.Delete.Success'))
             },
             {
               trigger: () =>
