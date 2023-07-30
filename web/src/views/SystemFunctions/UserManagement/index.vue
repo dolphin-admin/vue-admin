@@ -171,17 +171,14 @@ const queryList = () => {
     page: pagination.page,
     pageSize: pagination.pageSize,
     searchText: queryParams.searchText,
-    sorters: queryParams.sorters
+    sorters: queryParams.sorters,
+    authTypes: queryParams.authTypes
   })
 
   if (queryParams.daterange && Array.isArray(queryParams.daterange)) {
     const [startDate, endDate] = queryParams.daterange as string[]
     params.startDate = dayjs(startDate).startOf('day').toISOString()
     params.endDate = dayjs(endDate).endOf('day').toISOString()
-  }
-
-  if (queryParams.authTypes) {
-    params.authTypes = queryParams.authTypes
   }
 
   UserAPI.getUsers(params)

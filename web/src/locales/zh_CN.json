@@ -18,6 +18,7 @@
     "Create": "新建",
     "Edit": "编辑",
     "Save": "保存",
+    "Delete": "删除",
     "Confirm": "确认",
     "Cancel": "取消",
     "Back": "返回",
@@ -82,6 +83,10 @@
     "Copy": {
       "Success": "复制成功",
       "Failed": "复制失败"
+    },
+    "Delete": {
+      "Success": "删除成功",
+      "Failed": "删除失败"
     }
   },
   "User": {
@@ -161,7 +166,9 @@
     "418": "418",
     "500": "500",
     "WebsiteAnalytics": "站点分析",
-    "TrafficStatistics": "流量统计"
+    "TrafficStatistics": "流量统计",
+    "CodeTemplates": "代码模版",
+    "ListTemplates": "列表模版"
   },
   "Login": {
     "AsVisitor": "以访客登录",

@@ -18,6 +18,7 @@
     "Create": "Create",
     "Edit": "Edit",
     "Save": "Save",
+    "Delete": "Delete",
     "Confirm": "Confirm",
     "Cancel": "Cancel",
     "Back": "Back",
@@ -80,8 +81,12 @@
       "Failed": "QRCode generate failed"
     },
     "Copy": {
-      "Success": "Copy Success",
+      "Success": "Copy success",
       "Failed": "Copy failed"
+    },
+    "Delete": {
+      "Success": "Delete success",
+      "Failed": "Delete failed"
     }
   },
   "User": {
@@ -161,7 +166,9 @@
     "418": "418",
     "500": "500",
     "WebsiteAnalytics": "Website Analytics",
-    "TrafficStatistics": "Traffic Statistics"
+    "TrafficStatistics": "Traffic Statistics",
+    "CodeTemplates": "Code Templates",
+    "ListTemplates": "List Templates"
   },
   "Login": {
     "AsVisitor": "Login as Visitor",
