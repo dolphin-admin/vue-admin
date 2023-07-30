@@ -19,11 +19,15 @@ build
 dist
 dist-ssr
 coverage
+.nyc_output
 *.local
 .env*
 !.env.example
 
 .vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
 !.vscode/extensions.json
 !.vscode/*.code-snippets
 .idea
@@ -32,6 +36,11 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+.project
+.classpath
+.c9/
+*.launch
+*.sublime-workspace
 *.zip
 
 server/storage

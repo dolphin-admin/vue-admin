@@ -11,7 +11,7 @@
     "baseUrl": "./server",
     "outDir": "dist",
     "module": "CommonJS",
-    "target": "ES6",
+    "target": "ES2021",
     "composite": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
