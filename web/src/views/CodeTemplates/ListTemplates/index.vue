@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { DataTableFilterState, DataTableSortState } from 'naive-ui'
 import type { Lang, MessageSchema, Sorter, User } from '@/types'
-import {AuthType, OrderType } from '@/types'
+import { AuthType, OrderType } from '@/types'
 import { UserPageModel } from './private'
 
 import SearchIcon from '~icons/line-md/search'
@@ -10,7 +10,6 @@ import CreateIcon from '~icons/ic/sharp-add'
 import EditIcon from '~icons/ic/sharp-edit'
 import GitHubIcon from '~icons/ant-design/github-outlined'
 import GoogleIcon from '~icons/logos/google-icon'
-
 
 const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({ useScope: 'global' })
 const { isMobileDevice } = BrowserUtils
@@ -65,25 +64,25 @@ const authTypeColumn: DataTableBaseColumn<User> = {
         {
           default: () => authType,
           icon: () =>
-          h(
-            NIcon,
-            {
-              size: '14',
-              class: 'mr-0.5'
-            },
-            () => {
-              switch (authType) {
-                case AuthType[0]:
-                 return h(GitHubIcon, {
+            h(
+              NIcon,
+              {
+                size: '14',
+                class: 'mr-0.5'
+              },
+              () => {
+                switch (authType) {
+                  case AuthType[0]:
+                    return h(GitHubIcon, {
                       class: 'scale-125'
                     })
-                case AuthType[1]:
-                 return h(GoogleIcon)
-                default:
-                return undefined
+                  case AuthType[1]:
+                    return h(GoogleIcon)
+                  default:
+                    return undefined
+                }
               }
-            }
-          )
+            )
         }
       )
     })
@@ -98,7 +97,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     width: 50,
     titleAlign: 'center',
     align: 'center',
-    sorter: true,
+    sorter: true
   },
   {
     title: () => t('User.Username'),
@@ -125,7 +124,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     titleAlign: 'center',
     align: 'center',
     fixed: !BrowserUtils.isMobileDevice() ? 'right' : undefined,
-    render: (row) =>
+    render: () =>
       h(
         'div',
         {
@@ -149,7 +148,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
           h(
             NPopconfirm,
             {
-              showIcon:false,
+              showIcon: false,
               positiveButtonProps: {
                 loading: deleteLoading.value,
                 disabled: deleteLoading.value
@@ -161,7 +160,6 @@ const columns = ref<DataTableBaseColumn<User>[]>([
               }
             },
             {
-
               trigger: () =>
                 h(
                   NButton,
@@ -243,7 +241,7 @@ const handleFiltersChange = (filters: DataTableFilterState) => {
 /**
  * 重置查询条件
  */
- const handleReset = () => {
+const handleReset = () => {
   queryParams.searchText = ''
   queryParams.daterange = null
   pagination.page = 1
@@ -259,14 +257,9 @@ const handleCreateUser = () => {
   showDialog.value = true
 }
 
+const handleConfirmDialog = () => {}
 
-const handleConfirmDialog = () => {
-
-}
-
-const handleCannelDialog = () => {
-
-}
+const handleCannelDialog = () => {}
 
 watch(
   () => locale.value,
@@ -322,7 +315,7 @@ onMounted(() => queryList())
                 @click="handleReset"
               >
                 <template #icon>
-                  <NIcon :component="ResetIcon"/>
+                  <NIcon :component="ResetIcon" />
                 </template>
               </NButton>
             </template>
@@ -366,23 +359,23 @@ onMounted(() => queryList())
           }
         ],
         onUpdatePage: (page: number) => {
-          pagination.page  = page
+          pagination.page = page
           queryList()
         },
         onUpdatePageSize: (pageSize: number) => {
           pagination.page = 1
-          pagination.pageSize  = pageSize
+          pagination.pageSize = pageSize
           queryList()
         },
         prefix: (info) => t('Common.TotalPage', { totalPage: info.itemCount })
       }"
-      @update:sorter = "handleSorterChange"
+      @update:sorter="handleSorterChange"
       @update:filters="handleFiltersChange"
     />
     <NModal
-      v-model:show='showDialog'
+      v-model:show="showDialog"
       preset="dialog"
-      :title="t( isEdit ? 'Common.Edit' : 'Common.Create')"
+      :title="t(isEdit ? 'Common.Edit' : 'Common.Create')"
       :loading="showDialogLoading"
       :positive-text="t('Common.Confirm')"
       :negative-text="t('Common.Cancel')"
@@ -395,10 +388,7 @@ onMounted(() => queryList())
           :component="isEdit ? EditIcon : CreateIcon"
         />
       </template>
-      <NForm
-      >
-      ......
-      </NForm>
+      <NForm> ...... </NForm>
     </NModal>
   </DataTableLayout>
 </template>
