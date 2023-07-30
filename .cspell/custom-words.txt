@@ -43,6 +43,7 @@ presentationml
 printshop
 qrcode
 recallwei
+rehype
 Roboto
 rushstack
 signup
