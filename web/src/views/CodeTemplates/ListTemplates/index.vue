@@ -12,7 +12,9 @@ import GitHubIcon from '~icons/ant-design/github-outlined'
 import GoogleIcon from '~icons/logos/google-icon'
 
 const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({ useScope: 'global' })
+
 const { isMobileDevice } = BrowserUtils
+
 const [showDialogLoading, showDialogLoadingDispatcher] = useLoading()
 const [deleteLoading, deleteLoadingDispatcher] = useLoading()
 
