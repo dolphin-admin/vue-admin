@@ -3,7 +3,8 @@
   "include": [
     "web/src/**/*.ts",
     "web/src/**/*.tsx",
-    "web/src/**/*.vue"
+    "web/src/**/*.vue",
+    "web/src/**/*.json"
   ],
   "exclude": [
     "dist",
