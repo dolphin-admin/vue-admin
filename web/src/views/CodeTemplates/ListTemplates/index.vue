@@ -20,8 +20,7 @@ const [loading, loadingDispatcher] = useLoading()
 const [showDialogLoading, showDialogLoadingDispatcher] = useLoading()
 const [deleteLoading, deleteLoadingDispatcher] = useLoading()
 
-const showDialog = ref(false)
-const isEdit = ref(true)
+const users = ref<User[]>([])
 
 const queryParams = reactive({
   searchText: '',
@@ -29,13 +28,15 @@ const queryParams = reactive({
   sorters: [] as Sorter[],
   authTypes: ''
 })
-const users = ref<User[]>([])
 
 const pagination = reactive({
   page: 1,
   pageSize: 10,
   itemCount: 0
 })
+
+const showDialog = ref(false)
+const isEdit = ref(true)
 
 const authTypeColumn: DataTableBaseColumn<User> = {
   title: () => t('User.AuthType'),
