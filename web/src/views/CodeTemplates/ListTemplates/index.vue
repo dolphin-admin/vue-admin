@@ -171,7 +171,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
                   },
                   { default: () => t('Common.Delete') }
                 ),
-              default: () => `${t('Common.Delete')}`
+              default: () => t('Common.Delete')
             }
           )
         ]
