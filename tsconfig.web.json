@@ -1,7 +1,23 @@
 {
+  "extends": "./tsconfig.base.json",
+  "include": [
+    "web/src/**/*.ts",
+    "web/src/**/*.tsx",
+    "web/src/**/*.vue",
+    "web/src/**/*.json"
+  ],
+  "exclude": [
+    "dist",
+    "node_modules"
+  ],
   "compilerOptions": {
+    "baseUrl": "./web",
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "Node",
+    "target": "ESNext",
+    "jsx": "preserve",
+    "composite": true,
+    "isolatedModules": true,
     "lib": [
       "DOM",
       "DOM.Iterable",
@@ -13,36 +29,10 @@
       "unplugin-icons/types/vue",
       "naive-ui/volar"
     ],
-    "target": "ESNext",
-    "strict": true,
-    "esModuleInterop": true,
-    "jsx": "preserve",
-    "sourceMap": true,
-    "skipLibCheck": true,
-    "resolveJsonModule": true,
-    "strictNullChecks": true,
-    "forceConsistentCasingInFileNames": true,
-    "useDefineForClassFields": true,
-    "noImplicitThis": true,
-    "isolatedModules": true,
-    "composite": true,
-    "baseUrl": "./web",
     "paths": {
       "@/*": [
-        "./src/*"
+        "src/*"
       ]
     }
-  },
-  "include": [
-    "web/src/**/*.ts",
-    "web/src/**/*.dts",
-    "web/src/**/*.vue",
-    "web/src/**/*.json",
-    "web/vite.config.*",
-    ".eslintrc.js"
-  ],
-  "exclude": [
-    "dist",
-    "node_modules"
-  ]
+  }
 }

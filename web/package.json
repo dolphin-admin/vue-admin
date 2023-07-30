@@ -4,8 +4,9 @@
   "author": "Bruce Song <recall4056@gmail.com> (https://github.com/recallwei/)",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "pnpm type:check && vite build",
     "preview": "vite preview",
+    "type:check": "vue-tsc --noEmit --composite false",
     "desktop:dev": "tauri dev",
     "desktop:build": "tauri build"
   },

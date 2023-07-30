@@ -1,29 +1,35 @@
 {
+  "extends": "./tsconfig.base.json",
+  "include": [
+    "server/src/**/*.ts"
+  ],
+  "exclude": [
+    "dist",
+    "node_modules"
+  ],
   "compilerOptions": {
-    "target": "ES6",
-    "module": "CommonJS",
-    "rootDir": ".",
-    "moduleResolution": "node",
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"],
-      "@prisma/pg": ["src/prisma/generated/pg"],
-      "@prisma/mongo": ["src/prisma/generated/mongo"]
-    },
-    "sourceMap": true,
+    "baseUrl": "./server",
     "outDir": "dist",
-    "esModuleInterop": true,
-    "strict": true,
-    "noImplicitAny": true,
-    "skipLibCheck": true,
-    "resolveJsonModule": true,
-    "forceConsistentCasingInFileNames": true,
-    "experimentalDecorators": true, // 装饰器支持
-    "emitDecoratorMetadata": true
+    "module": "CommonJS",
+    "target": "ES6",
+    "composite": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "@prisma/pg": [
+        "src/prisma/generated/pg"
+      ],
+      "@prisma/mongo": [
+        "src/prisma/generated/mongo"
+      ]
+    }
   },
-  "include": ["src/**/*"],
-  "exclude": ["dist", "node_modules", ".eslintrc.js"],
   "ts-node": {
-    "require": ["tsconfig-paths/register"]
+    "require": [
+      "tsconfig-paths/register"
+    ]
   }
 }
