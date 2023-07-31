@@ -20,4 +20,4 @@ server/src/prisma/migrations
 
 docs/.nuxt
 docs/.output
-docs/.dist
+docs/dist

@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import type { MessageSchema } from '@/types'
 import * as d3 from 'd3'
 
-import { records, countrymesh, countries } from './mock'
+import type { MessageSchema } from '@/types'
+
+import { countries,countrymesh, records } from './mock'
 
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
@@ -51,7 +52,7 @@ const initChart = () => {
 
   svg.append('path').datum(countrymesh).attr('fill', 'none').attr('stroke', 'white').attr('d', path)
 
-  //添加用户信息的位置
+  // 添加用户信息的位置
   svg
     .append('g')
     .selectAll('circle')
@@ -59,12 +60,12 @@ const initChart = () => {
     .join('circle')
     .attr('cx', (d: any) => projection([d.longitude, d.latitude])[0])
     .attr('cy', (d: any) => projection([d.longitude, d.latitude])[1])
-    .on('mouseover', function (this: SVGCircleElement, d: any) {
+    .on('mouseover', function (this: SVGCircleElement, _: any) {
       d3.select(this as any)
         .append('title')
         .text((d: any) => `${d.area}`)
     })
-    .on('mouseout', function (this: SVGCircleElement, d: any) {
+    .on('mouseout', function (this: SVGCircleElement, _: any) {
       d3.select(this).select('title').remove()
     })
     .attr('r', 2.8)

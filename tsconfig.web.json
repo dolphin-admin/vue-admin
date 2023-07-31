@@ -4,7 +4,8 @@
     "web/src/**/*.ts",
     "web/src/**/*.tsx",
     "web/src/**/*.vue",
-    "web/src/**/*.json"
+    "web/src/**/*.json",
+    "web/vite.config.ts"
   ],
   "exclude": [
     "dist",
@@ -17,6 +18,7 @@
     "target": "ESNext",
     "jsx": "preserve",
     "composite": true,
+    "declaration": true,
     "isolatedModules": true,
     "lib": [
       "DOM",

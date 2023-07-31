@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@tauri-apps/api": "^1.4.0",
-    "@vueuse/core": "^10.2.1",
+    "@vueuse/core": "^10.3.0",
     "d3": "^7.8.5",
     "d3-color-legend": "^1.4.1",
     "echarts": "^5.4.3",
@@ -33,7 +33,7 @@
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.19.3/xlsx-0.19.3.tgz"
   },
   "devDependencies": {
-    "@iconify/json": "^2.2.95",
+    "@iconify/json": "^2.2.96",
     "@iconify/vue": "^4.1.1",
     "@tauri-apps/cli": "^1.4.0",
     "@vitejs/plugin-vue": "^4.2.3",
