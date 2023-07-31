@@ -122,7 +122,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
   {
     title: () => t('Common.Operation'),
     key: 'operation',
-    width: 120,
+    width: 80,
     titleAlign: 'center',
     align: 'center',
     fixed: !BrowserUtils.isMobileDevice() ? 'right' : undefined,
@@ -280,7 +280,7 @@ onMounted(() => queryList())
               class="sm:!w-[200px]"
               clearable
               :placeholder="t('Common.KeywordSearch')"
-              @keydown.enter="() => queryList()"
+              @keydown.enter="queryList"
             >
               <template #prefix>
                 <NIcon
@@ -292,7 +292,7 @@ onMounted(() => queryList())
             <NButton
               type="primary"
               size="small"
-              @click="() => queryList()"
+              @click="queryList"
             >
               {{ t('Common.Search') }}
             </NButton>
@@ -306,11 +306,12 @@ onMounted(() => queryList())
             @update:value="() => queryList()"
           />
         </div>
-        <div class="flex w-full justify-end space-x-3 sm:items-center">
+        <div class="flex w-full justify-between sm:justify-end space-x-3 items-center">
           <NTooltip>
             <template #trigger>
               <NButton
                 circle
+                :size="isMobileDevice() ? 'small' : 'medium'"
                 :disabled="loading"
                 @click="handleReset"
               >
@@ -321,8 +322,11 @@ onMounted(() => queryList())
             </template>
             {{ t('Common.Reset') }}
           </NTooltip>
-          <NButton @click="handleCreateUser">
-            {{ t('UserManagement.CreateUser') }}
+          <NButton
+            :size="isMobileDevice() ? 'small' : 'medium'"
+            @click="handleCreateUser"
+          >
+            {{ t('Common.Create') }}
           </NButton>
         </div>
       </div>
