@@ -1,5 +1,5 @@
 ---
-title: Monorepo
+title: 'Monorepo'
 ---
 
 ## 什么是 Monorepo？

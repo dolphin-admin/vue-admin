@@ -7,7 +7,7 @@ module.exports = defineConfig({
   root: true,
   ignorePatterns: ['.eslintrc.js'],
   overrides: [
-    // Vue 文件配置
+    // Web 配置
     {
       files: ['web/**/*.vue'],
       env: {
