@@ -1,11 +1,7 @@
 <script setup lang="ts">
 import * as d3 from 'd3'
 
-import type { MessageSchema } from '@/types'
-
-import { countries,countrymesh, records } from './mock'
-
-const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+import { countries, countrymesh, records } from './mock'
 
 const svgContainer = ref(null)
 

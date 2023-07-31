@@ -2,7 +2,9 @@
 module.exports = {
   extends: ['@commitlint/config-conventional'],
   prompt: {
-    alias: { fd: 'docs: fix typos' },
+    alias: {
+      fd: 'docs: fix typos'
+    },
     messages: {
       type: '选择你要提交的类型 :',
       scope: '选择一个提交范围（可选）:',

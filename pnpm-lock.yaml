@@ -27,9 +27,6 @@ importers:
         specifier: ^9.0.0
         version: 9.0.0
     devDependencies:
-      '@brucesong/eslint-config-vue':
-        specifier: ^0.0.7
-        version: 0.0.7(@typescript-eslint/eslint-plugin@6.2.0)(eslint-import-resolver-typescript@3.5.5)(eslint@8.46.0)(tailwindcss@3.3.3)(typescript@5.1.6)
       '@commitlint/cli':
         specifier: ^17.6.7
         version: 17.6.7
@@ -908,71 +905,6 @@ packages:
 
   /@bcoe/v8-coverage@0.2.3:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
-    dev: true
-
-  /@brucesong/eslint-config-basic@0.0.7(@typescript-eslint/eslint-plugin@6.2.0)(@typescript-eslint/parser@6.2.0)(eslint-import-resolver-typescript@3.5.5)(eslint@8.46.0):
-    resolution: {integrity: sha512-cPoYQlYm5EVhD8UR4bEzhrhS65QfcAQpa/rAU4wjIOOJSKItJohF55wHL8rnnNcSIXxYc8y0GH8vdf0FyzWM8Q==}
-    peerDependencies:
-      eslint: '>=8.0.0'
-    dependencies:
-      eslint: 8.46.0
-      eslint-config-airbnb-base: 15.0.0(eslint-plugin-import@2.28.0)(eslint@8.46.0)
-      eslint-config-prettier: 8.9.0(eslint@8.46.0)
-      eslint-define-config: 1.22.0
-      eslint-plugin-import: 2.28.0(@typescript-eslint/parser@6.2.0)(eslint-import-resolver-typescript@3.5.5)(eslint@8.46.0)
-      eslint-plugin-simple-import-sort: 10.0.0(eslint@8.46.0)
-      eslint-plugin-unused-imports: 3.0.0(@typescript-eslint/eslint-plugin@6.2.0)(eslint@8.46.0)
-    transitivePeerDependencies:
-      - '@typescript-eslint/eslint-plugin'
-      - '@typescript-eslint/parser'
-      - eslint-import-resolver-typescript
-      - eslint-import-resolver-webpack
-      - supports-color
-    dev: true
-
-  /@brucesong/eslint-config-ts@0.0.7(eslint@8.46.0)(typescript@5.1.6):
-    resolution: {integrity: sha512-XgNQji5aZ0SOttR18L+PeCAvRmnX610T1pCl6b/kIU54cDkrb2IyeYSu2Y67jtCautt0/NMZKlNMboE4aGsQBw==}
-    peerDependencies:
-      eslint: '>=8.0.0'
-    dependencies:
-      '@brucesong/eslint-config-basic': 0.0.7(@typescript-eslint/eslint-plugin@6.2.0)(@typescript-eslint/parser@6.2.0)(eslint-import-resolver-typescript@3.5.5)(eslint@8.46.0)
-      '@typescript-eslint/eslint-plugin': 6.2.0(@typescript-eslint/parser@6.2.0)(eslint@8.46.0)(typescript@5.1.6)
-      '@typescript-eslint/parser': 6.2.0(eslint@8.46.0)(typescript@5.1.6)
-      eslint: 8.46.0
-      eslint-config-airbnb-typescript: 17.1.0(@typescript-eslint/eslint-plugin@6.2.0)(@typescript-eslint/parser@6.2.0)(eslint-plugin-import@2.28.0)(eslint@8.46.0)
-      eslint-config-prettier: 8.9.0(eslint@8.46.0)
-      eslint-define-config: 1.22.0
-      eslint-import-resolver-typescript: 3.5.5(@typescript-eslint/parser@6.2.0)(eslint-plugin-import@2.28.0)(eslint@8.46.0)
-      eslint-plugin-import: 2.28.0(@typescript-eslint/parser@6.2.0)(eslint-import-resolver-typescript@3.5.5)(eslint@8.46.0)
-      eslint-plugin-simple-import-sort: 10.0.0(eslint@8.46.0)
-    transitivePeerDependencies:
-      - eslint-import-resolver-node
-      - eslint-import-resolver-webpack
-      - supports-color
-      - typescript
-    dev: true
-
-  /@brucesong/eslint-config-vue@0.0.7(@typescript-eslint/eslint-plugin@6.2.0)(eslint-import-resolver-typescript@3.5.5)(eslint@8.46.0)(tailwindcss@3.3.3)(typescript@5.1.6):
-    resolution: {integrity: sha512-R0dhDdAoNpol9C4JWUrAtP+/YI7ltEKIW1jkUyUnDUeC9Yme+wl2v/Dj5bI/jRe5K2hGJ9W3SbVYzTa2mwWzDQ==}
-    peerDependencies:
-      eslint: '>=8.0.0'
-    dependencies:
-      '@brucesong/eslint-config-basic': 0.0.7(@typescript-eslint/eslint-plugin@6.2.0)(@typescript-eslint/parser@6.2.0)(eslint-import-resolver-typescript@3.5.5)(eslint@8.46.0)
-      '@brucesong/eslint-config-ts': 0.0.7(eslint@8.46.0)(typescript@5.1.6)
-      '@typescript-eslint/parser': 6.2.0(eslint@8.46.0)(typescript@5.1.6)
-      eslint: 8.46.0
-      eslint-define-config: 1.22.0
-      eslint-plugin-tailwindcss: 3.13.0(tailwindcss@3.3.3)
-      eslint-plugin-vue: 9.16.1(eslint@8.46.0)
-      vue-eslint-parser: 9.3.1(eslint@8.46.0)
-    transitivePeerDependencies:
-      - '@typescript-eslint/eslint-plugin'
-      - eslint-import-resolver-node
-      - eslint-import-resolver-typescript
-      - eslint-import-resolver-webpack
-      - supports-color
-      - tailwindcss
-      - typescript
     dev: true
 
   /@cloudflare/kv-asset-handler@0.3.0:
