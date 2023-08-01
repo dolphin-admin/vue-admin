@@ -1,9 +1,18 @@
 <script setup lang="ts">
+import type { TrafficData, UserTrafficsPageType } from '@/types'
+
 import { countries, countrymesh, records } from './mock'
+
+const userTrafficsParam = reactive<UserTrafficsPageType>({
+  page: 1,
+  pageSize: 1000
+})
+
+const userTrafficsData = ref<TrafficData[]>()
 
 const svgContainer = ref(null)
 
-const initChart = () => {
+const initChart = (data: TrafficData[]) => {
   // 指定宽高
   const width = 1024
   const height = width / 2
@@ -78,7 +87,21 @@ const initChart = () => {
     .attr('fill', '#FF6666')
 }
 
-onMounted(() => initChart())
+const getUserTraffic = () => {
+  TrafficAPI.getUserTraffics(userTrafficsParam)
+    .then((res) => {
+      userTrafficsData.value = res.data
+      initChart(userTrafficsData.value)
+      console.log(userTrafficsData.value)
+    })
+    .catch((error) => {
+      userTrafficsData.value = []
+    })
+}
+
+onMounted(() => {
+  getUserTraffic()
+})
 </script>
 
 <template>

@@ -31,6 +31,7 @@ declare global {
   const RouterView: typeof import('vue-router')['RouterView']
   const ThemeUtils: typeof import('../utils/theme/index')['ThemeUtils']
   const TimeUtils: typeof import('../utils/time/index')['TimeUtils']
+  const TrafficAPI: typeof import('../api/traffic/index')['TrafficAPI']
   const UploadAPI: typeof import('../api/upload/index')['UploadAPI']
   const UserAPI: typeof import('../api/user/index')['UserAPI']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']

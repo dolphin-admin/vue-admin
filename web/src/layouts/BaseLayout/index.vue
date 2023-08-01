@@ -1,19 +1,19 @@
 <script setup lang="ts">
 const { version } = siteMetaData
 
-import type { appData, recordsItem, geography, trafficTime } from '@/types'
+import type { AppData, RecordsItem, Geography, TrafficTime, TrafficData } from '@/types'
 const userStore = useUserStore()
 const route = useRoute()
 const router = useRouter()
 
-const records = reactive<recordsItem[]>([])
-const recordsItem = reactive<recordsItem>({})
+const records = reactive<RecordsItem[]>([])
+let recordsItem: RecordsItem = {}
 
 // 若没有授权，则显示系统 loading
 const loading = ref(true)
 
 //统计用户流量信息
-const appData = reactive<appData>({
+const appData = reactive<AppData>({
   app: 'web_PC',
   version: version,
   env: 'DEV',
@@ -22,13 +22,13 @@ const appData = reactive<appData>({
   userAgent: ''
 })
 
-const trafficTime = reactive<trafficTime>({
+const trafficTime = reactive<TrafficTime>({
   duration: 0,
   leaveAt: '',
   enterAt: ''
 })
 
-const geography = reactive<geography>({
+const geography = reactive<Geography>({
   latitude: 0,
   altitude: 0,
   longitude: 0,
@@ -154,6 +154,7 @@ const checkLogin = async () => {
 
 //进入路由时候触发
 router.beforeEach((to, from, next) => {
+  recordsItem = {}
   recordsItem.enterAt = new Date().toISOString()
   recordsItem.url = window.location.href
   next()
@@ -179,20 +180,40 @@ router.afterEach((to, from) => {
 const handleTraffic = () => {
   trafficTime.leaveAt = new Date().toISOString()
   trafficTime.duration = getDuration(trafficTime.enterAt, trafficTime.leaveAt)
-  const body = JSON.stringify({
+  const body = {
     ...appData,
     ...trafficTime,
     ...geography,
     records
-  })
-  navigator.sendBeacon(`${GlobalEnvConfig.BASE_API_PREFIX}/userTraffics`, body)
+  }
+  TrafficAPI.userTraffics(body)
+    .then((res) => {
+      console.log(res)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
 }
 
+const trafficData = computed(() => {
+  return {
+    ...appData,
+    ...trafficTime,
+    ...geography,
+    records
+  }
+})
 onBeforeMount(() => checkLogin())
 
-onUnmounted(() => handleTraffic())
+onMounted(() => {
+  // 页面加载完成时添加 beforeunload 事件监听
+  window.addEventListener('beforeunload', handleTraffic)
+})
 
-window.addEventListener('beforeunload', () => handleTraffic())
+onBeforeUnmount(() => {
+  // 页面销毁前移除 beforeunload 事件监听
+  window.removeEventListener('beforeunload', handleTraffic)
+})
 </script>
 
 <template>
@@ -204,7 +225,7 @@ window.addEventListener('beforeunload', () => handleTraffic())
       <div class="flex h-full w-full">
         <BaseSidebar />
         <div class="relative h-full flex-1 overflow-y-auto overflow-x-hidden">
-          <BaseHeader />
+          <BaseHeader :traffic="trafficData" />
           <BaseTabs />
           <RouterView v-slot="{ Component }">
             <Transition
