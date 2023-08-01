@@ -1,4 +1,6 @@
-export interface appData {
+export interface AppData {
+  id?: number
+  recordsCount?: number
   app?: 'web_PC' | 'web_mobile' | 'desktop'
   version?: string
   env?: 'DEV' | 'PRO'
@@ -6,18 +8,18 @@ export interface appData {
   source?: string
   userAgent?: string
 }
-export interface trafficTime {
+export interface TrafficTime {
   duration?: number
   leaveAt?: string
   enterAt?: string
 }
-export interface geography {
+export interface Geography {
   latitude?: number
   altitude?: number
   longitude?: number
   area?: string
 }
-export interface recordsItem {
+export interface RecordsItem {
   title?: string
   url?: string
   path?: string
@@ -26,4 +28,16 @@ export interface recordsItem {
   duration?: number
 }
 
-export type trafficData = appData & recordsItem[] & geography & trafficTime
+//用户流量列表参数
+export interface UserTrafficsPageType {
+  page: number
+  pageSize: number
+  startDate?: string
+  endDate?: string
+}
+
+export type TrafficData = AppData &
+  Geography &
+  TrafficTime & {
+    records: RecordsItem[]
+  }

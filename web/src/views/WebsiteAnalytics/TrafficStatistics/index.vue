@@ -1,14 +1,21 @@
 <script setup lang="ts">
-import type { MessageSchema } from '@/types'
+import type { MessageSchema, UserTrafficsPageType, TrafficData } from '@/types'
 import * as d3 from 'd3'
 
 import { records, countrymesh, countries } from './mock'
 
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
+const userTrafficsParam = reactive<UserTrafficsPageType>({
+  page: 1,
+  pageSize: 1000
+})
+
+const userTrafficsData = ref<TrafficData[]>()
+
 const svgContainer = ref(null)
 
-const initChart = () => {
+const initChart = (records: TrafficData[]) => {
   // 指定宽高
   const width = 1024
   const height = width / 2
@@ -71,7 +78,21 @@ const initChart = () => {
     .attr('fill', '#FF6666')
 }
 
-onMounted(() => initChart())
+const getUserTraffic = () => {
+  TrafficAPI.getUserTraffics(userTrafficsParam)
+    .then((res) => {
+      userTrafficsData.value = res.data
+      initChart(userTrafficsData.value)
+      console.log(userTrafficsData.value)
+    })
+    .catch((error) => {
+      userTrafficsData.value = []
+    })
+}
+
+onMounted(() => {
+  getUserTraffic()
+})
 </script>
 
 <template>
