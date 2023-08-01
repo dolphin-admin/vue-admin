@@ -1,15 +1,140 @@
 <script setup lang="ts">
+const { version } = siteMetaData
+
+import type { appData, recordsItem, geography, trafficTime } from '@/types'
 const userStore = useUserStore()
 const route = useRoute()
 const router = useRouter()
 
+const records = reactive<recordsItem[]>([])
+const recordsItem = reactive<recordsItem>({})
+
 // 若没有授权，则显示系统 loading
 const loading = ref(true)
+
+//统计用户流量信息
+const appData = reactive<appData>({
+  app: 'web_PC',
+  version: version,
+  env: 'DEV',
+  ip: '',
+  source: '',
+  userAgent: ''
+})
+
+const trafficTime = reactive<trafficTime>({
+  duration: 0,
+  leaveAt: '',
+  enterAt: ''
+})
+
+const geography = reactive<geography>({
+  latitude: 0,
+  altitude: 0,
+  longitude: 0,
+  area: ''
+})
+
+//获取用户的appData信息
+const getAppData = () => {
+  const sitePath = window.location.origin + window.location.pathname
+  if (sitePath.includes('localhost')) {
+    appData.env = 'DEV'
+  } else {
+    appData.env = 'PRO'
+  }
+  const userAgent = window.navigator.userAgent
+  appData.userAgent = userAgent
+  if (/Windows|Macintosh/.test(userAgent)) {
+    appData.app = 'web_PC'
+  } else if (/Android|iPhone/.test(userAgent)) {
+    appData.app = 'web_mobile'
+  } else {
+    appData.app = 'desktop'
+  }
+}
+
+//获取用户IP地址
+const getIP = () => {
+  fetch('https://api.ipify.org?format=json')
+    .then((response) => response.json())
+    .then((data) => {
+      appData.ip = data.ip
+    })
+    .catch((error) => console.error(error))
+}
+
+// 根据经纬度获取具体地址
+const getArea = (latitude: number, longitude: number) => {
+  if (typeof latitude === 'undefined' || typeof longitude === 'undefined') {
+    return
+  }
+  const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=18&addressdetails=1`
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      const { city, country, state } = data.address
+      const address = `${country || ''}, ${state || ''},${city || ''}`
+      geography.area = address
+    })
+    .catch((error) => console.error(error))
+}
+
+// 获取用户的地理位置信息
+const getGeolocation = () => {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      function (position) {
+        // 获取地理位置信息
+        const { latitude, altitude, longitude } = position.coords
+        geography.latitude = latitude!
+        geography.altitude = altitude!
+        geography.longitude = longitude!
+        getArea(latitude, longitude)
+      },
+      function (error) {
+        // 处理错误
+        if (error.code === 1) {
+          // 用户拒绝了授权请求，需要再次请求授权
+          const message = '请授权以获取您的位置信息'
+          if (confirm(message)) {
+            // 用户同意了授权请求，重新获取地理位置信息
+            navigator.geolocation.getCurrentPosition(
+              function (position) {
+                // 获取地理位置信息
+                const { latitude, altitude, longitude } = position.coords
+                geography.latitude = latitude!
+                geography.altitude = altitude!
+                geography.longitude = longitude!
+                getArea(latitude, longitude)
+              },
+              function (error) {
+                console.error(error)
+              }
+            )
+          }
+        }
+      }
+    )
+  }
+}
+
+//通过两个日期字符串，获取差值，将差值转为毫秒数
+const getDuration = (enter: string | undefined, leave: string | undefined) => {
+  if (enter === undefined || leave === undefined) return 0
+  const enterAt = new Date(enter).getTime()
+  const leaveAt = new Date(leave).getTime()
+  return leaveAt - enterAt
+}
 
 // 检查登录状态
 const checkLogin = async () => {
   // 如果有 token，获取用户信息
   if (AuthUtils.isAuthenticated()) {
+    trafficTime.enterAt = new Date().toISOString()
+    getAppData()
+    getIP()
+    getGeolocation()
     if (!userStore.hasData()) {
       const { data } = (await UserAPI.getUserInfo()) || {}
       userStore.setUser(data)
@@ -27,7 +152,47 @@ const checkLogin = async () => {
   }
 }
 
+//进入路由时候触发
+router.beforeEach((to, from, next) => {
+  recordsItem.enterAt = new Date().toISOString()
+  recordsItem.url = window.location.href
+  next()
+})
+
+//离开路由的时候触发
+router.afterEach((to, from) => {
+  recordsItem.path = from.fullPath
+  const title = from.meta.title
+  let pageTitle = ''
+  if (typeof title === 'function') {
+    pageTitle = title()
+  } else {
+    pageTitle = title!
+  }
+  recordsItem.title = pageTitle
+  recordsItem.leaveAt = new Date().toISOString()
+  recordsItem.duration = getDuration(recordsItem.enterAt, recordsItem.leaveAt)
+  records.push(recordsItem)
+})
+
+//向后台发送数据
+const handleTraffic = () => {
+  trafficTime.leaveAt = new Date().toISOString()
+  trafficTime.duration = getDuration(trafficTime.enterAt, trafficTime.leaveAt)
+  const body = JSON.stringify({
+    ...appData,
+    ...trafficTime,
+    ...geography,
+    records
+  })
+  navigator.sendBeacon(`${GlobalEnvConfig.BASE_API_PREFIX}/userTraffics`, body)
+}
+
 onBeforeMount(() => checkLogin())
+
+onUnmounted(() => handleTraffic())
+
+window.addEventListener('beforeunload', () => handleTraffic())
 </script>
 
 <template>
