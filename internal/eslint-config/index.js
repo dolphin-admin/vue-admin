@@ -2,24 +2,26 @@ const { defineConfig } = require('eslint-define-config')
 
 module.exports = defineConfig({
   env: {
-    es6: true,
+    es2023: true,
     browser: true,
+    commonjs: true,
     node: true,
     jest: true
   },
   extends: [
     'plugin:tailwindcss/recommended', // TailwindCSS 类名排序、简写合并
+    'eslint:recommended',
     'airbnb-base',
     'airbnb-typescript/base',
+    'plugin:@typescript-eslint/recommended',
     'plugin:import/recommended',
     'plugin:import/typescript',
     'plugin:import/errors',
     'plugin:import/warnings',
     'plugin:vue/vue3-recommended',
-    'plugin:@typescript-eslint/recommended',
     'prettier'
   ],
-  plugins: ['simple-import-sort', 'import', 'unused-imports'],
+  plugins: ['unused-imports', '@typescript-eslint', 'simple-import-sort', 'import'],
   settings: {
     'import/resolver': {
       node: {
@@ -27,14 +29,22 @@ module.exports = defineConfig({
       }
     }
   },
+  reportUnusedDisableDirectives: true, // 报告未使用的 eslint-disable 指令
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: 'tsconfig.eslint.json',
+    project: [
+      './tsconfig.eslint.json',
+      './server/tsconfig.json',
+      './web/tsconfig.json',
+      './docs/tsconfig.json',
+      './internal/*/tsconfig.json',
+      './packages/*/tsconfig.json'
+    ],
+    tsconfigRootDir: process.cwd(),
     sourceType: 'module',
     ecmaVersion: 'latest',
-    ecmaFeatures: {
-      jsx: true
-    }
+    allowAutomaticSingleRunInference: true,
+    EXPERIMENTAL_useSourceOfProjectReferenceRedirect: false
   },
   overrides: [
     {
@@ -44,10 +54,10 @@ module.exports = defineConfig({
       }
     },
     {
-      files: ['*.js'],
+      files: ['*.js', './internal/eslint-config/index.js'],
+      extends: ['plugin:@typescript-eslint/disable-type-checked'],
       rules: {
-        '@typescript-eslint/no-var-requires': 'off',
-        '@typescript-eslint/no-require-imports': 'off'
+        '@typescript-eslint/explicit-function-return-type': 'off'
       }
     },
     {
@@ -57,7 +67,7 @@ module.exports = defineConfig({
       }
     },
     {
-      files: ['*.ts', '*.tsx', '*.mts', '*.cts'],
+      files: ['./server/**/*.{ts}', './web/**/*.{ts,tsx}', './docs/**/*.{ts,tsx}'],
       rules: {
         '@typescript-eslint/no-unused-vars': 'off',
         'no-shadow': 'off',
@@ -69,15 +79,12 @@ module.exports = defineConfig({
       }
     },
     {
-      files: ['web/**/*.vue'],
+      files: ['./web/**/*.vue'],
       parser: 'vue-eslint-parser',
       parserOptions: {
         parser: '@typescript-eslint/parser',
         extraFileExtensions: ['.vue'],
-        ecmaVersion: 'latest',
-        ecmaFeatures: {
-          jsx: true
-        }
+        ecmaVersion: 'latest'
       },
       rules: {
         'no-undef': 'off',
@@ -110,19 +117,30 @@ module.exports = defineConfig({
         ignorePropertyModificationsFor: ['target', 'descriptor', 'req', 'request', 'args']
       }
     ],
-    'simple-import-sort/imports': 'error', // import 排序
-    'simple-import-sort/exports': 'error', // export 排序
+
+    // eslint-plugin-import
     'import/first': 'error', // import 必须放在文件顶部
     'import/newline-after-import': 'error', // import 之后必须空一行
+    'import/no-absolute-path': 'error', // 不允许绝对路径
+    'import/no-default-export': 'error', // 不允许默认导出
     'import/no-duplicates': 'error', // 禁止重复导入
-    'import/prefer-default-export': 'off', // 默认导出不是强制的
     'import/extensions': 'off', // 允许导入时带文件扩展名
     'import/no-extraneous-dependencies': [
       'error',
       {
-        devDependencies: true
+        devDependencies: true,
+        peerDependencies: true,
+        optionalDependencies: false
       }
-    ] // 允许开发依赖
-  },
-  reportUnusedDisableDirectives: true // 报告未使用的 eslint-disable 指令
+    ], // 允许 devDependencies，peerDependencies，不允许 optionalDependencies
+    'import/no-mutable-exports': 'error', // 禁止导出 let, var 声明的变量
+    'import/no-named-default': 'error', // 统一使用命名导出
+    'import/no-named-export': 'off', // 统一使用命名导出
+    'import/no-self-import': 'error', // 禁止自导入
+    'import/prefer-default-export': 'off', // 统一使用命名导出
+
+    // eslint-plugin-simple-import-sort
+    'simple-import-sort/imports': 'error', // import 排序
+    'simple-import-sort/exports': 'error' // export 排序
+  }
 })

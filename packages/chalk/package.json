@@ -1,0 +1,12 @@
+{
+  "name": "@dolphin-admin/chalk",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Custom chalk for Dolphin Admin",
+  "author": "Bruce Song <recall4056@gmail.com> (https://github.com/recallwei/)",
+  "scripts": {},
+  "dependencies": {
+    "chalk": "4.1.2"
+  },
+  "license": "MIT"
+}

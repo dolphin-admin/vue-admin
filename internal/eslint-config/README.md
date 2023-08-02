@@ -1,4 +1,4 @@
-# ESLint Config
+# @dolphin-admin/eslint-config
 
 - 基于 Airbnb JavaScript Style Guide
 - Vue 3 Recommend

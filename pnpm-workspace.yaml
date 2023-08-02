@@ -2,4 +2,5 @@ packages:
   - docs
   - server
   - web
+  - internal/*
   - packages/*

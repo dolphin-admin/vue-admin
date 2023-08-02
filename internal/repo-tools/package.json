@@ -1,0 +1,15 @@
+{
+  "name": "@dolphin-admin/repo-tools",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Repository tools for Dolphin Admin",
+  "author": "Bruce Song <recall4056@gmail.com> (https://github.com/recallwei/)",
+  "scripts": {
+    "build": "tsc -b tsconfig.json",
+    "generate:contributors": "tsx ./src/generate-contributors.ts"
+  },
+  "devDependencies": {
+    "cross-fetch": "^4.0.0"
+  },
+  "license": "MIT"
+}

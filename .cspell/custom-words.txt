@@ -63,3 +63,4 @@ vfonts
 vueuse
 webos
 wordprocessingml
+classname

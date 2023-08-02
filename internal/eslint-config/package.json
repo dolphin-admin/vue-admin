@@ -1,15 +1,9 @@
 {
   "name": "@dolphin-admin/eslint-config",
+  "private": true,
   "version": "0.0.1",
   "description": "ESLint Config for Dolphin Admin",
-  "author": "Bruce Song <recall4056@gmail.com> (https://github.com/eslint-config/)",
-  "files": [
-    "index.js"
-  ],
-  "main": "index.js",
-  "keywords": [
-    "eslint-config"
-  ],
+  "author": "Bruce Song <recall4056@gmail.com> (https://github.com/recallwei/)",
   "peerDependencies": {
     "eslint": ">=7.4.0",
     "typescript": ">=3.9"
