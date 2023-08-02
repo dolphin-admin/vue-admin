@@ -158,6 +158,11 @@ export default defineConfig(({ mode }) => {
       strictPort: true,
       open: false,
       proxy
+    },
+    build: {
+      rollupOptions: {
+        external: ['d3']
+      }
     }
   }
 })

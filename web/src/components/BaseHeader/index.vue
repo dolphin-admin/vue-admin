@@ -85,8 +85,7 @@ const logout = () => {
   trafficValue.leaveAt = new Date().toISOString()
   trafficValue.duration = getDuration(props.traffic.enterAt, trafficValue.leaveAt)
   TrafficAPI.userTraffics({ ...props.traffic, ...trafficValue })
-    .then((res) => {
-      console.log(res)
+    .then(() => {
       AuthUtils.clearToken()
       userStore.clearUser()
       message.success(t('Logout.Success'))
