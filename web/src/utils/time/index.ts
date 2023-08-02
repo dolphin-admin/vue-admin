@@ -8,7 +8,10 @@ export class TimeUtils {
    * @param time 时间
    * @param format 格式
    */
-  static formatTime(time: string | number | Date, format: TimeFormatter = 'YYYY-MM-DD HH:mm:ss') {
+  static formatTime(
+    time: string | number | Date,
+    format: TimeFormatter = 'YYYY-MM-DD HH:mm:ss'
+  ) {
     return dayjs(time).format(format)
   }
 }

@@ -10,8 +10,13 @@ import { defineConfig, loadEnv } from 'vite'
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd())
-  const { VITE_BASE_API_PREFIX, VITE_BASE_API_PROXY, VITE_PORT, VITE_ICON_API_PREFIX, VITE_ICON_API_PROXY } =
-    env as ImportMetaEnv
+  const {
+    VITE_BASE_API_PREFIX,
+    VITE_BASE_API_PROXY,
+    VITE_PORT,
+    VITE_ICON_API_PREFIX,
+    VITE_ICON_API_PROXY
+  } = env as ImportMetaEnv
 
   const port = parseInt(VITE_PORT, 10)
   const proxy: Record<string, string | ProxyOptions> = {
@@ -55,9 +60,15 @@ export default defineConfig(({ mode }) => {
           'vue-i18n',
           {
             'vue-router': ['RouterLink', 'RouterView'],
-            '@vueuse/core': ['useToggle', 'useEventListener', 'useDebounceFn', 'useFullscreen'],
+            '@vueuse/core': [
+              'useToggle',
+              'useEventListener',
+              'useDebounceFn',
+              'useFullscreen'
+            ],
             axios: [['default', 'axios']],
             dayjs: [['default', 'dayjs']],
+            d3: [['*', 'd3']],
             'naive-ui': [
               'useDialog',
               'useMessage',

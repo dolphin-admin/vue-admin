@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import type { MessageSchema } from '@/types'
-import * as d3 from 'd3'
-
-import { records, countrymesh, countries } from './mock'
-
-const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+import { countries, countrymesh, records } from './mock'
 
 const svgContainer = ref(null)
 
@@ -33,6 +28,7 @@ const initChart = () => {
 
   svg.append('path').datum(countries).attr('fill', 'white').attr('d', path)
 
+  // TODO: 匿名函数的 this 参数，可否换成 Arrow Function？ ------ Bruce Song
   svg
     .append('g')
     .selectAll('path')
@@ -40,18 +36,29 @@ const initChart = () => {
     .join('path')
     .attr('fill', 'skyblue')
     .attr('d', path)
-    .on('mouseover', function (this: SVGCircleElement, d: any) {
-      d3.select(this).attr('opacity', 0.8).attr('fill', 'green').attr('stroke-width', 2)
+    .on('mouseover', function (this: SVGCircleElement, _: any) {
+      d3.select(this)
+        .attr('opacity', 0.8)
+        .attr('fill', 'green')
+        .attr('stroke-width', 2)
     })
-    .on('mouseout', function (this: SVGCircleElement, d: any) {
-      d3.select(this).attr('opacity', 1).attr('fill', 'skyblue').attr('stroke-width', 1)
+    .on('mouseout', function (this: SVGCircleElement, _: any) {
+      d3.select(this)
+        .attr('opacity', 1)
+        .attr('fill', 'skyblue')
+        .attr('stroke-width', 1)
     })
     .append('title')
     .text((d: any) => `${d.properties.name}`)
 
-  svg.append('path').datum(countrymesh).attr('fill', 'none').attr('stroke', 'white').attr('d', path)
+  svg
+    .append('path')
+    .datum(countrymesh)
+    .attr('fill', 'none')
+    .attr('stroke', 'white')
+    .attr('d', path)
 
-  //添加用户信息的位置
+  // 添加用户信息的位置
   svg
     .append('g')
     .selectAll('circle')
@@ -59,12 +66,12 @@ const initChart = () => {
     .join('circle')
     .attr('cx', (d: any) => projection([d.longitude, d.latitude])[0])
     .attr('cy', (d: any) => projection([d.longitude, d.latitude])[1])
-    .on('mouseover', function (this: SVGCircleElement, d: any) {
+    .on('mouseover', function (this: SVGCircleElement, _: any) {
       d3.select(this as any)
         .append('title')
         .text((d: any) => `${d.area}`)
     })
-    .on('mouseout', function (this: SVGCircleElement, d: any) {
+    .on('mouseout', function (this: SVGCircleElement, _: any) {
       d3.select(this).select('title').remove()
     })
     .attr('r', 2.8)

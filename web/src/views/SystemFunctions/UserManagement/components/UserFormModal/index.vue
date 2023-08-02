@@ -6,7 +6,7 @@ import EditIcon from '~icons/ic/sharp-edit'
 
 export interface Props {
   userFormData?: User
-  isEdit: Boolean
+  isEdit: boolean
 }
 
 const props = defineProps<Props>()
@@ -129,7 +129,8 @@ const handleSubmit = async () => {
     uploadRef.value!.submit()
     if (currentFile.value) {
       try {
-        const { path } = (await UploadAPI.uploadFile({ file: currentFile.value })).data || {}
+        const { path } =
+          (await UploadAPI.uploadFile({ file: currentFile.value })).data || {}
         formData.value.avatarUrl = path
         message.success(t('Message.UploadAvatar.Success'))
       } catch {
@@ -138,7 +139,10 @@ const handleSubmit = async () => {
       }
     }
     try {
-      const { message: successMessage } = await UserAPI.updateUser(formData.value.id!, formData.value)
+      const { message: successMessage } = await UserAPI.updateUser(
+        formData.value.id!,
+        formData.value
+      )
       message.success(successMessage!)
       showModal.value = false
       emit('save')
@@ -149,7 +153,9 @@ const handleSubmit = async () => {
     }
   } else {
     try {
-      const { message: successMessage } = await UserAPI.createUser(createFormData)
+      const { message: successMessage } = await UserAPI.createUser(
+        createFormData
+      )
       message.success(successMessage!)
       createFormData.username = ''
       createFormData.password = ''
@@ -183,7 +189,9 @@ watch(
   () => props.userFormData,
   (newValue) => {
     if (newValue) {
-      const newBirthDate = newValue.birthDate && TimeUtils.formatTime(newValue.birthDate, 'YYYY-MM-DD')
+      const newBirthDate =
+        newValue.birthDate &&
+        TimeUtils.formatTime(newValue.birthDate, 'YYYY-MM-DD')
       formData.value = newValue
       formData.value.birthDate = newBirthDate
     } else {
@@ -203,7 +211,9 @@ defineExpose({
     v-model:show="showModal"
     class="!my-6"
     preset="dialog"
-    :title="isEdit ? t('UserManagement.EditUser') : t('UserManagement.CreateUser')"
+    :title="
+      isEdit ? t('UserManagement.EditUser') : t('UserManagement.CreateUser')
+    "
     :loading="submitLoading"
     :positive-text="t('Common.Confirm')"
     :negative-text="t('Common.Cancel')"

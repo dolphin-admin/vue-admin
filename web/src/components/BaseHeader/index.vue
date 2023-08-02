@@ -7,17 +7,19 @@ import FullScreenIcon from '~icons/ic/round-fullscreen'
 import ExitFullscreenIcon from '~icons/ic/round-fullscreen-exit'
 import LanguageIcon from '~icons/ion/language-outline'
 import DiscordIcon from '~icons/line-md/discord'
+import DocsIcon from '~icons/line-md/document-list'
 import GithubIcon from '~icons/line-md/github-loop'
 import HideMenuIcon from '~icons/line-md/menu-fold-left'
 import ShowMenuIcon from '~icons/line-md/menu-fold-right'
 import SunIcon from '~icons/line-md/moon-alt-to-sunny-outline-loop-transition'
 import MoonIcon from '~icons/line-md/sunny-filled-loop-to-moon-alt-filled-loop-transition'
-import DocsIcon from '~icons/line-md/document-list'
 
 import type { UserOptionKey } from './private'
 import { languageOptions, userOptions } from './private'
 
-const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({ useScope: 'global' })
+const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({
+  useScope: 'global'
+})
 
 const { repoGitHubURL, discordURL, docsURL } = siteMetaData
 
@@ -35,7 +37,9 @@ const { isFullscreen, toggle: toggleFullscreen } = useFullscreen()
  * 动态获取当前语言的下拉框选项
  */
 const currentLanguageOptions = computed(() =>
-  locale.value === 'zh_CN' ? languageOptions : [languageOptions[1], languageOptions[0]]
+  locale.value === 'zh_CN'
+    ? languageOptions
+    : [languageOptions[1], languageOptions[0]]
 )
 
 /**
@@ -52,7 +56,11 @@ const handleUpdateLocale = (lang: Lang) => {
     document.title =
       route.path === '/'
         ? t('App.Name')
-        : `${typeof route.meta.title === 'function' ? route.meta.title() : route.meta.title} | ${t('App.Name')}`
+        : `${
+            typeof route.meta.title === 'function'
+              ? route.meta.title()
+              : route.meta.title
+          } | ${t('App.Name')}`
   }, 150)
   themeStore.changeLocale(lang)
   LangUtils.setLang(lang)
@@ -214,7 +222,12 @@ const selectUserOption = (key: UserOptionKey) => {
             size="20"
             :color="themeStore.themeMode === 'light' ? '#FDC022' : '#FED736'"
             :component="themeStore.themeMode === 'light' ? SunIcon : MoonIcon"
-            @click="() => themeStore.changeThemeMode(themeStore.themeMode === 'light' ? 'dark' : 'light')"
+            @click="
+              () =>
+                themeStore.changeThemeMode(
+                  themeStore.themeMode === 'light' ? 'dark' : 'light'
+                )
+            "
           />
         </template>
         {{ t('Header.SwitchTheme') }}

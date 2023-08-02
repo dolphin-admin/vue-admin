@@ -16,7 +16,9 @@ const selectedIconSet = ref('')
 const searchText = ref('')
 
 const handleSearch = (value: string) => {
-  searchIconList.value = iconList.value.filter((icon) => icon.toLowerCase().includes(value.toLocaleLowerCase()))
+  searchIconList.value = iconList.value.filter((icon) =>
+    icon.toLowerCase().includes(value.toLocaleLowerCase())
+  )
 }
 
 const getIcons = () => {

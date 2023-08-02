@@ -21,7 +21,7 @@ export default defineNuxtConfig({
   ssr: false,
   modules: ['@nuxtjs/tailwindcss', '@nuxt/content'],
   content: {
-    // ignores: ['/draft/'],
+    ignores: ['/draft/'],
     markdown: {
       remarkPlugins: {
         'remark-emoji': {

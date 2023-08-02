@@ -7,6 +7,8 @@
     "build": "pnpm type:check && vite build",
     "preview": "vite preview",
     "type:check": "vue-tsc --noEmit --composite false",
+    "eslint:check": "eslint \"**/*.{ts,tsx,js,tsx,vue}\" --color",
+    "eslint:fix": "pnpm eslint:check -- --fix",
     "desktop:dev": "tauri dev",
     "desktop:build": "tauri build"
   },
@@ -16,11 +18,11 @@
     "lodash": "^4.17.21",
     "qrcode": "^1.5.3",
     "uuid": "^9.0.0",
-    "vite": "^4.4.7"
+    "vite": "^4.4.8"
   },
   "dependencies": {
     "@tauri-apps/api": "^1.4.0",
-    "@vueuse/core": "^10.2.1",
+    "@vueuse/core": "^10.3.0",
     "d3": "^7.8.5",
     "d3-color-legend": "^1.4.1",
     "echarts": "^5.4.3",
@@ -33,14 +35,14 @@
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.19.3/xlsx-0.19.3.tgz"
   },
   "devDependencies": {
-    "@iconify/json": "^2.2.95",
+    "@iconify/json": "^2.2.97",
     "@iconify/vue": "^4.1.1",
     "@tauri-apps/cli": "^1.4.0",
     "@vitejs/plugin-vue": "^4.2.3",
     "autoprefixer": "^10.4.14",
     "naive-ui": "^2.34.4",
     "postcss": "^8.4.27",
-    "sass": "^1.64.1",
+    "sass": "^1.64.2",
     "tailwindcss": "^3.3.3",
     "unplugin-auto-import": "^0.16.6",
     "unplugin-icons": "^0.16.5",

@@ -1,4 +1,5 @@
-const DEFAULT_FONTS = 'system-ui, -apple-system, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif'
+const DEFAULT_FONTS =
+  'system-ui, -apple-system, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif'
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {

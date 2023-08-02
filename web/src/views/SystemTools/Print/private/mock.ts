@@ -13,6 +13,7 @@ import VueIcon from '~icons/logos/vue'
 import GatsbyIcon from '~icons/vscode-icons/file-type-gatsby'
 
 import type { FrameworkItem } from './types'
+
 const { t, renderIcon } = RenderUtils
 
 export const columns: DataTableBaseColumn<FrameworkItem>[] = [
@@ -70,7 +71,10 @@ export const columns: DataTableBaseColumn<FrameworkItem>[] = [
     key: 'description',
     minWidth: 200,
     resizable: true,
-    render: (row) => (typeof row.description === 'function' ? row.description() : row.description)
+    render: (row) =>
+      typeof row.description === 'function'
+        ? row.description()
+        : row.description
   }
 ]
 

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import ClearIcon from '~icons/ic/baseline-clear'
+
 const router = useRouter()
 
 const props = defineProps<{
@@ -27,8 +28,11 @@ const handleClose = () => emit('close', props.data.key as string)
         :size="12"
       />
     </div>
-    <div class="mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 dark:bg-black">
-      <component :is="props.data.icon as any" />
+    <div
+      class="mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 dark:bg-black"
+    >
+      <!-- prettier-ignore  -->
+      <component :is="(props.data.icon as any)" />
     </div>
     <component :is="props.data.label" />
   </div>

@@ -4,7 +4,9 @@
   "language": "en",
   "words": [],
   "flagWords": [],
-  "dictionaries": ["custom-words"],
+  "dictionaries": [
+    "custom-words"
+  ],
   "dictionaryDefinitions": [
     {
       "name": "custom-words",
@@ -14,18 +16,21 @@
   ],
   "ignorePaths": [
     ".cspell",
-    ".vscode",
-    ".vercel",
-    "dist",
-    "build",
-    "node_modules",
-    "/web/public",
-    "/web/src-tauri/icons",
-    "/web/src-tauri/target",
-    "/web/src-tauri/Cargo.lock",
-    "/web/src-tauri/Cargo.toml",
-    "/server/src/prisma/generated",
-    "/server/src/prisma/migrations",
+    ".github/workflows/**",
+    ".vscode/*.json",
+    "**/.vercel",
+    "**/dist/**",
+    "**/build/**",
+    "**/node_modules/**",
+    "**/**/CHANGELOG.md",
+    "**/**/CONTRIBUTORS.md",
+    "web/public",
+    "web/src-tauri/icons",
+    "web/src-tauri/target",
+    "web/src-tauri/Cargo.lock",
+    "web/src-tauri/Cargo.toml",
+    "server/src/prisma/generated",
+    "server/src/prisma/migrations",
     "pnpm-lock.yaml",
     "README.md"
   ]

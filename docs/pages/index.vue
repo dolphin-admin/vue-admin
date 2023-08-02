@@ -10,9 +10,9 @@ const title = ref('Dolphin Admin Docs')
   <Head>
     <Title>{{ title }}</Title>
   </Head>
-  <main class="w-screen h-screen bg-gray-100 flex items-center justify-center">
-    <div class="flex flex-col space-y-8 text-2xl items-center">
-      <div class="flex space-x-2 items-center">
+  <main class="flex h-screen w-screen items-center justify-center bg-gray-100">
+    <div class="flex flex-col items-center space-y-8 text-2xl">
+      <div class="flex items-center space-x-2">
         <div>Dolphin Admin Docs</div>
         <img
           width="50"
@@ -21,7 +21,7 @@ const title = ref('Dolphin Admin Docs')
           alt=""
         />
       </div>
-      <div class="flex space-x-2 items-center">
+      <div class="flex items-center space-x-2">
         <div class="text-sm">Powered by Bit Ocean</div>
         <img
           width="24"

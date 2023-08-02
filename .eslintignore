@@ -1,6 +1,5 @@
 node_modules
 .vscode
-/scripts
 pnpm-lock.yaml
 
 web/build
@@ -20,4 +19,8 @@ server/src/prisma/migrations
 
 docs/.nuxt
 docs/.output
-docs/.dist
+docs/dist
+
+# 测试文件暂时不做校验
+*spec.ts
+*test.ts

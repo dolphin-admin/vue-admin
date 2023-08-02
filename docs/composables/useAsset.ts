@@ -3,5 +3,5 @@ export const useAsset = (path: string): string => {
     eager: true,
     import: 'default'
   })
-  return assets['/assets' + path] as string
+  return assets[`/assets${path}`] as string
 }

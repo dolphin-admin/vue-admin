@@ -1,17 +1,20 @@
 <script setup lang="ts">
 import type { DataTableFilterState, DataTableSortState } from 'naive-ui'
+
 import type { Lang, MessageSchema, Sorter, User } from '@/types'
 import { AuthType, OrderType } from '@/types'
-import { UserPageModel } from './private'
-
-import SearchIcon from '~icons/line-md/search'
+import GitHubIcon from '~icons/ant-design/github-outlined'
 import ResetIcon from '~icons/ic/round-refresh'
 import CreateIcon from '~icons/ic/sharp-add'
 import EditIcon from '~icons/ic/sharp-edit'
-import GitHubIcon from '~icons/ant-design/github-outlined'
+import SearchIcon from '~icons/line-md/search'
 import GoogleIcon from '~icons/logos/google-icon'
 
-const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({ useScope: 'global' })
+import { UserPageModel } from './private'
+
+const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({
+  useScope: 'global'
+})
 
 const { isMobileDevice } = BrowserUtils
 
@@ -56,8 +59,8 @@ const authTypeColumn: DataTableBaseColumn<User> = {
     }
   ],
   render: (row) => {
-    const tags = (row?.authTypes || []).map((authType) => {
-      return h(
+    const tags = (row?.authTypes || []).map((authType) =>
+      h(
         NTag,
         {
           class: '!mr-2',
@@ -87,7 +90,7 @@ const authTypeColumn: DataTableBaseColumn<User> = {
             )
         }
       )
-    })
+    )
     return tags
   }
 }
@@ -157,7 +160,8 @@ const columns = ref<DataTableBaseColumn<User>[]>([
               },
               positiveText: t('Common.Confirm'),
               negativeText: t('Common.Cancel'),
-              onPositiveClick: () => message.success(t('Message.Delete.Success'))
+              onPositiveClick: () =>
+                message.success(t('Message.Delete.Success'))
             },
             {
               trigger: () =>
@@ -272,8 +276,12 @@ onMounted(() => queryList())
 <template>
   <DataTableLayout>
     <template #operate>
-      <div class="flex flex-col items-center space-y-2 sm:flex-row sm:justify-between sm:space-y-0">
-        <div class="flex flex-col items-center space-y-2 sm:flex-row sm:space-x-3 sm:space-y-0">
+      <div
+        class="flex flex-col items-center space-y-2 sm:flex-row sm:justify-between sm:space-y-0"
+      >
+        <div
+          class="flex flex-col items-center space-y-2 sm:flex-row sm:space-x-3 sm:space-y-0"
+        >
           <div class="flex w-full items-center !space-x-2 sm:w-fit">
             <NInput
               v-model:value="queryParams.searchText"
@@ -306,7 +314,9 @@ onMounted(() => queryList())
             @update:value="() => queryList()"
           />
         </div>
-        <div class="flex w-full justify-between sm:justify-end space-x-3 items-center">
+        <div
+          class="flex w-full items-center justify-between space-x-3 sm:justify-end"
+        >
           <NTooltip>
             <template #trigger>
               <NButton

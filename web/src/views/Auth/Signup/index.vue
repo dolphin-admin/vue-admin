@@ -46,7 +46,8 @@ const rules: FormRules = {
       renderMessage: () => t('Validation.ConfirmPassword')
     },
     {
-      validator: (_: FormItemRule, value: string) => value === formData.password,
+      validator: (_: FormItemRule, value: string) =>
+        value === formData.password,
       message: () => t('Validation.ConfirmPasswordNotMatch'),
       renderMessage: () => t('Validation.ConfirmPasswordNotMatch')
     }
@@ -96,7 +97,9 @@ const signup = async () => {
     :model="formData"
     class="bg-light-default dark:bg-dark-default absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg px-4 py-8 shadow-md transition-colors sm:w-[260px] md:w-[340px]"
   >
-    <div class="select-none text-center text-lg font-semibold">{{ t('Menu.Signup') }}</div>
+    <div class="select-none text-center text-lg font-semibold">
+      {{ t('Menu.Signup') }}
+    </div>
 
     <NFormItem
       path="username"

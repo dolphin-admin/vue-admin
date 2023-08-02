@@ -1,2 +1,13 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+*.js eol=lf
+*.jsx eol=lf
+*.ts eol=lf
+*.tsx eol=lf
+*.vue eol=lf
+*.css eol=lf
+*.scss eol=lf
+*.md eol=lf
+*.mdx eol=lf
+*.json eol=lf
+*.yml eol=lf

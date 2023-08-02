@@ -14,7 +14,9 @@ import GoogleIcon from '~icons/logos/google-icon'
 import { UserFormModal } from './components'
 import { UserPageModel } from './private'
 
-const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({ useScope: 'global' })
+const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({
+  useScope: 'global'
+})
 
 const { isMobileDevice } = BrowserUtils
 
@@ -338,7 +340,8 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     width: 100,
     titleAlign: 'center',
     align: 'center',
-    render: (row) => (row.birthDate ? TimeUtils.formatTime(row.birthDate, 'YYYY/MM/DD') : '')
+    render: (row) =>
+      row.birthDate ? TimeUtils.formatTime(row.birthDate, 'YYYY/MM/DD') : ''
   },
   {
     title: () => t('User.Country'),
@@ -404,8 +407,8 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     key: 'roles',
     width: 200,
     render: (row) => {
-      const tags = (row?.roles || []).map((role) => {
-        return h(
+      const tags = (row?.roles || []).map((role) =>
+        h(
           NTag,
           {
             class: '!mr-2',
@@ -416,7 +419,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
             default: () => role
           }
         )
-      })
+      )
       return tags
     }
   },
@@ -606,8 +609,12 @@ onMounted(() => queryList())
 <template>
   <DataTableLayout>
     <template #operate>
-      <div class="flex flex-col items-center space-y-2 sm:flex-row sm:justify-between sm:space-y-0">
-        <div class="flex flex-col items-center space-y-2 sm:flex-row sm:space-x-3 sm:space-y-0">
+      <div
+        class="flex flex-col items-center space-y-2 sm:flex-row sm:justify-between sm:space-y-0"
+      >
+        <div
+          class="flex flex-col items-center space-y-2 sm:flex-row sm:space-x-3 sm:space-y-0"
+        >
           <div class="flex w-full items-center !space-x-2 sm:w-fit">
             <NInput
               v-model:value="queryParams.searchText"
@@ -640,7 +647,9 @@ onMounted(() => queryList())
             @update:value="() => queryList()"
           />
         </div>
-        <div class="flex w-full justify-between sm:justify-end space-x-3 items-center">
+        <div
+          class="flex w-full items-center justify-between space-x-3 sm:justify-end"
+        >
           <NTooltip>
             <template #trigger>
               <NButton

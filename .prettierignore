@@ -1,9 +1,10 @@
-node_modules
 .cspell
 .husky
 .vscode
 pnpm-lock.yaml
-
+CONTRIBUTORS.md
+**/dist
+**/node_modules
 *.json
 
 web/build
@@ -21,4 +22,4 @@ server/src/prisma/migrations
 
 docs/.nuxt
 docs/.output
-docs/.dist
+docs/dist

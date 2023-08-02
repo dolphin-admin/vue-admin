@@ -24,8 +24,10 @@ defineProps({
 </script>
 
 <template>
-  <div class="bg-black/80 rounded-md shadow-sm my-4 pb-4">
-    <div class="pt-2 pb-2 px-4 border-b border-dashed text-white font-mono text-xs/3 flex justify-between items-center">
+  <div class="my-4 rounded-md bg-black/80 pb-4 shadow-sm">
+    <div
+      class="flex items-center justify-between border-b border-dashed px-4 py-2 font-mono text-xs/3 text-white"
+    >
       <span>{{ filename }}</span>
       <span>{{ language }}</span>
     </div>

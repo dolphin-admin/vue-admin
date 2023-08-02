@@ -84,7 +84,8 @@ const handleValidateButtonClick = () => {
     uploadRef.value!.submit()
     if (currentFile.value) {
       try {
-        const { path } = (await UploadAPI.uploadFile({ file: currentFile.value })).data || {}
+        const { path } =
+          (await UploadAPI.uploadFile({ file: currentFile.value })).data || {}
         formData.value.avatarUrl = path
         message.success(t('Message.UploadAvatar.Success'))
       } catch {
@@ -95,8 +96,12 @@ const handleValidateButtonClick = () => {
     }
 
     try {
-      const { data, message: successMessage } = await UserAPI.updateUser(formData.value.id!, formData.value)
-      data.birthDate = data.birthDate && TimeUtils.formatTime(data.birthDate, 'YYYY-MM-DD')
+      const { data, message: successMessage } = await UserAPI.updateUser(
+        formData.value.id!,
+        formData.value
+      )
+      data.birthDate =
+        data.birthDate && TimeUtils.formatTime(data.birthDate, 'YYYY-MM-DD')
       userStore.setUser(data)
       message.success(successMessage!)
     } catch (err: any) {
@@ -117,7 +122,8 @@ const uploadAvatarUrl = (options: { fileList: UploadFileInfo[] }) => {
 onMounted(() =>
   UserAPI.getUserInfo().then((res) => {
     const { data } = res
-    data.birthDate = data.birthDate && TimeUtils.formatTime(data.birthDate, 'YYYY-MM-DD')
+    data.birthDate =
+      data.birthDate && TimeUtils.formatTime(data.birthDate, 'YYYY-MM-DD')
     userStore.setUser(data)
     formData.value = data
   })
@@ -125,7 +131,9 @@ onMounted(() =>
 </script>
 
 <template>
-  <div class="flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0 sm:p-4">
+  <div
+    class="flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0 sm:p-4"
+  >
     <NCard class="flex w-full space-y-4 font-medium sm:!w-2/5">
       <div class="flex flex-col items-center space-y-2">
         <template v-if="computedUserInfo?.avatarUrl">

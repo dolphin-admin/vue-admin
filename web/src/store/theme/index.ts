@@ -24,12 +24,16 @@ export const useThemeStore = defineStore('theme', () => {
   /**
    * Naive UI 组件主题
    */
-  const theme = computed(() => (themeMode.value === 'light' ? lightTheme : darkTheme))
+  const theme = computed(() =>
+    themeMode.value === 'light' ? lightTheme : darkTheme
+  )
 
   /**
    * Naive UI 组件主题覆盖
    */
-  const themeOverrides = computed(() => (themeMode.value === 'light' ? lightThemeOverrides : darkThemeOverrides))
+  const themeOverrides = computed(() =>
+    themeMode.value === 'light' ? lightThemeOverrides : darkThemeOverrides
+  )
 
   /**
    * 修改主题模式

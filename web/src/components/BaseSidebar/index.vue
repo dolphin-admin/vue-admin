@@ -3,7 +3,9 @@ import { menuOptions } from '@/constants'
 import type { Lang, MessageSchema } from '@/types'
 import CollapseIcon from '~icons/line-md/chevron-triple-left'
 
-const { t } = useI18n<{ message: MessageSchema }, Lang>({ useScope: 'global' })
+const { t } = useI18n<{ message: MessageSchema }, Lang>({
+  useScope: 'global'
+})
 
 const route = useRoute()
 const router = useRouter()
@@ -36,7 +38,13 @@ watch(
 <template>
   <div
     class="bg-light-default dark:bg-dark-default absolute inset-y-0 left-0 z-[100] h-full border-r border-gray-300 shadow-sm transition-[width] dark:border-gray-950 sm:static"
-    :class="[sidebarStore.isDisplay ? (sidebarStore.isCollapse ? 'w-16' : 'w-56') : 'w-0']"
+    :class="[
+      sidebarStore.isDisplay
+        ? sidebarStore.isCollapse
+          ? 'w-16'
+          : 'w-56'
+        : 'w-0'
+    ]"
   >
     <!-- Header -->
     <div
@@ -53,7 +61,13 @@ watch(
       />
       <span
         class="cursor-pointer whitespace-nowrap text-sm tracking-wide transition-all"
-        :class="[sidebarStore.isDisplay ? (sidebarStore.isCollapse ? 'ml-0 hidden' : 'ml-3 w-auto') : 'hidden']"
+        :class="[
+          sidebarStore.isDisplay
+            ? sidebarStore.isCollapse
+              ? 'ml-0 hidden'
+              : 'ml-3 w-auto'
+            : 'hidden'
+        ]"
       >
         {{ t('App.Name') }}
       </span>

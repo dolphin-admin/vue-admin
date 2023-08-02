@@ -4,7 +4,9 @@ import { io } from 'socket.io-client'
 
 import type { MessageSchema } from '@/types'
 
-const { t, locale } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+const { t, locale } = useI18n<{ message: MessageSchema }>({
+  useScope: 'global'
+})
 const userStore = useUserStore()
 const message = useMessage()
 

@@ -69,7 +69,9 @@ const handleStatusChange = (status: Status) => {
         <div class="flex items-center space-x-4">
           <NButton
             type="primary"
-            :disabled="currentStatus !== 'pending' && currentStatus !== 'stopped'"
+            :disabled="
+              currentStatus !== 'pending' && currentStatus !== 'stopped'
+            "
             @click="handleStart"
           >
             {{ t('Common.Start') }}

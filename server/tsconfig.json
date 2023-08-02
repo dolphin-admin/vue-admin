@@ -1,3 +1,37 @@
 {
-  "extends": "../tsconfig.node.json"
+  "extends": "../tsconfig.base.json",
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "dist",
+    "node_modules"
+  ],
+  "compilerOptions": {
+    "baseUrl": "./",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "module": "CommonJS",
+    "target": "ES2021",
+    "incremental": false,
+    "composite": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "@prisma/pg": [
+        "src/prisma/generated/pg"
+      ],
+      "@prisma/mongo": [
+        "src/prisma/generated/mongo"
+      ]
+    }
+  },
+  "ts-node": {
+    "require": [
+      "tsconfig-paths/register"
+    ]
+  }
 }
