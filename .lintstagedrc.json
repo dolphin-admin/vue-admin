@@ -4,6 +4,7 @@
     "git add"
   ],
   "*.{js,jsx,ts,tsx,md,html,css,scss,vue}": [
-    "prettier --write"
+    "prettier --write",
+    "git add"
   ]
 }
