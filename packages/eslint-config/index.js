@@ -37,7 +37,6 @@ module.exports = defineConfig({
       './server/tsconfig.json',
       './web/tsconfig.json',
       './docs/tsconfig.json',
-      './internal/*/tsconfig.json',
       './packages/*/tsconfig.json'
     ],
     tsconfigRootDir: process.cwd(),
@@ -54,7 +53,7 @@ module.exports = defineConfig({
       }
     },
     {
-      files: ['*.js', './internal/eslint-config/index.js'],
+      files: ['*.js', './packages/eslint-config/index.js'],
       extends: ['plugin:@typescript-eslint/disable-type-checked'],
       rules: {
         '@typescript-eslint/explicit-function-return-type': 'off'
