@@ -68,7 +68,7 @@ export default defineConfig(({ mode }) => {
             ],
             axios: [['default', 'axios']],
             dayjs: [['default', 'dayjs']],
-            d3: [['default', 'd3']],
+            d3: [['*', 'd3']],
             'naive-ui': [
               'useDialog',
               'useMessage',
