@@ -1,4 +1,5 @@
-import type { AppData, RecordItem, Geography, TrafficTime, TrafficData } from '@/types'
+import type { AppData, Geography, RecordItem, TrafficTime } from '@/types'
+
 const { version } = siteMetaData
 
 export const useTrafficStore = defineStore('traffic', () => {
@@ -7,7 +8,7 @@ export const useTrafficStore = defineStore('traffic', () => {
    */
   const appData = reactive<AppData>({
     app: 'web_PC',
-    version: version,
+    version,
     env: 'DEV',
     ip: '',
     source: '',
@@ -29,13 +30,13 @@ export const useTrafficStore = defineStore('traffic', () => {
 
   const records = reactive<RecordItem[]>([])
 
-  let RecordItem: RecordItem = {}
+  const recordItem: RecordItem = {}
 
   return {
     appData,
     trafficTime,
     geography,
     records,
-    RecordItem
+    recordItem
   }
 })

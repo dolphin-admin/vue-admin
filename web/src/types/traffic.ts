@@ -28,7 +28,6 @@ export interface RecordItem {
   duration?: number
 }
 
-//用户流量列表参数
 export interface UserTrafficsPageType {
   page: number
   pageSize: number

@@ -167,12 +167,6 @@ importers:
         specifier: ^9.16.1
         version: 9.16.1(eslint@8.46.0)
 
-  packages/repo-tools:
-    devDependencies:
-      cross-fetch:
-        specifier: ^4.0.0
-        version: 4.0.0
-
   server:
     dependencies:
       '@nestjs/common':
@@ -5848,6 +5842,7 @@ packages:
       node-fetch: 2.6.12
     transitivePeerDependencies:
       - encoding
+    dev: false
 
   /cross-spawn@7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}

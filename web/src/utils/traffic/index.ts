@@ -1,5 +1,3 @@
-import Request from '@/api/axios'
-import { resolve } from 'path'
 const message = useMessage()
 
 export class TrafficUtils {
@@ -31,22 +29,21 @@ export class TrafficUtils {
     return new Promise((resolve, reject) => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
-          function (position) {
+          (position) => {
             // 获取用户的地理位置信息，并将其作为 Promise 的结果返回
             resolve(position.coords)
           },
-          function (error) {
+          (error) => {
             if (error.code === 1) {
               // 用户拒绝了授权请求，需要再次请求授权
-              const message = '请授权以获取您的位置信息'
-              if (confirm(message)) {
+              if (window.confirm('请授权以获取您的位置信息')) {
                 // 用户同意了授权请求，重新获取地理位置信息
                 navigator.geolocation.getCurrentPosition(
-                  function (position) {
+                  (position) => {
                     resolve(position.coords)
                   },
-                  function (error) {
-                    reject(error)
+                  (err) => {
+                    reject(err)
                   }
                 )
               }
@@ -99,9 +96,8 @@ export class TrafficUtils {
   static getEnv() {
     if (this.SITE_PATH.includes('localhost')) {
       return 'DEV'
-    } else {
-      return 'PRO'
     }
+    return 'PRO'
   }
 
   /**
@@ -110,10 +106,10 @@ export class TrafficUtils {
   static getApp() {
     if (/Windows|Macintosh/.test(this.USER_AGENT)) {
       return 'web_PC'
-    } else if (/Android|iPhone/.test(this.USER_AGENT)) {
-      return 'web_mobile'
-    } else {
-      return 'desktop'
     }
+    if (/Android|iPhone/.test(this.USER_AGENT)) {
+      return 'web_mobile'
+    }
+    return 'desktop'
   }
 }

@@ -84,7 +84,7 @@ const getDuration = (enter: string | undefined, leave: string | undefined) => {
 const logout = () => {
   // trafficValue.leaveAt = new Date().toISOString()
   // trafficValue.duration = getDuration(props.traffic.enterAt, trafficValue.leaveAt)
-  // TrafficAPI.userTraffics({ ...props.traffic, ...trafficValue })
+  // TrafficAPI.reportUserTraffic({ ...props.traffic, ...trafficValue })
   // .then(() => {
   AuthUtils.clearToken()
   userStore.clearUser()

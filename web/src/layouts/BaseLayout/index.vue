@@ -1,18 +1,17 @@
 <script setup lang="ts">
-import type { AppData, RecordItem, Geography, TrafficTime, TrafficData } from '@/types'
+import type { RecordItem } from '@/types'
+
 const userStore = useUserStore()
 const trafficStore = useTrafficStore()
 const route = useRoute()
 const router = useRouter()
 
 const records = reactive<RecordItem[]>([])
-let RecordItem: RecordItem = {}
+const recordItem: RecordItem = {}
 
 // 若没有授权，则显示系统 loading
 const loading = ref(true)
-
-import { NavigationGuardNext, RouteLocationNormalized } from 'vue-router'
-//统计用户流量信息
+// 统计用户流量信息
 
 // const appData = reactive<AppData>({
 //   app: 'web_PC',
@@ -36,7 +35,7 @@ import { NavigationGuardNext, RouteLocationNormalized } from 'vue-router'
 //   area: ''
 // })
 
-//获取用户的appData信息
+// 获取用户的appData信息
 // const getAppData = () => {
 //   const sitePath = window.location.origin + window.location.pathname
 //   if (sitePath.includes('localhost')) {
@@ -55,7 +54,7 @@ import { NavigationGuardNext, RouteLocationNormalized } from 'vue-router'
 //   }
 // }
 
-//获取用户IP地址
+// 获取用户IP地址
 // const getIP = () => {
 //   fetch('https://api.ipify.org?format=json')
 //     .then((response) => response.json())
@@ -140,11 +139,14 @@ const checkLogin = async () => {
       trafficStore.geography.latitude = res.latitude
       trafficStore.geography.altitude = res.altitude
       trafficStore.geography.longitude = res.longitude
-      trafficStore.geography.area = (await TrafficUtils.getArea(res.latitude, res.longitude)) as string
+      trafficStore.geography.area = (await TrafficUtils.getArea(
+        res.latitude,
+        res.longitude
+      )) as string
       trafficStore.appData.env = TrafficUtils.getEnv()
       trafficStore.appData.app = TrafficUtils.getApp()
-    } catch (error) {
-      console.log(error)
+    } catch {
+      //
     }
     if (!userStore.hasData()) {
       const { data } = (await UserAPI.getUserInfo()) || {}
@@ -163,7 +165,7 @@ const checkLogin = async () => {
   }
 }
 
-//进入路由时候触发
+// 进入路由时候触发
 // onBeforeRouteEnter((to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) => {
 //   console.log('1111111')
 //   // 在这里添加路由进入时的逻辑
@@ -177,10 +179,10 @@ const checkLogin = async () => {
 //   next()
 // })
 
-//离开路由的时候触发
+// 离开路由的时候触发
 onBeforeRouteLeave((to, from) => {
-  RecordItem.path = from.fullPath
-  const title = from.meta.title
+  recordItem.path = from.fullPath
+  const { title } = from.meta
   let pageTitle = ''
   if (typeof title === 'function') {
     pageTitle = title()
@@ -190,10 +192,10 @@ onBeforeRouteLeave((to, from) => {
   // RecordItem.title = pageTitle
   // RecordItem.leaveAt = new Date().toISOString()
   // RecordItem.duration = getDuration(RecordItem.enterAt, RecordItem.leaveAt)
-  records.push(RecordItem)
+  records.push(recordItem)
 })
 
-//向后台发送数据
+// 向后台发送数据
 const handleTraffic = () => {
   // if (records.length === 0) return
   // trafficTime.leaveAt = new Date().toISOString()
@@ -204,7 +206,7 @@ const handleTraffic = () => {
   //   ...geography,
   //   records
   // }
-  // TrafficAPI.userTraffics(body)
+  // TrafficAPI.reportUserTraffic(body)
   //   .then((res) => {
   //     console.log(res)
   //   })
@@ -221,17 +223,15 @@ const handleTraffic = () => {
 //     records
 //   }
 // })
+
 onBeforeMount(() => checkLogin())
 
-onMounted(() => {
-  // 页面加载完成时添加 beforeunload 事件监听
-  window.addEventListener('beforeunload', handleTraffic)
-})
+// 页面加载完成时添加 beforeunload 事件监听
+onMounted(() => window.addEventListener('beforeunload', handleTraffic))
 
-onBeforeUnmount(() => {
-  // 页面销毁前移除 beforeunload 事件监听
-  window.removeEventListener('beforeunload', handleTraffic)
-})
+// 页面销毁前移除 beforeunload 事件监听
+
+onBeforeUnmount(() => window.removeEventListener('beforeunload', handleTraffic))
 </script>
 
 <template>
