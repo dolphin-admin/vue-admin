@@ -8,6 +8,8 @@
     "web:build": "pnpm web:type:check && pnpm --filter=web build",
     "web:preview": "pnpm --filter=web preview",
     "web:type:check": "pnpm --filter=web type:check",
+    "web:eslint:check": "pnpm --filter=web eslint:check",
+    "web:eslint:fix": "pnpm --filter=web eslint:fix",
     "desktop:dev": "pnpm --filter=web desktop:dev",
     "desktop:build": "pnpm --filter=web desktop:build",
     "server:start": "pnpm --filter=server start",
@@ -77,7 +79,7 @@
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.2.0",
     "typescript": "~5.1.6",
-    "vite": "^4.4.7",
+    "vite": "^4.4.8",
     "vue-tsc": "^1.8.8"
   },
   "config": {

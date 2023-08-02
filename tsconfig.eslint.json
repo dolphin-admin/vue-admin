@@ -1,3 +1,10 @@
 {
-  "extends": "./tsconfig.base.json"
+  "extends": "./web/tsconfig.json",
+  "include": [
+    "web/**/*.ts",
+    "web/**/*.tsx",
+    "web/**/*.vue",
+    "web/**/*.json",
+    "web/vite.config.ts"
+  ]
 }

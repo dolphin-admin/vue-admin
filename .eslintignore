@@ -2,6 +2,7 @@ node_modules
 .vscode
 /scripts
 pnpm-lock.yaml
+.eslintrc.js
 
 web/build
 web/dist
