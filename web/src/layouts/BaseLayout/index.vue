@@ -178,6 +178,7 @@ router.afterEach((to, from) => {
 
 //向后台发送数据
 const handleTraffic = () => {
+  if (records.length === 0) return
   trafficTime.leaveAt = new Date().toISOString()
   trafficTime.duration = getDuration(trafficTime.enterAt, trafficTime.leaveAt)
   const body = {
