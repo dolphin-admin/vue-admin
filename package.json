@@ -38,7 +38,7 @@
     "docs:preview": "pnpm --filter=docs preview",
     "docs:generate": "pnpm --filter=docs generate",
     "cspell:check": "cspell **",
-    "cspell:sort": "node ./scripts/cspell-sort.js",
+    "cspell:sort": "tsx ./scripts/cspell-sort",
     "eslint:check": "eslint \"**/*.{ts,tsx,js,tsx,vue}\" --color",
     "eslint:fix": "pnpm eslint:check -- --fix",
     "prettier:check": "prettier --check .",

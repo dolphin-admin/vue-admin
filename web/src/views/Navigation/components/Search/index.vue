@@ -67,7 +67,7 @@ const handleFocus = () => {
           @click="router.push({ name: item.key as string })"
         >
           <template v-if="item.show">
-            <component :is="(item.icon as any)" />
+            <component :is="item.icon as any" />
             <component :is="item.label" />
           </template>
         </div>

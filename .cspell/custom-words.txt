@@ -3,6 +3,7 @@ auths
 autoincrement
 axios
 Bootstrapper
+classname
 commitlint
 datasource
 datasources
@@ -63,4 +64,3 @@ vfonts
 vueuse
 webos
 wordprocessingml
-classname
