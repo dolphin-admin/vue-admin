@@ -407,8 +407,8 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     key: 'roles',
     width: 200,
     render: (row) => {
-      const tags = (row?.roles || []).map((role) => {
-        return h(
+      const tags = (row?.roles || []).map((role) =>
+        h(
           NTag,
           {
             class: '!mr-2',
@@ -419,7 +419,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
             default: () => role
           }
         )
-      })
+      )
       return tags
     }
   },
@@ -648,7 +648,7 @@ onMounted(() => queryList())
           />
         </div>
         <div
-          class="flex w-full justify-between sm:justify-end space-x-3 items-center"
+          class="flex w-full items-center justify-between space-x-3 sm:justify-end"
         >
           <NTooltip>
             <template #trigger>

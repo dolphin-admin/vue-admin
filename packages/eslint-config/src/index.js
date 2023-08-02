@@ -30,13 +30,14 @@ module.exports = defineConfig({
   settings: {
     'import/resolver': {
       node: {
-        extensions: ['.js', '.mjs', '.ts', '.d.ts', '.tsx']
+        extensions: ['.js', '.mjs', '.ts', '.d.ts', '.tsx', 'vue']
       }
     }
   },
   reportUnusedDisableDirectives: true, // 报告未使用的 eslint-disable 指令
-  parser: '@typescript-eslint/parser',
+  parser: 'vue-eslint-parser', // 使用自定义 vue 解析器
   parserOptions: {
+    parser: '@typescript-eslint/parser',
     project: [
       'tsconfig.eslint.json',
       'server/tsconfig.json',
@@ -47,6 +48,7 @@ module.exports = defineConfig({
     tsconfigRootDir: process.cwd(),
     sourceType: 'module',
     ecmaVersion: 'latest',
+    extraFileExtensions: ['.vue'], // 支持 .vue 文件
     allowAutomaticSingleRunInference: true,
     EXPERIMENTAL_useSourceOfProjectReferenceRedirect: false
   },
@@ -65,19 +67,9 @@ module.exports = defineConfig({
       }
     },
     {
-      files: ['scripts/**/*'],
+      files: ['*.{ts,tsx,vue}'],
       rules: {
-        'no-console': 'off'
-      }
-    },
-    {
-      files: [
-        'server/**/*.{ts}',
-        'web/**/*.{ts,tsx}',
-        'docs/**/*.{ts,tsx}',
-        'packages/*/src/**/*.{ts}'
-      ],
-      rules: {
+        'no-unused-vars': 'off',
         '@typescript-eslint/no-unused-vars': 'off',
         'no-shadow': 'off',
         '@typescript-eslint/no-shadow': 'error',
@@ -88,21 +80,30 @@ module.exports = defineConfig({
       }
     },
     {
-      files: ['web/**/*.vue'],
-      parser: 'vue-eslint-parser',
-      parserOptions: {
-        parser: '@typescript-eslint/parser',
-        extraFileExtensions: ['.vue'],
-        ecmaVersion: 'latest'
-      },
+      files: ['*.vue'],
       rules: {
-        'no-undef': 'off',
         'vue/no-v-html': 'off', // 允许使用 v-html
         'vue/multi-word-component-names': 'off', // 允许单个单词的组件名，例如 index.vue
-        'import/no-absolute-path': 'off', // 允许绝对路径
+        'vue/component-tags-order': [
+          'error',
+          {
+            order: ['script', 'template', 'style']
+          }
+        ], // 优先 script，其次 template，最后 style
+        'tailwindcss/classnames-order': 'error', // TailwindCSS 类名排序
+        'tailwindcss/enforces-shorthand': 'error', // TailwindCSS 简写合并
         'tailwindcss/no-custom-classname': 'off' // TailwindCSS 中允许自定义类名
       }
     }
+    // TODO: 暂未处理测试文件 🚀
+    // {
+    //   files: [
+    //     './server/**/*spec.ts',
+    //     './server/**/*test.ts',
+    //     './packages/*/tests/**/*spec.ts',
+    //     './packages/*/tests/**/*test.ts'
+    //   ]
+    // }
   ],
   rules: {
     quotes: ['error', 'single'], // 强制使用单引号
@@ -136,8 +137,8 @@ module.exports = defineConfig({
     // eslint-plugin-import
     'import/first': 'error', // import 必须放在文件顶部
     'import/newline-after-import': 'error', // import 之后必须空一行
-    'import/no-absolute-path': 'error', // 不允许绝对路径
-    'import/no-default-export': 'error', // 不允许默认导出
+    'import/no-unresolved': 'off', // 允许导入未解析的模块
+    'import/no-absolute-path': 'off', // 允许导入绝对路径
     'import/no-duplicates': 'error', // 禁止重复导入
     'import/extensions': 'off', // 允许导入时带文件扩展名
     'import/no-extraneous-dependencies': [
@@ -149,10 +150,8 @@ module.exports = defineConfig({
       }
     ], // 允许 devDependencies，peerDependencies，不允许 optionalDependencies
     'import/no-mutable-exports': 'error', // 禁止导出 let, var 声明的变量
-    'import/no-named-default': 'error', // 统一使用命名导出
-    'import/no-named-export': 'off', // 统一使用命名导出
     'import/no-self-import': 'error', // 禁止自导入
-    'import/prefer-default-export': 'off', // 统一使用命名导出
+    'import/prefer-default-export': 'off', // 仅导出一个变量时，不要求默认导出
 
     // eslint-plugin-simple-import-sort
     'simple-import-sort/imports': 'error', // import 排序

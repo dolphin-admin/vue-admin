@@ -4,8 +4,10 @@ import UnauthorizedIcon from '~icons/ic/baseline-do-not-disturb'
 import DigitalAnimationIcon from '~icons/ic/baseline-hourglass-empty'
 import QRCodeIcon from '~icons/ic/baseline-qrcode'
 import TimelineIcon from '~icons/ic/baseline-timeline'
+import ListTemplatesIcon from '~icons/ic/outline-list-alt'
 import PrintIcon from '~icons/ic/outline-local-printshop'
 import HomeIcon from '~icons/ic/sharp-house'
+import TrafficStatisticsIcon from '~icons/ic/twotone-ramp-left'
 import IAmATeapotIcon from '~icons/icon-park-outline/tea-drink'
 import InternalServerErrorIcon from '~icons/lucide/server-off'
 import UserInfoIcon from '~icons/mdi/account-circle'
@@ -18,18 +20,16 @@ import ExcelIcon from '~icons/mdi/microsoft-excel'
 import WebSocketIcon from '~icons/tabler/brand-socket-io'
 import NotFoundIcon from '~icons/tabler/error-404'
 import ChatChannelsIcon from '~icons/tabler/message-2'
-import TrafficStatisticsIcon from '~icons/ic/twotone-ramp-left'
-import ListTemplatesIcon from '~icons/ic/outline-list-alt'
 
 import {
   BUILTIN_COMPONENTS_PREFIX,
+  CODE_TEMPLATES_PREFIX,
   ERROR_PAGES_PREFIX,
   SYSTEM_APPLICATIONS_PREFIX,
   SYSTEM_FUNCTIONS_PREFIX,
   SYSTEM_TOOLS_PREFIX,
   UNIVERSAL_COMPONENTS_PREFIX,
-  WEBSITE_ANALYTICS_PREFIX,
-  CODE_TEMPLATES_PREFIX
+  WEBSITE_ANALYTICS_PREFIX
 } from './prefix'
 
 const { t } = i18n.global

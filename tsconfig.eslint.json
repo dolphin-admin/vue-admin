@@ -2,7 +2,7 @@
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "types": [
-      "@types/node"
+      "node"
     ],
     "noEmit": true,
     "allowJs": true

@@ -23,7 +23,7 @@ const writeContent = sortedWords.join(os.EOL)
 fs.writeFileSync('.cspell/custom-words.txt', writeContent)
 
 console.log(
-  `${chalk.bgBlue('🐬 Dolphin Admin')} ${chalk.greenBright(
+  `${chalk.bgBlue(' 🐬 Dolphin Admin ')} ${chalk.greenBright(
     'The dictionary is sorted successfully according to A-Z!'
   )}`
 )

@@ -1,8 +1,17 @@
 {
   "name": "dolphin-admin",
   "private": true,
-  "version": "0.0.1",
   "author": "Bruce Song <recall4056@gmail.com> (https://github.com/recallwei/)",
+  "contributors": [
+    "Bruce Song <recall4056@gmail.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bit-ocean-studio/dolphin-admin"
+  },
+  "bugs": {
+    "url": "https://github.com/bit-ocean-studio/dolphin-admin/issues"
+  },
   "scripts": {
     "web:dev": "pnpm --filter=web dev",
     "web:build": "pnpm web:type:check && pnpm --filter=web build",

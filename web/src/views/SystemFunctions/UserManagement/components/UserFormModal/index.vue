@@ -6,7 +6,7 @@ import EditIcon from '~icons/ic/sharp-edit'
 
 export interface Props {
   userFormData?: User
-  isEdit: Boolean
+  isEdit: boolean
 }
 
 const props = defineProps<Props>()

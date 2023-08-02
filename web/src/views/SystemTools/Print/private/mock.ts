@@ -13,6 +13,7 @@ import VueIcon from '~icons/logos/vue'
 import GatsbyIcon from '~icons/vscode-icons/file-type-gatsby'
 
 import type { FrameworkItem } from './types'
+
 const { t, renderIcon } = RenderUtils
 
 export const columns: DataTableBaseColumn<FrameworkItem>[] = [

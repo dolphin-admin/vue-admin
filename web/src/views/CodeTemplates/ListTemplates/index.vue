@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import type { DataTableFilterState, DataTableSortState } from 'naive-ui'
+
 import type { Lang, MessageSchema, Sorter, User } from '@/types'
 import { AuthType, OrderType } from '@/types'
-import { UserPageModel } from './private'
-
-import SearchIcon from '~icons/line-md/search'
+import GitHubIcon from '~icons/ant-design/github-outlined'
 import ResetIcon from '~icons/ic/round-refresh'
 import CreateIcon from '~icons/ic/sharp-add'
 import EditIcon from '~icons/ic/sharp-edit'
-import GitHubIcon from '~icons/ant-design/github-outlined'
+import SearchIcon from '~icons/line-md/search'
 import GoogleIcon from '~icons/logos/google-icon'
+
+import { UserPageModel } from './private'
 
 const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({
   useScope: 'global'
@@ -58,8 +59,8 @@ const authTypeColumn: DataTableBaseColumn<User> = {
     }
   ],
   render: (row) => {
-    const tags = (row?.authTypes || []).map((authType) => {
-      return h(
+    const tags = (row?.authTypes || []).map((authType) =>
+      h(
         NTag,
         {
           class: '!mr-2',
@@ -89,7 +90,7 @@ const authTypeColumn: DataTableBaseColumn<User> = {
             )
         }
       )
-    })
+    )
     return tags
   }
 }
@@ -314,7 +315,7 @@ onMounted(() => queryList())
           />
         </div>
         <div
-          class="flex w-full justify-between sm:justify-end space-x-3 items-center"
+          class="flex w-full items-center justify-between space-x-3 sm:justify-end"
         >
           <NTooltip>
             <template #trigger>
