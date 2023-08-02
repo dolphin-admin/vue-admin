@@ -38,11 +38,11 @@ module.exports = defineConfig({
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: [
-      './tsconfig.eslint.json',
-      './server/tsconfig.json',
-      './web/tsconfig.json',
-      './docs/tsconfig.json',
-      './packages/*/tsconfig.json'
+      'tsconfig.eslint.json',
+      'server/tsconfig.json',
+      'web/tsconfig.json',
+      'docs/tsconfig.json',
+      'packages/*/tsconfig.json'
     ],
     tsconfigRootDir: process.cwd(),
     sourceType: 'module',
@@ -58,10 +58,10 @@ module.exports = defineConfig({
       }
     },
     {
-      files: ['*.js', './packages/eslint-config/index.js'],
+      files: ['*.js'],
       extends: ['plugin:@typescript-eslint/disable-type-checked'],
       rules: {
-        '@typescript-eslint/explicit-function-return-type': 'off'
+        '@typescript-eslint/no-var-requires': 'off'
       }
     },
     {
@@ -72,9 +72,10 @@ module.exports = defineConfig({
     },
     {
       files: [
-        './server/**/*.{ts}',
-        './web/**/*.{ts,tsx}',
-        './docs/**/*.{ts,tsx}'
+        'server/**/*.{ts}',
+        'web/**/*.{ts,tsx}',
+        'docs/**/*.{ts,tsx}',
+        'packages/*/src/**/*.{ts}'
       ],
       rules: {
         '@typescript-eslint/no-unused-vars': 'off',
@@ -87,7 +88,7 @@ module.exports = defineConfig({
       }
     },
     {
-      files: ['./web/**/*.vue'],
+      files: ['web/**/*.vue'],
       parser: 'vue-eslint-parser',
       parserOptions: {
         parser: '@typescript-eslint/parser',
