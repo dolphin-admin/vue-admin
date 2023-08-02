@@ -1,7 +1,7 @@
+import chalk from 'chalk'
+import fetch from 'cross-fetch'
 import fs from 'fs'
 import path from 'path'
-import fetch from 'cross-fetch'
-import chalk from 'chalk'
 
 // 忽略的用户，机器人
 const IGNORED_USERS = new Set([
@@ -141,7 +141,7 @@ function writeTable(contributors: User[], perLine = 5): void {
   )
   lines.push('')
 
-  fs.writeFileSync(path.join(__dirname, './CONTRIBUTORS.md'), lines.join('\n'))
+  fs.writeFileSync(path.join(__dirname, '../CONTRIBUTORS.md'), lines.join('\n'))
 }
 
 async function main(): Promise<void> {

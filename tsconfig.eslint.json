@@ -8,6 +8,7 @@
     "allowJs": true
   },
   "include": [
-    ".eslintrc.js"
+    ".eslintrc.js",
+    "scripts/*.ts"
   ]
 }

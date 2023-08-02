@@ -134,7 +134,12 @@ module.exports = defineConfig({
       }
     ],
 
+    // eslint-plugin-simple-import-sort
+    'simple-import-sort/imports': 'error', // import 排序
+    'simple-import-sort/exports': 'error', // export 排序
+
     // eslint-plugin-import
+    'import/order': 'off', // 禁用 import 排序，使用 simple-import-sort
     'import/first': 'error', // import 必须放在文件顶部
     'import/newline-after-import': 'error', // import 之后必须空一行
     'import/no-unresolved': 'off', // 允许导入未解析的模块
@@ -151,10 +156,6 @@ module.exports = defineConfig({
     ], // 允许 devDependencies，peerDependencies，不允许 optionalDependencies
     'import/no-mutable-exports': 'error', // 禁止导出 let, var 声明的变量
     'import/no-self-import': 'error', // 禁止自导入
-    'import/prefer-default-export': 'off', // 仅导出一个变量时，不要求默认导出
-
-    // eslint-plugin-simple-import-sort
-    'simple-import-sort/imports': 'error', // import 排序
-    'simple-import-sort/exports': 'error' // export 排序
+    'import/prefer-default-export': 'off' // 仅导出一个变量时，不要求默认导出
   }
 })

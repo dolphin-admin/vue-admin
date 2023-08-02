@@ -1,6 +1,5 @@
 node_modules
 .vscode
-/scripts
 pnpm-lock.yaml
 
 web/build
