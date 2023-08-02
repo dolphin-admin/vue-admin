@@ -45,7 +45,9 @@ const handleReturn = () => {
     <div class="hidden w-52 shrink-0 border border-gray-300 sm:block">
       <ChannelList />
     </div>
-    <div class="relative flex w-full flex-col border-gray-300 sm:flex-1 sm:border-y">
+    <div
+      class="relative flex w-full flex-col border-gray-300 sm:flex-1 sm:border-y"
+    >
       <div class="visible flex justify-between sm:invisible sm:h-2">
         <NIcon
           size="20"

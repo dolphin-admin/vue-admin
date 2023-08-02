@@ -10,7 +10,9 @@ const { t } = i18n.global
  */
 export const processTargetRoute = (to: RouteLocationNormalized) => {
   if (to.meta.title) {
-    document.title = `${typeof to.meta.title === 'function' ? to.meta.title() : to.meta.title} | ${t('App.Name')}`
+    document.title = `${
+      typeof to.meta.title === 'function' ? to.meta.title() : to.meta.title
+    } | ${t('App.Name')}`
   } else {
     document.title = `${t('App.Name')}`
   }

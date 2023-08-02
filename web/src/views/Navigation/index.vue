@@ -94,7 +94,9 @@ onMounted(() => {
 <template>
   <main class="flex items-center justify-center">
     <div class="flex w-[80%] flex-col items-center space-y-4 sm:w-[500px]">
-      <div class="flex w-full flex-col items-center justify-center space-y-1 text-blue-600">
+      <div
+        class="flex w-full flex-col items-center justify-center space-y-1 text-blue-600"
+      >
         <div class="text-xl">{{ t('App.Name') }}</div>
         <div class="flex space-x-2">
           <span class="text-sm text-gray-600">{{ teamName }}</span>
@@ -132,7 +134,9 @@ onMounted(() => {
           class="flex w-[1/4] cursor-pointer flex-col items-center justify-center space-y-2 rounded-md hover:bg-gray-200 dark:hover:bg-slate-500 sm:h-[112px] sm:w-[112px]"
           @click="showModal = true"
         >
-          <div class="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 dark:bg-black">
+          <div
+            class="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 dark:bg-black"
+          >
             <NIcon
               :component="PlusIcon"
               :size="24"

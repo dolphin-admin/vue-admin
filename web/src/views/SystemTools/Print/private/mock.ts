@@ -70,7 +70,10 @@ export const columns: DataTableBaseColumn<FrameworkItem>[] = [
     key: 'description',
     minWidth: 200,
     resizable: true,
-    render: (row) => (typeof row.description === 'function' ? row.description() : row.description)
+    render: (row) =>
+      typeof row.description === 'function'
+        ? row.description()
+        : row.description
   }
 ]
 

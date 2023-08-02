@@ -2,7 +2,12 @@ import fetch from 'cross-fetch'
 import fs from 'fs'
 import path from 'path'
 
-const IGNORED_USERS = new Set(['dependabot[bot]', 'eslint[bot]', 'greenkeeper[bot]', 'semantic-release-bot'])
+const IGNORED_USERS = new Set([
+  'dependabot[bot]',
+  'eslint[bot]',
+  'greenkeeper[bot]',
+  'semantic-release-bot'
+])
 
 const COMPLETELY_ARBITRARY_CONTRIBUTION_COUNT = 3
 const PAGE_LIMIT = 100
@@ -44,7 +49,9 @@ async function* fetchUsers(page = 1): AsyncIterableIterator<Contributor[]> {
   let lastLength = 0
   do {
     // eslint-disable-next-line no-await-in-loop
-    const contributors = await getData<Contributor[] | { message: string }>(`${ContributorsApiUrl}&page=${page}`)
+    const contributors = await getData<Contributor[] | { message: string }>(
+      `${ContributorsApiUrl}&page=${page}`
+    )
 
     if (!Array.isArray(contributors)) {
       throw new Error(contributors?.message ?? 'An error occurred')
@@ -103,7 +110,9 @@ function writeTable(contributors: User[], perLine = 5): void {
     const image = `<img src="${usr.avatar_url}&size=100" width="100px;" alt=""/>`
     const name = `<sub><b>${usr.name || usr.login}</b></sub>`
 
-    lines.push(`    <td align="center"><a href="${usr.html_url}">${image}<br />${name}</a></td>`)
+    lines.push(
+      `    <td align="center"><a href="${usr.html_url}">${image}<br />${name}</a></td>`
+    )
     // eslint-disable-next-line no-plusplus
     ++i
   }
@@ -134,7 +143,10 @@ async function main(): Promise<void> {
 
   const users = await Promise.allSettled(
     githubContributors
-      .filter((usr) => usr.login && usr.type !== 'Bot' && !IGNORED_USERS.has(usr.login))
+      .filter(
+        (usr) =>
+          usr.login && usr.type !== 'Bot' && !IGNORED_USERS.has(usr.login)
+      )
       .map((c) => getData<User>(c.url))
   )
 

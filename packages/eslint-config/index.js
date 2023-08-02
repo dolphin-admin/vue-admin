@@ -21,7 +21,12 @@ module.exports = defineConfig({
     'plugin:vue/vue3-recommended',
     'prettier'
   ],
-  plugins: ['unused-imports', '@typescript-eslint', 'simple-import-sort', 'import'],
+  plugins: [
+    'unused-imports',
+    '@typescript-eslint',
+    'simple-import-sort',
+    'import'
+  ],
   settings: {
     'import/resolver': {
       node: {
@@ -66,7 +71,11 @@ module.exports = defineConfig({
       }
     },
     {
-      files: ['./server/**/*.{ts}', './web/**/*.{ts,tsx}', './docs/**/*.{ts,tsx}'],
+      files: [
+        './server/**/*.{ts}',
+        './web/**/*.{ts,tsx}',
+        './docs/**/*.{ts,tsx}'
+      ],
       rules: {
         '@typescript-eslint/no-unused-vars': 'off',
         'no-shadow': 'off',
@@ -113,7 +122,13 @@ module.exports = defineConfig({
       'error',
       {
         props: true,
-        ignorePropertyModificationsFor: ['target', 'descriptor', 'req', 'request', 'args']
+        ignorePropertyModificationsFor: [
+          'target',
+          'descriptor',
+          'req',
+          'request',
+          'args'
+        ]
       }
     ],
 

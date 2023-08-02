@@ -1,5 +1,10 @@
 // 忽略的用户
-export const IGNORED_USERS = new Set(['dependabot[bot]', 'eslint[bot]', 'greenkeeper[bot]', 'semantic-release-bot'])
+export const IGNORED_USERS = new Set([
+  'dependabot[bot]',
+  'eslint[bot]',
+  'greenkeeper[bot]',
+  'semantic-release-bot'
+])
 
 // 最小贡献次数
 export const COMPLETELY_ARBITRARY_CONTRIBUTION_COUNT = 3

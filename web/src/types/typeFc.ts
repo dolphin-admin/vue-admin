@@ -7,7 +7,13 @@ export type NullableObj<T> = {
 }
 
 export type Merge<T, U> = {
-  [P in keyof (T & U)]: P extends keyof T ? (P extends keyof U ? T[P] & U[P] : T[P]) : P extends keyof U ? U[P] : never
+  [P in keyof (T & U)]: P extends keyof T
+    ? P extends keyof U
+      ? T[P] & U[P]
+      : T[P]
+    : P extends keyof U
+    ? U[P]
+    : never
 }
 
 export type DeepMerge<T, U> = {

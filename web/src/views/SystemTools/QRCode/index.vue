@@ -31,13 +31,16 @@ const makeQRCode = async () => {
 /**
  * 下载二维码
  */
-const downloadFile = () => BrowserUtils.downloadFile(generatedResult.value, 'qrcode.png')
+const downloadFile = () =>
+  BrowserUtils.downloadFile(generatedResult.value, 'qrcode.png')
 </script>
 
 <template>
   <main>
     <div class="flex w-full flex-wrap">
-      <div class="flex w-full flex-col space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0">
+      <div
+        class="flex w-full flex-col space-y-2 sm:flex-row sm:space-x-4 sm:space-y-0"
+      >
         <NCard
           class="grow"
           hoverable

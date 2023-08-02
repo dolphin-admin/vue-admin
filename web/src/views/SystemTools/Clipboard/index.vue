@@ -3,7 +3,9 @@ import type { Lang, MessageSchema } from '@/types'
 
 import { ChineseLyrics, EnglishLyrics } from './private'
 
-const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({ useScope: 'global' })
+const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({
+  useScope: 'global'
+})
 
 const message = useMessage()
 

@@ -11,7 +11,9 @@ import EditIcon from '~icons/ic/sharp-edit'
 import GitHubIcon from '~icons/ant-design/github-outlined'
 import GoogleIcon from '~icons/logos/google-icon'
 
-const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({ useScope: 'global' })
+const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({
+  useScope: 'global'
+})
 
 const { isMobileDevice } = BrowserUtils
 
@@ -157,7 +159,8 @@ const columns = ref<DataTableBaseColumn<User>[]>([
               },
               positiveText: t('Common.Confirm'),
               negativeText: t('Common.Cancel'),
-              onPositiveClick: () => message.success(t('Message.Delete.Success'))
+              onPositiveClick: () =>
+                message.success(t('Message.Delete.Success'))
             },
             {
               trigger: () =>
@@ -272,8 +275,12 @@ onMounted(() => queryList())
 <template>
   <DataTableLayout>
     <template #operate>
-      <div class="flex flex-col items-center space-y-2 sm:flex-row sm:justify-between sm:space-y-0">
-        <div class="flex flex-col items-center space-y-2 sm:flex-row sm:space-x-3 sm:space-y-0">
+      <div
+        class="flex flex-col items-center space-y-2 sm:flex-row sm:justify-between sm:space-y-0"
+      >
+        <div
+          class="flex flex-col items-center space-y-2 sm:flex-row sm:space-x-3 sm:space-y-0"
+        >
           <div class="flex w-full items-center !space-x-2 sm:w-fit">
             <NInput
               v-model:value="queryParams.searchText"
@@ -306,7 +313,9 @@ onMounted(() => queryList())
             @update:value="() => queryList()"
           />
         </div>
-        <div class="flex w-full justify-between sm:justify-end space-x-3 items-center">
+        <div
+          class="flex w-full justify-between sm:justify-end space-x-3 items-center"
+        >
           <NTooltip>
             <template #trigger>
               <NButton

@@ -1,4 +1,10 @@
-import type { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
+import type {
+  AxiosError,
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosResponse,
+  InternalAxiosRequestConfig
+} from 'axios'
 
 import router from '@/router'
 import type { PageModel } from '@/types'
@@ -30,7 +36,10 @@ class Request {
       (req: InternalAxiosRequestConfig) => {
         // 设置 token
         const { url } = req
-        if (AuthUtils.isAuthenticated() && url?.startsWith(GlobalEnvConfig.BASE_API_PREFIX)) {
+        if (
+          AuthUtils.isAuthenticated() &&
+          url?.startsWith(GlobalEnvConfig.BASE_API_PREFIX)
+        ) {
           req.headers.Authorization = `Bearer ${AuthUtils.getToken()}`
         }
 
@@ -122,7 +131,11 @@ class Request {
    * @param params 请求参数
    * @param config 请求配置
    */
-  get<T>(url: string, params?: Record<string, unknown> | PageModel, config?: AxiosRequestConfig): Promise<T> {
+  get<T>(
+    url: string,
+    params?: Record<string, unknown> | PageModel,
+    config?: AxiosRequestConfig
+  ): Promise<T> {
     return this.instance.get(url, { params, ...config })
   }
 
@@ -132,7 +145,11 @@ class Request {
    * @param data 请求数据
    * @param config 请求配置
    */
-  post<T>(url: string, data?: Record<string, unknown>, config?: AxiosRequestConfig): Promise<T> {
+  post<T>(
+    url: string,
+    data?: Record<string, unknown>,
+    config?: AxiosRequestConfig
+  ): Promise<T> {
     return this.instance.post(url, data, config)
   }
 
@@ -142,7 +159,11 @@ class Request {
    * @param data 请求数据
    * @param config 请求配置
    */
-  put<T>(url: string, data?: Record<string, unknown>, config?: AxiosRequestConfig): Promise<T> {
+  put<T>(
+    url: string,
+    data?: Record<string, unknown>,
+    config?: AxiosRequestConfig
+  ): Promise<T> {
     return this.instance.put(url, data, config)
   }
 
@@ -152,7 +173,11 @@ class Request {
    * @param params 请求参数
    * @param config 请求配置
    */
-  delete<T>(url: string, params?: Record<string, unknown>, config?: AxiosRequestConfig): Promise<T> {
+  delete<T>(
+    url: string,
+    params?: Record<string, unknown>,
+    config?: AxiosRequestConfig
+  ): Promise<T> {
     return this.instance.delete(url, { params, ...config })
   }
 
@@ -162,7 +187,11 @@ class Request {
    * @param data 请求数据
    * @param config 请求配置
    */
-  patch<T>(url: string, data?: Record<string, unknown>, config?: AxiosRequestConfig): Promise<T> {
+  patch<T>(
+    url: string,
+    data?: Record<string, unknown>,
+    config?: AxiosRequestConfig
+  ): Promise<T> {
     return this.instance.patch(url, data, config)
   }
 }

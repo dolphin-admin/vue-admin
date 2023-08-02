@@ -3,7 +3,9 @@ import type { Lang, MessageSchema } from '@/types'
 
 const router = useRouter()
 const userStore = useUserStore()
-const { t } = useI18n<{ message: MessageSchema }, Lang>({ useScope: 'global' })
+const { t } = useI18n<{ message: MessageSchema }, Lang>({
+  useScope: 'global'
+})
 const message = useMessage()
 const [submitLoading, submitLoadingDispatcher] = useLoading(false)
 
@@ -41,7 +43,8 @@ const changePasswordRules: FormRules = {
       trigger: ['blur', 'input']
     },
     {
-      validator: (_: FormItemRule, value: string) => value === changePasswordData.newPassword,
+      validator: (_: FormItemRule, value: string) =>
+        value === changePasswordData.newPassword,
       message: t('Validation.ConfirmPasswordNotMatch')
     }
   ]

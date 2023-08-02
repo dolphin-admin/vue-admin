@@ -4,7 +4,9 @@ import type { LoadingDispatcher } from './type'
  * 加载状态 Hook
  * @param defaultStatus 默认的加载状态
  */
-export const useLoading = (defaultStatus: boolean = false): [Ref<boolean>, LoadingDispatcher] => {
+export const useLoading = (
+  defaultStatus: boolean = false
+): [Ref<boolean>, LoadingDispatcher] => {
   /**
    * 加载状态
    */

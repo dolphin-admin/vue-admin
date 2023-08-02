@@ -27,7 +27,9 @@ const handleClose = () => emit('close', props.data.key as string)
         :size="12"
       />
     </div>
-    <div class="mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 dark:bg-black">
+    <div
+      class="mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 dark:bg-black"
+    >
       <component :is="props.data.icon as any" />
     </div>
     <component :is="props.data.label" />

@@ -31,7 +31,9 @@ watch(
     const routePath = route.fullPath.split('/').filter((path) => path !== '')
 
     // 获取一级菜单
-    const firstLevelOption = firstLevelOptions.value.find((option) => option.key === routePath[0])
+    const firstLevelOption = firstLevelOptions.value.find(
+      (option) => option.key === routePath[0]
+    )
     // 如果一级菜单不存在，则直接返回
     if (!firstLevelOption) {
       return
@@ -47,7 +49,9 @@ watch(
     // 设置二级菜单的选项
     secondLevelOptions.value = firstLevelOption.children
     // 获取二级菜单
-    const secondLevelOption = firstLevelOption.children.find((option) => option.key === routePath[1])
+    const secondLevelOption = firstLevelOption.children.find(
+      (option) => option.key === routePath[1]
+    )
     // 如果二级菜单不存在，则直接返回
     if (!secondLevelOption) {
       secondLevelPath.value = ''

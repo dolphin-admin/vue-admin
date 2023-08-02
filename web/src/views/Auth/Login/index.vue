@@ -124,7 +124,9 @@ onMounted(() => {
   const localStorageData = AuthUtils.getRememberedAccount()
   if (localStorageData) {
     try {
-      const { username, password } = JSON.parse(localStorageData) as RememberedAccountData
+      const { username, password } = JSON.parse(
+        localStorageData
+      ) as RememberedAccountData
       formData.username = username
       formData.password = password
       rememberPassword.value = true
@@ -142,7 +144,9 @@ onMounted(() => {
     :model="formData"
     class="bg-light-default dark:bg-dark-default absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg px-4 py-8 shadow-md transition-colors sm:w-[260px] md:w-[340px]"
   >
-    <div class="select-none text-center text-lg font-semibold">{{ t('Menu.Login') }}</div>
+    <div class="select-none text-center text-lg font-semibold">
+      {{ t('Menu.Login') }}
+    </div>
 
     <NFormItem
       path="username"
@@ -174,7 +178,9 @@ onMounted(() => {
       />
     </NFormItem>
 
-    <div class="text-grey-300 flex items-center justify-between text-xs font-light">
+    <div
+      class="text-grey-300 flex items-center justify-between text-xs font-light"
+    >
       <NCheckbox
         v-model:checked="rememberPassword"
         size="small"

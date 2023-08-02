@@ -8,7 +8,9 @@ export class NavigationUtils {
    * 获取快捷方式列表
    */
   static getShortcuts() {
-    const shortcuts = localStorage.getItem(this.LOCAL_STORAGE_NAVIGATION_SHORTCUTS)
+    const shortcuts = localStorage.getItem(
+      this.LOCAL_STORAGE_NAVIGATION_SHORTCUTS
+    )
     if (!shortcuts) return []
     try {
       return JSON.parse(shortcuts)
@@ -24,7 +26,10 @@ export class NavigationUtils {
     const shortcuts = this.getShortcuts()
     shortcuts.push(key)
     const stringifiedValue = JSON.stringify(shortcuts)
-    localStorage.setItem(this.LOCAL_STORAGE_NAVIGATION_SHORTCUTS, stringifiedValue)
+    localStorage.setItem(
+      this.LOCAL_STORAGE_NAVIGATION_SHORTCUTS,
+      stringifiedValue
+    )
   }
 
   /**

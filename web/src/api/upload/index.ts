@@ -14,10 +14,16 @@ export class UploadAPI {
    * @param options 上传配置
    */
   static uploadFile(data: any, options?: UploadOptions) {
-    return Request.post<BaseResponse<UploadResponse>>(this.UPLOAD_API_PREFIX, data, {
-      headers: this.headers,
-      onUploadProgress: options?.onUploadProgress ? options.onUploadProgress : () => {}
-    })
+    return Request.post<BaseResponse<UploadResponse>>(
+      this.UPLOAD_API_PREFIX,
+      data,
+      {
+        headers: this.headers,
+        onUploadProgress: options?.onUploadProgress
+          ? options.onUploadProgress
+          : () => {}
+      }
+    )
   }
 
   /**

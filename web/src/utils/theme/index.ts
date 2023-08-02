@@ -32,7 +32,11 @@ export class ThemeUtils {
    * 获取默认主题
    */
   static getDefaultThemeMode(): Theme {
-    if (this.getTheme() === 'dark' || (!this.getTheme() && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    if (
+      this.getTheme() === 'dark' ||
+      (!this.getTheme() &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
       return 'dark'
     }
     return 'light'

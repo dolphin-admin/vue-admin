@@ -38,15 +38,26 @@ const initChart = () => {
     .attr('fill', 'skyblue')
     .attr('d', path)
     .on('mouseover', function (this: SVGCircleElement, d: any) {
-      d3.select(this).attr('opacity', 0.8).attr('fill', 'green').attr('stroke-width', 2)
+      d3.select(this)
+        .attr('opacity', 0.8)
+        .attr('fill', 'green')
+        .attr('stroke-width', 2)
     })
     .on('mouseout', function (this: SVGCircleElement, d: any) {
-      d3.select(this).attr('opacity', 1).attr('fill', 'skyblue').attr('stroke-width', 1)
+      d3.select(this)
+        .attr('opacity', 1)
+        .attr('fill', 'skyblue')
+        .attr('stroke-width', 1)
     })
     .append('title')
     .text((d: any) => `${d.properties.name}`)
 
-  svg.append('path').datum(countrymesh).attr('fill', 'none').attr('stroke', 'white').attr('d', path)
+  svg
+    .append('path')
+    .datum(countrymesh)
+    .attr('fill', 'none')
+    .attr('stroke', 'white')
+    .attr('d', path)
 
   // 添加用户信息的位置
   svg
