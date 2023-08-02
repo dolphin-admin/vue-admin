@@ -81,9 +81,9 @@ const initChart = (records: TrafficData[]) => {
 const getUserTraffic = () => {
   TrafficAPI.getUserTraffics(userTrafficsParam)
     .then((res) => {
-      userTrafficsData.value = res.data
+      userTrafficsData.value = res.data as TrafficData[]
+      console.log(res.data)
       initChart(userTrafficsData.value)
-      console.log(userTrafficsData.value)
     })
     .catch((error) => {
       userTrafficsData.value = []
