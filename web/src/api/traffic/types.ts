@@ -1,6 +1,6 @@
-import type { User, UserTrafficsPageType } from '@/types'
+import type { TrafficData, UserTrafficsPageType } from '@/types'
 
 export interface UserTrafficsType extends UserTrafficsPageType {
-  data: User[]
+  data: TrafficData[]
   total: number
 }

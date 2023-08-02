@@ -33,9 +33,9 @@ const router = useRouter()
 const message = useMessage()
 const { isFullscreen, toggle: toggleFullscreen } = useFullscreen()
 
-const props = defineProps<{
-  traffic: any
-}>()
+// const props = defineProps<{
+//   traffic: any
+// }>()
 
 /**
  * 动态获取当前语言的下拉框选项
@@ -82,18 +82,18 @@ const getDuration = (enter: string | undefined, leave: string | undefined) => {
  * 退出登录
  */
 const logout = () => {
-  trafficValue.leaveAt = new Date().toISOString()
-  trafficValue.duration = getDuration(props.traffic.enterAt, trafficValue.leaveAt)
-  TrafficAPI.userTraffics({ ...props.traffic, ...trafficValue })
-    .then(() => {
-      AuthUtils.clearToken()
-      userStore.clearUser()
-      message.success(t('Logout.Success'))
-      router.replace('/login')
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+  // trafficValue.leaveAt = new Date().toISOString()
+  // trafficValue.duration = getDuration(props.traffic.enterAt, trafficValue.leaveAt)
+  // TrafficAPI.userTraffics({ ...props.traffic, ...trafficValue })
+  // .then(() => {
+  AuthUtils.clearToken()
+  userStore.clearUser()
+  message.success(t('Logout.Success'))
+  router.replace('/login')
+  // })
+  // .catch((error) => {
+  //   console.log(error)
+  // })
 }
 
 /**

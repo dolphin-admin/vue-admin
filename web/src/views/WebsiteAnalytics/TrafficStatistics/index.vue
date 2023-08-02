@@ -12,19 +12,20 @@ const userTrafficsData = ref<TrafficData[]>()
 
 const svgContainer = ref(null)
 
-const initChart = (data: TrafficData[]) => {
-  // 指定宽高
-  const width = 1024
-  const height = width / 2
+// 指定宽高
+const width = 1024
+const height = width / 2
 
-  // 调整投影
-  const projection = d3.geoEqualEarth().fitExtent(
-    [
-      [2, 2],
-      [width, height]
-    ],
-    { type: 'Sphere' }
-  )
+// 调整投影
+const projection = d3.geoEqualEarth().fitExtent(
+  [
+    [2, 2],
+    [width, height]
+  ],
+  { type: 'Sphere' }
+)
+
+const initChart = () => {
   const path = d3.geoPath(projection)
 
   // 创建 SVG Container
@@ -67,7 +68,10 @@ const initChart = (data: TrafficData[]) => {
     .attr('stroke', 'white')
     .attr('d', path)
 
-  // 添加用户信息的位置
+
+//添加用户信息的位置
+const addPosition = (svg: any, records: TrafficData[]) => {
+  //添加用户信息的位置
   svg
     .append('g')
     .selectAll('circle')
@@ -87,12 +91,11 @@ const initChart = (data: TrafficData[]) => {
     .attr('fill', '#FF6666')
 }
 
-const getUserTraffic = () => {
+const getUserTraffic = (svg: any) => {
   TrafficAPI.getUserTraffics(userTrafficsParam)
     .then((res) => {
       userTrafficsData.value = res.data as TrafficData[]
-      console.log(res.data)
-      initChart(userTrafficsData.value)
+      addPosition(svg, res.data)
     })
     .catch((error) => {
       userTrafficsData.value = []
@@ -100,7 +103,8 @@ const getUserTraffic = () => {
 }
 
 onMounted(() => {
-  getUserTraffic()
+  const svg = initChart()
+  getUserTraffic(svg)
 })
 </script>
 
