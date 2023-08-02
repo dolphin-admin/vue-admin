@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import * as d3 from 'd3'
-
 import { countries, countrymesh, records } from './mock'
 
 const svgContainer = ref(null)
@@ -30,6 +28,7 @@ const initChart = () => {
 
   svg.append('path').datum(countries).attr('fill', 'white').attr('d', path)
 
+  // TODO: 匿名函数的 this 参数，可否换成 Arrow Function？ ------ Bruce Song
   svg
     .append('g')
     .selectAll('path')
@@ -37,13 +36,13 @@ const initChart = () => {
     .join('path')
     .attr('fill', 'skyblue')
     .attr('d', path)
-    .on('mouseover', function (this: SVGCircleElement, d: any) {
+    .on('mouseover', function (this: SVGCircleElement, _: any) {
       d3.select(this)
         .attr('opacity', 0.8)
         .attr('fill', 'green')
         .attr('stroke-width', 2)
     })
-    .on('mouseout', function (this: SVGCircleElement, d: any) {
+    .on('mouseout', function (this: SVGCircleElement, _: any) {
       d3.select(this)
         .attr('opacity', 1)
         .attr('fill', 'skyblue')
