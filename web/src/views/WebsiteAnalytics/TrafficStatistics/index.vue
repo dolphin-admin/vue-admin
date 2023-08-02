@@ -15,19 +15,20 @@ const userTrafficsData = ref<TrafficData[]>()
 
 const svgContainer = ref(null)
 
-const initChart = (records: TrafficData[]) => {
-  // 指定宽高
-  const width = 1024
-  const height = width / 2
+// 指定宽高
+const width = 1024
+const height = width / 2
 
-  // 调整投影
-  const projection = d3.geoEqualEarth().fitExtent(
-    [
-      [2, 2],
-      [width, height]
-    ],
-    { type: 'Sphere' }
-  )
+// 调整投影
+const projection = d3.geoEqualEarth().fitExtent(
+  [
+    [2, 2],
+    [width, height]
+  ],
+  { type: 'Sphere' }
+)
+
+const initChart = () => {
   const path = d3.geoPath(projection)
 
   // 创建 SVG Container
@@ -58,6 +59,29 @@ const initChart = (records: TrafficData[]) => {
 
   svg.append('path').datum(countrymesh).attr('fill', 'none').attr('stroke', 'white').attr('d', path)
 
+  // //添加用户信息的位置
+  // svg
+  //   .append('g')
+  //   .selectAll('circle')
+  //   .data(records)
+  //   .join('circle')
+  //   .attr('cx', (d: any) => projection([d.longitude, d.latitude])[0])
+  //   .attr('cy', (d: any) => projection([d.longitude, d.latitude])[1])
+  //   .on('mouseover', function (this: SVGCircleElement, d: any) {
+  //     d3.select(this as any)
+  //       .append('title')
+  //       .text((d: any) => `${d.area}`)
+  //   })
+  //   .on('mouseout', function (this: SVGCircleElement, d: any) {
+  //     d3.select(this).select('title').remove()
+  //   })
+  //   .attr('r', 2.8)
+  //   .attr('fill', '#FF6666')
+  return svg
+}
+
+//添加用户信息的位置
+const addPosition = (svg: any, records: TrafficData[]) => {
   //添加用户信息的位置
   svg
     .append('g')
@@ -78,12 +102,11 @@ const initChart = (records: TrafficData[]) => {
     .attr('fill', '#FF6666')
 }
 
-const getUserTraffic = () => {
+const getUserTraffic = (svg: any) => {
   TrafficAPI.getUserTraffics(userTrafficsParam)
     .then((res) => {
       userTrafficsData.value = res.data as TrafficData[]
-      console.log(res.data)
-      initChart(userTrafficsData.value)
+      addPosition(svg, res.data)
     })
     .catch((error) => {
       userTrafficsData.value = []
@@ -91,7 +114,8 @@ const getUserTraffic = () => {
 }
 
 onMounted(() => {
-  getUserTraffic()
+  const svg = initChart()
+  getUserTraffic(svg)
 })
 </script>
 

@@ -19,7 +19,7 @@ export interface Geography {
   longitude?: number
   area?: string
 }
-export interface RecordsItem {
+export interface RecordItem {
   title?: string
   url?: string
   path?: string
@@ -39,5 +39,5 @@ export interface UserTrafficsPageType {
 export type TrafficData = AppData &
   Geography &
   TrafficTime & {
-    records: RecordsItem[]
+    records: RecordItem[]
   }
