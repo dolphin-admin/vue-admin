@@ -52,7 +52,7 @@
     "eslint:fix": "pnpm eslint:check -- --fix",
     "prettier:check": "prettier --check .",
     "prettier:fix": "prettier --check --write --ignore-unknown .",
-    "generate:contributors": "pnpm --filter=@dolphin-admin/repo-tools generate:contributors",
+    "generate:contributors": "tsx ./scripts/generate-contributors",
     "dep:check": "npx taze -r",
     "cz": "npx git-cz",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",

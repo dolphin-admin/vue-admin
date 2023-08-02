@@ -1,7 +1,9 @@
-import fetch from 'cross-fetch'
 import fs from 'fs'
 import path from 'path'
+import fetch from 'cross-fetch'
+import chalk from 'chalk'
 
+// 忽略的用户，机器人
 const IGNORED_USERS = new Set([
   'dependabot[bot]',
   'eslint[bot]',
@@ -9,9 +11,14 @@ const IGNORED_USERS = new Set([
   'semantic-release-bot'
 ])
 
+// 项目最少贡献次数
 const COMPLETELY_ARBITRARY_CONTRIBUTION_COUNT = 3
+// 每页最大贡献人数
 const PAGE_LIMIT = 100
+// GitHub 获取贡献者列表 API 地址
 const ContributorsApiUrl = `https://api.github.com/repos/bit-ocean-studio/dolphin-admin/contributors?per_page=${PAGE_LIMIT}`
+// GitHub token
+const GitHubToken = 'ghp_*'
 
 interface Contributor {
   contributions: number
@@ -29,6 +36,10 @@ interface User {
   html_url: string
 }
 
+/**
+ * 获取数据
+ * @param url 接口地址
+ */
 async function getData<T>(url: string | undefined): Promise<T | null> {
   if (url == null) {
     return null
@@ -38,7 +49,7 @@ async function getData<T>(url: string | undefined): Promise<T | null> {
     method: 'GET',
     headers: {
       Accept: 'application/vnd.github.v3+json',
-      Authorization: 'token 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'
+      Authorization: GitHubToken
     }
   })
 
@@ -130,7 +141,7 @@ function writeTable(contributors: User[], perLine = 5): void {
   )
   lines.push('')
 
-  fs.writeFileSync(path.join(__dirname, '../CONTRIBUTORS.md'), lines.join('\n'))
+  fs.writeFileSync(path.join(__dirname, './CONTRIBUTORS.md'), lines.join('\n'))
 }
 
 async function main(): Promise<void> {
@@ -163,7 +174,15 @@ async function main(): Promise<void> {
   )
 }
 
-main().catch((error) => {
-  console.error(error)
-  process.exitCode = 1
-})
+main()
+  .then(() =>
+    console.log(
+      `${chalk.bgBlue(' 🐬 Dolphin Admin ')} ${chalk.greenBright(
+        'Generate contributors successfully!'
+      )}`
+    )
+  )
+  .catch((error) => {
+    console.error(error)
+    process.exitCode = 1
+  })
