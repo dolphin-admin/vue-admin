@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { TrafficData, UserTrafficsPageType } from '@/types'
 
-import { countries, countrymesh, records } from './mock'
+import { countries, countrymesh } from './mock'
 
 const userTrafficsParam = reactive<UserTrafficsPageType>({
   page: 1,
@@ -67,11 +67,11 @@ const initChart = () => {
     .attr('fill', 'none')
     .attr('stroke', 'white')
     .attr('d', path)
+}
 
-
-//添加用户信息的位置
+// 添加用户信息的位置
 const addPosition = (svg: any, records: TrafficData[]) => {
-  //添加用户信息的位置
+  // 添加用户信息的位置
   svg
     .append('g')
     .selectAll('circle')
