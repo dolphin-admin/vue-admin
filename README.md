@@ -51,7 +51,7 @@ backend management template based on Vue 3 + Vite + Naive UI + TypeScript + Tail
 ## Code Style
 
 - [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
-- [Dev Standard](./docs/dev-standard.md)
+- [Dev Standard](./DEVELOPMENT_STANDARD.md)
 
 ## Getting Started
 

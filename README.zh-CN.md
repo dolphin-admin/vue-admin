@@ -49,7 +49,7 @@ Dolphin Admin Web 是一个基于 Vue 3 + Vite + Naive UI + TypeScript + Tailwin
 ## 代码规范
 
 - [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
-- [内部开发规范](./docs/dev-standard.md)
+- [内部开发规范](./DEVELOPMENT_STANDARD.md)
 
 ## 开始使用
 
