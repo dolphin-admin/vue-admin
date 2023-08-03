@@ -128,7 +128,7 @@ export default defineConfig(({ mode }) => {
             names: ['RouterLink', 'RouterView']
           }
         ],
-        dirs: ['src/components', 'src/layouts', 'src/charts'],
+        dirs: ['src/components', 'src/layouts', 'src/providers', 'src/charts'],
         extensions: ['vue']
       }),
       Icons({ autoInstall: true })

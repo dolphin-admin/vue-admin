@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import type { RecordItem } from '@/types'
+import type { UserTrafficRecord } from '@/types'
 
 const userStore = useUserStore()
 const trafficStore = useTrafficStore()
 const route = useRoute()
 const router = useRouter()
 
-const records = reactive<RecordItem[]>([])
-const recordItem: RecordItem = {}
+const records = reactive<UserTrafficRecord[]>([])
+const recordItem: UserTrafficRecord = {}
 
 // 若没有授权，则显示系统 loading
 const loading = ref(true)
@@ -240,25 +240,27 @@ onBeforeUnmount(() => window.removeEventListener('beforeunload', handleTraffic))
   </template>
   <template v-else>
     <main class="h-screen w-full overflow-hidden">
-      <div class="flex h-full w-full">
-        <BaseSidebar />
-        <div class="relative h-full flex-1 overflow-y-auto overflow-x-hidden">
-          <BaseHeader />
-          <BaseTabs />
-          <RouterView v-slot="{ Component }">
-            <Transition
-              name="slide-fade"
-              mode="out-in"
-            >
-              <component
-                :is="Component"
-                class="relative min-h-[calc(100%-144px)] w-full p-2 sm:p-4"
-              />
-            </Transition>
-          </RouterView>
-          <BaseFooter />
+      <ReportUserTrafficProvider>
+        <div class="flex h-full w-full">
+          <BaseSidebar />
+          <div class="relative h-full flex-1 overflow-y-auto overflow-x-hidden">
+            <BaseHeader />
+            <BaseTabs />
+            <RouterView v-slot="{ Component }">
+              <Transition
+                name="slide-fade"
+                mode="out-in"
+              >
+                <component
+                  :is="Component"
+                  class="relative min-h-[calc(100%-144px)] w-full p-2 sm:p-4"
+                />
+              </Transition>
+            </RouterView>
+            <BaseFooter />
+          </div>
         </div>
-      </div>
+      </ReportUserTrafficProvider>
     </main>
   </template>
 </template>

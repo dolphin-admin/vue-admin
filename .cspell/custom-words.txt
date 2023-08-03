@@ -9,6 +9,7 @@ datasource
 datasources
 daterange
 degit
+DHTML
 echarts
 emojione
 esbuild
