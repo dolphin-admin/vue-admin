@@ -35,6 +35,7 @@ export class BrowserUtils {
 
   /**
    * 判定是否是移动端
+   * @description 响应式请使用 useMediaQuery
    */
   static isMobileDevice() {
     return window.matchMedia('only screen and (max-width: 640px)').matches

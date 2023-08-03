@@ -5,7 +5,7 @@ import { webLearnRoute } from './private'
 
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
-const { isMobileDevice } = BrowserUtils
+const isMobile = useMobile()
 </script>
 
 <template>
@@ -16,9 +16,9 @@ const { isMobileDevice } = BrowserUtils
       bordered
       :title="t('Timeline.WebDevRoadmap')"
     >
-      <Timeline
+      <DTimeline
         :data="webLearnRoute"
-        :horizontal="!isMobileDevice()"
+        :horizontal="!isMobile"
         :icon-size="28"
       />
     </NCard>

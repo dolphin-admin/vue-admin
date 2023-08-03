@@ -1,21 +1,31 @@
 <script setup lang="ts">
-import { countries, countrymesh, records } from './mock'
+import type { TrafficData, UserTrafficsPageType } from '@/types'
+
+import { countries, countrymesh } from './mock'
+
+const userTrafficsParam = reactive<UserTrafficsPageType>({
+  page: 1,
+  pageSize: 1000
+})
+
+const userTrafficsData = ref<TrafficData[]>()
 
 const svgContainer = ref(null)
 
-const initChart = () => {
-  // 指定宽高
-  const width = 1024
-  const height = width / 2
+// 指定宽高
+const width = 1024
+const height = width / 2
 
-  // 调整投影
-  const projection = d3.geoEqualEarth().fitExtent(
-    [
-      [2, 2],
-      [width, height]
-    ],
-    { type: 'Sphere' }
-  )
+// 调整投影
+const projection = d3.geoEqualEarth().fitExtent(
+  [
+    [2, 2],
+    [width, height]
+  ],
+  { type: 'Sphere' }
+)
+
+const initChart = () => {
   const path = d3.geoPath(projection)
 
   // 创建 SVG Container
@@ -57,7 +67,10 @@ const initChart = () => {
     .attr('fill', 'none')
     .attr('stroke', 'white')
     .attr('d', path)
+}
 
+// 添加用户信息的位置
+const addPosition = (svg: any, records: TrafficData[]) => {
   // 添加用户信息的位置
   svg
     .append('g')
@@ -78,7 +91,21 @@ const initChart = () => {
     .attr('fill', '#FF6666')
 }
 
-onMounted(() => initChart())
+const getUserTraffic = (svg: any) => {
+  TrafficAPI.getUserTraffics(userTrafficsParam)
+    .then((res) => {
+      userTrafficsData.value = res.data as TrafficData[]
+      addPosition(svg, res.data)
+    })
+    .catch((error) => {
+      userTrafficsData.value = []
+    })
+}
+
+onMounted(() => {
+  const svg = initChart()
+  getUserTraffic(svg)
+})
 </script>
 
 <template>

@@ -9,6 +9,8 @@
     "build": "nest build",
     "preview": "node dist/main",
     "type:check": "tsc --pretty --noEmit",
+    "eslint:check": "eslint \"**/*.{ts}\" --color",
+    "eslint:fix": "pnpm eslint:check -- --fix",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",

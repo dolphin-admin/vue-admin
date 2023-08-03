@@ -16,12 +16,11 @@ const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({
   useScope: 'global'
 })
 
-const { isMobileDevice } = BrowserUtils
-
 const message = useMessage()
 const [loading, loadingDispatcher] = useLoading()
 const [showDialogLoading, showDialogLoadingDispatcher] = useLoading()
 const [deleteLoading, deleteLoadingDispatcher] = useLoading()
+const isMobile = useMobile()
 
 const users = ref<User[]>([])
 
@@ -111,7 +110,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     ellipsis: {
       tooltip: true
     },
-    fixed: !BrowserUtils.isMobileDevice() ? 'left' : undefined
+    fixed: !isMobile ? 'left' : undefined
   },
   {
     title: () => t('User.Name'),
@@ -128,7 +127,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     width: 80,
     titleAlign: 'center',
     align: 'center',
-    fixed: !BrowserUtils.isMobileDevice() ? 'right' : undefined,
+    fixed: !isMobile ? 'right' : undefined,
     render: () =>
       h(
         'div',
@@ -321,7 +320,7 @@ onMounted(() => queryList())
             <template #trigger>
               <NButton
                 circle
-                :size="isMobileDevice() ? 'small' : 'medium'"
+                :size="isMobile ? 'small' : 'medium'"
                 :disabled="loading"
                 @click="handleReset"
               >
@@ -333,7 +332,7 @@ onMounted(() => queryList())
             {{ t('Common.Reset') }}
           </NTooltip>
           <NButton
-            :size="isMobileDevice() ? 'small' : 'medium'"
+            :size="isMobile ? 'small' : 'medium'"
             @click="handleCreateUser"
           >
             {{ t('Common.Create') }}
@@ -351,7 +350,7 @@ onMounted(() => queryList())
       :loading="loading"
       :pagination="{
         ...pagination,
-        simple: isMobileDevice(),
+        simple: isMobile,
         showQuickJumper: true,
         showSizePicker: true,
         pageSizes: [

@@ -49,7 +49,7 @@ onBeforeMount(() => checkLogin())
         />
       </RouterView>
     </div>
-    <ThemeSwitchDevTool />
+    <BaseThemeSwitchDevTool />
   </main>
 </template>
 

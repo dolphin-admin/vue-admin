@@ -1,8 +1,8 @@
 const { t } = i18n.global
 
 export const languageOptions = [
-  { label: 'English', key: 'en_US' },
-  { label: '简体中文', key: 'zh_CN' }
+  { label: 'English', key: 'en_US', disabled: false },
+  { label: '简体中文', key: 'zh_CN', disabled: false }
 ]
 
 export const userOptions = [

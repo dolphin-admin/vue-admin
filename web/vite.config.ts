@@ -61,10 +61,12 @@ export default defineConfig(({ mode }) => {
           {
             'vue-router': ['RouterLink', 'RouterView'],
             '@vueuse/core': [
-              'useToggle',
-              'useEventListener',
               'useDebounceFn',
-              'useFullscreen'
+              'useEventListener',
+              'useFullscreen',
+              'useMediaQuery',
+              'useTitle',
+              'useToggle'
             ],
             axios: [['default', 'axios']],
             dayjs: [['default', 'dayjs']],
@@ -126,7 +128,7 @@ export default defineConfig(({ mode }) => {
             names: ['RouterLink', 'RouterView']
           }
         ],
-        dirs: ['src/components', 'src/layouts', 'src/charts'],
+        dirs: ['src/components', 'src/layouts', 'src/providers', 'src/charts'],
         extensions: ['vue']
       }),
       Icons({ autoInstall: true })
@@ -158,6 +160,11 @@ export default defineConfig(({ mode }) => {
       strictPort: true,
       open: false,
       proxy
+    },
+    build: {
+      rollupOptions: {
+        external: ['d3']
+      }
     }
   }
 })

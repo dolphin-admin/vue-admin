@@ -33,14 +33,22 @@ const router = useRouter()
 const message = useMessage()
 const { isFullscreen, toggle: toggleFullscreen } = useFullscreen()
 
+const languages = ref(languageOptions)
+
+// const props = defineProps<{
+//   traffic: any
+// }>()
+
 /**
- * 动态获取当前语言的下拉框选项
+ * 重置语言选项，当前语言不可选
  */
-const currentLanguageOptions = computed(() =>
-  locale.value === 'zh_CN'
-    ? languageOptions
-    : [languageOptions[1], languageOptions[0]]
-)
+const resetLanguageOptions = (lang: Lang) =>
+  setTimeout(() => {
+    languages.value.forEach((language) => {
+      const currentLanguage = language
+      currentLanguage.disabled = currentLanguage.key === lang
+    })
+  }, 150)
 
 /**
  * 更新语言
@@ -51,29 +59,37 @@ const currentLanguageOptions = computed(() =>
  * - 将选择的语言存储到 localStorage 中，以便下次进入应用时加载上次选择的语言
  */
 const handleUpdateLocale = (lang: Lang) => {
-  setTimeout(() => {
-    locale.value = lang
-    document.title =
-      route.path === '/'
-        ? t('App.Name')
-        : `${
-            typeof route.meta.title === 'function'
-              ? route.meta.title()
-              : route.meta.title
-          } | ${t('App.Name')}`
-  }, 150)
+  resetLanguageOptions(lang)
+  locale.value = lang
   themeStore.changeLocale(lang)
+  SiteUtils.setDocumentTitle(route.meta.title)
   LangUtils.setLang(lang)
+}
+
+const trafficValue: any = {}
+const getDuration = (enter: string | undefined, leave: string | undefined) => {
+  if (enter === undefined || leave === undefined) return 0
+  const enterAt = new Date(enter).getTime()
+  const leaveAt = new Date(leave).getTime()
+  return leaveAt - enterAt
 }
 
 /**
  * 退出登录
  */
 const logout = () => {
+  // trafficValue.leaveAt = new Date().toISOString()
+  // trafficValue.duration = getDuration(props.traffic.enterAt, trafficValue.leaveAt)
+  // TrafficAPI.reportUserTraffic({ ...props.traffic, ...trafficValue })
+  // .then(() => {
   AuthUtils.clearToken()
   userStore.clearUser()
   message.success(t('Logout.Success'))
   router.replace('/login')
+  // })
+  // .catch((error) => {
+  //   console.log(error)
+  // })
 }
 
 /**
@@ -97,6 +113,10 @@ const selectUserOption = (key: UserOptionKey) => {
       break
   }
 }
+
+onMounted(() => {
+  resetLanguageOptions(locale.value)
+})
 </script>
 
 <template>
@@ -202,7 +222,7 @@ const selectUserOption = (key: UserOptionKey) => {
 
       <NDropdown
         trigger="hover"
-        :options="currentLanguageOptions"
+        :options="languages"
         @select="handleUpdateLocale"
       >
         <NIcon

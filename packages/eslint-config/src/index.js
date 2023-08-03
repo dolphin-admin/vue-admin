@@ -94,6 +94,12 @@ module.exports = defineConfig({
         'tailwindcss/enforces-shorthand': 'error', // TailwindCSS 简写合并
         'tailwindcss/no-custom-classname': 'off' // TailwindCSS 中允许自定义类名
       }
+    },
+    {
+      files: ['scripts/*.ts'],
+      rules: {
+        'no-console': 'off' // 允许在脚本中使用 console
+      }
     }
     // TODO: 暂未处理测试文件 🚀
     // {

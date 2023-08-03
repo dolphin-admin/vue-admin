@@ -7,13 +7,13 @@ const props = withDefaults(defineProps<Props>(), {
   itemPlacement: 'left'
 })
 
-const { isMobileDevice } = BrowserUtils
+const isMobile = useMobile()
 </script>
 
 <template>
   <main>
     <NTimeline
-      :horizontal="!isMobileDevice()"
+      :horizontal="!isMobile"
       :item-placement="props.itemPlacement"
       :icon-size="props.iconSize"
     >
