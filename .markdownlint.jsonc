@@ -1,10 +1,14 @@
 {
+  // 支持排序列表
+  "MD004": false,
   // 不限制每行长度
   "MD013": {
     "line_length": 99999
   },
   // 不限制标题重复
   "MD024": false,
+  // 允许标题尾随标点符号
+  "MD026": false,
   // 允许的 HTML 标签
   "MD033": {
     "allowed_elements": [
