@@ -19,7 +19,7 @@ export default defineNuxtConfig({
     base: '/'
   },
   ssr: false,
-  modules: ['@nuxtjs/tailwindcss', '@nuxt/content'],
+  modules: ['@nuxtjs/tailwindcss', '@nuxt/content', '@vueuse/nuxt'],
   content: {
     ignores: ['/draft/'],
     markdown: {

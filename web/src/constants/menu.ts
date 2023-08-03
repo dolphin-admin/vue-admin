@@ -13,12 +13,12 @@ import ListTemplatesIcon from '~icons/ic/outline-list-alt'
 import PrintIcon from '~icons/ic/outline-local-printshop'
 import CodeTemplatesIcon from '~icons/ic/round-texture'
 import SystemApplicationsIcon from '~icons/ic/sharp-apps'
-import HomeIcon from '~icons/ic/sharp-house'
 import TrafficStatisticsIcon from '~icons/ic/twotone-ramp-left'
 import IAmATeapotIcon from '~icons/icon-park-outline/tea-drink'
 import InternalServerErrorIcon from '~icons/lucide/server-off'
 import UserManagementIcon from '~icons/mdi/account-cog-outline'
 import RoleManagementIcon from '~icons/mdi/account-group'
+import NavigationIcon from '~icons/mdi/compass-outline'
 import IconManagementIcon from '~icons/mdi/emoticon-wink'
 import SystemFunctionsIcon from '~icons/mdi/function-variant'
 import PermissionManagementIcon from '~icons/mdi/key-chain'
@@ -33,9 +33,9 @@ const { renderIcon: renderMenuIcon, renderMenuLabel, t } = RenderUtils
 
 export const menuOptions: MenuOption[] = [
   {
-    label: renderMenuLabel(t('Menu.Home')),
-    key: 'home',
-    icon: renderMenuIcon(HomeIcon)
+    label: renderMenuLabel(t('Menu.Navigation')),
+    key: 'navigation',
+    icon: renderMenuIcon(NavigationIcon)
   },
   {
     label: renderMenuLabel(t('Menu.SystemFunctions')),

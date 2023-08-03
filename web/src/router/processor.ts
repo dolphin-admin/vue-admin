@@ -1,23 +1,6 @@
 import type { VNodeChild } from 'vue'
 import { type RouteLocationNormalized } from 'vue-router'
 
-const { t } = i18n.global
-
-/**
- * 处理目标路由
- * @description
- * - 拼接站点标题
- */
-export const processTargetRoute = (to: RouteLocationNormalized) => {
-  if (to.meta.title) {
-    document.title = `${
-      typeof to.meta.title === 'function' ? to.meta.title() : to.meta.title
-    } | ${t('App.Name')}`
-  } else {
-    document.title = `${t('App.Name')}`
-  }
-}
-
 /**
  * 处理添加标签页
  */

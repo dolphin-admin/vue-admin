@@ -18,8 +18,6 @@ const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({
   useScope: 'global'
 })
 
-const { isMobileDevice } = BrowserUtils
-
 const idColumn: DataTableBaseColumn<User> = {
   title: 'ID',
   key: 'id',
@@ -115,6 +113,7 @@ const [loading, loadingDispatcher] = useLoading()
 const [resetPasswordLoading, resetPasswordLoadingDispatcher] = useLoading()
 const [enableLoading, enableLoadingDispatcher] = useLoading()
 const [disableLoading, disableLoadingDispatcher] = useLoading()
+const isMobile = useMobile()
 
 const resetPasswordRules: FormRules = {
   password: [
@@ -275,7 +274,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     ellipsis: {
       tooltip: true
     },
-    fixed: !BrowserUtils.isMobileDevice() ? 'left' : undefined
+    fixed: !isMobile ? 'left' : undefined
   },
   {
     title: () => t('User.PhoneNumber'),
@@ -429,7 +428,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     width: 320,
     titleAlign: 'center',
     align: 'center',
-    fixed: !BrowserUtils.isMobileDevice() ? 'right' : undefined,
+    fixed: !isMobile ? 'right' : undefined,
     render: (row) =>
       h(
         'div',
@@ -654,7 +653,7 @@ onMounted(() => queryList())
             <template #trigger>
               <NButton
                 circle
-                :size="isMobileDevice() ? 'small' : 'medium'"
+                :size="isMobile ? 'small' : 'medium'"
                 :disabled="loading"
                 @click="handleReset"
               >
@@ -666,7 +665,7 @@ onMounted(() => queryList())
             {{ t('Common.Reset') }}
           </NTooltip>
           <NButton
-            :size="isMobileDevice() ? 'small' : 'medium'"
+            :size="isMobile ? 'small' : 'medium'"
             @click="handleCreateUser"
           >
             {{ t('Common.Create') }}
@@ -686,7 +685,7 @@ onMounted(() => queryList())
       :loading="loading"
       :pagination="{
         ...pagination,
-        simple: isMobileDevice(),
+        simple: isMobile,
         showQuickJumper: true,
         showSizePicker: true,
         pageSlot: 9,

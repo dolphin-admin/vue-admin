@@ -61,10 +61,12 @@ export default defineConfig(({ mode }) => {
           {
             'vue-router': ['RouterLink', 'RouterView'],
             '@vueuse/core': [
-              'useToggle',
-              'useEventListener',
               'useDebounceFn',
-              'useFullscreen'
+              'useEventListener',
+              'useFullscreen',
+              'useMediaQuery',
+              'useTitle',
+              'useToggle'
             ],
             axios: [['default', 'axios']],
             dayjs: [['default', 'dayjs']],

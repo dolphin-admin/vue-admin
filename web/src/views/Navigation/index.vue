@@ -95,19 +95,19 @@ onMounted(() => {
   <main class="flex items-center justify-center">
     <div class="flex w-[80%] flex-col items-center space-y-4 sm:w-[500px]">
       <div
-        class="flex w-full flex-col items-center justify-center space-y-1 text-blue-600"
+        class="flex w-full flex-col items-center justify-center space-y-2 text-blue-600"
       >
-        <div class="text-xl">{{ t('App.Name') }}</div>
-        <div class="flex space-x-2">
-          <span class="text-sm text-gray-600">{{ teamName }}</span>
+        <div class="text-4xl">{{ t('App.Name') }}</div>
+        <div class="flex items-center space-x-1.5">
           <img
-            class="-mb-2 cursor-pointer pb-2 transition-all hover:-translate-y-1 hover:scale-110 active:-translate-y-0 active:scale-105 active:opacity-75"
+            class="cursor-pointer transition-all active:scale-105 active:opacity-75"
             src="@/assets/images/bit_ocean.png"
             alt=""
             loading="eager"
-            width="18"
-            height="18"
+            width="14"
+            height="14"
           />
+          <span class="text-sm text-gray-600">{{ teamName }}</span>
         </div>
       </div>
       <Search />

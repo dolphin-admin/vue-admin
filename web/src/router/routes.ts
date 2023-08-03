@@ -6,13 +6,13 @@ import QRCodeIcon from '~icons/ic/baseline-qrcode'
 import TimelineIcon from '~icons/ic/baseline-timeline'
 import ListTemplatesIcon from '~icons/ic/outline-list-alt'
 import PrintIcon from '~icons/ic/outline-local-printshop'
-import HomeIcon from '~icons/ic/sharp-house'
 import TrafficStatisticsIcon from '~icons/ic/twotone-ramp-left'
 import IAmATeapotIcon from '~icons/icon-park-outline/tea-drink'
 import InternalServerErrorIcon from '~icons/lucide/server-off'
 import UserInfoIcon from '~icons/mdi/account-circle'
 import UserManagementIcon from '~icons/mdi/account-cog-outline'
 import RoleManagementIcon from '~icons/mdi/account-group'
+import NavigationIcon from '~icons/mdi/compass-outline'
 import IconManagementIcon from '~icons/mdi/emoticon-wink'
 import ChangePasswordIcon from '~icons/mdi/key'
 import PermissionManagementIcon from '~icons/mdi/key-chain'
@@ -46,16 +46,8 @@ export const routes = [
         component: () => import('@/views/Navigation'),
         meta: {
           title: () => t('Menu.Navigation'),
-          dismissTab: true
-        }
-      },
-      {
-        path: '/home',
-        name: 'home',
-        component: () => import('@/views/Home'),
-        meta: {
-          title: () => t('Menu.Home'),
-          icon: HomeIcon
+          icon: NavigationIcon
+          // dismissTab: true
         }
       },
       // User
