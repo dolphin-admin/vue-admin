@@ -46,7 +46,10 @@
     "ChangePassword": "Change password",
     "IsLoadingData": "Loading data ...",
     "LoadingDataError": "Loading data error",
-    "KeywordSearch": "Keyword search"
+    "KeywordSearch": "Keyword search",
+    "State": "State",
+    "CreateAt": "Create at",
+    "Remark": "Remark"
   },
   "Validation": {
     "Username": "Please enter username",
@@ -146,6 +149,7 @@
     "UserManagement": "User Management",
     "RoleManagement": "Role Management",
     "PermissionManagement": "Permission Management",
+    "DictionaryManagement": "Dictionary Management",
     "SystemApplications": "System Applications",
     "ChatChannels": "Chat Channels",
     "SystemTools": "System Tool",
@@ -205,6 +209,10 @@
     "ResetPassword": "Reset password",
     "VerifyOrNot": "Verify or not",
     "EnableOrNot": "Enable or not"
+  },
+  "DictionaryManagement": {
+    "Name": "Name",
+    "Type": "Type"
   },
   "QRCode": {
     "ContentPlaceholder": "Please enter QRCode content",

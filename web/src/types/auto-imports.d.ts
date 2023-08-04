@@ -9,6 +9,7 @@ declare global {
   const AuthUtils: typeof import('../utils/auth/index')['AuthUtils']
   const BasePageModel: typeof import('@/constants')['BasePageModel']
   const BrowserUtils: typeof import('../utils/browser/index')['BrowserUtils']
+  const DictionaryAPI: typeof import('../api/dictionary/index')['DictionaryAPI']
   const EffectScope: typeof import('vue')['EffectScope']
   const ExcelUtils: typeof import('../utils/excel/index')['ExcelUtils']
   const GitHubAuthUtils: typeof import('../utils/github/index')['GitHubAuthUtils']

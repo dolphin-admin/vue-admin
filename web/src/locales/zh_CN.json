@@ -46,7 +46,10 @@
     "ChangePassword": "修改密码",
     "IsLoadingData": "正在加载数据...",
     "LoadingDataError": "加载数据失败",
-    "KeywordSearch": "关键字搜索"
+    "KeywordSearch": "关键字搜索",
+    "State": "状态",
+    "CreateAt": "创建时间",
+    "Remark": "备注"
   },
   "Validation": {
     "Username": "请输入用户名",
@@ -146,6 +149,7 @@
     "UserManagement": "用户管理",
     "RoleManagement": "角色管理",
     "PermissionManagement": "权限管理",
+    "DictionaryManagement": "字典管理",
     "SystemApplications": "系统应用",
     "ChatChannels": "聊天频道",
     "SystemTools": "系统工具",
@@ -205,6 +209,10 @@
     "ResetPassword": "重置密码",
     "VerifyOrNot": "是否验证",
     "EnableOrNot": "是否启用"
+  },
+  "DictionaryManagement": {
+    "Name": "名称",
+    "Type": "类型"
   },
   "QRCode": {
     "ContentPlaceholder": "请输入二维码内容",
