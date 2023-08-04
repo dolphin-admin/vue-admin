@@ -1,14 +1,13 @@
-type UserTrafficDevice = 'Web PC' | 'Web Mobile' | 'Desktop' | 'Mobile'
+export type UserTrafficDevice = 'Web PC' | 'Web Mobile' | 'Desktop' | 'Mobile'
 
-type UserTrafficEnv = 'DEV' | 'PRO'
-
-type UserTrafficResource = 'Inner' | 'GitHub' | 'Google'
+export type UserTrafficSource = 'Inner' | 'GitHub' | 'Google'
 
 export interface UserTrafficAppInfo {
   app?: UserTrafficDevice
-  env?: UserTrafficEnv
+  version?: string
+  env?: string
   ip?: string
-  source?: UserTrafficResource
+  source?: UserTrafficSource
   userAgent?: string
 }
 

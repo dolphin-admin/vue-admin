@@ -29,6 +29,11 @@ export default defineConfig(({ mode }) => {
       target: 'https://api.ipify.org',
       changeOrigin: true,
       rewrite: (path: string) => path.replace(/^\/ip-api/, '')
+    },
+    '/area-api': {
+      target: 'https://nominatim.openstreetmap.org',
+      changeOrigin: true,
+      rewrite: (path: string) => path.replace(/^\/area-api/, '')
     }
   }
   if (VITE_BASE_API_PREFIX && VITE_BASE_API_PROXY) {

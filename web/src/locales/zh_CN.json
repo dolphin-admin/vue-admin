@@ -46,7 +46,8 @@
     "ChangePassword": "修改密码",
     "IsLoadingData": "正在加载数据...",
     "LoadingDataError": "加载数据失败",
-    "KeywordSearch": "关键字搜索"
+    "KeywordSearch": "关键字搜索",
+    "RequestGeolocation": "为了您的使用体验，我们需要您提供位置信息。"
   },
   "Validation": {
     "Username": "请输入用户名",

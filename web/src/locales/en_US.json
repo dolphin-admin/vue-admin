@@ -46,7 +46,8 @@
     "ChangePassword": "Change password",
     "IsLoadingData": "Loading data ...",
     "LoadingDataError": "Loading data error",
-    "KeywordSearch": "Keyword search"
+    "KeywordSearch": "Keyword search",
+    "RequestGeolocation": "For your experience, we need your location information."
   },
   "Validation": {
     "Username": "Please enter username",

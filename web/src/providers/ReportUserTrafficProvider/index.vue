@@ -4,15 +4,15 @@
  * @description 在用户退出前或页面隐藏、关闭、刷新时上报用户数据
  */
 
+const userTrafficStore = useUserTrafficStore()
+
 /**
  * 开始记录用户数据
  */
 const startRecord = () => {
   console.log('startRecord')
   // 获取用户的访问记录
-  // getRecords()
   // 获取用户的流量信息
-  // getTrafficTime()
 }
 
 /**
@@ -23,8 +23,32 @@ const sendReport = () => {
   navigator.sendBeacon('http://localhost:3000/traffics', '123')
 }
 
-onMounted(async () => {
-  console.log(await UserTrafficAPI.getIP())
+onMounted(() => {
+  // 获取用户IP地址
+  UserTrafficAPI.getIP()
+    .then((res) => {
+      const { ip } = res
+      userTrafficStore.setIP(ip)
+    })
+    .catch(() => userTrafficStore.setIP(null))
+
+  // 获取用户的地理坐标信息
+  UserTrafficUtils.getGeolocation()
+    .then((coords) => {
+      const { latitude, longitude, altitude } = coords
+      userTrafficStore.setGeoCoords({ latitude, longitude, altitude })
+      UserTrafficAPI.getArea(latitude, longitude, 'zh_CN').then((res) => {
+        userTrafficStore.setGeoArea(res.display_name)
+        console.log(userTrafficStore.geographyInfo)
+      })
+    })
+    .catch((error) => {
+      if (error instanceof Error) {
+        console.error(error)
+      }
+    })
+
+  // 获取用户的流量信息
   useEventListener(document, 'visibilitychange', (event: Event) => {
     if (document.visibilityState === 'hidden') {
       sendReport()
@@ -32,27 +56,6 @@ onMounted(async () => {
       startRecord()
     }
   })
-  // 页面隐藏时发送数据
-  // 获取用户IP地址
-  // getIP()
-  // 获取用户的appData信息
-  // getAppData()
-  // 获取用户的地理位置信息
-  // getGeography()
-  // 获取用户的流量信息
-  // getTrafficTime()
-  // 获取用户的访问记录
-  // getRecords()
-  // 监听用户的退出事件
-  // useEventListener(window, 'beforeunload', sendReport)
-  // 监听用户的页面隐藏事件
-  // useEventListener(document, 'visibilitychange', sendReport)
-  // 监听用户的页面关闭事件
-  // useEventListener(window, 'unload', sendReport)
-  // 监听用户的页面刷新事件
-  // useEventListener(window, 'pagehide', sendReport)
-  // 监听用户的页面刷新事件
-  // useEventListener(window, 'pageshow', sendReport)
 })
 </script>
 
