@@ -159,6 +159,7 @@
     "Charts": "Charts",
     "BuiltinComponents": "Built-in Component",
     "DigitalAnimation": "Digital Animation",
+    "Countdown": "Count Down",
     "Timeline": "Timeline",
     "ErrorPages": "Error Page",
     "403": "403",
@@ -249,6 +250,9 @@
     "StartValuePlaceholder": "Please enter start value",
     "EndValuePlaceholder": "Please enter end value",
     "DurationPlaceholder": "Please enter duration"
+  },
+  "Countdown": {
+    "StartValueTime": "Please enter target time"
   },
   "Timeline": {
     "WebDevRoadmap": "Web Dev Roadmap"

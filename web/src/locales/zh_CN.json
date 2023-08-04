@@ -159,6 +159,7 @@
     "Charts": "图表",
     "BuiltinComponents": "内置组件",
     "DigitalAnimation": "数字动画",
+    "Countdown": "倒计时",
     "Timeline": "时间线",
     "ErrorPages": "错误页面",
     "403": "403",
@@ -249,6 +250,9 @@
     "StartValuePlaceholder": "请输入开始值",
     "EndValuePlaceholder": "请输入结束值",
     "DurationPlaceholder": "请输入动画时长"
+  },
+  "Countdown": {
+    "StartValueTime": "请输入目标时间"
   },
   "Timeline": {
     "WebDevRoadmap": "Web 开发学习路线"
