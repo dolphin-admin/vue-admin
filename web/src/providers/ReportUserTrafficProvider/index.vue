@@ -4,6 +4,9 @@
  * @description 在用户退出前或页面隐藏、关闭、刷新时上报用户数据
  */
 
+/**
+ * 开始记录用户数据
+ */
 const startRecord = () => {
   console.log('startRecord')
   // 获取用户的访问记录
@@ -17,10 +20,11 @@ const startRecord = () => {
  */
 const sendReport = () => {
   console.log('sendReport')
-  navigator.sendBeacon('http://localhost:3000/api/traffics', '123')
+  navigator.sendBeacon('http://localhost:3000/traffics', '123')
 }
 
-onMounted(() => {
+onMounted(async () => {
+  console.log(await UserTrafficAPI.getIP())
   useEventListener(document, 'visibilitychange', (event: Event) => {
     if (document.visibilityState === 'hidden') {
       sendReport()

@@ -36,6 +36,7 @@ declare global {
   const TrafficUtils: typeof import('../utils/traffic/index')['TrafficUtils']
   const UploadAPI: typeof import('../api/upload/index')['UploadAPI']
   const UserAPI: typeof import('../api/user/index')['UserAPI']
+  const UserTrafficAPI: typeof import('../api/userTraffic/index')['UserTrafficAPI']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
   const axios: typeof import('axios')['default']
   const computed: typeof import('vue')['computed']

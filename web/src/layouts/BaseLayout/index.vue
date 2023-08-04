@@ -134,7 +134,7 @@ const checkLogin = async () => {
   if (AuthUtils.isAuthenticated()) {
     trafficStore.trafficTime.enterAt = new Date().toISOString()
     try {
-      trafficStore.appData.ip = (await TrafficUtils.getIP()) as string
+      // trafficStore.appData.ip = (await TrafficUtils.getIP()) as string
       const res = (await TrafficUtils.getGeolocation()) as any
       trafficStore.geography.latitude = res.latitude
       trafficStore.geography.altitude = res.altitude
