@@ -21,6 +21,7 @@ import ExcelIcon from '~icons/mdi/microsoft-excel'
 import WebSocketIcon from '~icons/tabler/brand-socket-io'
 import NotFoundIcon from '~icons/tabler/error-404'
 import ChatChannelsIcon from '~icons/tabler/message-2'
+import DictionaryManagementIcon from '~icons/ic/outline-library-books'
 
 import {
   BUILTIN_COMPONENTS_PREFIX,
@@ -96,6 +97,15 @@ export const routes = [
         meta: {
           title: () => t('Menu.PermissionManagement'),
           icon: PermissionManagementIcon
+        }
+      },
+      {
+        path: `${SYSTEM_FUNCTIONS_PREFIX}/dictionary-management`,
+        name: 'dictionary-management',
+        component: () => import('@/views/SystemFunctions/DictionaryManagement'),
+        meta: {
+          title: () => t('Menu.DictionaryManagement'),
+          icon: DictionaryManagementIcon
         }
       },
       // system-application

@@ -29,6 +29,7 @@ import SystemToolsIcon from '~icons/mdi/tools'
 import WebSocketIcon from '~icons/tabler/brand-socket-io'
 import NotFoundIcon from '~icons/tabler/error-404'
 import ChatChannelsIcon from '~icons/tabler/message-2'
+import DictionaryManagementIcon from '~icons/ic/outline-library-books'
 
 const { renderIcon: renderMenuIcon, renderMenuLabel, t } = RenderUtils
 
@@ -59,6 +60,11 @@ export const menuOptions: MenuOption[] = [
         key: 'permission-management',
         icon: renderMenuIcon(PermissionManagementIcon),
         show: false
+      },
+      {
+        label: renderMenuLabel(t('Menu.DictionaryManagement')),
+        key: 'dictionary-management',
+        icon: renderMenuIcon(DictionaryManagementIcon)
       }
     ]
   },
