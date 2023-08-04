@@ -10,4 +10,8 @@ export interface Time {
   minute: number | string
   second: number | string
 }
+export interface FormeCountdown {
+  (seconds: number): Time
+}
+
 export type Status = 'pending' | 'running' | 'paused' | 'stopped'
