@@ -147,7 +147,6 @@ export const menuOptions: MenuOption[] = [
       }
     ]
   },
-
   {
     label: renderMenuLabel(t('Menu.ErrorPages')),
     key: 'error-pages',

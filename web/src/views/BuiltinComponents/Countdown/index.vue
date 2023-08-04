@@ -72,4 +72,3 @@ const changeCountdown = (time: number, status: Status) => {
   </main>
 </template>
 
-<style lang="scss" scoped></style>

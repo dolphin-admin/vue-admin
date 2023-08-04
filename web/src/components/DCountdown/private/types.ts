@@ -4,12 +4,14 @@ export interface Props {
    */
   target: number
 }
+
 export interface Time {
   day: number | string
   showHour: number | string
   minute: number | string
   second: number | string
 }
+
 export interface FormeCountdown {
   (seconds: number): Time
 }
