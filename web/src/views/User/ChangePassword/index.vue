@@ -51,8 +51,6 @@ const changePasswordRules: FormRules = {
 }
 
 const logout = () => {
-  AuthUtils.clearToken()
-  userStore.clearUser()
   router.replace('/login')
   message.success(t('Logout.LoginAgain'))
 }

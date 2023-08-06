@@ -23,6 +23,7 @@ const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({
 
 const { version } = siteMetaData
 
+const userStore = useUserStore()
 const notification = useNotification()
 
 /**
@@ -170,11 +171,63 @@ const sendReport = () => {
   if (UserTrafficAPI.reportUserTraffic(userTraffic)) {
     records.value = []
   }
+  userStore.clearUser()
+  AuthUtils.clearToken()
 }
+
+/**
+ * 发送位置请求授权通知
+ */
+const sendGeoRequestNotification = () =>
+  setTimeout(() => {
+    const n = notification.create({
+      title: () => t('Notification.RequestGeolocation.Title'),
+      description: () => t('Notification.RequestGeolocation.Description'),
+      content: () => t('Notification.RequestGeolocation.Content'),
+      avatar: () =>
+        h(NAvatar, {
+          size: 'small',
+          round: true,
+          src: bitOceanSrc,
+          alt: ''
+        }),
+      duration: 10000,
+      keepAliveOnHover: true,
+      meta: TimeUtils.formatTime(Date.now(), 'YYYY-MM-DD HH:mm:ss'),
+      action: () =>
+        h(
+          NButton,
+          {
+            text: true,
+            type: 'success',
+            onClick: () => n.destroy()
+          },
+          {
+            default: () => t('Common.AlreadyRead')
+          }
+        )
+    })
+  }, 800)
+
+// 语言切换时，要获取对应语言的地理信息
+watch(
+  () => locale.value,
+  () =>
+    // 获取用户的地理坐标信息
+    UserTrafficUtils.getGeolocation()
+      .then((coords) => {
+        const { latitude, longitude, altitude } = coords
+        setGeoCoords({ latitude, longitude, altitude })
+        UserTrafficAPI.getArea(latitude, longitude, locale.value).then((res) =>
+          setGeoArea(res.display_name)
+        )
+      })
+      .catch(() => sendGeoRequestNotification())
+)
 
 onBeforeRouteLeave(() => sendReport())
 
-onBeforeRouteUpdate((_, from) => {
+onBeforeRouteUpdate((to, from) => {
   const { path: fromPath, meta: fromMeta, fullPath } = from
   const { title: fromTitle } = fromMeta
   records.value.push({
@@ -187,34 +240,6 @@ onBeforeRouteUpdate((_, from) => {
 })
 
 onMounted(() => {
-  const n = notification.create({
-    title: () => t('Notification.RequestGeolocation.Title'),
-    description: () => t('Notification.RequestGeolocation.Description'),
-    content: () => t('Notification.RequestGeolocation.Content'),
-    avatar: () =>
-      h(NAvatar, {
-        size: 'small',
-        round: true,
-        src: bitOceanSrc,
-        alt: ''
-      }),
-    duration: 5000,
-    keepAliveOnHover: true,
-    meta: TimeUtils.formatTime(Date.now(), 'YYYY-MM-DD HH:mm:ss'),
-    action: () =>
-      h(
-        NButton,
-        {
-          text: true,
-          type: 'success',
-          onClick: () => n.destroy()
-        },
-        {
-          default: () => t('Common.AlreadyRead')
-        }
-      )
-  })
-
   // 获取用户IP地址
   UserTrafficAPI.getIP()
     .then((res) => {
@@ -224,13 +249,15 @@ onMounted(() => {
     .catch(() => setIP(null))
 
   // 获取用户的地理坐标信息
-  UserTrafficUtils.getGeolocation().then((coords) => {
-    const { latitude, longitude, altitude } = coords
-    setGeoCoords({ latitude, longitude, altitude })
-    UserTrafficAPI.getArea(latitude, longitude, locale.value).then((res) =>
-      setGeoArea(res.display_name)
-    )
-  })
+  UserTrafficUtils.getGeolocation()
+    .then((coords) => {
+      const { latitude, longitude, altitude } = coords
+      setGeoCoords({ latitude, longitude, altitude })
+      UserTrafficAPI.getArea(latitude, longitude, locale.value).then((res) =>
+        setGeoArea(res.display_name)
+      )
+    })
+    .catch(() => sendGeoRequestNotification())
 
   // 获取用户的流量信息
   useEventListener(document, 'visibilitychange', () => {
