@@ -1,6 +1,6 @@
 import type { BasePageModel } from '../constants/page'
 
-interface Response {
+export interface Response {
   code?: number | string
   message?: string
 }

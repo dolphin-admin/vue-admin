@@ -8,6 +8,7 @@ interface ImportMetaEnv {
   readonly VITE_PORT: string
   readonly VITE_BASE_API_PREFIX: string
   readonly VITE_BASE_API_PROXY: string
+  readonly VITE_MOCK_API_PROXY: string
   readonly VITE_ICON_API_PREFIX: string
   readonly VITE_ICON_API_PROXY: string
   readonly VITE_GITHUB_CLIENT_ID: string

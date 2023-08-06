@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Dictionary, Lang, MessageSchema, Sorter } from '@/types'
+import type { DictionaryData, Lang, MessageSchema, Sorter } from '@/types'
 import ResetIcon from '~icons/ic/round-refresh'
 import CreateIcon from '~icons/ic/sharp-add'
 import EditIcon from '~icons/ic/sharp-edit'
@@ -7,11 +7,16 @@ import SearchIcon from '~icons/line-md/search'
 
 import { UserPageModel } from './private'
 
-const router = useRouter()
-
 const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({
   useScope: 'global'
 })
+
+const props = defineProps<{
+  id: number
+}>()
+
+const router = useRouter()
+const route = useRoute()
 
 const message = useMessage()
 const [loading, loadingDispatcher] = useLoading()
@@ -20,8 +25,8 @@ const [deleteLoading, deleteLoadingDispatcher] = useLoading()
 const isMobile = useMobile()
 
 const formRef = ref<FormInst | null>(null)
-
-const DictionaryData = ref<Dictionary[]>([])
+const formData = ref<DictionaryData>({})
+const dictionaryData = ref<DictionaryData[]>([])
 
 const queryParams = reactive({
   searchText: '',
@@ -38,22 +43,21 @@ const pagination = reactive({
 
 const showDialog = ref(false)
 const isEdit = ref(true)
-
-const formData = ref<Dictionary>({})
+const type = ref('')
 
 const rules: FormRules = {
-  name: [
+  value: [
     {
       required: true,
       trigger: ['blur', 'input'],
-      message: t('Validation.DictionaryName')
+      message: t('Validation.DictionaryValue')
     }
   ],
-  type: [
+  label: [
     {
       required: true,
       trigger: ['blur', 'input'],
-      message: t('Validation.DictionaryType')
+      message: t('Validation.DictionaryLabel')
     }
   ]
 }
@@ -79,10 +83,12 @@ const queryList = () => {
     params.endDate = dayjs(endDate).endOf('day').toISOString()
   }
 
-  DictionaryAPI.getDictionaries(params)
+  DictionaryAPI.getDictionaryDataById(props.id, params)
     .then((res) => {
       const { data, total } = res || {}
-      DictionaryData.value = data
+      dictionaryData.value = data
+      type.value = data.length > 0 ? data[0].type! : ''
+
       pagination.itemCount = total
     })
     .catch(() => {
@@ -96,7 +102,7 @@ const handleDelete = async (id: number) => {
   deleteLoadingDispatcher.loading()
   try {
     const { message: successMessage } =
-      await DictionaryAPI.deleteDictionaryById(id)
+      await DictionaryAPI.deleteDictionaryItem(props.id, id)
     message.success(successMessage!)
     queryList()
   } catch (error: any) {
@@ -105,7 +111,7 @@ const handleDelete = async (id: number) => {
   deleteLoadingDispatcher.loaded()
 }
 
-const columns = ref<DataTableColumns<Dictionary>>([
+const columns = ref<DataTableColumns<DictionaryData>>([
   {
     title: 'ID',
     key: 'id',
@@ -115,15 +121,24 @@ const columns = ref<DataTableColumns<Dictionary>>([
     sorter: true
   },
   {
-    title: () => t('DictionaryManagement.Name'),
-    key: 'name',
+    title: () => t('DictionaryData.Label'),
+    key: 'label',
     width: 120,
     ellipsis: {
       tooltip: true
     },
     titleAlign: 'center',
-    align: 'center',
-    fixed: !isMobile ? 'left' : undefined
+    align: 'center'
+  },
+  {
+    title: () => t('DictionaryData.Value'),
+    key: 'value',
+    width: 120,
+    ellipsis: {
+      tooltip: true
+    },
+    titleAlign: 'center',
+    align: 'center'
   },
   {
     title: () => t('DictionaryManagement.Type'),
@@ -133,28 +148,11 @@ const columns = ref<DataTableColumns<Dictionary>>([
     align: 'center',
     ellipsis: {
       tooltip: true
-    },
-    render(row) {
-      return h(
-        'span',
-        {
-          class: ['text-blue-300', 'cursor-pointer'],
-          onclick: () => {
-            router.push({
-              name: 'dictionary-data',
-              params: { id: row.id as number }
-            })
-          }
-        },
-        {
-          default: () => row.type
-        }
-      )
     }
   },
   {
     title: () => t('Common.State'),
-    key: 'state',
+    key: 'status',
     width: 80,
     titleAlign: 'center',
     align: 'center',
@@ -185,7 +183,7 @@ const columns = ref<DataTableColumns<Dictionary>>([
   {
     title: () => t('Common.CreateAt'),
     key: 'createAt',
-    width: 160,
+    width: 140,
     titleAlign: 'center',
     align: 'center',
     ellipsis: {
@@ -214,7 +212,7 @@ const columns = ref<DataTableColumns<Dictionary>>([
               onClick: () => {
                 isEdit.value = true
                 showDialog.value = true
-                formData.value = { ...row }
+                formData.value = row
               }
             },
             {
@@ -266,10 +264,11 @@ const handleReset = () => {
 }
 
 const handleCreateUser = () => {
-  isEdit.value = false
-  showDialog.value = true
   formData.value = {}
   formData.value.status = 1
+  formData.value.type = type.value
+  isEdit.value = false
+  showDialog.value = true
 }
 
 const handleConfirmDialog = async () => {
@@ -291,16 +290,16 @@ const handleConfirmDialog = async () => {
   try {
     if (isEdit.value) {
       const { message: successMessage } =
-        await DictionaryAPI.updateDictionaryById(
+        await DictionaryAPI.updateDictionaryItem(
+          props.id,
           formData.value.id!,
           formData.value
         )
       message.success(successMessage!)
     } else {
       formData.value.createAt = new Date().toISOString()
-      const { message: successMessage } = await DictionaryAPI.createDictionary(
-        formData.value
-      )
+      const { message: successMessage } =
+        await DictionaryAPI.createDictionaryData(props.id, formData.value)
       message.success(successMessage!)
     }
     queryList()
@@ -317,11 +316,10 @@ const handleConfirmDialog = async () => {
 const handleCannelDialog = () => {}
 
 watch(
-  () => locale.value,
-  () => queryList()
+  () => [locale.value, props.id],
+  () => queryList(),
+  { immediate: true }
 )
-
-onMounted(() => queryList())
 </script>
 
 <template>
@@ -398,7 +396,7 @@ onMounted(() => queryList())
       flex-height
       size="small"
       :columns="columns"
-      :data="DictionaryData"
+      :data="dictionaryData"
       :loading="loading"
       :pagination="{
         ...pagination,
@@ -462,21 +460,30 @@ onMounted(() => queryList())
         }"
       >
         <NFormItem
-          :label="t('DictionaryManagement.Name')"
-          path="name"
-        >
-          <n-input
-            v-model:value="formData.name"
-            :placeholder="t('Validation.DictionaryName')"
-          />
-        </NFormItem>
-        <NFormItem
-          :label="t('DictionaryManagement.Type')"
+          :label="t('DictionaryData.Type')"
           path="type"
         >
           <n-input
             v-model:value="formData.type"
-            :placeholder="t('Validation.DictionaryType')"
+            disabled
+          />
+        </NFormItem>
+        <NFormItem
+          :label="t('DictionaryData.Label')"
+          path="label"
+        >
+          <n-input
+            v-model:value="formData.label"
+            :placeholder="t('Validation.DictionaryLabel')"
+          />
+        </NFormItem>
+        <NFormItem
+          :label="t('DictionaryData.Value')"
+          path="value"
+        >
+          <n-input
+            v-model:value="formData.value"
+            :placeholder="t('Validation.DictionaryValue')"
           />
         </NFormItem>
         <NFormItem

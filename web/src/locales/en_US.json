@@ -72,7 +72,11 @@
     "Address": "Please enter your address",
     "Biography": "Please enter your biography",
     "QRCodeContent": "Please enter QRCode content",
-    "FileName": "Please enter file name"
+    "FileName": "Please enter file name",
+    "DictionaryName": "Please enter dictionary name",
+    "DictionaryType": "Please enter dictionary type",
+    "DictionaryLabel": "Please enter dictionary label",
+    "DictionaryValue": "Please enter dictionary value"
   },
   "Message": {
     "UploadAvatar": {
@@ -150,6 +154,7 @@
     "RoleManagement": "Role Management",
     "PermissionManagement": "Permission Management",
     "DictionaryManagement": "Dictionary Management",
+    "DictionaryData": "Dictionary Data",
     "SystemApplications": "System Applications",
     "ChatChannels": "Chat Channels",
     "SystemTools": "System Tool",
@@ -213,6 +218,11 @@
   "DictionaryManagement": {
     "Name": "Name",
     "Type": "Type"
+  },
+  "DictionaryData": {
+    "Type": "Dictionary type",
+    "Value": "Dictionary value",
+    "Label": "Dictionary label"
   },
   "QRCode": {
     "ContentPlaceholder": "Please enter QRCode content",
