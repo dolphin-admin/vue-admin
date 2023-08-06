@@ -189,11 +189,12 @@ watch(
   () => props.userFormData,
   (newValue) => {
     if (newValue) {
-      const newBirthDate =
-        newValue.birthDate &&
-        TimeUtils.formatTime(newValue.birthDate, 'YYYY-MM-DD')
-      formData.value = newValue
-      formData.value.birthDate = newBirthDate
+      formData.value = {
+        ...newValue,
+        ...(newValue.birthDate && {
+          birthDate: TimeUtils.formatTime(newValue.birthDate, 'YYYY-MM-DD')
+        })
+      }
     } else {
       formData.value = {}
     }

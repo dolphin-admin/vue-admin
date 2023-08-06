@@ -187,6 +187,11 @@
     "Name": "名称",
     "Type": "类型"
   },
+  "DictionaryData": {
+    "Type": "字典类型",
+    "Value": "字典健值",
+    "Label": "字典标签"
+  },
   "QRCode": {
     "ContentPlaceholder": "请输入二维码内容",
     "Generate": "生成二维码"

@@ -187,6 +187,11 @@
     "Name": "Name",
     "Type": "Type"
   },
+  "DictionaryData": {
+    "Type": "Dictionary type",
+    "Value": "Dictionary value",
+    "Label": "Dictionary label"
+  },
   "QRCode": {
     "ContentPlaceholder": "Please enter QRCode content",
     "Generate": "Generate QRCode"

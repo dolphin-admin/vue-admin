@@ -4,7 +4,9 @@ import CopyIcon from '~icons/ic/baseline-content-copy'
 import UnauthorizedIcon from '~icons/ic/baseline-do-not-disturb'
 import DigitalAnimationIcon from '~icons/ic/baseline-hourglass-empty'
 import QRCodeIcon from '~icons/ic/baseline-qrcode'
+import DictionaryManagementChildrenIcon from '~icons/ic/baseline-sell'
 import TimelineIcon from '~icons/ic/baseline-timeline'
+import DictionaryManagementIcon from '~icons/ic/outline-library-books'
 import ListTemplatesIcon from '~icons/ic/outline-list-alt'
 import PrintIcon from '~icons/ic/outline-local-printshop'
 import TrafficStatisticsIcon from '~icons/ic/twotone-ramp-left'
@@ -21,7 +23,6 @@ import ExcelIcon from '~icons/mdi/microsoft-excel'
 import WebSocketIcon from '~icons/tabler/brand-socket-io'
 import NotFoundIcon from '~icons/tabler/error-404'
 import ChatChannelsIcon from '~icons/tabler/message-2'
-import DictionaryManagementIcon from '~icons/ic/outline-library-books'
 
 import {
   BUILTIN_COMPONENTS_PREFIX,
@@ -106,6 +107,16 @@ export const routes = [
         meta: {
           title: () => t('Menu.DictionaryManagement'),
           icon: DictionaryManagementIcon
+        }
+      },
+      {
+        path: `${SYSTEM_FUNCTIONS_PREFIX}/dictionary-management/:id`,
+        name: 'dictionary-data',
+        component: () => import('@/views/SystemFunctions/DictionaryData'),
+        props: true,
+        meta: {
+          title: () => t('Menu.DictionaryData'),
+          icon: DictionaryManagementChildrenIcon
         }
       },
       // system-application
