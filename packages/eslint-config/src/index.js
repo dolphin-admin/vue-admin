@@ -22,10 +22,10 @@ module.exports = defineConfig({
     'prettier'
   ],
   plugins: [
-    'unused-imports',
     '@typescript-eslint',
     'simple-import-sort',
-    'import'
+    'import',
+    'unused-imports'
   ],
   settings: {
     'import/resolver': {

@@ -35,10 +35,6 @@ const { isFullscreen, toggle: toggleFullscreen } = useFullscreen()
 
 const languages = ref(languageOptions)
 
-// const props = defineProps<{
-//   traffic: any
-// }>()
-
 /**
  * 重置语言选项，当前语言不可选
  */
@@ -66,30 +62,12 @@ const handleUpdateLocale = (lang: Lang) => {
   LangUtils.setLang(lang)
 }
 
-const trafficValue: any = {}
-const getDuration = (enter: string | undefined, leave: string | undefined) => {
-  if (enter === undefined || leave === undefined) return 0
-  const enterAt = new Date(enter).getTime()
-  const leaveAt = new Date(leave).getTime()
-  return leaveAt - enterAt
-}
-
 /**
  * 退出登录
  */
 const logout = () => {
-  // trafficValue.leaveAt = new Date().toISOString()
-  // trafficValue.duration = getDuration(props.traffic.enterAt, trafficValue.leaveAt)
-  // TrafficAPI.reportUserTraffic({ ...props.traffic, ...trafficValue })
-  // .then(() => {
-  AuthUtils.clearToken()
-  userStore.clearUser()
-  message.success(t('Logout.Success'))
   router.replace('/login')
-  // })
-  // .catch((error) => {
-  //   console.log(error)
-  // })
+  message.success(t('Logout.Success'))
 }
 
 /**
@@ -243,10 +221,9 @@ onMounted(() => {
             :color="themeStore.themeMode === 'light' ? '#FDC022' : '#FED736'"
             :component="themeStore.themeMode === 'light' ? SunIcon : MoonIcon"
             @click="
-              () =>
-                themeStore.changeThemeMode(
-                  themeStore.themeMode === 'light' ? 'dark' : 'light'
-                )
+              themeStore.changeThemeMode(
+                themeStore.themeMode === 'light' ? 'dark' : 'light'
+              )
             "
           />
         </template>

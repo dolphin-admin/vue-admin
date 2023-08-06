@@ -2,258 +2,271 @@
   "App": {
     "Name": "Dolphin Admin"
   },
+  "AuthRedirect": {
+    "Authorizing": "Authorizing..."
+  },
   "Common": {
     "401": "Unauthorized",
     "403": "Forbidden",
     "404": "Not Found",
     "418": "I'm A Teapot",
     "500": "Internal Server Error",
-    "NetworkError": "Network Error",
-    "Docs": "Docs",
     "All": "All",
-    "Search": "Search",
-    "Refresh": "Refresh",
-    "Reset": "Reset",
-    "Operation": "Operation",
-    "Create": "Create",
-    "Edit": "Edit",
-    "Save": "Save",
-    "Delete": "Delete",
-    "Confirm": "Confirm",
-    "Cancel": "Cancel",
+    "AlreadyRead": "Have read",
     "Back": "Back",
-    "Enable": "Enable",
-    "Disable": "Disable",
-    "Verify": "Verify",
-    "EachPage": "{ count } per page",
-    "TotalPage": "Total { totalPage }",
-    "Download": "Download",
-    "Upload": "Upload",
-    "IsOrNot": "Is or not",
-    "Start": "Start",
-    "Pause": "Pause",
-    "Stop": "Stop",
+    "Cancel": "Cancel",
+    "ChangePassword": "Change password",
+    "Confirm": "Confirm",
+    "ConfirmPassword": "Confirm password",
     "Continue": "Continue",
     "Copy": "Copy",
-    "Import": "Import",
+    "Create": "Create",
+    "Delete": "Delete",
+    "Disable": "Disable",
+    "Docs": "Docs",
+    "Download": "Download",
+    "EachPage": "{ count } per page",
+    "Edit": "Edit",
+    "Enable": "Enable",
     "Export": "Export",
-    "Print": "Print",
-    "RememberPassword": "Remember password",
     "ForgetPassword": "Forget password",
-    "ConfirmPassword": "Confirm password",
-    "OldPassword": "Old password",
-    "NewPassword": "New password",
-    "ChangePassword": "Change password",
+    "Import": "Import",
     "IsLoadingData": "Loading data ...",
+    "IsOrNot": "Is or not",
+    "KeywordSearch": "Keyword search",
     "LoadingDataError": "Loading data error",
-    "KeywordSearch": "Keyword search"
+    "NetworkError": "Network Error",
+    "NewPassword": "New password",
+    "Notification": "Notification",
+    "OldPassword": "Old password",
+    "Operation": "Operation",
+    "Pause": "Pause",
+    "Print": "Print",
+    "Refresh": "Refresh",
+    "RememberPassword": "Remember password",
+    "RequestGeolocation": "For your experience, we need your location information.",
+    "Reset": "Reset",
+    "Save": "Save",
+    "Search": "Search",
+    "Start": "Start",
+    "Stop": "Stop",
+    "TotalPage": "Total { totalPage }",
+    "Upload": "Upload",
+    "Verify": "Verify"
   },
-  "Validation": {
-    "Username": "Please enter username",
-    "Password": "Please enter password",
-    "PasswordLength": "Password length must be greater than 6",
-    "OldPassword": "Please enter old password",
-    "ConfirmPassword": "Please enter confirm password",
-    "ConfirmPasswordNotMatch": "Password not match",
-    "Name": "Please enter name",
-    "FirstName": "Please enter your first name",
-    "LastName": "Please enter your last name",
-    "Email": "Please enter your email",
-    "EmailFormat": "Please enter the correct email format",
-    "PhoneNumber": "Please enter a phone number",
-    "PhoneNumberFormat": "Please enter phone number in the correct format",
-    "BirthDate": "Please enter your birth date",
-    "Country": "Please enter your country",
-    "Province": "Please enter your province",
-    "City": "Please enter your city",
-    "Address": "Please enter your address",
-    "Biography": "Please enter your biography",
-    "QRCodeContent": "Please enter QRCode content",
-    "FileName": "Please enter file name"
+  "DigitalAnimation": {
+    "DurationPlaceholder": "Please enter duration",
+    "EndValuePlaceholder": "Please enter end value",
+    "StartValuePlaceholder": "Please enter start value"
   },
-  "Message": {
-    "UploadAvatar": {
-      "Success": "Upload avatar success",
-      "Failed": "Upload avatar failed"
-    },
-    "GenerateQRCode": {
-      "Success": "QRCode generate success",
-      "Failed": "QRCode generate failed"
-    },
-    "Copy": {
-      "Success": "Copy success",
-      "Failed": "Copy failed"
-    },
-    "Delete": {
-      "Success": "Delete success",
-      "Failed": "Delete failed"
-    }
+  "Header": {
+    "ChangePassword": "Change password",
+    "ExitFullScreen": "Exit full screen",
+    "FullScreen": "Full screen",
+    "Language": "Language",
+    "LockScreen": "Lock screen",
+    "Logout": "Logout",
+    "Notification": "Notification",
+    "Settings": "Settings",
+    "SwitchTheme": "Switch theme"
   },
-  "User": {
-    "Username": "Username",
-    "Password": "Password",
-    "Name": "Name",
-    "FirstName": "First name",
-    "LastName": "Last name",
-    "NickName": "Nick name",
-    "Avatar": "Avatar",
-    "Email": "Email",
-    "PhoneNumber": "Phone number",
-    "BirthDate": "Birth date",
-    "Country": "Country",
-    "Province": "Province",
-    "City": "City",
-    "Address": "Address",
-    "Biography": "Biography",
-    "Roles": "Roles",
-    "AuthType": "Auth type",
-    "Gender": "Gender",
-    "Male": "Male",
-    "Female": "Female"
+  "Icon": {
+    "SearchPlaceholder": "Please enter icon set name"
   },
   "Language": {
     "Choose": "Choose language:",
     "Current": "English"
   },
-  "Header": {
-    "Notification": "Notification",
-    "FullScreen": "Full screen",
-    "ExitFullScreen": "Exit full screen",
-    "Language": "Language",
-    "SwitchTheme": "Switch theme",
-    "Settings": "Settings",
-    "LockScreen": "Lock screen",
-    "ChangePassword": "Change password",
-    "Logout": "Logout"
+  "Login": {
+    "AsAdmin": "Login as Admin",
+    "AsVisitor": "Login as Visitor",
+    "Failed": "Login failed",
+    "LoginWithGitHub": "Sign in with GitHub",
+    "LoginWithGoogle": "Sign in with Google",
+    "NeedAccount": "Need an account?",
+    "Success": "Login success",
+    "ThirdPartyLogin": "Third party login"
   },
-  "Tab": {
-    "Clear": "Clear"
-  },
-  "Sidebar": {
-    "Show": "Show sidebar",
-    "Hide": "Hide sidebar",
-    "Expand": "Expand sidebar",
-    "Collapse": "Collapse sidebar"
+  "Logout": {
+    "LoginAgain": "User identity status has expired, please log in again",
+    "Success": "Logout success"
   },
   "Menu": {
-    "Navigation": "Site Navigation",
-    "Home": "Home",
-    "Login": "Login",
-    "Signup": "Signup",
-    "UserInfo": "User Info",
-    "ChangePassword": "Change Password",
-    "SystemFunctions": "System Function",
-    "UserManagement": "User Management",
-    "RoleManagement": "Role Management",
-    "PermissionManagement": "Permission Management",
-    "SystemApplications": "System Applications",
-    "ChatChannels": "Chat Channels",
-    "SystemTools": "System Tool",
-    "Icon": "Icon",
-    "QRCode": "QRCode",
-    "Clipboard": "Clipboard",
-    "Print": "Print",
-    "Excel": "Excel",
-    "WebSocket": "WebSocket",
-    "UniversalComponents": "Universal Components",
-    "Charts": "Charts",
-    "BuiltinComponents": "Built-in Component",
-    "DigitalAnimation": "Digital Animation",
-    "Timeline": "Timeline",
-    "ErrorPages": "Error Page",
     "403": "403",
     "404": "404",
     "418": "418",
     "500": "500",
-    "WebsiteAnalytics": "Website Analytics",
-    "TrafficStatistics": "Traffic Statistics",
+    "BuiltinComponents": "Built-in Component",
+    "ChangePassword": "Change Password",
+    "Charts": "Charts",
+    "ChatChannels": "Chat Channels",
+    "Clipboard": "Clipboard",
     "CodeTemplates": "Code Templates",
-    "ListTemplates": "List Templates"
+    "DigitalAnimation": "Digital Animation",
+    "ErrorPages": "Error Page",
+    "Excel": "Excel",
+    "Home": "Home",
+    "Icon": "Icon",
+    "ListTemplates": "List Templates",
+    "Login": "Login",
+    "Navigation": "Site Navigation",
+    "PermissionManagement": "Permission Management",
+    "Print": "Print",
+    "QRCode": "QRCode",
+    "RoleManagement": "Role Management",
+    "Signup": "Signup",
+    "SystemApplications": "System Applications",
+    "SystemFunctions": "System Function",
+    "SystemTools": "System Tool",
+    "Timeline": "Timeline",
+    "TrafficStatistics": "Traffic Statistics",
+    "UniversalComponents": "Universal Components",
+    "UserInfo": "User Info",
+    "UserManagement": "User Management",
+    "WebSocket": "WebSocket",
+    "WebsiteAnalytics": "Website Analytics"
   },
-  "Login": {
-    "AsVisitor": "Login as Visitor",
-    "AsAdmin": "Login as Admin",
-    "Success": "Login success",
-    "Failed": "Login failed",
-    "NeedAccount": "Need an account?",
-    "ThirdPartyLogin": "Third party login",
-    "LoginWithGitHub": "Sign in with GitHub",
-    "LoginWithGoogle": "Sign in with Google"
+  "Message": {
+    "Copy": {
+      "Failed": "Copy failed",
+      "Success": "Copy success"
+    },
+    "Delete": {
+      "Failed": "Delete failed",
+      "Success": "Delete success"
+    },
+    "GenerateQRCode": {
+      "Failed": "QRCode generate failed",
+      "Success": "QRCode generate success"
+    },
+    "UploadAvatar": {
+      "Failed": "Upload avatar failed",
+      "Success": "Upload avatar success"
+    }
   },
-  "Signup": {
-    "Success": "Signup success",
-    "Failed": "Signup failed",
-    "AlreadyHaveAccount": "Already have an account?"
+  "Navigation": {
+    "AddShortcut": "Add shortcut"
   },
-  "AuthRedirect": {
-    "Authorizing": "Authorizing..."
+  "Notification": {
+    "Desktop": {
+      "EnterSystem": "It is still in the internal testing stage, if you have any questions, please report to the administrator."
+    },
+    "RequestGeolocation": {
+      "Content": "In order to provide you with more accurate and personalized services, you may be required to provide some location information. In the browser address bar, you can authorize the application to open the location information. \nWe promise to respect and protect the personal privacy of all users, and provide safer and more reliable services.",
+      "Description": "From Bit Ocean team",
+      "Title": "Kind tips"
+    }
   },
-  "Logout": {
-    "Success": "Logout success",
-    "LoginAgain": "User identity status has expired, please log in again"
-  },
-  "UserInfo": {
-    "PersonalInfo": "Personal info",
-    "BasicInfo": "Basic info",
-    "Fetching": "Fetching user info...",
-    "FetchError": "Fetch user info failed"
-  },
-  "UserManagement": {
-    "EnterTime": "Enter time",
-    "CreateUser": "Create user",
-    "EditUser": "Edit user",
-    "ResetPassword": "Reset password",
-    "VerifyOrNot": "Verify or not",
-    "EnableOrNot": "Enable or not"
+  "Print": {
+    "Angular": "Angular is a platform for building web applications, developed by Google. It provides a way to create single-page applications, and has robust tools for two-way data binding, modularization, templating, and dependency injection.",
+    "Astro": "Astro is a front-end framework that allows you to build faster, modern websites with less client-side JavaScript. Astro lets you write components using your favorite JavaScript framework (like React, Vue, Svelte), but then renders them to static HTML and CSS at build time.",
+    "DOM": "Print DOM",
+    "Description": "Description",
+    "Docusaurus": "Docusaurus is a modern static website generator (SSG) that helps you to create, maintain, and update documentation websites easily. It's powered by React and can be customized with your own React code.",
+    "ExpireTip": "The data is as of 2023/07/17, from GitHub",
+    "Framework": "Framework",
+    "FrontendFrameworkLeaderboard": "Front-end Framework Leaderboard",
+    "Gatsby": "Gatsby is a free and open source framework based on React that helps developers build blazing fast websites and apps. It can pull data from anywhere (CMSs, Markdown files, APIs etc.) and generates static web pages that still have the speed and functionality of a single page app (SPA).",
+    "HTMLStr": "Print HTML Str",
+    "Icon": "Icon",
+    "Nextjs": "Next.js is a React framework developed by Vercel, and it allows for server-side rendering and generating static websites for React based web applications. It includes features like zero-config, automatic code splitting and file-system based routing.",
+    "Nuxtjs": "Nuxt.js is a framework for creating Vue.js applications, it allows for server side rendering (SSR), single page applications (SPA), or statically generated sites (SSG). Nuxt.js presets all the configuration needed to make your development of a Vue.js application enjoyable.",
+    "React": "React is a JavaScript library developed by Facebook for building user interfaces, particularly for single-page applications. It's used for handling the view layer in web and mobile apps. React allows developers to create large web applications that can change data, without reloading the page.",
+    "Solidjs": "Solid is a declarative JavaScript library for building user interfaces. It does not use a virtual DOM diffing algorithm, instead it compiles its templates down to highly optimized fine-grained reactivity system, which makes it extremely efficient.",
+    "Stars": "Stars",
+    "Svelte": "Svelte is a radical new approach to building user interfaces. Whereas traditional frameworks like React and Vue do the bulk of their work in the browser, Svelte shifts that work into a compile step that happens when you build your app.",
+    "Type": "Type",
+    "Vue": "Vue.js is a JavaScript framework for building user interfaces. The core library is focused on the view layer only and is easy to pick up and integrate with other libraries or existing projects. Vue is also capable of powering sophisticated Single-Page Applications when used in combination with modern tooling and supporting libraries."
   },
   "QRCode": {
     "ContentPlaceholder": "Please enter QRCode content",
     "Generate": "Generate QRCode"
   },
-  "Icon": {
-    "SearchPlaceholder": "Please enter icon set name"
+  "Sidebar": {
+    "Collapse": "Collapse sidebar",
+    "Expand": "Expand sidebar",
+    "Hide": "Hide sidebar",
+    "Show": "Show sidebar"
   },
-  "Print": {
-    "FrontendFrameworkLeaderboard": "Front-end Framework Leaderboard",
-    "Icon": "Icon",
-    "Framework": "Framework",
-    "Type": "Type",
-    "Description": "Description",
-    "Stars": "Stars",
-    "React": "React is a JavaScript library developed by Facebook for building user interfaces, particularly for single-page applications. It's used for handling the view layer in web and mobile apps. React allows developers to create large web applications that can change data, without reloading the page.",
-    "Angular": "Angular is a platform for building web applications, developed by Google. It provides a way to create single-page applications, and has robust tools for two-way data binding, modularization, templating, and dependency injection.",
-    "Vue": "Vue.js is a JavaScript framework for building user interfaces. The core library is focused on the view layer only and is easy to pick up and integrate with other libraries or existing projects. Vue is also capable of powering sophisticated Single-Page Applications when used in combination with modern tooling and supporting libraries.",
-    "Svelte": "Svelte is a radical new approach to building user interfaces. Whereas traditional frameworks like React and Vue do the bulk of their work in the browser, Svelte shifts that work into a compile step that happens when you build your app.",
-    "Solidjs": "Solid is a declarative JavaScript library for building user interfaces. It does not use a virtual DOM diffing algorithm, instead it compiles its templates down to highly optimized fine-grained reactivity system, which makes it extremely efficient.",
-    "Nextjs": "Next.js is a React framework developed by Vercel, and it allows for server-side rendering and generating static websites for React based web applications. It includes features like zero-config, automatic code splitting and file-system based routing.",
-    "Nuxtjs": "Nuxt.js is a framework for creating Vue.js applications, it allows for server side rendering (SSR), single page applications (SPA), or statically generated sites (SSG). Nuxt.js presets all the configuration needed to make your development of a Vue.js application enjoyable.",
-    "Gatsby": "Gatsby is a free and open source framework based on React that helps developers build blazing fast websites and apps. It can pull data from anywhere (CMSs, Markdown files, APIs etc.) and generates static web pages that still have the speed and functionality of a single page app (SPA).",
-    "Docusaurus": "Docusaurus is a modern static website generator (SSG) that helps you to create, maintain, and update documentation websites easily. It's powered by React and can be customized with your own React code.",
-    "Astro": "Astro is a front-end framework that allows you to build faster, modern websites with less client-side JavaScript. Astro lets you write components using your favorite JavaScript framework (like React, Vue, Svelte), but then renders them to static HTML and CSS at build time.",
-    "ExpireTip": "The data is as of 2023/07/17, from GitHub",
-    "DOM": "Print DOM",
-    "HTMLStr": "Print HTML Str"
+  "Signup": {
+    "AlreadyHaveAccount": "Already have an account?",
+    "Failed": "Signup failed",
+    "Success": "Signup success"
   },
-  "WebSocket": {
-    "Tip": "Open a new tab, or open a new browser to experience this feature. Click to establish a connection to communicate with the server. After sending the message, the server will broadcast the message to all users.",
-    "Establish": "Establish connection",
-    "Disconnect": "Disconnect",
-    "SendMessage": "Send message",
-    "Established": "Established success",
-    "Disconnected": "Disconnected",
-    "SendSuccess": "Send success",
-    "ContentIsEmpty": "Content should not be empty",
-    "NotConnected": "Not connected"
-  },
-  "DigitalAnimation": {
-    "StartValuePlaceholder": "Please enter start value",
-    "EndValuePlaceholder": "Please enter end value",
-    "DurationPlaceholder": "Please enter duration"
+  "Tab": {
+    "Clear": "Clear"
   },
   "Timeline": {
     "WebDevRoadmap": "Web Dev Roadmap"
   },
-  "Navigation": {
-    "AddShortcut": "Add shortcut"
+  "User": {
+    "Address": "Address",
+    "AuthType": "Auth type",
+    "Avatar": "Avatar",
+    "Biography": "Biography",
+    "BirthDate": "Birth date",
+    "City": "City",
+    "Country": "Country",
+    "Email": "Email",
+    "Female": "Female",
+    "FirstName": "First name",
+    "Gender": "Gender",
+    "LastName": "Last name",
+    "Male": "Male",
+    "Name": "Name",
+    "NickName": "Nick name",
+    "Password": "Password",
+    "PhoneNumber": "Phone number",
+    "Province": "Province",
+    "Roles": "Roles",
+    "Username": "Username"
+  },
+  "UserInfo": {
+    "BasicInfo": "Basic info",
+    "FetchError": "Fetch user info failed",
+    "Fetching": "Fetching user info...",
+    "PersonalInfo": "Personal info"
+  },
+  "UserManagement": {
+    "CreateUser": "Create user",
+    "EditUser": "Edit user",
+    "EnableOrNot": "Enable or not",
+    "EnterTime": "Enter time",
+    "ResetPassword": "Reset password",
+    "VerifyOrNot": "Verify or not"
+  },
+  "Validation": {
+    "Address": "Please enter your address",
+    "Biography": "Please enter your biography",
+    "BirthDate": "Please enter your birth date",
+    "City": "Please enter your city",
+    "ConfirmPassword": "Please enter confirm password",
+    "ConfirmPasswordNotMatch": "Password not match",
+    "Country": "Please enter your country",
+    "Email": "Please enter your email",
+    "EmailFormat": "Please enter the correct email format",
+    "FileName": "Please enter file name",
+    "FirstName": "Please enter your first name",
+    "LastName": "Please enter your last name",
+    "Name": "Please enter name",
+    "OldPassword": "Please enter old password",
+    "Password": "Please enter password",
+    "PasswordLength": "Password length must be greater than 6",
+    "PhoneNumber": "Please enter a phone number",
+    "PhoneNumberFormat": "Please enter phone number in the correct format",
+    "Province": "Please enter your province",
+    "QRCodeContent": "Please enter QRCode content",
+    "Username": "Please enter username"
+  },
+  "WebSocket": {
+    "ContentIsEmpty": "Content should not be empty",
+    "Disconnect": "Disconnect",
+    "Disconnected": "Disconnected",
+    "Establish": "Establish connection",
+    "Established": "Established success",
+    "NotConnected": "Not connected",
+    "SendMessage": "Send message",
+    "SendSuccess": "Send success",
+    "Tip": "Open a new tab, or open a new browser to experience this feature. Click to establish a connection to communicate with the server. After sending the message, the server will broadcast the message to all users."
   }
 }

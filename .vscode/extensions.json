@@ -2,8 +2,10 @@
   "recommendations": [
     "streetsidesoftware.code-spell-checker", // Code Spell Checker
     "EditorConfig.EditorConfig", // EditorConfig
+    "usernamehw.errorlens", // Error Lens
     "dbaeumer.vscode-eslint", // ESLint
     "lokalise.i18n-ally", // i18n Ally
+    "antfu.iconify", // Iconify Intellisense
     "esbenp.prettier-vscode", // Prettier
     "Prisma.prisma", // Prisma
     "bradlc.vscode-tailwindcss", // Tailwind CSS Intellisense

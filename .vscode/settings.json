@@ -1,0 +1,47 @@
+{
+  // Formatter
+  "editor.codeActionsOnSave": {
+    "source.fixAll": false,
+    "source.fixAll.eslint": true,
+    "source.organizeImports": false
+  },
+  "editor.formatOnSave": false,
+  /* ESLint */
+  "eslint.codeAction.showDocumentation": {
+    "enable": true
+  },
+  "eslint.quiet": false,
+  "eslint.validate": [
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact",
+    "vue"
+  ],
+  /* i18n ally */
+  "i18n-ally.localesPaths": "web/src/locales", // 相对于项目根目录的语言环境目录路径
+  "i18n-ally.sourceLanguage": "zh", // 根据此语言文件翻译其他语言文件的变量和内容
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.preferredDelimiter": "_",
+  "i18n-ally.sortKeys": true,
+  "i18n-ally.extract.keygenStrategy": "random",
+  "i18n-ally.extract.keygenStyle": "PascalCase",
+  "i18n-ally.enabledParsers": [
+    "json",
+    "js",
+    "ts"
+  ],
+  "i18n-ally.keysInUse": [],
+  "i18n-ally.theme.annotationMissing": "red",
+  "i18n-ally.theme.annotationMissingBorder": "red",
+  "i18n-ally.theme.annotation": "#6495ED",
+  "i18n-ally.theme.annotationBorder": "#6495ED",
+  "i18n-ally.annotationMaxLength": 40,
+  "i18n-ally.autoDetection": true,
+  /* Error Lens */
+  "errorLens.enabledDiagnosticLevels": [
+    "error",
+    "info",
+    "warning"
+  ]
+}

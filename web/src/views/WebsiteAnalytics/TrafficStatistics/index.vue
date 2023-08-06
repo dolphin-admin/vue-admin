@@ -1,14 +1,5 @@
 <script setup lang="ts">
-import type { TrafficData, UserTrafficsPageType } from '@/types'
-
 import { countries, countrymesh } from './mock'
-
-const userTrafficsParam = reactive<UserTrafficsPageType>({
-  page: 1,
-  pageSize: 1000
-})
-
-const userTrafficsData = ref<TrafficData[]>()
 
 const svgContainer = ref(null)
 
@@ -69,42 +60,42 @@ const initChart = () => {
     .attr('d', path)
 }
 
-// 添加用户信息的位置
-const addPosition = (svg: any, records: TrafficData[]) => {
-  // 添加用户信息的位置
-  svg
-    .append('g')
-    .selectAll('circle')
-    .data(records)
-    .join('circle')
-    .attr('cx', (d: any) => projection([d.longitude, d.latitude])[0])
-    .attr('cy', (d: any) => projection([d.longitude, d.latitude])[1])
-    .on('mouseover', function (this: SVGCircleElement, _: any) {
-      d3.select(this as any)
-        .append('title')
-        .text((d: any) => `${d.area}`)
-    })
-    .on('mouseout', function (this: SVGCircleElement, _: any) {
-      d3.select(this).select('title').remove()
-    })
-    .attr('r', 2.8)
-    .attr('fill', '#FF6666')
-}
+// // 添加用户信息的位置
+// const addPosition = (svg: any, records: TrafficData[]) => {
+//   // 添加用户信息的位置
+//   svg
+//     .append('g')
+//     .selectAll('circle')
+//     .data(records)
+//     .join('circle')
+//     .attr('cx', (d: any) => projection([d.longitude, d.latitude])[0])
+//     .attr('cy', (d: any) => projection([d.longitude, d.latitude])[1])
+//     .on('mouseover', function (this: SVGCircleElement, _: any) {
+//       d3.select(this as any)
+//         .append('title')
+//         .text((d: any) => `${d.area}`)
+//     })
+//     .on('mouseout', function (this: SVGCircleElement, _: any) {
+//       d3.select(this).select('title').remove()
+//     })
+//     .attr('r', 2.8)
+//     .attr('fill', '#FF6666')
+// }
 
-const getUserTraffic = (svg: any) => {
-  TrafficAPI.getUserTraffics(userTrafficsParam)
-    .then((res) => {
-      userTrafficsData.value = res.data as TrafficData[]
-      addPosition(svg, res.data)
-    })
-    .catch((error) => {
-      userTrafficsData.value = []
-    })
-}
+// const getUserTraffic = (svg: any) => {
+//   TrafficAPI.getUserTraffics(userTrafficsParam)
+//     .then((res) => {
+//       userTrafficsData.value = res.data as TrafficData[]
+//       addPosition(svg, res.data)
+//     })
+//     .catch((error) => {
+//       userTrafficsData.value = []
+//     })
+// }
 
 onMounted(() => {
   const svg = initChart()
-  getUserTraffic(svg)
+  // getUserTraffic(svg)
 })
 </script>
 
