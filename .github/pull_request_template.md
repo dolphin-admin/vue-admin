@@ -1,15 +1,25 @@
-- **Please check if the PR fulfills these requirements**
+### **请检查 PR 是否满足如下要求：**
 
-* [ ] The commit message follows our guidelines
-* [ ] Tests for the changes have been added (for bug fixes/features)
-* [ ] Docs have been added / updated (for bug fixes / features)
+- [ ] 提交信息是否符合规范？
+- [ ] 是否构建通过？
+- [ ] 是否更新了文档（如果需要的话）？
 
-- **What kind of change does this PR introduce?** (Bug fix, feature, docs update, ...)
+---
 
-- **What is the current behavior?** (You can also link to an open issue here)
+### **本次 PR 中改动的内容：**
 
-- **What is the new behavior (if this is a feature change)?**
+---
 
-- **Does this PR introduce a breaking change?** (What changes might users need to make in their application due to this PR?)
+### **本次 PR 中包含的 break change：**
 
-- **Other information**:
+---
+
+### **关联的 Issue 或 PR：**
+
+---
+
+### **其他：**
+
+---
+
+### **可能存在的问题：**

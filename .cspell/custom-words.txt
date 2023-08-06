@@ -62,6 +62,7 @@ titlebar
 uncategorized
 unplugin
 vfonts
+vite
 vueuse
 webos
 wordprocessingml

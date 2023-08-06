@@ -26,7 +26,7 @@ app.mount('#app')
 if (GlobalEnvConfig.IS_DEV) {
   sendNotification({
     title: `🐬${i18n.global.t('App.Name')}`,
-    body: '当前仍处于内测阶段，如有问题请反馈管理员。',
+    body: i18n.global.t('Notification.Desktop.EnterSystem'),
     icon: siteMetaData.favicon
   })
 }

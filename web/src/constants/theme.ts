@@ -9,6 +9,10 @@ export const lightThemeOverrides: GlobalThemeOverrides = {
     primaryColorHover: '#0078D7',
     primaryColorPressed: '#0078D7',
     primaryColorSuppl: '#0078D7'
+  },
+  Dialog: {
+    contentMargin: '20px 0 0 0',
+    padding: '20px'
   }
 }
 
@@ -21,5 +25,9 @@ export const darkThemeOverrides: GlobalThemeOverrides = {
     primaryColorHover: '#0078D7',
     primaryColorPressed: '#0078D7',
     primaryColorSuppl: '#0078D7'
+  },
+  Dialog: {
+    contentMargin: '20px 0 0 0',
+    padding: '20px'
   }
 }
