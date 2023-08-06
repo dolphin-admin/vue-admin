@@ -129,7 +129,6 @@ declare global {
   const useTitle: typeof import('@vueuse/core')['useTitle']
   const useToggle: typeof import('@vueuse/core')['useToggle']
   const useUserStore: typeof import('../store/user/index')['useUserStore']
-  const useUserTrafficStore: typeof import('../store/userTraffic/index')['useUserTrafficStore']
   const useXL: typeof import('../hooks/useMediaQuery/index')['useXL']
   const watch: typeof import('vue')['watch']
   const watchEffect: typeof import('vue')['watchEffect']

@@ -5,10 +5,6 @@ import Request from '../axios'
 export class UserTrafficAPI {
   private static USER_TRAFFIC_API_PREFIX = `${GlobalEnvConfig.BASE_API_PREFIX}/userTraffics`
 
-  private static IP_API_PREFIX = '/ip-api'
-
-  private static AREA_API_PREFIX = '/area-api'
-
   /**
    * 用户流量列表
    */
@@ -28,12 +24,18 @@ export class UserTrafficAPI {
    * - 只支持传输字符串，且字符串长度不能超过 64KB
    * - 只支持 POST 请求
    * - 不支持设置请求头
+   * - 认证方式通过 URL query 参数传递
+   *
+   * @see https://developer.mozilla.org/zh-CN/docs/Web/API/Navigator/sendBeacon
+   *
+   * TODO: 没有考虑浏览器不支持 navigator.sendBeacon 方法的情况
    */
   static reportUserTraffic(params: UserTraffic) {
-    const token = AuthUtils.getToken()
+    const authorization = AuthUtils.getAuthorization()
+    const data = { data: params, authorization }
     return navigator.sendBeacon(
-      `${this.USER_TRAFFIC_API_PREFIX}?token=${token}`,
-      JSON.stringify(params)
+      `${this.USER_TRAFFIC_API_PREFIX}`,
+      JSON.stringify(data)
     )
   }
 
@@ -41,10 +43,16 @@ export class UserTrafficAPI {
    * 获取用户 IP 地址
    * @description 第三方接口
    */
-  static getIP() {
-    return Request.get<{ ip: string }>(this.IP_API_PREFIX, {
-      format: 'json'
-    })
+  static async getIP(): Promise<{ ip: string | null }> {
+    try {
+      const res = await fetch('https://api.ipify.org?format=json')
+      const data = await res.json()
+      return data
+    } catch (e) {
+      return {
+        ip: null
+      }
+    }
   }
 
   /**
@@ -62,18 +70,42 @@ export class UserTrafficAPI {
    * - 16	主要街道
    * - 17 主要街道和次要街道
    * - 18	建筑
+   *
+   * @see https://nominatim.org/release-docs/develop/api/Reverse/
    */
-  static getArea(latitude: number, longitude: number, lang: Lang) {
-    return Request.get<{ display_name: string }>(
-      `${this.AREA_API_PREFIX}/reverse`,
-      {
-        format: 'json',
-        lat: latitude,
-        lon: longitude,
-        zoom: 8,
-        addressdetails: 1,
-        'accept-language': lang
+  static async getArea(
+    latitude: number,
+    longitude: number,
+    lang: Lang
+  ): Promise<{ display_name: string | null }> {
+    const params = {
+      format: 'json',
+      lat: `${latitude}`,
+      lon: `${longitude}`,
+      zoom: '8',
+      addressdetails: '1',
+      'accept-language': lang
+    }
+    const queryParams = new URLSearchParams()
+    Object.entries(params).forEach(([key, value]) => {
+      queryParams.append(key, value)
+    })
+    try {
+      const res = await fetch(
+        'https://nominatim.openstreetmap.org/reverse' +
+          `?${queryParams.toString()}`
+      )
+      const data = await res.json()
+      return data
+    } catch (e) {
+      return {
+        display_name: null
       }
-    )
+    }
+    // TODO: Axios 使用 Vite 代理好像有问题，暂时使用 fetch
+    // return Request.get<{ display_name: string }>(
+    //   `${this.AREA_API_PREFIX}/reverse`,
+    //   params
+    // )
   }
 }

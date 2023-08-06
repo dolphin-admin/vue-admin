@@ -2,7 +2,7 @@ import Request from '../axios'
 import type { APIv2CollectionResponse } from './types'
 
 export class IconAPI {
-  private static ICON_API_PREFIX = GlobalEnvConfig.ICON_API_PREFIX
+  private static ICON_API_PREFIX = '/icon-api'
 
   /**
    * 图标集列表

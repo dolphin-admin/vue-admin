@@ -40,7 +40,7 @@ class Request {
           AuthUtils.isAuthenticated() &&
           url?.startsWith(GlobalEnvConfig.BASE_API_PREFIX)
         ) {
-          req.headers.Authorization = `Bearer ${AuthUtils.getToken()}`
+          req.headers.Authorization = AuthUtils.getAuthorization()
         }
 
         // 设置语言

@@ -27,6 +27,13 @@ export class AuthUtils {
   }
 
   /**
+   * 获取 authorization
+   */
+  static getAuthorization() {
+    return `Bearer ${this.getToken()}`
+  }
+
+  /**
    * 设置 token
    * @param token
    */

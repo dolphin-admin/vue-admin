@@ -2,259 +2,271 @@
   "App": {
     "Name": "海豚管理系统"
   },
+  "AuthRedirect": {
+    "Authorizing": "正在授权..."
+  },
   "Common": {
     "401": "认证失败",
     "403": "无访问权限",
     "404": "页面未找到",
     "418": "我是个杯具",
     "500": "服务器错误",
-    "NetworkError": "网络错误",
-    "Docs": "文档",
     "All": "全部",
-    "Search": "搜索",
-    "Refresh": "刷新",
-    "Reset": "重置",
-    "Operation": "操作",
-    "Create": "新建",
-    "Edit": "编辑",
-    "Save": "保存",
-    "Delete": "删除",
-    "Confirm": "确认",
-    "Cancel": "取消",
+    "AlreadyRead": "已读",
     "Back": "返回",
-    "Enable": "启用",
-    "Disable": "禁用",
-    "Verify": "验证",
-    "EachPage": "{ count }/条",
-    "TotalPage": "共计 { totalPage }",
-    "Download": "下载",
-    "Upload": "上传",
-    "IsOrNot": "是否",
-    "Start": "开始",
-    "Pause": "暂停",
-    "Stop": "停止",
+    "Cancel": "取消",
+    "ChangePassword": "修改密码",
+    "Confirm": "确认",
+    "ConfirmPassword": "确认密码",
     "Continue": "继续",
     "Copy": "复制",
-    "Import": "导入",
+    "Create": "新建",
+    "Delete": "删除",
+    "Disable": "禁用",
+    "Docs": "文档",
+    "Download": "下载",
+    "EachPage": "{ count }/条",
+    "Edit": "编辑",
+    "Enable": "启用",
     "Export": "导出",
-    "Print": "打印",
-    "RememberPassword": "记住密码",
     "ForgetPassword": "忘记密码",
-    "ConfirmPassword": "确认密码",
-    "OldPassword": "旧密码",
-    "NewPassword": "新密码",
-    "ChangePassword": "修改密码",
+    "Import": "导入",
     "IsLoadingData": "正在加载数据...",
-    "LoadingDataError": "加载数据失败",
+    "IsOrNot": "是否",
     "KeywordSearch": "关键字搜索",
-    "RequestGeolocation": "为了您的使用体验，我们需要您提供位置信息。"
+    "LoadingDataError": "加载数据失败",
+    "NetworkError": "网络错误",
+    "NewPassword": "新密码",
+    "Notification": "通知",
+    "OldPassword": "旧密码",
+    "Operation": "操作",
+    "Pause": "暂停",
+    "Print": "打印",
+    "Refresh": "刷新",
+    "RememberPassword": "记住密码",
+    "RequestGeolocation": "为了您的使用体验，可能需要您提供位置信息。",
+    "Reset": "重置",
+    "Save": "保存",
+    "Search": "搜索",
+    "Start": "开始",
+    "Stop": "停止",
+    "TotalPage": "共计 { totalPage }",
+    "Upload": "上传",
+    "Verify": "验证"
   },
-  "Validation": {
-    "Username": "请输入用户名",
-    "Password": "请输入密码",
-    "PasswordLength": "密码长度至少为 6 位",
-    "OldPassword": "请输入旧密码",
-    "ConfirmPassword": "请输入确认密码",
-    "ConfirmPasswordNotMatch": "两次输入的密码不一致",
-    "Name": "请输入姓名",
-    "FirstName": "请输入名",
-    "LastName": "请输入姓",
-    "Email": "请输入邮箱",
-    "EmailFormat": "请输入正确格式的邮箱",
-    "PhoneNumber": "请输入电话号码",
-    "PhoneNumberFormat": "请输入正确格式的手机号",
-    "BirthDate": "请输入生日",
-    "Country": "请输入国家",
-    "Province": "请输入省份",
-    "City": "请输入城市",
-    "Address": "请输入地址",
-    "Biography": "请输入简介",
-    "QRCodeContent": "请输入二维码内容",
-    "FileName": "请输入文件名"
+  "DigitalAnimation": {
+    "DurationPlaceholder": "请输入动画时长",
+    "EndValuePlaceholder": "请输入结束值",
+    "StartValuePlaceholder": "请输入开始值"
   },
-  "Message": {
-    "UploadAvatar": {
-      "Success": "头像上传成功",
-      "Failed": "头像上传失败"
-    },
-    "GenerateQRCode": {
-      "Success": "二维码生成成功",
-      "Failed": "二维码生成失败"
-    },
-    "Copy": {
-      "Success": "复制成功",
-      "Failed": "复制失败"
-    },
-    "Delete": {
-      "Success": "删除成功",
-      "Failed": "删除失败"
-    }
+  "Header": {
+    "ChangePassword": "修改密码",
+    "ExitFullScreen": "退出全屏",
+    "FullScreen": "全屏",
+    "Language": "语言",
+    "LockScreen": "锁屏",
+    "Logout": "退出登录",
+    "Notification": "通知",
+    "Settings": "设置",
+    "SwitchTheme": "切换主题"
   },
-  "User": {
-    "Username": "用户名",
-    "Password": "密码",
-    "Name": "姓名",
-    "FirstName": "名",
-    "LastName": "姓",
-    "NickName": "昵称",
-    "Avatar": "头像",
-    "Email": "邮箱",
-    "PhoneNumber": "电话号码",
-    "BirthDate": "生日",
-    "Country": "国家",
-    "Province": "省份",
-    "City": "城市",
-    "Address": "地址",
-    "Biography": "简介",
-    "Roles": "角色",
-    "AuthType": "认证类型",
-    "Gender": "性别",
-    "Male": "男",
-    "Female": "女"
+  "Icon": {
+    "SearchPlaceholder": "请输入图标集合名称"
   },
   "Language": {
     "Choose": "选择语言：",
     "Current": "简体中文"
   },
-  "Header": {
-    "Notification": "通知",
-    "FullScreen": "全屏",
-    "ExitFullScreen": "退出全屏",
-    "Language": "语言",
-    "SwitchTheme": "切换主题",
-    "Settings": "设置",
-    "LockScreen": "锁屏",
-    "ChangePassword": "修改密码",
-    "Logout": "退出登录"
+  "Login": {
+    "AsAdmin": "以管理员登录",
+    "AsVisitor": "以访客登录",
+    "Failed": "登录失败",
+    "LoginWithGitHub": "GitHub 登录",
+    "LoginWithGoogle": "Google 登录",
+    "NeedAccount": "需要账号？",
+    "Success": "登录成功",
+    "ThirdPartyLogin": "第三方登录"
   },
-  "Tab": {
-    "Clear": "清空"
-  },
-  "Sidebar": {
-    "Show": "显示侧边栏",
-    "Hide": "隐藏侧边栏",
-    "Expand": "展开侧边栏",
-    "Collapse": "收起侧边栏"
+  "Logout": {
+    "LoginAgain": "用户身份状态已失效，请重新登录",
+    "Success": "登出成功"
   },
   "Menu": {
-    "Navigation": "站点导航",
-    "Home": "首页",
-    "Login": "登录",
-    "Signup": "注册",
-    "UserInfo": "用户信息",
-    "ChangePassword": "修改密码",
-    "SystemFunctions": "系统功能",
-    "UserManagement": "用户管理",
-    "RoleManagement": "角色管理",
-    "PermissionManagement": "权限管理",
-    "SystemApplications": "系统应用",
-    "ChatChannels": "聊天频道",
-    "SystemTools": "系统工具",
-    "Icon": "图标",
-    "QRCode": "二维码",
-    "Clipboard": "剪切板",
-    "Print": "打印",
-    "Excel": "Excel",
-    "WebSocket": "WebSocket",
-    "UniversalComponents": "通用组件",
-    "Charts": "图表",
-    "BuiltinComponents": "内置组件",
-    "DigitalAnimation": "数字动画",
-    "Timeline": "时间线",
-    "ErrorPages": "错误页面",
     "403": "403",
     "404": "404",
     "418": "418",
     "500": "500",
-    "WebsiteAnalytics": "站点分析",
-    "TrafficStatistics": "流量统计",
+    "BuiltinComponents": "内置组件",
+    "ChangePassword": "修改密码",
+    "Charts": "图表",
+    "ChatChannels": "聊天频道",
+    "Clipboard": "剪切板",
     "CodeTemplates": "代码模版",
-    "ListTemplates": "列表模版"
+    "DigitalAnimation": "数字动画",
+    "ErrorPages": "错误页面",
+    "Excel": "Excel",
+    "Home": "首页",
+    "Icon": "图标",
+    "ListTemplates": "列表模版",
+    "Login": "登录",
+    "Navigation": "站点导航",
+    "PermissionManagement": "权限管理",
+    "Print": "打印",
+    "QRCode": "二维码",
+    "RoleManagement": "角色管理",
+    "Signup": "注册",
+    "SystemApplications": "系统应用",
+    "SystemFunctions": "系统功能",
+    "SystemTools": "系统工具",
+    "Timeline": "时间线",
+    "TrafficStatistics": "流量统计",
+    "UniversalComponents": "通用组件",
+    "UserInfo": "用户信息",
+    "UserManagement": "用户管理",
+    "WebSocket": "WebSocket",
+    "WebsiteAnalytics": "站点分析"
   },
-  "Login": {
-    "AsVisitor": "以访客登录",
-    "AsAdmin": "以管理员登录",
-    "Success": "登录成功",
-    "Failed": "登录失败",
-    "NeedAccount": "需要账号？",
-    "ThirdPartyLogin": "第三方登录",
-    "LoginWithGitHub": "GitHub 登录",
-    "LoginWithGoogle": "Google 登录"
+  "Message": {
+    "Copy": {
+      "Failed": "复制失败",
+      "Success": "复制成功"
+    },
+    "Delete": {
+      "Failed": "删除失败",
+      "Success": "删除成功"
+    },
+    "GenerateQRCode": {
+      "Failed": "二维码生成失败",
+      "Success": "二维码生成成功"
+    },
+    "UploadAvatar": {
+      "Failed": "头像上传失败",
+      "Success": "头像上传成功"
+    }
   },
-  "Signup": {
-    "Success": "注册成功",
-    "Failed": "注册失败",
-    "AlreadyHaveAccount": "已有账号？"
+  "Navigation": {
+    "AddShortcut": "添加快捷方式"
   },
-  "AuthRedirect": {
-    "Authorizing": "正在授权..."
+  "Notification": {
+    "Desktop": {
+      "EnterSystem": "当前仍处于内测阶段，如有问题请反馈管理员。"
+    },
+    "RequestGeolocation": {
+      "Content": "为了给您提供更准确、更有个性化的服务，可能需要您提供部分位置信息，在浏览器地址栏可以授权应用开启位置信息。\n我们承诺尊重并保护所有用户的个人隐私权，提供更安全、可靠的服务。",
+      "Description": "来自 Bit Ocean 团队",
+      "Title": "温馨提示"
+    }
   },
-  "Logout": {
-    "Success": "登出成功",
-    "LoginAgain": "用户身份状态已失效，请重新登录"
-  },
-  "UserInfo": {
-    "PersonalInfo": "个人信息",
-    "BasicInfo": "基本信息",
-    "Fetching": "正在获取用户信息...",
-    "FetchError": "获取用户信息失败"
-  },
-  "UserManagement": {
-    "EnterTime": "进入系统时间",
-    "CreateUser": "新建用户",
-    "EditUser": "编辑用户",
-    "ResetPassword": "重置密码",
-    "VerifyOrNot": "是否验证",
-    "EnableOrNot": "是否启用"
+  "Print": {
+    "Angular": "Angular 是 Google 开发的一个构建 Web 应用的平台。它提供了创建单页应用程序的方式，并拥有强大的双向数据绑定、模块化、模板和依赖注入工具。",
+    "Astro": "Astro 是一个前端框架，让你可以用更少的客户端 JavaScript 构建更快、更现代的网站。Astro 让你用你最喜欢的 JavaScript 框架（如 React、Vue、Svelte）编写组件，但在构建时将它们渲染为静态 HTML 和 CSS。",
+    "DOM": "打印 DOM",
+    "Description": "简介",
+    "Docusaurus": "Docusaurus 是一个现代的静态网站生成器（SSG），帮助你轻松创建、维护和更新文档网站。它由 React 驱动，可以用你自己的 React 代码进行定制。",
+    "ExpireTip": "该数据截至 2023/07/17，数据来源于 GitHub",
+    "Framework": "框架",
+    "FrontendFrameworkLeaderboard": "前端框架排行榜",
+    "Gatsby": "Gatsby 是一个基于 React 的免费和开源框架，帮助开发者构建超快的网站和应用。它可以从任何地方（CMS，Markdown 文件，API 等）拉取数据，并生成静态网页，这些网页仍具有单页应用（SPA）的速度和功能。",
+    "HTMLStr": "打印 HTML 字符串",
+    "Icon": "图标",
+    "Nextjs": "Next.js 是 Vercel 开发的一个 React 框架，它允许对基于 React 的 Web 应用进行服务器端渲染和生成静态网站。它包括零配置、自动代码分割和基于文件系统的路由等特性。",
+    "Nuxtjs": "Nuxt.js 是一个用于创建 Vue.js 应用的框架，它允许进行服务器端渲染（SSR），单页应用（SPA），或静态生成的网站（SSG）。Nuxt.js 预设了所有配置，使你的 Vue.js 应用开发变得愉快。",
+    "React": "React 是 Facebook 开发的用于构建用户界面的 JavaScript 库，尤其适用于单页应用程序。它用于处理 Web 和移动应用的视图层。React 允许开发人员创建可以在不重新加载页面的情况下更改数据的大型 Web 应用程序。",
+    "Solidjs": "Solid 是一个用于构建用户界面的声明式 JavaScript 库。它不使用虚拟 DOM 差异算法，而是将模板编译到高度优化的细粒度反应系统中，使其效率极高。",
+    "Stars": "星数",
+    "Svelte": "Svelte 是一种构建用户界面的全新方法。与 React 和 Vue 这样的传统框架在浏览器中完成大部分工作不同，Svelte 将这些工作转移到了构建应用程序时的编译步骤中。",
+    "Type": "类型",
+    "Vue": "Vue.js 是一个用于构建用户界面的 JavaScript 框架。核心库只关注视图层，易于学习并与其他库或现有项目集成。当与现代工具和支持库结合使用时，Vue 也能够驱动复杂的单页应用程序。"
   },
   "QRCode": {
     "ContentPlaceholder": "请输入二维码内容",
     "Generate": "生成二维码"
   },
-  "Icon": {
-    "SearchPlaceholder": "请输入图标集合名称"
+  "Sidebar": {
+    "Collapse": "收起侧边栏",
+    "Expand": "展开侧边栏",
+    "Hide": "隐藏侧边栏",
+    "Show": "显示侧边栏"
   },
-  "Print": {
-    "FrontendFrameworkLeaderboard": "前端框架排行榜",
-    "Icon": "图标",
-    "Framework": "框架",
-    "Type": "类型",
-    "Description": "简介",
-    "Stars": "星数",
-    "React": "React 是 Facebook 开发的用于构建用户界面的 JavaScript 库，尤其适用于单页应用程序。它用于处理 Web 和移动应用的视图层。React 允许开发人员创建可以在不重新加载页面的情况下更改数据的大型 Web 应用程序。",
-    "Angular": "Angular 是 Google 开发的一个构建 Web 应用的平台。它提供了创建单页应用程序的方式，并拥有强大的双向数据绑定、模块化、模板和依赖注入工具。",
-    "Vue": "Vue.js 是一个用于构建用户界面的 JavaScript 框架。核心库只关注视图层，易于学习并与其他库或现有项目集成。当与现代工具和支持库结合使用时，Vue 也能够驱动复杂的单页应用程序。",
-    "Svelte": "Svelte 是一种构建用户界面的全新方法。与 React 和 Vue 这样的传统框架在浏览器中完成大部分工作不同，Svelte 将这些工作转移到了构建应用程序时的编译步骤中。",
-    "Solidjs": "Solid 是一个用于构建用户界面的声明式 JavaScript 库。它不使用虚拟 DOM 差异算法，而是将模板编译到高度优化的细粒度反应系统中，使其效率极高。",
-    "Nextjs": "Next.js 是 Vercel 开发的一个 React 框架，它允许对基于 React 的 Web 应用进行服务器端渲染和生成静态网站。它包括零配置、自动代码分割和基于文件系统的路由等特性。",
-    "Nuxtjs": "Nuxt.js 是一个用于创建 Vue.js 应用的框架，它允许进行服务器端渲染（SSR），单页应用（SPA），或静态生成的网站（SSG）。Nuxt.js 预设了所有配置，使你的 Vue.js 应用开发变得愉快。",
-    "Gatsby": "Gatsby 是一个基于 React 的免费和开源框架，帮助开发者构建超快的网站和应用。它可以从任何地方（CMS，Markdown 文件，API 等）拉取数据，并生成静态网页，这些网页仍具有单页应用（SPA）的速度和功能。",
-    "Docusaurus": "Docusaurus 是一个现代的静态网站生成器（SSG），帮助你轻松创建、维护和更新文档网站。它由 React 驱动，可以用你自己的 React 代码进行定制。",
-    "Astro": "Astro 是一个前端框架，让你可以用更少的客户端 JavaScript 构建更快、更现代的网站。Astro 让你用你最喜欢的 JavaScript 框架（如 React、Vue、Svelte）编写组件，但在构建时将它们渲染为静态 HTML 和 CSS。",
-    "ExpireTip": "该数据截至 2023/07/17，数据来源于 GitHub",
-    "DOM": "打印 DOM",
-    "HTMLStr": "打印 HTML 字符串"
+  "Signup": {
+    "AlreadyHaveAccount": "已有账号？",
+    "Failed": "注册失败",
+    "Success": "注册成功"
   },
-  "WebSocket": {
-    "Tip": "打开新标签页，或打开新浏览器来体验此功能。点击建立连接，与服务器通信。发送消息后，服务端会向所有用户进行消息广播。",
-    "Establish": "建立连接",
-    "Disconnect": "断开连接",
-    "SendMessage": "发送消息",
-    "Established": "已建立连接",
-    "Disconnected": "已断开连接",
-    "SendSuccess": "发送成功",
-    "ContentIsEmpty": "发送内容不能为空",
-    "NotConnected": "未建立连接"
-  },
-  "DigitalAnimation": {
-    "StartValuePlaceholder": "请输入开始值",
-    "EndValuePlaceholder": "请输入结束值",
-    "DurationPlaceholder": "请输入动画时长"
+  "Tab": {
+    "Clear": "清空"
   },
   "Timeline": {
     "WebDevRoadmap": "Web 开发学习路线"
   },
-  "Navigation": {
-    "AddShortcut": "添加快捷方式"
+  "User": {
+    "Address": "地址",
+    "AuthType": "认证类型",
+    "Avatar": "头像",
+    "Biography": "简介",
+    "BirthDate": "生日",
+    "City": "城市",
+    "Country": "国家",
+    "Email": "邮箱",
+    "Female": "女",
+    "FirstName": "名",
+    "Gender": "性别",
+    "LastName": "姓",
+    "Male": "男",
+    "Name": "姓名",
+    "NickName": "昵称",
+    "Password": "密码",
+    "PhoneNumber": "电话号码",
+    "Province": "省份",
+    "Roles": "角色",
+    "Username": "用户名"
+  },
+  "UserInfo": {
+    "BasicInfo": "基本信息",
+    "FetchError": "获取用户信息失败",
+    "Fetching": "正在获取用户信息...",
+    "PersonalInfo": "个人信息"
+  },
+  "UserManagement": {
+    "CreateUser": "新建用户",
+    "EditUser": "编辑用户",
+    "EnableOrNot": "是否启用",
+    "EnterTime": "进入系统时间",
+    "ResetPassword": "重置密码",
+    "VerifyOrNot": "是否验证"
+  },
+  "Validation": {
+    "Address": "请输入地址",
+    "Biography": "请输入简介",
+    "BirthDate": "请输入生日",
+    "City": "请输入城市",
+    "ConfirmPassword": "请输入确认密码",
+    "ConfirmPasswordNotMatch": "两次输入的密码不一致",
+    "Country": "请输入国家",
+    "Email": "请输入邮箱",
+    "EmailFormat": "请输入正确格式的邮箱",
+    "FileName": "请输入文件名",
+    "FirstName": "请输入名",
+    "LastName": "请输入姓",
+    "Name": "请输入姓名",
+    "OldPassword": "请输入旧密码",
+    "Password": "请输入密码",
+    "PasswordLength": "密码长度至少为 6 位",
+    "PhoneNumber": "请输入电话号码",
+    "PhoneNumberFormat": "请输入正确格式的手机号",
+    "Province": "请输入省份",
+    "QRCodeContent": "请输入二维码内容",
+    "Username": "请输入用户名"
+  },
+  "WebSocket": {
+    "ContentIsEmpty": "发送内容不能为空",
+    "Disconnect": "断开连接",
+    "Disconnected": "已断开连接",
+    "Establish": "建立连接",
+    "Established": "已建立连接",
+    "NotConnected": "未建立连接",
+    "SendMessage": "发送消息",
+    "SendSuccess": "发送成功",
+    "Tip": "打开新标签页，或打开新浏览器来体验此功能。点击建立连接，与服务器通信。发送消息后，服务端会向所有用户进行消息广播。"
   }
 }

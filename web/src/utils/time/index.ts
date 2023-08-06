@@ -1,5 +1,3 @@
-import dayjs from 'dayjs'
-
 import type { TimeFormatter } from '@/types'
 
 export class TimeUtils {
