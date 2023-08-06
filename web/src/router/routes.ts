@@ -1,3 +1,4 @@
+import CountDownIcon from '~icons/ic/baseline-alarm'
 import ChartIcon from '~icons/ic/baseline-bar-chart'
 import CopyIcon from '~icons/ic/baseline-content-copy'
 import UnauthorizedIcon from '~icons/ic/baseline-do-not-disturb'
@@ -180,6 +181,16 @@ export const routes = [
         meta: {
           title: () => t('Menu.DigitalAnimation'),
           icon: DigitalAnimationIcon
+        }
+      },
+      // Countdown component
+      {
+        path: `${BUILTIN_COMPONENTS_PREFIX}/countdown`,
+        name: 'countdown',
+        component: () => import('@/views/BuiltinComponents/Countdown'),
+        meta: {
+          title: () => t('Menu.Countdown'),
+          icon: CountDownIcon
         }
       },
       // Timeline component

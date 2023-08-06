@@ -54,6 +54,9 @@
     "Upload": "Upload",
     "Verify": "Verify"
   },
+  "Countdown": {
+    "StartValueTime": "Please enter target time"
+  },
   "DigitalAnimation": {
     "DurationPlaceholder": "Please enter duration",
     "EndValuePlaceholder": "Please enter end value",
@@ -102,6 +105,7 @@
     "ChatChannels": "Chat Channels",
     "Clipboard": "Clipboard",
     "CodeTemplates": "Code Templates",
+    "Countdown": "Countdown",
     "DigitalAnimation": "Digital Animation",
     "ErrorPages": "Error Page",
     "Excel": "Excel",

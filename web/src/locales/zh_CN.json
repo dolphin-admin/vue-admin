@@ -54,6 +54,9 @@
     "Upload": "上传",
     "Verify": "验证"
   },
+  "Countdown": {
+    "StartValueTime": "请输入目标时间"
+  },
   "DigitalAnimation": {
     "DurationPlaceholder": "请输入动画时长",
     "EndValuePlaceholder": "请输入结束值",
@@ -102,6 +105,7 @@
     "ChatChannels": "聊天频道",
     "Clipboard": "剪切板",
     "CodeTemplates": "代码模版",
+    "Countdown": "倒计时",
     "DigitalAnimation": "数字动画",
     "ErrorPages": "错误页面",
     "Excel": "Excel",

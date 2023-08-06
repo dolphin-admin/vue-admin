@@ -18,6 +18,7 @@ declare module 'vue' {
     BaseTabs: typeof import('./../components/BaseTabs/index.vue')['default']
     BaseThemeSwitchDevTool: typeof import('./../components/BaseThemeSwitchDevTool/index.vue')['default']
     DataTableLayout: typeof import('./../layouts/DataTableLayout/index.vue')['default']
+    DCountdown: typeof import('./../components/DCountdown/index.vue')['default']
     DHTMLPrinter: typeof import('./../components/DHTMLPrinter/index.vue')['default']
     DNumberAnimation: typeof import('./../components/DNumberAnimation/index.vue')['default']
     DTimeline: typeof import('./../components/DTimeline/index.vue')['default']

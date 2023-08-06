@@ -1,5 +1,6 @@
 import type { MenuOption } from 'naive-ui'
 
+import CountDownIcon from '~icons/ic/baseline-alarm'
 import UniversalComponentsIcon from '~icons/ic/baseline-auto-awesome-mosaic'
 import ChartIcon from '~icons/ic/baseline-bar-chart'
 import CopyIcon from '~icons/ic/baseline-content-copy'
@@ -133,6 +134,11 @@ export const menuOptions: MenuOption[] = [
         label: renderMenuLabel(t('Menu.DigitalAnimation')),
         key: 'digital-animation',
         icon: renderMenuIcon(DigitalAnimationIcon)
+      },
+      {
+        label: renderMenuLabel(t('Menu.Countdown')),
+        key: 'countdown',
+        icon: renderMenuIcon(CountDownIcon)
       },
       {
         label: renderMenuLabel(t('Menu.Timeline')),
