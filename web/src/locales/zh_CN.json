@@ -31,6 +31,7 @@
     "Enable": "启用",
     "Export": "导出",
     "ForgetPassword": "忘记密码",
+    "Goto": "前往",
     "Import": "导入",
     "IsLoadingData": "正在加载数据...",
     "IsOrNot": "是否",
@@ -149,8 +150,14 @@
     },
     "RequestGeolocation": {
       "Content": "为了给您提供更准确、更有个性化的服务，可能需要您提供部分位置信息，在浏览器地址栏可以授权应用开启位置信息。\n我们承诺尊重并保护所有用户的个人隐私权，提供更安全、可靠的服务。",
-      "Description": "来自 Bit Ocean 团队",
       "Title": "温馨提示"
+    },
+    "System": {
+      "Content": "如果喜欢这个项目，请在 GitHub 上给它点个 ⭐ 吧！",
+      "Title": "🎉 欢迎来到 Dolphin Admin！"
+    },
+    "Team": {
+      "From": "来自 Bit Ocean 团队"
     }
   },
   "Print": {

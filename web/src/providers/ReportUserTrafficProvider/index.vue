@@ -178,7 +178,7 @@ const sendGeoRequestNotification = () =>
   setTimeout(() => {
     const n = notification.create({
       title: () => t('Notification.RequestGeolocation.Title'),
-      description: () => t('Notification.RequestGeolocation.Description'),
+      description: () => t('Notification.Team.From'),
       content: () => t('Notification.RequestGeolocation.Content'),
       avatar: () =>
         h(NAvatar, {
@@ -187,9 +187,9 @@ const sendGeoRequestNotification = () =>
           src: bitOceanSrc,
           alt: ''
         }),
-      duration: 10000,
+      duration: 5000,
       keepAliveOnHover: true,
-      meta: TimeUtils.formatTime(Date.now(), 'YYYY-MM-DD HH:mm:ss'),
+      meta: TimeUtils.formatTime(Date.now()),
       action: () =>
         h(
           NButton,

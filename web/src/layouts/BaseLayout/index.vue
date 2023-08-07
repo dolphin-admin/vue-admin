@@ -1,10 +1,60 @@
 <script setup lang="ts">
+import bitOceanSrc from '@/assets/images/bit_ocean.png'
+import type { Lang, MessageSchema } from '@/types'
+
+const { t } = useI18n<{ message: MessageSchema }, Lang>({
+  useScope: 'global'
+})
+
+const { repoGitHubURL } = siteMetaData
+
+const { openNewWindow } = BrowserUtils
+
 const userStore = useUserStore()
 const route = useRoute()
 const router = useRouter()
+const notification = useNotification()
 
 // 若没有授权，则显示系统 loading
 const loading = ref(true)
+
+/**
+ * 发送 GitHub Social 通知
+ */
+const sendSystemNotification = () => {
+  setTimeout(() => {
+    const n = notification.create({
+      title: () => t('Notification.System.Title'),
+      description: () => t('Notification.Team.From'),
+      avatar: () =>
+        h(NAvatar, {
+          size: 'small',
+          round: true,
+          src: bitOceanSrc,
+          alt: ''
+        }),
+      content: () => t('Notification.System.Content'),
+      duration: 5000,
+      keepAliveOnHover: true,
+      meta: TimeUtils.formatTime(Date.now()),
+      action: () =>
+        h(
+          NButton,
+          {
+            text: true,
+            type: 'success',
+            onClick: () => {
+              openNewWindow(repoGitHubURL)
+              n.destroy()
+            }
+          },
+          {
+            default: () => `${t('Common.Goto')} GitHub`
+          }
+        )
+    })
+  }, 800)
+}
 
 // 检查登录状态
 const checkLogin = async () => {
@@ -15,6 +65,7 @@ const checkLogin = async () => {
       userStore.setUser(data)
     }
     loading.value = false
+    sendSystemNotification()
   } else {
     // 否则清除用户信息并跳转到登录页
     userStore.clearUser()
