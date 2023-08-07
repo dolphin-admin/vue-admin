@@ -44,7 +44,9 @@ const loginWithGitHub = () => {
         const { accessToken, user } = res.data || {}
         AuthUtils.setToken(accessToken)
         userStore.setUser(user)
-        message.success(t('Login.Success'))
+        if (res.message) {
+          message.success(res.message)
+        }
 
         if (redirectUrl.value) {
           router.replace(redirectUrl.value)

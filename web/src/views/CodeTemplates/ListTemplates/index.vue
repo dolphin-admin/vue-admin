@@ -43,7 +43,7 @@ const isEdit = ref(true)
 const authTypeColumn: DataTableBaseColumn<User> = {
   title: () => t('User.AuthType'),
   key: 'authTypes',
-  width: 200,
+  width: 80,
   filter: true,
   filterMultiple: true,
   defaultFilterOptionValues: [],
@@ -106,16 +106,16 @@ const columns = ref<DataTableBaseColumn<User>[]>([
   {
     title: () => t('User.Username'),
     key: 'username',
-    width: 120,
+    width: 140,
     ellipsis: {
       tooltip: true
     },
-    fixed: !isMobile ? 'left' : undefined
+    fixed: !isMobile.value ? 'left' : undefined
   },
   {
     title: () => t('User.Name'),
     key: 'name',
-    width: 100,
+    width: 120,
     ellipsis: {
       tooltip: true
     }
@@ -124,10 +124,10 @@ const columns = ref<DataTableBaseColumn<User>[]>([
   {
     title: () => t('Common.Operation'),
     key: 'operation',
-    width: 80,
+    width: 120,
     titleAlign: 'center',
     align: 'center',
-    fixed: !isMobile ? 'right' : undefined,
+    fixed: !isMobile.value ? 'right' : undefined,
     render: () =>
       h(
         'div',
@@ -159,8 +159,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
               },
               positiveText: t('Common.Confirm'),
               negativeText: t('Common.Cancel'),
-              onPositiveClick: () =>
-                message.success(t('Message.Delete.Success'))
+              onPositiveClick: () => {}
             },
             {
               trigger: () =>

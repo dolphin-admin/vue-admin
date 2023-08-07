@@ -74,7 +74,9 @@ const login = async () => {
       const { accessToken, user } = res.data || {}
       AuthUtils.setToken(accessToken)
       userStore.setUser(user)
-      message.success(t('Login.Success'))
+      if (res.message) {
+        message.success(res.message)
+      }
       if (rememberPassword.value) {
         AuthUtils.setRememberedAccount(JSON.stringify(formData))
       } else {
@@ -142,7 +144,7 @@ onMounted(() => {
     ref="formRef"
     :rules="rules"
     :model="formData"
-    class="bg-light-default dark:bg-dark-default absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg px-4 py-8 shadow-md transition-colors sm:w-[260px] md:w-[340px]"
+    class="bg-default-light dark:bg-default-dark absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg px-4 py-8 shadow-md transition-colors sm:w-[260px] md:w-[340px]"
   >
     <div class="select-none text-center text-lg font-semibold">
       {{ t('Menu.Login') }}

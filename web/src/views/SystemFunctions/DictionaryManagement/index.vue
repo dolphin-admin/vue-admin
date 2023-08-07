@@ -46,14 +46,16 @@ const rules: FormRules = {
     {
       required: true,
       trigger: ['blur', 'input'],
-      message: t('Validation.DictionaryName')
+      message: '请输入字典名称',
+      renderMessage: () => '请输入字典名称'
     }
   ],
   type: [
     {
       required: true,
       trigger: ['blur', 'input'],
-      message: t('Validation.DictionaryType')
+      message: '请输入字典类型',
+      renderMessage: () => '请输入字典类型'
     }
   ]
 }
@@ -109,26 +111,26 @@ const columns = ref<DataTableColumns<Dictionary>>([
   {
     title: 'ID',
     key: 'id',
-    width: 50,
+    width: 80,
     titleAlign: 'center',
     align: 'center',
     sorter: true
   },
   {
-    title: () => t('DictionaryManagement.Name'),
+    title: () => t('Common.Name'),
     key: 'name',
-    width: 120,
+    width: 140,
     ellipsis: {
       tooltip: true
     },
     titleAlign: 'center',
     align: 'center',
-    fixed: !isMobile ? 'left' : undefined
+    fixed: !isMobile.value ? 'left' : undefined
   },
   {
-    title: () => t('DictionaryManagement.Type'),
+    title: () => t('Common.Type'),
     key: 'type',
-    width: 120,
+    width: 140,
     titleAlign: 'center',
     align: 'center',
     ellipsis: {
@@ -153,9 +155,9 @@ const columns = ref<DataTableColumns<Dictionary>>([
     }
   },
   {
-    title: () => t('Common.State'),
+    title: () => t('Common.Status'),
     key: 'state',
-    width: 80,
+    width: 100,
     titleAlign: 'center',
     align: 'center',
     render(row) {
@@ -175,7 +177,7 @@ const columns = ref<DataTableColumns<Dictionary>>([
   {
     title: () => t('Common.Remark'),
     key: 'remark',
-    width: 120,
+    width: 200,
     titleAlign: 'center',
     align: 'center',
     ellipsis: {
@@ -195,10 +197,10 @@ const columns = ref<DataTableColumns<Dictionary>>([
   {
     title: () => t('Common.Operation'),
     key: 'operation',
-    width: 80,
+    width: 120,
     titleAlign: 'center',
     align: 'center',
-    fixed: !isMobile ? 'right' : undefined,
+    fixed: !isMobile.value ? 'right' : undefined,
     render: (row) =>
       h(
         'div',
@@ -462,7 +464,7 @@ onMounted(() => queryList())
         }"
       >
         <NFormItem
-          :label="t('DictionaryManagement.Name')"
+          :label="t('Common.Name')"
           path="name"
         >
           <n-input
@@ -471,7 +473,7 @@ onMounted(() => queryList())
           />
         </NFormItem>
         <NFormItem
-          :label="t('DictionaryManagement.Type')"
+          :label="t('Common.Type')"
           path="type"
         >
           <n-input
@@ -480,7 +482,7 @@ onMounted(() => queryList())
           />
         </NFormItem>
         <NFormItem
-          :label="t('Common.State')"
+          :label="t('Common.Status')"
           path="status"
         >
           <NRadioGroup v-model:value="formData.status">

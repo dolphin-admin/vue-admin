@@ -141,7 +141,7 @@ const columns = ref<DataTableColumns<DictionaryData>>([
     align: 'center'
   },
   {
-    title: () => t('DictionaryManagement.Type'),
+    title: () => t('Common.Type'),
     key: 'type',
     width: 120,
     titleAlign: 'center',
@@ -151,7 +151,7 @@ const columns = ref<DataTableColumns<DictionaryData>>([
     }
   },
   {
-    title: () => t('Common.State'),
+    title: () => t('Common.Status'),
     key: 'status',
     width: 80,
     titleAlign: 'center',
@@ -196,7 +196,7 @@ const columns = ref<DataTableColumns<DictionaryData>>([
     width: 80,
     titleAlign: 'center',
     align: 'center',
-    fixed: !isMobile ? 'right' : undefined,
+    fixed: !isMobile.value ? 'right' : undefined,
     render: (row) =>
       h(
         'div',
@@ -460,7 +460,7 @@ watch(
         }"
       >
         <NFormItem
-          :label="t('DictionaryData.Type')"
+          :label="t('Common.Type')"
           path="type"
         >
           <n-input
@@ -487,7 +487,7 @@ watch(
           />
         </NFormItem>
         <NFormItem
-          :label="t('Common.State')"
+          :label="t('Common.Status')"
           path="status"
         >
           <NRadioGroup v-model:value="formData.status">

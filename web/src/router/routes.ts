@@ -4,22 +4,22 @@ import CopyIcon from '~icons/ic/baseline-content-copy'
 import UnauthorizedIcon from '~icons/ic/baseline-do-not-disturb'
 import DigitalAnimationIcon from '~icons/ic/baseline-hourglass-empty'
 import QRCodeIcon from '~icons/ic/baseline-qrcode'
-import DictionaryManagementChildrenIcon from '~icons/ic/baseline-sell'
 import TimelineIcon from '~icons/ic/baseline-timeline'
-import DictionaryManagementIcon from '~icons/ic/outline-library-books'
 import ListTemplatesIcon from '~icons/ic/outline-list-alt'
 import PrintIcon from '~icons/ic/outline-local-printshop'
-import TrafficStatisticsIcon from '~icons/ic/twotone-ramp-left'
 import IAmATeapotIcon from '~icons/icon-park-outline/tea-drink'
 import InternalServerErrorIcon from '~icons/lucide/server-off'
 import UserInfoIcon from '~icons/mdi/account-circle'
 import UserManagementIcon from '~icons/mdi/account-cog-outline'
 import RoleManagementIcon from '~icons/mdi/account-group'
+import TrafficStatisticsIcon from '~icons/mdi/chart-box-outline'
 import NavigationIcon from '~icons/mdi/compass-outline'
 import IconManagementIcon from '~icons/mdi/emoticon-wink'
 import ChangePasswordIcon from '~icons/mdi/key'
 import PermissionManagementIcon from '~icons/mdi/key-chain'
 import ExcelIcon from '~icons/mdi/microsoft-excel'
+import DictionaryManagementIcon from '~icons/ri/booklet-line'
+import DictionaryDataIcon from '~icons/solar/key-minimalistic-square-3-linear'
 import WebSocketIcon from '~icons/tabler/brand-socket-io'
 import NotFoundIcon from '~icons/tabler/error-404'
 import ChatChannelsIcon from '~icons/tabler/message-2'
@@ -53,26 +53,17 @@ export const routes = [
           // dismissTab: true
         }
       },
-      // User
+      // 站点分析
       {
-        path: '/user-info',
-        name: 'user-info',
-        component: () => import('@/views/User/UserInfo'),
+        path: `${WEBSITE_ANALYTICS_PREFIX}/traffic-statistics`,
+        name: 'traffic-statistics',
+        component: () => import('@/views/WebsiteAnalytics/TrafficStatistics'),
         meta: {
-          title: () => t('Menu.UserInfo'),
-          icon: UserInfoIcon
+          title: () => t('Menu.TrafficStatistics'),
+          icon: TrafficStatisticsIcon
         }
       },
-      {
-        path: '/change-password',
-        name: 'change-password',
-        component: () => import('@/views/User/ChangePassword'),
-        meta: {
-          title: () => t('Menu.ChangePassword'),
-          icon: ChangePasswordIcon
-        }
-      },
-      // System Functions
+      // 系统功能
       {
         path: `${SYSTEM_FUNCTIONS_PREFIX}/user-management`,
         name: 'user-management',
@@ -110,16 +101,16 @@ export const routes = [
         }
       },
       {
-        path: `${SYSTEM_FUNCTIONS_PREFIX}/dictionary-management/:id`,
+        path: `${SYSTEM_FUNCTIONS_PREFIX}/dictionary-data/:id`,
         name: 'dictionary-data',
         component: () => import('@/views/SystemFunctions/DictionaryData'),
         props: true,
         meta: {
           title: () => t('Menu.DictionaryData'),
-          icon: DictionaryManagementChildrenIcon
+          icon: DictionaryDataIcon
         }
       },
-      // system-application
+      // 系统应用
       {
         path: `${SYSTEM_APPLICATIONS_PREFIX}/chat-channels`,
         name: 'chat-channels',
@@ -129,7 +120,7 @@ export const routes = [
           icon: ChatChannelsIcon
         }
       },
-      // System Tools
+      // 系统工具
       {
         path: `${SYSTEM_TOOLS_PREFIX}/icon`,
         name: 'icon',
@@ -184,7 +175,17 @@ export const routes = [
           icon: WebSocketIcon
         }
       },
-      // Universal Components
+      // 代码模板
+      {
+        path: `${CODE_TEMPLATES_PREFIX}/list-templates`,
+        name: 'list-templates',
+        component: () => import('@/views/CodeTemplates/ListTemplates'),
+        meta: {
+          title: () => t('Menu.ListTemplates'),
+          icon: ListTemplatesIcon
+        }
+      },
+      // 通用组件
       {
         path: `${UNIVERSAL_COMPONENTS_PREFIX}/charts`,
         name: 'charts',
@@ -194,7 +195,7 @@ export const routes = [
           icon: ChartIcon
         }
       },
-      // Builtin Components
+      // 内置组件
       {
         path: `${BUILTIN_COMPONENTS_PREFIX}/digital-animation`,
         name: 'digital-animation',
@@ -204,7 +205,6 @@ export const routes = [
           icon: DigitalAnimationIcon
         }
       },
-      // Countdown component
       {
         path: `${BUILTIN_COMPONENTS_PREFIX}/countdown`,
         name: 'countdown',
@@ -214,7 +214,6 @@ export const routes = [
           icon: CountDownIcon
         }
       },
-      // Timeline component
       {
         path: `${BUILTIN_COMPONENTS_PREFIX}/timeline`,
         name: 'timeline',
@@ -224,7 +223,7 @@ export const routes = [
           icon: TimelineIcon
         }
       },
-      // Error Pages
+      // 错误页面
       {
         path: `${ERROR_PAGES_PREFIX}/403`,
         name: '403',
@@ -269,29 +268,27 @@ export const routes = [
           icon: NotFoundIcon
         }
       },
-      // Website AnalyticsIcon
       {
-        path: `${WEBSITE_ANALYTICS_PREFIX}/traffic-statistics`,
-        name: 'traffic-statistics',
-        component: () => import('@/views/WebsiteAnalytics/TrafficStatistics'),
+        path: '/user-info',
+        name: 'user-info',
+        component: () => import('@/views/User/UserInfo'),
         meta: {
-          title: () => t('Menu.TrafficStatistics'),
-          icon: TrafficStatisticsIcon
+          title: () => t('Menu.UserInfo'),
+          icon: UserInfoIcon
         }
       },
-      // Code Templates
       {
-        path: `${CODE_TEMPLATES_PREFIX}/list-templates`,
-        name: 'list-templates',
-        component: () => import('@/views/CodeTemplates/ListTemplates'),
+        path: '/change-password',
+        name: 'change-password',
+        component: () => import('@/views/User/ChangePassword'),
         meta: {
-          title: () => t('Menu.ListTemplates'),
-          icon: ListTemplatesIcon
+          title: () => t('Menu.ChangePassword'),
+          icon: ChangePasswordIcon
         }
       }
     ]
   },
-  // Auth
+  // 认证页面：不需要登录即可访问
   {
     path: '/',
     name: 'auth-layout',
@@ -319,6 +316,7 @@ export const routes = [
       }
     ]
   },
+  // 授权重定向页面
   {
     path: '/auth-redirect',
     name: 'auth-redirect',
