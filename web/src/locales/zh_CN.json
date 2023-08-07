@@ -57,7 +57,8 @@
     "TotalPage": "共计 { totalPage }",
     "Type": "类型",
     "Upload": "上传",
-    "Verify": "验证"
+    "Verify": "验证",
+    "Goto": "前往 { url }"
   },
   "Countdown": {
     "StartValueTime": "请输入目标时间"
@@ -151,6 +152,10 @@
       "Content": "为了给您提供更准确、更有个性化的服务，可能需要您提供部分位置信息，在浏览器地址栏可以授权应用开启位置信息。\n我们承诺尊重并保护所有用户的个人隐私权，提供更安全、可靠的服务。",
       "Description": "来自 Bit Ocean 团队",
       "Title": "温馨提示"
+    },
+    "System": {
+      "Welcome": "欢迎来到 Dolphin Admin",
+      "Content": "如果喜欢这个项目，请在 GitHub 上给它点个 ⭐ 吧！"
     }
   },
   "Print": {

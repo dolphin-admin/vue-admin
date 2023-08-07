@@ -1,7 +1,19 @@
 <script setup lang="ts">
+import bitOceanSrc from '@/assets/images/bit_ocean.png'
+import type { Lang, MessageSchema } from '@/types'
 const userStore = useUserStore()
 const route = useRoute()
 const router = useRouter()
+
+const { t } = useI18n<{ message: MessageSchema }, Lang>({
+  useScope: 'global'
+})
+
+const { repoGitHubURL } = siteMetaData
+
+const { openNewWindow } = BrowserUtils
+
+const notification = useNotification()
 
 // 若没有授权，则显示系统 loading
 const loading = ref(true)
@@ -27,7 +39,48 @@ const checkLogin = async () => {
   }
 }
 
-onBeforeMount(() => checkLogin())
+/**
+ * 提醒用户GItHub点星
+ */
+const reminder = () => {
+  setTimeout(() => {
+    const n = notification.create({
+      title: () => t('Notification.System.Welcome'),
+      description: () => t('Notification.RequestGeolocation.Description'),
+      avatar: () =>
+        h(NAvatar, {
+          size: 'small',
+          round: true,
+          src: bitOceanSrc,
+          alt: ''
+        }),
+      content: () => t('Notification.System.Content'),
+      duration: 1000,
+      keepAliveOnHover: true,
+      meta: TimeUtils.formatTime(Date.now(), 'YYYY-MM-DD HH:mm:ss'),
+      action: () =>
+        h(
+          NButton,
+          {
+            text: true,
+            type: 'success',
+            onClick: () => {
+              openNewWindow(repoGitHubURL)
+              n.destroy()
+            }
+          },
+          {
+            default: () => t('Common.Goto', { url: 'Github' })
+          }
+        )
+    })
+  }, 1000)
+}
+
+onBeforeMount(() => {
+  checkLogin()
+  reminder()
+})
 </script>
 
 <template>
