@@ -4,7 +4,6 @@ import type {
   DictionaryData,
   PageRequestModel,
   PageResponse,
-  Response
 } from '@/types'
 
 import Request from '../axios'
@@ -46,7 +45,7 @@ export class DictionaryAPI {
    * 删除字典
    */
   static deleteDictionaryById(id: number) {
-    return Request.delete<Response>(`${this.DICTIONARY_API_PREFIX}/${id}`)
+    return Request.delete(`${this.DICTIONARY_API_PREFIX}/${id}`)
   }
 
   /**
@@ -89,7 +88,7 @@ export class DictionaryAPI {
    * 删除字典项
    */
   static deleteDictionaryItem(id: number, itemId: number) {
-    return Request.delete<Response>(
+    return Request.delete(
       `${this.DICTIONARY_API_PREFIX}/${id}/items/${itemId}`
     )
   }
