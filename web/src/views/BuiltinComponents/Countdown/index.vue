@@ -12,6 +12,7 @@ const currentStatus = ref<Status>('pending')
 const handleStart = () => countdownRef.value.start()
 const handlePause = () => countdownRef.value.pause()
 const handleRestart = () => countdownRef.value.restart()
+
 const changeCountdown = (time: number, status: Status) => {
   currentStatus.value = status
 }
@@ -25,7 +26,7 @@ const changeCountdown = (time: number, status: Status) => {
           ref="countdownRef"
           :target="numberData.target"
           @change="changeCountdown"
-        ></DCountdown>
+        />
         <div>
           <NForm
             label-placement="top"
@@ -41,6 +42,7 @@ const changeCountdown = (time: number, status: Status) => {
             </NFormItem>
           </NForm>
         </div>
+
         <div class="flex items-center space-x-4">
           <NButton
             :disabled="
@@ -71,4 +73,3 @@ const changeCountdown = (time: number, status: Status) => {
     </NCard>
   </main>
 </template>
-
