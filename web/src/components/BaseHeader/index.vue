@@ -65,10 +65,12 @@ const handleUpdateLocale = (lang: Lang) => {
 /**
  * 退出登录
  */
-const logout = () => {
-  router.replace('/login')
-  message.success(t('Logout.Success'))
-}
+const logout = () =>
+  router.replace('/login').then(() => {
+    message.success(t('Logout.Success'))
+    userStore.clearUser()
+    AuthUtils.clearToken()
+  })
 
 /**
  * 选择用户下拉框选项

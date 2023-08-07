@@ -23,7 +23,6 @@ const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({
 
 const { version } = siteMetaData
 
-const userStore = useUserStore()
 const notification = useNotification()
 
 /**
@@ -170,8 +169,6 @@ const sendReport = () => {
       records.value = []
     }
   }
-  userStore.clearUser()
-  AuthUtils.clearToken()
 }
 
 /**

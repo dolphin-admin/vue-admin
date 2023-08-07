@@ -50,10 +50,12 @@ const changePasswordRules: FormRules = {
   ]
 }
 
-const logout = () => {
-  router.replace('/login')
-  message.success(t('Logout.LoginAgain'))
-}
+const logout = () =>
+  router.replace('/login').then(() => {
+    message.success(t('Logout.LoginAgain'))
+    userStore.clearUser()
+    AuthUtils.clearToken()
+  })
 
 const handleChangePassword = async () => {
   try {
