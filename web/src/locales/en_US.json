@@ -31,6 +31,7 @@
     "Enable": "Enable",
     "Export": "Export",
     "ForgetPassword": "Forget password",
+    "Goto": "Go to",
     "Import": "Import",
     "IsLoadingData": "Loading data ...",
     "IsOrNot": "Is or not",
@@ -57,8 +58,7 @@
     "TotalPage": "Total { totalPage }",
     "Type": "Type",
     "Upload": "Upload",
-    "Verify": "Verify",
-    "Goto": "Go to { url }"
+    "Verify": "Verify"
   },
   "Countdown": {
     "StartValueTime": "Please enter target time"
@@ -150,12 +150,14 @@
     },
     "RequestGeolocation": {
       "Content": "In order to provide you with more accurate and personalized services, you may be required to provide some location information. In the browser address bar, you can authorize the application to open the location information. \nWe promise to respect and protect the personal privacy of all users, and provide safer and more reliable services.",
-      "Description": "From Bit Ocean team",
       "Title": "Kind tips"
     },
     "System": {
-      "Welcome": "Welcome to Dolphin Admin",
-      "Content": "If you like this project, please give us a star on GitHub!"
+      "Content": "If you like this project, please give us a star on GitHub!",
+      "Title": "🎉 Welcome to Dolphin Admin!"
+    },
+    "Team": {
+      "From": "From Bit Ocean Team"
     }
   },
   "Print": {

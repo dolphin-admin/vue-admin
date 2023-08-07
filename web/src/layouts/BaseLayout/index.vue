@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import bitOceanSrc from '@/assets/images/bit_ocean.png'
 import type { Lang, MessageSchema } from '@/types'
-const userStore = useUserStore()
-const route = useRoute()
-const router = useRouter()
 
 const { t } = useI18n<{ message: MessageSchema }, Lang>({
   useScope: 'global'
@@ -13,40 +10,22 @@ const { repoGitHubURL } = siteMetaData
 
 const { openNewWindow } = BrowserUtils
 
+const userStore = useUserStore()
+const route = useRoute()
+const router = useRouter()
 const notification = useNotification()
 
 // 若没有授权，则显示系统 loading
 const loading = ref(true)
 
-// 检查登录状态
-const checkLogin = async () => {
-  // 如果有 token，获取用户信息
-  if (AuthUtils.isAuthenticated()) {
-    if (!userStore.hasData()) {
-      const { data } = (await UserAPI.getUserInfo()) || {}
-      userStore.setUser(data)
-    }
-    loading.value = false
-  } else {
-    // 否则清除用户信息并跳转到登录页
-    userStore.clearUser()
-    router.replace({
-      path: '/login',
-      query: {
-        redirect: route.fullPath
-      }
-    })
-  }
-}
-
 /**
- * 提醒用户GItHub点星
+ * 发送 GitHub Social 通知
  */
-const reminder = () => {
+const sendSystemNotification = () => {
   setTimeout(() => {
     const n = notification.create({
-      title: () => t('Notification.System.Welcome'),
-      description: () => t('Notification.RequestGeolocation.Description'),
+      title: () => t('Notification.System.Title'),
+      description: () => t('Notification.Team.From'),
       avatar: () =>
         h(NAvatar, {
           size: 'small',
@@ -55,9 +34,9 @@ const reminder = () => {
           alt: ''
         }),
       content: () => t('Notification.System.Content'),
-      duration: 1000,
+      duration: 5000,
       keepAliveOnHover: true,
-      meta: TimeUtils.formatTime(Date.now(), 'YYYY-MM-DD HH:mm:ss'),
+      meta: TimeUtils.formatTime(Date.now()),
       action: () =>
         h(
           NButton,
@@ -70,17 +49,36 @@ const reminder = () => {
             }
           },
           {
-            default: () => t('Common.Goto', { url: 'Github' })
+            default: () => `${t('Common.Goto')} GitHub`
           }
         )
     })
-  }, 1000)
+  }, 800)
 }
 
-onBeforeMount(() => {
-  checkLogin()
-  reminder()
-})
+// 检查登录状态
+const checkLogin = async () => {
+  // 如果有 token，获取用户信息
+  if (AuthUtils.isAuthenticated()) {
+    if (!userStore.hasData()) {
+      const { data } = (await UserAPI.getUserInfo()) || {}
+      userStore.setUser(data)
+    }
+    loading.value = false
+    sendSystemNotification()
+  } else {
+    // 否则清除用户信息并跳转到登录页
+    userStore.clearUser()
+    router.replace({
+      path: '/login',
+      query: {
+        redirect: route.fullPath
+      }
+    })
+  }
+}
+
+onBeforeMount(() => checkLogin())
 </script>
 
 <template>
