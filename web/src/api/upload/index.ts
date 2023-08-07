@@ -12,6 +12,8 @@ export class UploadAPI {
    * 上传文件
    * @param data 文件数据
    * @param options 上传配置
+   *
+   * @todo 进度条功能暂未实现
    */
   static uploadFile(data: any, options?: UploadOptions) {
     return Request.post<BaseResponse<UploadResponse>>(
@@ -30,7 +32,8 @@ export class UploadAPI {
    * 批量上传文件
    * @param data 文件数据
    * @param options 上传配置
-   * @todo 功能暂未实现
+   *
+   * @todo 进度条功能暂未实现
    */
   static uploadFiles(data: any) {
     return Request.post(`${this.UPLOAD_API_PREFIX}/batch`, data, {
