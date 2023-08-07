@@ -1,16 +1,13 @@
 <script setup lang="ts">
-import type { DataTableFilterState, DataTableSortState } from 'naive-ui'
-
-import type { Lang, MessageSchema, Sorter, User } from '@/types'
-import { AuthType, OrderType } from '@/types'
-import GitHubIcon from '~icons/ant-design/github-outlined'
+import type { Dictionary, Lang, MessageSchema, Sorter } from '@/types'
 import ResetIcon from '~icons/ic/round-refresh'
 import CreateIcon from '~icons/ic/sharp-add'
 import EditIcon from '~icons/ic/sharp-edit'
 import SearchIcon from '~icons/line-md/search'
-import GoogleIcon from '~icons/logos/google-icon'
 
 import { UserPageModel } from './private'
+
+const router = useRouter()
 
 const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({
   useScope: 'global'
@@ -18,11 +15,13 @@ const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({
 
 const message = useMessage()
 const [loading, loadingDispatcher] = useLoading()
-const [showDialogLoading, showDialogLoadingDispatcher] = useLoading()
+const [submitLoading, submitLoadingDispatcher] = useLoading()
 const [deleteLoading, deleteLoadingDispatcher] = useLoading()
 const isMobile = useMobile()
 
-const users = ref<User[]>([])
+const formRef = ref<FormInst | null>(null)
+
+const DictionaryData = ref<Dictionary[]>([])
 
 const queryParams = reactive({
   searchText: '',
@@ -40,144 +39,26 @@ const pagination = reactive({
 const showDialog = ref(false)
 const isEdit = ref(true)
 
-const authTypeColumn: DataTableBaseColumn<User> = {
-  title: () => t('User.AuthType'),
-  key: 'authTypes',
-  width: 80,
-  filter: true,
-  filterMultiple: true,
-  defaultFilterOptionValues: [],
-  filterOptions: [
+const formData = ref<Dictionary>({})
+
+const rules: FormRules = {
+  name: [
     {
-      label: 'GitHub',
-      value: 0
-    },
-    {
-      label: 'Google',
-      value: 1
+      required: true,
+      trigger: ['blur', 'input'],
+      message: '请输入字典名称',
+      renderMessage: () => '请输入字典名称'
     }
   ],
-  render: (row) => {
-    const tags = (row?.authTypes || []).map((authType) =>
-      h(
-        NTag,
-        {
-          class: '!mr-2',
-          bordered: false
-        },
-        {
-          default: () => authType,
-          icon: () =>
-            h(
-              NIcon,
-              {
-                size: '14',
-                class: 'mr-0.5'
-              },
-              () => {
-                switch (authType) {
-                  case AuthType[0]:
-                    return h(GitHubIcon, {
-                      class: 'scale-125'
-                    })
-                  case AuthType[1]:
-                    return h(GoogleIcon)
-                  default:
-                    return undefined
-                }
-              }
-            )
-        }
-      )
-    )
-    return tags
-  }
-}
-
-const columns = ref<DataTableBaseColumn<User>[]>([
-  {
-    title: 'ID',
-    key: 'id',
-    width: 50,
-    titleAlign: 'center',
-    align: 'center',
-    sorter: true
-  },
-  {
-    title: () => t('User.Username'),
-    key: 'username',
-    width: 140,
-    ellipsis: {
-      tooltip: true
-    },
-    fixed: !isMobile.value ? 'left' : undefined
-  },
-  {
-    title: () => t('User.Name'),
-    key: 'name',
-    width: 120,
-    ellipsis: {
-      tooltip: true
+  type: [
+    {
+      required: true,
+      trigger: ['blur', 'input'],
+      message: '请输入字典类型',
+      renderMessage: () => '请输入字典类型'
     }
-  },
-  authTypeColumn,
-  {
-    title: () => t('Common.Operation'),
-    key: 'operation',
-    width: 120,
-    titleAlign: 'center',
-    align: 'center',
-    fixed: !isMobile.value ? 'right' : undefined,
-    render: () =>
-      h(
-        'div',
-        {
-          class: 'space-x-3 flex justify-center'
-        },
-        [
-          h(
-            NButton,
-            {
-              type: 'default',
-              size: 'small',
-              onClick: () => {
-                isEdit.value = true
-                showDialog.value = true
-              }
-            },
-            {
-              default: () => t('Common.Edit')
-            }
-          ),
-          h(
-            NPopconfirm,
-            {
-              showIcon: false,
-              positiveButtonProps: {
-                loading: deleteLoading.value,
-                disabled: deleteLoading.value
-              },
-              positiveText: t('Common.Confirm'),
-              negativeText: t('Common.Cancel'),
-              onPositiveClick: () => {}
-            },
-            {
-              trigger: () =>
-                h(
-                  NButton,
-                  {
-                    type: 'default',
-                    size: 'small'
-                  },
-                  { default: () => t('Common.Delete') }
-                ),
-              default: () => t('Common.Delete')
-            }
-          )
-        ]
-      )
-  }
-])
+  ]
+}
 
 const queryList = () => {
   if (loading.value) {
@@ -200,45 +81,177 @@ const queryList = () => {
     params.endDate = dayjs(endDate).endOf('day').toISOString()
   }
 
-  UserAPI.getUsers(params)
+  DictionaryAPI.getDictionaries(params)
     .then((res) => {
       const { data, total } = res || {}
-      users.value = data
+      DictionaryData.value = data
       pagination.itemCount = total
     })
     .catch(() => {
       message.error(t('Common.LoadingDataError'))
-      users.value = []
     })
     .finally(() => loadingDispatcher.loaded())
 }
 
-const handleSorterChange = (options: DataTableSortState | null) => {
-  if (!options) {
-    return
+const handleDelete = async (id: number) => {
+  if (deleteLoading.value) return
+  deleteLoadingDispatcher.loading()
+  try {
+    const { message: successMessage } =
+      await DictionaryAPI.deleteDictionaryById(id)
+    message.success(successMessage!)
+    queryList()
+  } catch (error: any) {
+    if (error.message) message.success(error.message)
   }
-  if (options.order) {
-    queryParams.sorters = [
-      {
-        key: options.columnKey as string,
-        order: OrderType[options.order]
-      }
-    ]
-  } else {
-    queryParams.sorters = []
-  }
-  queryList()
+  deleteLoadingDispatcher.loaded()
 }
 
-const handleFiltersChange = (filters: DataTableFilterState) => {
-  const { authTypes } = filters
-  if (authTypes && Array.isArray(authTypes) && authTypes.length > 0) {
-    queryParams.authTypes = authTypes.join()
-  } else {
-    queryParams.authTypes = ''
+const columns = ref<DataTableColumns<Dictionary>>([
+  {
+    title: 'ID',
+    key: 'id',
+    width: 80,
+    titleAlign: 'center',
+    align: 'center',
+    sorter: true
+  },
+  {
+    title: () => t('Common.Name'),
+    key: 'name',
+    width: 140,
+    ellipsis: {
+      tooltip: true
+    },
+    titleAlign: 'center',
+    align: 'center',
+    fixed: !isMobile.value ? 'left' : undefined
+  },
+  {
+    title: () => t('Common.Type'),
+    key: 'type',
+    width: 140,
+    titleAlign: 'center',
+    align: 'center',
+    ellipsis: {
+      tooltip: true
+    },
+    render(row) {
+      return h(
+        'span',
+        {
+          class: ['text-blue-300', 'cursor-pointer'],
+          onclick: () => {
+            router.push({
+              name: 'dictionary-data',
+              params: { id: row.id as number }
+            })
+          }
+        },
+        {
+          default: () => row.type
+        }
+      )
+    }
+  },
+  {
+    title: () => t('Common.Status'),
+    key: 'state',
+    width: 100,
+    titleAlign: 'center',
+    align: 'center',
+    render(row) {
+      return h(
+        NTag,
+        {
+          type: row.status === 1 ? 'primary' : 'info',
+          bordered: false
+        },
+        {
+          default: () =>
+            t(row.status === 1 ? 'Common.Enable' : 'Common.Disable')
+        }
+      )
+    }
+  },
+  {
+    title: () => t('Common.Remark'),
+    key: 'remark',
+    width: 200,
+    titleAlign: 'center',
+    align: 'center',
+    ellipsis: {
+      tooltip: true
+    }
+  },
+  {
+    title: () => t('Common.CreateAt'),
+    key: 'createAt',
+    width: 160,
+    titleAlign: 'center',
+    align: 'center',
+    ellipsis: {
+      tooltip: true
+    }
+  },
+  {
+    title: () => t('Common.Operation'),
+    key: 'operation',
+    width: 120,
+    titleAlign: 'center',
+    align: 'center',
+    fixed: !isMobile.value ? 'right' : undefined,
+    render: (row) =>
+      h(
+        'div',
+        {
+          class: 'space-x-3 flex justify-center'
+        },
+        [
+          h(
+            NButton,
+            {
+              type: 'default',
+              size: 'small',
+              onClick: () => {
+                isEdit.value = true
+                showDialog.value = true
+                formData.value = { ...row }
+              }
+            },
+            {
+              default: () => t('Common.Edit')
+            }
+          ),
+          h(
+            NPopconfirm,
+            {
+              showIcon: false,
+              positiveButtonProps: {
+                loading: deleteLoading.value,
+                disabled: deleteLoading.value
+              },
+              positiveText: t('Common.Confirm'),
+              negativeText: t('Common.Cancel'),
+              onPositiveClick: () => handleDelete(row.id!)
+            },
+            {
+              trigger: () =>
+                h(
+                  NButton,
+                  {
+                    type: 'default',
+                    size: 'small'
+                  },
+                  { default: () => t('Common.Delete') }
+                ),
+              default: () => t('Common.Delete')
+            }
+          )
+        ]
+      )
   }
-  queryList()
-}
+])
 
 /**
  * 重置查询条件
@@ -257,9 +270,51 @@ const handleReset = () => {
 const handleCreateUser = () => {
   isEdit.value = false
   showDialog.value = true
+  formData.value = {}
+  formData.value.status = 1
 }
 
-const handleConfirmDialog = () => {}
+const handleConfirmDialog = async () => {
+  try {
+    await formRef.value!.validate()
+  } catch (errors) {
+    const errorMessage = (errors as FormValidationError[])[0][0].message
+    if (errorMessage) {
+      message.error(errorMessage)
+    }
+    return false
+  }
+
+  if (submitLoading.value) {
+    return true
+  }
+  submitLoadingDispatcher.loading()
+
+  try {
+    if (isEdit.value) {
+      const { message: successMessage } =
+        await DictionaryAPI.updateDictionaryById(
+          formData.value.id!,
+          formData.value
+        )
+      message.success(successMessage!)
+    } else {
+      formData.value.createAt = new Date().toISOString()
+      const { message: successMessage } = await DictionaryAPI.createDictionary(
+        formData.value
+      )
+      message.success(successMessage!)
+    }
+    queryList()
+  } catch (err: any) {
+    if (err.message) {
+      message.error(err.message)
+    }
+  }
+  showDialog.value = false
+  submitLoadingDispatcher.loaded()
+  return true
+}
 
 const handleCannelDialog = () => {}
 
@@ -345,7 +400,7 @@ onMounted(() => queryList())
       flex-height
       size="small"
       :columns="columns"
-      :data="users"
+      :data="DictionaryData"
       :loading="loading"
       :pagination="{
         ...pagination,
@@ -381,14 +436,12 @@ onMounted(() => queryList())
         },
         prefix: (info) => t('Common.TotalPage', { totalPage: info.itemCount })
       }"
-      @update:sorter="handleSorterChange"
-      @update:filters="handleFiltersChange"
     />
     <NModal
       v-model:show="showDialog"
       preset="dialog"
       :title="t(isEdit ? 'Common.Edit' : 'Common.Create')"
-      :loading="showDialogLoading"
+      :loading="submitLoading"
       :positive-text="t('Common.Confirm')"
       :negative-text="t('Common.Cancel')"
       @positive-click="handleConfirmDialog"
@@ -400,7 +453,59 @@ onMounted(() => queryList())
           :component="isEdit ? EditIcon : CreateIcon"
         />
       </template>
-      <NForm> ...... </NForm>
+      <NForm
+        ref="formRef"
+        :model="formData"
+        :rules="rules"
+        label-placement="left"
+        label-width="auto"
+        :style="{
+          maxwidth: '640px'
+        }"
+      >
+        <NFormItem
+          :label="t('Common.Name')"
+          path="name"
+        >
+          <n-input
+            v-model:value="formData.name"
+            :placeholder="t('Validation.DictionaryName')"
+          />
+        </NFormItem>
+        <NFormItem
+          :label="t('Common.Type')"
+          path="type"
+        >
+          <n-input
+            v-model:value="formData.type"
+            :placeholder="t('Validation.DictionaryType')"
+          />
+        </NFormItem>
+        <NFormItem
+          :label="t('Common.Status')"
+          path="status"
+        >
+          <NRadioGroup v-model:value="formData.status">
+            <NSpace>
+              <NRadio :value="1"> {{ t('Common.Enable') }} </NRadio>
+              <NRadio :value="0"> {{ t('Common.Disable') }} </NRadio>
+            </NSpace>
+          </NRadioGroup>
+        </NFormItem>
+        <NFormItem
+          :label="t('Common.Remark')"
+          path="remark"
+        >
+          <NInput
+            v-model:value="formData.remark"
+            type="textarea"
+            :autosize="{
+              minRows: 3,
+              maxRows: 5
+            }"
+          />
+        </NFormItem>
+      </NForm>
     </NModal>
   </DataTableLayout>
 </template>

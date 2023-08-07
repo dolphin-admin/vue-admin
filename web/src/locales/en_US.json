@@ -21,6 +21,7 @@
     "Continue": "Continue",
     "Copy": "Copy",
     "Create": "Create",
+    "CreateAt": "Creation time",
     "Delete": "Delete",
     "Disable": "Disable",
     "Docs": "Docs",
@@ -35,6 +36,7 @@
     "IsOrNot": "Is or not",
     "KeywordSearch": "Keyword search",
     "LoadingDataError": "Loading data error",
+    "Name": "Name",
     "NetworkError": "Network Error",
     "NewPassword": "New password",
     "Notification": "Notification",
@@ -43,14 +45,17 @@
     "Pause": "Pause",
     "Print": "Print",
     "Refresh": "Refresh",
+    "Remark": "Remark",
     "RememberPassword": "Remember password",
     "RequestGeolocation": "For your experience, we need your location information.",
     "Reset": "Reset",
     "Save": "Save",
     "Search": "Search",
     "Start": "Start",
+    "Status": "Status",
     "Stop": "Stop",
     "TotalPage": "Total { totalPage }",
+    "Type": "Type",
     "Upload": "Upload",
     "Verify": "Verify"
   },
@@ -76,18 +81,12 @@
   "Icon": {
     "SearchPlaceholder": "Please enter icon set name"
   },
-  "Language": {
-    "Choose": "Choose language:",
-    "Current": "English"
-  },
   "Login": {
     "AsAdmin": "Login as Admin",
     "AsVisitor": "Login as Visitor",
-    "Failed": "Login failed",
     "LoginWithGitHub": "Sign in with GitHub",
     "LoginWithGoogle": "Sign in with Google",
     "NeedAccount": "Need an account?",
-    "Success": "Login success",
     "ThirdPartyLogin": "Third party login"
   },
   "Logout": {
@@ -106,10 +105,11 @@
     "Clipboard": "Clipboard",
     "CodeTemplates": "Code Templates",
     "Countdown": "Countdown",
+    "DictionaryData": "Dictionary Data",
+    "DictionaryManagement": "Dictionary Management",
     "DigitalAnimation": "Digital Animation",
     "ErrorPages": "Error Page",
     "Excel": "Excel",
-    "Home": "Home",
     "Icon": "Icon",
     "ListTemplates": "List Templates",
     "Login": "Login",
@@ -135,17 +135,9 @@
       "Failed": "Copy failed",
       "Success": "Copy success"
     },
-    "Delete": {
-      "Failed": "Delete failed",
-      "Success": "Delete success"
-    },
     "GenerateQRCode": {
       "Failed": "QRCode generate failed",
       "Success": "QRCode generate success"
-    },
-    "UploadAvatar": {
-      "Failed": "Upload avatar failed",
-      "Success": "Upload avatar success"
     }
   },
   "Navigation": {
@@ -179,7 +171,6 @@
     "Solidjs": "Solid is a declarative JavaScript library for building user interfaces. It does not use a virtual DOM diffing algorithm, instead it compiles its templates down to highly optimized fine-grained reactivity system, which makes it extremely efficient.",
     "Stars": "Stars",
     "Svelte": "Svelte is a radical new approach to building user interfaces. Whereas traditional frameworks like React and Vue do the bulk of their work in the browser, Svelte shifts that work into a compile step that happens when you build your app.",
-    "Type": "Type",
     "Vue": "Vue.js is a JavaScript framework for building user interfaces. The core library is focused on the view layer only and is easy to pick up and integrate with other libraries or existing projects. Vue is also capable of powering sophisticated Single-Page Applications when used in combination with modern tooling and supporting libraries."
   },
   "QRCode": {
@@ -187,15 +178,11 @@
     "Generate": "Generate QRCode"
   },
   "Sidebar": {
-    "Collapse": "Collapse sidebar",
-    "Expand": "Expand sidebar",
     "Hide": "Hide sidebar",
     "Show": "Show sidebar"
   },
   "Signup": {
-    "AlreadyHaveAccount": "Already have an account?",
-    "Failed": "Signup failed",
-    "Success": "Signup success"
+    "AlreadyHaveAccount": "Already have an account?"
   },
   "Tab": {
     "Clear": "Clear"
@@ -227,8 +214,6 @@
   },
   "UserInfo": {
     "BasicInfo": "Basic info",
-    "FetchError": "Fetch user info failed",
-    "Fetching": "Fetching user info...",
     "PersonalInfo": "Personal info"
   },
   "UserManagement": {
@@ -242,11 +227,8 @@
   "Validation": {
     "Address": "Please enter your address",
     "Biography": "Please enter your biography",
-    "BirthDate": "Please enter your birth date",
-    "City": "Please enter your city",
     "ConfirmPassword": "Please enter confirm password",
     "ConfirmPasswordNotMatch": "Password not match",
-    "Country": "Please enter your country",
     "Email": "Please enter your email",
     "EmailFormat": "Please enter the correct email format",
     "FileName": "Please enter file name",
@@ -258,7 +240,6 @@
     "PasswordLength": "Password length must be greater than 6",
     "PhoneNumber": "Please enter a phone number",
     "PhoneNumberFormat": "Please enter phone number in the correct format",
-    "Province": "Please enter your province",
     "QRCodeContent": "Please enter QRCode content",
     "Username": "Please enter username"
   },

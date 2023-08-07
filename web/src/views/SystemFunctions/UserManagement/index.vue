@@ -274,7 +274,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     ellipsis: {
       tooltip: true
     },
-    fixed: !isMobile ? 'left' : undefined
+    fixed: !isMobile.value ? 'left' : undefined
   },
   {
     title: () => t('User.PhoneNumber'),
@@ -428,7 +428,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     width: 320,
     titleAlign: 'center',
     align: 'center',
-    fixed: !isMobile ? 'right' : undefined,
+    fixed: !isMobile.value ? 'right' : undefined,
     render: (row) =>
       h(
         'div',

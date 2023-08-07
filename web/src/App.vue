@@ -3,7 +3,7 @@ const themeStore = useThemeStore()
 </script>
 
 <template>
-  <div class="display-content">
+  <div class="display-content bg-layout-light dark:bg-layout-dark">
     <NConfigProvider
       :locale="themeStore.locale"
       :date-locale="themeStore.dateLocale"

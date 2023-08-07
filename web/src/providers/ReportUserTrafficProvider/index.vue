@@ -159,17 +159,16 @@ const setGeoArea = (area: string | null) => {
  */
 const sendReport = () => {
   // 用户路由记录小于 5 条时不上报
-  if (records.value.length < 5) {
-    return
-  }
-  const userTraffic = {
-    ...appInfo,
-    ...computeLeaveTime(),
-    ...geographyInfo,
-    records: records.value
-  } as UserTraffic
-  if (UserTrafficAPI.reportUserTraffic(userTraffic)) {
-    records.value = []
+  if (records.value.length >= 5) {
+    const userTraffic = {
+      ...appInfo,
+      ...computeLeaveTime(),
+      ...geographyInfo,
+      records: records.value
+    } as UserTraffic
+    if (UserTrafficAPI.reportUserTraffic(userTraffic)) {
+      records.value = []
+    }
   }
   userStore.clearUser()
   AuthUtils.clearToken()
@@ -232,7 +231,7 @@ onBeforeRouteUpdate((to, from) => {
   const { title: fromTitle } = fromMeta
   records.value.push({
     title: typeof fromTitle === 'function' ? fromTitle() : fromTitle,
-    url: fullPath,
+    url: GlobalEnvConfig.APP_BASE_URL + fullPath,
     path: fromPath,
     ...computeRouteRecordTime()
   })

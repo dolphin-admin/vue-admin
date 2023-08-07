@@ -13,8 +13,10 @@ module.exports = {
         muted: '#999999'
       },
       backgroundColor: {
-        'light-default': '#F6F6F6',
-        'dark-default': '#36393F'
+        'layout-light': '#F5F6F7',
+        'layout-dark': '#0F0F0F',
+        'default-light': '#FEFEFE',
+        'default-dark': '#36393F'
       }
     }
   },

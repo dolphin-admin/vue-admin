@@ -21,6 +21,7 @@
     "Continue": "继续",
     "Copy": "复制",
     "Create": "新建",
+    "CreateAt": "创建时间",
     "Delete": "删除",
     "Disable": "禁用",
     "Docs": "文档",
@@ -35,6 +36,7 @@
     "IsOrNot": "是否",
     "KeywordSearch": "关键字搜索",
     "LoadingDataError": "加载数据失败",
+    "Name": "名称",
     "NetworkError": "网络错误",
     "NewPassword": "新密码",
     "Notification": "通知",
@@ -43,14 +45,17 @@
     "Pause": "暂停",
     "Print": "打印",
     "Refresh": "刷新",
+    "Remark": "备注",
     "RememberPassword": "记住密码",
     "RequestGeolocation": "为了您的使用体验，可能需要您提供位置信息。",
     "Reset": "重置",
     "Save": "保存",
     "Search": "搜索",
     "Start": "开始",
+    "Status": "状态",
     "Stop": "停止",
     "TotalPage": "共计 { totalPage }",
+    "Type": "类型",
     "Upload": "上传",
     "Verify": "验证"
   },
@@ -76,18 +81,12 @@
   "Icon": {
     "SearchPlaceholder": "请输入图标集合名称"
   },
-  "Language": {
-    "Choose": "选择语言：",
-    "Current": "简体中文"
-  },
   "Login": {
     "AsAdmin": "以管理员登录",
     "AsVisitor": "以访客登录",
-    "Failed": "登录失败",
     "LoginWithGitHub": "GitHub 登录",
     "LoginWithGoogle": "Google 登录",
     "NeedAccount": "需要账号？",
-    "Success": "登录成功",
     "ThirdPartyLogin": "第三方登录"
   },
   "Logout": {
@@ -106,10 +105,11 @@
     "Clipboard": "剪切板",
     "CodeTemplates": "代码模版",
     "Countdown": "倒计时",
+    "DictionaryData": "字典数据",
+    "DictionaryManagement": "字典管理",
     "DigitalAnimation": "数字动画",
     "ErrorPages": "错误页面",
     "Excel": "Excel",
-    "Home": "首页",
     "Icon": "图标",
     "ListTemplates": "列表模版",
     "Login": "登录",
@@ -135,17 +135,9 @@
       "Failed": "复制失败",
       "Success": "复制成功"
     },
-    "Delete": {
-      "Failed": "删除失败",
-      "Success": "删除成功"
-    },
     "GenerateQRCode": {
       "Failed": "二维码生成失败",
       "Success": "二维码生成成功"
-    },
-    "UploadAvatar": {
-      "Failed": "头像上传失败",
-      "Success": "头像上传成功"
     }
   },
   "Navigation": {
@@ -179,7 +171,6 @@
     "Solidjs": "Solid 是一个用于构建用户界面的声明式 JavaScript 库。它不使用虚拟 DOM 差异算法，而是将模板编译到高度优化的细粒度反应系统中，使其效率极高。",
     "Stars": "星数",
     "Svelte": "Svelte 是一种构建用户界面的全新方法。与 React 和 Vue 这样的传统框架在浏览器中完成大部分工作不同，Svelte 将这些工作转移到了构建应用程序时的编译步骤中。",
-    "Type": "类型",
     "Vue": "Vue.js 是一个用于构建用户界面的 JavaScript 框架。核心库只关注视图层，易于学习并与其他库或现有项目集成。当与现代工具和支持库结合使用时，Vue 也能够驱动复杂的单页应用程序。"
   },
   "QRCode": {
@@ -187,15 +178,11 @@
     "Generate": "生成二维码"
   },
   "Sidebar": {
-    "Collapse": "收起侧边栏",
-    "Expand": "展开侧边栏",
     "Hide": "隐藏侧边栏",
     "Show": "显示侧边栏"
   },
   "Signup": {
-    "AlreadyHaveAccount": "已有账号？",
-    "Failed": "注册失败",
-    "Success": "注册成功"
+    "AlreadyHaveAccount": "已有账号？"
   },
   "Tab": {
     "Clear": "清空"
@@ -227,8 +214,6 @@
   },
   "UserInfo": {
     "BasicInfo": "基本信息",
-    "FetchError": "获取用户信息失败",
-    "Fetching": "正在获取用户信息...",
     "PersonalInfo": "个人信息"
   },
   "UserManagement": {
@@ -242,11 +227,8 @@
   "Validation": {
     "Address": "请输入地址",
     "Biography": "请输入简介",
-    "BirthDate": "请输入生日",
-    "City": "请输入城市",
     "ConfirmPassword": "请输入确认密码",
     "ConfirmPasswordNotMatch": "两次输入的密码不一致",
-    "Country": "请输入国家",
     "Email": "请输入邮箱",
     "EmailFormat": "请输入正确格式的邮箱",
     "FileName": "请输入文件名",
@@ -258,7 +240,6 @@
     "PasswordLength": "密码长度至少为 6 位",
     "PhoneNumber": "请输入电话号码",
     "PhoneNumberFormat": "请输入正确格式的手机号",
-    "Province": "请输入省份",
     "QRCodeContent": "请输入二维码内容",
     "Username": "请输入用户名"
   },

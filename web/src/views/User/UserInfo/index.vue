@@ -84,12 +84,17 @@ const handleValidateButtonClick = () => {
     uploadRef.value!.submit()
     if (currentFile.value) {
       try {
-        const { path } =
-          (await UploadAPI.uploadFile({ file: currentFile.value })).data || {}
-        formData.value.avatarUrl = path
-        message.success(t('Message.UploadAvatar.Success'))
-      } catch {
-        message.error(t('Message.UploadAvatar.Failed'))
+        const { data, message: resMessage } = await UploadAPI.uploadFile({
+          file: currentFile.value
+        })
+        formData.value.avatarUrl = data.path
+        if (resMessage) {
+          message.success(resMessage)
+        }
+      } catch (err) {
+        if (err instanceof Error && err.message) {
+          message.error(err.message)
+        }
         submitLoadingDispatcher.loaded()
         return
       }

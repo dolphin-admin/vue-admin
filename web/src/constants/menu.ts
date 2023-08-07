@@ -9,16 +9,14 @@ import ErrorPagesIcon from '~icons/ic/baseline-error-outline'
 import DigitalAnimationIcon from '~icons/ic/baseline-hourglass-empty'
 import QRCodeIcon from '~icons/ic/baseline-qrcode'
 import TimelineIcon from '~icons/ic/baseline-timeline'
-import WebsiteAnalyticsIcon from '~icons/ic/baseline-web-asset'
 import ListTemplatesIcon from '~icons/ic/outline-list-alt'
 import PrintIcon from '~icons/ic/outline-local-printshop'
-import CodeTemplatesIcon from '~icons/ic/round-texture'
 import SystemApplicationsIcon from '~icons/ic/sharp-apps'
-import TrafficStatisticsIcon from '~icons/ic/twotone-ramp-left'
 import IAmATeapotIcon from '~icons/icon-park-outline/tea-drink'
 import InternalServerErrorIcon from '~icons/lucide/server-off'
 import UserManagementIcon from '~icons/mdi/account-cog-outline'
 import RoleManagementIcon from '~icons/mdi/account-group'
+import TrafficStatisticsIcon from '~icons/mdi/chart-box-outline'
 import NavigationIcon from '~icons/mdi/compass-outline'
 import IconManagementIcon from '~icons/mdi/emoticon-wink'
 import SystemFunctionsIcon from '~icons/mdi/function-variant'
@@ -26,6 +24,9 @@ import PermissionManagementIcon from '~icons/mdi/key-chain'
 import ExcelIcon from '~icons/mdi/microsoft-excel'
 import BuiltinComponentsIcon from '~icons/mdi/puzzle'
 import SystemToolsIcon from '~icons/mdi/tools'
+import WebsiteAnalyticsIcon from '~icons/mdi/web'
+import DictionaryManagementIcon from '~icons/ri/booklet-line'
+import CodeTemplatesIcon from '~icons/solar/code-bold'
 import WebSocketIcon from '~icons/tabler/brand-socket-io'
 import NotFoundIcon from '~icons/tabler/error-404'
 import ChatChannelsIcon from '~icons/tabler/message-2'
@@ -37,6 +38,18 @@ export const menuOptions: MenuOption[] = [
     label: renderMenuLabel(t('Menu.Navigation')),
     key: 'navigation',
     icon: renderMenuIcon(NavigationIcon)
+  },
+  {
+    label: renderMenuLabel(t('Menu.WebsiteAnalytics')),
+    key: 'website-analytics',
+    icon: renderMenuIcon(WebsiteAnalyticsIcon),
+    children: [
+      {
+        label: renderMenuLabel(t('Menu.TrafficStatistics')),
+        key: 'traffic-statistics',
+        icon: renderMenuIcon(TrafficStatisticsIcon)
+      }
+    ]
   },
   {
     label: renderMenuLabel(t('Menu.SystemFunctions')),
@@ -59,6 +72,11 @@ export const menuOptions: MenuOption[] = [
         key: 'permission-management',
         icon: renderMenuIcon(PermissionManagementIcon),
         show: false
+      },
+      {
+        label: renderMenuLabel(t('Menu.DictionaryManagement')),
+        key: 'dictionary-management',
+        icon: renderMenuIcon(DictionaryManagementIcon)
       }
     ]
   },
@@ -110,6 +128,18 @@ export const menuOptions: MenuOption[] = [
         label: renderMenuLabel(t('Menu.WebSocket')),
         key: 'websocket',
         icon: renderMenuIcon(WebSocketIcon)
+      }
+    ]
+  },
+  {
+    label: renderMenuLabel(t('Menu.CodeTemplates')),
+    key: 'code-templates',
+    icon: renderMenuIcon(CodeTemplatesIcon),
+    children: [
+      {
+        label: renderMenuLabel(t('Menu.ListTemplates')),
+        key: 'list-templates',
+        icon: renderMenuIcon(ListTemplatesIcon)
       }
     ]
   },
@@ -171,30 +201,6 @@ export const menuOptions: MenuOption[] = [
         label: renderMenuLabel(t('Menu.500')),
         key: '500',
         icon: renderMenuIcon(InternalServerErrorIcon)
-      }
-    ]
-  },
-  {
-    label: renderMenuLabel(t('Menu.WebsiteAnalytics')),
-    key: 'website-analytics',
-    icon: renderMenuIcon(WebsiteAnalyticsIcon),
-    children: [
-      {
-        label: renderMenuLabel(t('Menu.TrafficStatistics')),
-        key: 'traffic-statistics',
-        icon: renderMenuIcon(TrafficStatisticsIcon)
-      }
-    ]
-  },
-  {
-    label: renderMenuLabel(t('Menu.CodeTemplates')),
-    key: 'code-templates',
-    icon: renderMenuIcon(CodeTemplatesIcon),
-    children: [
-      {
-        label: renderMenuLabel(t('Menu.ListTemplates')),
-        key: 'list-templates',
-        icon: renderMenuIcon(ListTemplatesIcon)
       }
     ]
   }
