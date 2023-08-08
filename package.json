@@ -26,6 +26,7 @@
     "server:debug": "pnpm --filter=server debug",
     "server:build": "pnpm --filter=server build",
     "server:preview": "pnpm --filter=server preview",
+    "server:generate:module": "pnpm --filter=server generate:module",
     "server:type:check": "pnpm --filter=server type:check",
     "server:eslint:check": "pnpm --filter=server eslint:check",
     "server:eslint:fix": "pnpm --filter=server eslint:fix",
