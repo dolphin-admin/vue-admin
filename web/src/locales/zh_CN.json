@@ -1,4 +1,5 @@
 {
+  "6orlSiAsLqNwG6qq9yuW7": "水印",
   "App": {
     "Name": "海豚管理系统"
   },
@@ -79,6 +80,7 @@
     "Settings": "设置",
     "SwitchTheme": "切换主题"
   },
+  "IPvNv3SNSGcM76ofPpWp": "水印",
   "Icon": {
     "SearchPlaceholder": "请输入图标集合名称"
   },
@@ -129,6 +131,7 @@
     "UserInfo": "用户信息",
     "UserManagement": "用户管理",
     "WebSocket": "WebSocket",
+    "Watermark": "水印",
     "WebsiteAnalytics": "站点分析"
   },
   "Message": {
