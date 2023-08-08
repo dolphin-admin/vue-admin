@@ -26,6 +26,7 @@
     "server:preview": "pnpm --filter=server preview",
     "server:generate:resource": "pnpm --filter=server generate:resource",
     "server:generate:controller": "pnpm --filter=server generate:controller",
+    "server:generate:service": "pnpm --filter=server generate:service",
     "server:type:check": "pnpm --filter=server type:check",
     "server:test": "pnpm --filter=server test",
     "server:test:watch": "pnpm --filter=server test:watch",
