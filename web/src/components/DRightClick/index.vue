@@ -29,13 +29,13 @@ const handleClick = (e: Menu) => {
       <div
         v-if="showMenu"
         ref="menuRef"
-        class="context-menu fixed cursor-pointer truncate whitespace-nowrap rounded bg-zinc-50 text-center text-base text-black shadow-2xl"
+        class="context-menu fixed cursor-pointer whitespace-nowrap rounded bg-white p-1 text-center text-sm text-black dark:truncate dark:bg-neutral-700 dark:text-[#ffffffd1]"
         :style="{ left: x + 'px', top: y + 'px' }"
       >
         <div
           v-for="(item, i) in menu"
           :key="i"
-          class="p-1 hover:bg-sky-700 hover:text-white"
+          class="h-9 rounded leading-9 hover:bg-[#F3F3F5] dark:hover:bg-[#ffffff17]"
           @click="handleClick(item)"
         >
           {{ item.label }}
@@ -45,8 +45,12 @@ const handleClick = (e: Menu) => {
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .context-menu {
-  min-width: 100px;
+  min-width: 120px;
+  box-shadow:
+    0 3px 6px -4px rgba(0, 0, 0, 0.12),
+    0 6px 16px 0 rgba(0, 0, 0, 0.08),
+    0 9px 28px 8px rgba(0, 0, 0, 0.05);
 }
 </style>
