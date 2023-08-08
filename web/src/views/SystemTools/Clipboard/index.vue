@@ -44,7 +44,10 @@ watch(
 
 <template>
   <main class="absolute inset-0 flex">
-    <NCard class="flex w-full flex-col space-y-2">
+    <NCard
+      class="flex w-full flex-col space-y-2"
+      hoverable
+    >
       <NInput
         v-model:value="clipboardValue"
         class="h-[calc(100%-46px)]"

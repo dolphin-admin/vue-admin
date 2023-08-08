@@ -129,12 +129,18 @@ const handleSubmit = async () => {
     uploadRef.value!.submit()
     if (currentFile.value) {
       try {
-        const { path } =
-          (await UploadAPI.uploadFile({ file: currentFile.value })).data || {}
-        formData.value.avatarUrl = path
-        message.success(t('Message.UploadAvatar.Success'))
-      } catch {
-        message.error(t('Message.UploadAvatar.Failed'))
+        const { data, message: resMessage } = await UploadAPI.uploadFile({
+          file: currentFile.value
+        })
+        formData.value.avatarUrl = data.path
+        if (resMessage) {
+          message.success(resMessage)
+        }
+      } catch (err) {
+        if (err instanceof Error && err.message) {
+          message.error(err.message)
+        }
+        submitLoadingDispatcher.loaded()
         return false
       }
     }
@@ -189,11 +195,12 @@ watch(
   () => props.userFormData,
   (newValue) => {
     if (newValue) {
-      const newBirthDate =
-        newValue.birthDate &&
-        TimeUtils.formatTime(newValue.birthDate, 'YYYY-MM-DD')
-      formData.value = newValue
-      formData.value.birthDate = newBirthDate
+      formData.value = {
+        ...newValue,
+        ...(newValue.birthDate && {
+          birthDate: TimeUtils.formatTime(newValue.birthDate, 'YYYY-MM-DD')
+        })
+      }
     } else {
       formData.value = {}
     }

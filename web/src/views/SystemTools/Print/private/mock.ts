@@ -40,7 +40,7 @@ export const columns: DataTableBaseColumn<FrameworkItem>[] = [
     titleAlign: 'center'
   },
   {
-    title: t('Print.Type'),
+    title: t('Common.Type'),
     key: 'type',
     width: 80,
     align: 'center',

@@ -37,7 +37,7 @@ watch(
 
 <template>
   <div
-    class="bg-light-default dark:bg-dark-default absolute inset-y-0 left-0 z-[100] h-full border-r border-gray-300 shadow-sm transition-[width] dark:border-gray-950 sm:static"
+    class="bg-default-light dark:bg-default-dark absolute inset-y-0 left-0 z-[100] h-full border-r border-gray-300 shadow-sm transition-[width] dark:border-gray-950 sm:static"
     :class="[
       sidebarStore.isDisplay
         ? sidebarStore.isCollapse
