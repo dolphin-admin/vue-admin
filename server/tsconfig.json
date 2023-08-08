@@ -13,8 +13,6 @@
     "outDir": "./dist",
     "module": "CommonJS",
     "target": "ES2021",
-    "incremental": false,
-    "composite": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "paths": {
