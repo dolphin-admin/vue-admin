@@ -7,9 +7,7 @@
     "dev": "nuxt dev --dotenv .env.development",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "eslint:check": "eslint \"**/*.{ts,tsx,js,tsx,vue}\" --color",
-    "eslint:fix": "pnpm eslint:check -- --fix"
+    "postinstall": "nuxt prepare"
   },
   "devDependencies": {
     "@nuxt/content": "^2.7.2",
