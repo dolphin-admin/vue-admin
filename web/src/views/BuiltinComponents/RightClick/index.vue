@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Menu } from '@/components/DRightClick/private'
 
-const menu: Menu[] = ref([
+const menu: Menu[] = reactive([
   { label: '菜单1', key: 'handle' },
   { label: '菜单2', key: 'handle' },
   { label: '菜单3', key: 'handle' },
