@@ -9,22 +9,16 @@ const updateNumber = () => {
     if (element) {
       const width = element.offsetWidth
       const height = element.offsetHeight
-      console.log(width, height)
-      const result = (width * height) / 12000
+      const result = (width * height) / 13800
       number.value = Math.floor(result)
     }
   })
 }
-watch(
-  elementRef,
-  (newElement) => {
-    if (newElement) {
-      console.log(newElement)
-      updateNumber()
-    }
-  },
-  { immediate: true }
-)
+
+onMounted(() => {
+  updateNumber()
+  useEventListener(window, 'resize', updateNumber, true)
+})
 </script>
 
 <template>
@@ -40,10 +34,11 @@ watch(
         v-for="item in number"
         :key="item"
         v-watermark="{
-          text: 'Watermark Direct',
+          text: 'Bit Ocean',
           textColor: 'rgba(180, 180, 180, 0.6)'
         }"
-      ></span>
+      >
+      </span>
     </NCard>
   </main>
 </template>
