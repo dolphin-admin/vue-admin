@@ -3,8 +3,8 @@
   "private": true,
   "author": "Bruce Song <recall4056@gmail.com> (https://github.com/recallwei/)",
   "scripts": {
-    "start": "nest start",
-    "dev": "nest start --watch",
+    "start": "nest start -- -b swc",
+    "dev": "nest start --watch -- -b swc",
     "debug": "nest start --debug --watch",
     "build": "nest build",
     "preview": "node dist/main",
