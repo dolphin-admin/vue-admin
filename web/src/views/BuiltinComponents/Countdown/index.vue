@@ -3,6 +3,7 @@ import type { Status } from '@/components/DCountdown/private'
 import type { MessageSchema } from '@/types'
 
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+
 const countdownRef = ref()
 const numberData = reactive({
   target: 120

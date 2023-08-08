@@ -8,6 +8,7 @@ import TimelineIcon from '~icons/ic/baseline-timeline'
 import ListTemplatesIcon from '~icons/ic/outline-list-alt'
 import PrintIcon from '~icons/ic/outline-local-printshop'
 import IAmATeapotIcon from '~icons/icon-park-outline/tea-drink'
+import RightClickIcon from '~icons/icon-park-solid/music-list'
 import InternalServerErrorIcon from '~icons/lucide/server-off'
 import UserInfoIcon from '~icons/mdi/account-circle'
 import UserManagementIcon from '~icons/mdi/account-cog-outline'
@@ -212,6 +213,15 @@ export const routes = [
         meta: {
           title: () => t('Menu.Countdown'),
           icon: CountDownIcon
+        }
+      },
+      {
+        path: `${BUILTIN_COMPONENTS_PREFIX}/right-click`,
+        name: 'right-click',
+        component: () => import('@/views/BuiltinComponents/RightClick'),
+        meta: {
+          title: () => t('Menu.RightClick'),
+          icon: RightClickIcon
         }
       },
       {

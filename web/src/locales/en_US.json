@@ -118,6 +118,7 @@
     "PermissionManagement": "Permission Management",
     "Print": "Print",
     "QRCode": "QRCode",
+    "RightClick": "Right Click Menu",
     "RoleManagement": "Role Management",
     "Signup": "Signup",
     "SystemApplications": "System Applications",
@@ -183,6 +184,10 @@
   "QRCode": {
     "ContentPlaceholder": "Please enter QRCode content",
     "Generate": "Generate QRCode"
+  },
+  "RightClick": {
+    "Clicked": "You clicked: {label}",
+    "Tip": "Trigger right click"
   },
   "Sidebar": {
     "Hide": "Hide sidebar",

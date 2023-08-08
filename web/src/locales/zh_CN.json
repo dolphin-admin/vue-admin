@@ -118,6 +118,7 @@
     "PermissionManagement": "权限管理",
     "Print": "打印",
     "QRCode": "二维码",
+    "RightClick": "右键菜单",
     "RoleManagement": "角色管理",
     "Signup": "注册",
     "SystemApplications": "系统应用",
@@ -183,6 +184,10 @@
   "QRCode": {
     "ContentPlaceholder": "请输入二维码内容",
     "Generate": "生成二维码"
+  },
+  "RightClick": {
+    "Clicked": "你点击了：{label}",
+    "Tip": "右击触发"
   },
   "Sidebar": {
     "Hide": "隐藏侧边栏",

@@ -13,6 +13,7 @@ import ListTemplatesIcon from '~icons/ic/outline-list-alt'
 import PrintIcon from '~icons/ic/outline-local-printshop'
 import SystemApplicationsIcon from '~icons/ic/sharp-apps'
 import IAmATeapotIcon from '~icons/icon-park-outline/tea-drink'
+import RightClickIcon from '~icons/icon-park-solid/music-list'
 import InternalServerErrorIcon from '~icons/lucide/server-off'
 import UserManagementIcon from '~icons/mdi/account-cog-outline'
 import RoleManagementIcon from '~icons/mdi/account-group'
@@ -170,6 +171,12 @@ export const menuOptions: MenuOption[] = [
         key: 'countdown',
         icon: renderMenuIcon(CountDownIcon)
       },
+      {
+        label: renderMenuLabel(t('Menu.RightClick')),
+        key: 'right-click',
+        icon: renderMenuIcon(RightClickIcon)
+      },
+
       {
         label: renderMenuLabel(t('Menu.Timeline')),
         key: 'timeline',
