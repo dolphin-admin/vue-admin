@@ -9,6 +9,7 @@ import ListTemplatesIcon from '~icons/ic/outline-list-alt'
 import PrintIcon from '~icons/ic/outline-local-printshop'
 import TrafficStatisticsIcon from '~icons/ic/twotone-ramp-left'
 import IAmATeapotIcon from '~icons/icon-park-outline/tea-drink'
+import ClickRightIcon from '~icons/icon-park-solid/music-list'
 import InternalServerErrorIcon from '~icons/lucide/server-off'
 import UserInfoIcon from '~icons/mdi/account-circle'
 import UserManagementIcon from '~icons/mdi/account-cog-outline'
@@ -193,6 +194,16 @@ export const routes = [
           icon: CountDownIcon
         }
       },
+      {
+        path: `${BUILTIN_COMPONENTS_PREFIX}/click-right`,
+        name: 'click-right',
+        component: () => import('@/views/BuiltinComponents/ClickRight'),
+        meta: {
+          title: () => t('Menu.ClickRight'),
+          icon: ClickRightIcon
+        }
+      },
+
       // Timeline component
       {
         path: `${BUILTIN_COMPONENTS_PREFIX}/timeline`,
