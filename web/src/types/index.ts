@@ -1,3 +1,4 @@
+export * from './dictionary'
 export * from './excel'
 export * from './i18n'
 export * from './qrcode'

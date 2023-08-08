@@ -23,7 +23,6 @@ const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({
 
 const { version } = siteMetaData
 
-const userStore = useUserStore()
 const notification = useNotification()
 
 /**
@@ -159,20 +158,17 @@ const setGeoArea = (area: string | null) => {
  */
 const sendReport = () => {
   // 用户路由记录小于 5 条时不上报
-  if (records.value.length < 5) {
-    return
+  if (records.value.length >= 5) {
+    const userTraffic = {
+      ...appInfo,
+      ...computeLeaveTime(),
+      ...geographyInfo,
+      records: records.value
+    } as UserTraffic
+    if (UserTrafficAPI.reportUserTraffic(userTraffic)) {
+      records.value = []
+    }
   }
-  const userTraffic = {
-    ...appInfo,
-    ...computeLeaveTime(),
-    ...geographyInfo,
-    records: records.value
-  } as UserTraffic
-  if (UserTrafficAPI.reportUserTraffic(userTraffic)) {
-    records.value = []
-  }
-  userStore.clearUser()
-  AuthUtils.clearToken()
 }
 
 /**
@@ -182,7 +178,7 @@ const sendGeoRequestNotification = () =>
   setTimeout(() => {
     const n = notification.create({
       title: () => t('Notification.RequestGeolocation.Title'),
-      description: () => t('Notification.RequestGeolocation.Description'),
+      description: () => t('Notification.Team.From'),
       content: () => t('Notification.RequestGeolocation.Content'),
       avatar: () =>
         h(NAvatar, {
@@ -191,9 +187,9 @@ const sendGeoRequestNotification = () =>
           src: bitOceanSrc,
           alt: ''
         }),
-      duration: 10000,
+      duration: 5000,
       keepAliveOnHover: true,
-      meta: TimeUtils.formatTime(Date.now(), 'YYYY-MM-DD HH:mm:ss'),
+      meta: TimeUtils.formatTime(Date.now()),
       action: () =>
         h(
           NButton,
@@ -232,7 +228,7 @@ onBeforeRouteUpdate((to, from) => {
   const { title: fromTitle } = fromMeta
   records.value.push({
     title: typeof fromTitle === 'function' ? fromTitle() : fromTitle,
-    url: fullPath,
+    url: GlobalEnvConfig.APP_BASE_URL + fullPath,
     path: fromPath,
     ...computeRouteRecordTime()
   })

@@ -65,10 +65,12 @@ const handleUpdateLocale = (lang: Lang) => {
 /**
  * 退出登录
  */
-const logout = () => {
-  router.replace('/login')
-  message.success(t('Logout.Success'))
-}
+const logout = () =>
+  router.replace('/login').then(() => {
+    message.success(t('Logout.Success'))
+    userStore.clearUser()
+    AuthUtils.clearToken()
+  })
 
 /**
  * 选择用户下拉框选项
@@ -99,7 +101,7 @@ onMounted(() => {
 
 <template>
   <header
-    class="bg-light-default dark:bg-dark-default sticky top-0 z-50 flex h-14 w-full items-center justify-between border-b border-gray-300 p-2 dark:border-gray-950 sm:p-4"
+    class="bg-default-light dark:bg-default-dark sticky top-0 z-50 flex h-14 w-full items-center justify-between border-b border-gray-300 p-2 dark:border-gray-950 sm:p-4"
   >
     <div class="flex h-full items-center justify-start space-x-3">
       <NTooltip
@@ -114,7 +116,7 @@ onMounted(() => {
             @click="sidebarStore.toggleSidebarDisplay"
           />
         </template>
-        {{ t(sidebarStore.isDisplay ? 'Sidebar.Hide' : 'Sidebar.Show') }}
+        {{ sidebarStore.isDisplay ? t('Sidebar.Hide') : t('Sidebar.Show') }}
       </NTooltip>
 
       <BaseBreadcrumb />

@@ -51,6 +51,7 @@ const handlePrintHTMLStr = () => {
           <span>{{ t('Print.FrontendFrameworkLeaderboard') }}</span>
         </div>
         <NDataTable
+          size="small"
           :columns="columns"
           :data="data"
           :scroll-x="800"

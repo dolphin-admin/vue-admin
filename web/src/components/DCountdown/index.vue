@@ -9,10 +9,11 @@ const emit = defineEmits<{
   (e: 'change', time: number, status: Status): void
   (e: 'end'): void
 }>()
-let fromTimeData = null
+
 const currentStatus = ref<Status>('pending')
 const timer = ref<NodeJS.Timer | null>(null) // 定时器
 const seconds = ref(0) // 记录不停倒计过程中变化的秒数
+
 const date: Time = reactive({
   day: '00',
   showHour: '00',
@@ -28,12 +29,18 @@ const clearTimer = () => {
 }
 /* 更改格式化时间 */
 const changeTime = () => {
-  fromTimeData = reactive(formatTime(seconds.value))
-  date.second = (fromTimeData && fromTimeData.second) || '00'
-  date.showHour = (fromTimeData && fromTimeData.showHour) || '00'
-  date.minute = (fromTimeData && fromTimeData.minute) || '00'
-  date.day = (fromTimeData && fromTimeData.day) || '00'
+  const {
+    day = '00',
+    showHour = '00',
+    minute = '00',
+    second = '00'
+  } = formatTime(seconds.value) || {}
+  date.day = day
+  date.showHour = showHour
+  date.minute = minute
+  date.second = second
 }
+
 /* 状态更改 */
 const changeStatus = (e: Status) => {
   currentStatus.value = e
@@ -51,6 +58,7 @@ const changeStatus = (e: Status) => {
  * 暂停
  */
 const pause = () => changeStatus('paused')
+
 /* 开始 */
 const start = () => {
   clearTimer()
@@ -66,6 +74,7 @@ const start = () => {
     changeTime()
   }, 1000)
 }
+
 /* 重新开始 */
 const restart = () => {
   changeStatus('pending')
@@ -81,9 +90,9 @@ watch(
   },
   { immediate: true }
 )
-onUnmounted(() => {
-  changeStatus('stopped')
-})
+
+onUnmounted(() => changeStatus('stopped'))
+
 defineExpose({
   start,
   pause,

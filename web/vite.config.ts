@@ -10,10 +10,16 @@ import { defineConfig, loadEnv } from 'vite'
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd())
-  const { VITE_BASE_API_PROXY, VITE_PORT } = env as ImportMetaEnv
+  const { VITE_BASE_API_PROXY, VITE_MOCK_API_PROXY, VITE_PORT } =
+    env as ImportMetaEnv
 
   const port = parseInt(VITE_PORT, 10)
   const proxy: Record<string, string | ProxyOptions> = {
+    '/mock-api': {
+      target: VITE_MOCK_API_PROXY,
+      changeOrigin: true,
+      rewrite: (path: string) => path.replace(/^\/mock-api/, '')
+    },
     '/socket.io': {
       target: VITE_BASE_API_PROXY,
       ws: true,
