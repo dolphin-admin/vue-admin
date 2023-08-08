@@ -1,14 +1,20 @@
 <script setup lang="ts">
-import type { Menu } from '@/components/DRightClick/private'
+import type { MenuItem } from '@/components/DRightClick/private'
+import type { MessageSchema } from '@/types'
 
-const menu: Menu[] = reactive([
+const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+
+const message = useMessage()
+
+const menu = ref<MenuItem[]>([
   { label: '菜单1', key: 'handle' },
   { label: '菜单2', key: 'handle' },
   { label: '菜单3', key: 'handle' },
   { label: '菜单4', key: 'handle' }
 ])
 
-const handleClick = (e: Menu) => {}
+const handleClick = (e: MenuItem) =>
+  message.success(t('RightClick.Clicked', { label: e.label }))
 </script>
 
 <template>
@@ -20,7 +26,7 @@ const handleClick = (e: Menu) => {}
           @select="handleClick"
         >
           <div class="flex h-96 w-full items-center justify-center bg-blue-500">
-            触发右击
+            {{ t('RightClick.Tip') }}
           </div>
         </DRightClick>
         <DRightClick
@@ -30,7 +36,7 @@ const handleClick = (e: Menu) => {}
           <div
             class="flex h-96 w-full items-center justify-center bg-yellow-500"
           >
-            触发右击
+            {{ t('RightClick.Tip') }}
           </div>
         </DRightClick>
       </div>

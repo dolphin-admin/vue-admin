@@ -185,6 +185,10 @@
     "ContentPlaceholder": "Please enter QRCode content",
     "Generate": "Generate QRCode"
   },
+  "RightClick": {
+    "Clicked": "You clicked: {label}",
+    "Tip": "Trigger right click"
+  },
   "Sidebar": {
     "Hide": "Hide sidebar",
     "Show": "Show sidebar"

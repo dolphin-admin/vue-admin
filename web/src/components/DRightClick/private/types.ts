@@ -1,7 +1,7 @@
 export interface Props {
-  menu: Array<Menu>
+  menu: MenuItem[]
 }
-export interface Menu {
+export interface MenuItem {
   label: string
   key: string
 }

@@ -185,6 +185,10 @@
     "ContentPlaceholder": "请输入二维码内容",
     "Generate": "生成二维码"
   },
+  "RightClick": {
+    "Clicked": "你点击了：{label}",
+    "Tip": "右击触发"
+  },
   "Sidebar": {
     "Hide": "隐藏侧边栏",
     "Show": "显示侧边栏"
