@@ -5,5 +5,5 @@ export class CreateUserDto {
     required: true,
     description: '用户名'
   })
-  username: string
+  readonly username: string
 }

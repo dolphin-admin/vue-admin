@@ -2,7 +2,7 @@ import type { Type } from '@nestjs/common'
 import { applyDecorators } from '@nestjs/common'
 import { ApiExtraModels, ApiOkResponse, getSchemaPath } from '@nestjs/swagger'
 
-import { PaginatedDto } from '@/common'
+import { PaginatedDto } from '@/shared'
 
 export const ApiPaginatedResponse = <TModel extends Type<any>>(model: TModel) =>
   applyDecorators(

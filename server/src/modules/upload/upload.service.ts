@@ -1,14 +1,12 @@
 import { Injectable } from '@nestjs/common'
 
-import type { FileUploadDto } from './dto/file-upload.dto'
-
 @Injectable()
 export class UploadService {
-  upload(createUploadDto: FileUploadDto) {
-    return 'This action adds a new upload'
+  uploadImage(file: Express.Multer.File) {
+    return file
   }
 
-  uploadBulk(createUploadDto: FileUploadDto[]) {
-    return 'This action adds a new upload'
+  uploadImageBulk(files: Express.Multer.File[]) {
+    return files
   }
 }

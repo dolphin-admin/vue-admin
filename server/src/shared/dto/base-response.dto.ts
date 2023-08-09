@@ -1,5 +1,7 @@
+import { Injectable } from '@nestjs/common'
 import { ApiProperty } from '@nestjs/swagger'
 
+@Injectable()
 export class BaseResponseDto {
   @ApiProperty({ description: '总条数' })
   message?: string

@@ -1,15 +1,26 @@
+import type { LogLevel } from '@nestjs/common'
+import { ValidationPipe } from '@nestjs/common'
 import { NestFactory } from '@nestjs/core'
 import type { NestExpressApplication } from '@nestjs/platform-express'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 
-import { PaginatedDto } from '@/common'
+import { GlobalConfig } from '@/config'
 
 import { AppModule } from './app.module'
 
 async function bootstrap() {
+  // 日志
+  const logLevels: LogLevel[] = GlobalConfig.IS_PROD
+    ? ['error', 'warn', 'log']
+    : ['error', 'warn', 'log', 'verbose', 'debug']
+
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
-    abortOnError: false
+    abortOnError: false,
+    logger: logLevels
   })
+
+  // 全局管道
+  app.useGlobalPipes(new ValidationPipe())
 
   // Swagger
   const config = new DocumentBuilder()
@@ -18,7 +29,7 @@ async function bootstrap() {
     .setVersion('1.0')
     .build()
   const document = SwaggerModule.createDocument(app, config, {
-    extraModels: [PaginatedDto]
+    extraModels: [] // TODO: 导出额外的模型，例如：分页、请求
   })
 
   /**
