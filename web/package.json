@@ -7,8 +7,6 @@
     "build": "pnpm type:check && vite build",
     "preview": "vite preview",
     "type:check": "vue-tsc --noEmit --composite false",
-    "eslint:check": "eslint \"**/*.{ts,tsx,js,tsx,vue}\" --color",
-    "eslint:fix": "pnpm eslint:check -- --fix",
     "desktop:dev": "tauri dev",
     "desktop:build": "tauri build"
   },
