@@ -6,7 +6,7 @@ import type { Lang, MessageSchema } from '@/types'
 
 const i18n = createI18n<[MessageSchema], Lang>({
   legacy: false,
-  locale: LangUtils.getDefaultLang() ?? 'zh_CN',
+  locale: LangUtils.getDefaultLang(),
   fallbackLocale: 'zh_CN',
   messages: {
     en_US,
