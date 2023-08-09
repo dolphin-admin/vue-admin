@@ -28,7 +28,6 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           source: './'
           target: /home/repo/dolphin-admin/
-          rm: true
 
       - name: SSH to server and restart application
         uses: appleboy/ssh-action@master
