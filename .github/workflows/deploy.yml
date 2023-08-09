@@ -26,4 +26,5 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
+          passphrase: ${{ secrets.SERVER_PASSWORD }}
           script: sh bin/deploy.sh
