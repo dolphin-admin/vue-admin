@@ -22,7 +22,8 @@ jobs:
 
       - name: Copy files to server
         uses: appleboy/scp-action@master
-        with: host: ${{ secrets.SERVER_HOST }}
+        with: 
+          host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
           source: './'
@@ -30,7 +31,8 @@ jobs:
 
       - name: SSH to server and restart application
         uses: appleboy/ssh-action@master
-        with: host: ${{ secrets.SERVER_HOST }}
+        with: 
+          host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
