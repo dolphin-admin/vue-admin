@@ -28,11 +28,12 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           source: './'
           target: /home/repo/dolphin-admin/
+          rm: true
 
       - name: SSH to server and restart application
         uses: appleboy/ssh-action@master
-        run: sh ../../bin/deploy.sh
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
+          script: sh bin/deploy.sh
