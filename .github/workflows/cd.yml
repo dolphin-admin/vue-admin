@@ -38,4 +38,4 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SERVER_KEY }}
-          script:  echoe "1" && sh bin/deploy.sh
+          script: sh bin/deploy.sh
