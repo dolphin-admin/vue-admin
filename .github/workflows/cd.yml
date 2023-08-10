@@ -12,6 +12,20 @@ jobs:
     name: 'Build & Publish'
     runs-on: ubuntu-latest
     steps:
+      - name: 🔧 Check CI status
+        uses: actions/github-script@v5
+        with:
+          script: |
+            const { data: { conclusion } } = await github.rest.actions.getWorkflowRun({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: context.payload.workflow_run.id
+            });
+            if (conclusion !== 'success') {
+              console.log('CI workflow failed, stopping CD workflow.');
+              process.exit(1);
+            }
+
       - name: ☁️ Checkout Repository
         uses: actions/checkout@v3
 
@@ -32,7 +46,7 @@ jobs:
         run: pnpm web:build
 
       - name: 🔧 Setup SSH
-        uses: appleboy/ssh-action@v0.1.10
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USERNAME }}
