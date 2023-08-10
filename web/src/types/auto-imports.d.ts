@@ -44,7 +44,6 @@ declare global {
   const createDiscreteApi: typeof import('naive-ui')['createDiscreteApi']
   const createPinia: typeof import('pinia')['createPinia']
   const customRef: typeof import('vue')['customRef']
-  const d3: typeof import('d3')
   const dayjs: typeof import('dayjs')['default']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
   const defineComponent: typeof import('vue')['defineComponent']
