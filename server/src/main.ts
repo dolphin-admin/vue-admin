@@ -1,23 +1,29 @@
 import type { LogLevel } from '@nestjs/common'
 import { ValidationPipe } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
 import { NestFactory } from '@nestjs/core'
 import type { NestExpressApplication } from '@nestjs/platform-express'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
-
-import { GlobalConfig } from '@/config'
 
 import { AppModule } from './app.module'
 
 async function bootstrap() {
   // 日志
-  const logLevels: LogLevel[] = GlobalConfig.IS_PROD
-    ? ['error', 'warn', 'log']
-    : ['error', 'warn', 'log', 'verbose', 'debug']
+  const logLevels: LogLevel[] =
+    process.env.NODE_ENV === 'production'
+      ? ['error', 'warn', 'log']
+      : ['error', 'warn', 'log', 'verbose', 'debug']
 
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     abortOnError: false,
     logger: logLevels
   })
+
+  app.setGlobalPrefix('') // 全局前缀
+
+  const configService = app.get(ConfigService)
+
+  const port = +configService.get('PORT') || 3000
 
   // 全局管道
   app.useGlobalPipes(new ValidationPipe())
@@ -40,6 +46,6 @@ async function bootstrap() {
    */
   SwaggerModule.setup('api', app, document)
 
-  await app.listen(4061)
+  await app.listen(port)
 }
 bootstrap()

@@ -26,6 +26,7 @@
     "server:debug": "pnpm --filter=server debug",
     "server:build": "pnpm --filter=server build",
     "server:preview": "pnpm --filter=server preview",
+    "server:deploy": "pnpm --filter=server run deploy",
     "server:generate:resource": "pnpm --filter=server generate:resource",
     "server:generate:controller": "pnpm --filter=server generate:controller",
     "server:generate:service": "pnpm --filter=server generate:service",
