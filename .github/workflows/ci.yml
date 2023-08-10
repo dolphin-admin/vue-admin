@@ -29,8 +29,8 @@ jobs:
           node-version: ${{ matrix.node }}
           cache: pnpm
 
-      - name: 📦 Install monorepo deps
-        run: pnpm i
+      # - name: 📦 Install monorepo deps
+      #   run: pnpm i
 
       # - name: 🔍 Check ESLint
       #   run: pnpm eslint:check

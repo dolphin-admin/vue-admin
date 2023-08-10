@@ -26,11 +26,11 @@ jobs:
           registry-url: https://registry.npmjs.org/
           cache: pnpm
 
-      - name: 📦 Install monorepo deps
-        run: pnpm i
+      # - name: 📦 Install monorepo deps
+      #   run: pnpm i
 
-      - name: 🚀 Build front-end project
-        run: pnpm web:build
+      # - name: 🚀 Build front-end project
+      #   run: pnpm web:build
 
       - name: 🔧 Setup SSH
         uses: appleboy/ssh-action@master
