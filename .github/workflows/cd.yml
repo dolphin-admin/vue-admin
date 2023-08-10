@@ -33,7 +33,7 @@ jobs:
       #   run: pnpm web:build
 
       - name: 🔧 Setup SSH
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v0.1.10
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USERNAME }}
