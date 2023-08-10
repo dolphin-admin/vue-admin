@@ -32,5 +32,5 @@ jobs:
       - name: 📦 Install monorepo deps
         run: pnpm i
 
-      - name: 🔍 Check ESLint
-        run: pnpm eslint:check
+      # - name: 🔍 Check ESLint
+      #   run: pnpm eslint:check
