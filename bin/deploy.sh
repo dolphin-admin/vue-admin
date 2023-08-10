@@ -1,6 +1,5 @@
 #!/usr/bin/env sh
-cd /home/repo/dolphin-admin/ &&
-  git checkout main &&
+git checkout main &&
   git pull &&
   pnpm i &&
   pnpm server:build &&
