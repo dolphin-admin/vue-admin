@@ -13,18 +13,18 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
-      - name: ☁️ Checkout Repository
-        uses: actions/checkout@v3
+      # - name: ☁️ Checkout Repository
+      #   uses: actions/checkout@v3
 
-      - name: 🔧 Install pnpm
-        uses: pnpm/action-setup@v2
+      # - name: 🔧 Install pnpm
+      #   uses: pnpm/action-setup@v2
 
-      - name: 🔧 Use Node.js 18
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          registry-url: https://registry.npmjs.org/
-          cache: pnpm
+      # - name: 🔧 Use Node.js 18
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 18
+      #     registry-url: https://registry.npmjs.org/
+      #     cache: pnpm
 
       # - name: 📦 Install monorepo deps
       #   run: pnpm i
@@ -38,4 +38,4 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SERVER_KEY }}
-          script: sh bin/deploy.sh && echoe "1"
+          script:  echoe "1" && sh bin/deploy.sh

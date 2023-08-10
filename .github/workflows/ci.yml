@@ -20,14 +20,14 @@ jobs:
       - name: ☁️ Checkout Repository
         uses: actions/checkout@v3
 
-      - name: 🔧 Install pnpm
-        uses: pnpm/action-setup@v2
+      # - name: 🔧 Install pnpm
+      #   uses: pnpm/action-setup@v2
 
-      - name: 🔧 Set Node.js version to ${{ matrix.node }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node }}
-          cache: pnpm
+      # - name: 🔧 Set Node.js version to ${{ matrix.node }}
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: ${{ matrix.node }}
+      #     cache: pnpm
 
       # - name: 📦 Install monorepo deps
       #   run: pnpm i
