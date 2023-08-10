@@ -1,0 +1,37 @@
+name: Dev CI
+
+on:
+  push:
+    branches:
+      - '!main'
+  pull_request:
+    branches:
+      - '!main'
+
+
+jobs:
+  lint:
+    name: "Lint"
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [16.x, 18.x]
+      fail-fast: false
+    steps:
+      - name: ☁️ Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: 🔧 Install pnpm
+        uses: pnpm/action-setup@v2
+
+      - name: 🔧 Set Node.js version to ${{ matrix.node }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+          cache: pnpm
+
+      - name: 📦 Install monorepo deps
+        uses: pnpm i
+
+      - name: 🔍 Check ESLint
+        run: pnpm eslint:check
