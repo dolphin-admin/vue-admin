@@ -31,7 +31,7 @@ jobs:
           cache: pnpm
 
       - name: 📦 Install monorepo deps
-        uses: pnpm i
+        run: pnpm i
 
       - name: 🔍 Check ESLint
         run: pnpm eslint:check
