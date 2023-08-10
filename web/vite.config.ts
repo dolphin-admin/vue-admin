@@ -10,25 +10,34 @@ import { defineConfig, loadEnv } from 'vite'
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd())
-  const { VITE_BASE_API_PROXY, VITE_MOCK_API_PROXY, VITE_PORT } =
-    env as ImportMetaEnv
+  const {
+    VITE_BASE_API_PROXY,
+    VITE_MOCK_API_PROXY,
+    VITE_PORT,
+    VITE_BASE_API_V2_PROXY
+  } = env as ImportMetaEnv
 
   const port = parseInt(VITE_PORT, 10)
   const proxy: Record<string, string | ProxyOptions> = {
-    '/mock-api': {
-      target: VITE_MOCK_API_PROXY,
+    '/base-api': {
+      target: VITE_BASE_API_PROXY,
       changeOrigin: true,
-      rewrite: (path: string) => path.replace(/^\/mock-api/, '')
+      rewrite: (path: string) => path.replace(/^\/base-api/, '')
+    },
+    '/base-api-v2': {
+      target: VITE_BASE_API_V2_PROXY,
+      changeOrigin: true,
+      rewrite: (path: string) => path.replace(/^\/base-api-v2/, '')
     },
     '/socket.io': {
       target: VITE_BASE_API_PROXY,
       ws: true,
       changeOrigin: true
     },
-    '/base-api': {
-      target: VITE_BASE_API_PROXY,
+    '/mock-api': {
+      target: VITE_MOCK_API_PROXY,
       changeOrigin: true,
-      rewrite: (path: string) => path.replace(/^\/base-api/, '')
+      rewrite: (path: string) => path.replace(/^\/mock-api/, '')
     }
   }
 
@@ -61,7 +70,6 @@ export default defineConfig(({ mode }) => {
             ],
             axios: [['default', 'axios']],
             dayjs: [['default', 'dayjs']],
-            d3: [['*', 'd3']],
             'naive-ui': [
               'useDialog',
               'useMessage',

@@ -6,6 +6,7 @@ export const GlobalEnvConfig = Object.freeze({
   PORT: import.meta.env.VITE_PORT ?? '',
   BASE_API_PREFIX: '/base-api',
   BASE_API_PROXY: import.meta.env.VITE_BASE_API_PROXY ?? '',
+  BASE_API_V2_PROXY: import.meta.env.VITE_BASE_API_V2_PROXY ?? '',
   MOCK_API_PROXY: import.meta.env.VITE_MOCK_API_PROXY ?? '',
   GITHUB_CLIENT_ID: import.meta.env.VITE_GITHUB_CLIENT_ID ?? '',
   GOOGLE_CLIENT_ID: import.meta.env.VITE_GOOGLE_CLIENT_ID ?? '',
