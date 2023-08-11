@@ -1,8 +1,11 @@
 import {
   Controller,
+  Get,
   HttpStatus,
+  Param,
   ParseFilePipeBuilder,
   Post,
+  Res,
   UploadedFile,
   UploadedFiles,
   UseInterceptors
@@ -13,7 +16,7 @@ import { ApiBody, ApiConsumes, ApiOkResponse, ApiTags } from '@nestjs/swagger'
 import { FileUploadBulkDto, FileUploadDto } from './dto'
 import { UploadService } from './upload.service'
 
-@ApiTags('文件上传')
+@ApiTags('文件')
 @Controller('upload')
 export class UploadController {
   constructor(private readonly uploadService: UploadService) {}
@@ -72,5 +75,11 @@ export class UploadController {
     files: Express.Multer.File[]
   ) {
     return this.uploadService.uploadImageBulk(files)
+  }
+
+  @ApiOkResponse({ description: '获取文件' })
+  @Get(':path')
+  getUploadedFile(@Param('path') path: string, @Res() res: any) {
+    return res.sendFile(path, { root: 'storage' })
   }
 }

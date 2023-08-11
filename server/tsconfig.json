@@ -27,10 +27,5 @@
         "src/prisma/generated/mongo"
       ]
     }
-  },
-  "ts-node": {
-    "require": [
-      "tsconfig-paths/register"
-    ]
   }
 }
