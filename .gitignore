@@ -46,4 +46,5 @@ tsconfig.build.tsbuildinfo
 
 server/documentation
 server/storage
+server/src/generated
 server/src/prisma/generated

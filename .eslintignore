@@ -14,6 +14,7 @@ web/tailwind.config.js
 server/build
 server/dist
 server/storage
+server/src/generated
 server/src/prisma/generated
 server/src/prisma/migrations
 
