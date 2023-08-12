@@ -1,9 +1,11 @@
 import type { LogLevel } from '@nestjs/common'
-import { ValidationPipe } from '@nestjs/common'
+import { VersioningType } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { NestFactory } from '@nestjs/core'
 import type { NestExpressApplication } from '@nestjs/platform-express'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
+
+import { BaseResponseDto, PaginatedDto } from '@/shared'
 
 import { AppModule } from './app.module'
 
@@ -21,12 +23,21 @@ async function bootstrap() {
 
   app.setGlobalPrefix('') // 全局前缀
 
-  const configService = app.get(ConfigService)
-
-  const port = +configService.get('PORT') || 3000
+  app.enableVersioning({
+    type: VersioningType.URI
+  }) // 启用版本控制
 
   // 全局管道
-  app.useGlobalPipes(new ValidationPipe())
+  // app.useGlobalPipes(new ValidationPipe())
+
+  /**
+   * 静态资源
+   * 用作上传文件的存储目录
+   * 例如：http://localhost:3000/storage/xxx.png
+   */
+  app.useStaticAssets('storage', {
+    prefix: '/storage'
+  })
 
   // Swagger
   const config = new DocumentBuilder()
@@ -34,8 +45,9 @@ async function bootstrap() {
     .setDescription('Dolphin Admin 后台管理系统的接口文档，基于 Nest.js。')
     .setVersion('1.0')
     .build()
+
   const document = SwaggerModule.createDocument(app, config, {
-    extraModels: [] // TODO: 导出额外的模型，例如：分页、请求
+    extraModels: [app.get(BaseResponseDto), app.get(PaginatedDto)]
   })
 
   /**
@@ -46,6 +58,8 @@ async function bootstrap() {
    */
   SwaggerModule.setup('api', app, document)
 
-  await app.listen(port)
+  const configService = app.get(ConfigService)
+  const path = +configService.get('PORT') || 3000
+  await app.listen(path)
 }
 bootstrap()

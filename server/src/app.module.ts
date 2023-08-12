@@ -11,6 +11,7 @@ import {
   UserTrafficsModule,
   WebsocketModule
 } from '@/modules'
+import { BaseResponseDto, PaginatedDto } from '@/shared'
 
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
@@ -32,6 +33,6 @@ import { AppService } from './app.service'
     })
   ],
   controllers: [AppController],
-  providers: [AppService]
+  providers: [AppService, PaginatedDto, BaseResponseDto]
 })
 export class AppModule {}

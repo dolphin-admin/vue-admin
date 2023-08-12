@@ -44,5 +44,6 @@ coverage
 *.zip
 tsconfig.build.tsbuildinfo
 
+server/documentation
 server/storage
 server/src/prisma/generated
