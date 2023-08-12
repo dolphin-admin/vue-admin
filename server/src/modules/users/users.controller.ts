@@ -16,7 +16,7 @@ import {
   ApiTags
 } from '@nestjs/swagger'
 
-import { ApiPaginatedResponse } from '@/decorators/swagger/api-paginated-response'
+import { ApiPaginatedResponse } from '@/decorators'
 
 import { CreateUserDto, UpdateUserDto } from './dto'
 import { User } from './entities/user.entity'
