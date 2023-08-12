@@ -5,9 +5,9 @@ import { NestFactory } from '@nestjs/core'
 import type { NestExpressApplication } from '@nestjs/platform-express'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import { I18nValidationExceptionFilter, I18nValidationPipe } from 'nestjs-i18n'
-import { stdout } from 'process'
 
 import { BaseResponseDto, ErrorResponseDto, PageResponseDto } from '@/common'
+import { bootstrapLog } from '@/utils'
 
 import { AppModule } from './app.module'
 
@@ -71,7 +71,7 @@ async function bootstrap() {
   const port = +configService.get('PORT') || 3000
   await app.listen(port)
 
-  stdout.write(`Server is running on http://localhost:${port}\n`)
-  stdout.write(`Documentation is available at http://localhost:${port}/api`)
+  // 启动动画、日志
+  bootstrapLog(port)
 }
 bootstrap()
