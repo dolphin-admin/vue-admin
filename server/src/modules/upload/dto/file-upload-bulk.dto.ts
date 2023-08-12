@@ -1,5 +1,4 @@
 import { ApiProperty } from '@nestjs/swagger'
-import type { Express } from 'express'
 
 export class FileUploadBulkDto {
   @ApiProperty({

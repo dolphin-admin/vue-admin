@@ -1,0 +1,5 @@
+export enum CustomFileValidationError {
+  FILE_REQUIRED = 'FILE_REQUIRED',
+  FILE_MAX_SIZE = 'FILE_MAX_SIZE',
+  FILE_IMAGE_TYPE = 'FILE_IMAGE_TYPE'
+}

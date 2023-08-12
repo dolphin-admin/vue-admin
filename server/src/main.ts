@@ -1,5 +1,5 @@
 import type { LogLevel } from '@nestjs/common'
-import { ValidationPipe, VersioningType } from '@nestjs/common'
+import { VersioningType } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { NestFactory } from '@nestjs/core'
 import type { NestExpressApplication } from '@nestjs/platform-express'
@@ -28,7 +28,7 @@ async function bootstrap() {
   }) // 启用版本控制
 
   // 全局管道
-  app.useGlobalPipes(new ValidationPipe())
+  // app.useGlobalPipes(new ValidationPipe())
 
   /**
    * 静态资源
