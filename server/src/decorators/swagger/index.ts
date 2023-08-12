@@ -1,1 +1,1 @@
-export * from './api-paginated-response'
+export * from './api-page-response'

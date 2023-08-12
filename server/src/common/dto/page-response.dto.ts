@@ -1,10 +1,8 @@
-import { Injectable } from '@nestjs/common'
 import { ApiProperty } from '@nestjs/swagger'
 
 import { BaseResponseDto } from './base-response.dto'
 
-@Injectable()
-export class PaginatedDto<TData> extends BaseResponseDto {
+export class PageResponseDto<TData> extends BaseResponseDto<TData> {
   @ApiProperty({ description: '总条数' })
   total: number
 
@@ -14,5 +12,10 @@ export class PaginatedDto<TData> extends BaseResponseDto {
   @ApiProperty({ description: '每页条数' })
   pageSize: number
 
-  data: TData[]
+  constructor(options: PageResponseDto<TData>) {
+    super(options)
+    this.total = options.total
+    this.page = options.page
+    this.pageSize = options.pageSize
+  }
 }

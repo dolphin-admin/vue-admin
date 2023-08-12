@@ -22,7 +22,7 @@ import {
 } from '@nestjs/swagger'
 import { Response } from 'express'
 
-import { BaseResponseDto } from '@/shared'
+import { BaseResponseDto } from '@/common'
 
 import {
   MAX_UPLOAD_FILE_SIZE,
@@ -137,5 +137,11 @@ export class UploadController {
   @Get(':path')
   getUploadedFile(@Param('path') path: string, @Res() res: Response) {
     return res.sendFile(path, { root: STORAGE_DIR })
+  }
+
+  @ApiOkResponse({ description: '下载成功' })
+  @Get('download/:path')
+  downloadFile(@Param('path') path: string, @Res() res: Response) {
+    return res.download(`${STORAGE_DIR}/${path}`)
   }
 }

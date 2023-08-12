@@ -4,8 +4,10 @@ import { ConfigService } from '@nestjs/config'
 import { NestFactory } from '@nestjs/core'
 import type { NestExpressApplication } from '@nestjs/platform-express'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
+import { I18nValidationExceptionFilter, I18nValidationPipe } from 'nestjs-i18n'
+import { stdout } from 'process'
 
-import { BaseResponseDto, PaginatedDto } from '@/shared'
+import { BaseResponseDto, ErrorResponseDto, PageResponseDto } from '@/common'
 
 import { AppModule } from './app.module'
 
@@ -29,6 +31,13 @@ async function bootstrap() {
 
   // 全局管道
   // app.useGlobalPipes(new ValidationPipe())
+  app.useGlobalPipes(new I18nValidationPipe())
+
+  app.useGlobalFilters(
+    new I18nValidationExceptionFilter({
+      detailedErrors: false
+    })
+  )
 
   /**
    * 静态资源
@@ -47,7 +56,7 @@ async function bootstrap() {
     .build()
 
   const document = SwaggerModule.createDocument(app, config, {
-    extraModels: [app.get(BaseResponseDto), app.get(PaginatedDto)]
+    extraModels: [ErrorResponseDto, BaseResponseDto, PageResponseDto]
   })
 
   /**
@@ -59,7 +68,10 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document)
 
   const configService = app.get(ConfigService)
-  const path = +configService.get('PORT') || 3000
-  await app.listen(path)
+  const port = +configService.get('PORT') || 3000
+  await app.listen(port)
+
+  stdout.write(`Server is running on http://localhost:${port}\n`)
+  stdout.write(`Documentation is available at http://localhost:${port}/api`)
 }
 bootstrap()

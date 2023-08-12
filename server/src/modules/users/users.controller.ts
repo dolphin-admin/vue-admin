@@ -16,7 +16,7 @@ import {
   ApiTags
 } from '@nestjs/swagger'
 
-import { ApiPaginatedResponse } from '@/decorators'
+import { ApiPageResponse } from '@/decorators'
 
 import { CreateUserDto, UpdateUserDto } from './dto'
 import { User } from './entities/user.entity'
@@ -36,7 +36,7 @@ export class UsersController {
   }
 
   @Get()
-  @ApiPaginatedResponse(User)
+  @ApiPageResponse(User)
   async findAll() {
     return this.usersService.findAll()
   }
