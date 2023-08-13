@@ -17,6 +17,7 @@ import {
   ApiConsumes,
   ApiCreatedResponse,
   ApiOkResponse,
+  ApiOperation,
   ApiTags,
   ApiUnprocessableEntityResponse
 } from '@nestjs/swagger'
@@ -61,6 +62,7 @@ const handleUploadError = (error: string) => {
 export class UploadController {
   constructor(private readonly uploadService: UploadService) {}
 
+  @ApiOperation({ summary: '上传文件' })
   @ApiConsumes('multipart/form-data')
   @ApiBody({
     description: '上传的文件',
@@ -97,6 +99,7 @@ export class UploadController {
     return this.uploadService.uploadImage(file)
   }
 
+  @ApiOperation({ summary: '批量上传' })
   @ApiConsumes('multipart/form-data')
   @ApiBody({
     description: '批量上传的文件列表',
@@ -133,12 +136,14 @@ export class UploadController {
     return this.uploadService.uploadImageBulk(files)
   }
 
-  @ApiOkResponse({ description: '获取文件' })
+  @ApiOperation({ summary: '获取文件' })
+  @ApiOkResponse()
   @Get(':path')
   getUploadedFile(@Param('path') path: string, @Res() res: Response) {
     return res.sendFile(path, { root: STORAGE_DIR })
   }
 
+  @ApiOperation({ summary: '下载文件' })
   @ApiOkResponse({ description: '下载成功' })
   @Get('download/:path')
   downloadFile(@Param('path') path: string, @Res() res: Response) {

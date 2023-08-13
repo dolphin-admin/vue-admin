@@ -1,5 +1,5 @@
 import { Controller, Get } from '@nestjs/common'
-import { ApiOkResponse, ApiTags } from '@nestjs/swagger'
+import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger'
 
 import { BaseResponseDto } from '@/common'
 
@@ -10,6 +10,7 @@ import { HomeService } from './home.service'
 export class HomeController {
   constructor(private readonly homeService: HomeService) {}
 
+  @ApiOperation({ summary: '首页' })
   @ApiOkResponse({ type: BaseResponseDto<string> })
   @Get()
   getHello(): BaseResponseDto<string> {
