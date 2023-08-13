@@ -1,4 +1,5 @@
-import { Module } from '@nestjs/common'
+import type { MiddlewareConsumer, NestModule } from '@nestjs/common'
+import { Logger, Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { ServeStaticModule } from '@nestjs/serve-static'
 import {
@@ -9,6 +10,7 @@ import {
 } from 'nestjs-i18n'
 import { join } from 'path'
 
+import { apiLogger } from '@/middlewares'
 import {
   AuthModule,
   DictionariesModule,
@@ -50,6 +52,10 @@ import { AppService } from './app.service'
     })
   ],
   controllers: [AppController],
-  providers: [AppService]
+  providers: [AppService, Logger]
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(apiLogger).forRoutes('*')
+  }
+}

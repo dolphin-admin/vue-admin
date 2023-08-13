@@ -1,8 +1,10 @@
 import { Injectable } from '@nestjs/common'
 import { I18nContext, I18nService } from 'nestjs-i18n'
 
+import type { IHomeService } from './home.interface'
+
 @Injectable()
-export class HomeService {
+export class HomeService implements IHomeService {
   constructor(private readonly i18n: I18nService) {}
 
   getHello() {

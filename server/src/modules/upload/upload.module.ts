@@ -3,11 +3,12 @@ import { MulterModule } from '@nestjs/platform-express'
 import { diskStorage } from 'multer'
 import { extname } from 'path'
 
-import { fileExtensionMap } from '@/shared'
+import { fileExtensionMap } from '@/common'
 import { uuid } from '@/utils'
 
 import { MAX_UPLOAD_FILE_SIZE, STORAGE_DIR } from './constants'
 import { UploadController } from './upload.controller'
+import { IUploadService } from './upload.interface'
 import { UploadService } from './upload.service'
 
 @Module({
@@ -39,6 +40,11 @@ import { UploadService } from './upload.service'
     })
   ],
   controllers: [UploadController],
-  providers: [UploadService]
+  providers: [
+    {
+      provide: IUploadService,
+      useClass: UploadService
+    }
+  ]
 })
 export class UploadModule {}
