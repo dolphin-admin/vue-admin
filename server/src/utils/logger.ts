@@ -5,14 +5,9 @@ import gradient from 'gradient-string'
 import { stdout } from 'process'
 
 import { AppConfig } from '@/app.config'
+import { CustomLogger } from '@/custom.logger'
 
-import { getCurrentTime } from './time'
-
-const getAppLogPrefix = () =>
-  `${
-    chalk.green(`[${AppConfig.APP_NAME}] - `) +
-    getCurrentTime('YYYY/MM/DD HH:mm:ss')
-  }  `
+const BOOTSTRAP_LOGGER_CONTEXT = 'Bootstrap'
 
 export const bootstrapLog = (port: number) => {
   figlet(AppConfig.APP_NAME, (err, data) => {
@@ -23,19 +18,25 @@ export const bootstrapLog = (port: number) => {
     }
 
     stdout.write(`\n${gradient.rainbow(data)}\n\n`)
-    stdout.write(
-      `${getAppLogPrefix()} ${AppConfig.APP_NAME} v${AppConfig.APP_VERSION}\n`
+    CustomLogger.customLog(
+      `${AppConfig.APP_NAME}🐬 v${AppConfig.APP_VERSION}`,
+      BOOTSTRAP_LOGGER_CONTEXT
     )
-    stdout.write(`${getAppLogPrefix()} Author: ${AppConfig.APP_AUTHOR}\n`)
-    stdout.write(
-      `${getAppLogPrefix()} API Server is running on ${chalk.green(
+    CustomLogger.customLog(
+      `Author: ${AppConfig.APP_AUTHOR}`,
+      BOOTSTRAP_LOGGER_CONTEXT
+    )
+    CustomLogger.customLog(
+      `API Server is running on ${chalk.underline.green(
         `http://localhost:${port}`
-      )}\n`
+      )}`,
+      BOOTSTRAP_LOGGER_CONTEXT
     )
-    stdout.write(
-      `${getAppLogPrefix()} Swagger Docs is available at ${chalk.green(
+    CustomLogger.customLog(
+      `Swagger Docs is available at ${chalk.underline.green(
         `http://localhost:${port}/api`
-      )}\n`
+      )}`,
+      BOOTSTRAP_LOGGER_CONTEXT
     )
   })
 }

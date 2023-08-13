@@ -5,6 +5,7 @@
   ],
   "exclude": [
     "dist",
+    "documentation",
     "node_modules"
   ],
   "compilerOptions": {

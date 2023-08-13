@@ -3,12 +3,12 @@ import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger'
 
 import { BaseStringResponseDto } from '@/common'
 
-import { HomeService } from './home.service'
+import { IHomeService } from './home.interface'
 
 @ApiTags('主站')
 @Controller('home')
 export class HomeController {
-  constructor(private readonly homeService: HomeService) {}
+  constructor(private readonly homeService: IHomeService) {}
 
   @ApiOperation({ summary: '首页' })
   @ApiOkResponse({ type: BaseStringResponseDto })

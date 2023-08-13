@@ -32,7 +32,7 @@ import {
 } from './constants'
 import { FileDto, FileUploadBulkDto, FileUploadDto } from './dto'
 import { CustomFileValidationError } from './enum'
-import { UploadService } from './upload.service'
+import { IUploadService } from './upload.interface'
 import {
   FileImageTypeValidator,
   FileMaxSizeValidator,
@@ -60,7 +60,7 @@ const handleUploadError = (error: string) => {
 @ApiTags('文件上传')
 @Controller('upload')
 export class UploadController {
-  constructor(private readonly uploadService: UploadService) {}
+  constructor(private readonly uploadService: IUploadService) {}
 
   @ApiOperation({ summary: '上传文件' })
   @ApiConsumes('multipart/form-data')

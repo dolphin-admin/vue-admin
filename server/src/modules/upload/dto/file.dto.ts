@@ -7,6 +7,9 @@ export class FileDto {
   @ApiProperty({ type: 'string', description: '文件名称' })
   filename: string
 
+  @ApiProperty({ type: 'string', description: '原始名称' })
+  originalname: string
+
   @ApiProperty({ type: 'string', description: '文件类型' })
   mimetype: string
 

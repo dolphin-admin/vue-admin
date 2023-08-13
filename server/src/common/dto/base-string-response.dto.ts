@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger'
 
+// NOTE: 仅用于 swagger
 export class BaseStringResponseDto {
   @ApiProperty({ description: '返回信息' })
   message?: string
