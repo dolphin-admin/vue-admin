@@ -1,29 +1,38 @@
-import { Injectable } from '@nestjs/common'
-import path from 'path'
+import { Injectable, Logger } from '@nestjs/common'
+import { sep } from 'path'
 
 import { FileDto } from './dto'
 import type { IUploadService } from './upload.interface'
 
 @Injectable()
 export class UploadService implements IUploadService {
+  private readonly logger = new Logger(UploadService.name)
+
   uploadImage(file: Express.Multer.File): FileDto {
+    const { filename, mimetype, size, originalname } = file
+    const path = file.path.replaceAll(sep, '/')
+    this.logger.verbose(`已上传文件：${originalname} 至 ${path}`)
     return new FileDto({
-      path: file.path.replaceAll(path.sep, '/'),
-      filename: file.filename,
-      mimetype: file.mimetype,
-      size: file.size
+      path,
+      filename,
+      originalname,
+      mimetype,
+      size
     })
   }
 
   uploadImageBulk(files: Express.Multer.File[]): FileDto[] {
-    return files.map(
-      (file) =>
-        new FileDto({
-          path: file.path.replaceAll(path.sep, '/'),
-          filename: file.filename,
-          mimetype: file.mimetype,
-          size: file.size
-        })
-    )
+    return files.map((file) => {
+      const { filename, mimetype, size, originalname } = file
+      const path = file.path.replaceAll(sep, '/')
+      this.logger.verbose(`已上传文件：${originalname} 至 ${path}`)
+      return new FileDto({
+        path,
+        filename,
+        originalname,
+        mimetype,
+        size
+      })
+    })
   }
 }

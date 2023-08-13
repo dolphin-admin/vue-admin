@@ -6,6 +6,7 @@ import { stdout } from 'process'
 import { AppConfig } from '@/app.config'
 import { getCurrentTime } from '@/utils'
 
+// 日志类型
 enum LoggerType {
   LOG = 'LOG',
   ERROR = 'ERROR',
@@ -14,6 +15,9 @@ enum LoggerType {
   VERBOSE = 'VERBOSE'
 }
 
+/**
+ * 获取日志类型文本
+ */
 const getLoggetTypeText = (type: LoggerType) => {
   switch (type) {
     case LoggerType.LOG:
@@ -33,25 +37,54 @@ const getLoggetTypeText = (type: LoggerType) => {
 
 @Injectable()
 export class CustomLogger implements LoggerService {
+  private static lastTimestampAt?: number = new Date().getTime()
+
+  /**
+   * 更新时间戳差值
+   */
+  protected updateAndGetTimestampDiff(): string {
+    if (
+      !CustomLogger.lastTimestampAt ||
+      Date.now() - CustomLogger.lastTimestampAt > 10000
+    ) {
+      CustomLogger.lastTimestampAt = Date.now()
+      return ''
+    }
+    const result = CustomLogger.lastTimestampAt
+      ? this.formatTimestampDiff(Date.now() - CustomLogger.lastTimestampAt)
+      : ''
+    CustomLogger.lastTimestampAt = Date.now()
+    return result
+  }
+
+  /**
+   * 格式化时间戳差值
+   */
+  protected formatTimestampDiff(timestampDiff: number) {
+    return chalk.yellow(` +${timestampDiff}ms`)
+  }
+
   log(message: any, context?: string) {
     let content = `${
-      chalk.green(`[${AppConfig.APP_NAME}] - `) +
+      chalk.green(`[${AppConfig.APP_NAME}] ${process.pid} - `) +
       getCurrentTime('YYYY/MM/DD HH:mm:ss')
     }  `
     content += `${getLoggetTypeText(LoggerType.LOG)} `
     content += context ? `${chalk.yellow(`[${context}]`)} ` : ''
-    content += `${chalk.green(message)} \n`
+    content += `${chalk.green(message)} `
+    content += `${this.updateAndGetTimestampDiff()}\n`
     stdout.write(content)
   }
 
   error(message: any, stack?: string, context?: string) {
     let content = `${
-      chalk.red(`[${AppConfig.APP_NAME}] - `) +
+      chalk.red(`[${AppConfig.APP_NAME}] ${process.pid} - `) +
       getCurrentTime('YYYY/MM/DD HH:mm:ss')
     }  `
     content += `${getLoggetTypeText(LoggerType.ERROR)} `
     content += context ? `${chalk.yellow(`[${context}]`)} ` : ''
-    content += `${chalk.red(message)}\n`
+    content += `${chalk.red(message)} `
+    content += `${this.updateAndGetTimestampDiff()}\n`
     if (stack) {
       content += `${stack}\n`
     }
@@ -60,49 +93,57 @@ export class CustomLogger implements LoggerService {
 
   warn(message: any, context?: string) {
     let content = `${
-      chalk.yellow(`[${AppConfig.APP_NAME}] - `) +
+      chalk.yellow(`[${AppConfig.APP_NAME}] ${process.pid} - `) +
       getCurrentTime('YYYY/MM/DD HH:mm:ss')
     }  `
     content += `${getLoggetTypeText(LoggerType.WARN)} `
     content += context ? `${chalk.yellow(`[${context}]`)} ` : ''
-    content += `${chalk.yellow(message)} \n`
+    content += `${chalk.yellow(message)} `
+    content += `${this.updateAndGetTimestampDiff()}\n`
     stdout.write(content)
   }
 
   debug?(message: any, context?: string) {
     let content = `${
-      chalk.magenta(`[${AppConfig.APP_NAME}] - `) +
+      chalk.magenta(`[${AppConfig.APP_NAME}] ${process.pid} - `) +
       getCurrentTime('YYYY/MM/DD HH:mm:ss')
     }  `
     content += `${getLoggetTypeText(LoggerType.DEBUG)} `
     content += context ? `${chalk.yellow(`[${context}]`)} ` : ''
-    content += `${chalk.magenta(message)} \n`
+    content += `${chalk.magenta(message)} `
+    content += ` ${this.updateAndGetTimestampDiff()}\n`
     stdout.write(content)
   }
 
   verbose?(message: any, context?: string) {
     let content = `${
-      chalk.blue(`[${AppConfig.APP_NAME}] - `) +
+      chalk.blue(`[${AppConfig.APP_NAME}] ${process.pid} - `) +
       getCurrentTime('YYYY/MM/DD HH:mm:ss')
     }  `
     content += `${getLoggetTypeText(LoggerType.VERBOSE)} `
     content += context ? `${chalk.yellow(`[${context}]`)} ` : ''
-    content += `${chalk.blue(message)} \n`
+    content += `${chalk.blue(message)} `
+    content += ` ${this.updateAndGetTimestampDiff()}\n`
     stdout.write(content)
   }
 
+  /**
+   * 自定义日志
+   * @description 用于自定义日志输出
+   * - 目前不支持输出时间戳差值
+   */
   static customLog(
     message: string,
     context?: string,
     type: LoggerType = LoggerType.LOG
   ) {
     let content = `${
-      chalk.green(`[${AppConfig.APP_NAME}] - `) +
+      chalk.green(`[${AppConfig.APP_NAME}] ${process.pid} - `) +
       getCurrentTime('YYYY/MM/DD HH:mm:ss')
     }  `
     content += `${getLoggetTypeText(type)} `
     content += context ? `${chalk.yellow(`[${context}]`)} ` : ''
-    content += `${message} \n`
+    content += `${message}\n`
     stdout.write(content)
   }
 }
