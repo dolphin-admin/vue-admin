@@ -9,4 +9,8 @@ export class HomeService {
     const { lang } = I18nContext.current()!
     return this.i18n.t('home.Welcome', { lang })
   }
+
+  getVersion() {
+    return '0.0.1'
+  }
 }
