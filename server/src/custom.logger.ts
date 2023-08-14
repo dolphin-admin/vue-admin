@@ -7,7 +7,7 @@ import { AppConfig } from '@/app.config'
 import { getCurrentTime } from '@/utils'
 
 // 日志类型
-enum LoggerType {
+export enum LoggerType {
   LOG = 'LOG',
   ERROR = 'ERROR',
   WARN = 'WARN',
@@ -135,7 +135,8 @@ export class CustomLogger implements LoggerService {
   static customLog(
     message: string,
     context?: string,
-    type: LoggerType = LoggerType.LOG
+    type: LoggerType = LoggerType.LOG,
+    stack?: string
   ) {
     let content = `${
       chalk.green(`[${AppConfig.APP_NAME}] ${process.pid} - `) +
@@ -144,6 +145,9 @@ export class CustomLogger implements LoggerService {
     content += `${getLoggetTypeText(type)} `
     content += context ? `${chalk.yellow(`[${context}]`)} ` : ''
     content += `${message}\n`
+    if (stack) {
+      content += `${stack}\n`
+    }
     stdout.write(content)
   }
 }

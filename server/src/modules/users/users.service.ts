@@ -1,9 +1,15 @@
-import { Injectable } from '@nestjs/common'
+import { Injectable, NotFoundException } from '@nestjs/common'
+
+import { PrismaService } from '@/shared/services'
 
 import type { CreateUserDto, UpdateUserDto } from './dto'
+import { UserEntity } from './entities'
+import type { IUsersService } from './users.interface'
 
 @Injectable()
-export class UsersService {
+export class UsersService implements IUsersService {
+  constructor(private readonly prismaService: PrismaService) {}
+
   create(createUserDto: CreateUserDto) {
     return {}
   }
@@ -12,8 +18,28 @@ export class UsersService {
     return 'This action returns all users'
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`
+  async findOneById(id: number): Promise<UserEntity> {
+    const user = await this.prismaService.user.findFirst({
+      where: {
+        id
+      }
+    })
+    if (!user) {
+      throw new NotFoundException('用户未找到')
+    }
+    return new UserEntity(user)
+  }
+
+  async findOneByUsername(username: string): Promise<UserEntity> {
+    const user = await this.prismaService.user.findFirst({
+      where: {
+        username
+      }
+    })
+    if (!user) {
+      throw new NotFoundException('用户未找到')
+    }
+    return new UserEntity(user)
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {

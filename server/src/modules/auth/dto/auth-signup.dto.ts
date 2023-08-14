@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { Equals } from 'class-validator'
 
-import { AuthUsernameLoginDto } from './auth-username-login-dto'
+import { AuthUsernameLoginDto } from './auth-username-login.dto'
 
 export class AuthSignupDto extends AuthUsernameLoginDto {
   @ApiProperty({ description: '确认密码', type: 'string' })

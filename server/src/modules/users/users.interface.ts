@@ -1,10 +1,10 @@
-import type { User } from './entities'
+import type { UserEntity } from './entities'
 
-export abstract class IUserService {
+export abstract class IUsersService {
   abstract create(createUserDto: any): any
   abstract findAll(): any
-  abstract findOne(id: number): any
+  abstract findOneById(id: number): Promise<UserEntity>
+  abstract findOneByUsername(username: string): Promise<UserEntity>
   abstract update(id: number, updateUserDto: any): any
   abstract remove(id: number): any
-  abstract alreadyExists(username: string): User
 }

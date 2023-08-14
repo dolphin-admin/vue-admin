@@ -32,7 +32,7 @@ import {
   STORAGE_DIR
 } from './constants'
 import { FileUploadBulkDto, FileUploadDto } from './dto'
-import { File } from './entities'
+import { FileEntity } from './entities'
 import { CustomFileValidationError } from './enum'
 import { IUploadService } from './upload.interface'
 import {
@@ -71,7 +71,7 @@ export class UploadController {
     description: '上传的文件',
     type: FileUploadDto
   })
-  @ApiCreatedResponse({ type: File, description: '上传成功' })
+  @ApiCreatedResponse({ type: FileEntity, description: '上传成功' })
   @ApiBadRequestResponse({
     type: ErrorResponseDto,
     description: '文件为空'
@@ -108,7 +108,7 @@ export class UploadController {
     description: '批量上传的文件列表',
     type: FileUploadBulkDto
   })
-  @ApiCreatedResponse({ type: [File], description: '批量上传成功' })
+  @ApiCreatedResponse({ type: [FileEntity], description: '批量上传成功' })
   @ApiBadRequestResponse({
     type: ErrorResponseDto,
     description: '文件为空、文件大小大于 5MB'

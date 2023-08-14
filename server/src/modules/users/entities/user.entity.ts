@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger'
 
-export class User {
+export class UserEntity {
   @ApiProperty({ description: '用户 ID' })
   id: number
 
@@ -9,4 +9,10 @@ export class User {
 
   @ApiProperty({ description: '密码' })
   password: string
+
+  constructor(user: UserEntity) {
+    this.id = user.id
+    this.username = user.username
+    this.password = user.password
+  }
 }

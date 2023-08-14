@@ -21,17 +21,17 @@ import { ErrorResponseDto } from '@/common'
 import { ApiPageOkResponse } from '@/decorators'
 
 import { CreateUserDto, UpdateUserDto } from './dto'
-import { User } from './entities/user.entity'
-import { UsersService } from './users.service'
+import { UserEntity } from './entities/user.entity'
+import { IUsersService } from './users.interface'
 
 @ApiTags('用户')
 @ApiBearerAuth()
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(private readonly usersService: IUsersService) {}
 
   @Post()
-  @ApiCreatedResponse({ type: User, description: '创建成功' })
+  @ApiCreatedResponse({ type: UserEntity, description: '创建成功' })
   @ApiBadRequestResponse({ type: ErrorResponseDto, description: '数据错误' })
   @ApiConflictResponse({ type: ErrorResponseDto, description: '用户已存在' })
   create(@Body() createUserDto: CreateUserDto) {
@@ -39,7 +39,7 @@ export class UsersController {
   }
 
   @Get()
-  @ApiPageOkResponse(User)
+  @ApiPageOkResponse(UserEntity)
   async findAll() {
     return this.usersService.findAll()
   }
@@ -48,7 +48,7 @@ export class UsersController {
   @ApiOkResponse()
   @ApiNotFoundResponse()
   findOne(@Param('id') id: string) {
-    return this.usersService.findOne(+id)
+    return this.usersService.findOneById(+id)
   }
 
   @Patch(':id')
