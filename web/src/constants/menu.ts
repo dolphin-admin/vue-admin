@@ -9,6 +9,7 @@ import ErrorPagesIcon from '~icons/ic/baseline-error-outline'
 import DigitalAnimationIcon from '~icons/ic/baseline-hourglass-empty'
 import QRCodeIcon from '~icons/ic/baseline-qrcode'
 import TimelineIcon from '~icons/ic/baseline-timeline'
+import WatermarkIcon from '~icons/ic/baseline-water-drop'
 import ListTemplatesIcon from '~icons/ic/outline-list-alt'
 import PrintIcon from '~icons/ic/outline-local-printshop'
 import SystemApplicationsIcon from '~icons/ic/sharp-apps'
@@ -31,7 +32,6 @@ import CodeTemplatesIcon from '~icons/solar/code-bold'
 import WebSocketIcon from '~icons/tabler/brand-socket-io'
 import NotFoundIcon from '~icons/tabler/error-404'
 import ChatChannelsIcon from '~icons/tabler/message-2'
-import WatermarkIcon from '~icons/ic/baseline-water-drop'
 
 const { renderIcon: renderMenuIcon, renderMenuLabel, t } = RenderUtils
 

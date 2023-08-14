@@ -1,6 +1,6 @@
 import type { Time } from './index'
 
-export const formatTime = function (seconds: number): Time {
+export const formatTime = (seconds: number): Time => {
   if (seconds <= 0)
     return { day: '00', showHour: '00', minute: '00', second: '00' }
   let [day, hour, minute, second]: any = [0, 0, 0, 0]

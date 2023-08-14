@@ -2,10 +2,9 @@
 const elementRef = ref<HTMLElement | null>(null)
 const number = ref(0)
 
-const updateNumber = () => {
+const updateNumber = () =>
   nextTick(() => {
     const element = elementRef.value
-    console.log(elementRef.value)
     if (element) {
       const width = element.offsetWidth
       const height = element.offsetHeight
@@ -13,7 +12,6 @@ const updateNumber = () => {
       number.value = Math.floor(result)
     }
   })
-}
 
 onMounted(() => {
   updateNumber()
@@ -23,8 +21,8 @@ onMounted(() => {
 
 <template>
   <main
-    class="absolute inset-0 flex"
     ref="elementRef"
+    class="absolute inset-0 flex"
   >
     <NCard
       class="flex w-full flex-col space-y-2"

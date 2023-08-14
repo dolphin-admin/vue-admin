@@ -6,14 +6,11 @@ export class PermissionUtils {
 
   /**
    * 权限校验
-   * @param {string[] | string} value 功能需要的权限
-   * @return {Boolean}
    */
-
   static hasPermission = (value: string[] | string) => {
-    const permission = ['user-management:user-list:create']
+    const permissions = ['user-management:user-list:create']
 
-    if (!value || permission.includes(this.ALL_PERMISSION)) {
+    if (!value || permissions.includes(this.ALL_PERMISSION)) {
       return true
     }
 
@@ -22,9 +19,9 @@ export class PermissionUtils {
         return true
       }
 
-      return permission.some((permission) => value.includes(permission))
+      return permissions.some((permission) => value.includes(permission))
     }
 
-    return permission.includes(value)
+    return permissions.includes(value)
   }
 }
