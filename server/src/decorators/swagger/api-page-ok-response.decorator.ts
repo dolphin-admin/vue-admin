@@ -4,7 +4,7 @@ import { ApiExtraModels, ApiOkResponse, getSchemaPath } from '@nestjs/swagger'
 
 import { PageResponseDto } from '@/common'
 
-export const ApiPageResponse = <TModel extends Type<any>>(model: TModel) =>
+export const ApiPageOkResponse = <TModel extends Type<any>>(model: TModel) =>
   applyDecorators(
     ApiExtraModels(model),
     ApiOkResponse({

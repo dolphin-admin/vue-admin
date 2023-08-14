@@ -13,6 +13,7 @@ import {
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express'
 import {
   ApiBadRequestResponse,
+  ApiBearerAuth,
   ApiBody,
   ApiConsumes,
   ApiCreatedResponse,
@@ -23,14 +24,15 @@ import {
 } from '@nestjs/swagger'
 import { Response } from 'express'
 
-import { BaseResponseDto } from '@/common'
+import { ErrorResponseDto } from '@/common'
 
 import {
   MAX_UPLOAD_FILE_SIZE,
   MAX_UPLOAD_FILES_COUNT,
   STORAGE_DIR
 } from './constants'
-import { FileDto, FileUploadBulkDto, FileUploadDto } from './dto'
+import { FileUploadBulkDto, FileUploadDto } from './dto'
+import { File } from './entities'
 import { CustomFileValidationError } from './enum'
 import { IUploadService } from './upload.interface'
 import {
@@ -58,6 +60,7 @@ const handleUploadError = (error: string) => {
 }
 
 @ApiTags('文件上传')
+@ApiBearerAuth()
 @Controller('upload')
 export class UploadController {
   constructor(private readonly uploadService: IUploadService) {}
@@ -68,18 +71,18 @@ export class UploadController {
     description: '上传的文件',
     type: FileUploadDto
   })
-  @ApiCreatedResponse({ type: FileDto, description: '上传成功' })
+  @ApiCreatedResponse({ type: File, description: '上传成功' })
   @ApiBadRequestResponse({
-    type: BaseResponseDto,
+    type: ErrorResponseDto,
     description: '文件为空'
   })
   @ApiUnprocessableEntityResponse({
-    type: BaseResponseDto,
+    type: ErrorResponseDto,
     description: '文件大小大于 5MB | 文件类型非 png、jpg、jpeg'
   })
   @UseInterceptors(FileInterceptor('file'))
   @Post()
-  uploadImage(
+  public uploadImage(
     @UploadedFile(
       new ParseFilePipeBuilder()
         .addValidator(new FileRequiredValidator({ isRequired: true }))
@@ -105,18 +108,18 @@ export class UploadController {
     description: '批量上传的文件列表',
     type: FileUploadBulkDto
   })
-  @ApiCreatedResponse({ type: FileDto, description: '批量上传成功' })
+  @ApiCreatedResponse({ type: [File], description: '批量上传成功' })
   @ApiBadRequestResponse({
-    type: BaseResponseDto,
+    type: ErrorResponseDto,
     description: '文件为空、文件大小大于 5MB'
   })
   @ApiUnprocessableEntityResponse({
-    type: BaseResponseDto,
+    type: ErrorResponseDto,
     description: '文件大小大于 5MB | 文件类型非 png、jpg、jpeg'
   })
   @UseInterceptors(FilesInterceptor('files', MAX_UPLOAD_FILES_COUNT))
   @Post('bulk')
-  uploadImageBulk(
+  public uploadImageBulk(
     @UploadedFiles(
       new ParseFilePipeBuilder()
         .addValidator(new FileRequiredValidator({ isRequired: true }))
@@ -139,14 +142,14 @@ export class UploadController {
   @ApiOperation({ summary: '获取文件' })
   @ApiOkResponse()
   @Get(':path')
-  getUploadedFile(@Param('path') path: string, @Res() res: Response) {
+  public getUploadedFile(@Param('path') path: string, @Res() res: Response) {
     return res.sendFile(path, { root: STORAGE_DIR })
   }
 
   @ApiOperation({ summary: '下载文件' })
   @ApiOkResponse({ description: '下载成功' })
   @Get('download/:path')
-  downloadFile(@Param('path') path: string, @Res() res: Response) {
+  public downloadFile(@Param('path') path: string, @Res() res: Response) {
     return res.download(`${STORAGE_DIR}/${path}`)
   }
 }

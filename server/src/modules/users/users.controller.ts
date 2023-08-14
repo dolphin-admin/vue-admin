@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common'
 import {
   ApiBadRequestResponse,
+  ApiBearerAuth,
   ApiConflictResponse,
   ApiCreatedResponse,
   ApiNotFoundResponse,
@@ -16,27 +17,29 @@ import {
   ApiTags
 } from '@nestjs/swagger'
 
-import { ApiPageResponse } from '@/decorators'
+import { ErrorResponseDto } from '@/common'
+import { ApiPageOkResponse } from '@/decorators'
 
 import { CreateUserDto, UpdateUserDto } from './dto'
 import { User } from './entities/user.entity'
 import { UsersService } from './users.service'
 
-@Controller('users')
 @ApiTags('用户')
+@ApiBearerAuth()
+@Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
   @ApiCreatedResponse({ type: User, description: '创建成功' })
-  @ApiBadRequestResponse({ description: '数据错误' })
-  @ApiConflictResponse({ description: '用户已存在' })
+  @ApiBadRequestResponse({ type: ErrorResponseDto, description: '数据错误' })
+  @ApiConflictResponse({ type: ErrorResponseDto, description: '用户已存在' })
   create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto)
   }
 
   @Get()
-  @ApiPageResponse(User)
+  @ApiPageOkResponse(User)
   async findAll() {
     return this.usersService.findAll()
   }

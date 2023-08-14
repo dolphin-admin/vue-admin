@@ -3,7 +3,8 @@ import { ApiProperty } from '@nestjs/swagger'
 export class FileUploadBulkDto {
   @ApiProperty({
     type: 'array',
-    items: { type: 'string', format: 'binary' }
+    items: { type: 'string', format: 'binary', description: '文件' },
+    description: '文件列表'
   })
-  files: Express.Multer.File[]
+  readonly files: Express.Multer.File[]
 }

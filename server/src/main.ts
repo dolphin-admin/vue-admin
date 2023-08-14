@@ -25,6 +25,9 @@ async function bootstrap() {
     type: VersioningType.URI
   })
 
+  // 启用 shutdown hooks
+  app.enableShutdownHooks()
+
   // 全局过滤器
   app.useGlobalFilters(
     new I18nValidationExceptionFilter({
@@ -33,8 +36,11 @@ async function bootstrap() {
   )
 
   // 全局管道
-  // app.useGlobalPipes(new ValidationPipe())
-  app.useGlobalPipes(new I18nValidationPipe())
+  app.useGlobalPipes(
+    new I18nValidationPipe({
+      stopAtFirstError: true
+    })
+  )
 
   /**
    * 静态资源

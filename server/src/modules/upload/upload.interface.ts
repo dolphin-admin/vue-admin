@@ -1,6 +1,6 @@
-import type { FileDto } from './dto'
+import type { File } from './entities'
 
 export abstract class IUploadService {
-  abstract uploadImage(file: Express.Multer.File): FileDto
-  abstract uploadImageBulk(files: Express.Multer.File[]): FileDto[]
+  abstract uploadImage(file: Express.Multer.File): File
+  abstract uploadImageBulk(files: Express.Multer.File[]): File[]
 }
