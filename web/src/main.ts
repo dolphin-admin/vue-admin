@@ -3,6 +3,8 @@ import 'vfonts/OpenSans.css'
 import 'vfonts/FiraCode.css'
 import 'nprogress/nprogress.css'
 
+import directive from '@/directive'
+
 import { sendNotification } from '@tauri-apps/api/notification'
 
 import pinia from '@/pinia'
@@ -19,6 +21,7 @@ const app = createApp(App)
 app.use(i18n)
 app.use(pinia)
 app.use(router)
+app.use(directive)
 
 app.mount('#app')
 

@@ -26,6 +26,7 @@ declare global {
   const NPopconfirm: typeof import('naive-ui')['NPopconfirm']
   const NTag: typeof import('naive-ui')['NTag']
   const NavigationUtils: typeof import('../utils/navigation/index')['NavigationUtils']
+  const PermissionUtils: typeof import('../utils/permissions/index')['PermissionUtils']
   const QRCodeUtils: typeof import('../utils/qrcode/index')['QRCodeUtils']
   const RenderUtils: typeof import('../utils/render/index')['RenderUtils']
   const RouterLink: typeof import('vue-router')['RouterLink']

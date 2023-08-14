@@ -24,6 +24,7 @@ import DictionaryDataIcon from '~icons/solar/key-minimalistic-square-3-linear'
 import WebSocketIcon from '~icons/tabler/brand-socket-io'
 import NotFoundIcon from '~icons/tabler/error-404'
 import ChatChannelsIcon from '~icons/tabler/message-2'
+import WatermarkIcon from '~icons/ic/baseline-water-drop'
 
 import {
   BUILTIN_COMPONENTS_PREFIX,
@@ -174,6 +175,15 @@ export const routes = [
         meta: {
           title: () => t('Menu.WebSocket'),
           icon: WebSocketIcon
+        }
+      },
+      {
+        path: `${SYSTEM_TOOLS_PREFIX}/watermark`,
+        name: 'watermark',
+        component: () => import('@/views/SystemTools/Watermark'),
+        meta: {
+          title: () => t('Menu.Watermark'),
+          icon: WatermarkIcon
         }
       },
       // 代码模板

@@ -130,6 +130,7 @@
     "UserInfo": "用户信息",
     "UserManagement": "用户管理",
     "WebSocket": "WebSocket",
+    "Watermark": "水印",
     "WebsiteAnalytics": "站点分析"
   },
   "Message": {

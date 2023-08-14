@@ -31,6 +31,7 @@ import CodeTemplatesIcon from '~icons/solar/code-bold'
 import WebSocketIcon from '~icons/tabler/brand-socket-io'
 import NotFoundIcon from '~icons/tabler/error-404'
 import ChatChannelsIcon from '~icons/tabler/message-2'
+import WatermarkIcon from '~icons/ic/baseline-water-drop'
 
 const { renderIcon: renderMenuIcon, renderMenuLabel, t } = RenderUtils
 
@@ -129,6 +130,11 @@ export const menuOptions: MenuOption[] = [
         label: renderMenuLabel(t('Menu.WebSocket')),
         key: 'websocket',
         icon: renderMenuIcon(WebSocketIcon)
+      },
+      {
+        label: renderMenuLabel(t('Menu.Watermark')),
+        key: 'watermark',
+        icon: renderMenuIcon(WatermarkIcon)
       }
     ]
   },
