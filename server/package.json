@@ -77,8 +77,8 @@
     "prisma": "^5.1.1"
   },
   "prisma": {
-    "schema": "src/prisma/schema.prisma",
-    "seed": "ts-node src/prisma/seed.ts"
+    "schema": "prisma/schema.prisma",
+    "seed": "tsx prisma/seed.ts"
   },
   "jest": {
     "moduleFileExtensions": [

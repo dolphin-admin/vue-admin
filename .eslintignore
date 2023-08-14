@@ -15,6 +15,7 @@ server/build
 server/dist
 server/documentation
 server/storage
+server/prisma
 server/src/generated
 server/src/prisma/generated
 server/src/prisma/migrations
