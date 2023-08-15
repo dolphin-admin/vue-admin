@@ -38,6 +38,8 @@ async function bootstrap() {
   // 全局管道
   app.useGlobalPipes(
     new I18nValidationPipe({
+      whitelist: true, // 自动删除非 dto 中的属性
+      transform: true, // 自动转换类型
       stopAtFirstError: true
     })
   )

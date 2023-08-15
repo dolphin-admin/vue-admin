@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  dolphin-admin-db:
+    image: postgres:15
+    container_name: dolphin-admin-db
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: ${PG_DB_USER}
+      POSTGRES_PASSWORD: ${PG_DB_PASSWORD}
+      POSTGRES_DB: ${PG_DB_NAME}
+    # env_file:
+    #   - .env
+
+  # dolphin-admin-api:
+  #   container_name: dolphin-admin-api
+  #   env_file:
+  #     - .env
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - ${PORT}:${PORT}
+  #   depends_on:
+  #     - dolphin-admin-db

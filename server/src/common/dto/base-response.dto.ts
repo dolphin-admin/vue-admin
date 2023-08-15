@@ -6,8 +6,8 @@ export class BaseResponseDto<TData> extends ErrorResponseDto {
   @ApiProperty({ description: '返回数据' })
   data?: TData
 
-  constructor(options: BaseResponseDto<TData>) {
-    super(options)
-    this.data = options.data
+  constructor(baseResponseDto: BaseResponseDto<TData>) {
+    super(baseResponseDto)
+    this.data = baseResponseDto.data
   }
 }

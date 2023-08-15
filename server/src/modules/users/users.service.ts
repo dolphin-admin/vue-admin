@@ -30,14 +30,14 @@ export class UsersService implements IUsersService {
     return new UserEntity(user)
   }
 
-  async findOneByUsername(username: string): Promise<UserEntity> {
+  async findOneByUsername(username: string): Promise<UserEntity | null> {
     const user = await this.prismaService.user.findFirst({
       where: {
         username
       }
     })
     if (!user) {
-      throw new NotFoundException('用户未找到')
+      return null
     }
     return new UserEntity(user)
   }

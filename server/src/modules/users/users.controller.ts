@@ -47,23 +47,23 @@ export class UsersController {
   @Get(':id')
   @ApiOkResponse()
   @ApiNotFoundResponse()
-  findOne(@Param('id') id: string) {
-    return this.usersService.findOneById(+id)
+  findOne(@Param('id') id: number) {
+    return this.usersService.findOneById(id)
   }
 
   @Patch(':id')
   @ApiOkResponse()
   @ApiBadRequestResponse()
   @ApiNotFoundResponse()
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(+id, updateUserDto)
+  update(@Param('id') id: number, @Body() updateUserDto: UpdateUserDto) {
+    return this.usersService.update(id, updateUserDto)
   }
 
   @Delete(':id')
   @ApiOkResponse()
   @ApiBadRequestResponse()
   @ApiNotFoundResponse()
-  remove(@Param('id') id: string) {
-    return this.usersService.remove(+id)
+  remove(@Param('id') id: number) {
+    return this.usersService.remove(id)
   }
 }

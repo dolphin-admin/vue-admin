@@ -2,7 +2,7 @@ import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common'
 import {
   ApiBadRequestResponse,
   ApiConflictResponse,
-  ApiCreatedResponse,
+  ApiOkResponse,
   ApiOperation,
   ApiTags,
   ApiUnauthorizedResponse
@@ -19,7 +19,7 @@ export class AuthController {
   constructor(private readonly authService: IAuthService) {}
 
   @ApiOperation({ summary: '注册' })
-  @ApiCreatedResponse({ description: '注册成功', status: 200 })
+  @ApiOkResponse({ description: '注册成功', status: 200 })
   @ApiBadRequestResponse({ type: ErrorResponseDto, description: '输入有误' })
   @ApiUnauthorizedResponse({ type: ErrorResponseDto, description: '授权失败' })
   @ApiConflictResponse({ type: ErrorResponseDto, description: '用户名已存在' })
@@ -30,7 +30,7 @@ export class AuthController {
   }
 
   @ApiOperation({ summary: '登录' })
-  @ApiCreatedResponse({ description: '登录成功' })
+  @ApiOkResponse({ description: '登录成功' })
   @ApiBadRequestResponse({
     type: ErrorResponseDto,
     description: '用户名或密码不正确'
