@@ -54,16 +54,16 @@ module.exports = defineConfig({
   },
   overrides: [
     {
-      files: ['*.d.ts'],
-      rules: {
-        'import/no-duplicates': 'off'
-      }
-    },
-    {
       files: ['*.js'],
       extends: ['plugin:@typescript-eslint/disable-type-checked'],
       rules: {
         '@typescript-eslint/no-var-requires': 'off'
+      }
+    },
+    {
+      files: ['*.d.ts'],
+      rules: {
+        'import/no-duplicates': 'off'
       }
     },
     {
