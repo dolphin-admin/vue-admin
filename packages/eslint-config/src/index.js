@@ -89,10 +89,7 @@ module.exports = defineConfig({
           {
             order: ['script', 'template', 'style']
           }
-        ], // 优先 script，其次 template，最后 style
-        'tailwindcss/classnames-order': 'error', // TailwindCSS 类名排序
-        'tailwindcss/enforces-shorthand': 'error', // TailwindCSS 简写合并
-        'tailwindcss/no-custom-classname': 'off' // TailwindCSS 中允许自定义类名
+        ] // 优先 script，其次 template，最后 style
       }
     },
     {
@@ -162,6 +159,11 @@ module.exports = defineConfig({
     ], // 允许 devDependencies，peerDependencies，不允许 optionalDependencies
     'import/no-mutable-exports': 'error', // 禁止导出 let, var 声明的变量
     'import/no-self-import': 'error', // 禁止自导入
-    'import/prefer-default-export': 'off' // 仅导出一个变量时，不要求默认导出
+    'import/prefer-default-export': 'off', // 仅导出一个变量时，不要求默认导出
+
+    // TailwindCSS
+    'tailwindcss/classnames-order': 'error', // TailwindCSS 类名排序
+    'tailwindcss/enforces-shorthand': 'error', // TailwindCSS 简写合并
+    'tailwindcss/no-custom-classname': 'off' // TailwindCSS 中允许自定义类名
   }
 })
