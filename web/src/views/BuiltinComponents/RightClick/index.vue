@@ -25,6 +25,7 @@ const handleClick = (e: MenuItem) =>
           :menu="menu"
           @select="handleClick"
         >
+          vi
           <div class="flex h-96 w-full items-center justify-center bg-blue-500">
             {{ t('RightClick.Tip') }}
           </div>

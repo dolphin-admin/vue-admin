@@ -8,6 +8,7 @@ import TimelineIcon from '~icons/ic/baseline-timeline'
 import WatermarkIcon from '~icons/ic/baseline-water-drop'
 import ListTemplatesIcon from '~icons/ic/outline-list-alt'
 import PrintIcon from '~icons/ic/outline-local-printshop'
+import VirtualListIcon from '~icons/ic/round-list-alt'
 import IAmATeapotIcon from '~icons/icon-park-outline/tea-drink'
 import RightClickIcon from '~icons/icon-park-solid/music-list'
 import InternalServerErrorIcon from '~icons/lucide/server-off'
@@ -241,6 +242,15 @@ export const routes = [
         meta: {
           title: () => t('Menu.Timeline'),
           icon: TimelineIcon
+        }
+      },
+      {
+        path: `${BUILTIN_COMPONENTS_PREFIX}/virtual-list`,
+        name: 'virtual-list',
+        component: () => import('@/views/BuiltinComponents/VirtualList'),
+        meta: {
+          title: () => t('Menu.VirtualList'),
+          icon: VirtualListIcon
         }
       },
       // 错误页面
