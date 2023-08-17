@@ -23,6 +23,7 @@ declare module 'vue' {
     DNumberAnimation: typeof import('./../components/DNumberAnimation/index.vue')['default']
     DRightClick: typeof import('./../components/DRightClick/index.vue')['default']
     DTimeline: typeof import('./../components/DTimeline/index.vue')['default']
+    DVirtualList: typeof import('./../components/DVirtualList/index.vue')['default']
     LineChart: typeof import('./../charts/LineChart/index.vue')['default']
     NAvatar: typeof import('naive-ui')['NAvatar']
     NBlockquote: typeof import('naive-ui')['NBlockquote']

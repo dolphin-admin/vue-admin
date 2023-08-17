@@ -5,7 +5,7 @@ import 'nprogress/nprogress.css'
 
 import { sendNotification } from '@tauri-apps/api/notification'
 
-import { directives } from '@/directive'
+import { directives } from '@/directives'
 import pinia from '@/pinia'
 import router from '@/router'
 

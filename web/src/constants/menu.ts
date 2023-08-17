@@ -12,6 +12,7 @@ import TimelineIcon from '~icons/ic/baseline-timeline'
 import WatermarkIcon from '~icons/ic/baseline-water-drop'
 import ListTemplatesIcon from '~icons/ic/outline-list-alt'
 import PrintIcon from '~icons/ic/outline-local-printshop'
+import VirtualListIcon from '~icons/ic/round-list-alt'
 import SystemApplicationsIcon from '~icons/ic/sharp-apps'
 import IAmATeapotIcon from '~icons/icon-park-outline/tea-drink'
 import RightClickIcon from '~icons/icon-park-solid/music-list'
@@ -182,11 +183,15 @@ export const menuOptions: MenuOption[] = [
         key: 'right-click',
         icon: renderMenuIcon(RightClickIcon)
       },
-
       {
         label: renderMenuLabel(t('Menu.Timeline')),
         key: 'timeline',
         icon: renderMenuIcon(TimelineIcon)
+      },
+      {
+        label: renderMenuLabel(t('Menu.VirtualList')),
+        key: 'virtual-list',
+        icon: renderMenuIcon(VirtualListIcon)
       }
     ]
   },
