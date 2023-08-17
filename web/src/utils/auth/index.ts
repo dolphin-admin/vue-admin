@@ -4,9 +4,6 @@ export class AuthUtils {
    */
   private static LOCAL_STORAGE_TOKEN = 'access_token'
 
-  private static token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJTdXBlckFkbWluIiwiaWF0IjoxNjkxOTg1NTUxLCJleHAiOjE2OTIwNzE5NTF9.vpw1HboJsKINwV2h59fIL989ZUzVXBmHIVlJ25gl7QM'
-
   /**
    * 记住密码 LocalStorage 键名
    */
@@ -33,7 +30,7 @@ export class AuthUtils {
    * 获取 authorization
    */
   static getAuthorization() {
-    return `Bearer ${this.token}`
+    return `Bearer ${this.getToken()}`
   }
 
   /**

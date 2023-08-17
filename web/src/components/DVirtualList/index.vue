@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import type { Props } from './private'
 
-const listWrapRef = ref<HTMLElement | null>(null)
-const listRef = ref<HTMLElement | null>(null)
-const scrollbar = ref<HTMLElement | null>(null)
 const props = withDefaults(defineProps<Props>(), {
   data: () => [],
   showNum: 20,
   itemHeight: 20
 })
 
-const startIndex = ref(0)
+const listWrapRef = ref<HTMLElement | null>(null)
+const listRef = ref<HTMLElement | null>(null)
+const scrollbar = ref<HTMLElement | null>(null)
 
+const startIndex = ref(0)
 const endIndex = ref(0)
 
 const scrollOffset = ref(0)
@@ -23,7 +23,9 @@ const showList = computed(() =>
 
 const handleScroll = () => {
   const { scrollTop } = listWrapRef.value!
-  if (scrollOffset.value === scrollTop) return
+  if (scrollOffset.value === scrollTop) {
+    return
+  }
   startIndex.value = Math.floor(scrollTop / props.itemHeight)
   endIndex.value = startIndex.value + props.showNum + 5
   if (startIndex.value > 5) {
@@ -33,14 +35,8 @@ const handleScroll = () => {
   scrollOffset.value = scrollTop - (scrollTop % props.itemHeight)
 }
 
-const listWrapRefHeight = computed(() =>
-  props.itemHeight * props.showNum > 500
-    ? 500
-    : props.itemHeight * props.showNum
-)
-
 onMounted(() => {
-  listWrapRef.value!.style.height = `${listWrapRefHeight.value}px`
+  listWrapRef.value!.style.height = `${props.itemHeight * props.showNum}px`
   scrollbar.value!.style.height = `${props.itemHeight * props.data.length}px`
 })
 </script>
@@ -48,10 +44,10 @@ onMounted(() => {
 <template>
   <div
     ref="listWrapRef"
-    class="absolute flex overflow-y-auto bg-white"
+    class="flex w-full overflow-y-auto"
     @scroll="handleScroll"
   >
-    <div ref="scrollbar"></div>
+    <div ref="scrollbar" />
     <div
       ref="listRef"
       :style="{ transform: `translateY(${scrollOffset}px)` }"
@@ -60,8 +56,7 @@ onMounted(() => {
       <div
         v-for="(item, index) in showList"
         :key="index + startIndex"
-        class="flex w-full border-b"
-        :class="h - [props.itemHeight]"
+        class="border-b"
       >
         {{ item.data + ':' + item.id }}
       </div>
