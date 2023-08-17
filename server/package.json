@@ -5,6 +5,8 @@
   "scripts": {
     "start": "nest start -- -b swc",
     "dev": "nest start --watch -- -b swc",
+    "pm2:dev": "pnpm pm2 start ecosystem.config.js --env development",
+    "docker:dev": "docker-compose up -d && pnpm pm2:dev",
     "debug": "nest start --debug --watch",
     "build": "nest build",
     "deploy": "pnpm pm2 reload ecosystem.config.js --env production",

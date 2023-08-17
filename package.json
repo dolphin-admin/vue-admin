@@ -23,6 +23,7 @@
     "desktop:build": "pnpm --filter=web desktop:build",
     "server:start": "pnpm --filter=server start",
     "server:dev": "pnpm --filter=server dev",
+    "server:docker:dev": "pnpm --filter=server docker:dev",
     "server:debug": "pnpm --filter=server debug",
     "server:build": "pnpm --filter=server build",
     "server:preview": "pnpm --filter=server preview",

@@ -5,7 +5,8 @@ import {
   Get,
   Param,
   Patch,
-  Post
+  Post,
+  Query
 } from '@nestjs/common'
 import {
   ApiBadRequestResponse,
@@ -14,10 +15,12 @@ import {
   ApiCreatedResponse,
   ApiNotFoundResponse,
   ApiOkResponse,
+  ApiOperation,
+  ApiQuery,
   ApiTags
 } from '@nestjs/swagger'
 
-import { ErrorResponseDto } from '@/common'
+import { ErrorResponseDto, PageDateQueryDto } from '@/common'
 import { ApiPageOkResponse } from '@/decorators'
 
 import { CreateUserDto, UpdateUserDto } from './dto'
@@ -30,39 +33,45 @@ import { IUsersService } from './users.interface'
 export class UsersController {
   constructor(private readonly usersService: IUsersService) {}
 
-  @Post()
+  @ApiOperation({ summary: '创建用户' })
   @ApiCreatedResponse({ type: UserEntity, description: '创建成功' })
   @ApiBadRequestResponse({ type: ErrorResponseDto, description: '数据错误' })
   @ApiConflictResponse({ type: ErrorResponseDto, description: '用户已存在' })
+  @Post()
   create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto)
   }
 
-  @Get()
+  @ApiOperation({ summary: '用户列表' })
   @ApiPageOkResponse(UserEntity)
-  async findAll() {
-    return this.usersService.findAll()
+  @ApiQuery({ name: 'page', type: 'number', required: false, example: 1 })
+  @Get()
+  async findAll(@Query() pageDateQueryDto: PageDateQueryDto) {
+    return this.usersService.findAll(pageDateQueryDto)
   }
 
-  @Get(':id')
+  @ApiOperation({ summary: '用户详情' })
   @ApiOkResponse()
   @ApiNotFoundResponse()
+  @Get(':id')
   findOne(@Param('id') id: number) {
     return this.usersService.findOneById(id)
   }
 
-  @Patch(':id')
+  @ApiOperation({ summary: '修改用户' })
   @ApiOkResponse()
   @ApiBadRequestResponse()
   @ApiNotFoundResponse()
+  @Patch(':id')
   update(@Param('id') id: number, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.update(id, updateUserDto)
   }
 
-  @Delete(':id')
+  @ApiOperation({ summary: '删除用户' })
   @ApiOkResponse()
   @ApiBadRequestResponse()
   @ApiNotFoundResponse()
+  @Delete(':id')
   remove(@Param('id') id: number) {
     return this.usersService.remove(id)
   }

@@ -1,11 +1,11 @@
-import { VersioningType } from '@nestjs/common'
+import { ClassSerializerInterceptor, VersioningType } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
-import { NestFactory } from '@nestjs/core'
+import { NestFactory, Reflector } from '@nestjs/core'
 import type { NestExpressApplication } from '@nestjs/platform-express'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import { I18nValidationExceptionFilter, I18nValidationPipe } from 'nestjs-i18n'
 
-import { BaseResponseDto, ErrorResponseDto, PageResponseDto } from '@/common'
+import { BaseResponseDto, ErrorResponseDto, PageResultDto } from '@/common'
 import { bootstrapLog } from '@/utils'
 
 import { AppModule } from './app.module'
@@ -34,12 +34,17 @@ async function bootstrap() {
       detailedErrors: false
     })
   )
+  // 全局拦截器
+  app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)))
 
   // 全局管道
   app.useGlobalPipes(
     new I18nValidationPipe({
       whitelist: true, // 自动删除非 dto 中的属性
       transform: true, // 自动转换类型
+      transformOptions: {
+        enableImplicitConversion: true // 允许隐式转换
+      },
       stopAtFirstError: true
     })
   )
@@ -65,7 +70,7 @@ async function bootstrap() {
     .build()
 
   const document = SwaggerModule.createDocument(app, config, {
-    extraModels: [ErrorResponseDto, BaseResponseDto, PageResponseDto]
+    extraModels: [ErrorResponseDto, BaseResponseDto, PageResultDto]
   })
 
   /**

@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common'
 
+import type { PageDateQueryDto } from '@/common'
 import { PrismaService } from '@/shared/services'
 
 import type { CreateUserDto, UpdateUserDto } from './dto'
@@ -14,7 +15,7 @@ export class UsersService implements IUsersService {
     return {}
   }
 
-  async findAll() {
+  async findAll(pageDateQueryDto: PageDateQueryDto) {
     return 'This action returns all users'
   }
 
@@ -31,7 +32,7 @@ export class UsersService implements IUsersService {
   }
 
   async findOneByUsername(username: string): Promise<UserEntity | null> {
-    const user = await this.prismaService.user.findFirst({
+    const user = await this.prismaService.user.findUnique({
       where: {
         username
       }
@@ -48,5 +49,29 @@ export class UsersService implements IUsersService {
 
   remove(id: number) {
     return `This action removes a #${id} user`
+  }
+
+  async findCurrent() {
+    return new UserEntity({
+      id: 1,
+      username: 'admin',
+      password: '123'
+    })
+  }
+
+  enableOne(id: number) {
+    return {}
+  }
+
+  disableOne(id: number) {
+    return {}
+  }
+
+  updatePassword(id: number) {
+    return {}
+  }
+
+  resetPassword(id: number) {
+    return {}
   }
 }
