@@ -1,1 +1,1 @@
-export class Dictionary {}
+export class DictionaryEntity {}

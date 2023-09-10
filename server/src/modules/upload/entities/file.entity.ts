@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger'
 
-export class FileDto {
+export class FileEntity {
   @ApiProperty({ type: 'string', description: '文件路径' })
   path: string
 
@@ -16,7 +16,7 @@ export class FileDto {
   @ApiProperty({ type: 'number', description: '文件大小' })
   size: number
 
-  constructor(partial: Partial<FileDto>) {
+  constructor(partial: Partial<FileEntity>) {
     Object.assign(this, partial)
   }
 }

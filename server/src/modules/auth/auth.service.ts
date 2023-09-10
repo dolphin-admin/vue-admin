@@ -1,27 +1,25 @@
 import { Injectable } from '@nestjs/common'
 
-import type { CreateAuthDto } from './dto/create-auth.dto'
-import type { UpdateAuthDto } from './dto/update-auth.dto'
+import { PrismaService } from '@/shared/services/prisma/prisma.service'
+
+import { IUsersService } from '../users/users.interface'
+import type { IAuthService } from './auth.interface'
+import type { AuthSignupDto, AuthUsernameLoginDto } from './dto'
 
 @Injectable()
-export class AuthService {
-  create(createAuthDto: CreateAuthDto) {
-    return 'This action adds a new auth'
+export class AuthService implements IAuthService {
+  constructor(
+    private readonly prismaService: PrismaService,
+    private readonly userService: IUsersService
+  ) {}
+
+  signup(authSignupDto: AuthSignupDto) {
+    return 'Signup'
   }
 
-  findAll() {
-    return 'This action returns all auth'
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} auth`
-  }
-
-  update(id: number, updateAuthDto: UpdateAuthDto) {
-    return `This action updates a #${id} auth`
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} auth`
+  loginByUsername(authUsernameLoginDto: AuthUsernameLoginDto) {
+    const { username, password } = authUsernameLoginDto
+    const user = this.userService.findOneByUsername(username)
+    return user
   }
 }

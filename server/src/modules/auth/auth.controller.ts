@@ -1,45 +1,44 @@
+import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common'
 import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Patch,
-  Post
-} from '@nestjs/common'
-import { ApiTags } from '@nestjs/swagger'
+  ApiBadRequestResponse,
+  ApiConflictResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+  ApiUnauthorizedResponse
+} from '@nestjs/swagger'
 
-import { AuthService } from './auth.service'
-import { CreateAuthDto } from './dto/create-auth.dto'
-import { UpdateAuthDto } from './dto/update-auth.dto'
+import { ErrorResponseDto } from '@/common'
 
-@Controller('auth')
+import { IAuthService } from './auth.interface'
+import { AuthSignupDto, AuthUsernameLoginDto } from './dto'
+
 @ApiTags('认证')
+@Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(private readonly authService: IAuthService) {}
 
-  @Post()
-  create(@Body() createAuthDto: CreateAuthDto) {
-    return this.authService.create(createAuthDto)
+  @ApiOperation({ summary: '注册' })
+  @ApiOkResponse({ description: '注册成功', status: 200 })
+  @ApiBadRequestResponse({ type: ErrorResponseDto, description: '输入有误' })
+  @ApiUnauthorizedResponse({ type: ErrorResponseDto, description: '授权失败' })
+  @ApiConflictResponse({ type: ErrorResponseDto, description: '用户名已存在' })
+  @HttpCode(HttpStatus.OK)
+  @Post('signup')
+  signup(@Body() authSignupDto: AuthSignupDto) {
+    return this.authService.signup(authSignupDto)
   }
 
-  @Get()
-  findAll() {
-    return this.authService.findAll()
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.authService.findOne(+id)
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAuthDto: UpdateAuthDto) {
-    return this.authService.update(+id, updateAuthDto)
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.authService.remove(+id)
+  @ApiOperation({ summary: '登录' })
+  @ApiOkResponse({ description: '登录成功' })
+  @ApiBadRequestResponse({
+    type: ErrorResponseDto,
+    description: '用户名或密码不正确'
+  })
+  @ApiUnauthorizedResponse({ type: ErrorResponseDto, description: '授权失败' })
+  @HttpCode(HttpStatus.OK)
+  @Post('login')
+  loginByUsername(@Body() authUsernameLoginDto: AuthUsernameLoginDto) {
+    return this.authService.loginByUsername(authUsernameLoginDto)
   }
 }

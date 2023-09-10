@@ -1,17 +1,12 @@
-import { ApiProperty } from '@nestjs/swagger'
+import { ApiProperty, PickType } from '@nestjs/swagger'
+
+import { BaseResponseDto } from './base-response.dto'
 
 // NOTE: 仅用于 swagger
-export class BaseBooleanResponseDto {
-  @ApiProperty({ description: '返回信息' })
-  message?: string
-
-  @ApiProperty({ description: '业务代码' })
-  code?: number
-
+export class BaseBooleanResponseDto extends PickType(BaseResponseDto, [
+  'code',
+  'message'
+] as const) {
   @ApiProperty({ description: '返回数据' })
   data?: boolean
-
-  constructor(options: Partial<BaseBooleanResponseDto>) {
-    Object.assign(this, options)
-  }
 }

@@ -14,12 +14,13 @@ const currentStatus = ref<Status>('pending')
 const timer = ref<NodeJS.Timer | null>(null) // 定时器
 const seconds = ref(0) // 记录不停倒计过程中变化的秒数
 
-const date: Time = reactive({
+const date = reactive<Time>({
   day: '00',
   showHour: '00',
   minute: '00',
   second: '00'
 })
+
 // 清除定时器
 const clearTimer = () => {
   if (timer.value) {
@@ -27,6 +28,7 @@ const clearTimer = () => {
     timer.value = null
   }
 }
+
 /* 更改格式化时间 */
 const changeTime = () => {
   const {

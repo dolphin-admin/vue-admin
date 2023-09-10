@@ -1,4 +1,4 @@
-import type { Time } from './index'
+import type { Time } from './types'
 
 export const formatTime = (seconds: number): Time => {
   if (seconds <= 0)

@@ -15,9 +15,6 @@ const props = defineProps<{
   id: number
 }>()
 
-const router = useRouter()
-const route = useRoute()
-
 const message = useMessage()
 const [loading, loadingDispatcher] = useLoading()
 const [submitLoading, submitLoadingDispatcher] = useLoading()

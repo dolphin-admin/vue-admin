@@ -5,12 +5,10 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "src/**/*.json",
-    "vite.config.ts"
+    "vite.config.ts",
+    "**/*.d.ts"
   ],
-  "exclude": [
-    "dist",
-    "node_modules"
-  ],
+  "exclude": ["dist", "node_modules"],
   "compilerOptions": {
     "baseUrl": "./",
     "module": "ES2022",
@@ -20,21 +18,10 @@
     "composite": true,
     "declaration": true,
     "isolatedModules": true,
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ESNext"
-    ],
-    "types": [
-      "node",
-      "jsdom",
-      "unplugin-icons/types/vue",
-      "naive-ui/volar"
-    ],
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "types": ["node", "jsdom", "unplugin-icons/types/vue", "naive-ui/volar"],
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["src/*"]
     }
   }
 }

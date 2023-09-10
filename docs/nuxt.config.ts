@@ -14,11 +14,6 @@ export default defineNuxtConfig({
     typeCheck: true,
     shim: false
   },
-  // Vite 配置
-  vite: {
-    base: '/'
-  },
-  ssr: false,
   modules: ['@nuxtjs/tailwindcss', '@nuxt/content', '@vueuse/nuxt'],
   content: {
     ignores: ['/draft/'],
