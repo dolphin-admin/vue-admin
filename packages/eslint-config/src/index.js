@@ -41,9 +41,9 @@ module.exports = defineConfig({
     project: [
       'tsconfig.eslint.json',
       'server/tsconfig.json',
-      'web/tsconfig.json',
+      'web/tsconfig.eslint.json',
       'docs/tsconfig.json',
-      'packages/*/tsconfig.json'
+      'packages/*/tsconfig.eslint.json'
     ],
     tsconfigRootDir: process.cwd(),
     sourceType: 'module',

@@ -5,7 +5,8 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "src/**/*.json",
-    "vite.config.ts"
+    "vite.config.ts",
+    "**/*.d.ts"
   ],
   "exclude": ["dist", "node_modules"],
   "compilerOptions": {

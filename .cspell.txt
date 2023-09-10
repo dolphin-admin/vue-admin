@@ -1,3 +1,4 @@
+addressdetails
 astro
 auths
 autoincrement
@@ -5,6 +6,7 @@ axios
 Bootstrapper
 classname
 commitlint
+compodoc
 datasource
 datasources
 daterange
@@ -16,6 +18,8 @@ esbuild
 falso
 FiraCode
 fullscreen
+geolocation
+greenkeeper
 hoverable
 icns
 icones
@@ -41,6 +45,7 @@ nuxtjs
 officedocument
 openxmlformats
 Pinia
+plusplus
 Popconfirm
 presentationml
 printshop
@@ -48,6 +53,7 @@ qrcode
 recallwei
 rehype
 Roboto
+Rong
 rushstack
 signup
 solidjs
@@ -65,4 +71,5 @@ vfonts
 vite
 vueuse
 webos
+websockets
 wordprocessingml

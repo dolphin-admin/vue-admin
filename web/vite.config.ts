@@ -7,6 +7,7 @@ import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
 import type { ProxyOptions } from 'vite'
 import { defineConfig, loadEnv } from 'vite'
+import VueDevTools from 'vite-plugin-vue-devtools'
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd())
@@ -29,15 +30,15 @@ export default defineConfig(({ mode }) => {
       changeOrigin: true,
       rewrite: (path: string) => path.replace(/^\/base-api-v2/, '')
     },
-    '/socket.io': {
-      target: VITE_BASE_API_PROXY,
-      ws: true,
-      changeOrigin: true
-    },
     '/mock-api': {
       target: VITE_MOCK_API_PROXY,
       changeOrigin: true,
       rewrite: (path: string) => path.replace(/^\/mock-api/, '')
+    },
+    '/socket.io': {
+      target: VITE_BASE_API_PROXY,
+      ws: true,
+      changeOrigin: true
     }
   }
 
@@ -46,7 +47,7 @@ export default defineConfig(({ mode }) => {
     plugins: [
       vue(),
       AutoImport({
-        dts: './src/types/auto-imports.d.ts',
+        dts: true,
         include: [
           /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
           /\.vue$/,
@@ -119,7 +120,7 @@ export default defineConfig(({ mode }) => {
         dirs: ['src/api', 'src/hooks', 'src/store', 'src/tools', 'src/utils']
       }),
       Components({
-        dts: './src/types/components.d.ts',
+        dts: true,
         resolvers: [NaiveUiResolver()],
         types: [
           {
@@ -130,7 +131,8 @@ export default defineConfig(({ mode }) => {
         dirs: ['src/components', 'src/layouts', 'src/providers', 'src/charts'],
         extensions: ['vue']
       }),
-      Icons({ autoInstall: true })
+      Icons({ autoInstall: true }),
+      VueDevTools()
     ],
     resolve: {
       alias: {

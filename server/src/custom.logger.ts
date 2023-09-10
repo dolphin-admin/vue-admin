@@ -18,7 +18,7 @@ export enum LoggerType {
 /**
  * 获取日志类型文本
  */
-const getLoggetTypeText = (type: LoggerType) => {
+const getLoggerTypeText = (type: LoggerType) => {
   switch (type) {
     case LoggerType.LOG:
       return chalk.green(type)
@@ -69,7 +69,7 @@ export class CustomLogger implements LoggerService {
       chalk.green(`[${AppConfig.APP_NAME}] ${process.pid} - `) +
       getCurrentTime('YYYY/MM/DD HH:mm:ss')
     }  `
-    content += `${getLoggetTypeText(LoggerType.LOG)} `
+    content += `${getLoggerTypeText(LoggerType.LOG)} `
     content += context ? `${chalk.yellow(`[${context}]`)} ` : ''
     content += `${chalk.green(message)} `
     content += `${this.updateAndGetTimestampDiff()}\n`
@@ -81,7 +81,7 @@ export class CustomLogger implements LoggerService {
       chalk.red(`[${AppConfig.APP_NAME}] ${process.pid} - `) +
       getCurrentTime('YYYY/MM/DD HH:mm:ss')
     }  `
-    content += `${getLoggetTypeText(LoggerType.ERROR)} `
+    content += `${getLoggerTypeText(LoggerType.ERROR)} `
     content += context ? `${chalk.yellow(`[${context}]`)} ` : ''
     content += `${chalk.red(message)} `
     content += `${this.updateAndGetTimestampDiff()}\n`
@@ -96,7 +96,7 @@ export class CustomLogger implements LoggerService {
       chalk.yellow(`[${AppConfig.APP_NAME}] ${process.pid} - `) +
       getCurrentTime('YYYY/MM/DD HH:mm:ss')
     }  `
-    content += `${getLoggetTypeText(LoggerType.WARN)} `
+    content += `${getLoggerTypeText(LoggerType.WARN)} `
     content += context ? `${chalk.yellow(`[${context}]`)} ` : ''
     content += `${chalk.yellow(message)} `
     content += `${this.updateAndGetTimestampDiff()}\n`
@@ -108,7 +108,7 @@ export class CustomLogger implements LoggerService {
       chalk.magenta(`[${AppConfig.APP_NAME}] ${process.pid} - `) +
       getCurrentTime('YYYY/MM/DD HH:mm:ss')
     }  `
-    content += `${getLoggetTypeText(LoggerType.DEBUG)} `
+    content += `${getLoggerTypeText(LoggerType.DEBUG)} `
     content += context ? `${chalk.yellow(`[${context}]`)} ` : ''
     content += `${chalk.magenta(message)} `
     content += ` ${this.updateAndGetTimestampDiff()}\n`
@@ -120,7 +120,7 @@ export class CustomLogger implements LoggerService {
       chalk.blue(`[${AppConfig.APP_NAME}] ${process.pid} - `) +
       getCurrentTime('YYYY/MM/DD HH:mm:ss')
     }  `
-    content += `${getLoggetTypeText(LoggerType.VERBOSE)} `
+    content += `${getLoggerTypeText(LoggerType.VERBOSE)} `
     content += context ? `${chalk.yellow(`[${context}]`)} ` : ''
     content += `${chalk.blue(message)} `
     content += ` ${this.updateAndGetTimestampDiff()}\n`
@@ -142,7 +142,7 @@ export class CustomLogger implements LoggerService {
       chalk.green(`[${AppConfig.APP_NAME}] ${process.pid} - `) +
       getCurrentTime('YYYY/MM/DD HH:mm:ss')
     }  `
-    content += `${getLoggetTypeText(type)} `
+    content += `${getLoggerTypeText(type)} `
     content += context ? `${chalk.yellow(`[${context}]`)} ` : ''
     content += `${message}\n`
     if (stack) {
