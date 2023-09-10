@@ -11,8 +11,8 @@ const emit = defineEmits<{
 }>()
 
 const currentStatus = ref<Status>('pending')
-const timer = ref<NodeJS.Timer | null>(null) // 定时器
-const seconds = ref(0) // 记录不停倒计过程中变化的秒数
+let timer: ReturnType<typeof setInterval> | null = null
+const seconds = ref(0)
 
 const date = reactive<Time>({
   day: '00',
@@ -23,9 +23,9 @@ const date = reactive<Time>({
 
 // 清除定时器
 const clearTimer = () => {
-  if (timer.value) {
-    clearInterval(timer.value)
-    timer.value = null
+  if (timer) {
+    clearInterval(timer)
+    timer = null
   }
 }
 
@@ -67,7 +67,7 @@ const start = () => {
   if (props.target <= 0 || currentStatus.value === 'running') return
   if (currentStatus.value !== 'paused') seconds.value = Number(props.target)
   changeStatus('running')
-  timer.value = setInterval(() => {
+  timer = setInterval(() => {
     emit('change', seconds.value, currentStatus.value)
     seconds.value -= 1
     if (seconds.value < 0) {

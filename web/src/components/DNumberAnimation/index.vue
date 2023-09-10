@@ -17,7 +17,7 @@ const currentValue = ref(0)
 const currentStatus = ref<Status>('pending')
 
 // 当前计时器
-const currentInterval = ref<NodeJS.Timer | null>(null)
+let currentInterval: ReturnType<typeof setInterval> | null = null
 
 const emit = defineEmits<{
   (e: 'status:change', status: Status): void
@@ -37,8 +37,8 @@ const start = () => {
   }
   currentStatus.value = 'running'
   setTimeout(() => {
-    if (currentInterval.value) {
-      clearInterval(currentInterval.value)
+    if (currentInterval) {
+      clearInterval(currentInterval)
     }
     // 计算增量
     let incrementNumber = Math.floor(
@@ -48,12 +48,12 @@ const start = () => {
       incrementNumber = 1
     }
     // 开始执行
-    currentInterval.value = setInterval(() => {
+    currentInterval = setInterval(() => {
       currentValue.value += incrementNumber
       // 如果当前值大于等于结束值，停止计时器
       if (currentValue.value > props.endValue) {
-        if (currentInterval.value) {
-          clearInterval(currentInterval.value)
+        if (currentInterval) {
+          clearInterval(currentInterval)
         }
         currentValue.value = props.endValue
         currentStatus.value = 'stopped'
@@ -70,8 +70,8 @@ const pause = () => {
     return
   }
   currentStatus.value = 'paused'
-  if (currentInterval.value) {
-    clearInterval(currentInterval.value)
+  if (currentInterval) {
+    clearInterval(currentInterval)
   }
 }
 
