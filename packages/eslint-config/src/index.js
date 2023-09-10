@@ -8,8 +8,9 @@ module.exports = defineConfig({
     node: true,
     jest: true
   },
+  reportUnusedDisableDirectives: true,
   extends: [
-    'plugin:tailwindcss/recommended', // TailwindCSS 类名排序、简写合并
+    'plugin:tailwindcss/recommended',
     'eslint:recommended',
     'airbnb-base',
     'airbnb-typescript/base',
@@ -30,19 +31,28 @@ module.exports = defineConfig({
   settings: {
     'import/resolver': {
       node: {
-        extensions: ['.js', '.mjs', '.ts', '.d.ts', '.tsx', 'vue']
+        extensions: [
+          '.js',
+          '.cjs',
+          '.mjs',
+          '.ts',
+          '.cts',
+          '.mts',
+          '.tsx',
+          '.d.ts',
+          '.vue'
+        ]
       }
     }
   },
-  reportUnusedDisableDirectives: true, // 报告未使用的 eslint-disable 指令
   parser: 'vue-eslint-parser', // 使用自定义 vue 解析器
   parserOptions: {
     parser: '@typescript-eslint/parser',
     project: [
       'tsconfig.eslint.json',
-      'server/tsconfig.json',
+      'server/tsconfig.eslint.json',
       'web/tsconfig.eslint.json',
-      'docs/tsconfig.json',
+      'docs/tsconfig.eslint.json',
       'packages/*/tsconfig.eslint.json'
     ],
     tsconfigRootDir: process.cwd(),
@@ -54,10 +64,11 @@ module.exports = defineConfig({
   },
   overrides: [
     {
-      files: ['*.js'],
+      files: ['*.{js,cjs,mjs,jsx}'],
       extends: ['plugin:@typescript-eslint/disable-type-checked'],
       rules: {
-        '@typescript-eslint/no-var-requires': 'off'
+        '@typescript-eslint/no-var-requires': 'off',
+        '@typescript-eslint/no-require-imports': 'off'
       }
     },
     {
@@ -67,35 +78,21 @@ module.exports = defineConfig({
       }
     },
     {
-      files: ['*.{ts,tsx,vue}'],
+      files: ['*.{ts,tsx,cts,mts}'],
       rules: {
-        'no-unused-vars': 'off',
-        '@typescript-eslint/no-unused-vars': 'off',
-        'no-shadow': 'off',
-        '@typescript-eslint/no-shadow': 'error',
-        'no-undef': 'off',
-        '@typescript-eslint/no-explicit-any': 'off', // 由 TS 静态检查
-        '@typescript-eslint/comma-dangle': 'off', // 由 Prettier 处理
-        '@typescript-eslint/consistent-type-imports': 'error' // 强制使用 import type
+        'no-undef': 'off'
       }
     },
     {
       files: ['*.vue'],
       rules: {
-        'vue/no-v-html': 'off', // 允许使用 v-html
-        'vue/multi-word-component-names': 'off', // 允许单个单词的组件名，例如 index.vue
-        'vue/component-tags-order': [
-          'error',
-          {
-            order: ['script', 'template', 'style']
-          }
-        ] // 优先 script，其次 template，最后 style
+        'no-undef': 'off'
       }
     },
     {
       files: ['scripts/*.ts'],
       rules: {
-        'no-console': 'off' // 允许在脚本中使用 console
+        'no-console': 'off'
       }
     }
     // TODO: 暂未处理测试文件 🚀
@@ -112,19 +109,9 @@ module.exports = defineConfig({
     quotes: ['error', 'single'], // 强制使用单引号
     semi: ['error', 'never'], // 禁止使用分号
     'no-unused-vars': 'off',
-    'unused-imports/no-unused-imports': 'error',
-    'unused-imports/no-unused-vars': [
-      'warn',
-      {
-        vars: 'all',
-        varsIgnorePattern: '^_',
-        args: 'after-used',
-        argsIgnorePattern: '^_'
-      }
-    ],
     'class-methods-use-this': 'off', // 允许类方法不使用 this
     'no-param-reassign': [
-      'error',
+      'warn',
       {
         props: true,
         ignorePropertyModificationsFor: [
@@ -134,6 +121,18 @@ module.exports = defineConfig({
           'request',
           'args'
         ]
+      }
+    ], // 允许修改函数参数，但是会有警告
+
+    // eslint-plugin-unused-imports
+    'unused-imports/no-unused-imports': 'error',
+    'unused-imports/no-unused-vars': [
+      'warn',
+      {
+        vars: 'all',
+        varsIgnorePattern: '^_',
+        args: 'after-used',
+        argsIgnorePattern: '^_'
       }
     ],
 
@@ -161,7 +160,30 @@ module.exports = defineConfig({
     'import/no-self-import': 'error', // 禁止自导入
     'import/prefer-default-export': 'off', // 仅导出一个变量时，不要求默认导出
 
-    // TailwindCSS
+    // typescript-eslint
+    '@typescript-eslint/no-explicit-any': 'off', // 由 TS 静态检查
+    '@typescript-eslint/comma-dangle': 'off', // 由 Prettier 处理
+    '@typescript-eslint/consistent-type-imports': 'error', // 强制使用 import type
+    '@typescript-eslint/triple-slash-reference': 'off', // 允许使用 /// <reference path="" />
+    '@typescript-eslint/no-use-before-define': [
+      'error',
+      {
+        functions: false,
+        classes: false
+      }
+    ],
+
+    // vue
+    'vue/no-v-html': 'off', // 允许使用 v-html
+    'vue/multi-word-component-names': 'off', // 允许单个单词的组件名，例如 index.vue
+    'vue/component-tags-order': [
+      'error',
+      {
+        order: ['script', 'template', 'style']
+      }
+    ], // 优先 script，其次 template，最后 style
+
+    // tailwindcss
     'tailwindcss/classnames-order': 'error', // TailwindCSS 类名排序
     'tailwindcss/enforces-shorthand': 'error', // TailwindCSS 简写合并
     'tailwindcss/no-custom-classname': 'off' // TailwindCSS 中允许自定义类名
