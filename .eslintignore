@@ -5,8 +5,8 @@ pnpm-lock.yaml
 web/build
 web/dist
 web/public
-web/src/types/auto-imports.d.ts
-web/src/types/components.d.ts
+web/auto-imports.d.ts
+web/components.d.ts
 web/src-tauri
 web/postcss.config.js
 web/tailwind.config.js
