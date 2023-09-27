@@ -95,7 +95,7 @@ onMounted(() => {
   <main class="flex items-center justify-center">
     <div class="flex w-[80%] flex-col items-center space-y-4 sm:w-[500px]">
       <div
-        class="flex w-full flex-col items-center justify-center space-y-2 text-blue-600"
+        class="flex w-full flex-col items-center justify-center space-y-4 text-blue-600"
       >
         <div class="text-4xl">{{ t('App.Name') }}</div>
         <div class="flex items-center space-x-1.5">
@@ -110,8 +110,9 @@ onMounted(() => {
           <span class="text-sm text-gray-600">{{ teamName }}</span>
         </div>
       </div>
-      <Search />
+      <Search v-if="false" />
       <div
+        v-if="false"
         class="grid w-full grid-cols-3 grid-rows-3 sm:grid-cols-4 sm:grid-rows-2"
         @drop.prevent="drop"
         @dragover.prevent

@@ -8,6 +8,23 @@ const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 const userStore = useUserStore()
 const router = useRouter()
 
+const textMotion = ref({
+  initial: {
+    opacity: 0,
+    y: 100
+  },
+  enter: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: 'spring',
+      stiffness: 250,
+      damping: 50,
+      mass: 1
+    }
+  }
+})
+
 // 检查登录状态
 const checkLogin = () => {
   // 如果已经登录，直接跳转到首页，否则清除用户信息
@@ -32,16 +49,27 @@ onBeforeMount(() => checkLogin())
         <img
           src="@/assets/images/favicon.png"
           alt=""
-          width="180"
-          height="180"
+          width="300"
+          height="300"
           loading="eager"
+          class="cursor-pointer transition-all duration-300 hover:scale-125"
         />
-        <span class="text-xl font-semibold">{{ t('App.Name') }}</span>
-        <span class="text-base">v{{ version }}</span>
+        <span
+          v-motion="textMotion"
+          class="text-xl font-semibold"
+        >
+          {{ t('App.Name') }}
+        </span>
+        <span
+          v-motion="textMotion"
+          class="text-base"
+        >
+          v{{ version }}
+        </span>
       </div>
     </div>
 
-    <div class="relative w-full bg-blue-300 dark:bg-gray-700 sm:w-1/2">
+    <div class="relative w-full bg-blue-300 dark:bg-gray-500 sm:w-1/2">
       <RouterView v-slot="{ Component }">
         <component
           :is="Component"

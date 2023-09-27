@@ -4,6 +4,7 @@ import 'vfonts/FiraCode.css'
 import 'nprogress/nprogress.css'
 
 import { sendNotification } from '@tauri-apps/api/notification'
+import { MotionPlugin } from '@vueuse/motion'
 
 import { directives } from '@/directives'
 import pinia from '@/pinia'
@@ -21,6 +22,7 @@ app.use(i18n)
 app.use(pinia)
 app.use(router)
 app.use(directives)
+app.use(MotionPlugin)
 
 app.mount('#app')
 
