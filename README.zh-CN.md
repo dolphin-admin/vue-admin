@@ -15,6 +15,8 @@ Dolphin Admin Web 是一个基于 Vue 3 + Vite + Naive UI + TypeScript + Tailwin
 - [x] 使用 [Vue Router](https://router.vuejs.org/zh/) 进行路由管理
 - [x] 使用 [Pinia](https://pinia.vuejs.org/zh/) 进行全局状态管理
 - [x] 使用 [Axios](https://axios-http.com/zh/) 进行请求，且高度封装
+- [x] 使用 [Vue Use](https://vueuse.org/) 作为 Vue Hook 库
+- [x] 使用 [Vue Use Motion](https://motion.vueuse.org/) 实现动画
 - [x] 使用 [iconify/json](https://iconify.design/) 和 [unplugin-icons](https://github.com/antfu/unplugin-icons)
       进行图标管理，可以通过 [icones](https://icones.js.org/) 快速使用
 - [x] 使用 [unplugin-auto-import](https://github.com/antfu/unplugin-auto-import) 和

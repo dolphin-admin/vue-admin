@@ -16,6 +16,8 @@ backend management template based on Vue 3 + Vite + Naive UI + TypeScript + Tail
 - [x] [Vue Router](https://router.vuejs.org/) for routing management
 - [x] [Pinia](https://pinia.vuejs.org/) for global state management
 - [x] [Axios](https://axios-http.com/) for request, and highly encapsulated
+- [x] [Vue Use](https://vueuse.org/) as Vue Hook library
+- [x] [Vue Use Motion](https://motion.vueuse.org/) for animation
 - [x] [iconify/json](https://iconify.design/) and [unplugin-icons](https://github.com/antfu/unplugin-icons)
       for icon management, you can use [icones](https://icones.js.org/) to use it quickly
 - [x] [unplugin-auto-import](https://github.com/antfu/unplugin-auto-import) and
