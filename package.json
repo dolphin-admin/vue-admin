@@ -60,8 +60,9 @@
     "prettier:fix": "prettier --write --ignore-unknown .",
     "generate:contributors": "tsx ./scripts/generate-contributors",
     "dep:check": "npx taze -r",
-    "cz": "npx git-cz",
+    "cz": "git-cz",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
+    "preinstall": "npx only-allow pnpm",
     "prepare": "husky install"
   },
   "dependencies": {

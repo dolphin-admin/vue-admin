@@ -14,7 +14,7 @@ module.exports = {
       breaking: '列举非兼容性重大的变更（可选）。使用 "|" 换行 :\n',
       footerPrefixesSelect: '选择关联 Issue 前缀（可选）:',
       customFooterPrefix: '输入自定义 Issue 前缀 :',
-      footer: '列举关联 Issue (可选) 例如: #50, #52 :\n',
+      footer: '列举关联 Issue (可选) 例如: #1, #2 :\n',
       confirmCommit: '是否提交或修改 Commit ?'
     },
     types: [
@@ -40,12 +40,12 @@ module.exports = {
       },
       {
         value: 'refactor',
-        name: 'refactor:  ♻️ 代码重构 | A code change that neither fixes a bug nor adds a feature.',
+        name: 'refactor:  ♻️  代码重构 | A code change that neither fixes a bug nor adds a feature.',
         emoji: ':recycle:'
       },
       {
         value: 'perf',
-        name: 'perf:      ⚡️性能提升 | A code change that improves performance.',
+        name: 'perf:      ⚡️ 性能提升 | A code change that improves performance.',
         emoji: ':zap:'
       },
       {
@@ -55,7 +55,7 @@ module.exports = {
       },
       {
         value: 'build',
-        name: 'build:     📦️构建相关 | Changes that affect the build system or external dependencies.',
+        name: 'build:     📦️ 构建相关 | Changes that affect the build system or external dependencies.',
         emoji: ':package:'
       },
       {
@@ -65,7 +65,7 @@ module.exports = {
       },
       {
         value: 'revert',
-        name: 'revert:    ⏪️回退代码 | Revert to a commit.',
+        name: 'revert:    ⏪️ 回退代码 | Revert to a commit.',
         emoji: ':rewind:'
       },
       {

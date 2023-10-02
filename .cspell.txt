@@ -47,6 +47,7 @@ openxmlformats
 Pinia
 plusplus
 Popconfirm
+preinstall
 presentationml
 printshop
 qrcode
