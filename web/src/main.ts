@@ -1,4 +1,4 @@
-import '@/assets/main.scss'
+import '@/assets/styles/main.scss'
 import 'vfonts/OpenSans.css'
 import 'vfonts/FiraCode.css'
 import 'nprogress/nprogress.css'
