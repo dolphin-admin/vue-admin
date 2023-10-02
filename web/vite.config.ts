@@ -18,7 +18,7 @@ export default defineConfig(({ mode }) => {
     VITE_BASE_API_V2_PROXY
   } = env as ImportMetaEnv
 
-  const port = parseInt(VITE_PORT, 10)
+  const port = parseInt(VITE_PORT, 10) || 5173
   const proxy: Record<string, string | ProxyOptions> = {
     '/base-api': {
       target: VITE_BASE_API_PROXY,
@@ -69,8 +69,6 @@ export default defineConfig(({ mode }) => {
               'useTitle',
               'useToggle'
             ],
-            axios: [['default', 'axios']],
-            dayjs: [['default', 'dayjs']],
             'naive-ui': [
               'useDialog',
               'useMessage',

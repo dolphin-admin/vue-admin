@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import dayjs from 'dayjs'
 import type { DataTableFilterState, DataTableSortState } from 'naive-ui'
 
 import type { Lang, MessageSchema, Sorter, User } from '@/types'

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import dayjs from 'dayjs'
 import type { DataTableFilterState, DataTableSortState } from 'naive-ui'
 
 import type { Lang, MessageSchema, Sorter, User } from '@/types'
@@ -18,8 +19,8 @@ const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({
 
 const message = useMessage()
 const [loading, loadingDispatcher] = useLoading()
-const [showDialogLoading, showDialogLoadingDispatcher] = useLoading()
-const [deleteLoading, deleteLoadingDispatcher] = useLoading()
+const [showDialogLoading] = useLoading()
+const [deleteLoading] = useLoading()
 const isMobile = useMobile()
 
 const users = ref<User[]>([])

@@ -5,6 +5,7 @@ import type {
   AxiosResponse,
   InternalAxiosRequestConfig
 } from 'axios'
+import axios from 'axios'
 
 import router from '@/router'
 import type { PageModel } from '@/types'
