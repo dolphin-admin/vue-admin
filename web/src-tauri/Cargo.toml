@@ -1,11 +1,11 @@
 [package]
-name = "app"
-version = "0.1.0"
-description = "A Tauri App"
-authors = ["you"]
+name = "dolphin-admin-vue"
+version = "0.0.1"
+description = "Dolphin Admin Vue"
+authors = ["Bruce Song"]
 license = ""
 repository = ""
-default-run = "app"
+default-run = "dolphin-admin-vue"
 edition = "2021"
 rust-version = "1.60"
 

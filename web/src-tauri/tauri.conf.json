@@ -6,7 +6,7 @@
     "distDir": "../dist"
   },
   "package": {
-    "productName": "Dolphin Admin",
+    "productName": "Dolphin Admin Vue",
     "version": "0.0.1"
   },
   "tauri": {
@@ -73,7 +73,7 @@
       {
         "fullscreen": false,
         "resizable": true,
-        "title": "Dolphin Admin",
+        "title": "Dolphin Admin Vue",
         "center": true,
         "width": 1300,
         "height": 800,
