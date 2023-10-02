@@ -6,7 +6,7 @@ const { t } = useI18n<{ message: MessageSchema }, Lang>({
   useScope: 'global'
 })
 
-const { repoGitHubURL } = AppConfig
+const { REPO_GITHUB_URL } = AppConfig
 
 const { openNewWindow } = BrowserUtils
 
@@ -44,7 +44,7 @@ const sendSystemNotification = () => {
             text: true,
             type: 'success',
             onClick: () => {
-              openNewWindow(repoGitHubURL)
+              openNewWindow(REPO_GITHUB_URL)
               n.destroy()
             }
           },

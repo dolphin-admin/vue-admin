@@ -5,7 +5,7 @@ import PlusIcon from '~icons/ic/outline-plus'
 
 import { Search, ShortcutItem } from './components'
 
-const { teamName } = AppConfig
+const { TEAM_NAME } = AppConfig
 
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
@@ -107,7 +107,7 @@ onMounted(() => {
             width="14"
             height="14"
           />
-          <span class="text-sm text-gray-600">{{ teamName }}</span>
+          <span class="text-sm text-gray-600">{{ TEAM_NAME }}</span>
         </div>
       </div>
       <Search v-if="false" />

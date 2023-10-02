@@ -21,7 +21,7 @@ const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({
   useScope: 'global'
 })
 
-const { repoGitHubURL, discordURL, docsURL } = AppConfig
+const { REPO_GITHUB_URL, DISCORD_URL, DOCS_URL } = AppConfig
 
 const { openNewWindow } = BrowserUtils
 
@@ -133,7 +133,7 @@ onMounted(() => {
             size="20"
             color="#5865F2"
             :component="DiscordIcon"
-            @click="openNewWindow(discordURL)"
+            @click="openNewWindow(DISCORD_URL)"
           />
         </template>
         Discord
@@ -148,7 +148,7 @@ onMounted(() => {
             class="cursor-pointer"
             size="20"
             :component="GithubIcon"
-            @click="openNewWindow(repoGitHubURL)"
+            @click="openNewWindow(REPO_GITHUB_URL)"
           />
         </template>
         GitHub
@@ -163,7 +163,7 @@ onMounted(() => {
             class="cursor-pointer"
             size="20"
             :component="DocsIcon"
-            @click="openNewWindow(docsURL)"
+            @click="openNewWindow(DOCS_URL)"
           />
         </template>
         {{ t('Common.Docs') }}

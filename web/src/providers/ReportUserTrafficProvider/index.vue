@@ -21,7 +21,7 @@ const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({
   useScope: 'global'
 })
 
-const { version } = AppConfig
+const { VERSION: version } = AppConfig
 
 const notification = useNotification()
 

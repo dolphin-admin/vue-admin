@@ -1,4 +1,3 @@
-export * from './app-config'
 export * from './dictionary'
 export * from './excel'
 export * from './i18n'

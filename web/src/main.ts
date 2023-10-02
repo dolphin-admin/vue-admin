@@ -32,6 +32,6 @@ if (GlobalEnvConfig.IS_DEV) {
   sendNotification({
     title: `🐬${i18n.global.t('App.Name')}`,
     body: i18n.global.t('Notification.Desktop.EnterSystem'),
-    icon: AppConfig.favicon
+    icon: AppConfig.FAVICON
   })
 }

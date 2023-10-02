@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { MessageSchema } from '@/types'
 
-const { version } = AppConfig
+const { VERSION } = AppConfig
 
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
@@ -64,7 +64,7 @@ onBeforeMount(() => checkLogin())
           v-motion="textMotion"
           class="text-base"
         >
-          v{{ version }}
+          v{{ VERSION }}
         </span>
       </div>
     </div>
