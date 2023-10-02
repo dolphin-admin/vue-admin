@@ -13,7 +13,7 @@ import type { SiteMetaData } from '@/types'
  * - `discordURL`: Discord 地址
  */
 export const siteMetaData: SiteMetaData = Object.freeze({
-  appName: 'Dolphin Admin',
+  appName: 'Dolphin Admin Vue',
   version: '0.0.3',
   favicon: '/favicon.ico',
   teamName: 'Bit Ocean',

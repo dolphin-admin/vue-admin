@@ -1,6 +1,6 @@
 {
   "App": {
-    "Name": "海豚管理系统"
+    "Name": "海豚管理系统 Vue 版"
   },
   "AuthRedirect": {
     "Authorizing": "正在授权..."
@@ -157,7 +157,7 @@
     },
     "System": {
       "Content": "如果喜欢这个项目，请在 GitHub 上给它点个 ⭐ 吧！",
-      "Title": "🎉 欢迎来到 Dolphin Admin！"
+      "Title": "🎉 欢迎来到 Dolphin Admin Vue！"
     },
     "Team": {
       "From": "来自 Bit Ocean 团队"

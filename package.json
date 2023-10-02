@@ -1,6 +1,6 @@
 {
-  "name": "dolphin-admin",
-  "description": "🐬 Dolphin Admin is an open source, lightweight, out-of-the-box, elegant and exquisite, internationalized backend management template based on Vue 3 + Vite + Naive UI + TypeScript + TailwindCSS.",
+  "name": "dolphin-admin-vue",
+  "description": "🐬 Dolphin Admin Vue is an open source, lightweight, out-of-the-box, elegant and exquisite, internationalized backend management template based on Vue 3 + TypeScript + Vite + Naive UI + TailwindCSS.",
   "author": "Bruce Song <recall4056@gmail.com> (https://github.com/recallwei/)",
   "contributors": [
     "Bruce Song <recall4056@gmail.com> (https://github.com/recallwei/)",

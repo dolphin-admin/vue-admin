@@ -1,8 +1,8 @@
-# Dolphin Admin Web
+# Dolphin Admin Vue
 
 English / [简体中文](./README.zh-CN.md)
 
-Dolphin Admin Web is an open source, lightweight, out-of-the-box, elegant and exquisite, internationalized
+Dolphin Admin Vue is an open source, lightweight, out-of-the-box, elegant and exquisite, internationalized
 backend management template based on Vue 3 + Vite + Naive UI + TypeScript + TailwindCSS.
 
 ## Features

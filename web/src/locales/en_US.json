@@ -1,6 +1,6 @@
 {
   "App": {
-    "Name": "Dolphin Admin"
+    "Name": "Dolphin Admin Vue"
   },
   "AuthRedirect": {
     "Authorizing": "Authorizing..."
@@ -157,7 +157,7 @@
     },
     "System": {
       "Content": "If you like this project, please give us a star on GitHub!",
-      "Title": "🎉 Welcome to Dolphin Admin!"
+      "Title": "🎉 Welcome to Dolphin Admin Vue!"
     },
     "Team": {
       "From": "From Bit Ocean Team"

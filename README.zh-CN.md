@@ -1,8 +1,8 @@
-# Dolphin Admin Web
+# Dolphin Admin Vue
 
 [English](./README.md) / 简体中文
 
-Dolphin Admin Web 是一个基于 Vue 3 + Vite + Naive UI + TypeScript + TailwindCSS 的开源、轻量级、开箱即用、优雅精致、支持国际化的后台管理模板。
+Dolphin Admin Vue 是一个基于 Vue 3 + Vite + Naive UI + TypeScript + TailwindCSS 的开源、轻量级、开箱即用、优雅精致、支持国际化的后台管理模板。
 
 ## 特性
 
