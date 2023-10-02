@@ -108,7 +108,7 @@ export default defineConfig(({ mode }) => {
           },
           {
             from: '@/constants',
-            imports: ['siteMetaData', 'GlobalEnvConfig', 'BasePageModel']
+            imports: ['AppConfig', 'GlobalEnvConfig', 'BasePageModel']
           },
           {
             from: '@/i18n',

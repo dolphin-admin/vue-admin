@@ -2,7 +2,7 @@
  * @description 根据站点元数据动态加载 favicon
  */
 export const faviconLoader = () => {
-  const { favicon } = siteMetaData
+  const { favicon } = AppConfig
   const DEFAULT_FAVICON_URL = '/favicon.ico'
 
   // NOTE: If not set a favicon, use the default favicon.

@@ -6,7 +6,7 @@ const { t } = useI18n<{ message: MessageSchema }, Lang>({
   useScope: 'global'
 })
 
-const { repoGitHubURL } = siteMetaData
+const { repoGitHubURL } = AppConfig
 
 const { openNewWindow } = BrowserUtils
 

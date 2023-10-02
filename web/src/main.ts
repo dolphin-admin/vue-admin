@@ -15,6 +15,7 @@ import App from './App.vue'
 // 初始化 Vue 应用前执行脚本
 faviconLoader()
 naiveUILoader()
+mobileAdaptor()
 
 const app = createApp(App)
 
@@ -31,6 +32,6 @@ if (GlobalEnvConfig.IS_DEV) {
   sendNotification({
     title: `🐬${i18n.global.t('App.Name')}`,
     body: i18n.global.t('Notification.Desktop.EnterSystem'),
-    icon: siteMetaData.favicon
+    icon: AppConfig.favicon
   })
 }

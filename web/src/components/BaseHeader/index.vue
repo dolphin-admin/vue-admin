@@ -21,7 +21,7 @@ const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({
   useScope: 'global'
 })
 
-const { repoGitHubURL, discordURL, docsURL } = siteMetaData
+const { repoGitHubURL, discordURL, docsURL } = AppConfig
 
 const { openNewWindow } = BrowserUtils
 

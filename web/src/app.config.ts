@@ -1,4 +1,4 @@
-import type { SiteMetaData } from '@/types'
+import type { AppConfigType } from '@/types'
 
 /**
  * 站点元数据
@@ -12,7 +12,7 @@ import type { SiteMetaData } from '@/types'
  * - `docsURL`: 文档地址
  * - `discordURL`: Discord 地址
  */
-export const siteMetaData: SiteMetaData = Object.freeze({
+export const AppConfig: AppConfigType = Object.freeze({
   appName: 'Dolphin Admin Vue',
   version: '0.0.3',
   favicon: '/favicon.ico',

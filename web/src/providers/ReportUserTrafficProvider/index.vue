@@ -21,7 +21,7 @@ const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({
   useScope: 'global'
 })
 
-const { version } = siteMetaData
+const { version } = AppConfig
 
 const notification = useNotification()
 
@@ -91,6 +91,7 @@ const setIP = (ip: string | null) => {
  * @param source 用户来源
  * TODO: 暂时还没有使用 source 字段
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const setSource = (source: UserTrafficSource) => {
   appInfo.source = source
 }

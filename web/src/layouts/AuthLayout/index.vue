@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { MessageSchema } from '@/types'
 
-const { version } = siteMetaData
+const { version } = AppConfig
 
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 

@@ -1,4 +1,4 @@
-export type SiteMetaData = {
+export type AppConfigType = {
   appName: string
   version: string
   favicon: string
