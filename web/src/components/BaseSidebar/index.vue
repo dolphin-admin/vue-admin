@@ -1,11 +1,8 @@
 <script setup lang="ts">
 import { menuOptions } from '@/constants'
-import type { Lang, MessageSchema } from '@/types'
 import CollapseIcon from '~icons/line-md/chevron-triple-left'
 
-const { t } = useI18n<{ message: MessageSchema }, Lang>({
-  useScope: 'global'
-})
+const { APP_NAME } = AppConfig
 
 const route = useRoute()
 const router = useRouter()
@@ -69,7 +66,7 @@ watch(
             : 'hidden'
         ]"
       >
-        {{ t('App.Name') }}
+        {{ APP_NAME }}
       </span>
     </div>
 

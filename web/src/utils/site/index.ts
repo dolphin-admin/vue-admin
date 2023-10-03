@@ -1,4 +1,4 @@
-const { t } = i18n.global
+const { APP_NAME } = AppConfig
 
 export class SiteUtils {
   /**
@@ -7,10 +7,10 @@ export class SiteUtils {
    */
   static setDocumentTitle(title?: string | (() => string)) {
     if (!title) {
-      useTitle(t('App.Name'))
+      useTitle(APP_NAME)
     } else {
       useTitle(typeof title === 'function' ? title() : title, {
-        titleTemplate: `%s | ${t('App.Name')}`
+        titleTemplate: `%s | ${APP_NAME}`
       })
     }
   }

@@ -1,7 +1,4 @@
 {
-  "App": {
-    "Name": "Dolphin Admin Vue"
-  },
   "AuthRedirect": {
     "Authorizing": "Authorizing..."
   },

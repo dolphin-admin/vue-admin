@@ -1,7 +1,4 @@
 {
-  "App": {
-    "Name": "海豚管理系统 Vue 版"
-  },
   "AuthRedirect": {
     "Authorizing": "正在授权..."
   },

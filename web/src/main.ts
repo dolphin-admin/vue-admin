@@ -30,7 +30,7 @@ app.mount('#app')
 // PC 端调用系统弹窗
 if (GlobalEnvConfig.IS_DEV) {
   sendNotification({
-    title: `🐬${i18n.global.t('App.Name')}`,
+    title: `🐬${AppConfig.APP_NAME}`,
     body: i18n.global.t('Notification.Desktop.EnterSystem'),
     icon: AppConfig.FAVICON
   })

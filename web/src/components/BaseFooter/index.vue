@@ -1,9 +1,5 @@
 <script setup lang="ts">
-import type { MessageSchema } from '@/types'
-
-const { VERSION, TEAM_NAME, TEAM_GITHUB_URL } = AppConfig
-
-const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+const { APP_NAME, VERSION, TEAM_NAME, TEAM_GITHUB_URL } = AppConfig
 
 const { openNewWindow } = BrowserUtils
 </script>
@@ -12,7 +8,7 @@ const { openNewWindow } = BrowserUtils
   <footer
     class="bg-default-light dark:bg-default-dark z-50 flex h-10 w-full items-center justify-center space-x-2 border-y border-gray-300 text-xs shadow-sm dark:border-gray-950"
   >
-    <span>{{ t('App.Name') }} - v{{ VERSION }}</span>
+    <span>{{ APP_NAME }} - v{{ VERSION }}</span>
     <span>©</span>
     <img
       class="-mb-2 cursor-pointer pb-2 transition-all hover:-translate-y-1 hover:scale-110 active:-translate-y-0 active:scale-105 active:opacity-75"

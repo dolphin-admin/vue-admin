@@ -1,9 +1,5 @@
 <script setup lang="ts">
-import type { MessageSchema } from '@/types'
-
-const { VERSION } = AppConfig
-
-const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+const { APP_NAME, VERSION } = AppConfig
 
 const userStore = useUserStore()
 const router = useRouter()
@@ -58,7 +54,7 @@ onBeforeMount(() => checkLogin())
           v-motion="textMotion"
           class="text-xl font-semibold"
         >
-          {{ t('App.Name') }}
+          {{ APP_NAME }}
         </span>
         <span
           v-motion="textMotion"

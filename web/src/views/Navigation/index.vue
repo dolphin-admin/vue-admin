@@ -5,7 +5,7 @@ import PlusIcon from '~icons/ic/outline-plus'
 
 import { Search, ShortcutItem } from './components'
 
-const { TEAM_NAME } = AppConfig
+const { APP_NAME, TEAM_NAME } = AppConfig
 
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
@@ -97,7 +97,7 @@ onMounted(() => {
       <div
         class="flex w-full flex-col items-center justify-center space-y-4 text-blue-600"
       >
-        <div class="whitespace-nowrap text-4xl">{{ t('App.Name') }}</div>
+        <div class="whitespace-nowrap text-4xl">{{ APP_NAME }}</div>
         <div class="flex items-center space-x-1.5">
           <img
             class="cursor-pointer transition-all active:scale-105 active:opacity-75"
