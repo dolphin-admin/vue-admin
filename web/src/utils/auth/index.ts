@@ -7,7 +7,7 @@ export class AuthUtils {
   /**
    * 记住密码 LocalStorage 键名
    */
-  static LOCAL_STORAGE_REMEMBERED_ACCOUNT = 'user_password'
+  static LOCAL_STORAGE_REMEMBERED_ACCOUNT = 'login_account_data'
 
   /**
    * 默认管理员用户名
