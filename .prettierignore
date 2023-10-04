@@ -7,8 +7,7 @@ CONTRIBUTORS.md
 web/build
 web/dist
 web/public
-web/auto-imports.d.ts
-web/components.d.ts
+web/@types
 web/src-tauri
 
 server/build
