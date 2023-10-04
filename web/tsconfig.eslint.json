@@ -6,6 +6,7 @@
     "src/**/*.vue",
     "src/**/*.json",
     "vite.config.ts",
-    "**/*.d.ts"
+
+    "@types/**/*.d.ts"
   ]
 }

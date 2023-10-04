@@ -47,7 +47,7 @@ export default defineConfig(({ mode }) => {
     plugins: [
       vue(),
       AutoImport({
-        dts: true,
+        dts: '@types/auto-import.d.ts',
         include: [
           /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
           /\.vue$/,
@@ -118,7 +118,7 @@ export default defineConfig(({ mode }) => {
         dirs: ['src/api', 'src/hooks', 'src/store', 'src/tools', 'src/utils']
       }),
       Components({
-        dts: true,
+        dts: '@types/components.d.ts',
         resolvers: [NaiveUiResolver()],
         types: [
           {
