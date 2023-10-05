@@ -57,7 +57,7 @@ export class LangUtils {
   }
 
   /**
-   * 获取默认日期语言
+   * 获取 Naive UI 默认日期语言
    */
   static getDefaultLocale() {
     const lang = this.getDefaultLang()
@@ -72,7 +72,7 @@ export class LangUtils {
   }
 
   /**
-   * 获取默认日期语言
+   * 获取 Naive UI 默认日期语言
    */
   static getDefaultDateLocale() {
     const lang = this.getDefaultLang()
