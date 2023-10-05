@@ -14,7 +14,6 @@ import ShowMenuIcon from '~icons/line-md/menu-fold-right'
 import SunIcon from '~icons/line-md/moon-alt-to-sunny-outline-loop-transition'
 import MoonIcon from '~icons/line-md/sunny-filled-loop-to-moon-alt-filled-loop-transition'
 
-import BaseBreadcrumb from '../BaseBreadcrumb'
 import type { UserOptionKey } from './private'
 import { languageOptions, userOptions } from './private'
 

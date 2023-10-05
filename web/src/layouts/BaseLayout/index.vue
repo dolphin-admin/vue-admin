@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import bitOceanSrc from '@/assets/images/bit_ocean.png'
-import { BaseFooter, BaseHeader, BaseSidebar, BaseTabs } from '@/components'
 import type { Lang, MessageSchema } from '@/types'
 
 const { t } = useI18n<{ message: MessageSchema }, Lang>({

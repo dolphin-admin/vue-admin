@@ -1,5 +1,0 @@
-export { default as BaseBreadcrumb } from './BaseBreadcrumb'
-export { default as BaseFooter } from './BaseFooter'
-export { default as BaseHeader } from './BaseHeader'
-export { default as BaseLayout } from './BaseLayout'
-export { default as BaseTabs } from './BaseTabs'

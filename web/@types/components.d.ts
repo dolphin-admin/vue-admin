@@ -9,8 +9,13 @@ declare module 'vue' {
   export interface GlobalComponents {
     AuthLayout: typeof import('./../src/layouts/AuthLayout/index.vue')['default']
     BarChart: typeof import('./../src/charts/BarChart/index.vue')['default']
+    BaseBreadcrumb: typeof import('./../src/layouts/BaseLayout/components/BaseBreadcrumb/index.vue')['default']
+    BaseFooter: typeof import('./../src/layouts/BaseLayout/components/BaseFooter/index.vue')['default']
     BaseGlobalLoading: typeof import('./../src/components/BaseGlobalLoading/index.vue')['default']
+    BaseHeader: typeof import('./../src/layouts/BaseLayout/components/BaseHeader/index.vue')['default']
     BaseLayout: typeof import('./../src/layouts/BaseLayout/index.vue')['default']
+    BaseSidebar: typeof import('./../src/layouts/BaseLayout/components/BaseSidebar/index.vue')['default']
+    BaseTabs: typeof import('./../src/layouts/BaseLayout/components/BaseTabs/index.vue')['default']
     BaseThemeSwitchDevTool: typeof import('./../src/components/BaseThemeSwitchDevTool/index.vue')['default']
     DataTableLayout: typeof import('./../src/layouts/DataTableLayout/index.vue')['default']
     DCountdown: typeof import('./../src/components/DCountdown/index.vue')['default']
