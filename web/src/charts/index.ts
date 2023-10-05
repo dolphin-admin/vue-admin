@@ -7,6 +7,7 @@ import { BarChart, LineChart, PieChart } from 'echarts/charts'
 import type {
   AxisPointerComponentOption,
   DatasetComponentOption,
+  DataZoomComponentOption,
   GridComponentOption,
   LegendComponentOption,
   TitleComponentOption,
@@ -15,6 +16,7 @@ import type {
 import {
   AxisPointerComponent,
   DatasetComponent,
+  DataZoomComponent,
   GridComponent,
   LegendComponent,
   TitleComponent,
@@ -37,6 +39,7 @@ type ECOption = ComposeOption<
   | GridComponentOption
   | DatasetComponentOption
   | LegendComponentOption
+  | DataZoomComponentOption
 >
 
 // 注册组件，按需引入
@@ -53,7 +56,8 @@ echarts.use([
   LabelLayout,
   UniversalTransition,
   CanvasRenderer,
-  LegendComponent
+  LegendComponent,
+  DataZoomComponent
 ])
 
 type ECharts = echarts.ECharts
