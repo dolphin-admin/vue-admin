@@ -10,7 +10,7 @@ const props = withDefaults(defineProps<LineChartProps>(), {
 })
 
 const chartRef = ref<HTMLDivElement | null>(null)
-const chart = ref<ECharts | null>(null)
+const chart = shallowRef<ECharts | null>(null)
 
 /*
  *监听窗口大小变化
@@ -32,10 +32,22 @@ const getChartData = () => {
       left: 'center'
     },
     tooltip: {
-      trigger: 'item'
+      trigger: 'axis',
+      axisPointer: {
+        type: 'cross',
+        label: {
+          backgroundColor: '#fff'
+        }
+      }
+    },
+    dataZoom: {
+      show: false,
+      start: 0,
+      end: 100
     },
     xAxis: {
       type: 'category',
+      boundaryGap: true,
       data: props.data.map((item) => item.name)
     },
     yAxis: {
@@ -78,5 +90,8 @@ watch(
 </script>
 
 <template>
-  <div ref="chartRef" />
+  <div
+    ref="chartRef"
+    class="h-full w-full"
+  />
 </template>

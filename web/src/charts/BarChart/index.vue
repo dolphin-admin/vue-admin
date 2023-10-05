@@ -11,7 +11,7 @@ const props = withDefaults(defineProps<BarChartProps>(), {
 })
 
 const chartRef = ref<HTMLDivElement | null>(null)
-const chart = ref<ECharts | null>(null)
+const chart = shallowRef<ECharts | null>(null)
 
 /**
  * 监听窗口大小变化
@@ -91,5 +91,8 @@ watch(
 </script>
 
 <template>
-  <div ref="chartRef" />
+  <div
+    ref="chartRef"
+    class="h-full w-full"
+  />
 </template>
