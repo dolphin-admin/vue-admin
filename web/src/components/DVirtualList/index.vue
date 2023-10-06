@@ -36,7 +36,6 @@ const handleScroll = () => {
 }
 
 onMounted(() => {
-  // listWrapRef.value
   listWrapRef.value!.style.height = `${props.itemHeight * props.showNum}px`
   scrollbar.value!.style.height = `${props.itemHeight * props.data.length}px`
 })
@@ -58,7 +57,7 @@ onMounted(() => {
         v-for="(item, index) in showList"
         :key="index + startIndex"
         class="flex items-center justify-center border-b"
-        :class="`h-[${props.itemHeight}px]`"
+        :style="{ height: props.itemHeight + 'px' }"
       >
         {{ item.data + ':' + item.id }}
       </div>

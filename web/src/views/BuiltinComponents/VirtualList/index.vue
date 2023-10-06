@@ -19,7 +19,7 @@ const listData = new Array(100000)
       <DVirtualList
         :data="listData"
         :show-num="15"
-        :item-height="40"
+        :item-height="50"
         class="w-full sm:w-[250px]"
       />
     </NCard>
