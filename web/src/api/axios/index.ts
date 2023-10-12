@@ -61,8 +61,8 @@ class Request {
         }
         // 网络错误，跳转到 404 页面
         if (!window.navigator.onLine) {
-          router.replace('/404')
           message.error(t('Common.NetworkError'))
+          router.replace('/404')
         }
         return Promise.reject(data)
       }
