@@ -37,14 +37,14 @@ class Request {
       (req: InternalAxiosRequestConfig) => {
         // 设置 token
         const { url } = req
+        // 如果是基础接口请求，添加 token
         if (
           AuthUtils.isAuthenticated() &&
           url?.startsWith(GlobalEnvConfig.BASE_API_PREFIX)
         ) {
           req.headers.Authorization = AuthUtils.getAuthorization()
         }
-
-        // 设置语言
+        // 设置语言 TODO: 使用 Web 标准的 Accept-Language
         req.headers.Language = LangUtils.getDefaultLang()
         return req
       },
@@ -55,9 +55,9 @@ class Request {
       (res: AxiosResponse) => res.data,
       (err: AxiosError) => {
         const { response } = err
-        const { data, status } = response || {}
-        if (response) {
-          Request.handleCode(status as number)
+        const { data, status } = response ?? {}
+        if (response && status) {
+          Request.handleCode(status)
         }
         // 网络错误，跳转到 404 页面
         if (!window.navigator.onLine) {
@@ -85,6 +85,7 @@ class Request {
       case ResponseStatusCode.UNAUTHORIZED:
         AuthUtils.clearToken()
         message.error(t('Common.401'))
+        // 如果非登录页面，需要重定向到登录页，且需要带上 redirect 参数
         if (router.currentRoute.value.path !== '/login') {
           if (router.currentRoute.value.path !== '/') {
             router.replace({
