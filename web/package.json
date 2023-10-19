@@ -15,16 +15,16 @@
     "lodash": "^4.17.21",
     "qrcode": "^1.5.3",
     "uuid": "^9.0.1",
-    "vite": "^4.4.11"
+    "vite": "^4.5.0"
   },
   "dependencies": {
-    "@tauri-apps/api": "^1.5.0",
+    "@tauri-apps/api": "^1.5.1",
     "@vueuse/core": "^10.5.0",
     "@vueuse/motion": "^2.0.0",
     "d3": "^7.8.5",
     "echarts": "^5.4.3",
     "nprogress": "0.2.0",
-    "pinia": "^2.1.6",
+    "pinia": "^2.1.7",
     "socket.io-client": "^4.7.2",
     "vue": "^3.3.4",
     "vue-i18n": "9.4.1",
@@ -32,14 +32,14 @@
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.0/xlsx-0.20.0.tgz"
   },
   "devDependencies": {
-    "@iconify/json": "^2.2.126",
+    "@iconify/json": "^2.2.130",
     "@iconify/vue": "^4.1.1",
-    "@tauri-apps/cli": "^1.5.2",
+    "@tauri-apps/cli": "^1.5.4",
     "@vitejs/plugin-vue": "^4.4.0",
     "autoprefixer": "^10.4.16",
     "naive-ui": "^2.35.0",
     "postcss": "^8.4.31",
-    "sass": "^1.69.0",
+    "sass": "^1.69.4",
     "tailwindcss": "^3.3.3",
     "unplugin-auto-import": "^0.16.6",
     "unplugin-icons": "^0.17.0",
