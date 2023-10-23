@@ -74,4 +74,4 @@
 ### 其他
 
 - 建立 WeChat 群组
-- 建立 [Discord 群组](https://discord.gg/UKhpUQgwCT)
+- 建立 [Discord 群组](https://discord.gg/NfPAGuz7Em)

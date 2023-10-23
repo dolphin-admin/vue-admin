@@ -8,5 +8,5 @@ export const AppConfig: SiteMetadata = Object.freeze({
   TEAM_GITHUB_URL: 'https://github.com/bit-ocean-studio',
   REPO_GITHUB_URL: 'https://github.com/bit-ocean-studio/dolphin-admin-web',
   DOCS_URL: 'https://dolphin-admin-docs.bit-ocean.studio',
-  DISCORD_URL: 'https://discord.gg/UKhpUQgwCT'
+  DISCORD_URL: 'https://discord.gg/NfPAGuz7Em'
 })
