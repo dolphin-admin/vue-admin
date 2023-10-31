@@ -1,7 +1,0 @@
-export { AuthModule } from './auth/auth.module'
-export { DictionariesModule } from './dictionaries/dictionaries.module'
-export { HomeModule } from './home/home.module'
-export { UploadModule } from './upload/upload.module'
-export { UserTrafficsModule } from './user-traffics/user-traffics.module'
-export { UsersModule } from './users/users.module'
-export { WebsocketModule } from './websocket/websocket.module'

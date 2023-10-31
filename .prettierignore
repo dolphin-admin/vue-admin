@@ -1,22 +1,7 @@
-.cspell
 .husky
-.vscode
 pnpm-lock.yaml
-CONTRIBUTORS.md
+public
+src-tauri
+@types/auto-imports.d.ts
+@types/components.d.ts
 
-web/build
-web/dist
-web/public
-web/@types/auto-imports.d.ts
-web/@types/components.d.ts
-web/src-tauri
-
-server/build
-server/dist
-server/storage
-server/src/prisma/generated
-server/src/prisma/migrations
-
-docs/.nuxt
-docs/.output
-docs/dist
