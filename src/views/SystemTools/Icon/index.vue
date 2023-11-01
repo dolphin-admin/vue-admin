@@ -23,15 +23,15 @@ const handleSearch = (value: string) => {
 
 const getIcons = () => {
   fetchLoadingDispatcher.loading()
-  IconAPI.getIconsBySet(selectedIconSet.value)
-    .then((res) => {
-      const { uncategorized } = res
-      iconList.value = uncategorized ?? []
-      searchIconList.value = iconList.value
-    })
-    .finally(() => {
-      fetchLoadingDispatcher.loaded()
-    })
+  // IconAPI.getIconsBySet(selectedIconSet.value)
+  //   .then((res) => {
+  //     const { uncategorized } = res
+  //     iconList.value = uncategorized ?? []
+  //     searchIconList.value = iconList.value
+  //   })
+  //   .finally(() => {
+  //     fetchLoadingDispatcher.loaded()
+  //   })
 }
 
 const handleIconSetChange = (key: string) => {
