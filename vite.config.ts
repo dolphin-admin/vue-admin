@@ -159,6 +159,29 @@ export default defineConfig(({ mode }) => {
       strictPort: true,
       open: false,
       proxy
+    },
+    /**
+     * Tauri 相关配置
+     * @see https://tauri.app/zh-cn/v1/guides/getting-started/setup/vite
+     */
+    clearScreen: false,
+    envPrefix: [
+      'VITE_',
+      'TAURI_PLATFORM',
+      'TAURI_ARCH',
+      'TAURI_FAMILY',
+      'TAURI_PLATFORM_VERSION',
+      'TAURI_PLATFORM_TYPE',
+      'TAURI_DEBUG'
+    ],
+    build: {
+      // Tauri 在 Windows 上使用 Chromium，在 macOS 和 Linux 上使用 WebKit
+      target:
+        process.env.TAURI_PLATFORM === 'windows' ? 'chrome105' : 'safari13',
+      // 调试构建时禁用压缩
+      minify: !process.env.TAURI_DEBUG ? 'esbuild' : false,
+      // 为调试构建生成源代码映射 (sourcemap)
+      sourcemap: !!process.env.TAURI_DEBUG
     }
   }
 })
