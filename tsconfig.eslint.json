@@ -1,9 +1,15 @@
 {
-  "extends": "./tsconfig.base.json",
+  "extends": "./tsconfig.json",
   "compilerOptions": {
-    "types": ["node"],
     "noEmit": true,
     "allowJs": true
   },
-  "include": [".eslintrc.js", "scripts/*.ts"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "vite.config.ts",
+
+    "@types/**/*.d.ts"
+  ]
 }

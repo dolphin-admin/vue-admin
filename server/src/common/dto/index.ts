@@ -1,7 +1,0 @@
-export * from './base-boolean-response.dto'
-export * from './base-response.dto'
-export * from './base-string-response.dto'
-export * from './error-response.dto'
-export * from './page-date-query.dto'
-export * from './page-query.dto'
-export * from './page-result.dto'
