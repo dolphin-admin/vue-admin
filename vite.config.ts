@@ -22,17 +22,15 @@ export default defineConfig(({ mode }) => {
 
   const port = parseInt(VITE_PORT, 10) || 5173
   const proxy: Record<string, string | ProxyOptions> = {
-    VITE_BASE_API_PREFIX: {
+    [VITE_BASE_API_PREFIX]: {
       target: VITE_BASE_API_URL,
       changeOrigin: true,
-      rewrite: (path: string) =>
-        path.replace(new RegExp(`^\\/${VITE_BASE_API_PREFIX}`), '')
+      rewrite: (path: string) => path.replace(VITE_BASE_API_PREFIX, '')
     },
-    VITE_MOCK_API_PREFIX: {
+    [VITE_MOCK_API_PREFIX]: {
       target: VITE_MOCK_API_URL,
       changeOrigin: true,
-      rewrite: (path: string) =>
-        path.replace(new RegExp(`^\\/${VITE_MOCK_API_PREFIX}`), '')
+      rewrite: (path: string) => path.replace(VITE_MOCK_API_PREFIX, '')
     },
     '/socket.io': {
       target: VITE_BASE_API_URL,
