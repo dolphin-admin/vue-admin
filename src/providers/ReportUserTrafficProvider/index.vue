@@ -91,7 +91,7 @@ const setIP = (ip: string | null) => {
  * @param source 用户来源
  * TODO: 暂时还没有使用 source 字段
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// eslint-disable-next-line unused-imports/no-unused-vars, @typescript-eslint/no-unused-vars
 const setSource = (source: UserTrafficSource) => {
   appInfo.source = source
 }
@@ -224,7 +224,7 @@ watch(
 
 onBeforeRouteLeave(() => sendReport())
 
-onBeforeRouteUpdate((to, from) => {
+onBeforeRouteUpdate((_to, from) => {
   const { path: fromPath, meta: fromMeta, fullPath } = from
   const { title: fromTitle } = fromMeta
   records.value.push({
