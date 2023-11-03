@@ -19,7 +19,7 @@ interface ChatListDataItem {
 }
 
 const socket = ref<Socket>(
-  io(`${GlobalEnvConfig.BASE_API_PROXY}/demo`, {
+  io(`${GlobalEnvConfig.BASE_API_URL}/demo`, {
     autoConnect: false
   })
 )
