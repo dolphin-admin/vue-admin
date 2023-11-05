@@ -1,6 +1,7 @@
 import { fileURLToPath, URL } from 'node:url'
 
 import { dolphinAdminPresets } from '@dolphin-admin/auto-import'
+import { BootstrapAnimation } from '@dolphin-admin/bootstrap-animation'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Icons from 'unplugin-icons/vite'
@@ -128,7 +129,8 @@ export default defineConfig(({ mode }) => {
         extensions: ['vue']
       }),
       Icons({ autoInstall: true }),
-      VueDevTools()
+      VueDevTools(),
+      BootstrapAnimation()
     ],
     resolve: {
       alias: {
@@ -174,8 +176,7 @@ export default defineConfig(({ mode }) => {
     ],
     build: {
       // Tauri 在 Windows 上使用 Chromium，在 macOS 和 Linux 上使用 WebKit
-      target:
-        process.env.TAURI_PLATFORM === 'windows' ? 'chrome105' : 'safari13',
+      target: process.env.TAURI_PLATFORM === 'windows' ? 'chrome105' : 'safari13',
       // 调试构建时禁用压缩
       minify: !process.env.TAURI_DEBUG ? 'esbuild' : false,
       // 为调试构建生成源代码映射 (sourcemap)

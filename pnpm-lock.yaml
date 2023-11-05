@@ -70,6 +70,9 @@ devDependencies:
   '@dolphin-admin/auto-import':
     specifier: ^0.0.6
     version: 0.0.6(@vueuse/core@10.5.0)
+  '@dolphin-admin/bootstrap-animation':
+    specifier: ^0.0.2
+    version: 0.0.2(vite@4.5.0)
   '@iconify/json':
     specifier: ^2.2.136
     version: 2.2.136
@@ -1038,6 +1041,16 @@ packages:
       - rollup
     dev: true
 
+  /@dolphin-admin/bootstrap-animation@0.0.2(vite@4.5.0):
+    resolution: {integrity: sha512-C1JIz3brG4rFN/XzhNrdk+ttKEqctkBTsLFpOhkyPkdhJoJYVV1kJLkXmCEE+TJPmNMGibbtBOJLIW9+kQ+GmA==}
+    peerDependencies:
+      vite: ^4.5.0
+    dependencies:
+      figlet: 1.7.0
+      gradient-string: 2.0.2
+      vite: 4.5.0(@types/node@20.8.10)(sass@1.69.5)
+    dev: true
+
   /@dolphin-admin/utils@0.0.10:
     resolution: {integrity: sha512-Dc+JHD3dxKhLr7/+akIRmMAqkxOjtJq/wqRiqKROPB4enA1dPo/KdR8DjCIB0N80iAWvbTwoB+n072uCzpcslw==}
     dependencies:
@@ -1670,6 +1683,10 @@ packages:
 
   /@types/semver@7.5.4:
     resolution: {integrity: sha512-MMzuxN3GdFwskAnb6fz0orFvhfqi752yjaXylr0Rp4oDg5H0Zn1IuyRhDVvYOwAXoJirx2xuS16I3WjxnAIHiQ==}
+    dev: true
+
+  /@types/tinycolor2@1.4.5:
+    resolution: {integrity: sha512-uLJijDHN5E6j5n1qefF9oaeplgszXglWXWTviMoFr/YxgvbyrkFil20yDT7ljhCiTQ/BfCYtxfJS81LdTro5DQ==}
     dev: true
 
   /@types/tough-cookie@4.0.4:
@@ -4116,6 +4133,12 @@ packages:
     dependencies:
       reusify: 1.0.4
 
+  /figlet@1.7.0:
+    resolution: {integrity: sha512-gO8l3wvqo0V7wEFLXPbkX83b7MVjRrk1oRLfYlZXol8nEpb/ON9pcKLI4qpBv5YtOTfrINtqb7b40iYY2FTWFg==}
+    engines: {node: '>= 0.4.0'}
+    hasBin: true
+    dev: true
+
   /figures@3.2.0:
     resolution: {integrity: sha512-yaduQFRKLXYOGgEn6AZau90j3ggSOyiqXU0F9JZfeXYhNa+Jk4X+s45A2zg5jns87GAFa34BBm2kXw4XpNcbdg==}
     engines: {node: '>=8'}
@@ -4520,6 +4543,14 @@ packages:
 
   /graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
+
+  /gradient-string@2.0.2:
+    resolution: {integrity: sha512-rEDCuqUQ4tbD78TpzsMtt5OIf0cBCSDWSJtUDaF6JsAh+k0v9r++NzxNEG87oDZx9ZwGhD8DaezR2L/yrw0Jdw==}
+    engines: {node: '>=10'}
+    dependencies:
+      chalk: 4.1.2
+      tinygradient: 1.1.5
+    dev: true
 
   /graphemer@1.4.0:
     resolution: {integrity: sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==}
@@ -6886,6 +6917,17 @@ packages:
 
   /through@2.3.8:
     resolution: {integrity: sha512-w89qg7PI8wAdvX60bMDP+bFoD5Dvhm9oLheFp5O4a2QF0cSBGsBX4qZmadPMvVqlLJBBci+WqGGOAPvcDeNSVg==}
+    dev: true
+
+  /tinycolor2@1.6.0:
+    resolution: {integrity: sha512-XPaBkWQJdsf3pLKJV9p4qN/S+fm2Oj8AIPo1BTUhg5oxkvm9+SVEGFdhyOz7tTdUTfvxMiAs4sp6/eZO2Ew+pw==}
+    dev: true
+
+  /tinygradient@1.1.5:
+    resolution: {integrity: sha512-8nIfc2vgQ4TeLnk2lFj4tRLvvJwEfQuabdsmvDdQPT0xlk9TaNtpGd6nNRxXoK6vQhN6RSzj+Cnp5tTQmpxmbw==}
+    dependencies:
+      '@types/tinycolor2': 1.4.5
+      tinycolor2: 1.6.0
     dev: true
 
   /titleize@3.0.0:
