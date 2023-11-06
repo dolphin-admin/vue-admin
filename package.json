@@ -54,7 +54,7 @@
     "@brucesong/eslint-config-vue": "^1.0.16",
     "@commitlint/cli": "^18.2.0",
     "@commitlint/config-conventional": "^18.1.0",
-    "@dolphin-admin/auto-import": "^0.0.8",
+    "@dolphin-admin/auto-import": "^0.0.10",
     "@dolphin-admin/bootstrap-animation": "^0.0.2",
     "@iconify/json": "^2.2.138",
     "@iconify/vue": "^4.1.1",
