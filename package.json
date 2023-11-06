@@ -55,7 +55,7 @@
     "@commitlint/cli": "^18.2.0",
     "@commitlint/config-conventional": "^18.1.0",
     "@dolphin-admin/auto-import": "^0.0.8",
-    "@dolphin-admin/bootstrap-animation": "^0.0.2",
+    "@dolphin-admin/bootstrap-animation": "^0.0.3",
     "@iconify/json": "^2.2.138",
     "@iconify/vue": "^4.1.1",
     "@tauri-apps/cli": "^1.5.6",
