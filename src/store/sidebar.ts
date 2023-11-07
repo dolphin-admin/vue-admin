@@ -1,3 +1,5 @@
+import { acceptHMRUpdate } from 'pinia'
+
 export const useSidebarStore = defineStore('sidebar', () => {
   /**
    * 是否折叠侧边栏，默认不折叠
@@ -46,3 +48,11 @@ export const useSidebarStore = defineStore('sidebar', () => {
     toggleSidebarDisplay
   }
 })
+
+/**
+ * HMR
+ * @see https://pinia.vuejs.org/zh/cookbook/hot-module-replacement.html
+ */
+if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(useSidebarStore, import.meta.hot))
+}

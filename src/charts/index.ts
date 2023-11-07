@@ -1,8 +1,4 @@
-import type {
-  BarSeriesOption,
-  LineSeriesOption,
-  PieSeriesOption
-} from 'echarts/charts'
+import type { BarSeriesOption, LineSeriesOption, PieSeriesOption } from 'echarts/charts'
 import { BarChart, LineChart, PieChart } from 'echarts/charts'
 import type {
   AxisPointerComponentOption,

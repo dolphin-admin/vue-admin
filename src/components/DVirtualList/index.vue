@@ -17,9 +17,7 @@ const endIndex = ref(props.showNum)
 const scrollOffset = ref(0)
 
 // 展示的列表
-const showList = computed(() =>
-  props.data.slice(startIndex.value, endIndex.value)
-)
+const showList = computed(() => props.data.slice(startIndex.value, endIndex.value))
 
 const handleScroll = () => {
   const { scrollTop } = listWrapRef.value!

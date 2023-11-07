@@ -94,9 +94,7 @@ onMounted(() => {
 <template>
   <main class="flex items-center justify-center">
     <div class="flex w-[80%] flex-col items-center space-y-4 sm:w-[500px]">
-      <div
-        class="flex w-full flex-col items-center justify-center space-y-4 text-blue-600"
-      >
+      <div class="flex w-full flex-col items-center justify-center space-y-4 text-blue-600">
         <div class="whitespace-nowrap text-4xl">{{ APP_NAME }}</div>
         <div class="flex items-center space-x-1.5">
           <img

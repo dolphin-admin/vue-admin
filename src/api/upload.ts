@@ -1,7 +1,5 @@
 import type { BaseResponse } from '@/types'
 
-import Request from './axios'
-
 export class UploadAPI {
   private static UPLOAD_API_PREFIX = `${GlobalEnvConfig.BASE_API_PREFIX}/upload`
 
@@ -15,16 +13,10 @@ export class UploadAPI {
    * @todo 进度条功能暂未实现
    */
   static uploadFile(data: any, options?: any) {
-    return Request.post<BaseResponse<{ path: string }>>(
-      this.UPLOAD_API_PREFIX,
-      data,
-      {
-        headers: this.headers,
-        onUploadProgress: options?.onUploadProgress
-          ? options.onUploadProgress
-          : () => {}
-      }
-    )
+    return httpRequest.post<BaseResponse<{ path: string }>>(this.UPLOAD_API_PREFIX, data, {
+      headers: this.headers,
+      onUploadProgress: options?.onUploadProgress ? options.onUploadProgress : () => {}
+    })
   }
 
   /**
@@ -35,7 +27,7 @@ export class UploadAPI {
    * @todo 进度条功能暂未实现
    */
   static uploadFiles(data: any) {
-    return Request.post(`${this.UPLOAD_API_PREFIX}/batch`, data, {
+    return httpRequest.post(`${this.UPLOAD_API_PREFIX}/batch`, data, {
       headers: this.headers
     })
   }

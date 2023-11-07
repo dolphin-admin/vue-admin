@@ -34,10 +34,8 @@ export class GoogleAuthUtils {
     const title = 'Google Authorization'
 
     // 窗口位置
-    const left =
-      window.screenX + (window.outerWidth - this.AUTH_WINDOW_WIDTH) / 2
-    const top =
-      window.screenY + (window.outerHeight - this.AUTH_WINDOW_HEIGHT) / 2
+    const left = window.screenX + (window.outerWidth - this.AUTH_WINDOW_WIDTH) / 2
+    const top = window.screenY + (window.outerHeight - this.AUTH_WINDOW_HEIGHT) / 2
 
     // 窗口参数
     const options = `width=${this.AUTH_WINDOW_WIDTH},height=${this.AUTH_WINDOW_HEIGHT},left=${left},top=${top},location=no,menubar=no,toolbar=no,titlebar=no,scrollbars=yes,resizable=yes`

@@ -6,8 +6,7 @@ import type { QRCodeErrorCorrectionLevel } from 'qrcode'
  * - `margin`: 二维码边距
  * - `width`: 二维码宽度
  * - `errorCorrectionLevel`: 二维码容错率
- * @see
- * - [qrcode](https://www.npmjs.com/package/qrcode)
+ * @see {@link https://www.npmjs.com/package/qrcode}
  */
 export interface QRCodeOptions {
   margin?: number

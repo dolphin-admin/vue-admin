@@ -1,14 +1,15 @@
 <script setup lang="ts">
+const langStore = useLangStore()
 const themeStore = useThemeStore()
 </script>
 
 <template>
-  <div class="display-content bg-layout-light dark:bg-layout-dark">
+  <div class="display-content select-none bg-layout-light dark:bg-layout-dark">
     <NConfigProvider
-      :locale="themeStore.locale"
-      :date-locale="themeStore.dateLocale"
-      :theme="themeStore.theme"
-      :theme-overrides="themeStore.themeOverrides"
+      :locale="langStore.locale"
+      :date-locale="langStore.dateLocale"
+      :theme="themeStore.naiveTheme"
+      :theme-overrides="themeStore.naiveThemeOverrides"
       abstract
       inline-theme-disabled
     >

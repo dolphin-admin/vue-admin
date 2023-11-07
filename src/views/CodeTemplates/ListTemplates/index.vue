@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import type { Lang } from '@dolphin-admin/utils'
 import dayjs from 'dayjs'
 import type { DataTableFilterState, DataTableSortState } from 'naive-ui'
 
-import type { Lang, MessageSchema, Sorter, User } from '@/types'
+import type { MessageSchema, Sorter, User } from '@/types'
 import { AuthType, OrderType } from '@/types'
 import GitHubIcon from '~icons/ant-design/github-outlined'
 import ResetIcon from '~icons/ic/round-refresh'
@@ -275,12 +276,8 @@ onMounted(() => queryList())
 <template>
   <DataTableLayout>
     <template #operate>
-      <div
-        class="flex flex-col items-center space-y-2 sm:flex-row sm:justify-between sm:space-y-0"
-      >
-        <div
-          class="flex flex-col items-center space-y-2 sm:flex-row sm:space-x-3 sm:space-y-0"
-        >
+      <div class="flex flex-col items-center space-y-2 sm:flex-row sm:justify-between sm:space-y-0">
+        <div class="flex flex-col items-center space-y-2 sm:flex-row sm:space-x-3 sm:space-y-0">
           <div class="flex w-full items-center !space-x-2 sm:w-fit">
             <NInput
               v-model:value="queryParams.searchText"
@@ -313,9 +310,7 @@ onMounted(() => queryList())
             @update:value="() => queryList()"
           />
         </div>
-        <div
-          class="flex w-full items-center justify-between space-x-3 sm:justify-end"
-        >
+        <div class="flex w-full items-center justify-between space-x-3 sm:justify-end">
           <NTooltip>
             <template #trigger>
               <NButton

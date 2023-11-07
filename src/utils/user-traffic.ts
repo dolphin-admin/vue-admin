@@ -31,7 +31,7 @@ export class UserTrafficUtils {
 
   /**
    * 判断用户设备类型
-   * TODO: 目前判断是否是桌面端可能存在问题，需要重构判断逻辑
+   * @todo 目前判断是否是桌面端可能存在问题，需要重构判断逻辑
    */
   static getDeviceType(): UserTrafficDevice {
     if (/Windows|Macintosh/.test(this.USER_AGENT)) {

@@ -23,9 +23,7 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <main
-    class="absolute inset-0 m-auto flex h-fit w-fit flex-col items-center space-y-2"
-  >
+  <main class="absolute inset-0 m-auto flex h-fit w-fit flex-col items-center space-y-2">
     <NIcon
       size="80"
       :component="LoadingIcon"

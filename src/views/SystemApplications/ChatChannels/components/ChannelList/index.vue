@@ -23,7 +23,7 @@ const activeKey = ref<string | null>(null)
       <div class="flex h-full items-center justify-start space-x-2">
         <div class="h-8 w-8 shrink-0">
           <img
-            class="cursor-pointer select-none rounded-full border"
+            class="cursor-pointer rounded-full border"
             width="32"
             height="32"
             src="@/assets/images/favicon.png"

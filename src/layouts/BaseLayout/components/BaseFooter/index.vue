@@ -1,7 +1,5 @@
 <script setup lang="ts">
 const { APP_NAME, VERSION, TEAM_NAME, TEAM_GITHUB_URL } = AppMetadata
-
-const { openNewWindow } = BrowserUtils
 </script>
 
 <template>
@@ -16,7 +14,7 @@ const { openNewWindow } = BrowserUtils
       alt=""
       loading="eager"
       width="18"
-      @click="openNewWindow(TEAM_GITHUB_URL)"
+      @click="() => BrowserUtils.openNewWindow(TEAM_GITHUB_URL)"
     />
     <span>{{ TEAM_NAME }}</span>
   </footer>

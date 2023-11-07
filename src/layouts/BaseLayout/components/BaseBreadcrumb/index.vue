@@ -31,9 +31,7 @@ watch(
     const routePath = route.fullPath.split('/').filter((path) => path !== '')
 
     // 获取一级菜单
-    const firstLevelOption = firstLevelOptions.value.find(
-      (option) => option.key === routePath[0]
-    )
+    const firstLevelOption = firstLevelOptions.value.find((option) => option.key === routePath[0])
     // 如果一级菜单不存在，则直接返回
     if (!firstLevelOption) {
       return

@@ -46,9 +46,7 @@ const changeCountdown = (time: number, status: Status) => {
 
         <div class="flex items-center space-x-4">
           <NButton
-            :disabled="
-              currentStatus !== 'pending' && currentStatus !== 'stopped'
-            "
+            :disabled="currentStatus !== 'pending' && currentStatus !== 'stopped'"
             type="primary"
             @click="handleStart"
           >

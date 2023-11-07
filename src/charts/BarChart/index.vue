@@ -65,7 +65,7 @@ const getChartData = () => {
 
 // 初始化图表
 const initChart = () => {
-  chart.value = echarts.init(chartRef.value!, ThemeStore.themeMode)
+  chart.value = echarts.init(chartRef.value!, ThemeStore.theme)
   getChartData()
 }
 
@@ -82,7 +82,7 @@ watch(
 )
 
 watch(
-  () => ThemeStore.themeMode,
+  () => ThemeStore.theme,
   () => {
     chart.value!.dispose()
     initChart()

@@ -36,11 +36,9 @@ onBeforeMount(() => checkLogin())
 
 <template>
   <main class="flex h-screen w-screen">
-    <div
-      class="invisible relative w-0 bg-blue-200 dark:bg-gray-600 sm:visible sm:w-1/2"
-    >
+    <div class="invisible relative w-0 bg-blue-200 dark:bg-gray-600 sm:visible sm:w-1/2">
       <div
-        class="absolute inset-0 m-auto flex h-fit w-fit select-none flex-col space-y-2 text-center font-mono"
+        class="absolute inset-0 m-auto flex h-fit w-fit flex-col space-y-2 text-center font-mono"
       >
         <img
           src="@/assets/images/favicon.png"

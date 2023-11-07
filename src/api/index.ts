@@ -1,6 +1,0 @@
-export * from './auth'
-export * from './dictionary'
-export * from './icon'
-export * from './upload'
-export * from './user'
-export * from './user-traffics'

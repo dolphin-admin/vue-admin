@@ -1,8 +1,10 @@
+import { Lang } from '@dolphin-admin/utils'
+
 const { t } = i18n.global
 
 export const languageOptions = [
-  { label: 'English', key: 'en_US', disabled: false },
-  { label: '简体中文', key: 'zh_CN', disabled: false }
+  { label: 'English', key: Lang['en-US'], disabled: false },
+  { label: '简体中文', key: Lang['zh-CN'], disabled: false }
 ]
 
 export const userOptions = [

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import dayjs from 'dayjs'
+import type { Lang } from '@dolphin-admin/utils'
 import type { DataTableFilterState, DataTableSortState } from 'naive-ui'
 
-import type { Lang, MessageSchema, Sorter, User } from '@/types'
+import type { MessageSchema, Sorter, User } from '@/types'
 import { AuthType, OrderType } from '@/types'
 import GitHubIcon from '~icons/ant-design/github-outlined'
 import UserAvatarIcon from '~icons/carbon/user-avatar-filled-alt'
@@ -150,7 +150,7 @@ const pagination = reactive({
   itemCount: 0
 })
 const resetPasswordData = reactive({
-  password: AuthUtils.DEFAULT_PASSWORD
+  password: AuthUtils.DEFAULT_ADMIN_USERNAME
 })
 const idColumnReactive = reactive(idColumn)
 const createdAtColumnReactive = reactive(createdAtColumn)
@@ -179,8 +179,8 @@ const queryList = () => {
 
   if (queryParams.daterange && Array.isArray(queryParams.daterange)) {
     const [startDate, endDate] = queryParams.daterange as string[]
-    params.startDate = dayjs(startDate).startOf('day').toISOString()
-    params.endDate = dayjs(endDate).endOf('day').toISOString()
+    params.startDate = TimeUtils.dayjs(startDate).startOf('day').toISOString()
+    params.endDate = TimeUtils.dayjs(endDate).endOf('day').toISOString()
   }
 
   UserAPI.getUsers(params)
@@ -340,8 +340,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     width: 100,
     titleAlign: 'center',
     align: 'center',
-    render: (row) =>
-      row.birthDate ? TimeUtils.formatTime(row.birthDate, 'YYYY/MM/DD') : ''
+    render: (row) => (row.birthDate ? TimeUtils.formatTime(row.birthDate, 'YYYY/MM/DD') : '')
   },
   {
     title: () => t('User.Country'),
@@ -564,7 +563,7 @@ const handleCreateUser = () => {
 }
 
 const handleResetPassword = () => {
-  resetPasswordData.password = AuthUtils.DEFAULT_PASSWORD
+  resetPasswordData.password = AuthUtils.DEFAULT_ADMIN_PASSWORD
 }
 
 const handleConfirmPassword = async () => {
@@ -609,12 +608,8 @@ onMounted(() => queryList())
 <template>
   <DataTableLayout>
     <template #operate>
-      <div
-        class="flex flex-col items-center space-y-2 sm:flex-row sm:justify-between sm:space-y-0"
-      >
-        <div
-          class="flex flex-col items-center space-y-2 sm:flex-row sm:space-x-3 sm:space-y-0"
-        >
+      <div class="flex flex-col items-center space-y-2 sm:flex-row sm:justify-between sm:space-y-0">
+        <div class="flex flex-col items-center space-y-2 sm:flex-row sm:space-x-3 sm:space-y-0">
           <div class="flex w-full items-center !space-x-2 sm:w-fit">
             <NInput
               v-model:value="queryParams.searchText"
@@ -647,9 +642,7 @@ onMounted(() => queryList())
             @update:value="() => queryList()"
           />
         </div>
-        <div
-          class="flex w-full items-center justify-between space-x-3 sm:justify-end"
-        >
+        <div class="flex w-full items-center justify-between space-x-3 sm:justify-end">
           <NTooltip>
             <template #trigger>
               <NButton

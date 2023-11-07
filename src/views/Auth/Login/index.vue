@@ -112,7 +112,7 @@ const loginAsBasic = () => {
 const loginAsAdmin = () => {
   submitType.value = 'ADMIN'
   formData.username = AuthUtils.DEFAULT_ADMIN_USERNAME
-  formData.password = AuthUtils.DEFAULT_PASSWORD
+  formData.password = AuthUtils.DEFAULT_ADMIN_PASSWORD
   login()
 }
 
@@ -126,9 +126,7 @@ onMounted(() => {
   const localStorageData = AuthUtils.getRememberedAccount()
   if (localStorageData) {
     try {
-      const { username, password } = JSON.parse(
-        localStorageData
-      ) as RememberedAccountData
+      const { username, password } = JSON.parse(localStorageData) as RememberedAccountData
       formData.username = username
       formData.password = password
       rememberPassword.value = true
@@ -147,7 +145,7 @@ onMounted(() => {
     :disabled="submitLoading"
     class="absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg bg-default-light px-4 py-8 shadow-md transition-colors dark:bg-default-dark sm:w-[260px] md:w-[340px]"
   >
-    <div class="select-none text-center text-lg font-semibold">
+    <div class="text-center text-lg font-semibold">
       {{ t('Menu.Login') }}
     </div>
 
@@ -181,9 +179,7 @@ onMounted(() => {
       />
     </NFormItem>
 
-    <div
-      class="text-grey-300 flex items-center justify-between text-xs font-light"
-    >
+    <div class="text-grey-300 flex items-center justify-between text-xs font-light">
       <NCheckbox
         v-model:checked="rememberPassword"
         size="small"

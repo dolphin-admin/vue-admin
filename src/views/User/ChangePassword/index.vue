@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import type { Lang, MessageSchema } from '@/types'
+import type { Lang } from '@dolphin-admin/utils'
+
+import type { MessageSchema } from '@/types'
 
 const router = useRouter()
 const userStore = useUserStore()
@@ -43,8 +45,7 @@ const changePasswordRules: FormRules = {
       trigger: ['blur', 'input']
     },
     {
-      validator: (_: FormItemRule, value: string) =>
-        value === changePasswordData.newPassword,
+      validator: (_: FormItemRule, value: string) => value === changePasswordData.newPassword,
       message: t('Validation.ConfirmPasswordNotMatch')
     }
   ]

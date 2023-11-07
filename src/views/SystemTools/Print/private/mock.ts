@@ -14,11 +14,12 @@ import GatsbyIcon from '~icons/vscode-icons/file-type-gatsby'
 
 import type { FrameworkItem } from './types'
 
-const { t, renderIcon } = RenderUtils
+const { t } = i18n.global
+const { renderIcon } = RenderUtils
 
 export const columns: DataTableBaseColumn<FrameworkItem>[] = [
   {
-    title: t('Print.Icon'),
+    title: () => t('Print.Icon'),
     key: 'icon',
     width: 80,
     align: 'center',
@@ -33,21 +34,21 @@ export const columns: DataTableBaseColumn<FrameworkItem>[] = [
       )
   },
   {
-    title: t('Print.Framework'),
+    title: () => t('Print.Framework'),
     key: 'framework',
     width: 120,
     align: 'center',
     titleAlign: 'center'
   },
   {
-    title: t('Common.Type'),
+    title: () => t('Common.Type'),
     key: 'type',
     width: 80,
     align: 'center',
     titleAlign: 'center'
   },
   {
-    title: t('Print.Stars'),
+    title: () => t('Print.Stars'),
     key: 'stars',
     width: 100,
     align: 'center',
@@ -67,14 +68,11 @@ export const columns: DataTableBaseColumn<FrameworkItem>[] = [
       )
   },
   {
-    title: t('Print.Description'),
+    title: () => t('Print.Description'),
     key: 'description',
     minWidth: 200,
     resizable: true,
-    render: (row) =>
-      typeof row.description === 'function'
-        ? row.description()
-        : row.description
+    render: (row) => (typeof row.description === 'function' ? row.description() : row.description)
   }
 ]
 
@@ -83,70 +81,70 @@ export const data = [
     icon: ReactIcon,
     framework: 'React',
     type: 'SPA',
-    description: t('Print.React'),
+    description: () => t('Print.React'),
     stars: '210k'
   },
   {
     icon: VueIcon,
     framework: 'Vue',
     type: 'SPA',
-    description: t('Print.Vue'),
+    description: () => t('Print.Vue'),
     stars: '204k'
   },
   {
     icon: NextjsIcon,
     framework: 'Next.js',
     type: 'SSR',
-    description: t('Print.Nextjs'),
+    description: () => t('Print.Nextjs'),
     stars: '109k'
   },
   {
     icon: AngularIcon,
     framework: 'Angular',
     type: 'SPA',
-    description: t('Print.Angular'),
+    description: () => t('Print.Angular'),
     stars: '89.2k'
   },
   {
     icon: SvelteIcon,
     framework: 'Svelte',
     type: 'SPA',
-    description: t('Print.Svelte'),
+    description: () => t('Print.Svelte'),
     stars: '71k'
   },
   {
     icon: GatsbyIcon,
     framework: 'Gatsby',
     type: 'SSG',
-    description: t('Print.Gatsby'),
+    description: () => t('Print.Gatsby'),
     stars: '54.6k'
   },
   {
     icon: NuxtjsIcon,
     framework: 'Nuxt.js',
     type: 'SSR',
-    description: t('Print.Nuxtjs'),
+    description: () => t('Print.Nuxtjs'),
     stars: '46.4k'
   },
   {
     icon: DocusaurusIcon,
     framework: 'Docusaurus',
     type: 'SSG',
-    description: t('Print.Docusaurus'),
+    description: () => t('Print.Docusaurus'),
     stars: '46.1k'
   },
   {
     icon: AstroIcon,
     framework: 'Astro',
     type: 'MPA',
-    description: t('Print.Astro'),
+    description: () => t('Print.Astro'),
     stars: '31.9k'
   },
   {
     icon: SolidjsIcon,
     framework: 'Solid.js',
     type: 'SPA',
-    description: t('Print.Solidjs'),
+    description: () => t('Print.Solidjs'),
     stars: '28.4k'
   }
 ]

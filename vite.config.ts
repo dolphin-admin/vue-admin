@@ -1,7 +1,9 @@
+import { dirname, resolve } from 'node:path'
 import { fileURLToPath, URL } from 'node:url'
 
 import { dolphinAdminPresets } from '@dolphin-admin/auto-import'
 import { BootstrapAnimation } from '@dolphin-admin/bootstrap-animation'
+import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Icons from 'unplugin-icons/vite'
@@ -44,6 +46,13 @@ export default defineConfig(({ mode }) => {
     base: '/',
     plugins: [
       vue(),
+      VueI18nPlugin({
+        /**
+         * i18n 资源预编译
+         * @see https://vue-i18n.intlify.dev/guide/advanced/optimization.html
+         */
+        include: resolve(dirname(fileURLToPath(import.meta.url)), './src/locales/**')
+      }),
       AutoImport({
         dts: '@types/auto-imports.d.ts',
         include: [
@@ -114,7 +123,8 @@ export default defineConfig(({ mode }) => {
           },
           ...dolphinAdminPresets
         ],
-        dirs: ['src/api', 'src/hooks/**', 'src/store/**', 'src/utils']
+        dirs: ['src/api/**', 'src/hooks/**', 'src/store/**', 'src/utils/**'],
+        vueTemplate: true // 支持在 Vue 模版中使用
       }),
       Components({
         dts: '@types/components.d.ts',
@@ -125,6 +135,7 @@ export default defineConfig(({ mode }) => {
             names: ['RouterLink', 'RouterView']
           }
         ],
+        directives: true, // 自动导入指令
         dirs: ['src/components', 'src/layouts', 'src/providers', 'src/charts'],
         extensions: ['vue']
       }),
@@ -134,12 +145,7 @@ export default defineConfig(({ mode }) => {
     ],
     resolve: {
       alias: {
-        '@': fileURLToPath(new URL('./src', import.meta.url)),
-        /**
-         * NOTE: Fix vue-i18n loader bug
-         * @see https://github.com/intlify/vue-i18n-next/issues/789
-         */
-        'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js'
+        '@': fileURLToPath(new URL('./src', import.meta.url))
       },
       extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue']
     },

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Lang, MessageSchema } from '@/types'
+import type { MessageSchema } from '@/types'
 import UserAvatarIcon from '~icons/carbon/user-avatar-filled-alt'
 import NotificationIcon from '~icons/ic/baseline-notifications-none'
 import SettingIcon from '~icons/ic/outline-settings'
@@ -17,14 +17,11 @@ import MoonIcon from '~icons/line-md/sunny-filled-loop-to-moon-alt-filled-loop-t
 import type { UserOptionKey } from './private'
 import { languageOptions, userOptions } from './private'
 
-const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({
-  useScope: 'global'
-})
+const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
 const { REPO_GITHUB_URL, DISCORD_URL, DOCS_URL } = AppMetadata
 
-const { openNewWindow } = BrowserUtils
-
+const langStore = useLangStore()
 const themeStore = useThemeStore()
 const sidebarStore = useSidebarStore()
 const userStore = useUserStore()
@@ -38,12 +35,12 @@ const languages = ref(languageOptions)
 /**
  * 重置语言选项，当前语言不可选
  */
-const resetLanguageOptions = (lang: Lang) =>
+const resetLanguageOptions = (lang: string) =>
   setTimeout(() => {
-    languages.value.forEach((language) => {
-      const currentLanguage = language
-      currentLanguage.disabled = currentLanguage.key === lang
-    })
+    languages.value = languages.value.map((language) => ({
+      ...language,
+      disabled: language.key === lang
+    }))
   }, 150)
 
 /**
@@ -54,12 +51,10 @@ const resetLanguageOptions = (lang: Lang) =>
  * - 更新 Document 的标题
  * - 将选择的语言存储到 localStorage 中，以便下次进入应用时加载上次选择的语言
  */
-const handleUpdateLocale = (lang: Lang) => {
+const handleUpdateLang = (lang: string) => {
   resetLanguageOptions(lang)
-  locale.value = lang
-  themeStore.changeLocale(lang)
+  langStore.setLang(lang)
   SiteUtils.setDocumentTitle(route.meta.title)
-  LangUtils.setLang(lang)
 }
 
 /**
@@ -94,9 +89,7 @@ const selectUserOption = (key: UserOptionKey) => {
   }
 }
 
-onMounted(() => {
-  resetLanguageOptions(locale.value)
-})
+onMounted(() => resetLanguageOptions(langStore.lang))
 </script>
 
 <template>
@@ -133,7 +126,7 @@ onMounted(() => {
             size="20"
             color="#5865F2"
             :component="DiscordIcon"
-            @click="openNewWindow(DISCORD_URL)"
+            @click="() => BrowserUtils.openNewWindow(DISCORD_URL)"
           />
         </template>
         Discord
@@ -148,7 +141,7 @@ onMounted(() => {
             class="cursor-pointer"
             size="20"
             :component="GithubIcon"
-            @click="openNewWindow(REPO_GITHUB_URL)"
+            @click="() => BrowserUtils.openNewWindow(REPO_GITHUB_URL)"
           />
         </template>
         GitHub
@@ -163,7 +156,7 @@ onMounted(() => {
             class="cursor-pointer"
             size="20"
             :component="DocsIcon"
-            @click="openNewWindow(DOCS_URL)"
+            @click="() => BrowserUtils.openNewWindow(DOCS_URL)"
           />
         </template>
         {{ t('Common.Docs') }}
@@ -203,7 +196,7 @@ onMounted(() => {
       <NDropdown
         trigger="hover"
         :options="languages"
-        @select="handleUpdateLocale"
+        @select="handleUpdateLang"
       >
         <NIcon
           class="cursor-pointer"
@@ -220,13 +213,9 @@ onMounted(() => {
           <NIcon
             class="cursor-pointer"
             size="20"
-            :color="themeStore.themeMode === 'light' ? '#FDC022' : '#FED736'"
-            :component="themeStore.themeMode === 'light' ? SunIcon : MoonIcon"
-            @click="
-              themeStore.changeThemeMode(
-                themeStore.themeMode === 'light' ? 'dark' : 'light'
-              )
-            "
+            :color="themeStore.theme === 'light' ? '#FDC022' : '#FED736'"
+            :component="themeStore.theme === 'light' ? SunIcon : MoonIcon"
+            @click="() => themeStore.toggleTheme()"
           />
         </template>
         {{ t('Header.SwitchTheme') }}
@@ -256,7 +245,7 @@ onMounted(() => {
         >
           <template v-if="userStore.user.avatarUrl">
             <NAvatar
-              class="cursor-pointer select-none shadow-md !transition-all hover:opacity-90 active:opacity-70"
+              class="cursor-pointer shadow-md !transition-all hover:opacity-90 active:opacity-70"
               round
               size="small"
               :src="userStore.user.avatarUrl"

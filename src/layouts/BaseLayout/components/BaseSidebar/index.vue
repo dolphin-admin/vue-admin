@@ -35,21 +35,15 @@ watch(
 <template>
   <div
     class="absolute inset-y-0 left-0 z-[100] h-full border-y border-r border-gray-300 bg-default-light shadow-sm transition-[width] dark:border-gray-950 dark:bg-default-dark sm:static"
-    :class="[
-      sidebarStore.isDisplay
-        ? sidebarStore.isCollapse
-          ? 'w-16'
-          : 'w-56'
-        : 'w-0'
-    ]"
+    :class="[sidebarStore.isDisplay ? (sidebarStore.isCollapse ? 'w-16' : 'w-56') : 'w-0']"
   >
     <!-- Header -->
     <div
-      class="flex h-14 w-full select-none items-center justify-center"
+      class="flex h-14 w-full items-center justify-center"
       @click="router.push('/')"
     >
       <img
-        class="animate-pulse cursor-pointer select-none"
+        class="animate-pulse cursor-pointer"
         width="36"
         height="36"
         src="@/assets/images/favicon.png"

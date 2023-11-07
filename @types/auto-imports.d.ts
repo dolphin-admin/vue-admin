@@ -7,15 +7,16 @@ export {}
 declare global {
   const AppMetadata: typeof import('@/constants')['AppMetadata']
   const AuthAPI: typeof import('../src/api/auth')['AuthAPI']
-  const AuthUtils: typeof import('../src/utils/auth/index')['AuthUtils']
+  const AuthUtils: typeof import('@dolphin-admin/utils')['AuthUtils']
   const BasePageModel: typeof import('@/constants')['BasePageModel']
   const BrowserUtils: typeof import('@dolphin-admin/utils')['BrowserUtils']
   const DictionaryAPI: typeof import('../src/api/dictionaries')['DictionaryAPI']
   const EffectScope: typeof import('vue')['EffectScope']
-  const ExcelUtils: typeof import('../src/utils/excel/index')['ExcelUtils']
-  const GitHubAuthUtils: typeof import('../src/utils/github/index')['GitHubAuthUtils']
+  const ExcelUtils: typeof import('../src/utils/excel')['ExcelUtils']
+  const GitHubAuthUtils: typeof import('../src/utils/github')['GitHubAuthUtils']
   const GlobalEnvConfig: typeof import('@/constants')['GlobalEnvConfig']
-  const LangUtils: typeof import('../src/utils/lang/index')['LangUtils']
+  const GoogleAuthUtils: typeof import('../src/utils/google')['GoogleAuthUtils']
+  const LangUtils: typeof import('@dolphin-admin/utils')['LangUtils']
   const NAvatar: typeof import('naive-ui')['NAvatar']
   const NButton: typeof import('naive-ui')['NButton']
   const NEllipsis: typeof import('naive-ui')['NEllipsis']
@@ -24,21 +25,21 @@ declare global {
   const NInput: typeof import('naive-ui')['NInput']
   const NPopconfirm: typeof import('naive-ui')['NPopconfirm']
   const NTag: typeof import('naive-ui')['NTag']
-  const NavigationUtils: typeof import('../src/utils/navigation/index')['NavigationUtils']
-  const PermissionUtils: typeof import('../src/utils/permission/index')['PermissionUtils']
-  const QRCodeUtils: typeof import('../src/utils/qrcode/index')['QRCodeUtils']
-  const RenderUtils: typeof import('../src/utils/render/index')['RenderUtils']
+  const NaiveUtils: typeof import('../src/utils/naive')['NaiveUtils']
+  const NavigationUtils: typeof import('../src/utils/navigation')['NavigationUtils']
+  const PermissionUtils: typeof import('../src/utils/permission')['PermissionUtils']
+  const QRCodeUtils: typeof import('../src/utils/qrcode')['QRCodeUtils']
+  const RenderUtils: typeof import('../src/utils/render')['RenderUtils']
   const RouterLink: typeof import('vue-router')['RouterLink']
   const RouterView: typeof import('vue-router')['RouterView']
   const SiteUtils: typeof import('../src/utils/site')['SiteUtils']
-  const ThemeUtils: typeof import('../src/utils/theme/index')['ThemeUtils']
+  const ThemeUtils: typeof import('@dolphin-admin/utils')['ThemeUtils']
   const TimeUtils: typeof import('@dolphin-admin/utils')['TimeUtils']
   const UploadAPI: typeof import('../src/api/upload')['UploadAPI']
   const UserAPI: typeof import('../src/api/users')['UserAPI']
   const UserTrafficAPI: typeof import('../src/api/user-traffics')['UserTrafficAPI']
-  const UserTrafficUtils: typeof import('../src/utils/userTraffic/index')['UserTrafficUtils']
+  const UserTrafficUtils: typeof import('../src/utils/user-traffic')['UserTrafficUtils']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
-  const axios: typeof import('../src/api/axios')['default']
   const computed: typeof import('vue')['computed']
   const createApp: typeof import('vue')['createApp']
   const createDiscreteApi: typeof import('naive-ui')['createDiscreteApi']
@@ -52,6 +53,7 @@ declare global {
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const h: typeof import('vue')['h']
+  const httpRequest: typeof import('../src/api/axios')['httpRequest']
   const i18n: typeof import('@/i18n')['default']
   const inject: typeof import('vue')['inject']
   const isProxy: typeof import('vue')['isProxy']
@@ -107,6 +109,7 @@ declare global {
   const useFullscreen: typeof import('@vueuse/core')['useFullscreen']
   const useI18n: typeof import('vue-i18n')['useI18n']
   const useLG: typeof import('../src/hooks/useMediaQuery')['useLG']
+  const useLangStore: typeof import('../src/store/lang')['useLangStore']
   const useLink: typeof import('vue-router')['useLink']
   const useLoading: typeof import('../src/hooks/useLoading')['useLoading']
   const useLoadingBar: typeof import('naive-ui')['useLoadingBar']
@@ -137,4 +140,270 @@ declare global {
   export type { Component, ComponentPublicInstance, ComputedRef, ExtractDefaultPropTypes, ExtractPropTypes, ExtractPublicPropTypes, InjectionKey, PropType, Ref, VNode, WritableComputedRef } from 'vue'
   // @ts-ignore
   export type { DataTableBaseColumn, DataTableColumn, DataTableColumns, DataTableCreateSummary, DropdownOption, FormInst, FormItemInst, FormItemRule, FormRules, FormValidationError, MenuInst, MenuOption, UploadCustomRequestOptions, UploadFileInfo, UploadInst } from 'naive-ui'
+}
+// for vue template auto import
+import { UnwrapRef } from 'vue'
+declare module 'vue' {
+  interface ComponentCustomProperties {
+    readonly AppMetadata: UnwrapRef<typeof import('@/constants')['AppMetadata']>
+    readonly AuthAPI: UnwrapRef<typeof import('../src/api/auth')['AuthAPI']>
+    readonly AuthUtils: UnwrapRef<typeof import('@dolphin-admin/utils')['AuthUtils']>
+    readonly BasePageModel: UnwrapRef<typeof import('@/constants')['BasePageModel']>
+    readonly BrowserUtils: UnwrapRef<typeof import('@dolphin-admin/utils')['BrowserUtils']>
+    readonly DictionaryAPI: UnwrapRef<typeof import('../src/api/dictionaries')['DictionaryAPI']>
+    readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly ExcelUtils: UnwrapRef<typeof import('../src/utils/excel')['ExcelUtils']>
+    readonly GitHubAuthUtils: UnwrapRef<typeof import('../src/utils/github')['GitHubAuthUtils']>
+    readonly GlobalEnvConfig: UnwrapRef<typeof import('@/constants')['GlobalEnvConfig']>
+    readonly GoogleAuthUtils: UnwrapRef<typeof import('../src/utils/google')['GoogleAuthUtils']>
+    readonly LangUtils: UnwrapRef<typeof import('@dolphin-admin/utils')['LangUtils']>
+    readonly NAvatar: UnwrapRef<typeof import('naive-ui')['NAvatar']>
+    readonly NButton: UnwrapRef<typeof import('naive-ui')['NButton']>
+    readonly NEllipsis: UnwrapRef<typeof import('naive-ui')['NEllipsis']>
+    readonly NIcon: UnwrapRef<typeof import('naive-ui')['NIcon']>
+    readonly NImage: UnwrapRef<typeof import('naive-ui')['NImage']>
+    readonly NInput: UnwrapRef<typeof import('naive-ui')['NInput']>
+    readonly NPopconfirm: UnwrapRef<typeof import('naive-ui')['NPopconfirm']>
+    readonly NTag: UnwrapRef<typeof import('naive-ui')['NTag']>
+    readonly NaiveUtils: UnwrapRef<typeof import('../src/utils/naive')['NaiveUtils']>
+    readonly NavigationUtils: UnwrapRef<typeof import('../src/utils/navigation')['NavigationUtils']>
+    readonly PermissionUtils: UnwrapRef<typeof import('../src/utils/permission')['PermissionUtils']>
+    readonly QRCodeUtils: UnwrapRef<typeof import('../src/utils/qrcode')['QRCodeUtils']>
+    readonly RenderUtils: UnwrapRef<typeof import('../src/utils/render')['RenderUtils']>
+    readonly RouterLink: UnwrapRef<typeof import('vue-router')['RouterLink']>
+    readonly RouterView: UnwrapRef<typeof import('vue-router')['RouterView']>
+    readonly SiteUtils: UnwrapRef<typeof import('../src/utils/site')['SiteUtils']>
+    readonly ThemeUtils: UnwrapRef<typeof import('@dolphin-admin/utils')['ThemeUtils']>
+    readonly TimeUtils: UnwrapRef<typeof import('@dolphin-admin/utils')['TimeUtils']>
+    readonly UploadAPI: UnwrapRef<typeof import('../src/api/upload')['UploadAPI']>
+    readonly UserAPI: UnwrapRef<typeof import('../src/api/users')['UserAPI']>
+    readonly UserTrafficAPI: UnwrapRef<typeof import('../src/api/user-traffics')['UserTrafficAPI']>
+    readonly UserTrafficUtils: UnwrapRef<typeof import('../src/utils/user-traffic')['UserTrafficUtils']>
+    readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
+    readonly computed: UnwrapRef<typeof import('vue')['computed']>
+    readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
+    readonly createDiscreteApi: UnwrapRef<typeof import('naive-ui')['createDiscreteApi']>
+    readonly createPinia: UnwrapRef<typeof import('pinia')['createPinia']>
+    readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
+    readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
+    readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
+    readonly defineStore: UnwrapRef<typeof import('pinia')['defineStore']>
+    readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
+    readonly getActivePinia: UnwrapRef<typeof import('pinia')['getActivePinia']>
+    readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
+    readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
+    readonly h: UnwrapRef<typeof import('vue')['h']>
+    readonly httpRequest: UnwrapRef<typeof import('../src/api/axios')['httpRequest']>
+    readonly i18n: UnwrapRef<typeof import('@/i18n')['default']>
+    readonly inject: UnwrapRef<typeof import('vue')['inject']>
+    readonly isProxy: UnwrapRef<typeof import('vue')['isProxy']>
+    readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
+    readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
+    readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
+    readonly mapActions: UnwrapRef<typeof import('pinia')['mapActions']>
+    readonly mapGetters: UnwrapRef<typeof import('pinia')['mapGetters']>
+    readonly mapState: UnwrapRef<typeof import('pinia')['mapState']>
+    readonly mapStores: UnwrapRef<typeof import('pinia')['mapStores']>
+    readonly mapWritableState: UnwrapRef<typeof import('pinia')['mapWritableState']>
+    readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
+    readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
+    readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
+    readonly onBeforeMount: UnwrapRef<typeof import('vue')['onBeforeMount']>
+    readonly onBeforeRouteLeave: UnwrapRef<typeof import('vue-router')['onBeforeRouteLeave']>
+    readonly onBeforeRouteUpdate: UnwrapRef<typeof import('vue-router')['onBeforeRouteUpdate']>
+    readonly onBeforeUnmount: UnwrapRef<typeof import('vue')['onBeforeUnmount']>
+    readonly onBeforeUpdate: UnwrapRef<typeof import('vue')['onBeforeUpdate']>
+    readonly onDeactivated: UnwrapRef<typeof import('vue')['onDeactivated']>
+    readonly onErrorCaptured: UnwrapRef<typeof import('vue')['onErrorCaptured']>
+    readonly onMounted: UnwrapRef<typeof import('vue')['onMounted']>
+    readonly onRenderTracked: UnwrapRef<typeof import('vue')['onRenderTracked']>
+    readonly onRenderTriggered: UnwrapRef<typeof import('vue')['onRenderTriggered']>
+    readonly onScopeDispose: UnwrapRef<typeof import('vue')['onScopeDispose']>
+    readonly onServerPrefetch: UnwrapRef<typeof import('vue')['onServerPrefetch']>
+    readonly onUnmounted: UnwrapRef<typeof import('vue')['onUnmounted']>
+    readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
+    readonly provide: UnwrapRef<typeof import('vue')['provide']>
+    readonly reactive: UnwrapRef<typeof import('vue')['reactive']>
+    readonly readonly: UnwrapRef<typeof import('vue')['readonly']>
+    readonly ref: UnwrapRef<typeof import('vue')['ref']>
+    readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
+    readonly setActivePinia: UnwrapRef<typeof import('pinia')['setActivePinia']>
+    readonly setMapStoreSuffix: UnwrapRef<typeof import('pinia')['setMapStoreSuffix']>
+    readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
+    readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
+    readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
+    readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
+    readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
+    readonly toRef: UnwrapRef<typeof import('vue')['toRef']>
+    readonly toRefs: UnwrapRef<typeof import('vue')['toRefs']>
+    readonly toValue: UnwrapRef<typeof import('vue')['toValue']>
+    readonly triggerRef: UnwrapRef<typeof import('vue')['triggerRef']>
+    readonly unref: UnwrapRef<typeof import('vue')['unref']>
+    readonly use2XL: UnwrapRef<typeof import('../src/hooks/useMediaQuery')['use2XL']>
+    readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
+    readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
+    readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
+    readonly useDebounceFn: UnwrapRef<typeof import('@vueuse/core')['useDebounceFn']>
+    readonly useDialog: UnwrapRef<typeof import('naive-ui')['useDialog']>
+    readonly useEventListener: UnwrapRef<typeof import('@vueuse/core')['useEventListener']>
+    readonly useFullscreen: UnwrapRef<typeof import('@vueuse/core')['useFullscreen']>
+    readonly useI18n: UnwrapRef<typeof import('vue-i18n')['useI18n']>
+    readonly useLG: UnwrapRef<typeof import('../src/hooks/useMediaQuery')['useLG']>
+    readonly useLangStore: UnwrapRef<typeof import('../src/store/lang')['useLangStore']>
+    readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
+    readonly useLoading: UnwrapRef<typeof import('../src/hooks/useLoading')['useLoading']>
+    readonly useLoadingBar: UnwrapRef<typeof import('naive-ui')['useLoadingBar']>
+    readonly useMD: UnwrapRef<typeof import('../src/hooks/useMediaQuery')['useMD']>
+    readonly useMediaQuery: UnwrapRef<typeof import('@vueuse/core')['useMediaQuery']>
+    readonly useMessage: UnwrapRef<typeof import('naive-ui')['useMessage']>
+    readonly useMobile: UnwrapRef<typeof import('../src/hooks/useMediaQuery')['useMobile']>
+    readonly useNotification: UnwrapRef<typeof import('naive-ui')['useNotification']>
+    readonly useRoute: UnwrapRef<typeof import('vue-router')['useRoute']>
+    readonly useRouter: UnwrapRef<typeof import('vue-router')['useRouter']>
+    readonly useSM: UnwrapRef<typeof import('../src/hooks/useMediaQuery')['useSM']>
+    readonly useSidebarStore: UnwrapRef<typeof import('../src/store/sidebar')['useSidebarStore']>
+    readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
+    readonly useTabStore: UnwrapRef<typeof import('../src/store/tab')['useTabStore']>
+    readonly useThemeStore: UnwrapRef<typeof import('../src/store/theme')['useThemeStore']>
+    readonly useTitle: UnwrapRef<typeof import('@vueuse/core')['useTitle']>
+    readonly useToggle: UnwrapRef<typeof import('@vueuse/core')['useToggle']>
+    readonly useUserStore: UnwrapRef<typeof import('../src/store/user')['useUserStore']>
+    readonly useXL: UnwrapRef<typeof import('../src/hooks/useMediaQuery')['useXL']>
+    readonly watch: UnwrapRef<typeof import('vue')['watch']>
+    readonly watchEffect: UnwrapRef<typeof import('vue')['watchEffect']>
+    readonly watchPostEffect: UnwrapRef<typeof import('vue')['watchPostEffect']>
+    readonly watchSyncEffect: UnwrapRef<typeof import('vue')['watchSyncEffect']>
+  }
+}
+declare module '@vue/runtime-core' {
+  interface ComponentCustomProperties {
+    readonly AppMetadata: UnwrapRef<typeof import('@/constants')['AppMetadata']>
+    readonly AuthAPI: UnwrapRef<typeof import('../src/api/auth')['AuthAPI']>
+    readonly AuthUtils: UnwrapRef<typeof import('@dolphin-admin/utils')['AuthUtils']>
+    readonly BasePageModel: UnwrapRef<typeof import('@/constants')['BasePageModel']>
+    readonly BrowserUtils: UnwrapRef<typeof import('@dolphin-admin/utils')['BrowserUtils']>
+    readonly DictionaryAPI: UnwrapRef<typeof import('../src/api/dictionaries')['DictionaryAPI']>
+    readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly ExcelUtils: UnwrapRef<typeof import('../src/utils/excel')['ExcelUtils']>
+    readonly GitHubAuthUtils: UnwrapRef<typeof import('../src/utils/github')['GitHubAuthUtils']>
+    readonly GlobalEnvConfig: UnwrapRef<typeof import('@/constants')['GlobalEnvConfig']>
+    readonly GoogleAuthUtils: UnwrapRef<typeof import('../src/utils/google')['GoogleAuthUtils']>
+    readonly LangUtils: UnwrapRef<typeof import('@dolphin-admin/utils')['LangUtils']>
+    readonly NAvatar: UnwrapRef<typeof import('naive-ui')['NAvatar']>
+    readonly NButton: UnwrapRef<typeof import('naive-ui')['NButton']>
+    readonly NEllipsis: UnwrapRef<typeof import('naive-ui')['NEllipsis']>
+    readonly NIcon: UnwrapRef<typeof import('naive-ui')['NIcon']>
+    readonly NImage: UnwrapRef<typeof import('naive-ui')['NImage']>
+    readonly NInput: UnwrapRef<typeof import('naive-ui')['NInput']>
+    readonly NPopconfirm: UnwrapRef<typeof import('naive-ui')['NPopconfirm']>
+    readonly NTag: UnwrapRef<typeof import('naive-ui')['NTag']>
+    readonly NaiveUtils: UnwrapRef<typeof import('../src/utils/naive')['NaiveUtils']>
+    readonly NavigationUtils: UnwrapRef<typeof import('../src/utils/navigation')['NavigationUtils']>
+    readonly PermissionUtils: UnwrapRef<typeof import('../src/utils/permission')['PermissionUtils']>
+    readonly QRCodeUtils: UnwrapRef<typeof import('../src/utils/qrcode')['QRCodeUtils']>
+    readonly RenderUtils: UnwrapRef<typeof import('../src/utils/render')['RenderUtils']>
+    readonly RouterLink: UnwrapRef<typeof import('vue-router')['RouterLink']>
+    readonly RouterView: UnwrapRef<typeof import('vue-router')['RouterView']>
+    readonly SiteUtils: UnwrapRef<typeof import('../src/utils/site')['SiteUtils']>
+    readonly ThemeUtils: UnwrapRef<typeof import('@dolphin-admin/utils')['ThemeUtils']>
+    readonly TimeUtils: UnwrapRef<typeof import('@dolphin-admin/utils')['TimeUtils']>
+    readonly UploadAPI: UnwrapRef<typeof import('../src/api/upload')['UploadAPI']>
+    readonly UserAPI: UnwrapRef<typeof import('../src/api/users')['UserAPI']>
+    readonly UserTrafficAPI: UnwrapRef<typeof import('../src/api/user-traffics')['UserTrafficAPI']>
+    readonly UserTrafficUtils: UnwrapRef<typeof import('../src/utils/user-traffic')['UserTrafficUtils']>
+    readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
+    readonly computed: UnwrapRef<typeof import('vue')['computed']>
+    readonly createApp: UnwrapRef<typeof import('vue')['createApp']>
+    readonly createDiscreteApi: UnwrapRef<typeof import('naive-ui')['createDiscreteApi']>
+    readonly createPinia: UnwrapRef<typeof import('pinia')['createPinia']>
+    readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
+    readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
+    readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
+    readonly defineStore: UnwrapRef<typeof import('pinia')['defineStore']>
+    readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
+    readonly getActivePinia: UnwrapRef<typeof import('pinia')['getActivePinia']>
+    readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
+    readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
+    readonly h: UnwrapRef<typeof import('vue')['h']>
+    readonly httpRequest: UnwrapRef<typeof import('../src/api/axios')['httpRequest']>
+    readonly i18n: UnwrapRef<typeof import('@/i18n')['default']>
+    readonly inject: UnwrapRef<typeof import('vue')['inject']>
+    readonly isProxy: UnwrapRef<typeof import('vue')['isProxy']>
+    readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
+    readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
+    readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
+    readonly mapActions: UnwrapRef<typeof import('pinia')['mapActions']>
+    readonly mapGetters: UnwrapRef<typeof import('pinia')['mapGetters']>
+    readonly mapState: UnwrapRef<typeof import('pinia')['mapState']>
+    readonly mapStores: UnwrapRef<typeof import('pinia')['mapStores']>
+    readonly mapWritableState: UnwrapRef<typeof import('pinia')['mapWritableState']>
+    readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
+    readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
+    readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
+    readonly onBeforeMount: UnwrapRef<typeof import('vue')['onBeforeMount']>
+    readonly onBeforeRouteLeave: UnwrapRef<typeof import('vue-router')['onBeforeRouteLeave']>
+    readonly onBeforeRouteUpdate: UnwrapRef<typeof import('vue-router')['onBeforeRouteUpdate']>
+    readonly onBeforeUnmount: UnwrapRef<typeof import('vue')['onBeforeUnmount']>
+    readonly onBeforeUpdate: UnwrapRef<typeof import('vue')['onBeforeUpdate']>
+    readonly onDeactivated: UnwrapRef<typeof import('vue')['onDeactivated']>
+    readonly onErrorCaptured: UnwrapRef<typeof import('vue')['onErrorCaptured']>
+    readonly onMounted: UnwrapRef<typeof import('vue')['onMounted']>
+    readonly onRenderTracked: UnwrapRef<typeof import('vue')['onRenderTracked']>
+    readonly onRenderTriggered: UnwrapRef<typeof import('vue')['onRenderTriggered']>
+    readonly onScopeDispose: UnwrapRef<typeof import('vue')['onScopeDispose']>
+    readonly onServerPrefetch: UnwrapRef<typeof import('vue')['onServerPrefetch']>
+    readonly onUnmounted: UnwrapRef<typeof import('vue')['onUnmounted']>
+    readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
+    readonly provide: UnwrapRef<typeof import('vue')['provide']>
+    readonly reactive: UnwrapRef<typeof import('vue')['reactive']>
+    readonly readonly: UnwrapRef<typeof import('vue')['readonly']>
+    readonly ref: UnwrapRef<typeof import('vue')['ref']>
+    readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
+    readonly setActivePinia: UnwrapRef<typeof import('pinia')['setActivePinia']>
+    readonly setMapStoreSuffix: UnwrapRef<typeof import('pinia')['setMapStoreSuffix']>
+    readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
+    readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
+    readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
+    readonly storeToRefs: UnwrapRef<typeof import('pinia')['storeToRefs']>
+    readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
+    readonly toRef: UnwrapRef<typeof import('vue')['toRef']>
+    readonly toRefs: UnwrapRef<typeof import('vue')['toRefs']>
+    readonly toValue: UnwrapRef<typeof import('vue')['toValue']>
+    readonly triggerRef: UnwrapRef<typeof import('vue')['triggerRef']>
+    readonly unref: UnwrapRef<typeof import('vue')['unref']>
+    readonly use2XL: UnwrapRef<typeof import('../src/hooks/useMediaQuery')['use2XL']>
+    readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
+    readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
+    readonly useCssVars: UnwrapRef<typeof import('vue')['useCssVars']>
+    readonly useDebounceFn: UnwrapRef<typeof import('@vueuse/core')['useDebounceFn']>
+    readonly useDialog: UnwrapRef<typeof import('naive-ui')['useDialog']>
+    readonly useEventListener: UnwrapRef<typeof import('@vueuse/core')['useEventListener']>
+    readonly useFullscreen: UnwrapRef<typeof import('@vueuse/core')['useFullscreen']>
+    readonly useI18n: UnwrapRef<typeof import('vue-i18n')['useI18n']>
+    readonly useLG: UnwrapRef<typeof import('../src/hooks/useMediaQuery')['useLG']>
+    readonly useLangStore: UnwrapRef<typeof import('../src/store/lang')['useLangStore']>
+    readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
+    readonly useLoading: UnwrapRef<typeof import('../src/hooks/useLoading')['useLoading']>
+    readonly useLoadingBar: UnwrapRef<typeof import('naive-ui')['useLoadingBar']>
+    readonly useMD: UnwrapRef<typeof import('../src/hooks/useMediaQuery')['useMD']>
+    readonly useMediaQuery: UnwrapRef<typeof import('@vueuse/core')['useMediaQuery']>
+    readonly useMessage: UnwrapRef<typeof import('naive-ui')['useMessage']>
+    readonly useMobile: UnwrapRef<typeof import('../src/hooks/useMediaQuery')['useMobile']>
+    readonly useNotification: UnwrapRef<typeof import('naive-ui')['useNotification']>
+    readonly useRoute: UnwrapRef<typeof import('vue-router')['useRoute']>
+    readonly useRouter: UnwrapRef<typeof import('vue-router')['useRouter']>
+    readonly useSM: UnwrapRef<typeof import('../src/hooks/useMediaQuery')['useSM']>
+    readonly useSidebarStore: UnwrapRef<typeof import('../src/store/sidebar')['useSidebarStore']>
+    readonly useSlots: UnwrapRef<typeof import('vue')['useSlots']>
+    readonly useTabStore: UnwrapRef<typeof import('../src/store/tab')['useTabStore']>
+    readonly useThemeStore: UnwrapRef<typeof import('../src/store/theme')['useThemeStore']>
+    readonly useTitle: UnwrapRef<typeof import('@vueuse/core')['useTitle']>
+    readonly useToggle: UnwrapRef<typeof import('@vueuse/core')['useToggle']>
+    readonly useUserStore: UnwrapRef<typeof import('../src/store/user')['useUserStore']>
+    readonly useXL: UnwrapRef<typeof import('../src/hooks/useMediaQuery')['useXL']>
+    readonly watch: UnwrapRef<typeof import('vue')['watch']>
+    readonly watchEffect: UnwrapRef<typeof import('vue')['watchEffect']>
+    readonly watchPostEffect: UnwrapRef<typeof import('vue')['watchPostEffect']>
+    readonly watchSyncEffect: UnwrapRef<typeof import('vue')['watchSyncEffect']>
+  }
 }

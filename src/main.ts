@@ -1,6 +1,4 @@
 import '@/assets/styles/main.scss'
-import 'vfonts/OpenSans.css'
-import 'vfonts/FiraCode.css'
 import 'nprogress/nprogress.css'
 
 import { sendNotification } from '@tauri-apps/api/notification'
@@ -11,7 +9,7 @@ import router from '@/router'
 
 import App from './App.vue'
 
-const { FAVICON_URL } = AppMetadata
+const { APP_NAME, FAVICON_URL } = AppMetadata
 
 // 初始化 Vue 应用前执行脚本
 BrowserUtils.loadFavicon(FAVICON_URL) // 加载 favicon
@@ -25,15 +23,18 @@ app.use(i18n)
 app.use(pinia)
 app.use(router)
 app.use(directives)
+/**
+ * VueUse Motion
+ * @see https://motion.vueuse.org/
+ */
 app.use(MotionPlugin)
-
 app.mount('#app')
 
 // PC 端调用系统弹窗
 if (GlobalEnvConfig.IS_DEV) {
   sendNotification({
-    title: `🐬${AppMetadata.APP_NAME}`,
+    title: `🐬${APP_NAME}`,
     body: i18n.global.t('Notification.Desktop.EnterSystem'),
-    icon: AppMetadata.FAVICON_URL
+    icon: FAVICON_URL
   })
 }

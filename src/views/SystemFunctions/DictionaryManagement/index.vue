@@ -99,8 +99,7 @@ const handleDelete = async (id: number) => {
   if (deleteLoading.value) return
   deleteLoadingDispatcher.loading()
   try {
-    const { message: successMessage } =
-      await DictionaryAPI.deleteDictionaryById(id)
+    const { message: successMessage } = await DictionaryAPI.deleteDictionaryById(id)
     message.success(successMessage!)
     queryList()
   } catch (error: any) {
@@ -170,8 +169,7 @@ const columns = ref<DataTableColumns<Dictionary>>([
           bordered: false
         },
         {
-          default: () =>
-            t(row.status === 1 ? 'Common.Enable' : 'Common.Disable')
+          default: () => t(row.status === 1 ? 'Common.Enable' : 'Common.Disable')
         }
       )
     }
@@ -294,17 +292,14 @@ const handleConfirmDialog = async () => {
 
   try {
     if (isEdit.value) {
-      const { message: successMessage } =
-        await DictionaryAPI.updateDictionaryById(
-          formData.value.id!,
-          formData.value
-        )
+      const { message: successMessage } = await DictionaryAPI.updateDictionaryById(
+        formData.value.id!,
+        formData.value
+      )
       message.success(successMessage!)
     } else {
       formData.value.createAt = new Date().toISOString()
-      const { message: successMessage } = await DictionaryAPI.createDictionary(
-        formData.value
-      )
+      const { message: successMessage } = await DictionaryAPI.createDictionary(formData.value)
       message.success(successMessage!)
     }
     queryList()
@@ -331,12 +326,8 @@ onMounted(() => queryList())
 <template>
   <DataTableLayout>
     <template #operate>
-      <div
-        class="flex flex-col items-center space-y-2 sm:flex-row sm:justify-between sm:space-y-0"
-      >
-        <div
-          class="flex flex-col items-center space-y-2 sm:flex-row sm:space-x-3 sm:space-y-0"
-        >
+      <div class="flex flex-col items-center space-y-2 sm:flex-row sm:justify-between sm:space-y-0">
+        <div class="flex flex-col items-center space-y-2 sm:flex-row sm:space-x-3 sm:space-y-0">
           <div class="flex w-full items-center !space-x-2 sm:w-fit">
             <NInput
               v-model:value="queryParams.searchText"
@@ -369,9 +360,7 @@ onMounted(() => queryList())
             @update:value="() => queryList()"
           />
         </div>
-        <div
-          class="flex w-full items-center justify-between space-x-3 sm:justify-end"
-        >
+        <div class="flex w-full items-center justify-between space-x-3 sm:justify-end">
           <NTooltip>
             <template #trigger>
               <NButton

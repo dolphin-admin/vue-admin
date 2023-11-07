@@ -10,8 +10,6 @@ const directivesList: any = {
 
 export const directives = {
   install(app: App<Element>) {
-    Object.keys(directivesList).forEach((key) =>
-      app.directive(key, directivesList[key])
-    )
+    Object.keys(directivesList).forEach((key) => app.directive(key, directivesList[key]))
   }
 }

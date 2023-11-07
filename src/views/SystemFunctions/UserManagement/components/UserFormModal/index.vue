@@ -159,8 +159,7 @@ const handleSubmit = async () => {
     }
   } else {
     try {
-      const { message: successMessage } =
-        await UserAPI.createUser(createFormData)
+      const { message: successMessage } = await UserAPI.createUser(createFormData)
       message.success(successMessage!)
       createFormData.username = ''
       createFormData.password = ''
@@ -183,7 +182,7 @@ const handleCancel = () => {
 }
 
 /**
- * TODO: 重构
+ * @todo 重构
  * 使用参数传递的方式，不要用 defineExpose 暴露方法给父组件
  */
 const handleShowModal = () => {
@@ -217,9 +216,7 @@ defineExpose({
     v-model:show="showModal"
     class="!my-6"
     preset="dialog"
-    :title="
-      isEdit ? t('UserManagement.EditUser') : t('UserManagement.CreateUser')
-    "
+    :title="isEdit ? t('UserManagement.EditUser') : t('UserManagement.CreateUser')"
     :loading="submitLoading"
     :positive-text="t('Common.Confirm')"
     :negative-text="t('Common.Cancel')"

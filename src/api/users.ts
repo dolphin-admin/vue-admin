@@ -7,8 +7,6 @@ import type {
   User
 } from '@/types'
 
-import Request from './axios'
-
 export class UserAPI {
   private static USER_API_PREFIX = `${GlobalEnvConfig.BASE_API_PREFIX}/users`
 
@@ -16,7 +14,7 @@ export class UserAPI {
    * 用户列表
    */
   static getUsers(params: PageRequestModel) {
-    return Request.get<PageResponse<User[]>>(this.USER_API_PREFIX, {
+    return httpRequest.get<PageResponse<User[]>>(this.USER_API_PREFIX, {
       ...params
     })
   }
@@ -25,7 +23,7 @@ export class UserAPI {
    * 用户信息
    */
   static getUser(id: number) {
-    return Request.get<BaseResponse<User>>(`${this.USER_API_PREFIX}/${id}`)
+    return httpRequest.get<BaseResponse<User>>(`${this.USER_API_PREFIX}/${id}`)
   }
 
   /**
@@ -33,14 +31,14 @@ export class UserAPI {
    * @description 通过当前登录用户的 token 获取用户信息
    */
   static getUserInfo() {
-    return Request.get<BaseResponse<User>>(`${this.USER_API_PREFIX}/info`)
+    return httpRequest.get<BaseResponse<User>>(`${this.USER_API_PREFIX}/info`)
   }
 
   /**
    * 创建用户
    */
   static createUser(data: CreateUserModel) {
-    return Request.post<BaseResponse<User>>(this.USER_API_PREFIX, {
+    return httpRequest.post<BaseResponse<User>>(this.USER_API_PREFIX, {
       ...data
     })
   }
@@ -49,7 +47,7 @@ export class UserAPI {
    * 更新用户
    */
   static updateUser(id: number, data: User) {
-    return Request.patch<BaseResponse<User>>(`${this.USER_API_PREFIX}/${id}`, {
+    return httpRequest.patch<BaseResponse<User>>(`${this.USER_API_PREFIX}/${id}`, {
       ...data
     })
   }
@@ -58,37 +56,31 @@ export class UserAPI {
    * 启用用户
    */
   static enableUser(id: number) {
-    return Request.post<BaseResponse<User>>(
-      `${this.USER_API_PREFIX}/${id}/activate`
-    )
+    return httpRequest.post<BaseResponse<User>>(`${this.USER_API_PREFIX}/${id}/activate`)
   }
 
   /**
    * 禁用用户
    */
   static disableUser(id: number) {
-    return Request.post<BaseResponse<User>>(
-      `${this.USER_API_PREFIX}/${id}/deactivate`
-    )
+    return httpRequest.post<BaseResponse<User>>(`${this.USER_API_PREFIX}/${id}/deactivate`)
   }
 
   /**
    * 重置密码
    */
   static resetPassword(id: number, password: string) {
-    return Request.post<BaseResponse<User>>(
-      `${this.USER_API_PREFIX}/${id}/reset-password`,
-      { password }
-    )
+    return httpRequest.post<BaseResponse<User>>(`${this.USER_API_PREFIX}/${id}/reset-password`, {
+      password
+    })
   }
 
   /**
    * 修改密码
    */
   static changePassword(id: number, data: ChangePasswordModel) {
-    return Request.post<BaseResponse<User>>(
-      `${this.USER_API_PREFIX}/${id}/change-password`,
-      { ...data }
-    )
+    return httpRequest.post<BaseResponse<User>>(`${this.USER_API_PREFIX}/${id}/change-password`, {
+      ...data
+    })
   }
 }

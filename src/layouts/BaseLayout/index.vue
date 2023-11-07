@@ -1,14 +1,14 @@
 <script setup lang="ts">
+import type { Lang } from '@dolphin-admin/utils'
+
 import bitOceanSrc from '@/assets/images/bit_ocean.png'
-import type { Lang, MessageSchema } from '@/types'
+import type { MessageSchema } from '@/types'
 
 const { t } = useI18n<{ message: MessageSchema }, Lang>({
   useScope: 'global'
 })
 
 const { REPO_GITHUB_URL } = AppMetadata
-
-const { openNewWindow } = BrowserUtils
 
 const userStore = useUserStore()
 const route = useRoute()
@@ -44,7 +44,7 @@ const sendSystemNotification = () => {
             text: true,
             type: 'success',
             onClick: () => {
-              openNewWindow(REPO_GITHUB_URL)
+              BrowserUtils.openNewWindow(REPO_GITHUB_URL)
               n.destroy()
             }
           },

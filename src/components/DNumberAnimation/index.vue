@@ -41,9 +41,7 @@ const start = () => {
       clearInterval(currentInterval)
     }
     // 计算增量
-    let incrementNumber = Math.floor(
-      ((props.endValue - props.startValue) / props.duration) * 5
-    )
+    let incrementNumber = Math.floor(((props.endValue - props.startValue) / props.duration) * 5)
     if (incrementNumber < 1) {
       incrementNumber = 1
     }

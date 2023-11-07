@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import type { Lang } from '@dolphin-admin/utils'
 import dayjs from 'dayjs'
 
-import type { DictionaryData, Lang, MessageSchema, Sorter } from '@/types'
+import type { DictionaryData, MessageSchema, Sorter } from '@/types'
 import ResetIcon from '~icons/ic/round-refresh'
 import CreateIcon from '~icons/ic/sharp-add'
 import EditIcon from '~icons/ic/sharp-edit'
@@ -100,8 +101,7 @@ const handleDelete = async (id: number) => {
   if (deleteLoading.value) return
   deleteLoadingDispatcher.loading()
   try {
-    const { message: successMessage } =
-      await DictionaryAPI.deleteDictionaryItem(props.id, id)
+    const { message: successMessage } = await DictionaryAPI.deleteDictionaryItem(props.id, id)
     message.success(successMessage!)
     queryList()
   } catch (error: any) {
@@ -163,8 +163,7 @@ const columns = ref<DataTableColumns<DictionaryData>>([
           bordered: false
         },
         {
-          default: () =>
-            t(row.status === 1 ? 'Common.Enable' : 'Common.Disable')
+          default: () => t(row.status === 1 ? 'Common.Enable' : 'Common.Disable')
         }
       )
     }
@@ -288,17 +287,18 @@ const handleConfirmDialog = async () => {
 
   try {
     if (isEdit.value) {
-      const { message: successMessage } =
-        await DictionaryAPI.updateDictionaryItem(
-          props.id,
-          formData.value.id!,
-          formData.value
-        )
+      const { message: successMessage } = await DictionaryAPI.updateDictionaryItem(
+        props.id,
+        formData.value.id!,
+        formData.value
+      )
       message.success(successMessage!)
     } else {
       formData.value.createAt = new Date().toISOString()
-      const { message: successMessage } =
-        await DictionaryAPI.createDictionaryData(props.id, formData.value)
+      const { message: successMessage } = await DictionaryAPI.createDictionaryData(
+        props.id,
+        formData.value
+      )
       message.success(successMessage!)
     }
     queryList()
@@ -324,12 +324,8 @@ watch(
 <template>
   <DataTableLayout>
     <template #operate>
-      <div
-        class="flex flex-col items-center space-y-2 sm:flex-row sm:justify-between sm:space-y-0"
-      >
-        <div
-          class="flex flex-col items-center space-y-2 sm:flex-row sm:space-x-3 sm:space-y-0"
-        >
+      <div class="flex flex-col items-center space-y-2 sm:flex-row sm:justify-between sm:space-y-0">
+        <div class="flex flex-col items-center space-y-2 sm:flex-row sm:space-x-3 sm:space-y-0">
           <div class="flex w-full items-center !space-x-2 sm:w-fit">
             <NInput
               v-model:value="queryParams.searchText"
@@ -362,9 +358,7 @@ watch(
             @update:value="() => queryList()"
           />
         </div>
-        <div
-          class="flex w-full items-center justify-between space-x-3 sm:justify-end"
-        >
+        <div class="flex w-full items-center justify-between space-x-3 sm:justify-end">
           <NTooltip>
             <template #trigger>
               <NButton

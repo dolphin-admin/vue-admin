@@ -13,13 +13,14 @@ import type { PageModel } from '@/types'
 
 const { t } = i18n.global
 
+const langStore = useLangStore()
 const themeStore = useThemeStore()
 
 const { message } = createDiscreteApi(['message'], {
   configProviderProps: {
-    theme: themeStore.theme,
-    locale: themeStore.locale,
-    dateLocale: themeStore.dateLocale
+    theme: themeStore.naiveTheme,
+    locale: langStore.locale,
+    dateLocale: langStore.dateLocale
   }
 })
 
@@ -44,10 +45,7 @@ class Request {
         // 设置 token
         const { url } = req
         // 如果是基础接口请求，添加 token
-        if (
-          AuthUtils.isAuthenticated() &&
-          url?.startsWith(GlobalEnvConfig.BASE_API_PREFIX)
-        ) {
+        if (AuthUtils.isAuthenticated() && url?.startsWith(GlobalEnvConfig.BASE_API_PREFIX)) {
           req.headers.Authorization = AuthUtils.getAuthorization()
         }
         // 设置语言 TODO: 使用 Web 标准的 Accept-Language
@@ -153,11 +151,7 @@ class Request {
    * @param data 请求数据
    * @param config 请求配置
    */
-  post<T>(
-    url: string,
-    data?: Record<string, unknown>,
-    config?: AxiosRequestConfig
-  ): Promise<T> {
+  post<T>(url: string, data?: Record<string, unknown>, config?: AxiosRequestConfig): Promise<T> {
     return this.instance.post(url, data, config)
   }
 
@@ -167,11 +161,7 @@ class Request {
    * @param data 请求数据
    * @param config 请求配置
    */
-  put<T>(
-    url: string,
-    data?: Record<string, unknown>,
-    config?: AxiosRequestConfig
-  ): Promise<T> {
+  put<T>(url: string, data?: Record<string, unknown>, config?: AxiosRequestConfig): Promise<T> {
     return this.instance.put(url, data, config)
   }
 
@@ -195,13 +185,9 @@ class Request {
    * @param data 请求数据
    * @param config 请求配置
    */
-  patch<T>(
-    url: string,
-    data?: Record<string, unknown>,
-    config?: AxiosRequestConfig
-  ): Promise<T> {
+  patch<T>(url: string, data?: Record<string, unknown>, config?: AxiosRequestConfig): Promise<T> {
     return this.instance.patch(url, data, config)
   }
 }
 
-export default new Request()
+export const httpRequest = new Request()

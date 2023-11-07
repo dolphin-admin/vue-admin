@@ -162,7 +162,7 @@ const setReplace = (index: number) => {
       <NTag
         v-for="(tagItem, index) in tabStore.tabs"
         :key="tagItem.href"
-        class="!cursor-pointer !select-none"
+        class="!cursor-pointer"
         :type="route.path === tagItem.href ? 'primary' : 'default'"
         :closable="!(tabStore.tabs.length === 1 && tagItem.href === '/')"
         :draggable="true"

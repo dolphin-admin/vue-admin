@@ -19,11 +19,7 @@ const initChart = (data: { features: any }) => {
 
   let path = d3.geoPath().projection(projection)
 
-  const svg = d3
-    .select('#map')
-    .append('svg')
-    .attr('width', width)
-    .attr('height', height)
+  const svg = d3.select('#map').append('svg').attr('width', width).attr('height', height)
 
   const globe = svg
     .append('circle')
@@ -39,10 +35,7 @@ const initChart = (data: { features: any }) => {
       d3.drag().on('drag', () => {
         const rotate = projection.rotate()
         const k = sensitivity / projection.scale()
-        projection.rotate([
-          rotate[0] + d3.event.dx * k,
-          rotate[1] - d3.event.dy * k
-        ])
+        projection.rotate([rotate[0] + d3.event.dx * k, rotate[1] - d3.event.dy * k])
         path = d3.geoPath().projection(projection)
         svg.selectAll('path').attr('d', path)
       })
@@ -77,16 +70,10 @@ const initChart = (data: { features: any }) => {
     .style('stroke-width', 0.3)
     .style('opacity', 0.8)
     .on('mouseover', function (this: SVGCircleElement) {
-      d3.select(this)
-        .attr('opacity', 0.8)
-        .attr('fill', 'green')
-        .attr('stroke-width', 2)
+      d3.select(this).attr('opacity', 0.8).attr('fill', 'green').attr('stroke-width', 2)
     })
     .on('mouseout', function (this: SVGCircleElement) {
-      d3.select(this)
-        .attr('opacity', 1)
-        .attr('fill', 'skyblue')
-        .attr('stroke-width', 1)
+      d3.select(this).attr('opacity', 1).attr('fill', 'skyblue').attr('stroke-width', 1)
     })
     .append('title')
     .text((d: any) => `${d.properties.name}`)
@@ -121,9 +108,7 @@ const initChart = (data: { features: any }) => {
 }
 
 onMounted(() =>
-  fetch(
-    'https://raw.githubusercontent.com/recallwei/geojson/main/world/worldMap-zh.json'
-  )
+  fetch('https://raw.githubusercontent.com/recallwei/geojson/main/world/worldMap-zh.json')
     .then((res) => res.json())
     .then((data) => initChart(data as { features: any }))
 )

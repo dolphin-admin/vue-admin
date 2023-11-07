@@ -1,11 +1,6 @@
 import type { DirectiveBinding } from 'vue'
 
-const addWatermark = (
-  str: string,
-  parentNode: HTMLElement,
-  font: any,
-  textColor: string
-) => {
+const addWatermark = (str: string, parentNode: HTMLElement, font: any, textColor: string) => {
   const canvas = document.createElement('canvas')
   canvas.width = 120
   canvas.height = 80
@@ -22,11 +17,6 @@ const addWatermark = (
 
 export const watermark = {
   mounted(el: HTMLElement, binding: DirectiveBinding) {
-    addWatermark(
-      binding.value.text,
-      el,
-      binding.value.font,
-      binding.value.textColor
-    )
+    addWatermark(binding.value.text, el, binding.value.font, binding.value.textColor)
   }
 }

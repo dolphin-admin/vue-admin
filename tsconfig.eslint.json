@@ -4,12 +4,5 @@
     "noEmit": true,
     "allowJs": true
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "vite.config.ts",
-
-    "@types/**/*.d.ts"
-  ]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "vite.config.ts", "@types/**/*.d.ts"]
 }

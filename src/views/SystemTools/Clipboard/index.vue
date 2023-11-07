@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import type { Lang, MessageSchema } from '@/types'
+import { Lang } from '@dolphin-admin/utils'
+
+import type { MessageSchema } from '@/types'
 
 import { ChineseLyrics, EnglishLyrics } from './private'
 
@@ -28,10 +30,10 @@ watch(
   () => locale.value,
   () => {
     switch (locale.value) {
-      case 'zh_CN':
+      case Lang['zh-CN']:
         clipboardValue.value = ChineseLyrics
         break
-      case 'en_US':
+      case Lang['en-US']:
         clipboardValue.value = EnglishLyrics
         break
       default:

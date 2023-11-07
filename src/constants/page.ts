@@ -43,8 +43,7 @@ export class BasePageModel {
   order?: string
 
   constructor(pageModel?: PageModel) {
-    const { page, pageSize, searchText, startDate, endDate, sorters } =
-      pageModel ?? {}
+    const { page, pageSize, searchText, startDate, endDate, sorters } = pageModel ?? {}
     this.page = page ?? 1
     this.pageSize = pageSize ?? 10
     if (searchText) {

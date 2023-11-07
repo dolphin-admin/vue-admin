@@ -13,8 +13,7 @@ const menu = ref<MenuItem[]>([
   { label: '菜单4', key: 'handle' }
 ])
 
-const handleClick = (e: MenuItem) =>
-  message.success(t('RightClick.Clicked', { label: e.label }))
+const handleClick = (e: MenuItem) => message.success(t('RightClick.Clicked', { label: e.label }))
 </script>
 
 <template>
@@ -33,9 +32,7 @@ const handleClick = (e: MenuItem) =>
           :menu="menu"
           @select="handleClick"
         >
-          <div
-            class="flex h-96 w-full items-center justify-center bg-yellow-500"
-          >
+          <div class="flex h-96 w-full items-center justify-center bg-yellow-500">
             {{ t('RightClick.Tip') }}
           </div>
         </DRightClick>

@@ -1,3 +1,5 @@
+import { acceptHMRUpdate } from 'pinia'
+
 import type { Tab } from '@/types'
 
 export const useTabStore = defineStore('tab', () => {
@@ -47,3 +49,11 @@ export const useTabStore = defineStore('tab', () => {
     clearAll
   }
 })
+
+/**
+ * HMR
+ * @see https://pinia.vuejs.org/zh/cookbook/hot-module-replacement.html
+ */
+if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(useTabStore, import.meta.hot))
+}

@@ -1,7 +1,3 @@
-import type { MessageKeySchema } from '@/types'
-
-const { t: renderT } = i18n.global
-
 export class RenderUtils {
   /**
    * 渲染菜单文本
@@ -15,8 +11,7 @@ export class RenderUtils {
           tooltip: {
             placement: 'right',
             showArrow: false
-          },
-          class: 'select-none'
+          }
         },
         {
           default: label
@@ -41,13 +36,5 @@ export class RenderUtils {
           default: () => h(icon)
         }
       )
-  }
-
-  /**
-   * 渲染国际化文本
-   * @param key 国际化 key
-   */
-  static t(key: MessageKeySchema) {
-    return () => renderT(key)
   }
 }

@@ -1,6 +1,6 @@
-import type { Lang, PageRequestModel, PageResponse, UserTraffic } from '@/types'
+import type { Lang } from '@dolphin-admin/utils'
 
-import Request from './axios'
+import type { PageRequestModel, PageResponse, UserTraffic } from '@/types'
 
 export class UserTrafficAPI {
   private static USER_TRAFFIC_API_PREFIX = `${GlobalEnvConfig.BASE_API_PREFIX}/userTraffics`
@@ -9,12 +9,9 @@ export class UserTrafficAPI {
    * 用户流量列表
    */
   static getUserTraffics(params: PageRequestModel) {
-    return Request.get<PageResponse<UserTraffic[]>>(
-      this.USER_TRAFFIC_API_PREFIX,
-      {
-        ...params
-      }
-    )
+    return httpRequest.get<PageResponse<UserTraffic[]>>(this.USER_TRAFFIC_API_PREFIX, {
+      ...params
+    })
   }
 
   /**
@@ -26,17 +23,14 @@ export class UserTrafficAPI {
    * - 不支持设置请求头
    * - 认证方式通过 URL query 参数传递
    *
-   * @see https://developer.mozilla.org/zh-CN/docs/Web/API/Navigator/sendBeacon
+   * @see {@link https://developer.mozilla.org/zh-CN/docs/Web/API/Navigator/sendBeacon}
    *
-   * TODO: 没有考虑浏览器不支持 navigator.sendBeacon 方法的情况
+   * @todo 没有考虑浏览器不支持 navigator.sendBeacon 方法的情况
    */
   static reportUserTraffic(params: UserTraffic) {
     const authorization = AuthUtils.getAuthorization()
     const data = { data: params, authorization }
-    return navigator.sendBeacon(
-      `${this.USER_TRAFFIC_API_PREFIX}`,
-      JSON.stringify(data)
-    )
+    return navigator.sendBeacon(`${this.USER_TRAFFIC_API_PREFIX}`, JSON.stringify(data))
   }
 
   /**
@@ -71,7 +65,7 @@ export class UserTrafficAPI {
    * - 17 主要街道和次要街道
    * - 18	建筑
    *
-   * @see https://nominatim.org/release-docs/develop/api/Reverse/
+   * @see {@link https://nominatim.org/release-docs/develop/api/Reverse/}
    */
   static async getArea(
     latitude: number,
@@ -92,8 +86,7 @@ export class UserTrafficAPI {
     })
     try {
       const res = await fetch(
-        'https://nominatim.openstreetmap.org/reverse' +
-          `?${queryParams.toString()}`
+        `https://nominatim.openstreetmap.org/reverse?${queryParams.toString()}`
       )
       const data = await res.json()
       return data

@@ -97,7 +97,7 @@ onBeforeUnmount(() => handleDisconnect())
         >
           <div class="h-14 w-14 shrink-0">
             <img
-              class="cursor-pointer select-none rounded-full border"
+              class="cursor-pointer rounded-full border"
               width="50"
               height="50"
               alt=""

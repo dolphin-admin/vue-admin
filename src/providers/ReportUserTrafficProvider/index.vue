@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import type { Lang } from '@dolphin-admin/utils'
+
 import bitOceanSrc from '@/assets/images/bit_ocean.png'
 import type {
-  Lang,
   MessageSchema,
   NullableObj,
   UserTraffic,
@@ -21,7 +22,7 @@ const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({
   useScope: 'global'
 })
 
-const { VERSION: version } = AppMetadata
+const { VERSION } = AppMetadata
 
 const notification = useNotification()
 
@@ -32,7 +33,7 @@ const appInfo = reactive<NullableObj<UserTrafficAppInfo>>({
   // 用户 App 类型：Web PC、Web Mobile、Desktop、Mobile
   app: UserTrafficUtils.getDeviceType(),
   // 站点版本：从 app.config.ts 中获取
-  version,
+  version: VERSION,
   // 站点环境：从 Vite 环境变量中获取
   env: import.meta.env.MODE,
   // 用户 IP 地址：通过第三方接口获取
@@ -89,7 +90,7 @@ const setIP = (ip: string | null) => {
 /**
  * 设置用户来源
  * @param source 用户来源
- * TODO: 暂时还没有使用 source 字段
+ * @todo 暂时还没有使用 source 字段
  */
 // eslint-disable-next-line unused-imports/no-unused-vars, @typescript-eslint/no-unused-vars
 const setSource = (source: UserTrafficSource) => {
@@ -138,9 +139,7 @@ const computeRouteRecordTime = () => {
 /**
  * 设置坐标信息
  */
-const setGeoCoords = (
-  coords: NullableObj<Omit<UserTrafficGeographyInfo, 'area'>>
-) => {
+const setGeoCoords = (coords: NullableObj<Omit<UserTrafficGeographyInfo, 'area'>>) => {
   geographyInfo.latitude = coords.latitude
   geographyInfo.longitude = coords.longitude
   geographyInfo.altitude = coords.altitude
