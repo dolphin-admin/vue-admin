@@ -6,7 +6,7 @@ import type { GlobalThemeOverrides } from 'naive-ui'
 export const lightThemeOverrides: GlobalThemeOverrides = {
   common: {
     fontFamily:
-      'Nunito, Noto Sans SC, system-ui, -apple-system, Roboto, Helvetica Neue, Arial, sans-serif',
+      'Nunito, Noto Sans SC, Noto Color Emoji, system-ui, -apple-system, Roboto, Helvetica Neue, Arial, sans-serif',
     primaryColor: '#0078D7',
     primaryColorHover: '#0078D7',
     primaryColorPressed: '#0078D7',
@@ -30,7 +30,7 @@ export const lightThemeOverrides: GlobalThemeOverrides = {
 export const darkThemeOverrides: GlobalThemeOverrides = {
   common: {
     fontFamily:
-      'Nunito, Noto Sans SC, system-ui, -apple-system, Roboto, Helvetica Neue, Arial, sans-serif',
+      'Nunito, Noto Sans SC, Noto Color Emoji, system-ui, -apple-system, Roboto, Helvetica Neue, Arial, sans-serif',
     primaryColor: '#0078D7',
     primaryColorHover: '#0078D7',
     primaryColorPressed: '#0078D7',
