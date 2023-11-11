@@ -31,7 +31,8 @@ export const useLangStore = defineStore('lang', () => {
    * @param selectedLang 选择的语言
    */
   const onLangChange = (selectedLang: string) => {
-    LangUtils.setLang(selectedLang as Lang)
+    i18n.global.locale.value = selectedLang as Lang
+    LangUtils.setLang(selectedLang)
     LangUtils.setHtmlLang(selectedLang)
     switch (selectedLang) {
       case Lang['zh-CN']:

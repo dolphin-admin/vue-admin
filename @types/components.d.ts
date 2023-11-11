@@ -37,6 +37,7 @@ declare module 'vue' {
     NDatePicker: typeof import('naive-ui')['NDatePicker']
     NDivider: typeof import('naive-ui')['NDivider']
     NDropdown: typeof import('naive-ui')['NDropdown']
+    NEllipsis: typeof import('naive-ui')['NEllipsis']
     NForm: typeof import('naive-ui')['NForm']
     NFormItem: typeof import('naive-ui')['NFormItem']
     NGlobalStyle: typeof import('naive-ui')['NGlobalStyle']

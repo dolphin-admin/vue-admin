@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { Lang } from '@dolphin-admin/utils'
+
 import type { MessageSchema } from '@/types'
 import UserAvatarIcon from '~icons/carbon/user-avatar-filled-alt'
 import NotificationIcon from '~icons/ic/baseline-notifications-none'
@@ -14,8 +16,11 @@ import ShowMenuIcon from '~icons/line-md/menu-fold-right'
 import SunIcon from '~icons/line-md/moon-alt-to-sunny-outline-loop-transition'
 import MoonIcon from '~icons/line-md/sunny-filled-loop-to-moon-alt-filled-loop-transition'
 
-import type { UserOptionKey } from './private'
-import { languageOptions, userOptions } from './private'
+enum UserAction {
+  'USER.INFO',
+  'CHANGE.PASSWORD',
+  'QUIT'
+}
 
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
@@ -30,7 +35,25 @@ const router = useRouter()
 const message = useMessage()
 const { isFullscreen, toggle: toggleFullscreen } = useFullscreen()
 
-const languages = ref(languageOptions)
+const languages = ref([
+  { label: 'English', key: Lang['en-US'], disabled: false },
+  { label: '简体中文', key: Lang['zh-CN'], disabled: false }
+])
+
+const userOptions = ref([
+  {
+    label: () => t('Menu.UserInfo'),
+    key: UserAction['USER.INFO']
+  },
+  {
+    label: () => t('Header.ChangePassword'),
+    key: UserAction['CHANGE.PASSWORD']
+  },
+  {
+    label: () => t('Header.Logout'),
+    key: UserAction.QUIT
+  }
+])
 
 /**
  * 重置语言选项，当前语言不可选
@@ -71,18 +94,16 @@ const logout = () =>
  * 选择用户下拉框选项
  * @param key 选项的 key
  */
-const selectUserOption = (key: UserOptionKey) => {
+const selectUserOption = (key: UserAction) => {
   switch (key) {
-    case 'Lock':
-      break
-    case 'Quit':
-      logout()
-      break
-    case 'UserInfo':
+    case UserAction['USER.INFO']:
       router.push('/user-info')
       break
-    case 'ChangePassword':
+    case UserAction['CHANGE.PASSWORD']:
       router.push('/change-password')
+      break
+    case UserAction.QUIT:
+      logout()
       break
     default:
       break

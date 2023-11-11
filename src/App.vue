@@ -4,7 +4,7 @@ const themeStore = useThemeStore()
 </script>
 
 <template>
-  <div class="display-content select-none bg-layout-light dark:bg-layout-dark">
+  <div class="display-content bg-layout-light dark:bg-layout-dark">
     <NConfigProvider
       :locale="langStore.locale"
       :date-locale="langStore.dateLocale"
