@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import type { Lang } from '@dolphin-admin/utils'
 import dayjs from 'dayjs'
 
-import type { Dictionary, Lang, MessageSchema, Sorter } from '@/types'
+import type { Dictionary, MessageSchema, Sorter } from '@/types'
 import ResetIcon from '~icons/ic/round-refresh'
 import CreateIcon from '~icons/ic/sharp-add'
 import EditIcon from '~icons/ic/sharp-edit'

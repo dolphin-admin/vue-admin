@@ -182,7 +182,7 @@ export default defineConfig(({ mode }) => {
     ],
     build: {
       // Tauri 在 Windows 上使用 Chromium，在 macOS 和 Linux 上使用 WebKit
-      target: process.env.TAURI_PLATFORM === 'windows' ? 'chrome105' : 'safari13',
+      target: process.env.TAURI_PLATFORM === 'windows' ? 'chrome105' : 'esnext',
       // 调试构建时禁用压缩
       minify: !process.env.TAURI_DEBUG ? 'esbuild' : false,
       // 为调试构建生成源代码映射 (sourcemap)
