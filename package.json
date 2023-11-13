@@ -78,7 +78,7 @@
     "lint-staged": "^15.1.0",
     "naive-ui": "^2.35.0",
     "postcss": "^8.4.31",
-    "prettier": "3.0.3",
+    "prettier": "3.1.0",
     "rollup-plugin-visualizer": "^5.9.2",
     "sass": "^1.69.5",
     "tailwindcss": "^3.3.5",
