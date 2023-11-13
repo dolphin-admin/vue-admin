@@ -7,13 +7,10 @@ export const lightThemeOverrides: GlobalThemeOverrides = {
   common: {
     fontFamily:
       'Nunito, Noto Sans SC, Noto Color Emoji, system-ui, -apple-system, Roboto, Helvetica Neue, Arial, sans-serif',
-    primaryColor: '#0078D7',
-    primaryColorHover: '#0078D7',
-    primaryColorPressed: '#0078D7',
-    primaryColorSuppl: '#0078D7'
-  },
-  Layout: {
-    color: 'red'
+    primaryColor: '#0078d7',
+    primaryColorHover: '#0078d7',
+    primaryColorPressed: '#0078d7',
+    primaryColorSuppl: '#0078d7'
   },
   Dialog: {
     contentMargin: '20px 0 0 0',
@@ -31,13 +28,10 @@ export const darkThemeOverrides: GlobalThemeOverrides = {
   common: {
     fontFamily:
       'Nunito, Noto Sans SC, Noto Color Emoji, system-ui, -apple-system, Roboto, Helvetica Neue, Arial, sans-serif',
-    primaryColor: '#0078D7',
-    primaryColorHover: '#0078D7',
-    primaryColorPressed: '#0078D7',
-    primaryColorSuppl: '#0078D7'
-  },
-  Layout: {
-    color: '#000000'
+    primaryColor: '#0078d7',
+    primaryColorHover: '#0078d7',
+    primaryColorPressed: '#0078d7',
+    primaryColorSuppl: '#0078d7'
   },
   Dialog: {
     contentMargin: '20px 0 0 0',

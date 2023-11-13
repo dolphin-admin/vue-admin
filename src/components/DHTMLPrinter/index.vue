@@ -9,7 +9,7 @@ const dynamicContent = computed(() => props.content)
 </script>
 
 <template>
-  <teleport to="body">
+  <teleport to="html">
     <div
       class="print-content"
       v-html="dynamicContent"

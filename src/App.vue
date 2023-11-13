@@ -4,37 +4,35 @@ const themeStore = useThemeStore()
 </script>
 
 <template>
-  <div class="display-content bg-layout-light dark:bg-layout-dark">
-    <NConfigProvider
-      :locale="langStore.locale"
-      :date-locale="langStore.dateLocale"
-      :theme="themeStore.naiveTheme"
-      :theme-overrides="themeStore.naiveThemeOverrides"
-      abstract
-      inline-theme-disabled
-    >
-      <NLoadingBarProvider>
-        <NNotificationProvider>
-          <NMessageProvider>
-            <RouterView v-slot="{ Component }">
-              <template v-if="Component">
-                <Transition
-                  name="router"
-                  mode="out-in"
-                >
-                  <component
-                    :is="Component"
-                    class="text-base"
-                  />
-                </Transition>
-              </template>
-            </RouterView>
-          </NMessageProvider>
-        </NNotificationProvider>
-      </NLoadingBarProvider>
-      <NGlobalStyle />
-    </NConfigProvider>
-  </div>
+  <NConfigProvider
+    :locale="langStore.locale"
+    :date-locale="langStore.dateLocale"
+    :theme="themeStore.naiveTheme"
+    :theme-overrides="themeStore.naiveThemeOverrides"
+    abstract
+    inline-theme-disabled
+  >
+    <NLoadingBarProvider>
+      <NNotificationProvider>
+        <NMessageProvider>
+          <RouterView v-slot="{ Component }">
+            <template v-if="Component">
+              <Transition
+                name="router"
+                mode="out-in"
+              >
+                <component
+                  :is="Component"
+                  class="text-base"
+                />
+              </Transition>
+            </template>
+          </RouterView>
+        </NMessageProvider>
+      </NNotificationProvider>
+    </NLoadingBarProvider>
+    <NGlobalStyle />
+  </NConfigProvider>
 </template>
 
 <style scoped lang="scss">
@@ -45,11 +43,5 @@ const themeStore = useThemeStore()
 .router-enter-from,
 .router-leave-to {
   opacity: 0;
-}
-
-@media print {
-  .display-content {
-    display: none;
-  }
 }
 </style>

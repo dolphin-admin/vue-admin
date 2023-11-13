@@ -22,6 +22,10 @@ enum UserAction {
   'QUIT'
 }
 
+defineOptions({
+  name: 'BaseHeader'
+})
+
 const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
 
 const { REPO_GITHUB_URL, DISCORD_URL, DOCS_URL } = AppMetadata
@@ -234,8 +238,8 @@ onMounted(() => resetLanguageOptions(langStore.lang))
           <NIcon
             class="cursor-pointer"
             size="20"
-            :color="themeStore.theme === 'light' ? '#FDC022' : '#FED736'"
-            :component="themeStore.theme === 'light' ? SunIcon : MoonIcon"
+            :color="themeStore.isLightTheme ? '#FDC022' : '#FED736'"
+            :component="themeStore.isDarkTheme ? SunIcon : MoonIcon"
             @click="() => themeStore.toggleTheme()"
           />
         </template>

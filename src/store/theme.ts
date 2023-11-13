@@ -13,17 +13,27 @@ export const useThemeStore = defineStore('theme', () => {
   const theme = ref<Theme>(ThemeUtils.getDefaultTheme())
 
   /**
+   * 是否为浅色主题
+   */
+  const isLightTheme = computed(() => theme.value === Theme.LIGHT)
+
+  /**
+   * 是否为深色主题
+   */
+  const isDarkTheme = computed(() => theme.value === Theme.DARK)
+
+  /**
    * Naive UI 组件主题
    * @description 根据当前主题模式，返回对应的 Naive UI 主题
    */
-  const naiveTheme = computed(() => (theme.value === 'light' ? lightTheme : darkTheme))
+  const naiveTheme = computed(() => (isLightTheme.value ? lightTheme : darkTheme))
 
   /**
    * Naive UI 组件主题覆盖
    * @description 根据当前主题模式，返回对应的 Naive UI 主题覆盖
    */
   const naiveThemeOverrides = computed(() =>
-    theme.value === Theme.LIGHT ? lightThemeOverrides : darkThemeOverrides
+    isLightTheme.value ? lightThemeOverrides : darkThemeOverrides
   )
 
   /**
@@ -38,7 +48,7 @@ export const useThemeStore = defineStore('theme', () => {
    * 切换主题
    */
   const toggleTheme = () => {
-    theme.value = theme.value === Theme.LIGHT ? Theme.DARK : Theme.LIGHT
+    theme.value = isLightTheme.value ? Theme.DARK : Theme.LIGHT
   }
 
   /**
@@ -48,7 +58,6 @@ export const useThemeStore = defineStore('theme', () => {
    * - 将主题模式存储到 localStorage 中，以便下次打开页面时读取
    */
   const onThemeChange = (selectedTheme: Theme) => {
-    theme.value = selectedTheme
     ThemeUtils.changeTheme(selectedTheme)
   }
 
@@ -64,7 +73,9 @@ export const useThemeStore = defineStore('theme', () => {
     naiveTheme,
     naiveThemeOverrides,
     setTheme,
-    toggleTheme
+    toggleTheme,
+    isLightTheme,
+    isDarkTheme
   }
 })
 
