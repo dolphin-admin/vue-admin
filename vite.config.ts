@@ -5,12 +5,14 @@ import { dolphinAdminPresets } from '@dolphin-admin/auto-import'
 import { BootstrapAnimation } from '@dolphin-admin/bootstrap-animation'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import vue from '@vitejs/plugin-vue'
+import { visualizer } from 'rollup-plugin-visualizer'
 import AutoImport from 'unplugin-auto-import/vite'
 import Icons from 'unplugin-icons/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
 import type { ProxyOptions } from 'vite'
 import { defineConfig, loadEnv } from 'vite'
+import ViteCompression from 'vite-plugin-compression'
 import VueDevTools from 'vite-plugin-vue-devtools'
 
 export default defineConfig(({ mode }) => {
@@ -141,6 +143,15 @@ export default defineConfig(({ mode }) => {
       }),
       Icons({ autoInstall: true }),
       VueDevTools(),
+      ViteCompression({
+        verbose: true, // 是否在控制台中输出压缩结果
+        disable: false,
+        threshold: 10240, // 体积过小时不压缩
+        algorithm: 'gzip', // 压缩算法
+        ext: '.gz',
+        deleteOriginFile: true // 源文件压缩后是否删除
+      }),
+      visualizer({ open: true, gzipSize: true }),
       BootstrapAnimation()
     ],
     resolve: {
@@ -181,6 +192,16 @@ export default defineConfig(({ mode }) => {
       'TAURI_DEBUG'
     ],
     build: {
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            axios: ['axios'],
+            'lodash-es': ['lodash-es'],
+            xlsx: ['xlsx'],
+            echarts: ['echarts']
+          }
+        }
+      },
       // Tauri 在 Windows 上使用 Chromium，在 macOS 和 Linux 上使用 WebKit
       target: process.env.TAURI_PLATFORM === 'windows' ? 'chrome105' : 'esnext',
       // 调试构建时禁用压缩

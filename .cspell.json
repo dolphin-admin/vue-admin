@@ -26,6 +26,7 @@
     "**/**/CONTRIBUTORS.md",
     "pnpm-lock.yaml",
     "README.md",
-    "src-tauri"
+    "src-tauri",
+    "stats.html"
   ]
 }

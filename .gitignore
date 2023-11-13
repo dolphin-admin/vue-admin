@@ -6,6 +6,7 @@ dist
 build
 .env*
 !.env.example
+stats.html
 
 # Logs
 logs
