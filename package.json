@@ -13,7 +13,6 @@
   "bugs": {
     "url": "https://github.com/bit-ocean-studio/dolphin-admin-vue/issues"
   },
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "pnpm type:check && vite build",

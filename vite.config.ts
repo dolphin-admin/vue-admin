@@ -145,7 +145,7 @@ export default defineConfig(({ mode }) => {
       VueDevTools(),
       ViteCompression({
         verbose: true, // 是否在控制台中输出压缩结果
-        disable: false,
+        disable: true,
         threshold: 10240, // 体积过小时不压缩
         algorithm: 'gzip', // 压缩算法
         ext: '.gz',
