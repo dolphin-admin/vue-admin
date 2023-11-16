@@ -83,31 +83,21 @@ onBeforeMount(() => checkLogin())
 
 <template>
   <template v-if="loading">
-    <BaseGlobalLoading />
+    <DpGlobalLoading />
   </template>
   <template v-else>
     <main class="h-screen w-full overflow-hidden">
-      <ReportUserTrafficProvider>
-        <div class="flex h-full w-full">
+      <DpReportUserTrafficProvider>
+        <div class="flex h-full w-full border-r border-gray-300 dark:border-gray-950">
           <BaseSidebar />
           <div class="relative h-full flex-1 overflow-y-auto overflow-x-hidden">
             <BaseHeader />
             <BaseTabs />
-            <RouterView v-slot="{ Component }">
-              <Transition
-                name="slide-fade"
-                mode="out-in"
-              >
-                <component
-                  :is="Component"
-                  class="relative min-h-[calc(100%-144px)] w-full p-2 sm:p-4"
-                />
-              </Transition>
-            </RouterView>
+            <BaseContent />
             <BaseFooter />
           </div>
         </div>
-      </ReportUserTrafficProvider>
+      </DpReportUserTrafficProvider>
     </main>
   </template>
 </template>

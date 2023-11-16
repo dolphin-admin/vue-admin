@@ -131,7 +131,7 @@ onMounted(() => resetLanguageOptions(langStore.lang))
             class="cursor-pointer"
             size="20"
             :component="sidebarStore.isDisplay ? HideMenuIcon : ShowMenuIcon"
-            @click="sidebarStore.toggleSidebarDisplay"
+            @click="sidebarStore.toggleDisplay"
           />
         </template>
         {{ sidebarStore.isDisplay ? t('Sidebar.Hide') : t('Sidebar.Show') }}

@@ -138,7 +138,7 @@ export default defineConfig(({ mode }) => {
           }
         ],
         directives: true, // 自动导入指令
-        dirs: ['src/components', 'src/layouts', 'src/providers', 'src/charts'],
+        dirs: ['src/components', 'src/layouts', 'src/charts'],
         extensions: ['vue']
       }),
       Icons({ autoInstall: true }),

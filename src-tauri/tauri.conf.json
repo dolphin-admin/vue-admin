@@ -37,7 +37,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.manjaro.starter",
+      "identifier": "dolphin.admin.vue",
       "longDescription": "",
       "macOS": {
         "entitlements": null,

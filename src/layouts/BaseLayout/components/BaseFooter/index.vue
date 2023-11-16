@@ -14,7 +14,7 @@ const { APP_NAME, VERSION, TEAM_NAME, TEAM_GITHUB_URL } = AppMetadata
       alt=""
       loading="eager"
       width="18"
-      @click="() => BrowserUtils.openNewWindow(TEAM_GITHUB_URL)"
+      @click="BrowserUtils.openNewWindow(TEAM_GITHUB_URL)"
     />
     <span>{{ TEAM_NAME }}</span>
   </footer>

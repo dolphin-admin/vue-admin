@@ -14,38 +14,38 @@ export const useSidebarStore = defineStore('sidebar', () => {
   /**
    * 修改折叠状态
    */
-  const changeSidebarCollapse = (value: boolean) => {
+  const setIsCollapse = (value: boolean) => {
     isCollapse.value = value
   }
 
   /**
    * 切换折叠状态
    */
-  const toggleSidebarCollapse = () => {
+  const toggleCollapse = () => {
     isCollapse.value = !isCollapse.value
   }
 
   /**
    * 修改显示状态
    */
-  const changeSidebarDisplay = (value: boolean) => {
+  const setIsDisplay = (value: boolean) => {
     isDisplay.value = value
   }
 
   /**
    * 切换显示状态
    */
-  const toggleSidebarDisplay = () => {
+  const toggleDisplay = () => {
     isDisplay.value = !isDisplay.value
   }
 
   return {
     isCollapse,
     isDisplay,
-    changeSidebarCollapse,
-    toggleSidebarCollapse,
-    changeSidebarDisplay,
-    toggleSidebarDisplay
+    setIsCollapse,
+    toggleCollapse,
+    setIsDisplay,
+    toggleDisplay
   }
 })
 
