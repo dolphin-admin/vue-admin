@@ -9,7 +9,7 @@ import MaleIcon from '~icons/mdi/gender-male'
 import PhoneIcon from '~icons/mdi/phone'
 import AddressIcon from '~icons/mdi/store-plus-outline'
 
-const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+const { t } = useI18n<{ message: MessageSchema }>()
 
 const userStore = useUserStore()
 const message = useMessage()
@@ -25,46 +25,46 @@ const rules: FormRules = {
     {
       required: true,
       trigger: ['blur', 'input'],
-      message: () => t('Validation.Name'),
-      renderMessage: () => t('Validation.Name')
+      message: () => t('TEMP.Validation.Name'),
+      renderMessage: () => t('TEMP.Validation.Name')
     }
   ],
   firstName: [
     {
       required: true,
       trigger: ['blur', 'input'],
-      message: () => t('Validation.FirstName'),
-      renderMessage: () => t('Validation.FirstName')
+      message: () => t('TEMP.Validation.FirstName'),
+      renderMessage: () => t('TEMP.Validation.FirstName')
     }
   ],
   lastName: [
     {
       required: true,
       trigger: ['blur', 'input'],
-      message: () => t('Validation.LastName'),
-      renderMessage: () => t('Validation.LastName')
+      message: () => t('TEMP.Validation.LastName'),
+      renderMessage: () => t('TEMP.Validation.LastName')
     }
   ],
   email: [
     {
       required: true,
       trigger: ['blur', 'change'],
-      message: () => t('Validation.Email'),
-      renderMessage: () => t('Validation.Email')
+      message: () => t('TEMP.Validation.Email'),
+      renderMessage: () => t('TEMP.Validation.Email')
     },
     {
       pattern: /^([a-zA-Z]|[0-9])(\w|-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/,
       trigger: ['input', 'blur'],
-      message: () => t('Validation.EmailFormat'),
-      renderMessage: () => t('Validation.EmailFormat')
+      message: () => t('TEMP.Validation.EmailFormat'),
+      renderMessage: () => t('TEMP.Validation.EmailFormat')
     }
   ],
   phoneNumber: [
     {
       pattern: /^[1][3456789]\d{9}$/,
       trigger: ['input', 'blur'],
-      message: () => t('Validation.PhoneNumberFormat'),
-      renderMessage: () => t('Validation.PhoneNumberFormat')
+      message: () => t('TEMP.Validation.PhoneNumberFormat'),
+      renderMessage: () => t('TEMP.Validation.PhoneNumberFormat')
     }
   ]
 }
@@ -174,7 +174,7 @@ onMounted(() =>
       </div>
 
       <NDivider class="!my-4">
-        <span>{{ t('UserInfo.PersonalInfo') }}</span>
+        <span>{{ t('TEMP.UserInfo.PersonalInfo') }}</span>
       </NDivider>
       <div class="space-y-4">
         <div class="flex space-x-2">
@@ -215,7 +215,7 @@ onMounted(() =>
     <NCard class="sm:!w-3/5">
       <template #header>
         <div class="space-x-6 border-b pb-1 text-center sm:text-left">
-          <span>{{ t('UserInfo.BasicInfo') }}</span>
+          <span>{{ t('TEMP.UserInfo.BasicInfo') }}</span>
         </div>
       </template>
       <NForm
@@ -228,7 +228,7 @@ onMounted(() =>
       >
         <NFormItem
           path="avatarUrl"
-          :label="t('User.Avatar')"
+          :label="t('TEMP.User.Avatar')"
         >
           <NUpload
             ref="uploadRef"
@@ -257,11 +257,11 @@ onMounted(() =>
         </NFormItem>
         <NFormItem
           path="name"
-          :label="t('User.Name')"
+          :label="t('TEMP.User.Name')"
         >
           <NInput
             v-model:value="formData.name"
-            :placeholder="t('Validation.Name')"
+            :placeholder="t('TEMP.Validation.Name')"
             maxlength="20"
             show-count
             clearable
@@ -269,30 +269,30 @@ onMounted(() =>
         </NFormItem>
         <NFormItem
           path="firstName"
-          :label="t('User.FirstName')"
+          :label="t('TEMP.User.FirstName')"
         >
           <NInput
             v-model:value="formData.firstName"
             maxlength="20"
             show-count
             clearable
-            :placeholder="t('Validation.FirstName')"
+            :placeholder="t('TEMP.Validation.FirstName')"
           />
         </NFormItem>
         <NFormItem
           path="lastName"
-          :label="t('User.LastName')"
+          :label="t('TEMP.User.LastName')"
         >
           <NInput
             v-model:value="formData.lastName"
             maxlength="10"
             show-count
             clearable
-            :placeholder="t('Validation.LastName')"
+            :placeholder="t('TEMP.Validation.LastName')"
           />
         </NFormItem>
         <NFormItem
-          :label="t('User.Email')"
+          :label="t('TEMP.User.Email')"
           path="email"
         >
           <NInput
@@ -300,38 +300,38 @@ onMounted(() =>
             maxlength="20"
             show-count
             clearable
-            :placeholder="t('Validation.Email')"
+            :placeholder="t('TEMP.Validation.Email')"
           />
         </NFormItem>
         <NFormItem
           path="gender"
-          :label="t('User.Gender')"
+          :label="t('TEMP.User.Gender')"
         >
           <NRadioGroup
             v-model:value="formData.gender"
-            :name="t('User.Gender')"
+            :name="t('TEMP.User.Gender')"
           >
             <NSpace>
-              <NRadio :value="1"> {{ t('User.Male') }} </NRadio>
-              <NRadio :value="0"> {{ t('User.Female') }} </NRadio>
+              <NRadio :value="1"> {{ t('TEMP.User.Male') }} </NRadio>
+              <NRadio :value="0"> {{ t('TEMP.User.Female') }} </NRadio>
             </NSpace>
           </NRadioGroup>
         </NFormItem>
         <NFormItem
           path="phoneNumber"
-          :label="t('User.PhoneNumber')"
+          :label="t('TEMP.User.PhoneNumber')"
         >
           <NInput
             v-model:value="formData.phoneNumber"
             maxlength="20"
             show-count
             clearable
-            :placeholder="t('Validation.PhoneNumber')"
+            :placeholder="t('TEMP.Validation.PhoneNumber')"
           />
         </NFormItem>
         <NFormItem
           path="birthDate"
-          :label="t('User.BirthDate')"
+          :label="t('TEMP.User.BirthDate')"
         >
           <NDatePicker
             v-model:formatted-value="formData.birthDate"
@@ -341,26 +341,26 @@ onMounted(() =>
         </NFormItem>
         <NFormItem
           path="address"
-          :label="t('User.Address')"
+          :label="t('TEMP.User.Address')"
         >
           <NInput
             v-model:value="formData.address"
             maxlength="30"
             show-count
             clearable
-            :placeholder="t('Validation.Address')"
+            :placeholder="t('TEMP.Validation.Address')"
           />
         </NFormItem>
         <NFormItem
           path="biography"
-          :label="t('User.Biography')"
+          :label="t('TEMP.User.Biography')"
         >
           <NInput
             v-model:value="formData.biography"
             maxlength="300"
             show-count
             clearable
-            :placeholder="t('Validation.Biography')"
+            :placeholder="t('TEMP.Validation.Biography')"
           />
         </NFormItem>
 
@@ -372,7 +372,7 @@ onMounted(() =>
             :disabled="submitLoading"
             @click="handleValidateButtonClick"
           >
-            {{ t('Common.Save') }}
+            {{ t('COMMON.Save') }}
           </NButton>
         </div>
       </NForm>

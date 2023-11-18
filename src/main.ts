@@ -34,7 +34,7 @@ app.mount('#app')
 if (GlobalEnvConfig.IS_DEV) {
   sendNotification({
     title: `🐬${APP_NAME}`,
-    body: i18n.global.t('Notification.Desktop.EnterSystem'),
+    body: i18n.global.t('TEMP.Notification.Desktop.EnterSystem'),
     icon: FAVICON_URL
   })
 }

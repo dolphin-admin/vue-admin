@@ -4,9 +4,7 @@ import type { Lang } from '@dolphin-admin/utils'
 import bitOceanSrc from '@/assets/images/bit_ocean.png'
 import type { MessageSchema } from '@/types'
 
-const { t } = useI18n<{ message: MessageSchema }, Lang>({
-  useScope: 'global'
-})
+const { t } = useI18n<{ message: MessageSchema }, Lang>({})
 
 const { REPO_GITHUB_URL } = AppMetadata
 
@@ -24,8 +22,8 @@ const loading = ref(true)
 const sendSystemNotification = () => {
   setTimeout(() => {
     const n = notification.create({
-      title: () => t('Notification.System.Title'),
-      description: () => t('Notification.Team.From'),
+      title: () => t('TEMP.Notification.System.Title'),
+      description: () => t('TEMP.Notification.Team.From'),
       avatar: () =>
         h(NAvatar, {
           size: 'small',
@@ -33,7 +31,7 @@ const sendSystemNotification = () => {
           src: bitOceanSrc,
           alt: ''
         }),
-      content: () => t('Notification.System.Content'),
+      content: () => t('TEMP.Notification.System.Content'),
       duration: 5000,
       keepAliveOnHover: true,
       meta: TimeUtils.formatTime(Date.now()),
@@ -49,7 +47,7 @@ const sendSystemNotification = () => {
             }
           },
           {
-            default: () => `${t('Common.Goto')} GitHub`
+            default: () => `${t('COMMON.Goto')} GitHub`
           }
         )
     })

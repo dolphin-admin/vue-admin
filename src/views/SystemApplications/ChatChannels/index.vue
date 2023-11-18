@@ -5,7 +5,7 @@ import UilEllipsisHIcon from '~icons/uil/ellipsis-h'
 
 import { ChannelList, ChatList, UserList } from './components'
 
-const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+const { t } = useI18n<{ message: MessageSchema }>()
 
 type OptionKey = 'Channel' | 'Online'
 

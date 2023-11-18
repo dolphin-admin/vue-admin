@@ -5,9 +5,7 @@ import type { MessageSchema } from '@/types'
 
 import { ChineseLyrics, EnglishLyrics } from './private'
 
-const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({
-  useScope: 'global'
-})
+const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({})
 
 const message = useMessage()
 
@@ -19,9 +17,9 @@ const clipboardValue = ref('')
 const handleCopy = async () => {
   try {
     await BrowserUtils.setClipBoardText(clipboardValue.value)
-    message.success(t('Message.Copy.Success'))
+    message.success(t('TEMP.Message.Copy.Success'))
   } catch {
-    message.error(t('Message.Copy.Failed'))
+    message.error(t('TEMP.Message.Copy.Failed'))
   }
 }
 
@@ -64,7 +62,7 @@ watch(
           class="!mt-3"
           @click="handleCopy"
         >
-          {{ t('Common.Copy') }}
+          {{ t('COMMON.Copy') }}
         </NButton>
       </div>
     </NCard>

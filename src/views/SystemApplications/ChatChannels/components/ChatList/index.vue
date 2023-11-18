@@ -4,9 +4,7 @@ import { io } from 'socket.io-client'
 
 import type { MessageSchema } from '@/types'
 
-const { t, locale } = useI18n<{ message: MessageSchema }>({
-  useScope: 'global'
-})
+const { t, locale } = useI18n<{ message: MessageSchema }>({})
 
 const userStore = useUserStore()
 const message = useMessage()
@@ -59,7 +57,7 @@ const handleDisconnect = () => {
  */
 const handleSendMessage = () => {
   if (!emitData.value.trim()) {
-    message.error(t('WebSocket.ContentIsEmpty'))
+    message.error(t('TEMP.WebSocket.ContentIsEmpty'))
     return
   }
   socket.value.emit('message', getSendInfo(emitData.value))
@@ -75,9 +73,9 @@ const handleSendMessage = () => {
 onBeforeMount(() => {
   handleConnect()
   // 监听连接
-  socket.value.on('connect', () => message.info(t('WebSocket.Established')))
+  socket.value.on('connect', () => message.info(t('TEMP.WebSocket.Established')))
   // 监听断开连接
-  socket.value.on('disconnect', () => message.info(t('WebSocket.Disconnected')))
+  socket.value.on('disconnect', () => message.info(t('TEMP.WebSocket.Disconnected')))
   // 监听服务端发送的消息
   socket.value.on('message', (data) => message.success(data[locale.value]))
 })

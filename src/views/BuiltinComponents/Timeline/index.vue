@@ -3,7 +3,7 @@ import type { MessageSchema } from '@/types'
 
 import { webLearnRoute } from './private'
 
-const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+const { t } = useI18n<{ message: MessageSchema }>()
 
 const isMobile = useMobile()
 </script>
@@ -14,7 +14,7 @@ const isMobile = useMobile()
       class="sm:!w-fit"
       hoverable
       bordered
-      :title="t('Timeline.WebDevRoadmap')"
+      :title="t('TEMP.Timeline.WebDevRoadmap')"
     >
       <DTimeline
         :data="webLearnRoute"

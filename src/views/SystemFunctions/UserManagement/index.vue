@@ -15,9 +15,7 @@ import GoogleIcon from '~icons/logos/google-icon'
 import { UserFormModal } from './components'
 import { UserPageModel } from './private'
 
-const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({
-  useScope: 'global'
-})
+const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({})
 
 const idColumn: DataTableBaseColumn<User> = {
   title: 'ID',
@@ -29,7 +27,7 @@ const idColumn: DataTableBaseColumn<User> = {
 }
 
 const createdAtColumn: DataTableBaseColumn<User> = {
-  title: () => t('UserManagement.EnterTime'),
+  title: () => t('TEMP.UserManagement.EnterTime'),
   key: 'createdAt',
   width: 140,
   titleAlign: 'center',
@@ -39,7 +37,7 @@ const createdAtColumn: DataTableBaseColumn<User> = {
 }
 
 const authTypeColumn: DataTableBaseColumn<User> = {
-  title: () => t('User.AuthType'),
+  title: () => t('TEMP.User.AuthType'),
   key: 'authTypes',
   width: 200,
   filter: true,
@@ -121,14 +119,14 @@ const resetPasswordRules: FormRules = {
     {
       required: true,
       trigger: ['blur', 'input'],
-      message: () => t('Validation.Password'),
-      renderMessage: () => t('Validation.Password')
+      message: () => t('TEMP.Validation.Password'),
+      renderMessage: () => t('TEMP.Validation.Password')
     },
     {
       validator: (_: FormItemRule, value: string) => value.length >= 6,
       trigger: ['blur', 'input'],
-      message: () => t('Validation.PasswordLength'),
-      renderMessage: () => t('Validation.PasswordLength')
+      message: () => t('TEMP.Validation.PasswordLength'),
+      renderMessage: () => t('TEMP.Validation.PasswordLength')
     }
   ]
 }
@@ -190,7 +188,7 @@ const queryList = () => {
       pagination.itemCount = total
     })
     .catch(() => {
-      message.error(t('Common.LoadingDataError'))
+      message.error(t('COMMON.LoadingDataError'))
       users.value = []
     })
     .finally(() => loadingDispatcher.loaded())
@@ -243,7 +241,7 @@ const handleFiltersChange = (filters: DataTableFilterState) => {
 const columns = ref<DataTableBaseColumn<User>[]>([
   idColumn,
   {
-    title: () => t('User.Avatar'),
+    title: () => t('TEMP.User.Avatar'),
     key: 'avatar',
     width: 55,
     titleAlign: 'center',
@@ -269,7 +267,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
       )
   },
   {
-    title: () => t('User.Username'),
+    title: () => t('TEMP.User.Username'),
     key: 'username',
     width: 120,
     ellipsis: {
@@ -278,7 +276,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     fixed: !isMobile.value ? 'left' : undefined
   },
   {
-    title: () => t('User.PhoneNumber'),
+    title: () => t('TEMP.User.PhoneNumber'),
     key: 'phoneNumber',
     width: 120,
     ellipsis: {
@@ -286,7 +284,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     }
   },
   {
-    title: () => t('User.Email'),
+    title: () => t('TEMP.User.Email'),
     key: 'email',
     width: 100,
     resizable: true,
@@ -295,7 +293,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     }
   },
   {
-    title: () => t('User.Name'),
+    title: () => t('TEMP.User.Name'),
     key: 'name',
     width: 100,
     ellipsis: {
@@ -303,7 +301,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     }
   },
   {
-    title: () => t('User.LastName'),
+    title: () => t('TEMP.User.LastName'),
     key: 'lastName',
     width: 80,
     ellipsis: {
@@ -311,7 +309,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     }
   },
   {
-    title: () => t('User.FirstName'),
+    title: () => t('TEMP.User.FirstName'),
     key: 'firstName',
     width: 80,
     ellipsis: {
@@ -319,7 +317,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     }
   },
   {
-    title: () => t('User.NickName'),
+    title: () => t('TEMP.User.NickName'),
     key: 'nickName',
     width: 120,
     resizable: true,
@@ -328,14 +326,14 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     }
   },
   {
-    title: () => t('User.Gender'),
+    title: () => t('TEMP.User.Gender'),
     key: 'genderLabel',
     width: 60,
     titleAlign: 'center',
     align: 'center'
   },
   {
-    title: () => t('User.BirthDate'),
+    title: () => t('TEMP.User.BirthDate'),
     key: 'birthDate',
     width: 100,
     titleAlign: 'center',
@@ -343,22 +341,22 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     render: (row) => (row.birthDate ? TimeUtils.formatTime(row.birthDate, 'YYYY/MM/DD') : '')
   },
   {
-    title: () => t('User.Country'),
+    title: () => t('TEMP.User.Country'),
     key: 'country',
     width: 80
   },
   {
-    title: () => t('User.Province'),
+    title: () => t('TEMP.User.Province'),
     key: 'province',
     width: 80
   },
   {
-    title: () => t('User.City'),
+    title: () => t('TEMP.User.City'),
     key: 'city',
     width: 80
   },
   {
-    title: () => t('User.Address'),
+    title: () => t('TEMP.User.Address'),
     key: 'address',
     width: 120,
     resizable: true,
@@ -367,7 +365,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     }
   },
   {
-    title: () => t('User.Biography'),
+    title: () => t('TEMP.User.Biography'),
     key: 'biography',
     width: 200,
     resizable: true,
@@ -376,7 +374,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     }
   },
   {
-    title: () => t('UserManagement.VerifyOrNot'),
+    title: () => t('TEMP.UserManagement.VerifyOrNot'),
     key: 'verified',
     width: 100,
     titleAlign: 'center',
@@ -388,7 +386,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
       })
   },
   {
-    title: () => t('UserManagement.EnableOrNot'),
+    title: () => t('TEMP.UserManagement.EnableOrNot'),
     key: 'enabled',
     width: 100,
     titleAlign: 'center',
@@ -402,7 +400,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
   createdAtColumn,
   authTypeColumn,
   {
-    title: () => t('User.Roles'),
+    title: () => t('TEMP.User.Roles'),
     key: 'roles',
     width: 200,
     render: (row) => {
@@ -423,7 +421,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     }
   },
   {
-    title: () => t('Common.Operation'),
+    title: () => t('COMMON.Operation'),
     key: 'operation',
     width: 320,
     titleAlign: 'center',
@@ -448,7 +446,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
               }
             },
             {
-              default: () => t('Common.Edit')
+              default: () => t('COMMON.Edit')
             }
           ),
           h(
@@ -459,8 +457,8 @@ const columns = ref<DataTableBaseColumn<User>[]>([
                 loading: enableLoading.value,
                 disabled: enableLoading.value
               },
-              positiveText: t('Common.Confirm'),
-              negativeText: t('Common.Cancel'),
+              positiveText: t('COMMON.Confirm'),
+              negativeText: t('COMMON.Cancel'),
               onPositiveClick: async () => {
                 if (!row.id) {
                   return
@@ -489,17 +487,17 @@ const columns = ref<DataTableBaseColumn<User>[]>([
                     type: 'default',
                     size: 'small'
                   },
-                  { default: () => t('Common.Enable') }
+                  { default: () => t('COMMON.Enable') }
                 ),
-              default: () => `${t('Common.IsOrNot')}${t('Common.Enable')}`
+              default: () => `${t('COMMON.IsOrNot')}${t('COMMON.Enable')}`
             }
           ),
           h(
             NPopconfirm,
             {
               showIcon: false,
-              positiveText: t('Common.Confirm'),
-              negativeText: t('Common.Cancel'),
+              positiveText: t('COMMON.Confirm'),
+              negativeText: t('COMMON.Cancel'),
               positiveButtonProps: {
                 loading: disableLoading.value,
                 disabled: disableLoading.value
@@ -532,9 +530,9 @@ const columns = ref<DataTableBaseColumn<User>[]>([
                     type: 'default',
                     size: 'small'
                   },
-                  { default: () => t('Common.Disable') }
+                  { default: () => t('COMMON.Disable') }
                 ),
-              default: () => `${t('Common.IsOrNot')}${t('Common.Disable')}`
+              default: () => `${t('COMMON.IsOrNot')}${t('COMMON.Disable')}`
             }
           ),
           h(
@@ -548,7 +546,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
               }
             },
             {
-              default: () => t('UserManagement.ResetPassword')
+              default: () => t('TEMP.UserManagement.ResetPassword')
             }
           )
         ]
@@ -615,7 +613,7 @@ onMounted(() => queryList())
               v-model:value="queryParams.searchText"
               class="sm:!w-[200px]"
               clearable
-              :placeholder="t('Common.KeywordSearch')"
+              :placeholder="t('COMMON.KeywordSearch')"
               @keydown.enter="queryList"
             >
               <template #prefix>
@@ -630,7 +628,7 @@ onMounted(() => queryList())
               size="small"
               @click="queryList"
             >
-              {{ t('Common.Search') }}
+              {{ t('COMMON.Search') }}
             </NButton>
           </div>
           <NDatePicker
@@ -656,13 +654,13 @@ onMounted(() => queryList())
                 </template>
               </NButton>
             </template>
-            {{ t('Common.Reset') }}
+            {{ t('COMMON.Reset') }}
           </NTooltip>
           <NButton
             :size="isMobile ? 'small' : 'medium'"
             @click="handleCreateUser"
           >
-            {{ t('Common.Create') }}
+            {{ t('COMMON.Create') }}
           </NButton>
         </div>
       </div>
@@ -685,19 +683,19 @@ onMounted(() => queryList())
         pageSlot: 9,
         pageSizes: [
           {
-            label: t('Common.EachPage', { count: 10 }),
+            label: t('COMMON.EachPage', { count: 10 }),
             value: 10
           },
           {
-            label: t('Common.EachPage', { count: 20 }),
+            label: t('COMMON.EachPage', { count: 20 }),
             value: 20
           },
           {
-            label: t('Common.EachPage', { count: 30 }),
+            label: t('COMMON.EachPage', { count: 30 }),
             value: 30
           },
           {
-            label: t('Common.EachPage', { count: 40 }),
+            label: t('COMMON.EachPage', { count: 40 }),
             value: 40
           }
         ],
@@ -710,7 +708,7 @@ onMounted(() => queryList())
           pagination.pageSize = pageSize
           queryList()
         },
-        prefix: (info) => t('Common.TotalPage', { totalPage: info.itemCount })
+        prefix: (info) => t('COMMON.TotalPage', { totalPage: info.itemCount })
       }"
       @update:sorter="handleSorterChange"
       @update:filters="handleFiltersChange"
@@ -720,10 +718,10 @@ onMounted(() => queryList())
     <NModal
       v-model:show="showResetPasswordDialog"
       preset="dialog"
-      :title="t('UserManagement.ResetPassword')"
+      :title="t('TEMP.UserManagement.ResetPassword')"
       :loading="resetPasswordLoading"
-      :positive-text="t('Common.Confirm')"
-      :negative-text="t('Common.Cancel')"
+      :positive-text="t('COMMON.Confirm')"
+      :negative-text="t('COMMON.Cancel')"
       @positive-click="handleConfirmPassword"
       @negative-click="handleResetPassword"
     >
@@ -746,12 +744,12 @@ onMounted(() => queryList())
         />
         <NFormItem
           path="password"
-          :label="t('User.Password')"
+          :label="t('TEMP.User.Password')"
         >
           <NInput
             v-model:value="resetPasswordData.password"
             type="password"
-            :placeholder="t('User.Password')"
+            :placeholder="t('TEMP.User.Password')"
             maxlength="20"
             clearable
             show-password-on="click"

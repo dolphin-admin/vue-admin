@@ -3,7 +3,7 @@
 import type { Status } from '@/components/DNumberAnimation/private'
 import type { MessageSchema } from '@/types'
 
-const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+const { t } = useI18n<{ message: MessageSchema }>()
 
 const numberData = reactive({
   startValue: 0,
@@ -44,21 +44,21 @@ const handleStatusChange = (status: Status) => {
             :show-feedback="false"
           >
             <NFormItem
-              :label="t('DigitalAnimation.StartValuePlaceholder')"
+              :label="t('TEMP.DigitalAnimation.StartValuePlaceholder')"
               path="startValue"
             >
               <NInputNumber v-model:value="numberData.startValue" />
             </NFormItem>
 
             <NFormItem
-              :label="t('DigitalAnimation.EndValuePlaceholder')"
+              :label="t('TEMP.DigitalAnimation.EndValuePlaceholder')"
               path="endValue"
             >
               <NInputNumber v-model:value="numberData.endValue" />
             </NFormItem>
 
             <NFormItem
-              :label="t('DigitalAnimation.DurationPlaceholder')"
+              :label="t('TEMP.DigitalAnimation.DurationPlaceholder')"
               path="duration"
             >
               <NInputNumber v-model:value="numberData.duration" />
@@ -72,19 +72,19 @@ const handleStatusChange = (status: Status) => {
             :disabled="currentStatus !== 'pending' && currentStatus !== 'stopped'"
             @click="handleStart"
           >
-            {{ t('Common.Start') }}
+            {{ t('COMMON.Start') }}
           </NButton>
           <NButton
             :disabled="currentStatus !== 'running'"
             @click="handlePause"
           >
-            {{ t('Common.Pause') }}
+            {{ t('COMMON.Pause') }}
           </NButton>
           <NButton
             :disabled="currentStatus !== 'paused'"
             @click="handleStart"
           >
-            {{ t('Common.Continue') }}
+            {{ t('COMMON.Continue') }}
           </NButton>
         </div>
       </div>

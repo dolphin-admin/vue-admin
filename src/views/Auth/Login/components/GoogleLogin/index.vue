@@ -3,7 +3,7 @@ import type { MessageSchema } from '@/types'
 import { GoogleAuthUtils } from '@/utils/google'
 import GoogleIcon from '~icons/logos/google-icon'
 
-const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+const { t } = useI18n<{ message: MessageSchema }>()
 
 const route = useRoute()
 const router = useRouter()
@@ -80,6 +80,6 @@ const loginWithGoogle = () => {
         :component="GoogleIcon"
       />
     </template>
-    <span>{{ t('Login.LoginWithGoogle') }}</span>
+    <span>{{ t('TEMP.Login.LoginWithGoogle') }}</span>
   </NButton>
 </template>

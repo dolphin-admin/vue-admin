@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { MessageSchema } from '@/types'
 
-const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+const { t } = useI18n<{ message: MessageSchema }>()
 
 const message = useMessage()
 
@@ -13,7 +13,7 @@ const generatedResult = ref('')
  */
 const makeQRCode = async () => {
   if (!userInput.value) {
-    message.error(t('Validation.QRCodeContent'))
+    message.error(t('TEMP.Validation.QRCodeContent'))
     return
   }
   try {
@@ -22,9 +22,9 @@ const makeQRCode = async () => {
       errorCorrectionLevel: 'L'
     })
     generatedResult.value = qrcodeContent
-    message.success(t('Message.GenerateQRCode.Success'))
+    message.success(t('TEMP.Message.GenerateTEMP.QRCode.Success'))
   } catch (err) {
-    message.error(t('Message.GenerateQRCode.Failed'))
+    message.error(t('TEMP.Message.GenerateTEMP.QRCode.Failed'))
   }
 }
 
@@ -47,7 +47,7 @@ const handleDownload = () => BrowserUtils.downloadFile(generatedResult.value, 'q
             v-model:value="userInput"
             class="!w-full"
             type="textarea"
-            :placeholder="t('QRCode.ContentPlaceholder')"
+            :placeholder="t('TEMP.QRCode.ContentPlaceholder')"
             show-count
             clearable
             hoverable
@@ -61,7 +61,7 @@ const handleDownload = () => BrowserUtils.downloadFile(generatedResult.value, 'q
               type="primary"
               @click="makeQRCode"
             >
-              {{ t('QRCode.Generate') }}
+              {{ t('TEMP.QRCode.Generate') }}
             </NButton>
           </div>
         </NCard>
@@ -85,7 +85,7 @@ const handleDownload = () => BrowserUtils.downloadFile(generatedResult.value, 'q
               type="primary"
               @click="handleDownload"
             >
-              {{ t('Common.Download') }}
+              {{ t('COMMON.Download') }}
             </NButton>
           </div>
         </NCard>

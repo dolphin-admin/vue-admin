@@ -65,7 +65,7 @@ class Request {
         }
         // 网络错误，跳转到 404 页面
         if (!window.navigator.onLine) {
-          message.error(t('Common.NetworkError'))
+          message.error(t('COMMON.NetworkError'))
           router.replace('/404')
         }
         return Promise.reject(data)
@@ -88,7 +88,7 @@ class Request {
     switch (code) {
       case StatusCode.UNAUTHORIZED:
         AuthUtils.clearToken()
-        message.error(t('Common.401'))
+        message.error(t('COMMON.401'))
         // 如果非登录页面，需要重定向到登录页，且需要带上 redirect 参数
         if (router.currentRoute.value.path !== '/login') {
           if (router.currentRoute.value.path !== '/') {
@@ -109,7 +109,7 @@ class Request {
       case StatusCode.INTERNAL_SERVER_ERROR:
       case StatusCode.BAD_GATEWAY:
       case StatusCode.GATEWAY_TIMEOUT:
-        message.error(t('Common.500'))
+        message.error(t('COMMON.500'))
         if (router.currentRoute.value.path !== '/login') {
           router.replace('/error-pages/500')
         }

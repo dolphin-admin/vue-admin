@@ -19,7 +19,7 @@ const { renderIcon } = RenderUtils
 
 export const columns: DataTableBaseColumn<FrameworkItem>[] = [
   {
-    title: () => t('Print.Icon'),
+    title: () => t('TEMP.Print.Icon'),
     key: 'icon',
     width: 80,
     align: 'center',
@@ -34,21 +34,21 @@ export const columns: DataTableBaseColumn<FrameworkItem>[] = [
       )
   },
   {
-    title: () => t('Print.Framework'),
+    title: () => t('TEMP.Print.Framework'),
     key: 'framework',
     width: 120,
     align: 'center',
     titleAlign: 'center'
   },
   {
-    title: () => t('Common.Type'),
+    title: () => t('COMMON.Type'),
     key: 'type',
     width: 80,
     align: 'center',
     titleAlign: 'center'
   },
   {
-    title: () => t('Print.Stars'),
+    title: () => t('TEMP.Print.Stars'),
     key: 'stars',
     width: 100,
     align: 'center',
@@ -68,7 +68,7 @@ export const columns: DataTableBaseColumn<FrameworkItem>[] = [
       )
   },
   {
-    title: () => t('Print.Description'),
+    title: () => t('TEMP.Print.Description'),
     key: 'description',
     minWidth: 200,
     resizable: true,
@@ -81,70 +81,70 @@ export const data = [
     icon: ReactIcon,
     framework: 'React',
     type: 'SPA',
-    description: () => t('Print.React'),
+    description: () => t('TEMP.Print.React'),
     stars: '210k'
   },
   {
     icon: VueIcon,
     framework: 'Vue',
     type: 'SPA',
-    description: () => t('Print.Vue'),
+    description: () => t('TEMP.Print.Vue'),
     stars: '204k'
   },
   {
     icon: NextjsIcon,
     framework: 'Next.js',
     type: 'SSR',
-    description: () => t('Print.Nextjs'),
+    description: () => t('TEMP.Print.Nextjs'),
     stars: '109k'
   },
   {
     icon: AngularIcon,
     framework: 'Angular',
     type: 'SPA',
-    description: () => t('Print.Angular'),
+    description: () => t('TEMP.Print.Angular'),
     stars: '89.2k'
   },
   {
     icon: SvelteIcon,
     framework: 'Svelte',
     type: 'SPA',
-    description: () => t('Print.Svelte'),
+    description: () => t('TEMP.Print.Svelte'),
     stars: '71k'
   },
   {
     icon: GatsbyIcon,
     framework: 'Gatsby',
     type: 'SSG',
-    description: () => t('Print.Gatsby'),
+    description: () => t('TEMP.Print.Gatsby'),
     stars: '54.6k'
   },
   {
     icon: NuxtjsIcon,
     framework: 'Nuxt.js',
     type: 'SSR',
-    description: () => t('Print.Nuxtjs'),
+    description: () => t('TEMP.Print.Nuxtjs'),
     stars: '46.4k'
   },
   {
     icon: DocusaurusIcon,
     framework: 'Docusaurus',
     type: 'SSG',
-    description: () => t('Print.Docusaurus'),
+    description: () => t('TEMP.Print.Docusaurus'),
     stars: '46.1k'
   },
   {
     icon: AstroIcon,
     framework: 'Astro',
     type: 'MPA',
-    description: () => t('Print.Astro'),
+    description: () => t('TEMP.Print.Astro'),
     stars: '31.9k'
   },
   {
     icon: SolidjsIcon,
     framework: 'Solid.js',
     type: 'SPA',
-    description: () => t('Print.Solidjs'),
+    description: () => t('TEMP.Print.Solidjs'),
     stars: '28.4k'
   }
 ]
