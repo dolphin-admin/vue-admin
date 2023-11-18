@@ -5,7 +5,7 @@ import { iconSetList } from '@/constants'
 import type { MessageSchema } from '@/types'
 import SearchIcon from '~icons/ic/sharp-search'
 
-const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+const { t } = useI18n<{ message: MessageSchema }>()
 
 const message = useMessage()
 const [fetchLoading, fetchLoadingDispatcher] = useLoading()
@@ -67,7 +67,7 @@ onBeforeMount(() => {
       <NInput
         v-model:value="searchText"
         size="large"
-        :placeholder="t('Icon.SearchPlaceholder')"
+        :placeholder="t('TEMP.Icon.SearchPlaceholder')"
         clearable
         autofocus
         @input="handleSearch"

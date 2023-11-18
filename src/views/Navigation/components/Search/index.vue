@@ -3,7 +3,7 @@ import { menuOptionsFlat } from '@/constants'
 import type { MessageSchema } from '@/types'
 import SearchIcon from '~icons/ic/round-search'
 
-const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+const { t } = useI18n<{ message: MessageSchema }>()
 
 const router = useRouter()
 
@@ -49,7 +49,7 @@ const handleFocus = () => {
         class="h-11 w-full rounded-t-3xl border pl-10 outline-none transition-all dark:bg-none"
         :class="{ 'rounded-b-3xl': isInput }"
         type="text"
-        :placeholder="t('Common.KeywordSearch')"
+        :placeholder="t('COMMON.KeywordSearch')"
         @blur="handleBlur"
         @focus="handleFocus"
       />

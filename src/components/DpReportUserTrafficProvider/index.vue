@@ -18,9 +18,7 @@ import type {
  * @description 在用户退出前或页面隐藏、关闭、刷新时上报用户数据
  */
 
-const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({
-  useScope: 'global'
-})
+const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({})
 
 const { VERSION } = AppMetadata
 
@@ -177,9 +175,9 @@ const sendReport = () => {
 const sendGeoRequestNotification = () =>
   setTimeout(() => {
     const n = notification.create({
-      title: () => t('Notification.RequestGeolocation.Title'),
-      description: () => t('Notification.Team.From'),
-      content: () => t('Notification.RequestGeolocation.Content'),
+      title: () => t('TEMP.Notification.RequestGeolocation.Title'),
+      description: () => t('TEMP.Notification.Team.From'),
+      content: () => t('TEMP.Notification.RequestGeolocation.Content'),
       avatar: () =>
         h(NAvatar, {
           size: 'small',
@@ -199,7 +197,7 @@ const sendGeoRequestNotification = () =>
             onClick: () => n.destroy()
           },
           {
-            default: () => t('Common.AlreadyRead')
+            default: () => t('COMMON.AlreadyRead')
           }
         )
     })

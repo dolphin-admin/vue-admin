@@ -4,7 +4,7 @@ import type { MessageSchema } from '@/types'
 import { GitHubLogin, GoogleLogin } from './components'
 import type { RememberedAccountData } from './private'
 
-const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+const { t } = useI18n<{ message: MessageSchema }>()
 
 const route = useRoute()
 const router = useRouter()
@@ -29,22 +29,22 @@ const rules: FormRules = {
     {
       required: true,
       trigger: ['blur', 'input'],
-      message: () => t('Validation.Username'),
-      renderMessage: () => t('Validation.Username')
+      message: () => t('TEMP.Validation.Username'),
+      renderMessage: () => t('TEMP.Validation.Username')
     }
   ],
   password: [
     {
       required: true,
       trigger: ['blur', 'input'],
-      message: () => t('Validation.Password'),
-      renderMessage: () => t('Validation.Password')
+      message: () => t('TEMP.Validation.Password'),
+      renderMessage: () => t('TEMP.Validation.Password')
     },
     {
       validator: (_: FormItemRule, value: string) => value.length >= 6,
       trigger: ['blur', 'input'],
-      message: () => t('Validation.PasswordLength'),
-      renderMessage: () => t('Validation.PasswordLength')
+      message: () => t('TEMP.Validation.PasswordLength'),
+      renderMessage: () => t('TEMP.Validation.PasswordLength')
     }
   ]
 }
@@ -146,7 +146,7 @@ onMounted(() => {
     class="absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg bg-default-light px-4 py-8 shadow-md transition-colors dark:bg-default-dark sm:w-[260px] md:w-[340px]"
   >
     <div class="text-center text-lg font-semibold">
-      {{ t('Menu.Login') }}
+      {{ t('TEMP.Menu.Login') }}
     </div>
 
     <NFormItem
@@ -157,7 +157,7 @@ onMounted(() => {
       <NInput
         v-model:value="formData.username"
         type="text"
-        :placeholder="t('User.Username')"
+        :placeholder="t('TEMP.User.Username')"
         :input-props="{ autocomplete: 'username' }"
         @keyup.enter="loginAsBasic"
       />
@@ -172,7 +172,7 @@ onMounted(() => {
         v-model:value="formData.password"
         type="password"
         show-password-on="click"
-        :placeholder="t('User.Password')"
+        :placeholder="t('TEMP.User.Password')"
         :maxlength="16"
         :input-props="{ autocomplete: 'current-password' }"
         @keyup.enter="loginAsBasic"
@@ -186,14 +186,14 @@ onMounted(() => {
         class="!text-xs"
         :disabled="submitLoading"
       >
-        {{ t('Common.RememberPassword') }}
+        {{ t('COMMON.RememberPassword') }}
       </NCheckbox>
       <div
         v-if="false"
         class="cursor-pointer hover:text-blue-600"
         @click="forgetPassword"
       >
-        {{ t('Common.ForgetPassword') }}
+        {{ t('COMMON.ForgetPassword') }}
       </div>
     </div>
 
@@ -205,7 +205,7 @@ onMounted(() => {
         :loading="submitType === 'BASIC' && submitLoading"
         @click="loginAsBasic"
       >
-        {{ t('Menu.Login') }}
+        {{ t('TEMP.Menu.Login') }}
       </NButton>
       <NButton
         class="!w-[calc(50%-4px)]"
@@ -215,25 +215,25 @@ onMounted(() => {
         :loading="submitType === 'ADMIN' && submitLoading"
         @click="loginAsAdmin"
       >
-        {{ t('Login.AsAdmin') }}
+        {{ t('TEMP.Login.AsAdmin') }}
       </NButton>
     </div>
 
     <div class="flex items-center space-x-1 text-xs">
-      <span>{{ t('Login.NeedAccount') }}</span>
+      <span>{{ t('TEMP.Login.NeedAccount') }}</span>
       <NButton
         type="primary"
         text
         @click="() => router.push('/signup')"
       >
         <span class="text-xs font-semibold underline-offset-4 hover:underline">
-          {{ t('Menu.Signup') }}
+          {{ t('TEMP.Menu.Signup') }}
         </span>
       </NButton>
     </div>
 
     <NDivider>
-      <span class="text-xs">{{ t('Login.ThirdPartyLogin') }}</span>
+      <span class="text-xs">{{ t('TEMP.Login.ThirdPartyLogin') }}</span>
     </NDivider>
 
     <div class="flex flex-col space-y-2">

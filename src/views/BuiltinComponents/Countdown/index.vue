@@ -2,7 +2,7 @@
 import type { Status } from '@/components/DCountdown/private'
 import type { MessageSchema } from '@/types'
 
-const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+const { t } = useI18n<{ message: MessageSchema }>()
 
 const countdownRef = ref()
 const numberData = reactive({
@@ -36,7 +36,7 @@ const changeCountdown = (time: number, status: Status) => {
             :show-feedback="false"
           >
             <NFormItem
-              :label="t('Countdown.StartValueTime')"
+              :label="t('TEMP.Countdown.StartValueTime')"
               path="target"
             >
               <NInputNumber v-model:value="numberData.target" />
@@ -50,22 +50,22 @@ const changeCountdown = (time: number, status: Status) => {
             type="primary"
             @click="handleStart"
           >
-            {{ t('Common.Start') }}
+            {{ t('COMMON.Start') }}
           </NButton>
           <NButton
             :disabled="currentStatus !== 'running'"
             @click="handlePause"
           >
-            {{ t('Common.Pause') }}
+            {{ t('COMMON.Pause') }}
           </NButton>
           <NButton
             :disabled="currentStatus !== 'paused'"
             @click="handleStart"
           >
-            {{ t('Common.Continue') }}
+            {{ t('COMMON.Continue') }}
           </NButton>
           <NButton @click="handleRestart">
-            {{ t('Common.Refresh') }}
+            {{ t('COMMON.Refresh') }}
           </NButton>
         </div>
       </div>

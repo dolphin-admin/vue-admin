@@ -2,7 +2,7 @@
 import type { MessageSchema } from '@/types'
 import LoadingIcon from '~icons/svg-spinners/blocks-scale'
 
-const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+const { t } = useI18n<{ message: MessageSchema }>()
 
 const route = useRoute()
 const router = useRouter()
@@ -29,7 +29,7 @@ onBeforeMount(() => {
       :component="LoadingIcon"
     />
     <span class="animate-pulse text-xl">
-      {{ t('AuthRedirect.Authorizing') }}
+      {{ t('TEMP.AuthRedirect.Authorizing') }}
     </span>
   </main>
 </template>

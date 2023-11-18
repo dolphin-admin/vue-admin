@@ -4,9 +4,7 @@ import { io } from 'socket.io-client'
 
 import type { MessageSchema } from '@/types'
 
-const { t, locale } = useI18n<{ message: MessageSchema }>({
-  useScope: 'global'
-})
+const { t, locale } = useI18n<{ message: MessageSchema }>({})
 const userStore = useUserStore()
 const message = useMessage()
 
@@ -52,15 +50,15 @@ const handleDisconnect = () => {
  */
 const handleSendMessage = () => {
   if (!socket.value.connected) {
-    message.error(t('WebSocket.NotConnected'))
+    message.error(t('TEMP.WebSocket.NotConnected'))
     return
   }
   if (!inputValue.value.trim()) {
-    message.error(t('WebSocket.ContentIsEmpty'))
+    message.error(t('TEMP.WebSocket.ContentIsEmpty'))
     return
   }
   socket.value.emit('message', getSendInfo(inputValue.value))
-  message.success(t('WebSocket.SendSuccess'))
+  message.success(t('TEMP.WebSocket.SendSuccess'))
   inputValue.value = ''
 }
 
@@ -68,10 +66,10 @@ onBeforeMount(() => {
   // 监听连接
   socket.value.on('connect', () => {
     isConnecting.value = false
-    message.info(t('WebSocket.Established'))
+    message.info(t('TEMP.WebSocket.Established'))
   })
   // 监听断开连接
-  socket.value.on('disconnect', () => message.info(t('WebSocket.Disconnected')))
+  socket.value.on('disconnect', () => message.info(t('TEMP.WebSocket.Disconnected')))
   /**
    * NOTE: 服务端发送的信息为多语言 object，所以需要根据当前语言环境进行判断
    * 例如：
@@ -95,7 +93,7 @@ onBeforeUnmount(() => handleDisconnect())
 <template>
   <main>
     <NCard hoverable>
-      <NBlockquote>{{ t('WebSocket.Tip') }}</NBlockquote>
+      <NBlockquote>{{ t('TEMP.WebSocket.Tip') }}</NBlockquote>
       <div class="flex flex-col space-y-3">
         <div class="flex items-center space-x-4">
           <NButton
@@ -104,7 +102,7 @@ onBeforeUnmount(() => handleDisconnect())
             :loading="isConnecting"
             @click="handleConnect"
           >
-            {{ t('WebSocket.Establish') }}
+            {{ t('TEMP.WebSocket.Establish') }}
           </NButton>
           <NButton
             secondary
@@ -112,7 +110,7 @@ onBeforeUnmount(() => handleDisconnect())
             :disabled="socket.disconnected"
             @click="handleDisconnect"
           >
-            {{ t('WebSocket.Disconnect') }}
+            {{ t('TEMP.WebSocket.Disconnect') }}
           </NButton>
         </div>
         <div class="flex items-center space-x-4">
@@ -129,7 +127,7 @@ onBeforeUnmount(() => handleDisconnect())
             :disabled="socket.disconnected"
             @click="handleSendMessage"
           >
-            {{ t('WebSocket.SendMessage') }}
+            {{ t('TEMP.WebSocket.SendMessage') }}
           </NButton>
         </div>
       </div>

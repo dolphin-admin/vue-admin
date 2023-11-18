@@ -5,9 +5,7 @@ import type { MessageSchema } from '@/types'
 
 const router = useRouter()
 const userStore = useUserStore()
-const { t } = useI18n<{ message: MessageSchema }, Lang>({
-  useScope: 'global'
-})
+const { t } = useI18n<{ message: MessageSchema }, Lang>({})
 const message = useMessage()
 const [submitLoading, submitLoadingDispatcher] = useLoading(false)
 
@@ -22,38 +20,38 @@ const changePasswordRules: FormRules = {
   oldPassword: [
     {
       required: true,
-      message: t('Validation.OldPassword'),
+      message: t('TEMP.Validation.OldPassword'),
       trigger: ['blur', 'input']
     }
   ],
   newPassword: [
     {
       required: true,
-      message: t('Validation.Password'),
+      message: t('TEMP.Validation.Password'),
       trigger: ['blur', 'input']
     },
     {
       validator: (_: FormItemRule, value: string) => value.length >= 6,
       trigger: ['blur', 'input'],
-      message: t('Validation.PasswordLength')
+      message: t('TEMP.Validation.PasswordLength')
     }
   ],
   confirmPassword: [
     {
       required: true,
-      message: t('Common.ConfirmPassword'),
+      message: t('COMMON.ConfirmPassword'),
       trigger: ['blur', 'input']
     },
     {
       validator: (_: FormItemRule, value: string) => value === changePasswordData.newPassword,
-      message: t('Validation.ConfirmPasswordNotMatch')
+      message: t('TEMP.Validation.ConfirmPasswordNotMatch')
     }
   ]
 }
 
 const logout = () =>
   router.replace('/login').then(() => {
-    message.success(t('Logout.LoginAgain'))
+    message.success(t('TEMP.Logout.LoginAgain'))
     userStore.clearUser()
     AuthUtils.clearToken()
   })
@@ -114,12 +112,12 @@ const handleChangePassword = async () => {
       >
         <NFormItem
           path="oldPassword"
-          :label="t('Common.OldPassword')"
+          :label="t('COMMON.OldPassword')"
         >
           <NInput
             v-model:value="changePasswordData.oldPassword"
             type="password"
-            :placeholder="t('User.Password')"
+            :placeholder="t('TEMP.User.Password')"
             show-password-on="click"
             :input-props="{ autocomplete: 'oldPassword' }"
             @keydown.enter="handleChangePassword"
@@ -127,13 +125,13 @@ const handleChangePassword = async () => {
         </NFormItem>
         <NFormItem
           path="newPassword"
-          :label="t('Common.NewPassword')"
+          :label="t('COMMON.NewPassword')"
           first
         >
           <NInput
             v-model:value="changePasswordData.newPassword"
             type="password"
-            :placeholder="t('User.Password')"
+            :placeholder="t('TEMP.User.Password')"
             show-password-on="click"
             :input-props="{ autocomplete: 'new-password' }"
             @keydown.enter="handleChangePassword"
@@ -141,12 +139,12 @@ const handleChangePassword = async () => {
         </NFormItem>
         <NFormItem
           path="confirmPassword"
-          :label="t('Common.ConfirmPassword')"
+          :label="t('COMMON.ConfirmPassword')"
         >
           <NInput
             v-model:value="changePasswordData.confirmPassword"
             type="password"
-            :placeholder="t('User.Password')"
+            :placeholder="t('TEMP.User.Password')"
             show-password-on="click"
             @keydown.enter="handleChangePassword"
           />
@@ -160,7 +158,7 @@ const handleChangePassword = async () => {
             :loading="submitLoading"
             @click="() => handleChangePassword()"
           >
-            {{ t('Common.Save') }}
+            {{ t('COMMON.Save') }}
           </NButton>
         </div>
       </NForm>

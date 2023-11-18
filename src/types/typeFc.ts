@@ -12,8 +12,8 @@ export type Merge<T, U> = {
       ? T[P] & U[P]
       : T[P]
     : P extends keyof U
-    ? U[P]
-    : never
+      ? U[P]
+      : never
 }
 
 export type DeepMerge<T, U> = {
@@ -26,8 +26,8 @@ export type DeepMerge<T, U> = {
         : U[P]
       : U[P]
     : P extends keyof T
-    ? T[P]
-    : never
+      ? T[P]
+      : never
 }
 
 export type MergeAll<T extends any[]> = T extends [infer U, ...infer R]

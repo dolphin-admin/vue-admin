@@ -51,7 +51,7 @@ export const routes = [
         name: 'navigation',
         component: () => import('@/views/Navigation'),
         meta: {
-          title: () => t('Menu.Navigation'),
+          title: () => t('TEMP.Menu.Navigation'),
           icon: NavigationIcon
           // dismissTab: true
         }
@@ -62,7 +62,7 @@ export const routes = [
         name: 'traffic-statistics',
         component: () => import('@/views/WebsiteAnalytics/TrafficStatistics'),
         meta: {
-          title: () => t('Menu.TrafficStatistics'),
+          title: () => t('TEMP.Menu.TrafficStatistics'),
           icon: TrafficStatisticsIcon
         }
       },
@@ -72,7 +72,7 @@ export const routes = [
         name: 'user-management',
         component: () => import('@/views/SystemFunctions/UserManagement'),
         meta: {
-          title: () => t('Menu.UserManagement'),
+          title: () => t('TEMP.Menu.UserManagement'),
           icon: UserManagementIcon
         }
       },
@@ -81,7 +81,7 @@ export const routes = [
         name: 'role-management',
         component: () => import('@/views/SystemFunctions/RoleManagement'),
         meta: {
-          title: () => t('Menu.RoleManagement'),
+          title: () => t('TEMP.Menu.RoleManagement'),
           icon: RoleManagementIcon
         }
       },
@@ -90,7 +90,7 @@ export const routes = [
         name: 'permission-management',
         component: () => import('@/views/SystemFunctions/PermissionManagement'),
         meta: {
-          title: () => t('Menu.PermissionManagement'),
+          title: () => t('TEMP.Menu.PermissionManagement'),
           icon: PermissionManagementIcon
         }
       },
@@ -99,7 +99,7 @@ export const routes = [
         name: 'dictionary-management',
         component: () => import('@/views/SystemFunctions/DictionaryManagement'),
         meta: {
-          title: () => t('Menu.DictionaryManagement'),
+          title: () => t('TEMP.Menu.DictionaryManagement'),
           icon: DictionaryManagementIcon
         }
       },
@@ -109,7 +109,7 @@ export const routes = [
         component: () => import('@/views/SystemFunctions/DictionaryData'),
         props: true,
         meta: {
-          title: () => t('Menu.DictionaryData'),
+          title: () => t('TEMP.Menu.DictionaryData'),
           icon: DictionaryDataIcon
         }
       },
@@ -119,7 +119,7 @@ export const routes = [
         name: 'chat-channels',
         component: () => import('@/views/SystemApplications/ChatChannels'),
         meta: {
-          title: () => t('Menu.ChatChannels'),
+          title: () => t('TEMP.Menu.ChatChannels'),
           icon: ChatChannelsIcon
         }
       },
@@ -129,7 +129,7 @@ export const routes = [
         name: 'icon',
         component: () => import('@/views/SystemTools/Icon'),
         meta: {
-          title: () => t('Menu.Icon'),
+          title: () => t('TEMP.Menu.Icon'),
           icon: IconManagementIcon
         }
       },
@@ -138,7 +138,7 @@ export const routes = [
         name: 'qrcode',
         component: () => import('@/views/SystemTools/QRCode'),
         meta: {
-          title: () => t('Menu.QRCode'),
+          title: () => t('TEMP.Menu.QRCode'),
           icon: QRCodeIcon
         }
       },
@@ -147,7 +147,7 @@ export const routes = [
         name: 'clipboard',
         component: () => import('@/views/SystemTools/Clipboard'),
         meta: {
-          title: () => t('Menu.Clipboard'),
+          title: () => t('TEMP.Menu.Clipboard'),
           icon: CopyIcon
         }
       },
@@ -156,7 +156,7 @@ export const routes = [
         name: 'print',
         component: () => import('@/views/SystemTools/Print'),
         meta: {
-          title: () => t('Menu.Print'),
+          title: () => t('TEMP.Menu.Print'),
           icon: PrintIcon
         }
       },
@@ -165,7 +165,7 @@ export const routes = [
         name: 'excel',
         component: () => import('@/views/SystemTools/Excel'),
         meta: {
-          title: () => t('Menu.Excel'),
+          title: () => t('TEMP.Menu.Excel'),
           icon: ExcelIcon
         }
       },
@@ -174,7 +174,7 @@ export const routes = [
         name: 'websocket',
         component: () => import('@/views/SystemTools/WebSocket'),
         meta: {
-          title: () => t('Menu.WebSocket'),
+          title: () => t('TEMP.Menu.WebSocket'),
           icon: WebSocketIcon
         }
       },
@@ -183,7 +183,7 @@ export const routes = [
         name: 'watermark',
         component: () => import('@/views/SystemTools/Watermark'),
         meta: {
-          title: () => t('Menu.Watermark'),
+          title: () => t('TEMP.Menu.Watermark'),
           icon: WatermarkIcon
         }
       },
@@ -193,7 +193,7 @@ export const routes = [
         name: 'list-templates',
         component: () => import('@/views/CodeTemplates/ListTemplates'),
         meta: {
-          title: () => t('Menu.ListTemplates'),
+          title: () => t('TEMP.Menu.ListTemplates'),
           icon: ListTemplatesIcon
         }
       },
@@ -203,7 +203,7 @@ export const routes = [
         name: 'charts',
         component: () => import('@/views/UniversalComponents/Charts'),
         meta: {
-          title: () => t('Menu.Charts'),
+          title: () => t('TEMP.Menu.Charts'),
           icon: ChartIcon
         }
       },
@@ -213,7 +213,7 @@ export const routes = [
         name: 'digital-animation',
         component: () => import('@/views/BuiltinComponents/DigitalAnimation'),
         meta: {
-          title: () => t('Menu.DigitalAnimation'),
+          title: () => t('TEMP.Menu.DigitalAnimation'),
           icon: DigitalAnimationIcon
         }
       },
@@ -222,7 +222,7 @@ export const routes = [
         name: 'countdown',
         component: () => import('@/views/BuiltinComponents/Countdown'),
         meta: {
-          title: () => t('Menu.Countdown'),
+          title: () => t('TEMP.Menu.Countdown'),
           icon: CountDownIcon
         }
       },
@@ -231,7 +231,7 @@ export const routes = [
         name: 'right-click',
         component: () => import('@/views/BuiltinComponents/RightClick'),
         meta: {
-          title: () => t('Menu.RightClick'),
+          title: () => t('TEMP.Menu.RightClick'),
           icon: RightClickIcon
         }
       },
@@ -240,7 +240,7 @@ export const routes = [
         name: 'timeline',
         component: () => import('@/views/BuiltinComponents/Timeline'),
         meta: {
-          title: () => t('Menu.Timeline'),
+          title: () => t('TEMP.Menu.Timeline'),
           icon: TimelineIcon
         }
       },
@@ -249,7 +249,7 @@ export const routes = [
         name: 'virtual-list',
         component: () => import('@/views/BuiltinComponents/VirtualList'),
         meta: {
-          title: () => t('Menu.VirtualList'),
+          title: () => t('TEMP.Menu.VirtualList'),
           icon: VirtualListIcon
         }
       },
@@ -259,7 +259,7 @@ export const routes = [
         name: '403',
         component: () => import('@/views/ErrorPages/403'),
         meta: {
-          title: () => t('Menu.403'),
+          title: () => t('TEMP.Menu.403'),
           icon: UnauthorizedIcon
         }
       },
@@ -268,7 +268,7 @@ export const routes = [
         name: '404',
         component: () => import('@/views/ErrorPages/404'),
         meta: {
-          title: () => t('Menu.404'),
+          title: () => t('TEMP.Menu.404'),
           icon: NotFoundIcon
         }
       },
@@ -277,7 +277,7 @@ export const routes = [
         name: '418',
         component: () => import('@/views/ErrorPages/418'),
         meta: {
-          title: () => t('Menu.418'),
+          title: () => t('TEMP.Menu.418'),
           icon: IAmATeapotIcon
         }
       },
@@ -286,7 +286,7 @@ export const routes = [
         name: '500',
         component: () => import('@/views/ErrorPages/500'),
         meta: {
-          title: () => t('Menu.500'),
+          title: () => t('TEMP.Menu.500'),
           icon: InternalServerErrorIcon
         }
       },
@@ -294,7 +294,7 @@ export const routes = [
         path: '/:pathMatch(.*)*',
         component: () => import('@/views/ErrorPages/404'),
         meta: {
-          title: () => t('Menu.404'),
+          title: () => t('TEMP.Menu.404'),
           icon: NotFoundIcon
         }
       },
@@ -303,7 +303,7 @@ export const routes = [
         name: 'user-info',
         component: () => import('@/views/User/UserInfo'),
         meta: {
-          title: () => t('Menu.UserInfo'),
+          title: () => t('TEMP.Menu.UserInfo'),
           icon: UserInfoIcon
         }
       },
@@ -312,7 +312,7 @@ export const routes = [
         name: 'change-password',
         component: () => import('@/views/User/ChangePassword'),
         meta: {
-          title: () => t('Menu.ChangePassword'),
+          title: () => t('TEMP.Menu.ChangePassword'),
           icon: ChangePasswordIcon
         }
       }
@@ -329,7 +329,7 @@ export const routes = [
         name: 'login',
         component: () => import('@/views/Auth/Login'),
         meta: {
-          title: () => t('Menu.Login'),
+          title: () => t('TEMP.Menu.Login'),
           disableAuth: true,
           dismissTab: true
         }
@@ -339,7 +339,7 @@ export const routes = [
         name: 'signup',
         component: () => import('@/views/Auth/Signup'),
         meta: {
-          title: () => t('Menu.Signup'),
+          title: () => t('TEMP.Menu.Signup'),
           disableAuth: true,
           dismissTab: true
         }
@@ -352,7 +352,7 @@ export const routes = [
     name: 'auth-redirect',
     component: () => import('@/views/Auth/AuthRedirect'),
     meta: {
-      title: () => t('AuthRedirect.Authorizing'),
+      title: () => t('TEMP.AuthRedirect.Authorizing'),
       disableAuth: true,
       dismissTab: true
     }

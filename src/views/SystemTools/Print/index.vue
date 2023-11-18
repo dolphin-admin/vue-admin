@@ -4,7 +4,7 @@ import TrophyIcon from '~icons/emojione/trophy'
 
 import { columns, data, DefaultHTMLStr } from './private'
 
-const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+const { t } = useI18n<{ message: MessageSchema }>()
 
 const printRef = ref<HTMLDivElement | null>()
 const printContent = ref('')
@@ -39,16 +39,16 @@ const handlePrintHTMLStr = () => {
     <NCard
       hoverable
       footer-style="text-align: center;"
-      :title="t('Print.DOM')"
+      :title="t('TEMP.Print.DOM')"
     >
-      <template #footer>{{ t('Print.ExpireTip') }}</template>
+      <template #footer>{{ t('TEMP.Print.ExpireTip') }}</template>
       <div
         ref="printRef"
         class="print-dom flex flex-col"
       >
         <div class="print-dom-title mb-4 flex items-center space-x-1 text-base">
           <NIcon :component="TrophyIcon" />
-          <span>{{ t('Print.FrontendFrameworkLeaderboard') }}</span>
+          <span>{{ t('TEMP.Print.FrontendFrameworkLeaderboard') }}</span>
         </div>
         <NDataTable
           size="small"
@@ -62,14 +62,14 @@ const handlePrintHTMLStr = () => {
           type="primary"
           @click="handlePrintDOM"
         >
-          {{ t('Common.Print') }}
+          {{ t('COMMON.Print') }}
         </NButton>
       </div>
     </NCard>
 
     <NCard
       hoverable
-      :title="t('Print.HTMLStr')"
+      :title="t('TEMP.Print.HTMLStr')"
     >
       <div class="flex flex-col">
         <NInput
@@ -88,7 +88,7 @@ const handlePrintHTMLStr = () => {
             type="primary"
             @click="handlePrintHTMLStr"
           >
-            {{ t('Common.Print') }}
+            {{ t('COMMON.Print') }}
           </NButton>
         </div>
       </div>

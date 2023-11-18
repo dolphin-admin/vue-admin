@@ -15,7 +15,7 @@ const emit = defineEmits<{
   (e: 'save'): void
 }>()
 
-const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+const { t } = useI18n<{ message: MessageSchema }>()
 
 const message = useMessage()
 const [submitLoading, submitLoadingDispatcher] = useLoading()
@@ -35,46 +35,46 @@ const editRules: FormRules = {
     {
       required: true,
       trigger: ['blur', 'input'],
-      message: () => t('Validation.Name'),
-      renderMessage: () => t('Validation.Name')
+      message: () => t('TEMP.Validation.Name'),
+      renderMessage: () => t('TEMP.Validation.Name')
     }
   ],
   firstName: [
     {
       required: true,
       trigger: ['blur', 'input'],
-      message: () => t('Validation.FirstName'),
-      renderMessage: () => t('Validation.FirstName')
+      message: () => t('TEMP.Validation.FirstName'),
+      renderMessage: () => t('TEMP.Validation.FirstName')
     }
   ],
   lastName: [
     {
       required: true,
       trigger: ['blur', 'input'],
-      message: () => t('Validation.LastName'),
-      renderMessage: () => t('Validation.LastName')
+      message: () => t('TEMP.Validation.LastName'),
+      renderMessage: () => t('TEMP.Validation.LastName')
     }
   ],
   email: [
     {
       key: 'edit',
       trigger: ['blur', 'change'],
-      message: () => t('Validation.Email'),
-      renderMessage: () => t('Validation.Email')
+      message: () => t('TEMP.Validation.Email'),
+      renderMessage: () => t('TEMP.Validation.Email')
     },
     {
       pattern: /^([a-zA-Z]|[0-9])(\w|-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/,
       trigger: ['input', 'blur'],
-      message: () => t('Validation.EmailFormat'),
-      renderMessage: () => t('Validation.EmailFormat')
+      message: () => t('TEMP.Validation.EmailFormat'),
+      renderMessage: () => t('TEMP.Validation.EmailFormat')
     }
   ],
   phoneNumber: [
     {
       pattern: /^[1][3456789]\d{9}$/,
       trigger: ['input', 'blur'],
-      message: () => t('Validation.PhoneNumberFormat'),
-      renderMessage: () => t('Validation.PhoneNumberFormat')
+      message: () => t('TEMP.Validation.PhoneNumberFormat'),
+      renderMessage: () => t('TEMP.Validation.PhoneNumberFormat')
     }
   ]
 }
@@ -84,22 +84,22 @@ const createRules: FormRules = {
     {
       required: true,
       trigger: ['blur', 'input'],
-      message: () => t('Validation.Username'),
-      renderMessage: () => t('Validation.Username')
+      message: () => t('TEMP.Validation.Username'),
+      renderMessage: () => t('TEMP.Validation.Username')
     }
   ],
   password: [
     {
       required: true,
       trigger: ['blur', 'input'],
-      message: () => t('Validation.Password'),
-      renderMessage: () => t('Validation.Password')
+      message: () => t('TEMP.Validation.Password'),
+      renderMessage: () => t('TEMP.Validation.Password')
     },
     {
       validator: (_: FormItemRule, value: string) => value.length >= 6,
       trigger: ['blur', 'input'],
-      message: () => t('Validation.PasswordLength'),
-      renderMessage: () => t('Validation.PasswordLength')
+      message: () => t('TEMP.Validation.PasswordLength'),
+      renderMessage: () => t('TEMP.Validation.PasswordLength')
     }
   ]
 }
@@ -216,10 +216,10 @@ defineExpose({
     v-model:show="showModal"
     class="!my-6"
     preset="dialog"
-    :title="isEdit ? t('UserManagement.EditUser') : t('UserManagement.CreateUser')"
+    :title="isEdit ? t('TEMP.UserManagement.EditUser') : t('TEMP.UserManagement.CreateUser')"
     :loading="submitLoading"
-    :positive-text="t('Common.Confirm')"
-    :negative-text="t('Common.Cancel')"
+    :positive-text="t('COMMON.Confirm')"
+    :negative-text="t('COMMON.Cancel')"
     @positive-click="handleSubmit"
     @negative-click="handleCancel"
   >
@@ -242,7 +242,7 @@ defineExpose({
     >
       <NFormItem
         path="avatarUrl"
-        :label="t('User.Avatar')"
+        :label="t('TEMP.User.Avatar')"
       >
         <NUpload
           ref="uploadRef"
@@ -270,11 +270,11 @@ defineExpose({
 
       <NFormItem
         path="name"
-        :label="t('User.Name')"
+        :label="t('TEMP.User.Name')"
       >
         <NInput
           v-model:value="formData.name"
-          :placeholder="t('Validation.Name')"
+          :placeholder="t('TEMP.Validation.Name')"
           maxlength="20"
           show-count
           clearable
@@ -283,11 +283,11 @@ defineExpose({
 
       <NFormItem
         path="firstName"
-        :label="t('User.FirstName')"
+        :label="t('TEMP.User.FirstName')"
       >
         <NInput
           v-model:value="formData.firstName"
-          :placeholder="t('Validation.FirstName')"
+          :placeholder="t('TEMP.Validation.FirstName')"
           maxlength="20"
           show-count
           clearable
@@ -296,11 +296,11 @@ defineExpose({
 
       <NFormItem
         path="lastName"
-        :label="t('User.LastName')"
+        :label="t('TEMP.User.LastName')"
       >
         <NInput
           v-model:value="formData.lastName"
-          :placeholder="t('Validation.LastName')"
+          :placeholder="t('TEMP.Validation.LastName')"
           maxlength="10"
           show-count
           clearable
@@ -309,11 +309,11 @@ defineExpose({
 
       <NFormItem
         path="email"
-        :label="t('User.Email')"
+        :label="t('TEMP.User.Email')"
       >
         <NInput
           v-model:value="formData.email"
-          :placeholder="t('Validation.Email')"
+          :placeholder="t('TEMP.Validation.Email')"
           maxlength="20"
           show-count
           clearable
@@ -322,26 +322,26 @@ defineExpose({
 
       <NFormItem
         path="gender"
-        :label="t('User.Gender')"
+        :label="t('TEMP.User.Gender')"
       >
         <NRadioGroup
           v-model:value="formData.gender"
-          :name="t('User.Gender')"
+          :name="t('TEMP.User.Gender')"
         >
           <NSpace>
-            <NRadio :value="1"> {{ t('User.Male') }} </NRadio>
-            <NRadio :value="0"> {{ t('User.Female') }} </NRadio>
+            <NRadio :value="1"> {{ t('TEMP.User.Male') }} </NRadio>
+            <NRadio :value="0"> {{ t('TEMP.User.Female') }} </NRadio>
           </NSpace>
         </NRadioGroup>
       </NFormItem>
 
       <NFormItem
         path="phoneNumber"
-        :label="t('User.PhoneNumber')"
+        :label="t('TEMP.User.PhoneNumber')"
       >
         <NInput
           v-model:value="formData.phoneNumber"
-          :placeholder="t('Validation.PhoneNumber')"
+          :placeholder="t('TEMP.Validation.PhoneNumber')"
           maxlength="20"
           show-count
           clearable
@@ -350,7 +350,7 @@ defineExpose({
 
       <NFormItem
         path="birthDate"
-        :label="t('User.BirthDate')"
+        :label="t('TEMP.User.BirthDate')"
       >
         <NDatePicker
           v-model:formatted-value="formData.birthDate"
@@ -360,11 +360,11 @@ defineExpose({
 
       <NFormItem
         path="address"
-        :label="t('User.Address')"
+        :label="t('TEMP.User.Address')"
       >
         <NInput
           v-model:value="formData.address"
-          :placeholder="t('Validation.Address')"
+          :placeholder="t('TEMP.Validation.Address')"
           maxlength="30"
           show-count
           clearable
@@ -373,11 +373,11 @@ defineExpose({
 
       <NFormItem
         path="biography"
-        :label="t('User.Biography')"
+        :label="t('TEMP.User.Biography')"
       >
         <NInput
           v-model:value="formData.biography"
-          :placeholder="t('Validation.Biography')"
+          :placeholder="t('TEMP.Validation.Biography')"
           maxlength="300"
           show-count
           clearable
@@ -397,11 +397,11 @@ defineExpose({
     >
       <NFormItem
         path="username"
-        :label="t('User.Username')"
+        :label="t('TEMP.User.Username')"
       >
         <NInput
           v-model:value="createFormData.username"
-          :placeholder="t('Validation.Username')"
+          :placeholder="t('TEMP.Validation.Username')"
           maxlength="20"
           show-count
           clearable
@@ -411,12 +411,12 @@ defineExpose({
 
       <NFormItem
         path="password"
-        :label="t('User.Password')"
+        :label="t('TEMP.User.Password')"
       >
         <NInput
           v-model:value="createFormData.password"
           type="password"
-          :placeholder="t('Validation.Password')"
+          :placeholder="t('TEMP.Validation.Password')"
           maxlength="20"
           clearable
           show-password-on="click"

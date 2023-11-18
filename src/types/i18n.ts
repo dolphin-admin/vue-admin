@@ -1,4 +1,4 @@
-import type zhCN from '@/locales/zh-CN.json'
+import type EN_US from '@/locales'
 
 // i18n 类型提示优先根据中文
-export type MessageSchema = typeof zhCN
+export type MessageSchema = typeof EN_US

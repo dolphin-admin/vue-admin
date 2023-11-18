@@ -39,185 +39,185 @@ const { renderIcon: renderMenuIcon, renderMenuLabel } = RenderUtils
 
 export const menuOptions: MenuOption[] = [
   {
-    label: renderMenuLabel(() => t('Menu.Navigation')),
+    label: renderMenuLabel(() => t('TEMP.Menu.Navigation')),
     key: 'navigation',
     icon: renderMenuIcon(NavigationIcon)
   },
   {
-    label: renderMenuLabel(() => t('Menu.WebsiteAnalytics')),
+    label: renderMenuLabel(() => t('TEMP.Menu.WebsiteAnalytics')),
     key: 'website-analytics',
     icon: renderMenuIcon(WebsiteAnalyticsIcon),
     children: [
       {
-        label: renderMenuLabel(() => t('Menu.TrafficStatistics')),
+        label: renderMenuLabel(() => t('TEMP.Menu.TrafficStatistics')),
         key: 'traffic-statistics',
         icon: renderMenuIcon(TrafficStatisticsIcon)
       }
     ]
   },
   {
-    label: renderMenuLabel(() => t('Menu.SystemFunctions')),
+    label: renderMenuLabel(() => t('TEMP.Menu.SystemFunctions')),
     key: 'system-functions',
     icon: renderMenuIcon(SystemFunctionsIcon),
     children: [
       {
-        label: renderMenuLabel(() => t('Menu.UserManagement')),
+        label: renderMenuLabel(() => t('TEMP.Menu.UserManagement')),
         key: 'user-management',
         icon: renderMenuIcon(UserManagementIcon)
       },
       {
-        label: renderMenuLabel(() => t('Menu.RoleManagement')),
+        label: renderMenuLabel(() => t('TEMP.Menu.RoleManagement')),
         key: 'role-management',
         icon: renderMenuIcon(RoleManagementIcon),
         show: false
       },
       {
-        label: renderMenuLabel(() => t('Menu.PermissionManagement')),
+        label: renderMenuLabel(() => t('TEMP.Menu.PermissionManagement')),
         key: 'permission-management',
         icon: renderMenuIcon(PermissionManagementIcon),
         show: false
       },
       {
-        label: renderMenuLabel(() => t('Menu.DictionaryManagement')),
+        label: renderMenuLabel(() => t('TEMP.Menu.DictionaryManagement')),
         key: 'dictionary-management',
         icon: renderMenuIcon(DictionaryManagementIcon)
       }
     ]
   },
   {
-    label: renderMenuLabel(() => t('Menu.SystemApplications')),
+    label: renderMenuLabel(() => t('TEMP.Menu.SystemApplications')),
     key: 'system-applications',
     icon: renderMenuIcon(SystemApplicationsIcon),
     show: GlobalEnvConfig.IS_DEV,
     children: [
       {
-        label: renderMenuLabel(() => t('Menu.ChatChannels')),
+        label: renderMenuLabel(() => t('TEMP.Menu.ChatChannels')),
         key: 'chat-channels',
         icon: renderMenuIcon(ChatChannelsIcon)
       }
     ]
   },
   {
-    label: renderMenuLabel(() => t('Menu.SystemTools')),
+    label: renderMenuLabel(() => t('TEMP.Menu.SystemTools')),
     key: 'system-tools',
     icon: renderMenuIcon(SystemToolsIcon),
     children: [
       {
-        label: renderMenuLabel(() => t('Menu.Icon')),
+        label: renderMenuLabel(() => t('TEMP.Menu.Icon')),
         key: 'icon',
         icon: renderMenuIcon(IconManagementIcon),
         show: false
       },
       {
-        label: renderMenuLabel(() => t('Menu.QRCode')),
+        label: renderMenuLabel(() => t('TEMP.Menu.QRCode')),
         key: 'qrcode',
         icon: renderMenuIcon(QRCodeIcon)
       },
       {
-        label: renderMenuLabel(() => t('Menu.Clipboard')),
+        label: renderMenuLabel(() => t('TEMP.Menu.Clipboard')),
         key: 'clipboard',
         icon: renderMenuIcon(CopyIcon)
       },
       {
-        label: renderMenuLabel(() => t('Menu.Print')),
+        label: renderMenuLabel(() => t('TEMP.Menu.Print')),
         key: 'print',
         icon: renderMenuIcon(PrintIcon)
       },
       {
-        label: renderMenuLabel(() => t('Menu.Excel')),
+        label: renderMenuLabel(() => t('TEMP.Menu.Excel')),
         key: 'excel',
         icon: renderMenuIcon(ExcelIcon)
       },
       {
-        label: renderMenuLabel(() => t('Menu.WebSocket')),
+        label: renderMenuLabel(() => t('TEMP.Menu.WebSocket')),
         key: 'websocket',
         icon: renderMenuIcon(WebSocketIcon)
       },
       {
-        label: renderMenuLabel(() => t('Menu.Watermark')),
+        label: renderMenuLabel(() => t('TEMP.Menu.Watermark')),
         key: 'watermark',
         icon: renderMenuIcon(WatermarkIcon)
       }
     ]
   },
   {
-    label: renderMenuLabel(() => t('Menu.CodeTemplates')),
+    label: renderMenuLabel(() => t('TEMP.Menu.CodeTemplates')),
     key: 'code-templates',
     icon: renderMenuIcon(CodeTemplatesIcon),
     children: [
       {
-        label: renderMenuLabel(() => t('Menu.ListTemplates')),
+        label: renderMenuLabel(() => t('TEMP.Menu.ListTemplates')),
         key: 'list-templates',
         icon: renderMenuIcon(ListTemplatesIcon)
       }
     ]
   },
   {
-    label: renderMenuLabel(() => t('Menu.UniversalComponents')),
+    label: renderMenuLabel(() => t('TEMP.Menu.UniversalComponents')),
     key: 'universal-components',
     icon: renderMenuIcon(UniversalComponentsIcon),
     children: [
       {
-        label: renderMenuLabel(() => t('Menu.Charts')),
+        label: renderMenuLabel(() => t('TEMP.Menu.Charts')),
         key: 'charts',
         icon: renderMenuIcon(ChartIcon)
       }
     ]
   },
   {
-    label: renderMenuLabel(() => t('Menu.BuiltinComponents')),
+    label: renderMenuLabel(() => t('TEMP.Menu.BuiltinComponents')),
     key: 'builtin-components',
     icon: renderMenuIcon(BuiltinComponentsIcon),
     children: [
       {
-        label: renderMenuLabel(() => t('Menu.DigitalAnimation')),
+        label: renderMenuLabel(() => t('TEMP.Menu.DigitalAnimation')),
         key: 'digital-animation',
         icon: renderMenuIcon(DigitalAnimationIcon)
       },
       {
-        label: renderMenuLabel(() => t('Menu.Countdown')),
+        label: renderMenuLabel(() => t('TEMP.Menu.Countdown')),
         key: 'countdown',
         icon: renderMenuIcon(CountDownIcon)
       },
       {
-        label: renderMenuLabel(() => t('Menu.RightClick')),
+        label: renderMenuLabel(() => t('TEMP.Menu.RightClick')),
         key: 'right-click',
         icon: renderMenuIcon(RightClickIcon)
       },
       {
-        label: renderMenuLabel(() => t('Menu.Timeline')),
+        label: renderMenuLabel(() => t('TEMP.Menu.Timeline')),
         key: 'timeline',
         icon: renderMenuIcon(TimelineIcon)
       },
       {
-        label: renderMenuLabel(() => t('Menu.VirtualList')),
+        label: renderMenuLabel(() => t('TEMP.Menu.VirtualList')),
         key: 'virtual-list',
         icon: renderMenuIcon(VirtualListIcon)
       }
     ]
   },
   {
-    label: renderMenuLabel(() => t('Menu.ErrorPages')),
+    label: renderMenuLabel(() => t('TEMP.Menu.ErrorPages')),
     key: 'error-pages',
     icon: renderMenuIcon(ErrorPagesIcon),
     children: [
       {
-        label: renderMenuLabel(() => t('Menu.403')),
+        label: renderMenuLabel(() => t('TEMP.Menu.403')),
         key: '403',
         icon: renderMenuIcon(UnauthorizedIcon)
       },
       {
-        label: renderMenuLabel(() => t('Menu.404')),
+        label: renderMenuLabel(() => t('TEMP.Menu.404')),
         key: '404',
         icon: renderMenuIcon(NotFoundIcon)
       },
       {
-        label: renderMenuLabel(() => t('Menu.418')),
+        label: renderMenuLabel(() => t('TEMP.Menu.418')),
         key: '418',
         icon: renderMenuIcon(IAmATeapotIcon)
       },
       {
-        label: renderMenuLabel(() => t('Menu.500')),
+        label: renderMenuLabel(() => t('TEMP.Menu.500')),
         key: '500',
         icon: renderMenuIcon(InternalServerErrorIcon)
       }

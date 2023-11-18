@@ -7,7 +7,7 @@ import { Search, ShortcutItem } from './components'
 
 const { APP_NAME, TEAM_NAME } = AppMetadata
 
-const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+const { t } = useI18n<{ message: MessageSchema }>()
 
 const keys = ref<any>([])
 const showModal = ref(false)
@@ -142,7 +142,7 @@ onMounted(() => {
             />
           </div>
           <div>
-            {{ t('Navigation.AddShortcut') }}
+            {{ t('TEMP.Navigation.AddShortcut') }}
           </div>
         </div>
       </div>
@@ -150,9 +150,9 @@ onMounted(() => {
     <NModal
       v-model:show="showModal"
       preset="dialog"
-      :title="t('Navigation.AddShortcut')"
-      :positive-text="t('Common.Confirm')"
-      :negative-text="t('Common.Cancel')"
+      :title="t('TEMP.Navigation.AddShortcut')"
+      :positive-text="t('COMMON.Confirm')"
+      :negative-text="t('COMMON.Cancel')"
       @positive-click="onPositiveClick"
     >
       <NTreeSelect

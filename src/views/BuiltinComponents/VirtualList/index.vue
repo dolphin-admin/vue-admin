@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { MessageSchema } from '@/types'
 
-const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+const { t } = useI18n<{ message: MessageSchema }>()
 
 const listData = new Array(100000).fill(null).map((_item, i) => ({ id: i + 1, data: '列表项' }))
 </script>
@@ -12,7 +12,7 @@ const listData = new Array(100000).fill(null).map((_item, i) => ({ id: i + 1, da
       class="sm:!w-fit"
       hoverable
       bordered
-      :title="t('Menu.VirtualList')"
+      :title="t('TEMP.Menu.VirtualList')"
     >
       <DVirtualList
         :data="listData"

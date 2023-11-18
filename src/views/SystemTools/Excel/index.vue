@@ -5,7 +5,7 @@ import { header } from './private'
 
 const message = useMessage()
 
-const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+const { t } = useI18n<{ message: MessageSchema }>()
 
 const users = ref<any>([])
 const filename = ref('')
@@ -21,14 +21,14 @@ const queryList = () => {
       users.value = data
     })
     .catch(() => {
-      message.error(t('Common.LoadingDataError'))
+      message.error(t('COMMON.LoadingDataError'))
       users.value = []
     })
 }
 
 const handleExport = () => {
   if (!filename.value?.trim()) {
-    message.info(t('Validation.FileName'))
+    message.info(t('TEMP.Validation.FileName'))
     return
   }
   ExcelUtils.export(header, users.value, filename.value)
@@ -47,19 +47,19 @@ onMounted(() => {
           v-model:value="filename"
           type="text"
           clearable
-          :placeholder="t('Validation.FileName')"
+          :placeholder="t('TEMP.Validation.FileName')"
         />
       </div>
       <NButton
         type="primary"
         @click="handleExport"
       >
-        {{ t('Common.Export') }}
+        {{ t('COMMON.Export') }}
       </NButton>
     </div>
     <div>
       <NUpload :default-upload="false">
-        <NButton>{{ t('Common.Import') }}</NButton>
+        <NButton>{{ t('COMMON.Import') }}</NButton>
       </NUpload>
     </div>
   </main>

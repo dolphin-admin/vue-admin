@@ -2,7 +2,7 @@
 import type { MessageSchema } from '@/types'
 import GitHubIcon from '~icons/ant-design/github-outlined'
 
-const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+const { t } = useI18n<{ message: MessageSchema }>()
 
 const route = useRoute()
 const router = useRouter()
@@ -82,6 +82,6 @@ const loginWithGitHub = () => {
         <GitHubIcon class="scale-125" />
       </NIcon>
     </template>
-    <span class="text-white">{{ t('Login.LoginWithGitHub') }}</span>
+    <span class="text-white">{{ t('TEMP.Login.LoginWithGitHub') }}</span>
   </NButton>
 </template>

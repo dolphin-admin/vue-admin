@@ -12,9 +12,7 @@ import { UserPageModel } from './private'
 
 const router = useRouter()
 
-const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({
-  useScope: 'global'
-})
+const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({})
 
 const message = useMessage()
 const [loading, loadingDispatcher] = useLoading()
@@ -91,7 +89,7 @@ const queryList = () => {
       pagination.itemCount = total
     })
     .catch(() => {
-      message.error(t('Common.LoadingDataError'))
+      message.error(t('COMMON.LoadingDataError'))
     })
     .finally(() => loadingDispatcher.loaded())
 }
@@ -119,7 +117,7 @@ const columns = ref<DataTableColumns<Dictionary>>([
     sorter: true
   },
   {
-    title: () => t('Common.Name'),
+    title: () => t('COMMON.Name'),
     key: 'name',
     width: 140,
     ellipsis: {
@@ -130,7 +128,7 @@ const columns = ref<DataTableColumns<Dictionary>>([
     fixed: !isMobile.value ? 'left' : undefined
   },
   {
-    title: () => t('Common.Type'),
+    title: () => t('COMMON.Type'),
     key: 'type',
     width: 140,
     titleAlign: 'center',
@@ -157,7 +155,7 @@ const columns = ref<DataTableColumns<Dictionary>>([
     }
   },
   {
-    title: () => t('Common.Status'),
+    title: () => t('COMMON.Status'),
     key: 'state',
     width: 100,
     titleAlign: 'center',
@@ -170,13 +168,13 @@ const columns = ref<DataTableColumns<Dictionary>>([
           bordered: false
         },
         {
-          default: () => t(row.status === 1 ? 'Common.Enable' : 'Common.Disable')
+          default: () => t(row.status === 1 ? 'COMMON.Enable' : 'COMMON.Disable')
         }
       )
     }
   },
   {
-    title: () => t('Common.Remark'),
+    title: () => t('COMMON.Remark'),
     key: 'remark',
     width: 200,
     titleAlign: 'center',
@@ -186,7 +184,7 @@ const columns = ref<DataTableColumns<Dictionary>>([
     }
   },
   {
-    title: () => t('Common.CreateAt'),
+    title: () => t('COMMON.CreateAt'),
     key: 'createAt',
     width: 160,
     titleAlign: 'center',
@@ -196,7 +194,7 @@ const columns = ref<DataTableColumns<Dictionary>>([
     }
   },
   {
-    title: () => t('Common.Operation'),
+    title: () => t('COMMON.Operation'),
     key: 'operation',
     width: 120,
     titleAlign: 'center',
@@ -221,7 +219,7 @@ const columns = ref<DataTableColumns<Dictionary>>([
               }
             },
             {
-              default: () => t('Common.Edit')
+              default: () => t('COMMON.Edit')
             }
           ),
           h(
@@ -232,8 +230,8 @@ const columns = ref<DataTableColumns<Dictionary>>([
                 loading: deleteLoading.value,
                 disabled: deleteLoading.value
               },
-              positiveText: t('Common.Confirm'),
-              negativeText: t('Common.Cancel'),
+              positiveText: t('COMMON.Confirm'),
+              negativeText: t('COMMON.Cancel'),
               onPositiveClick: () => handleDelete(row.id!)
             },
             {
@@ -244,9 +242,9 @@ const columns = ref<DataTableColumns<Dictionary>>([
                     type: 'default',
                     size: 'small'
                   },
-                  { default: () => t('Common.Delete') }
+                  { default: () => t('COMMON.Delete') }
                 ),
-              default: () => t('Common.Delete')
+              default: () => t('COMMON.Delete')
             }
           )
         ]
@@ -334,7 +332,7 @@ onMounted(() => queryList())
               v-model:value="queryParams.searchText"
               class="sm:!w-[200px]"
               clearable
-              :placeholder="t('Common.KeywordSearch')"
+              :placeholder="t('COMMON.KeywordSearch')"
               @keydown.enter="queryList"
             >
               <template #prefix>
@@ -349,7 +347,7 @@ onMounted(() => queryList())
               size="small"
               @click="queryList"
             >
-              {{ t('Common.Search') }}
+              {{ t('COMMON.Search') }}
             </NButton>
           </div>
           <NDatePicker
@@ -375,13 +373,13 @@ onMounted(() => queryList())
                 </template>
               </NButton>
             </template>
-            {{ t('Common.Reset') }}
+            {{ t('COMMON.Reset') }}
           </NTooltip>
           <NButton
             :size="isMobile ? 'small' : 'medium'"
             @click="handleCreateUser"
           >
-            {{ t('Common.Create') }}
+            {{ t('COMMON.Create') }}
           </NButton>
         </div>
       </div>
@@ -401,19 +399,19 @@ onMounted(() => queryList())
         showSizePicker: true,
         pageSizes: [
           {
-            label: t('Common.EachPage', { count: 10 }),
+            label: t('COMMON.EachPage', { count: 10 }),
             value: 10
           },
           {
-            label: t('Common.EachPage', { count: 20 }),
+            label: t('COMMON.EachPage', { count: 20 }),
             value: 20
           },
           {
-            label: t('Common.EachPage', { count: 30 }),
+            label: t('COMMON.EachPage', { count: 30 }),
             value: 30
           },
           {
-            label: t('Common.EachPage', { count: 40 }),
+            label: t('COMMON.EachPage', { count: 40 }),
             value: 40
           }
         ],
@@ -426,16 +424,16 @@ onMounted(() => queryList())
           pagination.pageSize = pageSize
           queryList()
         },
-        prefix: (info) => t('Common.TotalPage', { totalPage: info.itemCount })
+        prefix: (info) => t('COMMON.TotalPage', { totalPage: info.itemCount })
       }"
     />
     <NModal
       v-model:show="showDialog"
       preset="dialog"
-      :title="t(isEdit ? 'Common.Edit' : 'Common.Create')"
+      :title="t(isEdit ? 'COMMON.Edit' : 'COMMON.Create')"
       :loading="submitLoading"
-      :positive-text="t('Common.Confirm')"
-      :negative-text="t('Common.Cancel')"
+      :positive-text="t('COMMON.Confirm')"
+      :negative-text="t('COMMON.Cancel')"
       @positive-click="handleConfirmDialog"
       @negative-click="handleCannelDialog"
     >
@@ -456,36 +454,36 @@ onMounted(() => queryList())
         }"
       >
         <NFormItem
-          :label="t('Common.Name')"
+          :label="t('COMMON.Name')"
           path="name"
         >
           <n-input
             v-model:value="formData.name"
-            :placeholder="t('Validation.DictionaryName')"
+            :placeholder="t('TEMP.Validation.DictionaryName')"
           />
         </NFormItem>
         <NFormItem
-          :label="t('Common.Type')"
+          :label="t('COMMON.Type')"
           path="type"
         >
           <n-input
             v-model:value="formData.type"
-            :placeholder="t('Validation.DictionaryType')"
+            :placeholder="t('TEMP.Validation.DictionaryType')"
           />
         </NFormItem>
         <NFormItem
-          :label="t('Common.Status')"
+          :label="t('COMMON.Status')"
           path="status"
         >
           <NRadioGroup v-model:value="formData.status">
             <NSpace>
-              <NRadio :value="1"> {{ t('Common.Enable') }} </NRadio>
-              <NRadio :value="0"> {{ t('Common.Disable') }} </NRadio>
+              <NRadio :value="1"> {{ t('COMMON.Enable') }} </NRadio>
+              <NRadio :value="0"> {{ t('COMMON.Disable') }} </NRadio>
             </NSpace>
           </NRadioGroup>
         </NFormItem>
         <NFormItem
-          :label="t('Common.Remark')"
+          :label="t('COMMON.Remark')"
           path="remark"
         >
           <NInput

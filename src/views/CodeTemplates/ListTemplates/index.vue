@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { Lang } from '@dolphin-admin/utils'
 import dayjs from 'dayjs'
 import type { DataTableFilterState, DataTableSortState } from 'naive-ui'
 
@@ -14,9 +13,7 @@ import GoogleIcon from '~icons/logos/google-icon'
 
 import { UserPageModel } from './private'
 
-const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({
-  useScope: 'global'
-})
+const { t, locale } = useI18n<{ message: MessageSchema }, string>({})
 
 const message = useMessage()
 const [loading, loadingDispatcher] = useLoading()
@@ -43,7 +40,7 @@ const showDialog = ref(false)
 const isEdit = ref(true)
 
 const authTypeColumn: DataTableBaseColumn<User> = {
-  title: () => t('User.AuthType'),
+  title: () => t('TEMP.User.AuthType'),
   key: 'authTypes',
   width: 80,
   filter: true,
@@ -106,7 +103,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     sorter: true
   },
   {
-    title: () => t('User.Username'),
+    title: () => t('TEMP.User.Username'),
     key: 'username',
     width: 140,
     ellipsis: {
@@ -115,7 +112,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     fixed: !isMobile.value ? 'left' : undefined
   },
   {
-    title: () => t('User.Name'),
+    title: () => t('TEMP.User.Name'),
     key: 'name',
     width: 120,
     ellipsis: {
@@ -124,7 +121,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
   },
   authTypeColumn,
   {
-    title: () => t('Common.Operation'),
+    title: () => t('COMMON.Operation'),
     key: 'operation',
     width: 120,
     titleAlign: 'center',
@@ -148,7 +145,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
               }
             },
             {
-              default: () => t('Common.Edit')
+              default: () => t('COMMON.Edit')
             }
           ),
           h(
@@ -159,8 +156,8 @@ const columns = ref<DataTableBaseColumn<User>[]>([
                 loading: deleteLoading.value,
                 disabled: deleteLoading.value
               },
-              positiveText: t('Common.Confirm'),
-              negativeText: t('Common.Cancel'),
+              positiveText: t('COMMON.Confirm'),
+              negativeText: t('COMMON.Cancel'),
               onPositiveClick: () => {}
             },
             {
@@ -171,9 +168,9 @@ const columns = ref<DataTableBaseColumn<User>[]>([
                     type: 'default',
                     size: 'small'
                   },
-                  { default: () => t('Common.Delete') }
+                  { default: () => t('COMMON.Delete') }
                 ),
-              default: () => t('Common.Delete')
+              default: () => t('COMMON.Delete')
             }
           )
         ]
@@ -209,7 +206,7 @@ const queryList = () => {
       pagination.itemCount = total
     })
     .catch(() => {
-      message.error(t('Common.LoadingDataError'))
+      message.error(t('COMMON.LoadingDataError'))
       users.value = []
     })
     .finally(() => loadingDispatcher.loaded())
@@ -283,7 +280,7 @@ onMounted(() => queryList())
               v-model:value="queryParams.searchText"
               class="sm:!w-[200px]"
               clearable
-              :placeholder="t('Common.KeywordSearch')"
+              :placeholder="t('COMMON.KeywordSearch')"
               @keydown.enter="queryList"
             >
               <template #prefix>
@@ -298,7 +295,7 @@ onMounted(() => queryList())
               size="small"
               @click="queryList"
             >
-              {{ t('Common.Search') }}
+              {{ t('COMMON.Search') }}
             </NButton>
           </div>
           <NDatePicker
@@ -324,13 +321,13 @@ onMounted(() => queryList())
                 </template>
               </NButton>
             </template>
-            {{ t('Common.Reset') }}
+            {{ t('COMMON.Reset') }}
           </NTooltip>
           <NButton
             :size="isMobile ? 'small' : 'medium'"
             @click="handleCreateUser"
           >
-            {{ t('Common.Create') }}
+            {{ t('COMMON.Create') }}
           </NButton>
         </div>
       </div>
@@ -350,19 +347,19 @@ onMounted(() => queryList())
         showSizePicker: true,
         pageSizes: [
           {
-            label: t('Common.EachPage', { count: 10 }),
+            label: t('COMMON.EachPage', { count: 10 }),
             value: 10
           },
           {
-            label: t('Common.EachPage', { count: 20 }),
+            label: t('COMMON.EachPage', { count: 20 }),
             value: 20
           },
           {
-            label: t('Common.EachPage', { count: 30 }),
+            label: t('COMMON.EachPage', { count: 30 }),
             value: 30
           },
           {
-            label: t('Common.EachPage', { count: 40 }),
+            label: t('COMMON.EachPage', { count: 40 }),
             value: 40
           }
         ],
@@ -375,7 +372,7 @@ onMounted(() => queryList())
           pagination.pageSize = pageSize
           queryList()
         },
-        prefix: (info) => t('Common.TotalPage', { totalPage: info.itemCount })
+        prefix: (info) => t('COMMON.TotalPage', { totalPage: info.itemCount })
       }"
       @update:sorter="handleSorterChange"
       @update:filters="handleFiltersChange"
@@ -383,10 +380,10 @@ onMounted(() => queryList())
     <NModal
       v-model:show="showDialog"
       preset="dialog"
-      :title="t(isEdit ? 'Common.Edit' : 'Common.Create')"
+      :title="t(isEdit ? 'COMMON.Edit' : 'COMMON.Create')"
       :loading="showDialogLoading"
-      :positive-text="t('Common.Confirm')"
-      :negative-text="t('Common.Cancel')"
+      :positive-text="t('COMMON.Confirm')"
+      :negative-text="t('COMMON.Cancel')"
       @positive-click="handleConfirmDialog"
       @negative-click="handleCannelDialog"
     >

@@ -26,7 +26,7 @@ defineOptions({
   name: 'BaseHeader'
 })
 
-const { t } = useI18n<{ message: MessageSchema }>({ useScope: 'global' })
+const { t } = useI18n<{ message: MessageSchema }>()
 
 const { REPO_GITHUB_URL, DISCORD_URL, DOCS_URL } = AppMetadata
 
@@ -46,15 +46,15 @@ const languages = ref([
 
 const userOptions = ref([
   {
-    label: () => t('Menu.UserInfo'),
+    label: () => t('TEMP.Menu.UserInfo'),
     key: UserAction['USER.INFO']
   },
   {
-    label: () => t('Header.ChangePassword'),
+    label: () => t('TEMP.Header.ChangePassword'),
     key: UserAction['CHANGE.PASSWORD']
   },
   {
-    label: () => t('Header.Logout'),
+    label: () => t('TEMP.Header.Logout'),
     key: UserAction.QUIT
   }
 ])
@@ -89,7 +89,7 @@ const handleUpdateLang = (lang: string) => {
  */
 const logout = () =>
   router.replace('/login').then(() => {
-    message.success(t('Logout.Success'))
+    message.success(t('TEMP.Logout.Success'))
     userStore.clearUser()
     AuthUtils.clearToken()
   })
@@ -134,7 +134,7 @@ onMounted(() => resetLanguageOptions(langStore.lang))
             @click="sidebarStore.toggleDisplay"
           />
         </template>
-        {{ sidebarStore.isDisplay ? t('Sidebar.Hide') : t('Sidebar.Show') }}
+        {{ sidebarStore.isDisplay ? t('TEMP.Sidebar.Hide') : t('TEMP.Sidebar.Show') }}
       </NTooltip>
 
       <BaseBreadcrumb />
@@ -184,7 +184,7 @@ onMounted(() => resetLanguageOptions(langStore.lang))
             @click="() => BrowserUtils.openNewWindow(DOCS_URL)"
           />
         </template>
-        {{ t('Common.Docs') }}
+        {{ t('COMMON.Docs') }}
       </NTooltip>
 
       <template v-if="false">
@@ -199,7 +199,7 @@ onMounted(() => resetLanguageOptions(langStore.lang))
               :component="NotificationIcon"
             />
           </template>
-          {{ t('Header.Notification') }}
+          {{ t('TEMP.Header.Notification') }}
         </NTooltip>
       </template>
 
@@ -215,7 +215,7 @@ onMounted(() => resetLanguageOptions(langStore.lang))
             @click="toggleFullscreen"
           />
         </template>
-        {{ t(isFullscreen ? 'Header.ExitFullScreen' : 'Header.FullScreen') }}
+        {{ t(isFullscreen ? 'TEMP.Header.ExitFullScreen' : 'TEMP.Header.FullScreen') }}
       </NTooltip>
 
       <NDropdown
@@ -243,7 +243,7 @@ onMounted(() => resetLanguageOptions(langStore.lang))
             @click="() => themeStore.toggleTheme()"
           />
         </template>
-        {{ t('Header.SwitchTheme') }}
+        {{ t('TEMP.Header.SwitchTheme') }}
       </NTooltip>
 
       <template v-if="false">
@@ -258,7 +258,7 @@ onMounted(() => resetLanguageOptions(langStore.lang))
               :component="SettingIcon"
             />
           </template>
-          {{ t('Header.Settings') }}
+          {{ t('TEMP.Header.Settings') }}
         </NTooltip>
       </template>
 
