@@ -13,7 +13,7 @@ import Components from 'unplugin-vue-components/vite'
 import type { ProxyOptions } from 'vite'
 import { defineConfig, loadEnv } from 'vite'
 import ViteCompression from 'vite-plugin-compression'
-// import VueDevTools from 'vite-plugin-vue-devtools'
+import VueDevTools from 'vite-plugin-vue-devtools'
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd())
@@ -142,7 +142,7 @@ export default defineConfig(({ mode }) => {
         extensions: ['vue']
       }),
       Icons({ autoInstall: true }),
-      // VueDevTools(), // NOTE: 目前 Vue Devtools 不支持 Vite v5
+      VueDevTools(),
       ViteCompression({
         verbose: true, // 是否在控制台中输出压缩结果
         disable: true,
