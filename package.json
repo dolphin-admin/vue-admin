@@ -20,6 +20,7 @@
     "clean": "rm -rf dist",
     "desktop:dev": "tauri dev",
     "desktop:build": "tauri build",
+    "deploy:prod": "sh scripts/deploy.sh",
     "type:check": "vue-tsc --noEmit --composite false",
     "cspell:check": "cspell \"**\"",
     "eslint:check": "eslint \"**/*.{ts,tsx,js,tsx,vue}\" --color",
