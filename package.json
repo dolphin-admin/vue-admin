@@ -85,7 +85,7 @@
     "tailwindcss": "^3.3.5",
     "typescript": "^5.3.2",
     "unplugin-auto-import": "^0.17.1",
-    "unplugin-icons": "^0.17.4",
+    "unplugin-icons": "^0.18.0",
     "unplugin-vue-components": "^0.25.2",
     "vite": "4.5.0",
     "vite-plugin-compression": "^0.5.1",
