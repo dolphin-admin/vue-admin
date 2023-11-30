@@ -91,7 +91,8 @@ const logout = () =>
   router.replace('/login').then(() => {
     message.success(t('TEMP.Logout.Success'))
     userStore.clearUser()
-    AuthUtils.clearToken()
+    AuthUtils.clearAccessToken()
+    AuthUtils.clearRefreshToken()
   })
 
 /**

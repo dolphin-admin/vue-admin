@@ -71,8 +71,9 @@ const signup = async () => {
 
   AuthAPI.signup(formData)
     .then((res) => {
-      const { accessToken } = res.data || {}
-      AuthUtils.setToken(accessToken)
+      const { accessToken, refreshToken } = res.data || {}
+      AuthUtils.setAccessToken(accessToken)
+      AuthUtils.setRefreshToken(refreshToken)
       if (res.message) {
         message.success(res.message)
       }

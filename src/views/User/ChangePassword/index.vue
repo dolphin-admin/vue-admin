@@ -53,7 +53,8 @@ const logout = () =>
   router.replace('/login').then(() => {
     message.success(t('TEMP.Logout.LoginAgain'))
     userStore.clearUser()
-    AuthUtils.clearToken()
+    AuthUtils.clearAccessToken()
+    AuthUtils.clearRefreshToken()
   })
 
 const handleChangePassword = async () => {
