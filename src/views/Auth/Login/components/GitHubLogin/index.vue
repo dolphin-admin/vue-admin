@@ -41,8 +41,9 @@ const loginWithGitHub = () => {
 
     AuthAPI.loginWithGitHub(githubAuthCode)
       .then((res) => {
-        const { accessToken, user } = res.data || {}
-        AuthUtils.setToken(accessToken)
+        const { accessToken, refreshToken, user } = res.data || {}
+        AuthUtils.setAccessToken(accessToken)
+        AuthUtils.setRefreshToken(refreshToken)
         userStore.setUser(user)
         if (res.message) {
           message.success(res.message)

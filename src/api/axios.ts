@@ -9,7 +9,12 @@ import axios from 'axios'
 
 import { errorMessageMap, StatusCode } from '@/constants'
 import router from '@/router'
-import type { PageModel } from '@/types'
+import type { BaseResponse, PageModel, Response } from '@/types'
+
+interface PendingTask {
+  config: AxiosRequestConfig | undefined
+  resolve: (value: unknown) => void
+}
 
 const { t } = i18n.global
 
@@ -26,6 +31,12 @@ const { message } = createDiscreteApi(['message'], {
 
 class Request {
   instance: AxiosInstance
+
+  // 是否正在刷新令牌
+  refreshing = false
+
+  // 请求队列
+  requestQueue: PendingTask[] = []
 
   // Axios 配置
   private readonly config: AxiosRequestConfig = {
@@ -57,11 +68,77 @@ class Request {
 
     this.instance.interceptors.response.use(
       (res: AxiosResponse) => res.data,
-      (err: AxiosError) => {
-        const { response } = err
+      async (err: AxiosError<Response>) => {
+        const { response, config } = err
         const { data, status } = response ?? {}
+        const { message: msg } = data ?? {}
+
         if (response && status) {
-          Request.handleCode(status)
+          /**
+           * 处理响应状态码
+           * @description 根据响应状态码进行相应的处理
+           * - 401 未授权，清除 token 并跳转到登录页
+           * - 403 禁止访问，提示用户无权限访问
+           * - 404 未找到，跳转到 404 页面
+           * - 500 服务器错误，跳转到 500 页面
+           * - 其他状态码，提示错误信息
+           */
+          const errorMessage = msg ?? errorMessageMap.get(status) ?? 'Unknown Error!'
+          switch (status) {
+            case StatusCode.UNAUTHORIZED:
+              if (!config?.url?.includes(AuthAPI.REFRESH_API_URL)) {
+                try {
+                  this.refreshing = true
+                  // 认证令牌过期，需要通过刷新令牌获取新的认证令牌
+                  await AuthAPI.refresh(AuthUtils.getRefreshToken())
+                  this.refreshing = false
+                  if (config) {
+                    // 重新发起上次失败的请求
+                    const res = await this.request<BaseResponse>({
+                      ...config,
+                      headers: { ...config.headers, Authorization: AuthUtils.getAuthorization() }
+                    })
+                    // 刷新了认证令牌后，将待请求队列的请求重新发起
+                    if (this.requestQueue.length > 0) {
+                      this.requestQueue.forEach((task) => task.resolve(this.request(task.config!)))
+                      this.requestQueue = []
+                    }
+                    return res
+                  }
+                } catch (e) {
+                  //
+                }
+              }
+              // 仅刷新令牌接口需要处理认证失败
+              message.error(errorMessage)
+              AuthUtils.clearAccessToken()
+              AuthUtils.clearRefreshToken()
+              // 如果非登录页面，需要重定向到登录页，且需要带上 redirect 参数
+              if (router.currentRoute.value.path !== '/login') {
+                if (router.currentRoute.value.path !== '/') {
+                  router.replace({
+                    path: '/login',
+                    query: {
+                      redirect: router.currentRoute.value.fullPath
+                    }
+                  })
+                } else {
+                  router.replace('/login')
+                }
+              }
+              break
+            case StatusCode.FORBIDDEN:
+              message.error(errorMessage)
+              router.replace('/403')
+              break
+            case StatusCode.INTERNAL_SERVER_ERROR:
+            case StatusCode.BAD_GATEWAY:
+            case StatusCode.GATEWAY_TIMEOUT:
+              message.error(errorMessage)
+              router.replace('/500')
+              break
+            default:
+          }
         }
         // 网络错误，跳转到 404 页面
         if (!window.navigator.onLine) {
@@ -74,60 +151,10 @@ class Request {
   }
 
   /**
-   * 处理响应状态码
-   * @param code 响应状态码
-   * @description 根据响应状态码进行相应的处理
-   * - 401 未授权，清除 token 并跳转到登录页
-   * - 403 禁止访问，TODO: 提示用户无权限访问
-   * - 404 未找到，TODO: 跳转到 404 页面
-   * - 500 服务器错误，TODO: 跳转到 500 页面
-   * - 其他状态码，提示错误信息
-   */
-  static handleCode(code: number): void {
-    const errorMessage = errorMessageMap.get(code) || 'Unknown Error!'
-    switch (code) {
-      case StatusCode.UNAUTHORIZED:
-        AuthUtils.clearToken()
-        message.error(t('COMMON.401'))
-        // 如果非登录页面，需要重定向到登录页，且需要带上 redirect 参数
-        if (router.currentRoute.value.path !== '/login') {
-          if (router.currentRoute.value.path !== '/') {
-            router.replace({
-              path: '/login',
-              query: {
-                redirect: router.currentRoute.value.fullPath
-              }
-            })
-          } else {
-            router.replace('/login')
-          }
-        }
-        break
-      case StatusCode.FORBIDDEN:
-        message.error(errorMessage)
-        break
-      case StatusCode.INTERNAL_SERVER_ERROR:
-      case StatusCode.BAD_GATEWAY:
-      case StatusCode.GATEWAY_TIMEOUT:
-        message.error(t('COMMON.500'))
-        if (router.currentRoute.value.path !== '/login') {
-          router.replace('/error-pages/500')
-        }
-        break
-      case StatusCode.BAD_REQUEST:
-      case StatusCode.NOT_FOUND:
-      case StatusCode.METHOD_NOT_ALLOWED:
-      case StatusCode.CONFLICT:
-      case StatusCode.TOO_MANY_REQUESTS:
-      default:
-    }
-  }
-
-  /**
    * 通用请求
    * @param config 请求配置
    */
-  request(config: AxiosRequestConfig) {
+  request<T>(config: AxiosRequestConfig): Promise<T> {
     return this.instance.request(config)
   }
 

@@ -27,7 +27,7 @@ export enum StatusCode {
  * 响应状态码 Map
  * @description 用于获取响应状态码对应的错误信息
  */
-export const errorMessageMap = new Map<StatusCode, string>([
+export const errorMessageMap = new Map<number, string>([
   [StatusCode.BAD_REQUEST, '400: Bad Request!'],
   [StatusCode.UNAUTHORIZED, '401: Unauthorized!'],
   [StatusCode.FORBIDDEN, '403: Forbidden!'],

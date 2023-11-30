@@ -72,7 +72,7 @@ const login = async () => {
   AuthAPI.login(formData)
     .then((res) => {
       const { accessToken, user } = res.data || {}
-      AuthUtils.setToken(accessToken)
+      AuthUtils.setAccessToken(accessToken)
       userStore.setUser(user)
       if (res.message) {
         message.success(res.message)
