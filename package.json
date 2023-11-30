@@ -33,7 +33,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@dolphin-admin/utils": "^0.0.17",
+    "@dolphin-admin/utils": "^0.0.18",
     "@tanstack/vue-query": "^5.8.7",
     "@tauri-apps/api": "^1.5.1",
     "@vueuse/core": "^10.6.1",
