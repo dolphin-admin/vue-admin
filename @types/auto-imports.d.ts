@@ -10,7 +10,6 @@ declare global {
   const AuthUtils: typeof import('@dolphin-admin/utils')['AuthUtils']
   const BasePageModel: typeof import('@/constants')['BasePageModel']
   const BrowserUtils: typeof import('@dolphin-admin/utils')['BrowserUtils']
-  const DictionaryAPI: typeof import('../src/api/dictionaries')['DictionaryAPI']
   const EffectScope: typeof import('vue')['EffectScope']
   const ExcelUtils: typeof import('../src/utils/excel')['ExcelUtils']
   const GitHubAuthUtils: typeof import('../src/utils/github')['GitHubAuthUtils']
@@ -26,8 +25,6 @@ declare global {
   const NPopconfirm: typeof import('naive-ui')['NPopconfirm']
   const NTag: typeof import('naive-ui')['NTag']
   const NaiveUtils: typeof import('../src/utils/naive')['NaiveUtils']
-  const NavigationUtils: typeof import('../src/utils/navigation')['NavigationUtils']
-  const PermissionUtils: typeof import('../src/utils/permission')['PermissionUtils']
   const QRCodeUtils: typeof import('../src/utils/qrcode')['QRCodeUtils']
   const RenderUtils: typeof import('../src/utils/render')['RenderUtils']
   const RouterLink: typeof import('vue-router')['RouterLink']
@@ -36,8 +33,8 @@ declare global {
   const ThemeUtils: typeof import('@dolphin-admin/utils')['ThemeUtils']
   const TimeUtils: typeof import('@dolphin-admin/utils')['TimeUtils']
   const UploadAPI: typeof import('../src/api/upload')['UploadAPI']
-  const UserAPI: typeof import('../src/api/users')['UserAPI']
-  const UserTrafficAPI: typeof import('../src/api/user-traffics')['UserTrafficAPI']
+  const UserAPI: typeof import('../src/api/user')['UserAPI']
+  const UserTrafficAPI: typeof import('../src/api/user-traffic')['UserTrafficAPI']
   const UserTrafficUtils: typeof import('../src/utils/user-traffic')['UserTrafficUtils']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
   const computed: typeof import('vue')['computed']
@@ -150,7 +147,6 @@ declare module 'vue' {
     readonly AuthUtils: UnwrapRef<typeof import('@dolphin-admin/utils')['AuthUtils']>
     readonly BasePageModel: UnwrapRef<typeof import('@/constants')['BasePageModel']>
     readonly BrowserUtils: UnwrapRef<typeof import('@dolphin-admin/utils')['BrowserUtils']>
-    readonly DictionaryAPI: UnwrapRef<typeof import('../src/api/dictionaries')['DictionaryAPI']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly ExcelUtils: UnwrapRef<typeof import('../src/utils/excel')['ExcelUtils']>
     readonly GitHubAuthUtils: UnwrapRef<typeof import('../src/utils/github')['GitHubAuthUtils']>
@@ -166,8 +162,6 @@ declare module 'vue' {
     readonly NPopconfirm: UnwrapRef<typeof import('naive-ui')['NPopconfirm']>
     readonly NTag: UnwrapRef<typeof import('naive-ui')['NTag']>
     readonly NaiveUtils: UnwrapRef<typeof import('../src/utils/naive')['NaiveUtils']>
-    readonly NavigationUtils: UnwrapRef<typeof import('../src/utils/navigation')['NavigationUtils']>
-    readonly PermissionUtils: UnwrapRef<typeof import('../src/utils/permission')['PermissionUtils']>
     readonly QRCodeUtils: UnwrapRef<typeof import('../src/utils/qrcode')['QRCodeUtils']>
     readonly RenderUtils: UnwrapRef<typeof import('../src/utils/render')['RenderUtils']>
     readonly RouterLink: UnwrapRef<typeof import('vue-router')['RouterLink']>
@@ -176,8 +170,8 @@ declare module 'vue' {
     readonly ThemeUtils: UnwrapRef<typeof import('@dolphin-admin/utils')['ThemeUtils']>
     readonly TimeUtils: UnwrapRef<typeof import('@dolphin-admin/utils')['TimeUtils']>
     readonly UploadAPI: UnwrapRef<typeof import('../src/api/upload')['UploadAPI']>
-    readonly UserAPI: UnwrapRef<typeof import('../src/api/users')['UserAPI']>
-    readonly UserTrafficAPI: UnwrapRef<typeof import('../src/api/user-traffics')['UserTrafficAPI']>
+    readonly UserAPI: UnwrapRef<typeof import('../src/api/user')['UserAPI']>
+    readonly UserTrafficAPI: UnwrapRef<typeof import('../src/api/user-traffic')['UserTrafficAPI']>
     readonly UserTrafficUtils: UnwrapRef<typeof import('../src/utils/user-traffic')['UserTrafficUtils']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
@@ -282,7 +276,6 @@ declare module '@vue/runtime-core' {
     readonly AuthUtils: UnwrapRef<typeof import('@dolphin-admin/utils')['AuthUtils']>
     readonly BasePageModel: UnwrapRef<typeof import('@/constants')['BasePageModel']>
     readonly BrowserUtils: UnwrapRef<typeof import('@dolphin-admin/utils')['BrowserUtils']>
-    readonly DictionaryAPI: UnwrapRef<typeof import('../src/api/dictionaries')['DictionaryAPI']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly ExcelUtils: UnwrapRef<typeof import('../src/utils/excel')['ExcelUtils']>
     readonly GitHubAuthUtils: UnwrapRef<typeof import('../src/utils/github')['GitHubAuthUtils']>
@@ -298,8 +291,6 @@ declare module '@vue/runtime-core' {
     readonly NPopconfirm: UnwrapRef<typeof import('naive-ui')['NPopconfirm']>
     readonly NTag: UnwrapRef<typeof import('naive-ui')['NTag']>
     readonly NaiveUtils: UnwrapRef<typeof import('../src/utils/naive')['NaiveUtils']>
-    readonly NavigationUtils: UnwrapRef<typeof import('../src/utils/navigation')['NavigationUtils']>
-    readonly PermissionUtils: UnwrapRef<typeof import('../src/utils/permission')['PermissionUtils']>
     readonly QRCodeUtils: UnwrapRef<typeof import('../src/utils/qrcode')['QRCodeUtils']>
     readonly RenderUtils: UnwrapRef<typeof import('../src/utils/render')['RenderUtils']>
     readonly RouterLink: UnwrapRef<typeof import('vue-router')['RouterLink']>
@@ -308,8 +299,8 @@ declare module '@vue/runtime-core' {
     readonly ThemeUtils: UnwrapRef<typeof import('@dolphin-admin/utils')['ThemeUtils']>
     readonly TimeUtils: UnwrapRef<typeof import('@dolphin-admin/utils')['TimeUtils']>
     readonly UploadAPI: UnwrapRef<typeof import('../src/api/upload')['UploadAPI']>
-    readonly UserAPI: UnwrapRef<typeof import('../src/api/users')['UserAPI']>
-    readonly UserTrafficAPI: UnwrapRef<typeof import('../src/api/user-traffics')['UserTrafficAPI']>
+    readonly UserAPI: UnwrapRef<typeof import('../src/api/user')['UserAPI']>
+    readonly UserTrafficAPI: UnwrapRef<typeof import('../src/api/user-traffic')['UserTrafficAPI']>
     readonly UserTrafficUtils: UnwrapRef<typeof import('../src/utils/user-traffic')['UserTrafficUtils']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>

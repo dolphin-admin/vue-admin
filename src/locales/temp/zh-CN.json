@@ -2,9 +2,6 @@
   "AuthRedirect": {
     "Authorizing": "正在授权..."
   },
-  "Countdown": {
-    "StartValueTime": "请输入目标时间"
-  },
   "DigitalAnimation": {
     "DurationPlaceholder": "请输入动画时长",
     "EndValuePlaceholder": "请输入结束值",
@@ -20,9 +17,6 @@
     "Notification": "通知",
     "Settings": "设置",
     "SwitchTheme": "切换主题"
-  },
-  "Icon": {
-    "SearchPlaceholder": "请输入图标集合名称"
   },
   "Login": {
     "AsAdmin": "以管理员登录",
@@ -44,37 +38,25 @@
     "BuiltinComponents": "内置组件",
     "ChangePassword": "修改密码",
     "Charts": "图表",
-    "ChatChannels": "聊天频道",
     "Clipboard": "剪切板",
     "CodeTemplates": "代码模版",
-    "Countdown": "倒计时",
-    "DictionaryData": "字典数据",
-    "DictionaryManagement": "字典管理",
     "DigitalAnimation": "数字动画",
     "ErrorPages": "错误页面",
-    "Excel": "Excel",
-    "Icon": "图标",
     "ListTemplates": "列表模版",
     "Login": "登录",
     "Navigation": "站点导航",
     "PermissionManagement": "权限管理",
     "Print": "打印",
     "QRCode": "二维码",
-    "RightClick": "右键菜单",
     "RoleManagement": "角色管理",
     "Signup": "注册",
-    "SystemApplications": "系统应用",
     "SystemFunctions": "系统功能",
     "SystemTools": "系统工具",
     "Timeline": "时间线",
-    "VirtualList": "虚拟列表",
-    "TrafficStatistics": "流量统计",
     "UniversalComponents": "通用组件",
     "UserInfo": "用户信息",
     "UserManagement": "用户管理",
-    "WebSocket": "WebSocket",
-    "Watermark": "水印",
-    "WebsiteAnalytics": "站点分析"
+    "WebSocket": "WebSocket"
   },
   "Message": {
     "Copy": {
@@ -85,9 +67,6 @@
       "Failed": "二维码生成失败",
       "Success": "二维码生成成功"
     }
-  },
-  "Navigation": {
-    "AddShortcut": "添加快捷方式"
   },
   "Notification": {
     "Desktop": {
@@ -129,19 +108,12 @@
     "ContentPlaceholder": "请输入二维码内容",
     "Generate": "生成二维码"
   },
-  "RightClick": {
-    "Clicked": "你点击了：{label}",
-    "Tip": "右击触发"
-  },
   "Sidebar": {
     "Hide": "隐藏侧边栏",
     "Show": "显示侧边栏"
   },
   "Signup": {
     "AlreadyHaveAccount": "已有账号？"
-  },
-  "Tab": {
-    "Clear": "清空"
   },
   "Timeline": {
     "WebDevRoadmap": "Web 开发学习路线"

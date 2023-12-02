@@ -2,9 +2,6 @@
   "AuthRedirect": {
     "Authorizing": "Authorizing..."
   },
-  "Countdown": {
-    "StartValueTime": "Please enter target time"
-  },
   "DigitalAnimation": {
     "DurationPlaceholder": "Please enter duration",
     "EndValuePlaceholder": "Please enter end value",
@@ -20,9 +17,6 @@
     "Notification": "Notification",
     "Settings": "Settings",
     "SwitchTheme": "Switch theme"
-  },
-  "Icon": {
-    "SearchPlaceholder": "Please enter icon set name"
   },
   "Login": {
     "AsAdmin": "Login as Admin",
@@ -44,37 +38,25 @@
     "BuiltinComponents": "Built-in Component",
     "ChangePassword": "Change Password",
     "Charts": "Charts",
-    "ChatChannels": "Chat Channels",
     "Clipboard": "Clipboard",
     "CodeTemplates": "Code Templates",
-    "Countdown": "Countdown",
-    "DictionaryData": "Dictionary Data",
-    "DictionaryManagement": "Dictionary Management",
     "DigitalAnimation": "Digital Animation",
     "ErrorPages": "Error Page",
-    "Excel": "Excel",
-    "Icon": "Icon",
     "ListTemplates": "List Templates",
     "Login": "Login",
     "Navigation": "Site Navigation",
     "PermissionManagement": "Permission Management",
     "Print": "Print",
     "QRCode": "QRCode",
-    "RightClick": "Right Click Menu",
     "RoleManagement": "Role Management",
     "Signup": "Signup",
-    "SystemApplications": "System Applications",
     "SystemFunctions": "System Function",
     "SystemTools": "System Tool",
     "Timeline": "Timeline",
-    "VirtualList": "Virtual List",
-    "TrafficStatistics": "Traffic Statistics",
     "UniversalComponents": "Universal Components",
     "UserInfo": "User Info",
     "UserManagement": "User Management",
-    "WebSocket": "WebSocket",
-    "Watermark": "Watermark",
-    "WebsiteAnalytics": "Website Analytics"
+    "WebSocket": "WebSocket"
   },
   "Message": {
     "Copy": {
@@ -85,9 +67,6 @@
       "Failed": "QRCode generate failed",
       "Success": "QRCode generate success"
     }
-  },
-  "Navigation": {
-    "AddShortcut": "Add shortcut"
   },
   "Notification": {
     "Desktop": {
@@ -129,19 +108,12 @@
     "ContentPlaceholder": "Please enter QRCode content",
     "Generate": "Generate QRCode"
   },
-  "RightClick": {
-    "Clicked": "You clicked: {label}",
-    "Tip": "Trigger right click"
-  },
   "Sidebar": {
     "Hide": "Hide sidebar",
     "Show": "Show sidebar"
   },
   "Signup": {
     "AlreadyHaveAccount": "Already have an account?"
-  },
-  "Tab": {
-    "Clear": "Clear"
   },
   "Timeline": {
     "WebDevRoadmap": "Web Dev Roadmap"

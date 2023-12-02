@@ -54,7 +54,7 @@ const authTypeColumn: DataTableBaseColumn<User> = {
     }
   ],
   render: (row) => {
-    const tags = (row?.authTypes || []).map((authType) => {
+    const tags = (row?.authTypes ?? []).map((authType) => {
       switch (authType) {
         case AuthType[0]:
           return h(
@@ -107,7 +107,7 @@ const authTypeColumn: DataTableBaseColumn<User> = {
   }
 }
 
-const message = useMessage()
+const NMessage = useMessage()
 const [loading, loadingDispatcher] = useLoading()
 const [resetPasswordLoading, resetPasswordLoadingDispatcher] = useLoading()
 const [enableLoading, enableLoadingDispatcher] = useLoading()
@@ -181,14 +181,14 @@ const queryList = () => {
     params.endDate = TimeUtils.dayjs(endDate).endOf('day').toISOString()
   }
 
-  UserAPI.getUsers(params)
+  UserAPI.list(params)
     .then((res) => {
-      const { data, total } = res || {}
+      const { data, total } = res ?? {}
       users.value = data
       pagination.itemCount = total
     })
     .catch(() => {
-      message.error(t('COMMON.LoadingDataError'))
+      NMessage.error(t('COMMON.LoadingDataError'))
       users.value = []
     })
     .finally(() => loadingDispatcher.loaded())
@@ -404,7 +404,7 @@ const columns = ref<DataTableBaseColumn<User>[]>([
     key: 'roles',
     width: 200,
     render: (row) => {
-      const tags = (row?.roles || []).map((role) =>
+      const tags = (row?.roles ?? []).map((role) =>
         h(
           NTag,
           {
@@ -464,16 +464,16 @@ const columns = ref<DataTableBaseColumn<User>[]>([
                   return
                 }
                 enableLoadingDispatcher.loading()
-                await UserAPI.enableUser(row.id)
+                await UserAPI.enable(row.id)
                   .then((res) => {
                     if (res.message) {
-                      message.success(res.message)
+                      NMessage.success(res.message)
                     }
                     queryList()
                   })
                   .catch((err) => {
                     if (err instanceof Error) {
-                      message.error(err.message)
+                      NMessage.error(err.message)
                     }
                   })
                   .finally(() => enableLoadingDispatcher.loaded())
@@ -507,16 +507,16 @@ const columns = ref<DataTableBaseColumn<User>[]>([
                   return
                 }
                 disableLoadingDispatcher.loading()
-                await UserAPI.disableUser(row.id)
+                await UserAPI.disable(row.id)
                   .then((res) => {
                     if (res.message) {
-                      message.success(res.message)
+                      NMessage.success(res.message)
                     }
                     queryList()
                   })
                   .catch((err) => {
                     if (err instanceof Error) {
-                      message.error(err.message)
+                      NMessage.error(err.message)
                     }
                   })
                   .finally(() => disableLoadingDispatcher.loaded())
@@ -570,7 +570,7 @@ const handleConfirmPassword = async () => {
   } catch (errors) {
     const errorMessage = (errors as FormValidationError[])[0][0].message
     if (errorMessage) {
-      message.error(errorMessage)
+      NMessage.error(errorMessage)
     }
     return
   }
@@ -580,12 +580,12 @@ const handleConfirmPassword = async () => {
   await UserAPI.resetPassword(currentId.value, resetPasswordData.password)
     .then((res) => {
       if (res.message) {
-        message.success(res.message)
+        NMessage.success(res.message)
       }
     })
     .catch((err) => {
       if (err instanceof Error) {
-        message.error(err.message)
+        NMessage.error(err.message)
       }
     })
     .finally(() => {

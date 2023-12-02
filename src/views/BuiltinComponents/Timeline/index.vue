@@ -16,7 +16,7 @@ const isMobile = useMobile()
       bordered
       :title="t('TEMP.Timeline.WebDevRoadmap')"
     >
-      <DTimeline
+      <DpTimeline
         :data="webLearnRoute"
         :horizontal="!isMobile"
         :icon-size="28"

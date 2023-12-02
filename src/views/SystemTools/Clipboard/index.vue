@@ -7,7 +7,7 @@ import { ChineseLyrics, EnglishLyrics } from './private'
 
 const { t, locale } = useI18n<{ message: MessageSchema }, Lang>({})
 
-const message = useMessage()
+const NMessage = useMessage()
 
 const clipboardValue = ref('')
 
@@ -17,9 +17,9 @@ const clipboardValue = ref('')
 const handleCopy = async () => {
   try {
     await BrowserUtils.setClipBoardText(clipboardValue.value)
-    message.success(t('TEMP.Message.Copy.Success'))
+    NMessage.success(t('TEMP.Message.Copy.Success'))
   } catch {
-    message.error(t('TEMP.Message.Copy.Failed'))
+    NMessage.error(t('TEMP.Message.Copy.Failed'))
   }
 }
 

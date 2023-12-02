@@ -15,7 +15,7 @@ import { UserPageModel } from './private'
 
 const { t, locale } = useI18n<{ message: MessageSchema }, string>({})
 
-const message = useMessage()
+const NMessage = useMessage()
 const [loading, loadingDispatcher] = useLoading()
 const [showDialogLoading] = useLoading()
 const [deleteLoading] = useLoading()
@@ -57,7 +57,7 @@ const authTypeColumn: DataTableBaseColumn<User> = {
     }
   ],
   render: (row) => {
-    const tags = (row?.authTypes || []).map((authType) =>
+    const tags = (row?.authTypes ?? []).map((authType) =>
       h(
         NTag,
         {
@@ -199,14 +199,14 @@ const queryList = () => {
     params.endDate = dayjs(endDate).endOf('day').toISOString()
   }
 
-  UserAPI.getUsers(params)
+  UserAPI.list(params)
     .then((res) => {
-      const { data, total } = res || {}
+      const { data, total } = res ?? {}
       users.value = data
       pagination.itemCount = total
     })
     .catch(() => {
-      message.error(t('COMMON.LoadingDataError'))
+      NMessage.error(t('COMMON.LoadingDataError'))
       users.value = []
     })
     .finally(() => loadingDispatcher.loaded())

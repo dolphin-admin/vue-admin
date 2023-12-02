@@ -1,5 +1,11 @@
 import type { BaseResponse, LoginModel, SignupModel, UserTokenResponse } from '@/types'
 
+// 登录类型
+enum LoginType {
+  USERNAME = 1, // 用户名登录
+  EMAIL = 2 // 邮箱登录
+}
+
 export class AuthAPI {
   private static AUTH_API_PREFIX = `${GlobalEnvConfig.BASE_API_PREFIX}/auth`
 
@@ -9,9 +15,11 @@ export class AuthAPI {
    * 登录
    */
   static login(data: LoginModel) {
-    return httpRequest.post<BaseResponse<UserTokenResponse>>(`${this.AUTH_API_PREFIX}/login`, {
-      ...data
-    })
+    return httpRequest.post<BaseResponse<UserTokenResponse>>(
+      `${this.AUTH_API_PREFIX}/login`,
+      { ...data },
+      { params: { type: LoginType.USERNAME } }
+    )
   }
 
   /**
@@ -27,16 +35,11 @@ export class AuthAPI {
    * 刷新令牌
    */
   static async refresh(token: string) {
-    const { accessToken, refreshToken } =
-      (
-        await httpRequest.post<BaseResponse<UserTokenResponse>>(
-          this.REFRESH_API_URL,
-          {},
-          { params: { token } }
-        )
-      ).data ?? {}
-    AuthUtils.setAccessToken(accessToken ?? '')
-    AuthUtils.setRefreshToken(refreshToken ?? '')
+    return httpRequest.post<BaseResponse<UserTokenResponse>>(
+      this.REFRESH_API_URL,
+      {},
+      { params: { token } }
+    )
   }
 
   /**

@@ -12,7 +12,7 @@ import AddressIcon from '~icons/mdi/store-plus-outline'
 const { t } = useI18n<{ message: MessageSchema }>()
 
 const userStore = useUserStore()
-const message = useMessage()
+const NMessage = useMessage()
 const [submitLoading, submitLoadingDispatcher] = useLoading()
 
 const formRef = ref<FormInst | null>(null)
@@ -73,7 +73,7 @@ const computedUserInfo = computed(() => userStore.user)
 const handleValidateButtonClick = () => {
   formRef.value!.validate(async (errors) => {
     if (errors) {
-      message.error(errors[0][0].message!)
+      NMessage.error(errors[0][0].message!)
       return
     }
     if (submitLoading.value) {
@@ -84,16 +84,16 @@ const handleValidateButtonClick = () => {
     uploadRef.value!.submit()
     if (currentFile.value) {
       try {
-        const { data, message: resMessage } = await UploadAPI.uploadFile({
+        const { data, message } = await UploadAPI.uploadFile({
           file: currentFile.value
         })
         formData.value.avatarUrl = data.path
-        if (resMessage) {
-          message.success(resMessage)
+        if (message) {
+          NMessage.success(message)
         }
       } catch (err) {
         if (err instanceof Error && err.message) {
-          message.error(err.message)
+          NMessage.error(err.message)
         }
         submitLoadingDispatcher.loaded()
         return
@@ -101,16 +101,16 @@ const handleValidateButtonClick = () => {
     }
 
     try {
-      const { data, message: successMessage } = await UserAPI.updateUser(
+      const { data, message: successMessage } = await UserAPI.update(
         formData.value.id!,
         formData.value
       )
       data.birthDate = data.birthDate && TimeUtils.formatTime(data.birthDate, 'YYYY-MM-DD')
       userStore.setUser(data)
-      message.success(successMessage!)
+      NMessage.success(successMessage!)
     } catch (err: any) {
       if (err.message) {
-        message.error(err.message)
+        NMessage.error(err.message)
       }
     }
 
@@ -124,7 +124,7 @@ const uploadAvatarUrl = (options: { fileList: UploadFileInfo[] }) => {
 }
 
 onMounted(() =>
-  UserAPI.getUserInfo().then((res) => {
+  UserAPI.me().then((res) => {
     const { data } = res
     data.birthDate = data.birthDate && TimeUtils.formatTime(data.birthDate, 'YYYY-MM-DD')
     userStore.setUser(data)

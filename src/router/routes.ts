@@ -1,41 +1,27 @@
-import CountDownIcon from '~icons/ic/baseline-alarm'
 import ChartIcon from '~icons/ic/baseline-bar-chart'
 import CopyIcon from '~icons/ic/baseline-content-copy'
 import UnauthorizedIcon from '~icons/ic/baseline-do-not-disturb'
 import DigitalAnimationIcon from '~icons/ic/baseline-hourglass-empty'
 import QRCodeIcon from '~icons/ic/baseline-qrcode'
 import TimelineIcon from '~icons/ic/baseline-timeline'
-import WatermarkIcon from '~icons/ic/baseline-water-drop'
 import ListTemplatesIcon from '~icons/ic/outline-list-alt'
 import PrintIcon from '~icons/ic/outline-local-printshop'
-import VirtualListIcon from '~icons/ic/round-list-alt'
 import IAmATeapotIcon from '~icons/icon-park-outline/tea-drink'
-import RightClickIcon from '~icons/icon-park-solid/music-list'
 import InternalServerErrorIcon from '~icons/lucide/server-off'
 import UserInfoIcon from '~icons/mdi/account-circle'
 import UserManagementIcon from '~icons/mdi/account-cog-outline'
-import RoleManagementIcon from '~icons/mdi/account-group'
-import TrafficStatisticsIcon from '~icons/mdi/chart-box-outline'
 import NavigationIcon from '~icons/mdi/compass-outline'
-import IconManagementIcon from '~icons/mdi/emoticon-wink'
 import ChangePasswordIcon from '~icons/mdi/key'
-import PermissionManagementIcon from '~icons/mdi/key-chain'
-import ExcelIcon from '~icons/mdi/microsoft-excel'
-import DictionaryManagementIcon from '~icons/ri/booklet-line'
-import DictionaryDataIcon from '~icons/solar/key-minimalistic-square-3-linear'
 import WebSocketIcon from '~icons/tabler/brand-socket-io'
 import NotFoundIcon from '~icons/tabler/error-404'
-import ChatChannelsIcon from '~icons/tabler/message-2'
 
 import {
   BUILTIN_COMPONENTS_PREFIX,
   CODE_TEMPLATES_PREFIX,
   ERROR_PAGES_PREFIX,
-  SYSTEM_APPLICATIONS_PREFIX,
   SYSTEM_FUNCTIONS_PREFIX,
   SYSTEM_TOOLS_PREFIX,
-  UNIVERSAL_COMPONENTS_PREFIX,
-  WEBSITE_ANALYTICS_PREFIX
+  UNIVERSAL_COMPONENTS_PREFIX
 } from './prefix'
 
 const { t } = i18n.global
@@ -56,16 +42,6 @@ export const routes = [
           // dismissTab: true
         }
       },
-      // 站点分析
-      {
-        path: `${WEBSITE_ANALYTICS_PREFIX}/traffic-statistics`,
-        name: 'traffic-statistics',
-        component: () => import('@/views/WebsiteAnalytics/TrafficStatistics'),
-        meta: {
-          title: () => t('TEMP.Menu.TrafficStatistics'),
-          icon: TrafficStatisticsIcon
-        }
-      },
       // 系统功能
       {
         path: `${SYSTEM_FUNCTIONS_PREFIX}/user-management`,
@@ -76,63 +52,7 @@ export const routes = [
           icon: UserManagementIcon
         }
       },
-      {
-        path: `${SYSTEM_FUNCTIONS_PREFIX}/role-management`,
-        name: 'role-management',
-        component: () => import('@/views/SystemFunctions/RoleManagement'),
-        meta: {
-          title: () => t('TEMP.Menu.RoleManagement'),
-          icon: RoleManagementIcon
-        }
-      },
-      {
-        path: `${SYSTEM_FUNCTIONS_PREFIX}/permission-management`,
-        name: 'permission-management',
-        component: () => import('@/views/SystemFunctions/PermissionManagement'),
-        meta: {
-          title: () => t('TEMP.Menu.PermissionManagement'),
-          icon: PermissionManagementIcon
-        }
-      },
-      {
-        path: `${SYSTEM_FUNCTIONS_PREFIX}/dictionary-management`,
-        name: 'dictionary-management',
-        component: () => import('@/views/SystemFunctions/DictionaryManagement'),
-        meta: {
-          title: () => t('TEMP.Menu.DictionaryManagement'),
-          icon: DictionaryManagementIcon
-        }
-      },
-      {
-        path: `${SYSTEM_FUNCTIONS_PREFIX}/dictionary-data/:id`,
-        name: 'dictionary-data',
-        component: () => import('@/views/SystemFunctions/DictionaryData'),
-        props: true,
-        meta: {
-          title: () => t('TEMP.Menu.DictionaryData'),
-          icon: DictionaryDataIcon
-        }
-      },
-      // 系统应用
-      {
-        path: `${SYSTEM_APPLICATIONS_PREFIX}/chat-channels`,
-        name: 'chat-channels',
-        component: () => import('@/views/SystemApplications/ChatChannels'),
-        meta: {
-          title: () => t('TEMP.Menu.ChatChannels'),
-          icon: ChatChannelsIcon
-        }
-      },
       // 系统工具
-      {
-        path: `${SYSTEM_TOOLS_PREFIX}/icon`,
-        name: 'icon',
-        component: () => import('@/views/SystemTools/Icon'),
-        meta: {
-          title: () => t('TEMP.Menu.Icon'),
-          icon: IconManagementIcon
-        }
-      },
       {
         path: `${SYSTEM_TOOLS_PREFIX}/qrcode`,
         name: 'qrcode',
@@ -161,30 +81,12 @@ export const routes = [
         }
       },
       {
-        path: `${SYSTEM_TOOLS_PREFIX}/excel`,
-        name: 'excel',
-        component: () => import('@/views/SystemTools/Excel'),
-        meta: {
-          title: () => t('TEMP.Menu.Excel'),
-          icon: ExcelIcon
-        }
-      },
-      {
         path: `${SYSTEM_TOOLS_PREFIX}/websocket`,
         name: 'websocket',
         component: () => import('@/views/SystemTools/WebSocket'),
         meta: {
           title: () => t('TEMP.Menu.WebSocket'),
           icon: WebSocketIcon
-        }
-      },
-      {
-        path: `${SYSTEM_TOOLS_PREFIX}/watermark`,
-        name: 'watermark',
-        component: () => import('@/views/SystemTools/Watermark'),
-        meta: {
-          title: () => t('TEMP.Menu.Watermark'),
-          icon: WatermarkIcon
         }
       },
       // 代码模板
@@ -218,39 +120,12 @@ export const routes = [
         }
       },
       {
-        path: `${BUILTIN_COMPONENTS_PREFIX}/countdown`,
-        name: 'countdown',
-        component: () => import('@/views/BuiltinComponents/Countdown'),
-        meta: {
-          title: () => t('TEMP.Menu.Countdown'),
-          icon: CountDownIcon
-        }
-      },
-      {
-        path: `${BUILTIN_COMPONENTS_PREFIX}/right-click`,
-        name: 'right-click',
-        component: () => import('@/views/BuiltinComponents/RightClick'),
-        meta: {
-          title: () => t('TEMP.Menu.RightClick'),
-          icon: RightClickIcon
-        }
-      },
-      {
         path: `${BUILTIN_COMPONENTS_PREFIX}/timeline`,
         name: 'timeline',
         component: () => import('@/views/BuiltinComponents/Timeline'),
         meta: {
           title: () => t('TEMP.Menu.Timeline'),
           icon: TimelineIcon
-        }
-      },
-      {
-        path: `${BUILTIN_COMPONENTS_PREFIX}/virtual-list`,
-        name: 'virtual-list',
-        component: () => import('@/views/BuiltinComponents/VirtualList'),
-        meta: {
-          title: () => t('TEMP.Menu.VirtualList'),
-          icon: VirtualListIcon
         }
       },
       // 错误页面
@@ -291,14 +166,6 @@ export const routes = [
         }
       },
       {
-        path: '/:pathMatch(.*)*',
-        component: () => import('@/views/ErrorPages/404'),
-        meta: {
-          title: () => t('TEMP.Menu.404'),
-          icon: NotFoundIcon
-        }
-      },
-      {
         path: '/user-info',
         name: 'user-info',
         component: () => import('@/views/User/UserInfo'),
@@ -314,6 +181,14 @@ export const routes = [
         meta: {
           title: () => t('TEMP.Menu.ChangePassword'),
           icon: ChangePasswordIcon
+        }
+      },
+      {
+        path: '/:pathMatch(.*)*',
+        component: () => import('@/views/ErrorPages/404'),
+        meta: {
+          title: () => t('TEMP.Menu.404'),
+          icon: NotFoundIcon
         }
       }
     ]

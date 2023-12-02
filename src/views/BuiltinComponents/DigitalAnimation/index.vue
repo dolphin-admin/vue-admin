@@ -1,6 +1,5 @@
 <script setup lang="ts">
-// TODO: 考虑统一导出 Component 中的类型
-import type { Status } from '@/components/DNumberAnimation/private'
+import type { Status } from '@/components/DpNumberAnimation'
 import type { MessageSchema } from '@/types'
 
 const { t } = useI18n<{ message: MessageSchema }>()
@@ -29,7 +28,7 @@ const handleStatusChange = (status: Status) => {
   <main>
     <NCard hoverable>
       <div class="flex flex-col items-center space-y-4 sm:space-y-4">
-        <DNumberAnimation
+        <DpNumberAnimation
           ref="numberAnimationRef"
           class="text-4xl font-semibold text-blue-500 sm:text-6xl"
           v-bind="numberData"
