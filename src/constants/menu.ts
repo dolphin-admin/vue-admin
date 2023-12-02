@@ -111,27 +111,27 @@ export const menuOptions: MenuOption[] = [
     ]
   },
   {
-    label: renderMenuLabel(() => t('TEMP.Menu.ErrorPages')),
+    label: renderMenuLabel(() => t('MENU.ERROR.PAGES')),
     key: 'error-pages',
     icon: renderMenuIcon(ErrorPagesIcon),
     children: [
       {
-        label: renderMenuLabel(() => t('TEMP.Menu.403')),
+        label: renderMenuLabel(() => '403'),
         key: '403',
         icon: renderMenuIcon(UnauthorizedIcon)
       },
       {
-        label: renderMenuLabel(() => t('TEMP.Menu.404')),
+        label: renderMenuLabel(() => '404'),
         key: '404',
         icon: renderMenuIcon(NotFoundIcon)
       },
       {
-        label: renderMenuLabel(() => t('TEMP.Menu.418')),
+        label: renderMenuLabel(() => '418'),
         key: '418',
         icon: renderMenuIcon(IAmATeapotIcon)
       },
       {
-        label: renderMenuLabel(() => t('TEMP.Menu.500')),
+        label: renderMenuLabel(() => '500'),
         key: '500',
         icon: renderMenuIcon(InternalServerErrorIcon)
       }

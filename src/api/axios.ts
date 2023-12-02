@@ -102,7 +102,8 @@ class Request {
          * - 500 服务器错误，跳转到 500 页面
          * - 其他状态码，提示错误信息
          */
-        const errorMessage = message ?? errorMessageMap.get(status as number) ?? 'Unknown Error!'
+        const errorMessage =
+          message ?? errorMessageMap.get(status as number) ?? t('COMMON.UNKNOWN.ERROR')
         const currentRefreshToken = AuthUtils.getRefreshToken()
         switch (status) {
           case StatusCode.UNAUTHORIZED:
@@ -150,7 +151,7 @@ class Request {
         }
         // 网络错误，跳转到 404 页面
         if (!window.navigator.onLine) {
-          NMessage.error(t('COMMON.NetworkError'))
+          NMessage.error(t('COMMON.NETWORK.ERROR'))
           router.replace('/404')
         }
         return Promise.reject(data)

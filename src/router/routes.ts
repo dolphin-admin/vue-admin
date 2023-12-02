@@ -132,36 +132,36 @@ export const routes = [
       {
         path: `${ERROR_PAGES_PREFIX}/403`,
         name: '403',
-        component: () => import('@/views/ErrorPages/403'),
+        component: () => import('@/pages/error-pages/403'),
         meta: {
-          title: () => t('TEMP.Menu.403'),
+          title: '403',
           icon: UnauthorizedIcon
         }
       },
       {
         path: `${ERROR_PAGES_PREFIX}/404`,
         name: '404',
-        component: () => import('@/views/ErrorPages/404'),
+        component: () => import('@/pages/error-pages/404'),
         meta: {
-          title: () => t('TEMP.Menu.404'),
+          title: '404',
           icon: NotFoundIcon
         }
       },
       {
         path: `${ERROR_PAGES_PREFIX}/418`,
         name: '418',
-        component: () => import('@/views/ErrorPages/418'),
+        component: () => import('@/pages/error-pages/418'),
         meta: {
-          title: () => t('TEMP.Menu.418'),
+          title: '418',
           icon: IAmATeapotIcon
         }
       },
       {
         path: `${ERROR_PAGES_PREFIX}/500`,
         name: '500',
-        component: () => import('@/views/ErrorPages/500'),
+        component: () => import('@/pages/error-pages/500'),
         meta: {
-          title: () => t('TEMP.Menu.500'),
+          title: '500',
           icon: InternalServerErrorIcon
         }
       },
@@ -185,9 +185,9 @@ export const routes = [
       },
       {
         path: '/:pathMatch(.*)*',
-        component: () => import('@/views/ErrorPages/404'),
+        component: () => import('@/pages/error-pages/404'),
         meta: {
-          title: () => t('TEMP.Menu.404'),
+          title: '404',
           icon: NotFoundIcon
         }
       }
