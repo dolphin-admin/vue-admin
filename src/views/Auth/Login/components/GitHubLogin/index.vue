@@ -7,7 +7,7 @@ const { t } = useI18n<{ message: MessageSchema }>()
 const route = useRoute()
 const router = useRouter()
 const userStore = useUserStore()
-const message = useMessage()
+const NMessage = useMessage()
 
 const [loading, loadingDispatcher] = useLoading(false)
 
@@ -41,12 +41,13 @@ const loginWithGitHub = () => {
 
     AuthAPI.loginWithGitHub(githubAuthCode)
       .then((res) => {
-        const { accessToken, refreshToken, user } = res.data || {}
+        const { data, message } = res
+        const { accessToken, refreshToken, user } = data ?? {}
         AuthUtils.setAccessToken(accessToken)
         AuthUtils.setRefreshToken(refreshToken)
         userStore.setUser(user)
-        if (res.message) {
-          message.success(res.message)
+        if (message) {
+          NMessage.success(message)
         }
 
         if (redirectUrl.value) {
@@ -57,7 +58,7 @@ const loginWithGitHub = () => {
       })
       .catch((err) => {
         if (err.message) {
-          message.error(err.message)
+          NMessage.error(err.message)
         }
         loadingDispatcher.loaded()
       })

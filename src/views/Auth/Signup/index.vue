@@ -4,7 +4,7 @@ import type { MessageSchema } from '@/types'
 const { t } = useI18n<{ message: MessageSchema }>()
 
 const router = useRouter()
-const message = useMessage()
+const NMessage = useMessage()
 const [submitLoading, submitLoadingDispatcher] = useLoading(false)
 
 const formData = reactive({
@@ -59,7 +59,7 @@ const signup = async () => {
   } catch (errors) {
     const errorMessage = (errors as FormValidationError[])[0][0].message
     if (errorMessage) {
-      message.error(errorMessage)
+      NMessage.error(errorMessage)
     }
     return
   }
@@ -71,17 +71,18 @@ const signup = async () => {
 
   AuthAPI.signup(formData)
     .then((res) => {
-      const { accessToken, refreshToken } = res.data || {}
+      const { data, message } = res
+      const { accessToken, refreshToken } = data ?? {}
       AuthUtils.setAccessToken(accessToken)
       AuthUtils.setRefreshToken(refreshToken)
-      if (res.message) {
-        message.success(res.message)
+      if (message) {
+        NMessage.success(message)
       }
       router.replace('/')
     })
     .catch((err) => {
       if (err.message) {
-        message.error(err.message)
+        NMessage.error(err.message)
       }
       submitLoadingDispatcher.loaded()
     })

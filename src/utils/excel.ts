@@ -1,6 +1,10 @@
 import * as XLSX from 'xlsx'
 
-import type { HeaderItem } from '@/types'
+export interface HeaderItem {
+  key: string
+  width: number
+  ignore?: boolean
+}
 
 export class ExcelUtils {
   /**

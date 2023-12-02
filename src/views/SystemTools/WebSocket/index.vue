@@ -6,7 +6,7 @@ import type { MessageSchema } from '@/types'
 
 const { t, locale } = useI18n<{ message: MessageSchema }>({})
 const userStore = useUserStore()
-const message = useMessage()
+const NMessage = useMessage()
 
 const inputValue = ref('')
 
@@ -50,15 +50,15 @@ const handleDisconnect = () => {
  */
 const handleSendMessage = () => {
   if (!socket.value.connected) {
-    message.error(t('TEMP.WebSocket.NotConnected'))
+    NMessage.error(t('TEMP.WebSocket.NotConnected'))
     return
   }
   if (!inputValue.value.trim()) {
-    message.error(t('TEMP.WebSocket.ContentIsEmpty'))
+    NMessage.error(t('TEMP.WebSocket.ContentIsEmpty'))
     return
   }
   socket.value.emit('message', getSendInfo(inputValue.value))
-  message.success(t('TEMP.WebSocket.SendSuccess'))
+  NMessage.success(t('TEMP.WebSocket.SendSuccess'))
   inputValue.value = ''
 }
 
@@ -66,10 +66,10 @@ onBeforeMount(() => {
   // 监听连接
   socket.value.on('connect', () => {
     isConnecting.value = false
-    message.info(t('TEMP.WebSocket.Established'))
+    NMessage.info(t('TEMP.WebSocket.Established'))
   })
   // 监听断开连接
-  socket.value.on('disconnect', () => message.info(t('TEMP.WebSocket.Disconnected')))
+  socket.value.on('disconnect', () => NMessage.info(t('TEMP.WebSocket.Disconnected')))
   /**
    * NOTE: 服务端发送的信息为多语言 object，所以需要根据当前语言环境进行判断
    * 例如：
@@ -79,11 +79,11 @@ onBeforeMount(() => {
    * }
    */
   // 监听服务端发送的消息
-  socket.value.on('message', (data) => message.success(data[locale.value]))
+  socket.value.on('message', (data) => NMessage.success(data[locale.value]))
   // 监听用户加入
-  socket.value.on('join', (data) => message.info(data[locale.value]))
+  socket.value.on('join', (data) => NMessage.info(data[locale.value]))
   // 监听用户离开
-  socket.value.on('leave', (data) => message.info(data[locale.value]))
+  socket.value.on('leave', (data) => NMessage.info(data[locale.value]))
 })
 
 // 组件销毁时断开连接

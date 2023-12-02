@@ -6,7 +6,7 @@ import type { MessageSchema } from '@/types'
 const router = useRouter()
 const userStore = useUserStore()
 const { t } = useI18n<{ message: MessageSchema }, Lang>({})
-const message = useMessage()
+const NMessage = useMessage()
 const [submitLoading, submitLoadingDispatcher] = useLoading(false)
 
 const changePasswordRef = ref<FormInst | null>(null)
@@ -51,7 +51,7 @@ const changePasswordRules: FormRules = {
 
 const logout = () =>
   router.replace('/login').then(() => {
-    message.success(t('TEMP.Logout.LoginAgain'))
+    NMessage.success(t('TEMP.Logout.LoginAgain'))
     userStore.clearUser()
     AuthUtils.clearAccessToken()
     AuthUtils.clearRefreshToken()
@@ -63,7 +63,7 @@ const handleChangePassword = async () => {
   } catch (errors) {
     const errorMessage = (errors as FormValidationError[])[0][0].message
     if (errorMessage) {
-      message.error(errorMessage)
+      NMessage.error(errorMessage)
     }
     return
   }
@@ -80,13 +80,13 @@ const handleChangePassword = async () => {
   UserAPI.changePassword(userStore.user.id!, changePasswordData)
     .then((res) => {
       if (res.message) {
-        message.success(res.message)
+        NMessage.success(res.message)
       }
       logout()
     })
     .catch((err) => {
       if (err.message) {
-        message.error(err.message)
+        NMessage.error(err.message)
       }
     })
     .finally(() => {

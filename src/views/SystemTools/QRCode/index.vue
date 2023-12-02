@@ -3,7 +3,7 @@ import type { MessageSchema } from '@/types'
 
 const { t } = useI18n<{ message: MessageSchema }>()
 
-const message = useMessage()
+const NMessage = useMessage()
 
 const userInput = ref('')
 const generatedResult = ref('')
@@ -13,7 +13,7 @@ const generatedResult = ref('')
  */
 const makeQRCode = async () => {
   if (!userInput.value) {
-    message.error(t('TEMP.Validation.QRCodeContent'))
+    NMessage.error(t('TEMP.Validation.QRCodeContent'))
     return
   }
   try {
@@ -22,9 +22,9 @@ const makeQRCode = async () => {
       errorCorrectionLevel: 'L'
     })
     generatedResult.value = qrcodeContent
-    message.success(t('TEMP.Message.GenerateTEMP.QRCode.Success'))
+    NMessage.success(t('TEMP.Message.GenerateTEMP.QRCode.Success'))
   } catch (err) {
-    message.error(t('TEMP.Message.GenerateTEMP.QRCode.Failed'))
+    NMessage.error(t('TEMP.Message.GenerateTEMP.QRCode.Failed'))
   }
 }
 

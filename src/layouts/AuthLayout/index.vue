@@ -71,7 +71,7 @@ onBeforeMount(() => checkLogin())
         />
       </RouterView>
     </div>
-    <BaseThemeSwitchDevTool />
+    <DpDevMenuFab />
   </main>
 </template>
 

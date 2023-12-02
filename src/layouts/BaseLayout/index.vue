@@ -4,9 +4,11 @@ import type { Lang } from '@dolphin-admin/utils'
 import bitOceanSrc from '@/assets/images/bit_ocean.png'
 import type { MessageSchema } from '@/types'
 
-const { t } = useI18n<{ message: MessageSchema }, Lang>({})
+import { Content, Footer, Header, Sidebar, Tabs } from './components'
 
 const { REPO_GITHUB_URL } = AppMetadata
+
+const { t } = useI18n<{ message: MessageSchema }, Lang>({})
 
 const userStore = useUserStore()
 const route = useRoute()
@@ -59,7 +61,7 @@ const checkLogin = async () => {
   // 如果有 token，获取用户信息
   if (AuthUtils.isAuthenticated()) {
     if (!userStore.hasData()) {
-      const { data } = (await UserAPI.getUserInfo()) || {}
+      const { data } = (await UserAPI.me()) ?? {}
       userStore.setUser(data)
     }
     loading.value = false
@@ -87,12 +89,12 @@ onBeforeMount(() => checkLogin())
     <main class="h-screen w-full overflow-hidden">
       <DpReportUserTrafficProvider>
         <div class="flex h-full w-full border-r border-gray-300 dark:border-gray-950">
-          <BaseSidebar />
+          <Sidebar />
           <div class="relative h-full flex-1 overflow-y-auto overflow-x-hidden">
-            <BaseHeader />
-            <BaseTabs />
-            <BaseContent />
-            <BaseFooter />
+            <Header />
+            <Tabs />
+            <Content />
+            <Footer />
           </div>
         </div>
       </DpReportUserTrafficProvider>

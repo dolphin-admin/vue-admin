@@ -9,7 +9,7 @@ const { t } = useI18n<{ message: MessageSchema }>()
 const route = useRoute()
 const router = useRouter()
 const userStore = useUserStore()
-const message = useMessage()
+const NMessage = useMessage()
 
 const [submitLoading, submitLoadingDispatcher] = useLoading(false)
 
@@ -58,7 +58,7 @@ const login = async () => {
   } catch (errors) {
     const errorMessage = (errors as FormValidationError[])[0][0].message
     if (errorMessage) {
-      message.error(errorMessage)
+      NMessage.error(errorMessage)
     }
     return
   }
@@ -71,11 +71,11 @@ const login = async () => {
 
   AuthAPI.login(formData)
     .then((res) => {
-      const { accessToken, user } = res.data || {}
+      const { accessToken, user } = res.data ?? {}
       AuthUtils.setAccessToken(accessToken)
       userStore.setUser(user)
       if (res.message) {
-        message.success(res.message)
+        NMessage.success(res.message)
       }
       if (rememberPassword.value) {
         AuthUtils.setRememberedAccount(JSON.stringify(formData))
@@ -91,7 +91,7 @@ const login = async () => {
     })
     .catch((err) => {
       if (err.message) {
-        message.error(err.message)
+        NMessage.error(err.message)
       }
       submitLoadingDispatcher.loaded()
       formData.password = ''

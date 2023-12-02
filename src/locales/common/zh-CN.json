@@ -51,5 +51,6 @@
   "TotalPage": "共计 { totalPage }",
   "Type": "类型",
   "Upload": "上传",
-  "Verify": "验证"
+  "Verify": "验证",
+  "Clear": "清除"
 }

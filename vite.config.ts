@@ -139,8 +139,7 @@ export default defineConfig(({ mode }) => {
           }
         ],
         directives: true, // 自动导入指令
-        dirs: ['src/components', 'src/layouts', 'src/charts'],
-        extensions: ['vue']
+        globs: ['src/components/*/index.vue', 'src/layouts/*/index.vue', 'src/charts/*/index.vue']
       }),
       Icons({ autoInstall: true }),
       VueDevTools(),
@@ -152,7 +151,7 @@ export default defineConfig(({ mode }) => {
         ext: '.gz',
         deleteOriginFile: true // 源文件压缩后是否删除
       }),
-      visualizer({ open: true, gzipSize: true }),
+      visualizer({ open: false, gzipSize: true }),
       BootstrapAnimation(),
       progress()
     ],

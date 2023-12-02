@@ -1,7 +1,5 @@
 import { BasePageModel } from '@/constants'
 
-import type { UserCustomPageModel } from './types'
-
 export class UserPageModel extends BasePageModel {
   /**
    * 认证类型
@@ -9,9 +7,9 @@ export class UserPageModel extends BasePageModel {
    */
   authTypes?: string
 
-  constructor(userPageModel: UserCustomPageModel) {
-    const { authTypes, ...pageModel } = userPageModel
-    super(pageModel)
+  constructor(userPageModel: UserPageModel) {
+    const { authTypes, ...basePageModel } = userPageModel
+    super(basePageModel)
     if (authTypes) {
       this.authTypes = authTypes
     }

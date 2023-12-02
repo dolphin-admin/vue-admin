@@ -12,7 +12,7 @@ import { barChartData, lineChartData, pieChartData } from './private'
         class="h-[300px] !w-full sm:!w-1/2"
         hoverable
       >
-        <BarChart
+        <DpBarChart
           id="BarChart"
           class="h-full w-full"
           title="热门歌曲排行"
@@ -23,7 +23,7 @@ import { barChartData, lineChartData, pieChartData } from './private'
         class="h-[300px] !w-full sm:!w-1/2"
         hoverable
       >
-        <PieChart
+        <DpPieChart
           class="h-full w-full"
           title="热门歌曲排行分布"
           subtext="热门歌曲分布表"
@@ -36,7 +36,7 @@ import { barChartData, lineChartData, pieChartData } from './private'
         class="h-[300px] !w-full sm:!w-[calc(50%-8px)]"
         hoverable
       >
-        <LineChart
+        <DpLineChart
           class="h-full w-full"
           title="热门歌曲分布"
           :data="lineChartData"

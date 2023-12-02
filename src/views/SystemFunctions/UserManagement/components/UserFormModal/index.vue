@@ -17,7 +17,7 @@ const emit = defineEmits<{
 
 const { t } = useI18n<{ message: MessageSchema }>()
 
-const message = useMessage()
+const NMessage = useMessage()
 const [submitLoading, submitLoadingDispatcher] = useLoading()
 
 const formRef = ref<FormInst | null>(null)
@@ -115,7 +115,7 @@ const handleSubmit = async () => {
   } catch (errors) {
     const errorMessage = (errors as FormValidationError[])[0][0].message
     if (errorMessage) {
-      message.error(errorMessage)
+      NMessage.error(errorMessage)
     }
     return false
   }
@@ -129,45 +129,42 @@ const handleSubmit = async () => {
     uploadRef.value!.submit()
     if (currentFile.value) {
       try {
-        const { data, message: resMessage } = await UploadAPI.uploadFile({
+        const { data, message } = await UploadAPI.uploadFile({
           file: currentFile.value
         })
         formData.value.avatarUrl = data.path
-        if (resMessage) {
-          message.success(resMessage)
+        if (message) {
+          NMessage.success(message)
         }
       } catch (err) {
         if (err instanceof Error && err.message) {
-          message.error(err.message)
+          NMessage.error(err.message)
         }
         submitLoadingDispatcher.loaded()
         return false
       }
     }
     try {
-      const { message: successMessage } = await UserAPI.updateUser(
-        formData.value.id!,
-        formData.value
-      )
-      message.success(successMessage!)
+      const { message } = await UserAPI.update(formData.value.id!, formData.value)
+      NMessage.success(message!)
       showModal.value = false
       emit('save')
     } catch (err: any) {
       if (err.message) {
-        message.error(err.message)
+        NMessage.error(err.message)
       }
     }
   } else {
     try {
-      const { message: successMessage } = await UserAPI.createUser(createFormData)
-      message.success(successMessage!)
+      const { message } = await UserAPI.create(createFormData)
+      NMessage.success(message!)
       createFormData.username = ''
       createFormData.password = ''
       showModal.value = false
       emit('save')
     } catch (err: any) {
       if (err.message) {
-        message.error(err.message)
+        NMessage.error(err.message)
       }
     }
   }

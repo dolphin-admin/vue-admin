@@ -4,7 +4,6 @@ import 'nprogress/nprogress.css'
 import { sendNotification } from '@tauri-apps/api/notification'
 import { MotionPlugin } from '@vueuse/motion'
 
-import { directives } from '@/directives'
 import router from '@/router'
 
 import App from './App.vue'
@@ -22,7 +21,6 @@ const pinia = createPinia()
 app.use(i18n)
 app.use(pinia)
 app.use(router)
-app.use(directives)
 /**
  * VueUse Motion
  * @see https://motion.vueuse.org/

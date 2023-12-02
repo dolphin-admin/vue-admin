@@ -94,7 +94,7 @@ const handlePrintHTMLStr = () => {
       </div>
     </NCard>
 
-    <DHTMLPrinter :content="printContent" />
+    <DpHTMLPrinter :content="printContent" />
   </main>
 </template>
 

@@ -6,7 +6,6 @@ brucesong
 classname
 commitlint
 daterange
-DHTML
 echarts
 emojione
 esbuild
