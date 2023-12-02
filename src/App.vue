@@ -8,7 +8,9 @@ const themeStore = useThemeStore()
     :locale="langStore.locale"
     :date-locale="langStore.dateLocale"
     :theme="themeStore.naiveTheme"
-    :theme-overrides="themeStore.naiveThemeOverrides"
+    :theme-overrides="
+      themeStore.isLightTheme ? themeStore.lightThemeOverrides : themeStore.darkThemeOverrides
+    "
     abstract
     inline-theme-disabled
   >

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { MessageSchema } from '@/types'
 import NotificationIcon from '~icons/ic/baseline-notifications-none'
-import SettingIcon from '~icons/ic/outline-settings'
 
 import {
   Breadcrumb,
@@ -11,6 +10,7 @@ import {
   GitHubButton,
   LanguageButton,
   MenuVisibilityToggle,
+  SettingsButton,
   ThemeToggle,
   UserAvatar
 } from './components'
@@ -49,21 +49,7 @@ const { t } = useI18n<{ message: MessageSchema }>()
       <FullScreenButton />
       <LanguageButton />
       <ThemeToggle />
-      <template v-if="false">
-        <NTooltip
-          placement="bottom"
-          trigger="hover"
-        >
-          <template #trigger>
-            <NIcon
-              class="cursor-pointer"
-              size="20"
-              :component="SettingIcon"
-            />
-          </template>
-          {{ t('TEMP.Header.Settings') }}
-        </NTooltip>
-      </template>
+      <SettingsButton />
       <UserAvatar />
     </div>
   </header>

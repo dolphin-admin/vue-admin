@@ -19,6 +19,7 @@ icones
 iconify
 iemobile
 intlify
+Jetbrains
 leaderboard
 lintstaged
 lucide
