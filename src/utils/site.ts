@@ -6,6 +6,7 @@ export class SiteUtils {
    * @param title 标题
    */
   static setDocumentTitle(title?: string | (() => string)) {
+    console.log(title)
     if (!title) {
       useTitle(APP_NAME)
     } else {

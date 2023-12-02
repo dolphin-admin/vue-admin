@@ -171,7 +171,7 @@ const setReplace = (index: number) => {
         @dragstart="setCurrent(index)"
         @dragenter="setReplace(index)"
       >
-        <component :is="tagItem.label" />
+        {{ typeof tagItem.label === 'function' ? tagItem.label() : tagItem.label }}
         <template #icon>
           <NIcon :component="tagItem.icon" />
         </template>
