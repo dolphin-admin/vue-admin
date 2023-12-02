@@ -1,12 +1,10 @@
 import type { GlobalThemeOverrides } from 'naive-ui'
 
-/**
- * 全局亮色主题配置项
- */
-export const lightThemeOverrides: GlobalThemeOverrides = {
+import { BuiltInFont } from './fonts'
+
+const baseThemeOverridesPresets: GlobalThemeOverrides = {
   common: {
-    fontFamily:
-      'Nunito, Noto Sans SC, Noto Color Emoji, system-ui, -apple-system, Roboto, Helvetica Neue, Arial, sans-serif',
+    fontFamily: BuiltInFont.NUNITO,
     primaryColor: '#0078d7',
     primaryColorHover: '#0078d7',
     primaryColorPressed: '#0078d7',
@@ -22,22 +20,15 @@ export const lightThemeOverrides: GlobalThemeOverrides = {
 }
 
 /**
+ * 全局亮色主题配置项
+ */
+export const lightThemeOverridesPresets: GlobalThemeOverrides = {
+  ...baseThemeOverridesPresets
+}
+
+/**
  * 全局暗色主题配置项
  */
-export const darkThemeOverrides: GlobalThemeOverrides = {
-  common: {
-    fontFamily:
-      'Nunito, Noto Sans SC, Noto Color Emoji, system-ui, -apple-system, Roboto, Helvetica Neue, Arial, sans-serif',
-    primaryColor: '#0078d7',
-    primaryColorHover: '#0078d7',
-    primaryColorPressed: '#0078d7',
-    primaryColorSuppl: '#0078d7'
-  },
-  Dialog: {
-    contentMargin: '20px 0 0 0',
-    padding: '20px'
-  },
-  Card: {
-    borderRadius: '8px'
-  }
+export const darkThemeOverridesPresets: GlobalThemeOverrides = {
+  ...baseThemeOverridesPresets
 }

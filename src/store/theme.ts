@@ -1,8 +1,9 @@
 import { Theme } from '@dolphin-admin/utils'
+import type { GlobalThemeOverrides } from 'naive-ui'
 import { darkTheme, lightTheme } from 'naive-ui'
 import { acceptHMRUpdate } from 'pinia'
 
-import { darkThemeOverrides, lightThemeOverrides } from '@/constants'
+import { BuiltInFont, darkThemeOverridesPresets, lightThemeOverridesPresets } from '@/constants'
 
 export const useThemeStore = defineStore('theme', () => {
   /**
@@ -29,12 +30,14 @@ export const useThemeStore = defineStore('theme', () => {
   const naiveTheme = computed(() => (isLightTheme.value ? lightTheme : darkTheme))
 
   /**
-   * Naive UI 组件主题覆盖
-   * @description 根据当前主题模式，返回对应的 Naive UI 主题覆盖
+   * 全局亮色主题配置项
    */
-  const naiveThemeOverrides = computed(() =>
-    isLightTheme.value ? lightThemeOverrides : darkThemeOverrides
-  )
+  const lightThemeOverrides: Ref<GlobalThemeOverrides> = ref(lightThemeOverridesPresets)
+
+  /**
+   * 全局暗色主题配置项
+   */
+  const darkThemeOverrides: Ref<GlobalThemeOverrides> = ref(darkThemeOverridesPresets)
 
   /**
    * 设置主题
@@ -61,6 +64,20 @@ export const useThemeStore = defineStore('theme', () => {
     ThemeUtils.changeTheme(selectedTheme)
   }
 
+  /**
+   * 字体
+   */
+  const fontFamily = computed(() => lightThemeOverrides.value.common!.fontFamily)
+
+  /**
+   * 切换字体
+   * @param currentFontFamily 字体
+   */
+  const changeFontFamily = (currentFontFamily: string = BuiltInFont.NUNITO) => {
+    lightThemeOverrides.value.common!.fontFamily = currentFontFamily
+    darkThemeOverrides.value.common!.fontFamily = currentFontFamily
+  }
+
   watch(
     () => theme.value,
     () => onThemeChange(theme.value),
@@ -71,11 +88,14 @@ export const useThemeStore = defineStore('theme', () => {
   return {
     theme,
     naiveTheme,
-    naiveThemeOverrides,
+    lightThemeOverrides,
+    darkThemeOverrides,
     setTheme,
     toggleTheme,
     isLightTheme,
-    isDarkTheme
+    isDarkTheme,
+    fontFamily,
+    changeFontFamily
   }
 })
 
