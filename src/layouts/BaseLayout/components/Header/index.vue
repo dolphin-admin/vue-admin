@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import type { MessageSchema } from '@/types'
-import NotificationIcon from '~icons/ic/baseline-notifications-none'
-
 import {
   Breadcrumb,
   DiscordButton,
@@ -10,12 +7,11 @@ import {
   GitHubButton,
   LanguageButton,
   MenuVisibilityToggle,
+  NotificationButton,
   SettingsButton,
   ThemeToggle,
   UserAvatar
 } from './components'
-
-const { t } = useI18n<{ message: MessageSchema }>()
 </script>
 
 <template>
@@ -31,24 +27,10 @@ const { t } = useI18n<{ message: MessageSchema }>()
       <DiscordButton />
       <GitHubButton />
       <DocsButton />
-      <template v-if="false">
-        <NTooltip
-          placement="bottom"
-          trigger="hover"
-        >
-          <template #trigger>
-            <NIcon
-              class="cursor-pointer"
-              size="20"
-              :component="NotificationIcon"
-            />
-          </template>
-          {{ t('TEMP.Header.Notification') }}
-        </NTooltip>
-      </template>
       <FullScreenButton />
       <LanguageButton />
       <ThemeToggle />
+      <NotificationButton />
       <SettingsButton />
       <UserAvatar />
     </div>
