@@ -173,8 +173,8 @@ devDependencies:
     specifier: ^0.0.7
     version: 0.0.7(vite@4.5.1)
   vite-plugin-vue-devtools:
-    specifier: 1.0.0-rc.6
-    version: 1.0.0-rc.6(pug@3.0.2)(vite@4.5.1)
+    specifier: 1.0.0-rc.7
+    version: 1.0.0-rc.7(pug@3.0.2)(vite@4.5.1)
   vue-tsc:
     specifier: ^1.8.24
     version: 1.8.24(typescript@5.3.2)
@@ -1985,8 +1985,8 @@ packages:
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
     dev: true
 
-  /@vite-plugin-vue-devtools/core@1.0.0-rc.6(vite@4.5.1):
-    resolution: {integrity: sha512-9A7BEvW6tPgLJK+bRyjWCMcXs/mWAdyrcSH1hNr+b7d5lEWoyBrm9d8s0UGEXLnRoJAfHhrAx525wMUGZI1QNA==}
+  /@vite-plugin-vue-devtools/core@1.0.0-rc.7(vite@4.5.1):
+    resolution: {integrity: sha512-Tv9JeRZQ6KDwSkOQJvXc5TBcc4fkSazA96GDhi99v4VCthTgXjnhaah41CeZD3hFDKnNS0MHKFFqN+RHAgYDyQ==}
     peerDependencies:
       vite: ^3.1.0 || ^4.0.0-0 || ^5.0.0-0
     dependencies:
@@ -7787,20 +7787,20 @@ packages:
       vite: 4.5.1(@types/node@20.10.3)(sass@1.69.5)
     dev: true
 
-  /vite-plugin-vue-devtools@1.0.0-rc.6(pug@3.0.2)(vite@4.5.1):
-    resolution: {integrity: sha512-mtWRTz1VwBEZcb6rosgiDvXHZunxPxgBaPsORbJECZGkjZFRig7NIEwiRXgSgpx+DAiEzBoX+FLsNnGgVq+VuA==}
+  /vite-plugin-vue-devtools@1.0.0-rc.7(pug@3.0.2)(vite@4.5.1):
+    resolution: {integrity: sha512-vkAj9a6s7Qo8yJ4R6mpa1wMovnZNZrWezsXorAoguydWrzYirKOhu8FrosK/csbjqTibKktmgfpzMxtqCqMaqQ==}
     engines: {node: '>=v14.21.3'}
     peerDependencies:
       vite: ^3.1.0 || ^4.0.0-0 || ^5.0.0-0
     dependencies:
-      '@vite-plugin-vue-devtools/core': 1.0.0-rc.6(vite@4.5.1)
+      '@vite-plugin-vue-devtools/core': 1.0.0-rc.7(vite@4.5.1)
       '@webfansplz/vuedoc-parser': 0.0.4(pug@3.0.2)
       birpc: 0.2.14
       execa: 8.0.1
       sirv: 2.0.3
       vite: 4.5.1(@types/node@20.10.3)(sass@1.69.5)
       vite-plugin-inspect: 0.7.41(vite@4.5.1)
-      vite-plugin-vue-inspector: 4.0.1(vite@4.5.1)
+      vite-plugin-vue-inspector: 4.0.2(vite@4.5.1)
     transitivePeerDependencies:
       - '@nuxt/kit'
       - pug
@@ -7808,8 +7808,8 @@ packages:
       - supports-color
     dev: true
 
-  /vite-plugin-vue-inspector@4.0.1(vite@4.5.1):
-    resolution: {integrity: sha512-Jk7YUpYFK1Slm64ct6jL9vfVNnDXsK1N3axCbfpyXmRH0pNbd9yZ58haZKyjZ/Mi47D17dB6KnxPqOLO2SR1FQ==}
+  /vite-plugin-vue-inspector@4.0.2(vite@4.5.1):
+    resolution: {integrity: sha512-KPvLEuafPG13T7JJuQbSm5PwSxKFnVS965+MP1we2xGw9BPkkc/+LPix5MMWenpKWqtjr0ws8THrR+KuoDC8hg==}
     peerDependencies:
       vite: ^3.0.0-0 || ^4.0.0-0 || ^5.0.0-0
     dependencies:
