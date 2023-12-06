@@ -135,8 +135,10 @@ declare global {
 declare global {
   // @ts-ignore
   export type { Component, ComponentPublicInstance, ComputedRef, ExtractDefaultPropTypes, ExtractPropTypes, ExtractPublicPropTypes, InjectionKey, PropType, Ref, VNode, WritableComputedRef } from 'vue'
+  import('vue')
   // @ts-ignore
   export type { DataTableBaseColumn, DataTableColumn, DataTableColumns, DataTableCreateSummary, DropdownOption, FormInst, FormItemInst, FormItemRule, FormRules, FormValidationError, MenuInst, MenuOption, UploadCustomRequestOptions, UploadFileInfo, UploadInst } from 'naive-ui'
+  import('naive-ui')
 }
 // for vue template auto import
 import { UnwrapRef } from 'vue'
