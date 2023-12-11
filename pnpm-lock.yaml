@@ -74,8 +74,8 @@ devDependencies:
     specifier: ^0.0.12
     version: 0.0.12(@vueuse/core@10.7.0)
   '@dolphin-admin/bootstrap-animation':
-    specifier: ^0.0.5
-    version: 0.0.5(vite@4.5.1)
+    specifier: ^0.0.6
+    version: 0.0.6(vite@4.5.1)
   '@iconify/json':
     specifier: ^2.2.153
     version: 2.2.153
@@ -1088,8 +1088,8 @@ packages:
       - rollup
     dev: true
 
-  /@dolphin-admin/bootstrap-animation@0.0.5(vite@4.5.1):
-    resolution: {integrity: sha512-UzYPN5Pd5scg2GNMgyNsMD5cbGHZBPGbBf8GSD3x4IgtKQW0sUbfc4EHmdL3dKuYJka561Hb8pTIzdMbLhfG3Q==}
+  /@dolphin-admin/bootstrap-animation@0.0.6(vite@4.5.1):
+    resolution: {integrity: sha512-qljdiK0ZKP0vH9VrOjgH0R+qtdhykCb16ID6Q8M37fHu+iPYnIfKR9b3uP1zEwvTEbTWg14YTjqa08/BfRCRKQ==}
     peerDependencies:
       vite: ^5.0.0
     dependencies:
