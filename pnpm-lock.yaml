@@ -71,8 +71,8 @@ devDependencies:
     specifier: ^18.4.3
     version: 18.4.3
   '@dolphin-admin/auto-import':
-    specifier: ^0.0.11
-    version: 0.0.11(@vueuse/core@10.7.0)
+    specifier: ^0.0.12
+    version: 0.0.12(@vueuse/core@10.7.0)
   '@dolphin-admin/bootstrap-animation':
     specifier: ^0.0.5
     version: 0.0.5(vite@4.5.1)
@@ -1076,12 +1076,12 @@ packages:
       vue: 3.3.10(typescript@5.3.3)
     dev: true
 
-  /@dolphin-admin/auto-import@0.0.11(@vueuse/core@10.7.0):
-    resolution: {integrity: sha512-40Xt2Vjvjp0soDDjvj9HCWmG+p3UMoxKo30Qc5Or1HtXVL8+jskcTyqosxIz4FcYiF38KUgld+/5pV8O7Vq7jg==}
+  /@dolphin-admin/auto-import@0.0.12(@vueuse/core@10.7.0):
+    resolution: {integrity: sha512-oUZ8Rfs07GOpmVM28i+YicRLX1xE1MuAlkwm1pCSMQfLtMvvckL73dc3Ov2Cy2qOTyMxgxGXT28pjYxhYr2h0w==}
     dependencies:
       dayjs: 1.11.10
-      unimport: 3.5.0
-      unplugin-auto-import: 0.16.7(@vueuse/core@10.7.0)
+      unimport: 3.6.1
+      unplugin-auto-import: 0.17.2(@vueuse/core@10.7.0)
     transitivePeerDependencies:
       - '@nuxt/kit'
       - '@vueuse/core'
@@ -1558,11 +1558,11 @@ packages:
       mlly: 1.4.2
       pathe: 1.1.1
       pkg-types: 1.0.3
-      scule: 1.0.0
+      scule: 1.1.1
       semver: 7.5.4
       ufo: 1.3.1
       unctx: 2.3.1
-      unimport: 3.5.0
+      unimport: 3.6.0
       untyped: 1.4.0
     transitivePeerDependencies:
       - rollup
@@ -1584,7 +1584,7 @@ packages:
       postcss-import-resolver: 2.0.0
       std-env: 3.4.3
       ufo: 1.3.1
-      unimport: 3.5.0
+      unimport: 3.6.0
       untyped: 1.4.0
     transitivePeerDependencies:
       - rollup
@@ -1615,6 +1615,7 @@ packages:
       '@types/estree': 1.0.4
       estree-walker: 2.0.2
       picomatch: 2.3.1
+    dev: true
 
   /@rollup/pluginutils@5.1.0:
     resolution: {integrity: sha512-XTIWOPPcpvyKI6L1NHo0lFlCyznUEyPmPY1mc3KpPVDYulHSTvyeLNVW00QTLIAFNhR3kYnJTQHeGqU4M3n09g==}
@@ -1628,7 +1629,6 @@ packages:
       '@types/estree': 1.0.4
       estree-walker: 2.0.2
       picomatch: 2.3.1
-    dev: true
 
   /@socket.io/component-emitter@3.1.0:
     resolution: {integrity: sha512-+9jVqKhRSpsc591z5vX+X5Yyw+he/HCB4iQ/RYxw35CEPaY1gnsNE43nf9n9AaYjAQrTiI/mOwKUKdUs9vf7Xg==}
@@ -6833,13 +6833,8 @@ packages:
       source-map-js: 1.0.2
     dev: true
 
-  /scule@1.0.0:
-    resolution: {integrity: sha512-4AsO/FrViE/iDNEPaAQlb77tf0csuq27EsVpy6ett584EcRTp6pTDLoGWVxCD77y5iU5FauOvhsI4o1APwPoSQ==}
-    requiresBuild: true
-
   /scule@1.1.1:
     resolution: {integrity: sha512-sHtm/SsIK9BUBI3EFT/Gnp9VoKfY6QLvlkvAE6YK7454IF8FSgJEAnJpVdSC7K5/pjI5NfxhzBLW2JAfYA/shQ==}
-    dev: true
 
   /seemly@0.3.6:
     resolution: {integrity: sha512-lEV5VB8BUKTo/AfktXJcy+JeXns26ylbMkIUco8CYREsQijuz4mrXres2Q+vMLdwkuLxJdIPQ8IlCIxLYm71Yw==}
@@ -7506,29 +7501,10 @@ packages:
     engines: {node: '>=18'}
     dev: true
 
-  /unimport@3.4.0:
-    resolution: {integrity: sha512-M/lfFEgufIT156QAr/jWHLUn55kEmxBBiQsMxvRSIbquwmeJEyQYgshHDEvQDWlSJrVOOTAgnJ3FvlsrpGkanA==}
-    requiresBuild: true
+  /unimport@3.6.0:
+    resolution: {integrity: sha512-yXW3Z30yk1vX8fxO8uHlq9wY9K+L56LHp4Hlbv8i7tW+NENSOv8AaFJUPtOQchxlT7/JBAzCtkrBtcVjKIr1VQ==}
     dependencies:
-      '@rollup/pluginutils': 5.0.5
-      escape-string-regexp: 5.0.0
-      fast-glob: 3.3.2
-      local-pkg: 0.4.3
-      magic-string: 0.30.5
-      mlly: 1.4.2
-      pathe: 1.1.1
-      pkg-types: 1.0.3
-      scule: 1.0.0
-      strip-literal: 1.3.0
-      unplugin: 1.5.1
-    transitivePeerDependencies:
-      - rollup
-    dev: true
-
-  /unimport@3.5.0:
-    resolution: {integrity: sha512-0Ei1iTeSYxs7oxxUf79/KaBc2dPjZxe7qdVpw7yIz5YcdTZjmBYO6ToLDW+fX9QOHiueZ3xtwb5Z/wqaSfXx6A==}
-    dependencies:
-      '@rollup/pluginutils': 5.0.5
+      '@rollup/pluginutils': 5.1.0
       escape-string-regexp: 5.0.0
       fast-glob: 3.3.2
       local-pkg: 0.5.0
@@ -7536,14 +7512,14 @@ packages:
       mlly: 1.4.2
       pathe: 1.1.1
       pkg-types: 1.0.3
-      scule: 1.0.0
+      scule: 1.1.1
       strip-literal: 1.3.0
-      unplugin: 1.5.0
+      unplugin: 1.5.1
     transitivePeerDependencies:
       - rollup
 
-  /unimport@3.6.0:
-    resolution: {integrity: sha512-yXW3Z30yk1vX8fxO8uHlq9wY9K+L56LHp4Hlbv8i7tW+NENSOv8AaFJUPtOQchxlT7/JBAzCtkrBtcVjKIr1VQ==}
+  /unimport@3.6.1:
+    resolution: {integrity: sha512-zKzbp8AQ+l8QK3XrONtUBdgBbMI8TkGh8hBYF77ZkVqMLLIAHwGSwJRFolPQMBx/5pezeRKvmu2gzlqnxRZeqQ==}
     dependencies:
       '@rollup/pluginutils': 5.1.0
       escape-string-regexp: 5.0.0
@@ -7570,31 +7546,6 @@ packages:
   /universalify@2.0.0:
     resolution: {integrity: sha512-hAZsKq7Yy11Zu1DE0OzWjw7nnLZmJZYTDZZyEFHZdUhV8FkH5MCfoU1XMaxXovpyW5nq5scPqq0ZDP9Zyl04oQ==}
     engines: {node: '>= 10.0.0'}
-    dev: true
-
-  /unplugin-auto-import@0.16.7(@vueuse/core@10.7.0):
-    resolution: {integrity: sha512-w7XmnRlchq6YUFJVFGSvG1T/6j8GrdYN6Em9Wf0Ye+HXgD/22kont+WnuCAA0UaUoxtuvRR1u/mXKy63g/hfqQ==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      '@nuxt/kit': ^3.2.2
-      '@vueuse/core': '*'
-    peerDependenciesMeta:
-      '@nuxt/kit':
-        optional: true
-      '@vueuse/core':
-        optional: true
-    dependencies:
-      '@antfu/utils': 0.7.6
-      '@rollup/pluginutils': 5.0.5
-      '@vueuse/core': 10.7.0(vue@3.3.10)
-      fast-glob: 3.3.1
-      local-pkg: 0.5.0
-      magic-string: 0.30.5
-      minimatch: 9.0.3
-      unimport: 3.4.0
-      unplugin: 1.5.0
-    transitivePeerDependencies:
-      - rollup
     dev: true
 
   /unplugin-auto-import@0.17.2(@vueuse/core@10.7.0):
@@ -7690,6 +7641,7 @@ packages:
       chokidar: 3.5.3
       webpack-sources: 3.2.3
       webpack-virtual-modules: 0.5.0
+    dev: true
 
   /unplugin@1.5.1:
     resolution: {integrity: sha512-0QkvG13z6RD+1L1FoibQqnvTwVBXvS4XSPwAyinVgoOCl2jAgwzdUKmEj05o4Lt8xwQI85Hb6mSyYkcAGwZPew==}
@@ -7715,7 +7667,7 @@ packages:
       defu: 6.1.3
       jiti: 1.21.0
       mri: 1.2.0
-      scule: 1.0.0
+      scule: 1.1.1
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -8028,6 +7980,7 @@ packages:
   /webpack-virtual-modules@0.5.0:
     resolution: {integrity: sha512-kyDivFZ7ZM0BVOUteVbDFhlRt7Ah/CSPwJdi8hBpkK7QLumUqdLtVfm/PX/hkcnrvr0i77fO5+TjZ94Pe+C9iw==}
     requiresBuild: true
+    dev: true
 
   /webpack-virtual-modules@0.6.1:
     resolution: {integrity: sha512-poXpCylU7ExuvZK8z+On3kX+S8o/2dQ/SVYueKA0D4WEMXROXgY8Ez50/bQEUmvoSMMrWcrJqCHuhAbsiwg7Dg==}
