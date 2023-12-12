@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@dolphin-admin/utils':
-    specifier: ^0.0.20
-    version: 0.0.20
+    specifier: ^0.0.21
+    version: 0.0.21
   '@tanstack/vue-query':
     specifier: ^5.12.2
     version: 5.12.2(vue@3.3.10)
@@ -1098,8 +1098,8 @@ packages:
       vite: 4.5.1(@types/node@20.10.4)(sass@1.69.5)
     dev: true
 
-  /@dolphin-admin/utils@0.0.20:
-    resolution: {integrity: sha512-l2yUW96HUHUcE5F0UxKNLXNIRQqUNLkG/kgNAf2n9KvGih7Ld1PcNoZ69E/BLmGXqt3HsEg+X8XZ6aQKjDp3xg==}
+  /@dolphin-admin/utils@0.0.21:
+    resolution: {integrity: sha512-SSYoKWExbWa1Mmis0jBnfVq34owYG5/dLSzxxoZTcBtUGTYVx67+7C8rne8NKHtf0ttKShkHkYrV3K78X+X6vw==}
     dependencies:
       dayjs: 1.11.10
     dev: false
