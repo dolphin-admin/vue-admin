@@ -93,7 +93,7 @@
     "vite": "4.5.1",
     "vite-plugin-compression": "^0.5.1",
     "vite-plugin-progress": "^0.0.7",
-    "vite-plugin-vue-devtools": "1.0.0-rc.8",
+    "vite-plugin-vue-devtools": "7.0.8",
     "vue-tsc": "^1.8.25"
   },
   "config": {
