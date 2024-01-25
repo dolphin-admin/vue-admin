@@ -78,7 +78,7 @@
     "cz-conventional-changelog": "^3.3.0",
     "cz-git": "^1.8.0",
     "eslint": "^8.56.0",
-    "husky": "^8.0.3",
+    "husky": "^9.0.0",
     "lint-staged": "^15.2.0",
     "naive-ui": "^2.35.0",
     "postcss": "^8.4.32",
